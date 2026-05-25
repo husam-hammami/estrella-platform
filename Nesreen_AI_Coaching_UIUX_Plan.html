@@ -1,0 +1,2274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nesreen AI Coaching — UI/UX Master Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E1A;
+    --bg-2:#0F1424;
+    --bg-3:#161B2E;
+    --surface:#1A2038;
+    --surface-2:#212847;
+    --line:rgba(212,175,55,0.15);
+    --line-strong:rgba(212,175,55,0.3);
+    --text:#F4EFE6;
+    --text-dim:#A8B0C4;
+    --text-mute:#6B7390;
+    --gold:#D4AF37;
+    --gold-light:#E8D4A2;
+    --gold-deep:#B8941F;
+    --champagne:#F5E6C8;
+    --purple:#9B7EDE;
+    --purple-deep:#5B4B8A;
+    --teal:#5FBFB8;
+    --rose:#E89BA8;
+    --success:#7FD89C;
+    --danger:#E87B7B;
+    --radius:14px;
+    --radius-lg:22px;
+    --shadow:0 20px 60px rgba(0,0,0,0.4);
+    --shadow-gold:0 10px 40px rgba(212,175,55,0.15);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+    font-weight:300;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(212,175,55,0.06) 0%, transparent 40%),
+      radial-gradient(circle at 85% 30%, rgba(155,126,222,0.05) 0%, transparent 45%),
+      radial-gradient(circle at 50% 80%, rgba(95,191,184,0.04) 0%, transparent 50%);
+  }
+  h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:-0.01em}
+  h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.05;font-weight:500}
+  h2{font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;font-weight:500;margin-bottom:1rem}
+  h3{font-size:clamp(1.4rem,2vw,1.9rem);line-height:1.2;margin-bottom:0.75rem;color:var(--gold-light)}
+  h4{font-size:1.3rem;color:var(--champagne);margin-bottom:0.5rem;font-family:'Inter',sans-serif;font-weight:600;letter-spacing:0.02em;text-transform:uppercase;font-size:0.85rem}
+  p{color:var(--text-dim);margin-bottom:1rem}
+  a{color:var(--gold);text-decoration:none}
+  .gold{color:var(--gold)}
+  .gold-light{color:var(--gold-light)}
+  .dim{color:var(--text-dim)}
+  .mute{color:var(--text-mute);font-size:0.85rem}
+
+  /* Layout */
+  .layout{display:grid;grid-template-columns:280px 1fr;min-height:100vh}
+  .sidebar{
+    background:rgba(10,14,26,0.85);
+    backdrop-filter:blur(20px);
+    border-right:1px solid var(--line);
+    padding:2.5rem 1.5rem;
+    position:sticky;top:0;height:100vh;overflow-y:auto;
+  }
+  .sidebar-logo{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;font-weight:500;color:var(--gold);margin-bottom:0.25rem;
+  }
+  .sidebar-tag{font-size:0.7rem;letter-spacing:0.2em;color:var(--text-mute);text-transform:uppercase;margin-bottom:2.5rem}
+  .nav-group-label{
+    font-size:0.65rem;letter-spacing:0.25em;color:var(--text-mute);
+    text-transform:uppercase;margin:1.5rem 0 0.5rem 0.5rem;
+  }
+  .nav-link{
+    display:flex;align-items:center;gap:0.6rem;
+    padding:0.5rem 0.75rem;border-radius:8px;
+    font-size:0.88rem;color:var(--text-dim);
+    transition:all 0.2s;cursor:pointer;
+  }
+  .nav-link:hover{background:rgba(212,175,55,0.06);color:var(--gold-light)}
+  .nav-link .num{font-size:0.7rem;color:var(--text-mute);min-width:1.5rem}
+  .main{padding:5rem 5rem 8rem;max-width:1280px}
+  @media (max-width:1024px){
+    .layout{grid-template-columns:1fr}
+    .sidebar{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line)}
+    .main{padding:3rem 1.5rem}
+  }
+
+  /* Cover */
+  .cover{
+    min-height:90vh;display:flex;flex-direction:column;justify-content:center;
+    padding:4rem 0;position:relative;
+  }
+  .cover::before{
+    content:"";position:absolute;top:0;right:-100px;width:500px;height:500px;
+    background:radial-gradient(circle,rgba(212,175,55,0.12) 0%,transparent 70%);
+    filter:blur(40px);pointer-events:none;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);
+    text-transform:uppercase;margin-bottom:1.5rem;
+  }
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--gold)}
+  .cover h1 span{color:var(--gold);font-style:italic}
+  .cover .subtitle{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;color:var(--text-dim);
+    font-weight:300;font-style:italic;
+    max-width:720px;margin-top:1.5rem;line-height:1.4;
+  }
+  .meta-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
+    margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--line);
+  }
+  .meta-grid div .label{font-size:0.7rem;letter-spacing:0.2em;color:var(--text-mute);text-transform:uppercase;margin-bottom:0.5rem}
+  .meta-grid div .val{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--champagne)}
+
+  /* Sections */
+  section{margin:7rem 0;scroll-margin-top:2rem}
+  .section-header{margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--line)}
+  .section-header .num{
+    font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--gold);
+    letter-spacing:0.3em;display:block;margin-bottom:0.75rem;
+  }
+  .section-intro{font-size:1.1rem;max-width:780px;color:var(--text-dim);line-height:1.7}
+
+  /* Cards */
+  .card{
+    background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:2rem;
+    transition:all 0.3s;
+  }
+  .card:hover{border-color:var(--line-strong);transform:translateY(-2px)}
+  .card-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-light);margin-bottom:0.5rem}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+  @media (max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+
+  /* Quote */
+  .quote{
+    border-left:2px solid var(--gold);padding:1rem 1.5rem;
+    font-family:'Cormorant Garamond',serif;font-size:1.5rem;
+    color:var(--champagne);font-style:italic;line-height:1.4;margin:2rem 0;
+    background:rgba(212,175,55,0.03);border-radius:0 8px 8px 0;
+  }
+  .pull{
+    text-align:center;font-family:'Cormorant Garamond',serif;font-size:2rem;
+    color:var(--gold-light);font-style:italic;padding:3rem 2rem;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    margin:3rem 0;
+  }
+
+  /* Pill */
+  .pill{
+    display:inline-block;padding:0.3rem 0.8rem;border-radius:99px;
+    font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+    background:rgba(212,175,55,0.1);color:var(--gold);border:1px solid var(--line);
+    margin-right:0.5rem;margin-bottom:0.5rem;font-weight:500;
+  }
+  .pill-purple{background:rgba(155,126,222,0.1);color:var(--purple);border-color:rgba(155,126,222,0.2)}
+  .pill-teal{background:rgba(95,191,184,0.1);color:var(--teal);border-color:rgba(95,191,184,0.2)}
+
+  /* Mockup frame */
+  .mockup{
+    margin:2rem 0;border-radius:var(--radius-lg);overflow:hidden;
+    box-shadow:var(--shadow);border:1px solid var(--line-strong);
+    background:var(--bg-2);
+  }
+  .mockup-frame-bar{
+    display:flex;align-items:center;padding:0.8rem 1rem;
+    background:rgba(0,0,0,0.4);border-bottom:1px solid var(--line);gap:0.4rem;
+  }
+  .mockup-dot{width:10px;height:10px;border-radius:50%;background:#444}
+  .mockup-dot.r{background:#FF5F57}.mockup-dot.y{background:#FEBC2E}.mockup-dot.g{background:#28C840}
+  .mockup-url{
+    margin-left:1rem;font-size:0.75rem;color:var(--text-mute);
+    background:rgba(255,255,255,0.04);padding:0.25rem 1rem;border-radius:6px;flex:1;text-align:center;
+  }
+  .mockup-caption{
+    padding:1rem 1.5rem;font-size:0.85rem;color:var(--text-mute);
+    background:rgba(0,0,0,0.2);border-top:1px solid var(--line);
+  }
+  .mockup svg{display:block;width:100%;height:auto;background:#0F1424}
+
+  /* Flow steps */
+  .flow{display:grid;gap:1rem}
+  .flow-step{
+    display:grid;grid-template-columns:60px 1fr;gap:1.5rem;
+    padding:1.5rem;background:var(--surface);border-radius:var(--radius);
+    border:1px solid var(--line);align-items:start;
+  }
+  .flow-step .num{
+    width:48px;height:48px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+    color:var(--bg);display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;
+  }
+
+  /* Spec list */
+  .spec{
+    display:grid;grid-template-columns:200px 1fr;gap:1.5rem;
+    padding:1.25rem 0;border-bottom:1px solid var(--line);
+  }
+  .spec:last-child{border-bottom:none}
+  .spec-key{color:var(--gold-light);font-weight:500;font-size:0.95rem}
+  .spec-val{color:var(--text-dim);font-size:0.95rem}
+  @media (max-width:700px){.spec{grid-template-columns:1fr;gap:0.5rem}}
+
+  /* Color swatches */
+  .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:2rem 0}
+  .swatch{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+  .swatch-color{height:100px}
+  .swatch-info{padding:0.75rem;background:var(--surface);font-size:0.8rem}
+  .swatch-info .name{color:var(--champagne);font-weight:500}
+  .swatch-info .hex{color:var(--text-mute);font-family:monospace;font-size:0.75rem}
+
+  /* Typography sample */
+  .type-sample{padding:2rem;background:var(--surface);border-radius:var(--radius);border:1px solid var(--line);margin-bottom:1rem}
+  .type-sample .label{font-size:0.7rem;color:var(--text-mute);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:0.75rem}
+  .type-sample .demo{margin-bottom:0.75rem}
+
+  /* Roadmap */
+  .roadmap{position:relative;padding-left:2rem;margin:2rem 0}
+  .roadmap::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line)}
+  .roadmap-item{position:relative;padding:1rem 0 2rem 2rem}
+  .roadmap-item::before{
+    content:"";position:absolute;left:-0.4rem;top:1.3rem;width:12px;height:12px;
+    border-radius:50%;background:var(--gold);border:3px solid var(--bg);
+  }
+  .roadmap-phase{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:0.85rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:0.5rem}
+  .roadmap-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--champagne);margin-bottom:0.5rem}
+
+  /* Tables */
+  table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem}
+  th{
+    text-align:left;padding:1rem;background:var(--surface-2);
+    color:var(--gold-light);font-weight:500;
+    border-bottom:1px solid var(--line-strong);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;
+  }
+  td{padding:1rem;border-bottom:1px solid var(--line);color:var(--text-dim)}
+  tr:hover td{background:rgba(212,175,55,0.02)}
+
+  /* Lists */
+  ul.lux{list-style:none;padding:0}
+  ul.lux li{
+    padding:0.5rem 0 0.5rem 1.5rem;position:relative;color:var(--text-dim);
+  }
+  ul.lux li::before{
+    content:"";position:absolute;left:0;top:1rem;width:6px;height:6px;
+    background:var(--gold);border-radius:50%;
+  }
+
+  /* Hero divider */
+  .divider{
+    text-align:center;margin:5rem 0;position:relative;
+  }
+  .divider::before,.divider::after{
+    content:"";position:absolute;top:50%;width:30%;height:1px;background:var(--line);
+  }
+  .divider::before{left:0}.divider::after{right:0}
+  .divider span{color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;padding:0 1.5rem}
+
+  /* Toggle / Tabs */
+  .tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:0.5rem}
+  .tab-btn{
+    padding:0.6rem 1.2rem;background:transparent;border:1px solid var(--line);
+    color:var(--text-dim);border-radius:99px;cursor:pointer;font-size:0.85rem;
+    transition:all 0.2s;font-family:'Inter',sans-serif;
+  }
+  .tab-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+  .tab-btn:hover:not(.active){border-color:var(--gold);color:var(--gold-light)}
+  .tab-content{display:none}.tab-content.active{display:block}
+
+  /* Hero icons */
+  .icon-box{
+    width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05));
+    border:1px solid var(--line-strong);margin-bottom:1rem;
+  }
+
+  /* Animated AI orb (used in mockups) */
+  @keyframes pulse{0%,100%{opacity:0.7;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+  .pulse{animation:pulse 3s ease-in-out infinite}
+
+  /* Print */
+  @media print{
+    .sidebar{display:none}
+    .main{padding:1rem;max-width:none}
+    body{background:white;color:black}
+    section{page-break-inside:avoid;margin:2rem 0}
+    .mockup{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">Nesreen</div>
+    <div class="sidebar-tag">UI / UX Master Plan</div>
+
+    <div class="nav-group-label">Strategy</div>
+    <a class="nav-link" href="#cover"><span class="num">00</span>Cover</a>
+    <a class="nav-link" href="#summary"><span class="num">01</span>Executive Summary</a>
+    <a class="nav-link" href="#positioning"><span class="num">02</span>Brand Positioning</a>
+    <a class="nav-link" href="#ia"><span class="num">03</span>Information Architecture</a>
+    <a class="nav-link" href="#flow"><span class="num">04</span>User Flow</a>
+
+    <div class="nav-group-label">Pages & Mockups</div>
+    <a class="nav-link" href="#landing"><span class="num">05</span>Landing Page</a>
+    <a class="nav-link" href="#booking"><span class="num">06</span>Booking Flow</a>
+    <a class="nav-link" href="#payment"><span class="num">07</span>Payment</a>
+    <a class="nav-link" href="#ai-onboard"><span class="num">08</span>AI Onboarding</a>
+    <a class="nav-link" href="#brief"><span class="num">09</span>Coaching Brief</a>
+    <a class="nav-link" href="#dashboard"><span class="num">10</span>Client Dashboard</a>
+    <a class="nav-link" href="#readiness"><span class="num">11</span>Readiness Score</a>
+    <a class="nav-link" href="#library"><span class="num">12</span>Nesreen Library</a>
+    <a class="nav-link" href="#academy"><span class="num">13</span>Nesreen Academy</a>
+    <a class="nav-link" href="#future"><span class="num">14</span>Future Features</a>
+
+    <div class="nav-group-label">Design & Build</div>
+    <a class="nav-link" href="#design-system"><span class="num">15</span>Design System</a>
+    <a class="nav-link" href="#components"><span class="num">16</span>Components</a>
+    <a class="nav-link" href="#tech"><span class="num">17</span>Tech Stack</a>
+    <a class="nav-link" href="#ai-arch"><span class="num">18</span>AI Architecture</a>
+    <a class="nav-link" href="#kpis"><span class="num">19</span>KPIs</a>
+    <a class="nav-link" href="#roadmap"><span class="num">20</span>Roadmap</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- COVER -->
+    <section id="cover" class="cover">
+      <div class="eyebrow">Premium Coaching Platform — Master Plan v1.0</div>
+      <h1>Where human coaching<br/>meets <span>artificial intelligence.</span></h1>
+      <p class="subtitle">The complete UI/UX design plan for Nesreen's AI-assisted career coaching platform — a premium digital experience designed to elevate, prepare, and transform.</p>
+      <div class="meta-grid">
+        <div><div class="label">Prepared For</div><div class="val">Nesreen</div></div>
+        <div><div class="label">Document Type</div><div class="val">UI / UX Master Plan</div></div>
+        <div><div class="label">Audience</div><div class="val">Strategy · Design · Dev</div></div>
+        <div><div class="label">Date</div><div class="val">May 2026</div></div>
+      </div>
+    </section>
+
+    <!-- 01 EXECUTIVE SUMMARY -->
+    <section id="summary">
+      <div class="section-header">
+        <span class="num">— 01 —</span>
+        <h2>Executive Summary</h2>
+        <p class="section-intro">A single, decisive idea drives this entire platform: <em>AI does not replace Nesreen — it prepares clients for her, increasing her value and creating a coaching experience no competitor can match.</em></p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>One Core Message</h3>
+          <p>Every page, every flow, every word reinforces a single CTA: <strong class="gold-light">"Book Your Career Coaching Session with Nesreen."</strong></p>
+        </div>
+        <div class="card">
+          <div class="icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Booking First, AI Second</h3>
+          <p>Clients book and pay <em>before</em> AI engagement. This positions Nesreen as the premium expert; AI becomes added luxury value, not a substitute.</p>
+        </div>
+        <div class="card">
+          <div class="icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Emotional Premium</h3>
+          <p>The interface must feel intelligent, emotional, transformative, and personal. Never robotic. Never corporate. Never generic.</p>
+        </div>
+      </div>
+
+      <div class="quote">"AI-assisted coaching powered by real human expertise — because people still want human guidance. AI alone feels cheap. You + AI feels premium."</div>
+
+      <div class="grid-2" style="margin-top:2rem">
+        <div>
+          <h4>What This Document Delivers</h4>
+          <ul class="lux">
+            <li>Full user journey from discovery to post-session follow-up</li>
+            <li>Visual mockups of all 10 core screens</li>
+            <li>Design system: color, typography, components</li>
+            <li>Technical specifications for development team</li>
+            <li>AI architecture and conversation logic</li>
+            <li>Payment gateway integration plan (UAE & global)</li>
+            <li>KPIs and 4-phase implementation roadmap</li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Premium Promise</h4>
+          <ul class="lux">
+            <li>Every interaction reinforces high-value positioning</li>
+            <li>AI prepares; Nesreen transforms</li>
+            <li>Gamified readiness ("72% prepared") creates anticipation</li>
+            <li>Dashboard becomes a long-term coaching companion</li>
+            <li>Library, Academy & AI Twin extend brand reach</li>
+            <li>Built for UAE-first with global scalability</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 BRAND POSITIONING -->
+    <section id="positioning">
+      <div class="section-header">
+        <span class="num">— 02 —</span>
+        <h2>Brand Positioning &amp; Voice</h2>
+        <p class="section-intro">The platform is the brand. Every pixel, every word, every micro-interaction reinforces a single perception: Nesreen is the premium destination for transformational career coaching, with AI as the privileged preparation layer.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>The Brand Sentence</h3>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--champagne);font-style:italic;line-height:1.4">"Premium AI-assisted career coaching led by Nesreen."</p>
+          <p style="margin-top:1rem">This single line appears in the footer, in the meta description, in the first paragraph of every press kit. It is the north star.</p>
+        </div>
+        <div class="card">
+          <h3>How It Should Feel</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem">
+            <span class="pill">Intelligent</span>
+            <span class="pill">Emotional</span>
+            <span class="pill">Premium</span>
+            <span class="pill">Transformative</span>
+            <span class="pill">Personal</span>
+            <span class="pill">Quiet Luxury</span>
+            <span class="pill">Confident</span>
+          </div>
+          <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.5rem">
+            <span class="pill" style="background:rgba(232,123,123,0.08);color:var(--danger);border-color:rgba(232,123,123,0.2);text-decoration:line-through">Robotic</span>
+            <span class="pill" style="background:rgba(232,123,123,0.08);color:var(--danger);border-color:rgba(232,123,123,0.2);text-decoration:line-through">Corporate</span>
+            <span class="pill" style="background:rgba(232,123,123,0.08);color:var(--danger);border-color:rgba(232,123,123,0.2);text-decoration:line-through">Generic</span>
+            <span class="pill" style="background:rgba(232,123,123,0.08);color:var(--danger);border-color:rgba(232,123,123,0.2);text-decoration:line-through">Chatbot-ish</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:3rem">Voice &amp; Tone Principles</h3>
+      <div class="grid-3" style="margin-top:1rem">
+        <div class="card">
+          <h4>Warm Authority</h4>
+          <p>Speak like a senior mentor who has seen everything but still believes in you. Direct, but never cold. Empathetic, but never soft.</p>
+        </div>
+        <div class="card">
+          <h4>Quiet Confidence</h4>
+          <p>No exclamation marks. No hype. The product speaks through restraint. "Your session is ready." not "Your session is ready!!"</p>
+        </div>
+        <div class="card">
+          <h4>Personal Address</h4>
+          <p>Always "you," never "users" or "clients" in the UI. The AI says "Nesreen will see this" — not "the coach."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 INFORMATION ARCHITECTURE -->
+    <section id="ia">
+      <div class="section-header">
+        <span class="num">— 03 —</span>
+        <h2>Information Architecture</h2>
+        <p class="section-intro">The site map is intentionally lean. Every additional page dilutes the primary CTA. Each section earns its place by either driving a booking or deepening the client relationship after booking.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com — Site Map</span>
+        </div>
+        <svg viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#B8941F"/>
+            </linearGradient>
+            <linearGradient id="purpGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#9B7EDE"/><stop offset="100%" stop-color="#5B4B8A"/>
+            </linearGradient>
+          </defs>
+          <!-- ROOT -->
+          <g>
+            <rect x="430" y="20" width="240" height="60" rx="8" fill="url(#goldGrad)"/>
+            <text x="550" y="48" text-anchor="middle" fill="#0A0E1A" font-family="Cormorant Garamond" font-size="20" font-weight="500">nesreen.com</text>
+            <text x="550" y="65" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="10" letter-spacing="2">PUBLIC ENTRY</text>
+          </g>
+
+          <!-- LEVEL 1 -->
+          <g font-family="Inter" font-size="12" fill="#F4EFE6">
+            <!-- Lines -->
+            <path d="M550 80 L550 110 L150 110 L150 140" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M150 110 L350 110 L350 140" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M550 110 L550 140" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M550 110 L750 110 L750 140" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M950 110 L950 140" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M550 110 L950 110" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+
+            <rect x="70" y="140" width="160" height="55" rx="6" fill="#1A2038" stroke="#D4AF37" stroke-width="1"/>
+            <text x="150" y="165" text-anchor="middle" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="16">Landing</text>
+            <text x="150" y="183" text-anchor="middle" fill="#A8B0C4" font-size="10">/ (home)</text>
+
+            <rect x="270" y="140" width="160" height="55" rx="6" fill="#1A2038" stroke="#D4AF37" stroke-width="1"/>
+            <text x="350" y="165" text-anchor="middle" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="16">About Nesreen</text>
+            <text x="350" y="183" text-anchor="middle" fill="#A8B0C4" font-size="10">/about</text>
+
+            <rect x="470" y="140" width="160" height="55" rx="6" fill="#1A2038" stroke="#D4AF37" stroke-width="2"/>
+            <text x="550" y="165" text-anchor="middle" fill="#D4AF37" font-family="Cormorant Garamond" font-size="16" font-weight="600">Book Session ★</text>
+            <text x="550" y="183" text-anchor="middle" fill="#A8B0C4" font-size="10">/book — PRIMARY</text>
+
+            <rect x="670" y="140" width="160" height="55" rx="6" fill="#1A2038" stroke="#D4AF37" stroke-width="1"/>
+            <text x="750" y="165" text-anchor="middle" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="16">Library</text>
+            <text x="750" y="183" text-anchor="middle" fill="#A8B0C4" font-size="10">/library</text>
+
+            <rect x="870" y="140" width="160" height="55" rx="6" fill="#1A2038" stroke="#D4AF37" stroke-width="1"/>
+            <text x="950" y="165" text-anchor="middle" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="16">Academy</text>
+            <text x="950" y="183" text-anchor="middle" fill="#A8B0C4" font-size="10">/academy</text>
+          </g>
+
+          <!-- LEVEL 2 - BOOKING TREE -->
+          <g>
+            <path d="M550 195 L550 220 L300 220 L300 250" stroke="#9B7EDE" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M300 220 L550 220 L550 250" stroke="#9B7EDE" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M550 220 L800 220 L800 250" stroke="#9B7EDE" stroke-width="1" fill="none" opacity="0.5"/>
+
+            <rect x="220" y="250" width="160" height="50" rx="6" fill="#212847" stroke="#9B7EDE"/>
+            <text x="300" y="273" text-anchor="middle" fill="#F4EFE6" font-size="12">Service Selection</text>
+            <text x="300" y="290" text-anchor="middle" fill="#A8B0C4" font-size="9">/book/services</text>
+
+            <rect x="470" y="250" width="160" height="50" rx="6" fill="#212847" stroke="#9B7EDE"/>
+            <text x="550" y="273" text-anchor="middle" fill="#F4EFE6" font-size="12">Calendar &amp; Payment</text>
+            <text x="550" y="290" text-anchor="middle" fill="#A8B0C4" font-size="9">/book/checkout</text>
+
+            <rect x="720" y="250" width="160" height="50" rx="6" fill="url(#purpGrad)"/>
+            <text x="800" y="273" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">AI Onboarding</text>
+            <text x="800" y="290" text-anchor="middle" fill="#E8D4A2" font-size="9">/onboarding</text>
+          </g>
+
+          <!-- LEVEL 3 - DASHBOARD -->
+          <g>
+            <path d="M800 300 L800 325" stroke="#9B7EDE" stroke-width="1" fill="none" opacity="0.5"/>
+            <rect x="700" y="325" width="200" height="50" rx="6" fill="url(#goldGrad)"/>
+            <text x="800" y="348" text-anchor="middle" fill="#0A0E1A" font-family="Cormorant Garamond" font-size="16" font-weight="600">Client Dashboard</text>
+            <text x="800" y="365" text-anchor="middle" fill="#0A0E1A" font-size="9" opacity="0.7">/portal</text>
+          </g>
+
+          <!-- LEVEL 4 - PORTAL SECTIONS -->
+          <g font-family="Inter" font-size="11" fill="#F4EFE6">
+            <path d="M800 375 L800 400" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M180 400 L1020 400" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M180 400 L180 430" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M380 400 L380 430" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M580 400 L580 430" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M800 400 L800 430" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+            <path d="M1020 400 L1020 430" stroke="#D4AF37" stroke-width="1" fill="none" opacity="0.4"/>
+
+            <g><rect x="100" y="430" width="160" height="50" rx="6" fill="#1A2038" stroke="#D4AF37" opacity="0.7"/>
+            <text x="180" y="452" text-anchor="middle" fill="#E8D4A2" font-size="12">My Journey</text>
+            <text x="180" y="468" text-anchor="middle" fill="#A8B0C4" font-size="9">Sessions, notes, plans</text></g>
+
+            <g><rect x="300" y="430" width="160" height="50" rx="6" fill="#1A2038" stroke="#D4AF37" opacity="0.7"/>
+            <text x="380" y="452" text-anchor="middle" fill="#E8D4A2" font-size="12">My Assessments</text>
+            <text x="380" y="468" text-anchor="middle" fill="#A8B0C4" font-size="9">Personality, leadership</text></g>
+
+            <g><rect x="500" y="430" width="160" height="50" rx="6" fill="#1A2038" stroke="#D4AF37" opacity="0.7"/>
+            <text x="580" y="452" text-anchor="middle" fill="#E8D4A2" font-size="12">My Resources</text>
+            <text x="580" y="468" text-anchor="middle" fill="#A8B0C4" font-size="9">Articles, recordings</text></g>
+
+            <g><rect x="720" y="430" width="160" height="50" rx="6" fill="#1A2038" stroke="#D4AF37" opacity="0.7"/>
+            <text x="800" y="452" text-anchor="middle" fill="#E8D4A2" font-size="12">My Action Plan</text>
+            <text x="800" y="468" text-anchor="middle" fill="#A8B0C4" font-size="9">Tasks from Nesreen</text></g>
+
+            <g><rect x="940" y="430" width="160" height="50" rx="6" fill="url(#purpGrad)"/>
+            <text x="1020" y="452" text-anchor="middle" fill="#fff" font-size="12" font-weight="500">AI Assistant</text>
+            <text x="1020" y="468" text-anchor="middle" fill="#E8D4A2" font-size="9">24/7 between sessions</text></g>
+          </g>
+
+          <!-- LIBRARY/ACADEMY SUBPAGES -->
+          <g>
+            <path d="M750 195 L750 520" stroke="#5FBFB8" stroke-width="1" fill="none" opacity="0.3" stroke-dasharray="3,3"/>
+            <path d="M950 195 L950 520" stroke="#5FBFB8" stroke-width="1" fill="none" opacity="0.3" stroke-dasharray="3,3"/>
+
+            <rect x="600" y="540" width="300" height="55" rx="6" fill="#1A2038" stroke="#5FBFB8" stroke-width="0.5"/>
+            <text x="750" y="563" text-anchor="middle" fill="#5FBFB8" font-family="Cormorant Garamond" font-size="14">Library Detail</text>
+            <text x="750" y="580" text-anchor="middle" fill="#A8B0C4" font-size="10">/library/[book] — Preview · Buy · Audio sample · Journals · PDFs</text>
+
+            <rect x="800" y="610" width="300" height="55" rx="6" fill="#1A2038" stroke="#5FBFB8" stroke-width="0.5"/>
+            <text x="950" y="633" text-anchor="middle" fill="#5FBFB8" font-family="Cormorant Garamond" font-size="14">Academy Course</text>
+            <text x="950" y="650" text-anchor="middle" fill="#A8B0C4" font-size="10">/academy/[course] — Lessons · Files · Certificate · Inline AI tutor</text>
+          </g>
+
+          <text x="20" y="700" fill="#6B7390" font-size="10" font-family="Inter">Solid lines = primary navigation · Dashed = secondary funnels · Gold border = pages with conversion intent</text>
+        </svg>
+        <div class="mockup-caption">Public funnel converges on /book. Authenticated experience expands into a multi-faceted client portal. Library &amp; Academy operate as parallel revenue streams reinforcing the brand.</div>
+      </div>
+    </section>
+
+    <!-- 04 USER FLOW -->
+    <section id="flow">
+      <div class="section-header">
+        <span class="num">— 04 —</span>
+        <h2>The Primary User Flow</h2>
+        <p class="section-intro">A deliberate sequence that converts curiosity into commitment, then commitment into preparation, then preparation into transformation.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step"><div class="num">1</div><div>
+          <h3 style="margin-bottom:0.25rem">Arrival</h3>
+          <p>User lands on hero. Within 2 seconds they understand: this is a premium coaching experience powered by AI. Two CTAs offered — both lead to the same end, just different doors.</p>
+          <span class="pill">Hero</span><span class="pill-purple pill">Social Proof</span><span class="pill-teal pill">2-second clarity test</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">2</div><div>
+          <h3 style="margin-bottom:0.25rem">Service Selection</h3>
+          <p>Seven coaching tracks presented as elegant cards (career, interview, leadership, clarity, CV/LinkedIn, burnout, executive). User picks one — or "Not sure" routes them to a 60-second clarity quiz that recommends.</p>
+          <span class="pill">7 services</span><span class="pill-purple pill">Smart routing</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">3</div><div>
+          <h3 style="margin-bottom:0.25rem">Date &amp; Time</h3>
+          <p>Calendar with Nesreen's real availability. Time zones auto-detected. Session length and price displayed prominently. No surprises at checkout.</p>
+          <span class="pill">Real availability</span><span class="pill-purple pill">TZ auto-detect</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">4</div><div>
+          <h3 style="margin-bottom:0.25rem">Secure Payment</h3>
+          <p>Tap, PayTabs, Stripe, Apple Pay, Google Pay — every premium option visible. 3DS for trust. Receipt &amp; invoice instantly emailed. Account auto-created with magic link login.</p>
+          <span class="pill">5 gateways</span><span class="pill-purple pill">Apple/Google Pay</span><span class="pill-teal pill">Magic link auth</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">5</div><div>
+          <h3 style="margin-bottom:0.25rem">AI Onboarding Begins</h3>
+          <p>The avatar appears: "Hi, I'm Nesreen AI. Before your session, I'll help prepare your personalized coaching profile." This is the moment the brand promise is delivered. Pure magic.</p>
+          <span class="pill">AI avatar reveal</span><span class="pill-purple pill">Voice + text</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">6</div><div>
+          <h3 style="margin-bottom:0.25rem">Profile Building (8-12 minutes)</h3>
+          <p>Conversational, never form-like. AI asks about history, goals, frustrations, fears, confidence, dream job. Progress shown as an unfolding constellation, not a progress bar.</p>
+          <span class="pill">Conversational UI</span><span class="pill-purple pill">Constellation viz</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">7</div><div>
+          <h3 style="margin-bottom:0.25rem">Readiness Reveal</h3>
+          <p>Client sees their <strong class="gold">Session Readiness Score</strong>. Gamified, addictive, anticipation-building. "You're 72% ready. Complete the leadership self-assessment to reach 90%."</p>
+          <span class="pill">Gamification</span><span class="pill-purple pill">Anticipation</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">8</div><div>
+          <h3 style="margin-bottom:0.25rem">Nesreen Receives Coaching Brief</h3>
+          <p>Nesreen opens her coach dashboard 24h before the session. AI-generated brief: client summary, emotional indicators, suggested direction, recommended questions. She walks in fully prepared.</p>
+          <span class="pill">Coach prep</span><span class="pill-purple pill">AI brief</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">9</div><div>
+          <h3 style="margin-bottom:0.25rem">The Session</h3>
+          <p>Zoom/Google Meet link in dashboard. Optional in-session AI note-taker captures highlights so Nesreen stays fully present. Client never sees the AI mid-session — it's silent.</p>
+          <span class="pill">Video integrated</span><span class="pill-purple pill">Silent AI note-taker</span>
+        </div></div>
+
+        <div class="flow-step"><div class="num">10</div><div>
+          <h3 style="margin-bottom:0.25rem">Post-Session Magic</h3>
+          <p>Within hours: AI summary, action plan, motivation message, calendar reminders. The dashboard becomes the client's career companion — driving rebookings, courses, books, and word of mouth.</p>
+          <span class="pill">Auto-summary</span><span class="pill-purple pill">Rebook nudge</span><span class="pill-teal pill">Cross-sell</span>
+        </div></div>
+      </div>
+    </section>
+
+    <div class="pull">"You are entering a premium coaching experience."</div>
+
+    <!-- 05 LANDING PAGE -->
+    <section id="landing">
+      <div class="section-header">
+        <span class="num">— 05 —</span>
+        <h2>Landing Page</h2>
+        <p class="section-intro">The most important page on the site. Everything else exists to bring people back here. The hero must communicate premium, AI-powered, and human all at once — in less than two seconds.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com</span>
+        </div>
+        <svg viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="orbGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.9"/>
+              <stop offset="60%" stop-color="#9B7EDE" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#5B4B8A" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="ctaPrime" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#D4AF37"/><stop offset="100%" stop-color="#B8941F"/>
+            </linearGradient>
+          </defs>
+          <rect width="1200" height="760" fill="#0A0E1A"/>
+          <!-- ambient glow -->
+          <circle cx="950" cy="400" r="350" fill="url(#orbGrad)" opacity="0.4"/>
+
+          <!-- NAV -->
+          <text x="60" y="50" fill="#D4AF37" font-family="Cormorant Garamond" font-size="24" font-weight="500">Nesreen</text>
+          <g font-family="Inter" font-size="12" fill="#A8B0C4">
+            <text x="700" y="50">About</text>
+            <text x="760" y="50">Services</text>
+            <text x="830" y="50">Library</text>
+            <text x="890" y="50">Academy</text>
+            <text x="960" y="50">Contact</text>
+          </g>
+          <rect x="1040" y="32" width="100" height="32" rx="16" fill="none" stroke="#D4AF37"/>
+          <text x="1090" y="53" text-anchor="middle" fill="#D4AF37" font-family="Inter" font-size="11" font-weight="500">Sign In</text>
+
+          <!-- EYEBROW -->
+          <line x1="60" y1="180" x2="90" y2="180" stroke="#D4AF37" stroke-width="1"/>
+          <text x="100" y="184" fill="#D4AF37" font-family="Inter" font-size="10" letter-spacing="4">PREMIUM AI-ASSISTED COACHING</text>
+
+          <!-- HEADLINE -->
+          <text x="60" y="260" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="56" font-weight="400">Book Your</text>
+          <text x="60" y="320" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="56" font-weight="400">AI-Powered Career</text>
+          <text x="60" y="380" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="56" font-weight="400">Coaching Session</text>
+          <text x="60" y="440" fill="#D4AF37" font-family="Cormorant Garamond" font-size="56" font-weight="500" font-style="italic">with Nesreen.</text>
+
+          <!-- SUBHEAD -->
+          <text x="60" y="500" fill="#A8B0C4" font-family="Cormorant Garamond" font-size="20" font-style="italic">Before your session, our intelligent AI assistant prepares your</text>
+          <text x="60" y="526" fill="#A8B0C4" font-family="Cormorant Garamond" font-size="20" font-style="italic">personalized career profile, identifies your challenges, and builds</text>
+          <text x="60" y="552" fill="#A8B0C4" font-family="Cormorant Garamond" font-size="20" font-style="italic">your growth roadmap — so coaching becomes deeper and faster.</text>
+
+          <!-- CTAs -->
+          <rect x="60" y="600" width="200" height="56" rx="28" fill="url(#ctaPrime)"/>
+          <text x="160" y="635" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="14" font-weight="600" letter-spacing="1">BOOK SESSION →</text>
+
+          <rect x="280" y="600" width="220" height="56" rx="28" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+          <text x="390" y="635" text-anchor="middle" fill="#D4AF37" font-family="Inter" font-size="14" font-weight="500" letter-spacing="1">Start AI Preparation</text>
+
+          <!-- TRUST ROW -->
+          <text x="60" y="710" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">TRUSTED BY LEADERS AT</text>
+          <text x="60" y="735" fill="#A8B0C4" font-family="Cormorant Garamond" font-size="14" letter-spacing="2">Emirates · DAMAC · Aramex · Mubadala · Etihad · L'Oréal ME</text>
+
+          <!-- AI ORB visual -->
+          <g transform="translate(900,380)">
+            <circle r="180" fill="url(#orbGrad)" opacity="0.6" class="pulse"/>
+            <circle r="120" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.5"/>
+            <circle r="80" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
+            <circle r="40" fill="none" stroke="#D4AF37" stroke-width="0.5" opacity="0.2"/>
+
+            <!-- Particles -->
+            <circle cx="60" cy="-40" r="2" fill="#D4AF37"/>
+            <circle cx="-80" cy="30" r="2" fill="#E8D4A2"/>
+            <circle cx="100" cy="80" r="2" fill="#9B7EDE"/>
+            <circle cx="-50" cy="-90" r="2" fill="#D4AF37"/>
+            <circle cx="130" cy="-60" r="1.5" fill="#E8D4A2"/>
+            <circle cx="-100" cy="-30" r="1.5" fill="#5FBFB8"/>
+
+            <!-- Center face placeholder -->
+            <circle r="60" fill="#1A2038" stroke="#D4AF37" stroke-width="1"/>
+            <text y="6" text-anchor="middle" fill="#D4AF37" font-family="Cormorant Garamond" font-size="40" font-weight="500" font-style="italic">N</text>
+          </g>
+
+          <!-- Floating labels around orb -->
+          <g font-family="Inter" font-size="9" fill="#A8B0C4">
+            <text x="1060" y="270">Clarity Profile</text>
+            <text x="730" y="270">Confidence Score</text>
+            <text x="1060" y="510">Action Roadmap</text>
+            <text x="730" y="510">Emotional Scan</text>
+          </g>
+        </svg>
+        <div class="mockup-caption">Above-the-fold composition: serif headline (luxury), italic accent line for "with Nesreen" (personal), two CTAs with deliberate hierarchy (gold primary, outline secondary), trust row, and the AI orb as poetic visual metaphor — not a stock illustration.</div>
+      </div>
+
+      <h3>Hero Specifications</h3>
+      <div class="spec"><div class="spec-key">Primary CTA</div><div class="spec-val">"BOOK SESSION →" — solid gold gradient, 28px radius, leads to /book</div></div>
+      <div class="spec"><div class="spec-key">Secondary CTA</div><div class="spec-val">"Start AI Preparation" — outline gold, leads to same /book funnel with onboarding-first variant (A/B test)</div></div>
+      <div class="spec"><div class="spec-key">Headline</div><div class="spec-val">Cormorant Garamond 56px — italic accent on "with Nesreen" reinforces personal premium positioning</div></div>
+      <div class="spec"><div class="spec-key">AI Orb</div><div class="spec-val">Animated SVG/Lottie with subtle pulse (3s loop), responds to cursor proximity on desktop. Mobile: static</div></div>
+      <div class="spec"><div class="spec-key">2-Second Test</div><div class="spec-val">A new visitor must understand <em>what</em>, <em>who</em>, and <em>why premium</em> within 2 seconds of arrival</div></div>
+
+      <h3 style="margin-top:3rem">Sections Below the Fold</h3>
+      <div class="grid-3">
+        <div class="card"><h4>01. The Promise</h4><p>"AI-assisted coaching powered by real human expertise" — repeated as section title. Three pillars explained.</p></div>
+        <div class="card"><h4>02. How It Works</h4><p>Visual 4-step flow: Book → AI Prep → Session → Transformation. Each step illustrated.</p></div>
+        <div class="card"><h4>03. Coaching Tracks</h4><p>Seven services as elegant cards. Each clickable, each routes to booking with track preselected.</p></div>
+        <div class="card"><h4>04. About Nesreen</h4><p>Editorial-style introduction. Photo, credentials, philosophy. NOT a CV — a story.</p></div>
+        <div class="card"><h4>05. Client Voices</h4><p>3-5 video testimonials. Real faces. Cinematic styling with transformation quotes.</p></div>
+        <div class="card"><h4>06. The AI Difference</h4><p>Side-by-side: traditional coaching vs Nesreen + AI. Honest, not gimmicky.</p></div>
+        <div class="card"><h4>07. Library Preview</h4><p>Book covers in editorial layout. "Read by Nesreen's clients worldwide."</p></div>
+        <div class="card"><h4>08. Academy Preview</h4><p>3 featured courses. "Self-paced learning, AI-enhanced."</p></div>
+        <div class="card"><h4>09. Final CTA</h4><p>Full-bleed section: "Ready to begin?" — one button: BOOK SESSION. No alternatives.</p></div>
+      </div>
+    </section>
+
+    <!-- 06 BOOKING FLOW -->
+    <section id="booking">
+      <div class="section-header">
+        <span class="num">— 06 —</span>
+        <h2>Booking Flow</h2>
+        <p class="section-intro">Three steps, max. Service → Time → Pay. Every additional field reduces conversion. Every additional question delays the moment of commitment.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com/book — Step 1 of 3</span>
+        </div>
+        <svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="720" fill="#0A0E1A"/>
+          <!-- Header -->
+          <text x="60" y="50" fill="#D4AF37" font-family="Cormorant Garamond" font-size="22">Nesreen</text>
+          <text x="60" y="75" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">BOOK YOUR COACHING SESSION</text>
+
+          <!-- Progress -->
+          <g transform="translate(60,110)">
+            <circle cx="0" cy="0" r="14" fill="#D4AF37"/>
+            <text y="5" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="11" font-weight="600">1</text>
+            <text x="22" y="5" fill="#D4AF37" font-family="Inter" font-size="11">Select Service</text>
+
+            <line x1="130" y1="0" x2="290" y2="0" stroke="#1A2038" stroke-width="2"/>
+
+            <circle cx="310" cy="0" r="14" fill="#1A2038" stroke="#6B7390"/>
+            <text x="310" y="5" text-anchor="middle" fill="#6B7390" font-family="Inter" font-size="11">2</text>
+            <text x="332" y="5" fill="#6B7390" font-family="Inter" font-size="11">Date &amp; Time</text>
+
+            <line x1="430" y1="0" x2="590" y2="0" stroke="#1A2038" stroke-width="2"/>
+
+            <circle cx="610" cy="0" r="14" fill="#1A2038" stroke="#6B7390"/>
+            <text x="610" y="5" text-anchor="middle" fill="#6B7390" font-family="Inter" font-size="11">3</text>
+            <text x="632" y="5" fill="#6B7390" font-family="Inter" font-size="11">Payment</text>
+          </g>
+
+          <!-- Title -->
+          <text x="60" y="195" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="40">Choose your path.</text>
+          <text x="60" y="230" fill="#A8B0C4" font-family="Cormorant Garamond" font-size="16" font-style="italic">Every track begins with AI preparation, ends with transformation.</text>
+
+          <!-- Service cards -->
+          <g font-family="Inter">
+            <!-- Row 1 -->
+            <g transform="translate(60,270)">
+              <rect width="260" height="130" rx="12" fill="#1A2038" stroke="#D4AF37" stroke-width="2"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(212,175,55,0.15)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#D4AF37" font-size="14">★</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Career Coaching</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">Clarity, direction, next-chapter design.</text>
+              <text x="20" y="118" fill="#D4AF37" font-size="11" font-weight="600">From AED 1,200 · 60 min</text>
+            </g>
+
+            <g transform="translate(335,270)">
+              <rect width="260" height="130" rx="12" fill="#1A2038" stroke="#D4AF37" stroke-opacity="0.2"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(212,175,55,0.08)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#D4AF37" font-size="14">⚐</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Interview Coaching</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">Land the offer. Confidence + tactics.</text>
+              <text x="20" y="118" fill="#D4AF37" font-size="11" font-weight="600">From AED 1,000 · 60 min</text>
+            </g>
+
+            <g transform="translate(610,270)">
+              <rect width="260" height="130" rx="12" fill="#1A2038" stroke="#D4AF37" stroke-opacity="0.2"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(212,175,55,0.08)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#D4AF37" font-size="14">◆</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Leadership Coaching</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">For managers stepping into power.</text>
+              <text x="20" y="118" fill="#D4AF37" font-size="11" font-weight="600">From AED 1,800 · 75 min</text>
+            </g>
+
+            <g transform="translate(885,270)">
+              <rect width="260" height="130" rx="12" fill="#1A2038" stroke="#D4AF37" stroke-opacity="0.2"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(212,175,55,0.08)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#D4AF37" font-size="14">◉</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Career Clarity</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">For the lost, the unsure, the searching.</text>
+              <text x="20" y="118" fill="#D4AF37" font-size="11" font-weight="600">From AED 1,200 · 60 min</text>
+            </g>
+
+            <!-- Row 2 -->
+            <g transform="translate(60,420)">
+              <rect width="260" height="130" rx="12" fill="#1A2038" stroke="#D4AF37" stroke-opacity="0.2"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(212,175,55,0.08)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#D4AF37" font-size="14">✎</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">CV &amp; LinkedIn</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">Strategic profile + recruiter playbook.</text>
+              <text x="20" y="118" fill="#D4AF37" font-size="11" font-weight="600">From AED 900 · 60 min</text>
+            </g>
+
+            <g transform="translate(335,420)">
+              <rect width="260" height="130" rx="12" fill="#1A2038" stroke="#D4AF37" stroke-opacity="0.2"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(155,126,222,0.15)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#9B7EDE" font-size="14">♡</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Burnout &amp; Confidence</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">Reset. Rebuild. Reignite.</text>
+              <text x="20" y="118" fill="#D4AF37" font-size="11" font-weight="600">From AED 1,200 · 60 min</text>
+            </g>
+
+            <g transform="translate(610,420)">
+              <rect width="260" height="130" rx="12" fill="#1A2038" stroke="#D4AF37" stroke-opacity="0.2"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(212,175,55,0.08)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#D4AF37" font-size="14">♛</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Executive Coaching</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">For C-suite &amp; VP-level transformation.</text>
+              <text x="20" y="118" fill="#D4AF37" font-size="11" font-weight="600">From AED 3,500 · 90 min</text>
+            </g>
+
+            <g transform="translate(885,420)">
+              <rect width="260" height="130" rx="12" fill="rgba(155,126,222,0.08)" stroke="#9B7EDE" stroke-width="1.5" stroke-dasharray="4,3"/>
+              <circle cx="30" cy="30" r="14" fill="rgba(155,126,222,0.2)"/>
+              <text x="30" y="35" text-anchor="middle" fill="#9B7EDE" font-size="14">?</text>
+              <text x="20" y="75" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Not Sure?</text>
+              <text x="20" y="98" fill="#A8B0C4" font-size="10">Take the 60-second clarity quiz.</text>
+              <text x="20" y="118" fill="#9B7EDE" font-size="11" font-weight="600">AI recommends →</text>
+            </g>
+          </g>
+
+          <!-- Continue button -->
+          <rect x="900" y="630" width="240" height="56" rx="28" fill="#D4AF37"/>
+          <text x="1020" y="664" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="13" font-weight="600" letter-spacing="1">CONTINUE TO CALENDAR →</text>
+
+          <text x="60" y="660" fill="#A8B0C4" font-family="Inter" font-size="11">Selected: <tspan fill="#D4AF37" font-weight="600">Career Coaching · 60 min · AED 1,200</tspan></text>
+        </svg>
+        <div class="mockup-caption">Step 1: Service selection. Seven cards plus an intelligent "Not sure?" route. Selected card has gold glow border. Price &amp; duration always visible — radical transparency builds premium trust.</div>
+      </div>
+
+      <h3>Booking Step 2 — Date &amp; Time</h3>
+      <p>Calendar pulled live from Nesreen's Google Calendar via Calendly/Cal.com API. Timezone auto-detected via browser. Available slots show in client's local time. Sessions buffer 15 min on either side to give Nesreen breathing room. Long-form sessions (Executive) require 24h advance booking.</p>
+
+      <h3 style="margin-top:2rem">Booking Step 3 — Account Capture</h3>
+      <p>Email + name only. No password (magic link). After payment, account is auto-created and the magic link logs them into onboarding seamlessly. This single decision removes the #1 conversion killer.</p>
+    </section>
+
+    <!-- 07 PAYMENT -->
+    <section id="payment">
+      <div class="section-header">
+        <span class="num">— 07 —</span>
+        <h2>Payment Experience</h2>
+        <p class="section-intro">UAE-first, globally capable. Payment is a trust moment, not just a transaction. Every detail signals premium and safety.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com/book/checkout — Secure</span>
+        </div>
+        <svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="720" fill="#0A0E1A"/>
+
+          <!-- Left: Summary -->
+          <rect x="60" y="60" width="500" height="580" rx="16" fill="#1A2038" stroke="rgba(212,175,55,0.2)"/>
+          <text x="90" y="110" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">YOUR BOOKING</text>
+          <text x="90" y="155" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="30">Career Coaching</text>
+          <text x="90" y="180" fill="#A8B0C4" font-family="Inter" font-size="12">with Nesreen · 60 minutes · 1-on-1 video session</text>
+
+          <line x1="90" y1="210" x2="530" y2="210" stroke="rgba(212,175,55,0.15)"/>
+
+          <g font-family="Inter" font-size="12" fill="#A8B0C4">
+            <text x="90" y="240">Date</text>
+            <text x="530" y="240" text-anchor="end" fill="#F4EFE6">Tuesday, 9 June 2026</text>
+            <text x="90" y="270">Time</text>
+            <text x="530" y="270" text-anchor="end" fill="#F4EFE6">14:00 · Dubai (GST)</text>
+            <text x="90" y="300">Format</text>
+            <text x="530" y="300" text-anchor="end" fill="#F4EFE6">Zoom · Link sent after booking</text>
+            <text x="90" y="330">Includes</text>
+            <text x="530" y="330" text-anchor="end" fill="#D4AF37">AI Preparation + Coaching Brief</text>
+          </g>
+
+          <line x1="90" y1="365" x2="530" y2="365" stroke="rgba(212,175,55,0.15)"/>
+
+          <text x="90" y="405" fill="#A8B0C4" font-family="Inter" font-size="12">Subtotal</text>
+          <text x="530" y="405" text-anchor="end" fill="#F4EFE6" font-family="Inter" font-size="12">AED 1,200.00</text>
+          <text x="90" y="430" fill="#A8B0C4" font-family="Inter" font-size="12">VAT (5%)</text>
+          <text x="530" y="430" text-anchor="end" fill="#F4EFE6" font-family="Inter" font-size="12">AED 60.00</text>
+
+          <line x1="90" y1="460" x2="530" y2="460" stroke="rgba(212,175,55,0.3)"/>
+          <text x="90" y="500" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="22">Total</text>
+          <text x="530" y="500" text-anchor="end" fill="#D4AF37" font-family="Cormorant Garamond" font-size="32" font-weight="600">AED 1,260</text>
+
+          <rect x="90" y="540" width="440" height="60" rx="8" fill="rgba(212,175,55,0.05)" stroke="rgba(212,175,55,0.2)"/>
+          <text x="110" y="565" fill="#D4AF37" font-size="14">✓</text>
+          <text x="130" y="568" fill="#E8D4A2" font-family="Inter" font-size="12" font-weight="500">Money-back guarantee</text>
+          <text x="130" y="585" fill="#A8B0C4" font-family="Inter" font-size="10">Full refund if you cancel 48h before your session.</text>
+
+          <!-- Right: Payment -->
+          <rect x="600" y="60" width="540" height="580" rx="16" fill="#1A2038" stroke="rgba(212,175,55,0.2)"/>
+          <text x="630" y="110" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">SECURE PAYMENT</text>
+
+          <!-- Quick pay -->
+          <g transform="translate(630,140)">
+            <rect width="220" height="48" rx="8" fill="#000"/>
+            <text x="110" y="30" text-anchor="middle" fill="#fff" font-family="Inter" font-size="14" font-weight="600">  Pay</text>
+            <text x="85" y="30" fill="#fff" font-size="16"></text>
+
+            <rect x="240" y="0" width="220" height="48" rx="8" fill="#fff"/>
+            <text x="350" y="30" text-anchor="middle" fill="#000" font-family="Inter" font-size="13" font-weight="600">G Pay</text>
+          </g>
+
+          <line x1="630" y1="220" x2="1110" y2="220" stroke="rgba(212,175,55,0.1)"/>
+          <text x="870" y="225" text-anchor="middle" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="2" >OR PAY WITH CARD</text>
+          <rect x="830" y="217" width="80" height="14" fill="#1A2038"/>
+
+          <!-- Card field -->
+          <text x="630" y="270" fill="#A8B0C4" font-family="Inter" font-size="11">CARD NUMBER</text>
+          <rect x="630" y="285" width="480" height="50" rx="8" fill="#0F1424" stroke="rgba(212,175,55,0.15)"/>
+          <text x="650" y="316" fill="#F4EFE6" font-family="monospace" font-size="14">4242  4242  4242  4242</text>
+          <!-- card brands -->
+          <g transform="translate(1020,295)">
+            <rect width="34" height="22" rx="3" fill="#1A1F71"/>
+            <text x="17" y="15" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">VISA</text>
+            <rect x="40" y="0" width="34" height="22" rx="3" fill="#EB001B"/>
+            <circle cx="62" cy="11" r="7" fill="#F79E1B" opacity="0.8"/>
+          </g>
+
+          <g font-family="Inter" font-size="11" fill="#A8B0C4">
+            <text x="630" y="370">EXPIRY</text>
+            <rect x="630" y="385" width="225" height="50" rx="8" fill="#0F1424" stroke="rgba(212,175,55,0.15)"/>
+            <text x="650" y="416" fill="#F4EFE6" font-family="monospace" font-size="14">12 / 28</text>
+
+            <text x="885" y="370">CVC</text>
+            <rect x="885" y="385" width="225" height="50" rx="8" fill="#0F1424" stroke="rgba(212,175,55,0.15)"/>
+            <text x="905" y="416" fill="#F4EFE6" font-family="monospace" font-size="14">•••</text>
+          </g>
+
+          <!-- Email -->
+          <text x="630" y="470" fill="#A8B0C4" font-family="Inter" font-size="11">EMAIL FOR RECEIPT</text>
+          <rect x="630" y="485" width="480" height="50" rx="8" fill="#0F1424" stroke="rgba(212,175,55,0.15)"/>
+          <text x="650" y="516" fill="#F4EFE6" font-family="Inter" font-size="13">sarah.j@example.com</text>
+
+          <!-- Pay button -->
+          <rect x="630" y="565" width="480" height="56" rx="28" fill="#D4AF37"/>
+          <text x="870" y="600" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="14" font-weight="600" letter-spacing="1">PAY AED 1,260 SECURELY</text>
+
+          <!-- Footer trust -->
+          <text x="60" y="690" fill="#6B7390" font-family="Inter" font-size="10">⚷ 256-bit SSL · 3D Secure · PCI-DSS compliant</text>
+          <text x="1140" y="690" text-anchor="end" fill="#6B7390" font-family="Inter" font-size="10">Powered by Stripe · Tap Payments · PayTabs</text>
+        </svg>
+        <div class="mockup-caption">Two-column layout: booking summary (left) shows exactly what is being purchased, payment form (right) is short and trust-loaded. Apple Pay &amp; Google Pay one-tap above the fold for &gt;40% of UAE traffic.</div>
+      </div>
+
+      <h3>Payment Gateway Strategy</h3>
+      <table>
+        <thead><tr><th>Gateway</th><th>Region</th><th>Methods</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><strong class="gold-light">Stripe</strong></td><td>Global</td><td>Card, Apple Pay, Google Pay, Link</td><td>Default global processor; best UX, instant payouts</td></tr>
+          <tr><td><strong class="gold-light">Tap Payments</strong></td><td>UAE / GCC</td><td>Card, Apple Pay, mada, KNET, BENEFIT</td><td>Local cards that Stripe sometimes rejects; lower fees in AED</td></tr>
+          <tr><td><strong class="gold-light">PayTabs</strong></td><td>UAE / MENA</td><td>Card, Apple Pay, STC Pay, Tabby BNPL</td><td>Strong for enterprise / corporate bookings with invoicing</td></tr>
+          <tr><td><strong class="gold-light">Telr</strong></td><td>UAE</td><td>Card, wallets, recurring</td><td>Backup gateway for high-value executive packages</td></tr>
+          <tr><td><strong class="gold-light">PayPal</strong></td><td>Global</td><td>PayPal, card via PayPal</td><td>International clients who insist on PayPal trust</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong class="gold-light">Routing logic:</strong> Default to Stripe for fastest checkout. Detect IP/card BIN → automatically route GCC cards to Tap Payments. Offer PayPal only on the "more payment options" expandable for international users.</p>
+    </section>
+
+    <!-- 08 AI ONBOARDING -->
+    <section id="ai-onboard">
+      <div class="section-header">
+        <span class="num">— 08 —</span>
+        <h2>AI Onboarding Experience</h2>
+        <p class="section-intro">The moment payment confirms, the brand promise must deliver. This is where "AI-assisted premium coaching" stops being a tagline and becomes an experience.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com/onboarding</span>
+        </div>
+        <svg viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="orbGrad2" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.8"/>
+              <stop offset="60%" stop-color="#9B7EDE" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#5B4B8A" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="1200" height="720" fill="#0A0E1A"/>
+
+          <!-- Top bar -->
+          <text x="60" y="50" fill="#D4AF37" font-family="Cormorant Garamond" font-size="20">Nesreen AI</text>
+          <g transform="translate(900,35)">
+            <text x="0" y="15" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="2">SESSION READINESS</text>
+            <rect x="0" y="22" width="240" height="6" rx="3" fill="#1A2038"/>
+            <rect x="0" y="22" width="86" height="6" rx="3" fill="#D4AF37"/>
+            <text x="240" y="48" text-anchor="end" fill="#D4AF37" font-family="Cormorant Garamond" font-size="20" font-weight="600">36%</text>
+          </g>
+
+          <!-- Center: AI orb + conversation -->
+          <g transform="translate(200,140)">
+            <!-- Orb -->
+            <circle cx="100" cy="100" r="120" fill="url(#orbGrad2)" opacity="0.6"/>
+            <circle cx="100" cy="100" r="70" fill="#1A2038" stroke="#D4AF37"/>
+            <text x="100" y="110" text-anchor="middle" fill="#D4AF37" font-family="Cormorant Garamond" font-size="48" font-style="italic">N</text>
+
+            <!-- Status -->
+            <text x="100" y="245" text-anchor="middle" fill="#A8B0C4" font-family="Inter" font-size="11" letter-spacing="2">LISTENING</text>
+            <circle cx="80" cy="241" r="3" fill="#7FD89C" class="pulse"/>
+          </g>
+
+          <!-- Chat -->
+          <g transform="translate(500,140)">
+            <!-- Message from AI -->
+            <rect width="640" height="80" rx="16" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.15)"/>
+            <text x="20" y="30" fill="#D4AF37" font-family="Inter" font-size="10" letter-spacing="2">NESREEN AI</text>
+            <text x="20" y="55" fill="#F4EFE6" font-family="Inter" font-size="13">Tell me about a moment recently when you</text>
+            <text x="20" y="73" fill="#F4EFE6" font-family="Inter" font-size="13">felt most stuck in your career. What was happening?</text>
+
+            <!-- Message from user -->
+            <rect x="60" y="105" width="580" height="100" rx="16" fill="#1A2038"/>
+            <text x="80" y="135" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="2">YOU</text>
+            <text x="80" y="160" fill="#F4EFE6" font-family="Inter" font-size="13">Honestly, last month. I got passed over for a promotion</text>
+            <text x="80" y="178" fill="#F4EFE6" font-family="Inter" font-size="13">I'd worked toward for two years. Since then I've been</text>
+            <text x="80" y="196" fill="#F4EFE6" font-family="Inter" font-size="13">questioning whether I'm even in the right field.</text>
+
+            <!-- AI response -->
+            <rect y="230" width="640" height="120" rx="16" fill="rgba(212,175,55,0.06)" stroke="rgba(212,175,55,0.15)"/>
+            <text x="20" y="260" fill="#D4AF37" font-family="Inter" font-size="10" letter-spacing="2">NESREEN AI</text>
+            <text x="20" y="285" fill="#F4EFE6" font-family="Inter" font-size="13">That sounds painful — and the doubt afterward is</text>
+            <text x="20" y="303" fill="#F4EFE6" font-family="Inter" font-size="13">often louder than the rejection itself. I'm going to</text>
+            <text x="20" y="321" fill="#F4EFE6" font-family="Inter" font-size="13">make a note for Nesreen — this is exactly the kind of</text>
+            <text x="20" y="339" fill="#F4EFE6" font-family="Inter" font-size="13">turning point she works with most powerfully.</text>
+
+            <!-- Quick chips -->
+            <text x="0" y="385" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="2">QUICK REPLIES</text>
+            <rect x="0" y="395" width="160" height="36" rx="18" fill="none" stroke="#D4AF37" stroke-opacity="0.4"/>
+            <text x="80" y="418" text-anchor="middle" fill="#D4AF37" font-family="Inter" font-size="11">Continue</text>
+            <rect x="170" y="395" width="200" height="36" rx="18" fill="none" stroke="#D4AF37" stroke-opacity="0.4"/>
+            <text x="270" y="418" text-anchor="middle" fill="#D4AF37" font-family="Inter" font-size="11">Tell me more about this</text>
+            <rect x="380" y="395" width="160" height="36" rx="18" fill="none" stroke="#D4AF37" stroke-opacity="0.4"/>
+            <text x="460" y="418" text-anchor="middle" fill="#D4AF37" font-family="Inter" font-size="11">Skip this question</text>
+
+            <!-- Input -->
+            <rect x="0" y="470" width="540" height="56" rx="28" fill="#0F1424" stroke="rgba(212,175,55,0.15)"/>
+            <text x="20" y="503" fill="#6B7390" font-family="Inter" font-size="13">Type your answer, or press the mic to speak...</text>
+            <circle cx="555" cy="498" r="28" fill="#D4AF37"/>
+            <text x="555" y="505" text-anchor="middle" fill="#0A0E1A" font-size="16">🎙</text>
+          </g>
+
+          <!-- Progress constellation viz -->
+          <g transform="translate(60,520)">
+            <text fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="2">YOUR EMERGING PROFILE</text>
+            <g transform="translate(0,20)">
+              <circle cx="20" cy="40" r="14" fill="#D4AF37"/>
+              <text x="20" y="80" text-anchor="middle" fill="#E8D4A2" font-family="Inter" font-size="9">History</text>
+              <circle cx="80" cy="40" r="14" fill="#D4AF37"/>
+              <text x="80" y="80" text-anchor="middle" fill="#E8D4A2" font-family="Inter" font-size="9">Goals</text>
+              <circle cx="140" cy="40" r="14" fill="#D4AF37" opacity="0.7"/>
+              <text x="140" y="80" text-anchor="middle" fill="#A8B0C4" font-family="Inter" font-size="9">Fears</text>
+              <circle cx="200" cy="40" r="14" fill="#1A2038" stroke="#6B7390"/>
+              <text x="200" y="80" text-anchor="middle" fill="#6B7390" font-family="Inter" font-size="9">Strengths</text>
+              <circle cx="260" cy="40" r="14" fill="#1A2038" stroke="#6B7390"/>
+              <text x="260" y="80" text-anchor="middle" fill="#6B7390" font-family="Inter" font-size="9">Confidence</text>
+              <circle cx="320" cy="40" r="14" fill="#1A2038" stroke="#6B7390"/>
+              <text x="320" y="80" text-anchor="middle" fill="#6B7390" font-family="Inter" font-size="9">Dream</text>
+              <line x1="34" y1="40" x2="66" y2="40" stroke="#D4AF37" stroke-width="1"/>
+              <line x1="94" y1="40" x2="126" y2="40" stroke="#D4AF37" stroke-width="1" opacity="0.7"/>
+              <line x1="154" y1="40" x2="186" y2="40" stroke="#6B7390" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="214" y1="40" x2="246" y2="40" stroke="#6B7390" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="274" y1="40" x2="306" y2="40" stroke="#6B7390" stroke-width="1" stroke-dasharray="3,3"/>
+            </g>
+          </g>
+
+          <text x="600" y="690" fill="#6B7390" font-family="Inter" font-size="10">Estimated 4 minutes remaining · You can return anytime · Nesreen will see your full profile before your session</text>
+        </svg>
+        <div class="mockup-caption">The onboarding is a conversation, not a form. AI orb on left signals presence ("Listening" with green pulse). Constellation at bottom shows profile completion as connected nodes — not a sterile progress bar. Voice input prominently offered.</div>
+      </div>
+
+      <h3>What the AI Asks</h3>
+      <div class="grid-2">
+        <div>
+          <ul class="lux">
+            <li><strong class="gold-light">Career history</strong> — last 3 roles, transitions, peaks</li>
+            <li><strong class="gold-light">Current goals</strong> — 12 months, 3 years, 10 years</li>
+            <li><strong class="gold-light">Frustrations</strong> — what's actually broken right now</li>
+            <li><strong class="gold-light">Salary expectations</strong> — current, target, ceiling</li>
+            <li><strong class="gold-light">Fears</strong> — what keeps you up at 3am</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lux">
+            <li><strong class="gold-light">Confidence level</strong> — 1-10 with context</li>
+            <li><strong class="gold-light">Workplace dynamics</strong> — boss, peers, politics</li>
+            <li><strong class="gold-light">Interview struggles</strong> — if applicable</li>
+            <li><strong class="gold-light">Dream job</strong> — described in their own words</li>
+            <li><strong class="gold-light">Session intention</strong> — what would make this worth it</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin-top:2.5rem">Conversation Design Principles</h3>
+      <div class="grid-3">
+        <div class="card"><h4>Never Interrogate</h4><p>One question at a time. Acknowledge each answer with warmth before moving on. The AI is curious, not clinical.</p></div>
+        <div class="card"><h4>Always Reference Nesreen</h4><p>"I'll make a note for Nesreen..." "Nesreen will love hearing this..." Reinforces that AI is preparing for the human.</p></div>
+        <div class="card"><h4>Allow Pause &amp; Return</h4><p>Magic link emailed if user closes the tab. They pick up exactly where they left off. No re-asking.</p></div>
+      </div>
+    </section>
+
+    <!-- 09 COACHING BRIEF -->
+    <section id="brief">
+      <div class="section-header">
+        <span class="num">— 09 —</span>
+        <h2>The Coaching Brief</h2>
+        <p class="section-intro">This is the product Nesreen actually uses. Generated automatically 24 hours before each session, delivered to her email and her coach dashboard. It is what makes her sessions 2x more powerful.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com/coach/briefs/sarah-j-2026-06-09</span>
+        </div>
+        <svg viewBox="0 0 1200 880" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="880" fill="#0A0E1A"/>
+
+          <!-- Brief paper -->
+          <rect x="80" y="60" width="1040" height="780" rx="16" fill="#F4EFE6"/>
+
+          <!-- Header strip -->
+          <rect x="80" y="60" width="1040" height="80" rx="16" fill="#0A0E1A"/>
+          <text x="110" y="100" fill="#D4AF37" font-family="Cormorant Garamond" font-size="22">Client Preparation Summary</text>
+          <text x="110" y="124" fill="#A8B0C4" font-family="Inter" font-size="11" letter-spacing="2">PREPARED BY NESREEN AI · 9 JUNE 2026 · 60-MIN CAREER COACHING SESSION</text>
+          <text x="1090" y="100" text-anchor="end" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="16">Tomorrow · 14:00</text>
+
+          <!-- Body 2-col -->
+          <g font-family="Inter">
+            <!-- Left column -->
+            <g transform="translate(110,180)">
+              <text fill="#6B7390" font-size="10" letter-spacing="3">CLIENT</text>
+              <text y="30" fill="#0A0E1A" font-family="Cormorant Garamond" font-size="34">Sarah J.</text>
+              <text y="55" fill="#5B4B8A" font-size="12">Marketing Director · 9 yrs experience · Dubai</text>
+
+              <text y="105" fill="#6B7390" font-size="10" letter-spacing="3">MAIN CHALLENGE</text>
+              <text y="135" fill="#0A0E1A" font-family="Cormorant Garamond" font-size="20">Career confusion + burnout</text>
+              <text y="160" fill="#444" font-size="12">Recently passed over for promotion (2-year</text>
+              <text y="178" fill="#444" font-size="12">build-up). Questioning fit in marketing entirely.</text>
+
+              <text y="220" fill="#6B7390" font-size="10" letter-spacing="3">EMOTIONAL INDICATORS</text>
+              <g transform="translate(0,235)">
+                <rect width="180" height="32" rx="16" fill="rgba(232,123,123,0.15)"/>
+                <text x="90" y="22" text-anchor="middle" fill="#B83E3E" font-size="11" font-weight="500">Low Confidence</text>
+                <rect x="190" width="160" height="32" rx="16" fill="rgba(232,155,168,0.15)"/>
+                <text x="270" y="22" text-anchor="middle" fill="#B8537B" font-size="11" font-weight="500">Overthinking</text>
+              </g>
+              <g transform="translate(0,275)">
+                <rect width="160" height="32" rx="16" fill="rgba(212,175,55,0.15)"/>
+                <text x="80" y="22" text-anchor="middle" fill="#8C6E14" font-size="11" font-weight="500">Self-Doubt</text>
+                <rect x="170" width="180" height="32" rx="16" fill="rgba(95,191,184,0.15)"/>
+                <text x="260" y="22" text-anchor="middle" fill="#2A7A75" font-size="11" font-weight="500">Latent Resilience</text>
+              </g>
+
+              <text y="340" fill="#6B7390" font-size="10" letter-spacing="3">COACHING PRIORITY</text>
+              <text y="370" fill="#0A0E1A" font-family="Cormorant Garamond" font-size="20">Career clarity + interview strategy</text>
+
+              <text y="415" fill="#6B7390" font-size="10" letter-spacing="3">SCORES</text>
+              <g transform="translate(0,425)" font-size="11">
+                <text y="20" fill="#444">Confidence</text>
+                <rect x="120" y="10" width="220" height="8" rx="4" fill="#E5DCC4"/>
+                <rect x="120" y="10" width="66" height="8" rx="4" fill="#B83E3E"/>
+                <text x="350" y="20" text-anchor="end" fill="#0A0E1A" font-weight="600">3 / 10</text>
+
+                <text y="50" fill="#444">Leadership Readiness</text>
+                <rect x="160" y="40" width="180" height="8" rx="4" fill="#E5DCC4"/>
+                <rect x="160" y="40" width="126" height="8" rx="4" fill="#D4AF37"/>
+                <text x="350" y="50" text-anchor="end" fill="#0A0E1A" font-weight="600">7 / 10</text>
+
+                <text y="80" fill="#444">Burnout Risk</text>
+                <rect x="120" y="70" width="220" height="8" rx="4" fill="#E5DCC4"/>
+                <rect x="120" y="70" width="176" height="8" rx="4" fill="#E87B7B"/>
+                <text x="350" y="80" text-anchor="end" fill="#0A0E1A" font-weight="600">High</text>
+
+                <text y="110" fill="#444">Session Readiness</text>
+                <rect x="140" y="100" width="200" height="8" rx="4" fill="#E5DCC4"/>
+                <rect x="140" y="100" width="180" height="8" rx="4" fill="#2A7A75"/>
+                <text x="350" y="110" text-anchor="end" fill="#0A0E1A" font-weight="600">90%</text>
+              </g>
+            </g>
+
+            <!-- Right column -->
+            <g transform="translate(620,180)">
+              <text fill="#6B7390" font-size="10" letter-spacing="3">SUGGESTED SESSION DIRECTION</text>
+              <g transform="translate(0,25)">
+                <rect width="20" height="20" rx="10" fill="#D4AF37"/>
+                <text x="10" y="15" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">1</text>
+                <text x="32" y="15" fill="#0A0E1A" font-size="13" font-weight="500">Rebuild confidence — open with the win-list exercise</text>
+              </g>
+              <g transform="translate(0,55)">
+                <rect width="20" height="20" rx="10" fill="#D4AF37"/>
+                <text x="10" y="15" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">2</text>
+                <text x="32" y="15" fill="#0A0E1A" font-size="13" font-weight="500">Reframe the promotion loss — narrative work</text>
+              </g>
+              <g transform="translate(0,85)">
+                <rect width="20" height="20" rx="10" fill="#D4AF37"/>
+                <text x="10" y="15" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">3</text>
+                <text x="32" y="15" fill="#0A0E1A" font-size="13" font-weight="500">Define 3 target roles for next 90 days</text>
+              </g>
+              <g transform="translate(0,115)">
+                <rect width="20" height="20" rx="10" fill="#D4AF37"/>
+                <text x="10" y="15" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">4</text>
+                <text x="32" y="15" fill="#0A0E1A" font-size="13" font-weight="500">Co-create a recovery + action plan she leaves with</text>
+              </g>
+
+              <text y="180" fill="#6B7390" font-size="10" letter-spacing="3">RECOMMENDED OPENING QUESTIONS</text>
+              <g transform="translate(0,200)" font-size="12" fill="#444">
+                <text y="0">"What makes you feel most stuck right now?"</text>
+                <text y="22">"What have you been avoiding?"</text>
+                <text y="44">"What kind of work has ever truly energized you?"</text>
+                <text y="66">"If the promotion had happened — would you actually be happier?"</text>
+              </g>
+
+              <text y="305" fill="#6B7390" font-size="10" letter-spacing="3">WHAT SARAH IS SECRETLY HOPING FOR</text>
+              <rect y="320" width="450" height="70" rx="8" fill="rgba(212,175,55,0.08)" stroke="rgba(212,175,55,0.2)"/>
+              <text x="20" y="345" fill="#0A0E1A" font-size="13" font-style="italic">"Permission to stop trying to want what I'm</text>
+              <text x="20" y="365" fill="#0A0E1A" font-size="13" font-style="italic">supposed to want — and someone to help me</text>
+              <text x="20" y="385" fill="#0A0E1A" font-size="13" font-style="italic">figure out what I actually want."</text>
+
+              <text y="430" fill="#6B7390" font-size="10" letter-spacing="3">RESOURCES TO HAVE READY</text>
+              <g transform="translate(0,445)" font-size="12" fill="#444">
+                <text y="15">→ Confidence Reset worksheet (PDF)</text>
+                <text y="35">→ Career Pivot framework (90-day)</text>
+                <text y="55">→ Recommended reading: "Quiet Power" (your library)</text>
+              </g>
+
+              <rect y="540" width="450" height="60" rx="8" fill="#0A0E1A"/>
+              <text x="20" y="565" fill="#D4AF37" font-size="11" letter-spacing="2">NESREEN'S NOTE</text>
+              <text x="20" y="585" fill="#E8D4A2" font-size="12" font-style="italic">She's done all the assessments. She's ready.</text>
+            </g>
+          </g>
+
+          <!-- Footer -->
+          <line x1="110" y1="800" x2="1090" y2="800" stroke="rgba(0,0,0,0.1)"/>
+          <text x="110" y="820" fill="#6B7390" font-size="10">Generated 8 June 2026 02:14 GST · Last updated when Sarah completed her assessments at 18:45</text>
+        </svg>
+        <div class="mockup-caption">Nesreen's view of every client before they enter the room. Single page, scannable in 90 seconds. Combines hard data (scores) with human insight (secret hopes). This is the product Nesreen sells to her future self.</div>
+      </div>
+    </section>
+
+    <!-- 10 CLIENT DASHBOARD -->
+    <section id="dashboard">
+      <div class="section-header">
+        <span class="num">— 10 —</span>
+        <h2>Client Dashboard</h2>
+        <p class="section-intro">Where the relationship lives between sessions. A dashboard that earns weekly logins, drives rebookings, and quietly cross-sells courses and books.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com/portal</span>
+        </div>
+        <svg viewBox="0 0 1200 760" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="760" fill="#0A0E1A"/>
+
+          <!-- Side nav -->
+          <rect width="220" height="760" fill="#0F1424"/>
+          <text x="30" y="50" fill="#D4AF37" font-family="Cormorant Garamond" font-size="20">Nesreen</text>
+          <text x="30" y="70" fill="#6B7390" font-family="Inter" font-size="9" letter-spacing="2">PORTAL</text>
+
+          <g font-family="Inter" font-size="12">
+            <rect x="20" y="120" width="180" height="38" rx="8" fill="rgba(212,175,55,0.1)"/>
+            <text x="40" y="143" fill="#D4AF37">⌂  My Journey</text>
+            <text x="40" y="190" fill="#A8B0C4">⊕  Assessments</text>
+            <text x="40" y="225" fill="#A8B0C4">≡  Resources</text>
+            <text x="40" y="260" fill="#A8B0C4">✓  Action Plan</text>
+            <text x="40" y="295" fill="#A8B0C4">⚲  AI Assistant</text>
+            <text x="40" y="330" fill="#A8B0C4">⌸  Library</text>
+            <text x="40" y="365" fill="#A8B0C4">▶  Academy</text>
+            <line x1="20" y1="400" x2="200" y2="400" stroke="rgba(212,175,55,0.1)"/>
+            <text x="40" y="430" fill="#A8B0C4">☎  Book New Session</text>
+            <text x="40" y="465" fill="#A8B0C4">⚙  Settings</text>
+          </g>
+
+          <!-- Profile -->
+          <circle cx="50" cy="710" r="18" fill="#D4AF37"/>
+          <text x="50" y="716" text-anchor="middle" fill="#0A0E1A" font-size="14" font-weight="600">S</text>
+          <text x="80" y="708" fill="#F4EFE6" font-family="Inter" font-size="12">Sarah J.</text>
+          <text x="80" y="722" fill="#6B7390" font-family="Inter" font-size="10">Premium · Active</text>
+
+          <!-- Main content -->
+          <g transform="translate(260,40)">
+            <text fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">WELCOME BACK</text>
+            <text y="40" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="38">Good evening, Sarah.</text>
+            <text y="68" fill="#A8B0C4" font-family="Cormorant Garamond" font-size="16" font-style="italic">Your next session with Nesreen is in 18 hours.</text>
+
+            <!-- Next session card -->
+            <rect y="100" width="900" height="140" rx="16" fill="url(#dashCard)" />
+            <defs>
+              <linearGradient id="dashCard" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#9B7EDE" stop-opacity="0.08"/>
+              </linearGradient>
+            </defs>
+            <rect y="100" width="900" height="140" rx="16" fill="none" stroke="rgba(212,175,55,0.3)"/>
+            <text x="30" y="135" fill="#D4AF37" font-family="Inter" font-size="10" letter-spacing="2">YOUR NEXT SESSION</text>
+            <text x="30" y="175" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="28">Career Coaching with Nesreen</text>
+            <text x="30" y="200" fill="#A8B0C4" font-family="Inter" font-size="12">Tuesday, 9 June · 14:00 GST · 60 minutes · Zoom</text>
+
+            <rect x="660" y="155" width="220" height="50" rx="25" fill="#D4AF37"/>
+            <text x="770" y="186" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="12" font-weight="600" letter-spacing="1">JOIN SESSION →</text>
+
+            <!-- Readiness mini -->
+            <g transform="translate(30,213)">
+              <text fill="#A8B0C4" font-family="Inter" font-size="11">Session Readiness:</text>
+              <rect x="120" y="-10" width="200" height="6" rx="3" fill="#1A2038"/>
+              <rect x="120" y="-10" width="180" height="6" rx="3" fill="#7FD89C"/>
+              <text x="330" y="0" fill="#7FD89C" font-family="Inter" font-size="11" font-weight="600">90%</text>
+              <text x="375" y="0" fill="#A8B0C4" font-family="Inter" font-size="11">— You're ready.</text>
+            </g>
+
+            <!-- Grid -->
+            <g transform="translate(0,280)">
+              <!-- Journey -->
+              <rect width="290" height="180" rx="12" fill="#1A2038" stroke="rgba(212,175,55,0.1)"/>
+              <text x="20" y="35" fill="#D4AF37" font-family="Inter" font-size="9" letter-spacing="2">MY JOURNEY</text>
+              <text x="20" y="65" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="22">3 sessions completed</text>
+              <text x="20" y="92" fill="#A8B0C4" font-family="Inter" font-size="11">5 actions completed of 9</text>
+              <rect x="20" y="105" width="250" height="6" rx="3" fill="#0A0E1A"/>
+              <rect x="20" y="105" width="138" height="6" rx="3" fill="#D4AF37"/>
+              <text x="20" y="155" fill="#6B7390" font-family="Inter" font-size="11">Last session: Career Clarity (2 May)</text>
+
+              <!-- Action Plan -->
+              <rect x="305" width="290" height="180" rx="12" fill="#1A2038" stroke="rgba(212,175,55,0.1)"/>
+              <text x="325" y="35" fill="#D4AF37" font-family="Inter" font-size="9" letter-spacing="2">ACTION PLAN — THIS WEEK</text>
+              <g font-family="Inter" font-size="11" fill="#F4EFE6">
+                <circle cx="335" cy="62" r="6" fill="none" stroke="#7FD89C"/>
+                <text x="350" y="66">Complete leadership self-assessment</text>
+                <circle cx="335" cy="92" r="6" fill="none" stroke="#7FD89C"/>
+                <text x="350" y="96">Reach out to 2 ex-colleagues</text>
+                <circle cx="335" cy="122" r="6" fill="#7FD89C"/>
+                <text x="350" y="126" fill="#A8B0C4" text-decoration="line-through">Update LinkedIn headline</text>
+                <circle cx="335" cy="152" r="6" fill="none" stroke="#7FD89C"/>
+                <text x="350" y="156">Journal: define dream-job criteria</text>
+              </g>
+
+              <!-- Assessments -->
+              <rect x="610" width="290" height="180" rx="12" fill="#1A2038" stroke="rgba(212,175,55,0.1)"/>
+              <text x="630" y="35" fill="#D4AF37" font-family="Inter" font-size="9" letter-spacing="2">ASSESSMENTS</text>
+              <g font-family="Inter" font-size="11">
+                <text x="630" y="65" fill="#E8D4A2">Personality Profile</text>
+                <text x="880" y="65" text-anchor="end" fill="#7FD89C">✓</text>
+                <text x="630" y="90" fill="#E8D4A2">Leadership Readiness</text>
+                <text x="880" y="90" text-anchor="end" fill="#7FD89C">✓</text>
+                <text x="630" y="115" fill="#E8D4A2">Burnout Diagnostic</text>
+                <text x="880" y="115" text-anchor="end" fill="#7FD89C">✓</text>
+                <text x="630" y="140" fill="#A8B0C4">Confidence Compass</text>
+                <text x="880" y="140" text-anchor="end" fill="#6B7390">→</text>
+              </g>
+            </g>
+
+            <!-- Cross-sell row -->
+            <g transform="translate(0,480)">
+              <text fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">RECOMMENDED FOR YOUR JOURNEY</text>
+
+              <g transform="translate(0,25)">
+                <rect width="290" height="180" rx="12" fill="#1A2038" stroke="rgba(155,126,222,0.2)"/>
+                <rect x="20" y="20" width="60" height="80" rx="4" fill="url(#bookGrad)"/>
+                <defs><linearGradient id="bookGrad"><stop offset="0%" stop-color="#9B7EDE"/><stop offset="100%" stop-color="#5B4B8A"/></linearGradient></defs>
+                <text x="100" y="45" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="16">Quiet Power</text>
+                <text x="100" y="64" fill="#A8B0C4" font-family="Inter" font-size="10">Nesreen's bestseller on</text>
+                <text x="100" y="78" fill="#A8B0C4" font-family="Inter" font-size="10">leading without burnout</text>
+                <text x="20" y="135" fill="#D4AF37" font-family="Inter" font-size="11">Nesreen suggested →</text>
+                <rect x="20" y="148" width="120" height="28" rx="14" fill="none" stroke="#D4AF37"/>
+                <text x="80" y="166" text-anchor="middle" fill="#D4AF37" font-family="Inter" font-size="10">Preview chapter</text>
+
+                <rect x="305" width="290" height="180" rx="12" fill="#1A2038" stroke="rgba(95,191,184,0.2)"/>
+                <text x="325" y="35" fill="#5FBFB8" font-family="Inter" font-size="10" letter-spacing="2">COURSE</text>
+                <text x="325" y="65" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Confidence Reset</text>
+                <text x="325" y="90" fill="#A8B0C4" font-family="Inter" font-size="11">A 7-day self-paced reset.</text>
+                <text x="325" y="106" fill="#A8B0C4" font-family="Inter" font-size="11">Pairs perfectly with your goals.</text>
+                <text x="325" y="135" fill="#5FBFB8" font-family="Inter" font-size="11">Nesreen suggested →</text>
+                <rect x="325" y="148" width="120" height="28" rx="14" fill="none" stroke="#5FBFB8"/>
+                <text x="385" y="166" text-anchor="middle" fill="#5FBFB8" font-family="Inter" font-size="10">Start course</text>
+
+                <rect x="610" width="290" height="180" rx="12" fill="rgba(212,175,55,0.05)" stroke="rgba(212,175,55,0.3)"/>
+                <text x="630" y="35" fill="#D4AF37" font-family="Inter" font-size="10" letter-spacing="2">REBOOK</text>
+                <text x="630" y="65" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="20">Continue the work</text>
+                <text x="630" y="90" fill="#A8B0C4" font-family="Inter" font-size="11">After tomorrow's session, book</text>
+                <text x="630" y="106" fill="#A8B0C4" font-family="Inter" font-size="11">your follow-up in advance.</text>
+                <rect x="630" y="135" width="200" height="38" rx="19" fill="#D4AF37"/>
+                <text x="730" y="159" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="12" font-weight="600">Book Next Session</text>
+              </g>
+            </g>
+          </g>
+        </svg>
+        <div class="mockup-caption">Dashboard hierarchy: next session as hero (joinable when live), three pillars (Journey, Action Plan, Assessments), then cross-sell row with Nesreen's personal recommendations. Library &amp; Academy CTAs appear native — never spammy.</div>
+      </div>
+    </section>
+
+    <!-- 11 READINESS SCORE -->
+    <section id="readiness">
+      <div class="section-header">
+        <span class="num">— 11 —</span>
+        <h2>Session Readiness Score</h2>
+        <p class="section-intro">A single, beautiful number that creates anticipation, drives completion, and turns onboarding into an addictive ritual.</p>
+      </div>
+
+      <div class="grid-2" style="gap:2rem;align-items:start">
+        <div>
+          <div class="mockup">
+            <div class="mockup-frame-bar">
+              <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+              <span class="mockup-url">portal/readiness</span>
+            </div>
+            <svg viewBox="0 0 600 560" xmlns="http://www.w3.org/2000/svg">
+              <rect width="600" height="560" fill="#0A0E1A"/>
+              <text x="300" y="60" text-anchor="middle" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">YOUR SESSION READINESS</text>
+
+              <!-- Circular gauge -->
+              <g transform="translate(300,260)">
+                <circle r="120" fill="none" stroke="#1A2038" stroke-width="14"/>
+                <circle r="120" fill="none" stroke="url(#gaugeGrad)" stroke-width="14"
+                        stroke-dasharray="540 754" transform="rotate(-90)" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#9B7EDE"/>
+                    <stop offset="50%" stop-color="#D4AF37"/>
+                    <stop offset="100%" stop-color="#7FD89C"/>
+                  </linearGradient>
+                </defs>
+                <text y="-5" text-anchor="middle" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="80" font-weight="500">72</text>
+                <text y="25" text-anchor="middle" fill="#A8B0C4" font-family="Inter" font-size="14">% prepared</text>
+              </g>
+
+              <text x="300" y="430" text-anchor="middle" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="22" font-style="italic">You're nearly there.</text>
+              <text x="300" y="460" text-anchor="middle" fill="#A8B0C4" font-family="Inter" font-size="12">Complete the Leadership Self-Assessment</text>
+              <text x="300" y="478" text-anchor="middle" fill="#A8B0C4" font-family="Inter" font-size="12">to reach 90%.</text>
+
+              <rect x="180" y="500" width="240" height="44" rx="22" fill="#D4AF37"/>
+              <text x="300" y="528" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="12" font-weight="600" letter-spacing="1">CONTINUE PREPARATION →</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h3>How the Score Is Calculated</h3>
+          <table>
+            <thead><tr><th>Factor</th><th>Weight</th></tr></thead>
+            <tbody>
+              <tr><td>AI Onboarding completion</td><td>30%</td></tr>
+              <tr><td>Career history depth</td><td>15%</td></tr>
+              <tr><td>Goals articulated</td><td>15%</td></tr>
+              <tr><td>Personality assessment</td><td>10%</td></tr>
+              <tr><td>Leadership / domain assessment</td><td>10%</td></tr>
+              <tr><td>Confidence compass</td><td>10%</td></tr>
+              <tr><td>CV / LinkedIn uploaded</td><td>10%</td></tr>
+            </tbody>
+          </table>
+          <h3 style="margin-top:1.5rem">The Psychology</h3>
+          <p>The score is the hook. By making preparation visible and gamified, we transform a chore into a ritual. Clients voluntarily complete more assessments — which makes Nesreen's sessions more powerful — which drives transformation and referrals.</p>
+          <div class="quote">"You are 72% prepared for your coaching session." This sentence does more for retention than any email automation could.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 LIBRARY -->
+    <section id="library">
+      <div class="section-header">
+        <span class="num">— 12 —</span>
+        <h2>Nesreen Library</h2>
+        <p class="section-intro">Books, journals, templates, PDFs. A second revenue stream that also reinforces authority — visitors who read Nesreen's books are 4× more likely to book a session.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com/library</span>
+        </div>
+        <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="700" fill="#0A0E1A"/>
+          <text x="60" y="60" fill="#D4AF37" font-family="Cormorant Garamond" font-size="22">Nesreen</text>
+          <text x="60" y="120" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">— THE LIBRARY</text>
+          <text x="60" y="180" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="56">Read by leaders.</text>
+          <text x="60" y="232" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="56" font-style="italic">Written for the curious.</text>
+
+          <!-- Books row -->
+          <g transform="translate(60,310)">
+            <!-- Book 1 -->
+            <g>
+              <rect width="200" height="280" fill="url(#book1)"/>
+              <defs>
+                <linearGradient id="book1" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#5B4B8A"/><stop offset="100%" stop-color="#2E2752"/></linearGradient>
+                <linearGradient id="book2" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#D4AF37"/><stop offset="100%" stop-color="#8C6E14"/></linearGradient>
+                <linearGradient id="book3" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#5FBFB8"/><stop offset="100%" stop-color="#2A7A75"/></linearGradient>
+                <linearGradient id="book4" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#E89BA8"/><stop offset="100%" stop-color="#B8537B"/></linearGradient>
+              </defs>
+              <rect width="200" height="280" fill="none" stroke="rgba(212,175,55,0.2)"/>
+              <text x="100" y="120" text-anchor="middle" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="22">Quiet</text>
+              <text x="100" y="148" text-anchor="middle" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="22">Power</text>
+              <text x="100" y="190" text-anchor="middle" fill="#D4AF37" font-family="Inter" font-size="9" letter-spacing="2">NESREEN</text>
+              <text x="0" y="310" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Quiet Power</text>
+              <text x="0" y="328" fill="#A8B0C4" font-family="Inter" font-size="10">Leadership without burnout</text>
+              <text x="0" y="358" fill="#D4AF37" font-family="Inter" font-size="11" font-weight="600">AED 89 · Hardcover</text>
+            </g>
+
+            <g transform="translate(240,0)">
+              <rect width="200" height="280" fill="url(#book2)"/>
+              <rect width="200" height="280" fill="none" stroke="rgba(212,175,55,0.2)"/>
+              <text x="100" y="120" text-anchor="middle" fill="#0A0E1A" font-family="Cormorant Garamond" font-size="22">Career</text>
+              <text x="100" y="148" text-anchor="middle" fill="#0A0E1A" font-family="Cormorant Garamond" font-size="22">Compass</text>
+              <text x="100" y="190" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="9" letter-spacing="2">NESREEN</text>
+              <text x="0" y="310" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Career Compass</text>
+              <text x="0" y="328" fill="#A8B0C4" font-family="Inter" font-size="10">Direction when you feel lost</text>
+              <text x="0" y="358" fill="#D4AF37" font-family="Inter" font-size="11" font-weight="600">AED 79 · Hardcover</text>
+            </g>
+
+            <g transform="translate(480,0)">
+              <rect width="200" height="280" fill="url(#book3)"/>
+              <rect width="200" height="280" fill="none" stroke="rgba(212,175,55,0.2)"/>
+              <text x="100" y="120" text-anchor="middle" fill="#fff" font-family="Cormorant Garamond" font-size="22">The Interview</text>
+              <text x="100" y="148" text-anchor="middle" fill="#fff" font-family="Cormorant Garamond" font-size="22" font-style="italic">Playbook</text>
+              <text x="100" y="190" text-anchor="middle" fill="#fff" font-family="Inter" font-size="9" letter-spacing="2">NESREEN</text>
+              <text x="0" y="310" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">The Interview Playbook</text>
+              <text x="0" y="328" fill="#A8B0C4" font-family="Inter" font-size="10">Land the offer with confidence</text>
+              <text x="0" y="358" fill="#D4AF37" font-family="Inter" font-size="11" font-weight="600">AED 59 · Digital + Audio</text>
+            </g>
+
+            <g transform="translate(720,0)">
+              <rect width="200" height="280" fill="url(#book4)"/>
+              <rect width="200" height="280" fill="none" stroke="rgba(212,175,55,0.2)"/>
+              <text x="100" y="130" text-anchor="middle" fill="#fff" font-family="Cormorant Garamond" font-size="22">The Reset</text>
+              <text x="100" y="180" text-anchor="middle" fill="#fff" font-family="Inter" font-size="9" letter-spacing="2">NESREEN</text>
+              <text x="0" y="310" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">The Reset Journal</text>
+              <text x="0" y="328" fill="#A8B0C4" font-family="Inter" font-size="10">90-day burnout recovery</text>
+              <text x="0" y="358" fill="#D4AF37" font-family="Inter" font-size="11" font-weight="600">AED 49 · Journal + PDF</text>
+            </g>
+
+            <g transform="translate(960,0)">
+              <rect width="180" height="280" fill="#1A2038" stroke="rgba(212,175,55,0.3)" stroke-dasharray="6,6"/>
+              <text x="90" y="130" text-anchor="middle" fill="#D4AF37" font-family="Cormorant Garamond" font-size="50">+</text>
+              <text x="90" y="170" text-anchor="middle" fill="#A8B0C4" font-family="Inter" font-size="10">Coming Q3 2026</text>
+            </g>
+          </g>
+
+          <!-- Format chips -->
+          <g transform="translate(60,675)" font-family="Inter" font-size="10" fill="#6B7390">
+            <text>Each book available as: Hardcover · Paperback · Kindle · Audiobook · PDF · Workbook bundle · Signed (premium)</text>
+          </g>
+        </svg>
+        <div class="mockup-caption">Editorial book showcase. Each book offers preview, audio sample, Amazon link, and digital purchase. Bundle pricing for clients who buy multiple. Inside-portal pricing offers logged-in clients an automatic 20% discount.</div>
+      </div>
+
+      <h3>Library Detail Page Features</h3>
+      <div class="grid-3">
+        <div class="card"><h4>3D Book Preview</h4><p>Rotate the book. See the spine, the back, the inside flap. Premium signal.</p></div>
+        <div class="card"><h4>Audio Sample</h4><p>Play the first 3 minutes of the audiobook narrated by Nesreen herself.</p></div>
+        <div class="card"><h4>Read Chapter One</h4><p>Free chapter as a beautifully designed in-browser reader. No PDF download until purchase.</p></div>
+        <div class="card"><h4>Bundle Offers</h4><p>"Buy 2 books, get the matching workbook free." Friction-free up-sell.</p></div>
+        <div class="card"><h4>Buy Channels</h4><p>Direct (highest margin), Amazon (highest trust), Apple Books (audio), Kindle.</p></div>
+        <div class="card"><h4>Reader Notes</h4><p>Logged-in clients see private highlight history across all books they own.</p></div>
+      </div>
+    </section>
+
+    <!-- 13 ACADEMY -->
+    <section id="academy">
+      <div class="section-header">
+        <span class="num">— 13 —</span>
+        <h2>Nesreen Academy</h2>
+        <p class="section-intro">Scalable revenue. The clients who can't afford coaching can still buy a course. Every course funnels qualified leads back into 1-on-1 sessions.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">nesreen.com/academy</span>
+        </div>
+        <svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="700" fill="#0A0E1A"/>
+          <text x="60" y="60" fill="#D4AF37" font-family="Cormorant Garamond" font-size="22">Nesreen</text>
+          <text x="60" y="120" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">— THE ACADEMY</text>
+          <text x="60" y="180" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="48">Self-paced learning, AI-enhanced.</text>
+          <text x="60" y="215" fill="#A8B0C4" font-family="Cormorant Garamond" font-size="18" font-style="italic">Every course includes a private AI tutor that knows the lesson.</text>
+
+          <!-- Course grid -->
+          <g transform="translate(60,280)">
+            <!-- Card 1 -->
+            <g>
+              <rect width="350" height="320" rx="16" fill="#1A2038" stroke="rgba(212,175,55,0.2)"/>
+              <rect width="350" height="160" rx="16" fill="url(#cGrad1)"/>
+              <defs>
+                <linearGradient id="cGrad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#9B7EDE"/><stop offset="100%" stop-color="#2E2752"/></linearGradient>
+                <linearGradient id="cGrad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#D4AF37"/><stop offset="100%" stop-color="#5B4B8A"/></linearGradient>
+                <linearGradient id="cGrad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#5FBFB8"/><stop offset="100%" stop-color="#5B4B8A"/></linearGradient>
+              </defs>
+              <rect width="350" height="160" rx="16" fill="rgba(0,0,0,0.4)"/>
+              <text x="20" y="40" fill="#E8D4A2" font-family="Inter" font-size="10" letter-spacing="2">FOUNDATION · 14 LESSONS</text>
+              <text x="20" y="80" fill="#fff" font-family="Cormorant Garamond" font-size="28">Confidence Reset</text>
+              <text x="20" y="105" fill="#F4EFE6" font-family="Cormorant Garamond" font-size="14" font-style="italic">A 7-day reset for high-achievers</text>
+
+              <text x="20" y="200" fill="#A8B0C4" font-family="Inter" font-size="11">Reset patterns of self-doubt with</text>
+              <text x="20" y="218" fill="#A8B0C4" font-family="Inter" font-size="11">daily exercises and AI check-ins.</text>
+
+              <text x="20" y="265" fill="#D4AF37" font-family="Cormorant Garamond" font-size="26" font-weight="600">AED 299</text>
+              <text x="125" y="265" fill="#6B7390" font-family="Inter" font-size="11" text-decoration="line-through">AED 499</text>
+
+              <rect x="20" y="280" width="160" height="34" rx="17" fill="#D4AF37"/>
+              <text x="100" y="302" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="11" font-weight="600">START LEARNING →</text>
+            </g>
+
+            <!-- Card 2 -->
+            <g transform="translate(380,0)">
+              <rect width="350" height="320" rx="16" fill="#1A2038" stroke="rgba(212,175,55,0.2)"/>
+              <rect width="350" height="160" rx="16" fill="url(#cGrad2)"/>
+              <rect width="350" height="160" rx="16" fill="rgba(0,0,0,0.4)"/>
+              <text x="20" y="40" fill="#E8D4A2" font-family="Inter" font-size="10" letter-spacing="2">SIGNATURE · 24 LESSONS</text>
+              <text x="20" y="80" fill="#fff" font-family="Cormorant Garamond" font-size="28">Leadership Without</text>
+              <text x="20" y="108" fill="#fff" font-family="Cormorant Garamond" font-size="28">Burnout</text>
+
+              <text x="20" y="200" fill="#A8B0C4" font-family="Inter" font-size="11">Lead high-stakes teams while</text>
+              <text x="20" y="218" fill="#A8B0C4" font-family="Inter" font-size="11">protecting your energy.</text>
+
+              <text x="20" y="265" fill="#D4AF37" font-family="Cormorant Garamond" font-size="26" font-weight="600">AED 899</text>
+              <text x="20" y="305" fill="#A8B0C4" font-family="Inter" font-size="10">★★★★★ &nbsp;4.9 · 1,240 enrolled</text>
+
+              <rect x="200" y="280" width="130" height="34" rx="17" fill="#D4AF37"/>
+              <text x="265" y="302" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="11" font-weight="600">ENROLL →</text>
+            </g>
+
+            <!-- Card 3 -->
+            <g transform="translate(760,0)">
+              <rect width="350" height="320" rx="16" fill="#1A2038" stroke="rgba(212,175,55,0.2)"/>
+              <rect width="350" height="160" rx="16" fill="url(#cGrad3)"/>
+              <rect width="350" height="160" rx="16" fill="rgba(0,0,0,0.4)"/>
+              <text x="20" y="40" fill="#E8D4A2" font-family="Inter" font-size="10" letter-spacing="2">INTERVIEW · 18 LESSONS</text>
+              <text x="20" y="80" fill="#fff" font-family="Cormorant Garamond" font-size="28">The Offer Machine</text>
+
+              <text x="20" y="200" fill="#A8B0C4" font-family="Inter" font-size="11">Behavioral interviews, salary</text>
+              <text x="20" y="218" fill="#A8B0C4" font-family="Inter" font-size="11">negotiation, executive presence.</text>
+
+              <text x="20" y="265" fill="#D4AF37" font-family="Cormorant Garamond" font-size="26" font-weight="600">AED 499</text>
+              <text x="20" y="305" fill="#A8B0C4" font-family="Inter" font-size="10">Includes AI mock interviewer</text>
+
+              <rect x="200" y="280" width="130" height="34" rx="17" fill="#D4AF37"/>
+              <text x="265" y="302" text-anchor="middle" fill="#0A0E1A" font-family="Inter" font-size="11" font-weight="600">ENROLL →</text>
+            </g>
+          </g>
+        </svg>
+        <div class="mockup-caption">Three flagship courses. Pricing tiers from accessible (AED 299) to signature (AED 899). Every course unlocks an inline AI tutor: "Need help understanding this lesson?" — a feature no major platform offers.</div>
+      </div>
+    </section>
+
+    <!-- 14 FUTURE FEATURES -->
+    <section id="future">
+      <div class="section-header">
+        <span class="num">— 14 —</span>
+        <h2>Future Features &amp; Differentiators</h2>
+        <p class="section-intro">Five "unreasonable" features that create brand mythology — features competitors cannot copy because they require the integration of Nesreen's voice, philosophy, and decade of practice.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <span class="pill-purple pill">PHASE 3</span>
+          <h3>AI Future Career Simulation</h3>
+          <p>Based on the client's profile, AI generates an animated, branching visualization: "Your career in 2030 if you continue this path." Then a second timeline: "Your career in 2030 if you make this change." Cinematic, emotional, motivating.</p>
+        </div>
+
+        <div class="card">
+          <span class="pill-purple pill">PHASE 4</span>
+          <h3>AI Twin of Nesreen</h3>
+          <p>A hyper-realistic conversational AI trained on Nesreen's voice, philosophy, and recorded sessions. Available 24/7 to dashboard clients between human sessions. Voice + video avatar. Premium tier only — never replaces the real Nesreen.</p>
+        </div>
+
+        <div class="card">
+          <span class="pill-purple pill">PHASE 2</span>
+          <h3>AI Emotional Scan</h3>
+          <p>During AI onboarding, the system detects sentiment patterns and surfaces burnout indicators, anxiety markers, low confidence, and signs of toxic workplace effects. Used to inform Nesreen's brief — never used to diagnose.</p>
+        </div>
+
+        <div class="card">
+          <span class="pill-purple pill">PHASE 4</span>
+          <h3>AI Career Documentary</h3>
+          <p>After all assessments are complete, AI generates a cinematic 90-second video: "This is your career journey." Narrated, scored, with the client's actual story arc. Like a Netflix trailer. Shareable. Inherently viral.</p>
+        </div>
+
+        <div class="card" style="grid-column:span 2">
+          <span class="pill-purple pill">PHASE 3</span>
+          <h3>AI Networking Intelligence</h3>
+          <p>The system tells clients exactly who to network with this week (real LinkedIn profiles based on goals), drafts the outreach message in their voice, suggests content to post, and tracks who replied. Connects the coaching insight to weekly action — the missing piece of every coaching platform.</p>
+        </div>
+      </div>
+
+      <div class="mockup" style="margin-top:3rem">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">portal/twin — Conversation with Nesreen AI</span>
+        </div>
+        <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="600" fill="#0A0E1A"/>
+
+          <!-- Avatar pane -->
+          <g transform="translate(60,80)">
+            <rect width="500" height="440" rx="16" fill="#1A2038" stroke="rgba(212,175,55,0.2)"/>
+            <text x="30" y="40" fill="#D4AF37" font-family="Inter" font-size="10" letter-spacing="3">NESREEN AI TWIN — LIVE</text>
+
+            <!-- Avatar circle -->
+            <circle cx="250" cy="220" r="120" fill="url(#twinGrad)" opacity="0.4"/>
+            <defs>
+              <radialGradient id="twinGrad"><stop stop-color="#D4AF37"/><stop offset="100%" stop-color="#5B4B8A" stop-opacity="0"/></radialGradient>
+            </defs>
+            <circle cx="250" cy="220" r="80" fill="#0A0E1A" stroke="#D4AF37" stroke-width="2"/>
+            <text x="250" y="235" text-anchor="middle" fill="#D4AF37" font-family="Cormorant Garamond" font-size="56" font-style="italic">N</text>
+
+            <!-- Voice waveform -->
+            <g transform="translate(150,360)" fill="#D4AF37">
+              <rect x="0" y="10" width="3" height="20"/>
+              <rect x="8" y="0" width="3" height="40"/>
+              <rect x="16" y="14" width="3" height="12"/>
+              <rect x="24" y="6" width="3" height="28"/>
+              <rect x="32" y="0" width="3" height="40"/>
+              <rect x="40" y="12" width="3" height="16"/>
+              <rect x="48" y="4" width="3" height="32"/>
+              <rect x="56" y="0" width="3" height="40"/>
+              <rect x="64" y="10" width="3" height="20"/>
+              <rect x="72" y="6" width="3" height="28"/>
+              <rect x="80" y="14" width="3" height="12"/>
+              <rect x="88" y="4" width="3" height="32"/>
+              <rect x="96" y="0" width="3" height="40"/>
+              <rect x="104" y="10" width="3" height="20"/>
+              <rect x="112" y="6" width="3" height="28"/>
+              <rect x="120" y="14" width="3" height="12"/>
+              <rect x="128" y="4" width="3" height="32"/>
+              <rect x="136" y="0" width="3" height="40"/>
+              <rect x="144" y="10" width="3" height="20"/>
+              <rect x="152" y="14" width="3" height="12"/>
+              <rect x="160" y="4" width="3" height="32"/>
+              <rect x="168" y="0" width="3" height="40"/>
+              <rect x="176" y="10" width="3" height="20"/>
+              <rect x="184" y="6" width="3" height="28"/>
+            </g>
+
+            <text x="250" y="430" text-anchor="middle" fill="#A8B0C4" font-family="Inter" font-size="11">Speaking · 14s remaining</text>
+          </g>
+
+          <!-- Transcript pane -->
+          <g transform="translate(600,80)">
+            <rect width="540" height="440" rx="16" fill="#0F1424" stroke="rgba(212,175,55,0.1)"/>
+            <text x="30" y="40" fill="#6B7390" font-family="Inter" font-size="10" letter-spacing="3">LIVE TRANSCRIPT</text>
+
+            <g font-family="Inter">
+              <text x="30" y="80" fill="#D4AF37" font-size="10" letter-spacing="2">YOU</text>
+              <text x="30" y="105" fill="#F4EFE6" font-size="13">Nesreen, I keep replaying the meeting in my head.</text>
+              <text x="30" y="123" fill="#F4EFE6" font-size="13">I think I sounded too uncertain.</text>
+
+              <text x="30" y="170" fill="#9B7EDE" font-size="10" letter-spacing="2">NESREEN AI</text>
+              <text x="30" y="195" fill="#F4EFE6" font-size="13">Sarah, what you're calling "uncertain"</text>
+              <text x="30" y="213" fill="#F4EFE6" font-size="13">might be what we discussed last week —</text>
+              <text x="30" y="231" fill="#F4EFE6" font-size="13">your tendency to question yourself out loud</text>
+              <text x="30" y="249" fill="#F4EFE6" font-size="13">when you're actually thinking carefully.</text>
+              <text x="30" y="280" fill="#F4EFE6" font-size="13">That isn't weakness. That's the leadership</text>
+              <text x="30" y="298" fill="#F4EFE6" font-size="13">style we named: deliberate, not loud.</text>
+              <text x="30" y="328" fill="#F4EFE6" font-size="13" font-style="italic">Tell me — what did your team actually</text>
+              <text x="30" y="346" fill="#F4EFE6" font-size="13" font-style="italic">do after the meeting?</text>
+            </g>
+
+            <rect x="30" y="380" width="480" height="44" rx="22" fill="#1A2038" stroke="rgba(212,175,55,0.15)"/>
+            <text x="50" y="406" fill="#6B7390" font-family="Inter" font-size="12">Continue talking...</text>
+            <circle cx="490" cy="402" r="16" fill="#D4AF37"/>
+            <text x="490" y="408" text-anchor="middle" fill="#0A0E1A" font-size="12">🎙</text>
+          </g>
+
+          <text x="60" y="565" fill="#6B7390" font-family="Inter" font-size="10">Premium tier · This conversation is reviewed by Nesreen weekly · Your data is private</text>
+        </svg>
+        <div class="mockup-caption">AI Twin interaction. Conversational voice + transcript. The AI references prior session work ("what we discussed last week", "the leadership style we named"). Continuity across human and AI sessions is the moat.</div>
+      </div>
+    </section>
+
+    <div class="pull">"Premium AI-assisted career coaching led by Nesreen."</div>
+
+    <!-- 15 DESIGN SYSTEM -->
+    <section id="design-system">
+      <div class="section-header">
+        <span class="num">— 15 —</span>
+        <h2>Design System</h2>
+        <p class="section-intro">Restraint creates premium. Few colors, few typefaces, generous whitespace, deliberate hierarchy. Everything in the system should feel expensive.</p>
+      </div>
+
+      <h3>Color Palette</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#0A0E1A"></div><div class="swatch-info"><div class="name">Midnight</div><div class="hex">#0A0E1A · BG primary</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1A2038"></div><div class="swatch-info"><div class="name">Indigo Deep</div><div class="hex">#1A2038 · Surface</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D4AF37"></div><div class="swatch-info"><div class="name">Gold</div><div class="hex">#D4AF37 · Primary</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E8D4A2"></div><div class="swatch-info"><div class="name">Champagne</div><div class="hex">#E8D4A2 · Headings</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F4EFE6"></div><div class="swatch-info"><div class="name">Ivory</div><div class="hex">#F4EFE6 · Body text</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#9B7EDE"></div><div class="swatch-info"><div class="name">Aurora</div><div class="hex">#9B7EDE · AI accent</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#5FBFB8"></div><div class="swatch-info"><div class="name">Sage</div><div class="hex">#5FBFB8 · Success</div></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E89BA8"></div><div class="swatch-info"><div class="name">Rose</div><div class="hex">#E89BA8 · Emotional</div></div></div>
+      </div>
+
+      <h3 style="margin-top:3rem">Typography</h3>
+      <div class="type-sample">
+        <div class="label">DISPLAY · Cormorant Garamond · 56–80px</div>
+        <div class="demo" style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--text);line-height:1.1">Book your AI-powered career coaching session <em style="color:var(--gold)">with Nesreen.</em></div>
+        <p>Used for hero headlines, section titles, key statements. Italic for emotional accents.</p>
+      </div>
+      <div class="type-sample">
+        <div class="label">HEADING · Cormorant Garamond · 24–32px</div>
+        <div class="demo" style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold-light)">Where human coaching meets artificial intelligence.</div>
+        <p>Section subtitles, card titles, premium pull quotes.</p>
+      </div>
+      <div class="type-sample">
+        <div class="label">BODY · Inter · 14–16px · Weight 300/400</div>
+        <div class="demo" style="font-family:'Inter',sans-serif;font-size:1rem;color:var(--text-dim);line-height:1.7;font-weight:300">Every page, every flow, every word reinforces a single CTA. The platform is the brand — and the brand is Nesreen, augmented by intelligence that prepares you for transformation.</div>
+        <p>Default body. Light weight (300) on dark backgrounds preserves elegance.</p>
+      </div>
+      <div class="type-sample">
+        <div class="label">EYEBROW · Inter · 10px · 0.3em letterspacing · uppercase</div>
+        <div class="demo" style="font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase">— Premium Coaching Platform</div>
+        <p>Small caps eyebrows, button text, navigation, technical labels.</p>
+      </div>
+
+      <h3 style="margin-top:3rem">Spacing &amp; Layout</h3>
+      <div class="spec"><div class="spec-key">Base unit</div><div class="spec-val">8px grid — all paddings, margins, gaps are multiples of 8</div></div>
+      <div class="spec"><div class="spec-key">Container max width</div><div class="spec-val">1280px — wider feels enterprise, narrower feels mobile-first</div></div>
+      <div class="spec"><div class="spec-key">Section spacing</div><div class="spec-val">112px (vertical between sections) — generous, magazine-like</div></div>
+      <div class="spec"><div class="spec-key">Border radius</div><div class="spec-val">14px standard, 22px for hero cards, 28px (pill) for CTAs</div></div>
+      <div class="spec"><div class="spec-key">Elevation</div><div class="spec-val">Subtle: 0 20px 60px rgba(0,0,0,0.4). Never harsh shadows.</div></div>
+
+      <h3 style="margin-top:3rem">Motion Principles</h3>
+      <div class="grid-3">
+        <div class="card"><h4>Slow &amp; Intentional</h4><p>300–500ms transitions. Easing: cubic-bezier(0.4, 0, 0.2, 1). Nothing snaps.</p></div>
+        <div class="card"><h4>Subtle Presence</h4><p>AI orb pulses at 3s loop. Cards lift 2px on hover. Never jiggle, never bounce.</p></div>
+        <div class="card"><h4>Reveal on Scroll</h4><p>Sections fade-up at 0.6s. Staggered children. Once revealed, stay still.</p></div>
+      </div>
+    </section>
+
+    <!-- 16 COMPONENTS -->
+    <section id="components">
+      <div class="section-header">
+        <span class="num">— 16 —</span>
+        <h2>Component Library</h2>
+        <p class="section-intro">A focused set of reusable components — built once, used everywhere. Each component is a brand statement.</p>
+      </div>
+
+      <table>
+        <thead><tr><th>Component</th><th>Variants</th><th>Used In</th></tr></thead>
+        <tbody>
+          <tr><td><strong class="gold-light">Button — Primary</strong></td><td>Default · Disabled · Loading · Pressed</td><td>All CTAs, "Book Session", "Pay"</td></tr>
+          <tr><td><strong class="gold-light">Button — Outline</strong></td><td>Default · Hover · Active</td><td>Secondary actions, AI quick-replies</td></tr>
+          <tr><td><strong class="gold-light">Service Card</strong></td><td>Selected · Default · Hover</td><td>Booking page service grid</td></tr>
+          <tr><td><strong class="gold-light">AI Message Bubble</strong></td><td>AI · User · Typing · Quick-replies</td><td>Onboarding, AI Twin, AI Tutor</td></tr>
+          <tr><td><strong class="gold-light">Avatar Orb</strong></td><td>Listening · Speaking · Thinking · Idle</td><td>AI moments throughout</td></tr>
+          <tr><td><strong class="gold-light">Progress Constellation</strong></td><td>Sparse · Building · Complete</td><td>Onboarding profile-building</td></tr>
+          <tr><td><strong class="gold-light">Readiness Gauge</strong></td><td>Low · Medium · High · Ready</td><td>Dashboard, onboarding</td></tr>
+          <tr><td><strong class="gold-light">Session Card</strong></td><td>Upcoming · Live · Past</td><td>Dashboard hero, journey timeline</td></tr>
+          <tr><td><strong class="gold-light">Calendar Picker</strong></td><td>Month · Slot · Confirm</td><td>Booking step 2</td></tr>
+          <tr><td><strong class="gold-light">Payment Field</strong></td><td>Card · Apple Pay · Google Pay · Local methods</td><td>Checkout</td></tr>
+          <tr><td><strong class="gold-light">Book Card</strong></td><td>Cover · Detail · Preview</td><td>Library</td></tr>
+          <tr><td><strong class="gold-light">Course Card</strong></td><td>Locked · Available · In-progress · Complete</td><td>Academy</td></tr>
+          <tr><td><strong class="gold-light">Action Item</strong></td><td>Pending · Complete · Overdue</td><td>Dashboard action plan</td></tr>
+          <tr><td><strong class="gold-light">Assessment Tile</strong></td><td>Not started · In progress · Complete</td><td>Dashboard assessments</td></tr>
+          <tr><td><strong class="gold-light">Pull Quote</strong></td><td>Editorial · Pull · Marketing</td><td>Landing page, library</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 17 TECH -->
+    <section id="tech">
+      <div class="section-header">
+        <span class="num">— 17 —</span>
+        <h2>Tech Stack &amp; Integrations</h2>
+        <p class="section-intro">A modern, scalable stack built for performance and elegance. All choices favor developer velocity, AI integration, and global edge delivery.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Frontend</h3>
+          <ul class="lux">
+            <li><strong class="gold-light">Next.js 14+</strong> (App Router) — SSR, ISR, edge-rendered</li>
+            <li><strong class="gold-light">React 18</strong> + Server Components</li>
+            <li><strong class="gold-light">Tailwind CSS</strong> + custom design tokens</li>
+            <li><strong class="gold-light">Framer Motion</strong> for orchestrated animations</li>
+            <li><strong class="gold-light">Lottie</strong> for AI orb &amp; readiness gauge</li>
+            <li><strong class="gold-light">Vercel</strong> hosting — global edge</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Backend</h3>
+          <ul class="lux">
+            <li><strong class="gold-light">Node.js + tRPC</strong> typed end-to-end</li>
+            <li><strong class="gold-light">Supabase</strong> (Postgres + auth + storage + RLS)</li>
+            <li><strong class="gold-light">Redis</strong> for session state &amp; AI memory</li>
+            <li><strong class="gold-light">Inngest</strong> for scheduled jobs &amp; AI pipelines</li>
+            <li><strong class="gold-light">Resend</strong> for transactional email</li>
+            <li><strong class="gold-light">PostHog</strong> for product analytics</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>AI Layer</h3>
+          <ul class="lux">
+            <li><strong class="gold-light">Anthropic Claude</strong> (Opus 4.6) for onboarding &amp; brief generation</li>
+            <li><strong class="gold-light">ElevenLabs</strong> for voice synthesis (AI Twin)</li>
+            <li><strong class="gold-light">HeyGen / D-ID</strong> for video avatar (Phase 4)</li>
+            <li><strong class="gold-light">Whisper</strong> for voice-to-text (user speaking)</li>
+            <li><strong class="gold-light">Vector DB (Pinecone)</strong> for client history retrieval</li>
+            <li><strong class="gold-light">LangSmith</strong> for AI observability</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Booking &amp; Payments</h3>
+          <ul class="lux">
+            <li><strong class="gold-light">Cal.com</strong> (self-hosted) for scheduling engine</li>
+            <li><strong class="gold-light">Stripe</strong> + <strong class="gold-light">Tap Payments</strong> + <strong class="gold-light">PayTabs</strong></li>
+            <li><strong class="gold-light">Zoom SDK</strong> for embedded video</li>
+            <li><strong class="gold-light">Google Calendar API</strong> sync (two-way)</li>
+            <li><strong class="gold-light">Twilio</strong> for SMS reminders</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18 AI ARCHITECTURE -->
+    <section id="ai-arch">
+      <div class="section-header">
+        <span class="num">— 18 —</span>
+        <h2>AI Architecture</h2>
+        <p class="section-intro">The AI is not one model — it's an orchestrated system of specialized agents, each with a specific role in the client journey. All accountable to Nesreen's voice and values.</p>
+      </div>
+
+      <div class="mockup">
+        <div class="mockup-frame-bar">
+          <span class="mockup-dot r"></span><span class="mockup-dot y"></span><span class="mockup-dot g"></span>
+          <span class="mockup-url">internal — AI System Architecture</span>
+        </div>
+        <svg viewBox="0 0 1200 620" xmlns="http://www.w3.org/2000/svg">
+          <rect width="1200" height="620" fill="#0F1424"/>
+
+          <!-- Client side -->
+          <g transform="translate(40,40)">
+            <rect width="320" height="540" rx="12" fill="#1A2038" stroke="rgba(212,175,55,0.15)"/>
+            <text x="20" y="35" fill="#D4AF37" font-family="Inter" font-size="11" letter-spacing="3">CLIENT-FACING AGENTS</text>
+
+            <g transform="translate(20,60)">
+              <rect width="280" height="80" rx="8" fill="rgba(212,175,55,0.05)" stroke="rgba(212,175,55,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Onboarding Agent</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">Conversational career profile builder</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Claude Opus · warm tone · 12-question schema</text>
+            </g>
+
+            <g transform="translate(20,160)">
+              <rect width="280" height="80" rx="8" fill="rgba(155,126,222,0.05)" stroke="rgba(155,126,222,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Reflection Agent</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">Post-session journaling companion</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Claude Sonnet · gentle prompts · 24h after session</text>
+            </g>
+
+            <g transform="translate(20,260)">
+              <rect width="280" height="80" rx="8" fill="rgba(95,191,184,0.05)" stroke="rgba(95,191,184,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Course Tutor Agent</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">Embedded in every academy lesson</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Claude Haiku · fast · lesson-scoped context</text>
+            </g>
+
+            <g transform="translate(20,360)">
+              <rect width="280" height="80" rx="8" fill="rgba(232,155,168,0.05)" stroke="rgba(232,155,168,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">AI Twin (Premium)</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">Voice-first 24/7 mentor</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Claude Opus + ElevenLabs · full client memory</text>
+            </g>
+
+            <g transform="translate(20,460)">
+              <rect width="280" height="60" rx="8" fill="rgba(212,175,55,0.05)" stroke="rgba(212,175,55,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Networking Agent</text>
+              <text x="15" y="45" fill="#6B7390" font-family="Inter" font-size="10">LinkedIn intelligence + outreach drafting</text>
+            </g>
+          </g>
+
+          <!-- Center: Core -->
+          <g transform="translate(440,180)">
+            <rect width="320" height="260" rx="16" fill="url(#coreGrad)" />
+            <defs>
+              <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop stop-color="#D4AF37" stop-opacity="0.3"/><stop offset="100%" stop-color="#9B7EDE" stop-opacity="0.2"/>
+              </linearGradient>
+            </defs>
+            <rect width="320" height="260" rx="16" fill="none" stroke="#D4AF37" stroke-width="2"/>
+            <text x="160" y="60" text-anchor="middle" fill="#D4AF37" font-family="Cormorant Garamond" font-size="26">The Nesreen Layer</text>
+            <text x="160" y="85" text-anchor="middle" fill="#E8D4A2" font-family="Inter" font-size="11" letter-spacing="2">CONSTITUTION + MEMORY</text>
+
+            <g font-family="Inter" font-size="11" fill="#F4EFE6">
+              <text x="30" y="125">• System prompts written with Nesreen</text>
+              <text x="30" y="148">• Voice samples (1000+ hours)</text>
+              <text x="30" y="171">• Coaching philosophy documents</text>
+              <text x="30" y="194">• Forbidden topics + tone guardrails</text>
+              <text x="30" y="217">• Per-client memory (vector store)</text>
+              <text x="30" y="240">• Session transcripts (after consent)</text>
+            </g>
+          </g>
+
+          <!-- Coach side -->
+          <g transform="translate(840,40)">
+            <rect width="320" height="540" rx="12" fill="#1A2038" stroke="rgba(212,175,55,0.15)"/>
+            <text x="20" y="35" fill="#D4AF37" font-family="Inter" font-size="11" letter-spacing="3">COACH-FACING AGENTS</text>
+
+            <g transform="translate(20,60)">
+              <rect width="280" height="80" rx="8" fill="rgba(212,175,55,0.05)" stroke="rgba(212,175,55,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Brief Generator</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">Auto-creates coaching brief 24h before session</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Claude Opus · synthesizes profile + assessments</text>
+            </g>
+
+            <g transform="translate(20,160)">
+              <rect width="280" height="80" rx="8" fill="rgba(95,191,184,0.05)" stroke="rgba(95,191,184,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Silent Note-Taker</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">In-session transcription + highlight extraction</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Whisper + Claude Sonnet · client-consented only</text>
+            </g>
+
+            <g transform="translate(20,260)">
+              <rect width="280" height="80" rx="8" fill="rgba(155,126,222,0.05)" stroke="rgba(155,126,222,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Action Plan Drafter</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">Drafts client action plan within 1h of session</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Nesreen reviews + edits before client sees</text>
+            </g>
+
+            <g transform="translate(20,360)">
+              <rect width="280" height="80" rx="8" fill="rgba(232,155,168,0.05)" stroke="rgba(232,155,168,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Pattern Detector</text>
+              <text x="15" y="48" fill="#A8B0C4" font-family="Inter" font-size="11">Cross-client trend analysis (anonymized)</text>
+              <text x="15" y="65" fill="#6B7390" font-family="Inter" font-size="10">Weekly digest to Nesreen — content ideas</text>
+            </g>
+
+            <g transform="translate(20,460)">
+              <rect width="280" height="60" rx="8" fill="rgba(127,216,156,0.05)" stroke="rgba(127,216,156,0.2)"/>
+              <text x="15" y="25" fill="#E8D4A2" font-family="Cormorant Garamond" font-size="18">Booking Assistant</text>
+              <text x="15" y="45" fill="#6B7390" font-family="Inter" font-size="10">Handles rescheduling, cancellations, FAQ</text>
+            </g>
+          </g>
+
+          <!-- Connection lines -->
+          <line x1="360" y1="310" x2="440" y2="310" stroke="#D4AF37" stroke-width="1" opacity="0.4"/>
+          <line x1="760" y1="310" x2="840" y2="310" stroke="#D4AF37" stroke-width="1" opacity="0.4"/>
+        </svg>
+        <div class="mockup-caption">All agents share a common "Nesreen Layer" — system prompts, voice samples, philosophy documents, guardrails. This ensures every AI touchpoint speaks <em>with Nesreen's voice</em>, never as a generic chatbot.</div>
+      </div>
+    </section>
+
+    <!-- 19 KPIs -->
+    <section id="kpis">
+      <div class="section-header">
+        <span class="num">— 19 —</span>
+        <h2>KPIs &amp; Success Metrics</h2>
+        <p class="section-intro">The metrics that prove the platform is working. Every number ladders up to the central business goal: more transformational coaching sessions, sold at premium prices.</p>
+      </div>
+
+      <h3>North Star Metric</h3>
+      <div class="card">
+        <h2 style="color:var(--gold);margin-bottom:0.5rem">Premium Sessions Completed per Month</h2>
+        <p>The single number Nesreen and the team watch. Captures pricing power, marketing, and retention in one signal.</p>
+      </div>
+
+      <h3 style="margin-top:3rem">Funnel Metrics</h3>
+      <table>
+        <thead><tr><th>Stage</th><th>Metric</th><th>Target Y1</th></tr></thead>
+        <tbody>
+          <tr><td>Landing</td><td>Hero scroll-past rate</td><td>&lt; 30% (most engage with hero)</td></tr>
+          <tr><td>Landing → Book</td><td>Click-through to /book</td><td>&gt; 8%</td></tr>
+          <tr><td>Booking funnel</td><td>Service → Payment completion</td><td>&gt; 60%</td></tr>
+          <tr><td>Onboarding</td><td>AI prep completion rate</td><td>&gt; 75%</td></tr>
+          <tr><td>Readiness</td><td>Avg readiness score at session</td><td>&gt; 85%</td></tr>
+          <tr><td>Session</td><td>Show-up rate</td><td>&gt; 95%</td></tr>
+          <tr><td>Post-session</td><td>Rebook rate within 30 days</td><td>&gt; 40%</td></tr>
+          <tr><td>Cross-sell</td><td>Course purchase by coaching clients</td><td>&gt; 20%</td></tr>
+          <tr><td>Referral</td><td>Net Promoter Score</td><td>&gt; 70</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top:3rem">Experience Quality Metrics</h3>
+      <div class="grid-3">
+        <div class="card"><h4>Time to First Meaningful Interaction</h4><p>From landing to AI orb appearing &lt; 12 minutes (median)</p></div>
+        <div class="card"><h4>Brief Quality Score</h4><p>Nesreen rates each AI brief 1-5 weekly. Target avg &gt; 4.5</p></div>
+        <div class="card"><h4>AI Tone Compliance</h4><p>% of AI outputs that pass voice/tone guardrails. Target &gt; 99%</p></div>
+        <div class="card"><h4>Mobile Conversion Parity</h4><p>Mobile booking rate ÷ Desktop booking rate. Target &gt; 0.85</p></div>
+        <div class="card"><h4>Dashboard Weekly Active</h4><p>% of clients who return to dashboard weekly. Target &gt; 60%</p></div>
+        <div class="card"><h4>AI Twin Engagement</h4><p>Avg messages per premium user per week. Target &gt; 8</p></div>
+      </div>
+    </section>
+
+    <!-- 20 ROADMAP -->
+    <section id="roadmap">
+      <div class="section-header">
+        <span class="num">— 20 —</span>
+        <h2>Implementation Roadmap</h2>
+        <p class="section-intro">Four phases, twelve months. Ship the core promise first; layer differentiators as the brand grows.</p>
+      </div>
+
+      <div class="roadmap">
+        <div class="roadmap-item">
+          <div class="roadmap-phase">Phase 1 · Foundation · Months 1-3</div>
+          <div class="roadmap-title">The Core Promise</div>
+          <p>Ship the booking-first funnel and AI onboarding. Everything else is content.</p>
+          <ul class="lux">
+            <li>Landing page with hero, services, about, testimonials</li>
+            <li>Full 3-step booking flow (service → time → payment)</li>
+            <li>Stripe + Tap Payments integration</li>
+            <li>AI Onboarding Agent (Claude Opus, 12-question schema)</li>
+            <li>Coaching Brief Generator</li>
+            <li>Basic client dashboard (next session, action plan, notes)</li>
+            <li>Email automations (booking, reminders, post-session)</li>
+            <li>Coach dashboard for Nesreen (briefs, calendar, notes)</li>
+          </ul>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-phase">Phase 2 · Depth · Months 4-6</div>
+          <div class="roadmap-title">The Dashboard Becomes a Companion</div>
+          <p>Make the dashboard sticky. Drive rebookings. Launch Library.</p>
+          <ul class="lux">
+            <li>Full assessments suite (Personality, Leadership, Burnout, Confidence)</li>
+            <li>Session Readiness Score (live gauge)</li>
+            <li>AI Emotional Scan layer</li>
+            <li>Nesreen Library (4 books, digital purchase, audio samples)</li>
+            <li>Reflection Agent (post-session journaling)</li>
+            <li>PayTabs + Telr added; UAE local methods optimized</li>
+            <li>Mobile app shell (React Native)</li>
+          </ul>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-phase">Phase 3 · Scale · Months 7-9</div>
+          <div class="roadmap-title">Nesreen Academy + Networking</div>
+          <p>Add scalable revenue. Bring intelligence to weekly action.</p>
+          <ul class="lux">
+            <li>Nesreen Academy (3 flagship courses, inline AI tutor)</li>
+            <li>Course certificates, completion tracking</li>
+            <li>AI Networking Intelligence (LinkedIn integration, outreach drafts)</li>
+            <li>AI Future Career Simulation (branching timeline viz)</li>
+            <li>Corporate / team packages</li>
+            <li>Affiliate program for client referrals</li>
+          </ul>
+        </div>
+
+        <div class="roadmap-item">
+          <div class="roadmap-phase">Phase 4 · Mythology · Months 10-12</div>
+          <div class="roadmap-title">The Brand-Defining Features</div>
+          <p>The features competitors can never copy. The reason Nesreen becomes the category.</p>
+          <ul class="lux">
+            <li>AI Twin of Nesreen (voice + video, premium tier)</li>
+            <li>AI Career Documentary (cinematic 90-second journey videos)</li>
+            <li>Multi-language: Arabic + English parity</li>
+            <li>Premium tier ("Nesreen Inner Circle") with exclusive content</li>
+            <li>Live group cohorts (high-leverage Nesreen time)</li>
+            <li>Public case studies, conference presence, PR push</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="divider"><span>End of Plan</span></div>
+
+      <div style="text-align:center;padding:3rem 0">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold-light);font-style:italic;max-width:700px;margin:0 auto">"Your website should not feel robotic, corporate, or generic. It should feel intelligent, emotional, premium, transformative, and personal — because you are the product, and you are the brand."</p>
+        <p style="margin-top:2rem;color:var(--text-mute);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase">Nesreen · UI/UX Master Plan · v1.0</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  // Smooth highlight active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        links.forEach(l => {
+          l.style.background = '';
+          l.style.color = '';
+          if (l.getAttribute('href') === '#' + id) {
+            l.style.background = 'rgba(212,175,55,0.1)';
+            l.style.color = 'var(--gold-light)';
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
