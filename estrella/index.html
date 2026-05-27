@@ -2235,6 +2235,324 @@ body{
 }
 .about-social svg{width:18px;height:18px}
 
+/* ============================== THE PRACTICE (new /coaching) ============================== */
+.practice-page{
+  max-width:640px;margin:0 auto;
+  padding:8vh 2rem 6rem;
+  text-align:center;
+  min-height:100%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.practice-portrait{
+  width:140px;height:140px;
+  margin:0 auto 2.5rem;
+  border-radius:50%;
+  overflow:hidden;
+  background:var(--bg-soft);
+  box-shadow:var(--shadow-sm);
+}
+.practice-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.practice-headline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,2.75rem);
+  font-weight:400;letter-spacing:-0.01em;
+  color:var(--ink);
+  line-height:1.1;
+  margin-bottom:2rem;
+}
+.practice-prose{
+  text-align:left;max-width:480px;margin:0 auto 3rem;
+}
+.practice-prose p{
+  font-size:1.0625rem;line-height:1.7;color:var(--text);
+  margin-bottom:1.25rem;
+}
+.practice-prose p:last-child{margin-bottom:0}
+.practice-cta{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:var(--ink);color:#FBF7EC;
+  border:none;padding:1rem 2rem;
+  font-family:'Inter',sans-serif;font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;
+  border-radius:999px;cursor:pointer;
+  transition:transform 0.2s var(--ease-out),background 0.2s;
+}
+.practice-cta:hover{transform:translateY(-1px);background:#1F1B14}
+.practice-cta svg{transition:transform 0.25s var(--ease-out)}
+.practice-cta:hover svg{transform:translateX(3px)}
+.practice-cta-caption{
+  margin-top:0.875rem;
+  font-size:0.8125rem;
+  color:var(--text-mute);
+  letter-spacing:0.01em;
+}
+.practice-signin{
+  display:block;margin-top:1.5rem;
+  font-size:0.8125rem;color:var(--text-mute);
+  text-decoration:none;cursor:pointer;letter-spacing:0.01em;
+}
+.practice-signin:hover{color:var(--gold-deep)}
+.practice-section{
+  text-align:left;
+  max-width:560px;width:100%;
+  margin:3rem auto 0;
+}
+.practice-section-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:400;
+  color:var(--ink);
+  margin-bottom:1.25rem;
+  letter-spacing:-0.005em;
+  text-align:center;
+}
+.practice-section-p{
+  font-size:1rem;line-height:1.7;color:var(--text);
+}
+.practice-tiers{
+  display:flex;flex-direction:column;gap:1.25rem;
+}
+.practice-tier{
+  padding:1.25rem 0;
+  border-top:1px solid var(--line);
+}
+.practice-tier:last-child{border-bottom:1px solid var(--line)}
+.practice-tier-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.125rem;color:var(--ink);
+  margin-bottom:0.375rem;
+}
+.practice-tier p{
+  font-size:0.9375rem;line-height:1.6;color:var(--text-dim);
+}
+.practice-quotes{
+  max-width:560px;width:100%;
+  margin:3rem auto 0;
+  display:flex;flex-direction:column;gap:1.75rem;
+}
+.practice-quote{
+  text-align:center;
+}
+.practice-quote p{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.25rem;color:var(--ink);
+  line-height:1.4;
+  margin-bottom:0.5rem;
+}
+.practice-quote cite{
+  display:block;
+  font-style:normal;
+  font-size:0.75rem;
+  color:var(--text-mute);
+  letter-spacing:0.04em;text-transform:uppercase;
+}
+.practice-cta{margin-top:3.5rem}
+.practice-escape{
+  margin-top:3rem;
+  padding-top:2rem;
+  border-top:1px solid var(--line);
+  width:100%;max-width:560px;
+  text-align:center;
+}
+.practice-escape a{
+  font-size:0.75rem;
+  color:var(--text-mute);
+  letter-spacing:0.02em;
+  text-decoration:none;cursor:pointer;
+}
+.practice-escape a:hover{color:var(--gold-deep)}
+
+/* ============================== VIEW: START (Estrella diagnostic) ============================== */
+.start-page{
+  min-height:100%;width:100%;
+  display:flex;flex-direction:column;
+  position:relative;background:var(--bg);
+}
+.start-stage{
+  flex:1;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  padding:4rem 2rem 2rem;
+}
+.start-page.in-conversation .start-stage{
+  justify-content:flex-start;padding-top:4rem;padding-bottom:2rem;
+}
+.start-question{
+  font-family:'Cormorant Garamond',serif;font-weight:400;
+  font-size:clamp(2.25rem,5vw,3.5rem);
+  letter-spacing:-0.01em;color:var(--ink);
+  text-align:center;max-width:640px;line-height:1.15;margin:0;
+  transition:opacity 0.45s var(--ease-out);
+}
+.start-page.in-conversation .start-question{display:none}
+.start-conversation{
+  width:100%;max-width:640px;
+  display:flex;flex-direction:column;gap:1.5rem;
+  padding-bottom:1rem;
+}
+.start-msg{
+  opacity:0;transform:translateY(8px);
+  animation:startMsgIn 0.5s var(--ease-out) forwards;
+}
+@keyframes startMsgIn{to{opacity:1;transform:translateY(0)}}
+.start-msg-user{
+  text-align:right;color:var(--ink);
+  font-size:1rem;line-height:1.55;
+  padding:0 0 0 4rem;
+}
+.start-msg-ai{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:400;line-height:1.4;
+  color:var(--ink);letter-spacing:-0.005em;
+  padding:0 4rem 0 0;
+}
+.start-msg-ai em{font-style:italic;color:var(--gold-deep)}
+.start-inputbar{
+  position:sticky;bottom:0;
+  background:linear-gradient(to top,var(--bg) 60%,rgba(242,235,220,0));
+  padding:1.5rem 2rem 1.75rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+.start-input-wrap{
+  width:100%;max-width:640px;
+  display:flex;align-items:center;gap:0.5rem;
+  padding:0.875rem 0.875rem 0.875rem 1.25rem;
+  background:var(--surface);
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.start-input-wrap:focus-within{
+  border-color:var(--gold);
+  box-shadow:0 0 0 4px rgba(184,152,92,0.08);
+}
+#start-input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'Inter',sans-serif;font-size:0.9375rem;color:var(--ink);
+}
+#start-input::placeholder{color:var(--text-mute)}
+.start-mic,.start-send{
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;border:none;cursor:pointer;
+  transition:transform 0.2s,background 0.2s;
+}
+.start-mic{background:transparent;color:var(--text-dim)}
+.start-mic:hover{color:var(--ink);background:var(--bg-soft)}
+.start-send{background:var(--ink);color:#FBF7EC}
+.start-send:hover{transform:scale(1.05)}
+.start-send:disabled{opacity:0.3;cursor:not-allowed;transform:none}
+.start-tertiary{
+  margin-top:0.875rem;font-size:0.8125rem;
+  color:var(--text-mute);letter-spacing:0.01em;
+}
+.start-tertiary a{color:inherit;cursor:pointer;text-decoration:none}
+.start-tertiary a:hover{color:var(--gold-deep)}
+.start-typing{display:inline-flex;gap:4px;padding:4px 0}
+.start-typing span{
+  width:6px;height:6px;background:var(--gold);border-radius:50%;
+  animation:startTypingDot 1.2s infinite;
+}
+.start-typing span:nth-child(2){animation-delay:0.15s}
+.start-typing span:nth-child(3){animation-delay:0.3s}
+@keyframes startTypingDot{
+  0%,60%,100%{opacity:0.3;transform:translateY(0)}
+  30%{opacity:1;transform:translateY(-3px)}
+}
+.start-close{
+  display:none;flex-direction:column;align-items:center;text-align:center;
+  padding:3rem 2rem 4rem;opacity:0;
+  transition:opacity 1.2s var(--ease-out);
+}
+.start-close.visible{display:flex;opacity:1}
+.start-close-portrait{
+  width:96px;height:96px;border-radius:50%;overflow:hidden;
+  margin-bottom:1.75rem;background:var(--bg-soft);
+}
+.start-close-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.start-close-line{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,3vw,1.875rem);
+  color:var(--ink);max-width:520px;
+  margin-bottom:0.5rem;line-height:1.3;
+}
+.start-close-sub{
+  font-size:0.9375rem;color:var(--text-dim);
+  max-width:460px;line-height:1.6;margin-bottom:1.75rem;
+}
+.start-close-meta{
+  font-family:'Inter',sans-serif;
+  font-size:0.8125rem;color:var(--text-mute);
+  letter-spacing:0.04em;margin-bottom:2rem;text-transform:uppercase;
+}
+.start-prescription{
+  width:100%;max-width:460px;
+  padding:1.5rem 0 1.75rem;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  margin:0.25rem 0 2rem;
+  text-align:center;
+}
+.start-prescription-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.375rem;color:var(--ink);
+  margin-bottom:0.5rem;
+}
+.start-prescription-meta{
+  font-family:'Inter',sans-serif;
+  font-size:0.8125rem;color:var(--text-mute);
+  letter-spacing:0.04em;text-transform:uppercase;
+  margin-bottom:0.875rem;
+}
+.start-prescription-incl{
+  font-size:0.9375rem;line-height:1.55;color:var(--text-dim);
+  max-width:380px;margin:0 auto;
+}
+.start-close-cta{
+  display:inline-flex;align-items:center;gap:0.6rem;
+  background:var(--ink);color:#FBF7EC;
+  border:none;padding:1rem 2rem;
+  font-family:'Inter',sans-serif;font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;
+  border-radius:999px;cursor:pointer;
+  transition:transform 0.2s var(--ease-out);
+}
+.start-close-cta:hover{transform:translateY(-1px)}
+.start-close-cta svg{transition:transform 0.25s var(--ease-out)}
+.start-close-cta:hover svg{transform:translateX(3px)}
+.start-close-tertiary{
+  margin-top:1.5rem;font-size:0.8125rem;color:var(--text-mute);letter-spacing:0.01em;
+}
+.start-close-tertiary a{color:inherit;cursor:pointer;text-decoration:none}
+.start-close-tertiary a:hover{color:var(--gold-deep)}
+.start-email-corner{
+  position:fixed;top:1.25rem;right:1.25rem;
+  display:none;align-items:center;gap:0.5rem;
+  padding:0.5rem 0.5rem 0.5rem 0.875rem;
+  background:var(--surface);
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  opacity:0;transition:opacity 0.6s var(--ease-out);
+  z-index:50;
+}
+.start-email-corner.visible{display:flex;opacity:1}
+#start-email{
+  background:transparent;border:none;outline:none;
+  font-family:'Inter',sans-serif;font-size:0.8125rem;
+  color:var(--ink);width:160px;
+}
+#start-email::placeholder{color:var(--text-mute)}
+#start-email-save{
+  background:var(--gold);color:var(--ink);
+  border:none;padding:0.375rem 0.875rem;
+  font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:500;
+  border-radius:999px;cursor:pointer;text-transform:lowercase;
+}
+#start-email-save.saved{background:var(--sage);pointer-events:none}
+@media (max-width:720px){
+  .start-question{font-size:2rem}
+  .start-msg-ai{font-size:1.15rem;padding-right:1rem}
+  .start-msg-user{padding-left:1rem}
+}
+
 /* Toast notifications */
 .toast{
   position:fixed;top:6rem;right:2rem;
@@ -2327,7 +2645,7 @@ body{
   </div>
   <div class="topnav-actions">
     <button class="btn btn-ghost btn-sm" data-view="dashboard">Sign In</button>
-    <button class="btn btn-primary btn-sm" data-view="services">Book Session</button>
+    <button class="btn btn-primary btn-sm" data-view="start">Book Session</button>
   </div>
 </nav>
 
@@ -2342,8 +2660,8 @@ body{
         <h1>Book your career coaching session <em>with Nesreen.</em></h1>
         <p class="hero-sub">Find clarity when you feel stuck. Rebuild confidence when you're doubting yourself. Step into the career — and the leader — you were born to become.</p>
         <div class="hero-ctas">
-          <button class="btn btn-primary btn-lg" data-view="services">Book Session →</button>
-          <button class="btn btn-ghost btn-lg" data-view="services">Explore Coaching</button>
+          <button class="btn btn-primary btn-lg" data-view="start">Start with Estrella →</button>
+          <button class="btn btn-ghost btn-lg" data-view="services">Meet Nesreen</button>
         </div>
         <div class="hero-trust">
           <div class="hero-trust-label">Trusted by leaders at</div>
@@ -2434,7 +2752,7 @@ body{
         </div>
 
         <div class="about-cta">
-          <button class="btn btn-primary btn-lg" data-view="services">Book a Session with Nesreen →</button>
+          <button class="btn btn-primary btn-lg" data-view="start">Start with Estrella →</button>
           <a class="about-social" href="https://www.linkedin.com/in/nesrinabdelhakim/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37z"/></svg>
             Connect on LinkedIn
@@ -2446,6 +2764,123 @@ body{
 
   <!-- ============================== VIEW: SERVICES (COACHING) ============================== -->
   <div class="view" id="view-services">
+    <div class="practice-page">
+      <div class="practice-portrait">
+        <img src="nesreen-hero.jpg" alt="Nesreen" onerror="this.style.display='none'"/>
+      </div>
+      <h1 class="practice-headline">Coaching, by Nesreen.</h1>
+      <div class="practice-prose">
+        <p>I work with people at the moments their work and their life ask new things of them — a role they're growing into, a chapter that's ended, a confidence that's run thin.</p>
+        <p>The work is honest, specific, and yours. By the end of the first hour, we'll both know what's actually going on and what the next move is.</p>
+      </div>
+
+      <section class="practice-section">
+        <h2 class="practice-section-h">Three ways to work with me.</h2>
+        <div class="practice-tiers">
+          <div class="practice-tier">
+            <div class="practice-tier-h">A single session.</div>
+            <p>One hour, focused. For decisions that need clarity, not depth.</p>
+          </div>
+          <div class="practice-tier">
+            <div class="practice-tier-h">A three-month program.</div>
+            <p>Six sessions, fortnightly. For inflection points — the changes that need room to land.</p>
+          </div>
+          <div class="practice-tier">
+            <div class="practice-tier-h">An executive partnership.</div>
+            <p>Twelve months. For leaders whose decisions affect rooms beyond their own.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="practice-section">
+        <h2 class="practice-section-h">How Estrella prepares your sessions.</h2>
+        <p class="practice-section-p">Before we meet, you'll spend ten minutes with Estrella — voice or text, whatever's easier. She listens, asks the questions a good coach asks in a first call, and gives me a brief I read before you walk in. The session itself stays focused. No small talk.</p>
+      </section>
+
+      <section class="practice-quotes">
+        <blockquote class="practice-quote">
+          <p>The rare coach who can read a room and a soul.</p>
+          <cite>Sofia R. · Director · Abu Dhabi</cite>
+        </blockquote>
+        <blockquote class="practice-quote">
+          <p>With Nesreen, the prep meant we got to what mattered in the first ten minutes.</p>
+          <cite>Layla M. · VP Marketing · Dubai</cite>
+        </blockquote>
+      </section>
+
+      <button class="practice-cta" data-view="start">
+        <span>Start with Estrella</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <div class="practice-cta-caption">Ten minutes. No signup.</div>
+      <a class="practice-signin" data-view="dashboard">Already a client → Sign in</a>
+
+      <div class="practice-escape">
+        <a id="practice-book-direct">I know what I want — book directly</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: START (Estrella diagnostic) ============================== -->
+  <div class="view" id="view-start">
+    <div class="start-page">
+      <div class="start-stage">
+        <div class="start-conversation" id="start-conversation"></div>
+        <h1 class="start-question" id="start-question">What brought you here?</h1>
+      </div>
+
+      <div class="start-close" id="start-close" aria-hidden="true">
+        <div class="start-close-portrait">
+          <img src="nesreen-hero.jpg" alt="Nesreen" onerror="this.style.display='none'"/>
+        </div>
+        <p class="start-close-line">There's a person you should meet. Her name is Nesreen.</p>
+        <p class="start-close-sub">What you're describing — leadership work the system hasn't named yet — is the kind of inflection point a single session can open but not finish. A program gives us the time to do this properly.</p>
+
+        <div class="start-prescription">
+          <div class="start-prescription-h">A three-month coaching program.</div>
+          <div class="start-prescription-meta">AED 6,000 &nbsp;·&nbsp; 6 sessions &nbsp;·&nbsp; fortnightly</div>
+          <div class="start-prescription-incl">Includes your first session, all five follow-ups, and full Estrella support between them. Nesreen will read every word of this before you walk in.</div>
+        </div>
+
+        <button class="start-close-cta" id="start-pick-time">
+          <span>Book your first session</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+
+        <div class="start-close-tertiary">
+          <a id="start-pick-single">just one session first (AED 1,200)</a>
+        </div>
+        <div class="start-close-tertiary">
+          <a id="start-send-me">send me this conversation</a>
+          <span> · </span>
+          <a data-view="landing">I'll come back later</a>
+        </div>
+      </div>
+
+      <div class="start-inputbar" id="start-inputbar">
+        <div class="start-input-wrap">
+          <input type="text" id="start-input" placeholder="Type, or just say it out loud." autocomplete="off"/>
+          <button class="start-mic" id="start-mic" title="Speak instead" aria-label="Speak instead">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+          </button>
+          <button class="start-send" id="start-send" aria-label="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div class="start-tertiary">
+          <a id="start-already-client" data-view="dashboard">Already a client →</a>
+        </div>
+      </div>
+
+      <div class="start-email-corner" id="start-email-corner" aria-hidden="true">
+        <input type="email" id="start-email" placeholder="your email" autocomplete="email"/>
+        <button id="start-email-save">save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGACY HIDDEN: pre-restructure coaching sections, no longer in flow -->
+  <div style="display:none" aria-hidden="true" data-legacy="services-old">
     <div class="coaching-page">
 
       <!-- SECTION 1 — Editorial Split Hero -->
@@ -2595,4 +3030,1471 @@ body{
                 <circle cx="14" cy="14" r="4" fill="#3D3933"/>
                 <circle cx="28" cy="14" r="4" fill="#3D3933"/>
                 <text x="200" y="18" text-anchor="middle" font-family="Inter" font-size="8" fill="#A39B91">Career Coaching · Estrella Session</text>
-                <text x="382" y="18" text-anchor="end
+                <text x="382" y="18" text-anchor="end" font-family="Inter" font-size="8" fill="#DCC589" font-weight="600">42:18</text>
+
+                <!-- Main video — Nesreen -->
+                <rect x="14" y="40" width="260" height="160" rx="10" fill="url(#sessionVid)"/>
+                <defs><linearGradient id="sessionVid" x1="0%" y1="0%" x2="100%" y2="100%"><stop stop-color="#3D3933"/><stop offset="100%" stop-color="#14120E"/></linearGradient></defs>
+                <circle cx="144" cy="115" r="40" fill="#B8985C" opacity="0.3"/>
+                <text x="144" y="130" text-anchor="middle" font-family="Cormorant Garamond" font-size="38" font-style="italic" fill="#FBF7EC" font-weight="500">N</text>
+                <rect x="22" y="186" width="60" height="14" rx="7" fill="rgba(0,0,0,0.5)"/>
+                <circle cx="32" cy="193" r="2" fill="#7FD89C"/>
+                <text x="40" y="196" font-family="Inter" font-size="8" fill="#fff">Nesreen</text>
+
+                <!-- Self tile -->
+                <rect x="284" y="40" width="100" height="64" rx="8" fill="#3D3933"/>
+                <text x="334" y="78" text-anchor="middle" font-family="Cormorant Garamond" font-size="22" font-style="italic" fill="#A39B91">S</text>
+
+                <!-- AI Notes panel -->
+                <rect x="284" y="114" width="100" height="86" rx="8" fill="#1A1814" stroke="#3D3933"/>
+                <text x="294" y="128" font-family="Inter" font-size="6" fill="#DCC589" letter-spacing="1">AI NOTES</text>
+                <line x1="294" y1="132" x2="374" y2="132" stroke="#3D3933"/>
+                <g font-family="Inter" font-size="6" fill="#A39B91">
+                  <text x="294" y="146">• Leadership instinct</text>
+                  <text x="294" y="158">  surfaced 14:32</text>
+                  <text x="294" y="172">• Energy shift when</text>
+                  <text x="294" y="182">  discussing team</text>
+                  <text x="294" y="196">• Confidence: rising</text>
+                </g>
+              </svg>
+            </div>
+            <div class="exp-card-body">
+              <div class="exp-tag">— During · Your Session</div>
+              <h3>Pure focus. Silent AI note-taker.</h3>
+              <p>Nesreen walks in already knowing you. A silent AI captures highlights in the side panel — so Nesreen stays fully present with you, never looking down at notes.</p>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-mockup">
+              <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#FBF7EC"/>
+                <!-- Header -->
+                <text x="20" y="28" font-family="Inter" font-size="6" fill="#97793F" letter-spacing="1">YOUR GROWTH INDICATORS</text>
+                <!-- Rings center -->
+                <g transform="translate(70, 110)">
+                  <circle r="46" fill="none" stroke="#FAE5EA" stroke-width="9"/>
+                  <circle r="46" fill="none" stroke="#E8A5B8" stroke-width="9" stroke-dasharray="245 289" transform="rotate(-90)" stroke-linecap="round"/>
+                  <circle r="34" fill="none" stroke="#EDE7F8" stroke-width="9"/>
+                  <circle r="34" fill="none" stroke="#B8A8E0" stroke-width="9" stroke-dasharray="190 214" transform="rotate(-90)" stroke-linecap="round"/>
+                  <circle r="22" fill="none" stroke="#E4F0EC" stroke-width="9"/>
+                  <circle r="22" fill="none" stroke="#9BC2B5" stroke-width="9" stroke-dasharray="126 138" transform="rotate(-90)" stroke-linecap="round"/>
+                </g>
+                <!-- Legend -->
+                <g font-family="Inter" font-size="8" fill="#3D3933">
+                  <circle cx="148" cy="50" r="4" fill="#E8A5B8"/>
+                  <text x="158" y="53">Confidence</text>
+                  <text x="240" y="53" font-family="Cormorant Garamond" font-size="11" fill="#14120E" font-weight="600">7.2</text>
+                  <text x="258" y="53" font-size="6" fill="#A39B91">/10</text>
+                  <text x="290" y="53" font-size="7" fill="#4FA381" font-weight="600">↑ +2.1</text>
+
+                  <circle cx="148" cy="70" r="4" fill="#B8A8E0"/>
+                  <text x="158" y="73">Emotional Clarity</text>
+                  <text x="240" y="73" font-family="Cormorant Garamond" font-size="11" fill="#14120E" font-weight="600">8.5</text>
+                  <text x="258" y="73" font-size="6" fill="#A39B91">/10</text>
+                  <text x="290" y="73" font-size="7" fill="#4FA381" font-weight="600">↑ +1.4</text>
+
+                  <circle cx="148" cy="90" r="4" fill="#9BC2B5"/>
+                  <text x="158" y="93">Goal Alignment</text>
+                  <text x="240" y="93" font-family="Cormorant Garamond" font-size="11" fill="#14120E" font-weight="600">9.0</text>
+                  <text x="258" y="93" font-size="6" fill="#A39B91">/10</text>
+                  <text x="290" y="93" font-size="7" fill="#4FA381" font-weight="600">↑ +3.0</text>
+                </g>
+                <!-- Action plan -->
+                <rect x="140" y="115" width="240" height="105" rx="8" fill="#fff" stroke="#E5DCC4"/>
+                <text x="152" y="132" font-family="Inter" font-size="6" fill="#97793F" letter-spacing="1">ACTION PLAN — THIS WEEK</text>
+                <g font-family="Inter" font-size="8" fill="#3D3933">
+                  <circle cx="158" cy="148" r="4" fill="#7FD89C"/>
+                  <text x="170" y="151" text-decoration="line-through" fill="#A39B91">Update LinkedIn headline</text>
+                  <circle cx="158" cy="166" r="4" fill="none" stroke="#7FD89C"/>
+                  <text x="170" y="169">Complete leadership self-assessment</text>
+                  <circle cx="158" cy="184" r="4" fill="none" stroke="#7FD89C"/>
+                  <text x="170" y="187">Reach out to 2 ex-colleagues</text>
+                  <circle cx="158" cy="202" r="4" fill="none" stroke="#7FD89C"/>
+                  <text x="170" y="205">Journal: define dream-job criteria</text>
+                </g>
+              </svg>
+            </div>
+            <div class="exp-card-body">
+              <div class="exp-tag">— After · Your Roadmap</div>
+              <h3>Your personal coaching companion.</h3>
+              <p>A dashboard you actually log into. Activity rings track your growth. The action plan is checkable, doable, and yours. Estrella stays with you between sessions.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Sticky CTA bar -->
+      <div class="coaching-sticky-cta">
+        <div class="cta-summary" id="svc-summary">Select a track above to begin</div>
+        <button class="btn btn-primary btn-lg" id="to-calendar" disabled style="opacity:0.4;pointer-events:none">Continue to Calendar →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: CALENDAR ============================== -->
+  <div class="view" id="view-calendar">
+    <div class="book-container">
+      <div class="book-progress">
+        <div class="progress-step complete"><div class="progress-dot">✓</div>Service</div>
+        <div class="progress-line done"></div>
+        <div class="progress-step active"><div class="progress-dot">2</div>Time</div>
+        <div class="progress-line"></div>
+        <div class="progress-step"><div class="progress-dot">3</div>Payment</div>
+      </div>
+
+      <div class="book-header">
+        <h1>Pick a time that's yours.</h1>
+        <p>Nesreen's calendar in your timezone.</p>
+      </div>
+
+      <div class="cal-container">
+        <div class="cal-card">
+          <div class="cal-month">
+            <h3 id="cal-month-label">June 2026</h3>
+            <div style="display:flex;gap:0.5rem">
+              <button class="cal-nav-btn" id="cal-prev">‹</button>
+              <button class="cal-nav-btn" id="cal-next">›</button>
+            </div>
+          </div>
+          <div class="cal-grid" id="cal-day-labels"></div>
+          <div class="cal-grid" id="cal-grid" style="margin-top:0.5rem"></div>
+          <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--line);font-size:0.78rem;color:var(--text-mute);display:flex;gap:1.25rem">
+            <span>● <span style="color:var(--text-dim)">Available slots</span></span>
+            <span>● <span style="color:var(--text-mute)">Booked / unavailable</span></span>
+          </div>
+        </div>
+
+        <div class="slots-container">
+          <h3>Available times</h3>
+          <p class="slots-date" id="slots-date">Select a date to see times</p>
+          <div class="slots-grid" id="slots-grid"></div>
+        </div>
+      </div>
+
+      <div class="book-footer">
+        <div class="book-summary" id="cal-summary">Choose a date and time</div>
+        <button class="btn btn-primary btn-lg" id="to-checkout" disabled style="opacity:0.4;pointer-events:none">Continue to Payment →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: CHECKOUT ============================== -->
+  <div class="view" id="view-checkout">
+    <div class="book-container">
+      <div class="book-progress">
+        <div class="progress-step complete"><div class="progress-dot">✓</div>Service</div>
+        <div class="progress-line done"></div>
+        <div class="progress-step complete"><div class="progress-dot">✓</div>Time</div>
+        <div class="progress-line done"></div>
+        <div class="progress-step active"><div class="progress-dot">3</div>Payment</div>
+      </div>
+
+      <div class="book-header">
+        <h1>Almost there.</h1>
+        <p>Secure payment. Receipt instantly. AI prep unlocked next.</p>
+      </div>
+
+      <div class="checkout-container">
+        <div class="checkout-summary">
+          <div class="section-label">Your Booking</div>
+          <h2 style="font-size:2rem;margin-bottom:0.4rem;font-weight:500" id="ck-svc-name">Career Coaching</h2>
+          <p style="color:var(--text-dim);margin-bottom:1.75rem;font-size:0.9rem" id="ck-svc-tagline">with Nesreen · 60 minutes · 1-on-1 video session</p>
+
+          <div class="summary-row"><span class="lbl">Date</span><span class="val" id="ck-date">Tuesday, 9 June 2026</span></div>
+          <div class="summary-row"><span class="lbl">Time</span><span class="val" id="ck-time">14:00 · Dubai (GST)</span></div>
+          <div class="summary-row"><span class="lbl">Format</span><span class="val">Zoom · link emailed after booking</span></div>
+          <div class="summary-row"><span class="lbl">Includes</span><span class="val" style="color:var(--gold-deep)">AI Preparation + Coaching Brief</span></div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row"><span class="lbl">Subtotal</span><span class="val" id="ck-sub">AED 1,200.00</span></div>
+          <div class="summary-row"><span class="lbl">VAT (5%)</span><span class="val" id="ck-vat">AED 60.00</span></div>
+
+          <div class="summary-divider"></div>
+          <div class="summary-total"><span class="lbl">Total</span><span class="val" id="ck-total">AED 1,260</span></div>
+
+          <div class="guarantee">
+            <div class="guarantee-icon">✓</div>
+            <div class="guarantee-text">
+              <strong>Money-back guarantee</strong>
+              Full refund if you cancel 48 hours before your session.
+            </div>
+          </div>
+        </div>
+
+        <div class="checkout-payment">
+          <div class="section-label">Express Checkout</div>
+          <div class="quick-pay">
+            <button class="qp-btn apple" onclick="simulatePay()">
+              <svg width="16" height="20" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+              Pay
+            </button>
+            <button class="qp-btn google" onclick="simulatePay()">
+              <span style="font-weight:700;font-size:1rem">G</span> Pay
+            </button>
+          </div>
+
+          <div class="or-divider">OR PAY WITH CARD</div>
+
+          <div class="field">
+            <label>Card Number</label>
+            <input type="text" value="4242 4242 4242 4242" />
+          </div>
+          <div class="fields-row">
+            <div class="field"><label>Expiry</label><input type="text" value="12 / 28"/></div>
+            <div class="field"><label>CVC</label><input type="text" value="•••"/></div>
+          </div>
+          <div class="field">
+            <label>Email for Receipt</label>
+            <input type="email" value="sarah.j@example.com" id="ck-email"/>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block" onclick="simulatePay()" style="margin-top:1.5rem">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Pay <span id="ck-pay-total">AED 1,260</span> Securely
+          </button>
+
+          <div class="payment-trust">256-bit SSL · 3D Secure · Stripe · Tap · PayTabs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: AI ONBOARDING ============================== -->
+  <div class="view" id="view-onboarding">
+    <div class="onboard">
+      <div class="onboard-header">
+        <div class="brand compact">
+          <div class="logo-wrap">
+            <img class="brand-logo-img" src="Assets/Estrella.jpeg" alt="Estrella"/>
+            <svg class="logo-sparkles" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <g class="rising-star">
+                <path d="M0 -4.5 L0.7 -0.7 L4.5 0 L0.7 0.7 L0 4.5 L-0.7 0.7 L-4.5 0 L-0.7 -0.7 Z"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="onboard-readiness">
+          <div class="readiness-label">Session Readiness</div>
+          <div class="readiness-bar"><div class="readiness-fill" id="onb-readiness-fill"></div></div>
+          <div class="readiness-pct" id="onb-readiness-pct">36%</div>
+        </div>
+      </div>
+
+      <div class="onboard-body">
+        <div class="onboard-orb-panel">
+          <div class="mini-orb-stage">
+            <div class="mini-orb-glow"></div>
+            <div class="mini-orb-ring r1"></div>
+            <div class="mini-orb-ring r2"></div>
+            <div class="mini-orb-core">
+            <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
+          </div>
+          </div>
+          <div class="orb-status">
+            <div class="orb-status-dot"></div>
+            <span id="orb-status-text">Listening</span>
+          </div>
+
+          <h3>Estrella</h3>
+          <p>I'll prepare your coaching profile so your session with Nesreen becomes more powerful.</p>
+
+          <div class="constellation">
+            <div class="constellation-label">Your Emerging Profile</div>
+            <div class="const-nodes">
+              <div class="const-line" id="const-line"></div>
+              <div class="const-node done"></div>
+              <div class="const-node done"></div>
+              <div class="const-node" id="cn-3"></div>
+              <div class="const-node" id="cn-4"></div>
+              <div class="const-node" id="cn-5"></div>
+              <div class="const-node" id="cn-6"></div>
+            </div>
+            <div class="const-labels">
+              <span>History</span>
+              <span>Goals</span>
+              <span>Fears</span>
+              <span>Strengths</span>
+              <span>Confidence</span>
+              <span>Dream</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-panel" id="chat-panel">
+          <div class="msg msg-ai">
+            <div class="msg-label">Estrella</div>
+            Hi Sarah — I'm so glad you're here. I'm going to ask you a few things that will help Nesreen show up fully present for your session.
+          </div>
+          <div class="msg msg-ai">
+            <div class="msg-label">Estrella</div>
+            Tell me about a moment recently when you felt most stuck in your career. What was happening?
+          </div>
+        </div>
+      </div>
+
+      <div class="onboard-input">
+        <div class="onboard-input-wrap">
+          <input type="text" id="chat-input" placeholder="Type your answer, or press the mic to speak..." />
+          <button class="mic-btn" title="Voice input">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+          </button>
+          <button class="send-btn" id="send-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: READINESS REVEAL ============================== -->
+  <div class="view" id="view-readiness">
+    <div class="readiness-view">
+      <svg class="sparkle sparkle-lg" viewBox="0 0 32 32" fill="currentColor" style="margin-bottom:1rem"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
+      <div class="readiness-eyebrow">— Your Session Readiness</div>
+      <h1>You're born to shine, Sarah.</h1>
+      <p class="lead">Your profile is complete. Nesreen will receive your coaching brief 24 hours before your session.</p>
+
+      <div class="rings-container">
+        <svg class="ring-svg" viewBox="0 0 200 200">
+          <!-- Outer ring (overall) -->
+          <circle class="ring-track" cx="100" cy="100" r="86"/>
+          <circle class="ring-fill" id="ring-outer" cx="100" cy="100" r="86"
+                  stroke="url(#ringGrad)"
+                  stroke-dasharray="0 540"/>
+          <!-- Middle ring -->
+          <circle class="ring-track" cx="100" cy="100" r="68"/>
+          <circle class="ring-fill" id="ring-middle" cx="100" cy="100" r="68"
+                  stroke="#B8A8E0"
+                  stroke-dasharray="0 427"/>
+          <!-- Inner ring -->
+          <circle class="ring-track" cx="100" cy="100" r="50"/>
+          <circle class="ring-fill" id="ring-inner" cx="100" cy="100" r="50"
+                  stroke="#9BC2B5"
+                  stroke-dasharray="0 314"/>
+          <defs>
+            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#C9A961"/>
+              <stop offset="100%" stop-color="#A88944"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-pct" id="ring-pct">0</div>
+          <div class="ring-label">% prepared</div>
+        </div>
+      </div>
+
+      <div class="readiness-breakdown">
+        <div class="breakdown-item">
+          <div class="breakdown-name">Profile Depth</div>
+          <div class="breakdown-val">94<small>/100</small></div>
+          <div class="breakdown-bar"><div style="background:var(--gold);width:0%" data-w="94"></div></div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-name">Emotional Clarity</div>
+          <div class="breakdown-val">88<small>/100</small></div>
+          <div class="breakdown-bar"><div style="background:var(--lavender);width:0%" data-w="88"></div></div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-name">Goal Alignment</div>
+          <div class="breakdown-val">89<small>/100</small></div>
+          <div class="breakdown-bar"><div style="background:var(--sage);width:0%" data-w="89"></div></div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-lg" data-view="dashboard" onclick="showToast('Welcome to your dashboard')">
+        Enter Your Dashboard →
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: DASHBOARD ============================== -->
+  <div class="view dash-body" id="view-dashboard">
+    <div class="dash-container">
+      <div class="dash-greeting">
+        <div class="dash-eyebrow" style="display:flex;align-items:center;gap:0.5rem">
+          <svg width="10" height="10" viewBox="0 0 32 32" fill="#97793F"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+          — Welcome Back · Born to Shine
+        </div>
+        <h1>Good evening, Sarah.</h1>
+        <p>Your next session with Nesreen is in 18 hours.</p>
+      </div>
+
+      <div class="session-hero">
+        <div class="session-hero-content">
+          <div class="session-info">
+            <div class="session-info-lbl">Your Next Session</div>
+            <div class="coach-row">
+              <div class="coach-avatar">
+                <img src="nesreen-hero.jpg" alt="Nesreen" onerror="this.style.display='none';this.parentElement.innerHTML='N'"/>
+              </div>
+              <div>
+                <div class="coach-name">With Nesreen</div>
+                <div class="coach-tag">Founder · Master Coach</div>
+              </div>
+            </div>
+            <h2>Career Coaching Session</h2>
+            <div class="meta">Tuesday, 9 June · 14:00 GST · 60 minutes · Zoom</div>
+            <div class="session-readiness-line">
+              <span>Session Readiness:</span>
+              <div class="session-mini-bar"><div></div></div>
+              <strong style="color:var(--success)">90%</strong>
+              <span style="color:var(--text-dim)">— You're ready.</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg" onclick="showToast('Opening Zoom session...')">Join Session →</button>
+        </div>
+      </div>
+
+      <!-- Activity Rings (Apple Health style) -->
+      <div class="activity-section">
+        <div class="section-label">— Your Growth Indicators</div>
+        <div class="activity-grid">
+          <div>
+            <svg class="activity-rings-svg" viewBox="0 0 200 200">
+              <!-- Track rings -->
+              <circle cx="100" cy="100" r="80" fill="none" stroke="#FAE5EA" stroke-width="16"/>
+              <circle cx="100" cy="100" r="60" fill="none" stroke="#EDE7F8" stroke-width="16"/>
+              <circle cx="100" cy="100" r="40" fill="none" stroke="#E4F0EC" stroke-width="16"/>
+              <!-- Fills -->
+              <g transform="rotate(-90 100 100)">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#E8A5B8" stroke-width="16" stroke-linecap="round"
+                        stroke-dasharray="427 502" />
+                <circle cx="100" cy="100" r="60" fill="none" stroke="#B8A8E0" stroke-width="16" stroke-linecap="round"
+                        stroke-dasharray="320 377" />
+                <circle cx="100" cy="100" r="40" fill="none" stroke="#9BC2B5" stroke-width="16" stroke-linecap="round"
+                        stroke-dasharray="226 251" />
+              </g>
+            </svg>
+          </div>
+          <div class="activity-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#E8A5B8"></div>
+              <div class="legend-info">
+                <div class="legend-name">Confidence</div>
+                <div class="legend-val">7.2<small>/10</small></div>
+              </div>
+              <div style="font-size:0.78rem;color:var(--success);font-weight:600">↑ +2.1</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#B8A8E0"></div>
+              <div class="legend-info">
+                <div class="legend-name">Emotional Clarity</div>
+                <div class="legend-val">8.5<small>/10</small></div>
+              </div>
+              <div style="font-size:0.78rem;color:var(--success);font-weight:600">↑ +1.4</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#9BC2B5"></div>
+              <div class="legend-info">
+                <div class="legend-name">Goal Alignment</div>
+                <div class="legend-val">9.0<small>/10</small></div>
+              </div>
+              <div style="font-size:0.78rem;color:var(--success);font-weight:600">↑ +3.0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-card grid -->
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div class="card-lbl">My Journey</div>
+            <div class="card-arrow">→</div>
+          </div>
+          <h3>3 sessions completed</h3>
+          <p style="margin-bottom:1rem">5 of 9 actions checked. Last: Career Clarity, 2 May.</p>
+          <div style="height:6px;border-radius:99px;background:var(--bg-soft);overflow:hidden"><div style="height:100%;width:55%;background:var(--gold);border-radius:99px"></div></div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div class="card-lbl">Action Plan — This Week</div>
+            <div class="card-arrow">→</div>
+          </div>
+          <ul class="actions-list">
+            <li class="action-item"><span class="action-check" onclick="this.parentElement.classList.toggle('done')"></span><span>Complete leadership self-assessment</span></li>
+            <li class="action-item"><span class="action-check" onclick="this.parentElement.classList.toggle('done')"></span><span>Reach out to 2 ex-colleagues</span></li>
+            <li class="action-item done"><span class="action-check">✓</span><span>Update LinkedIn headline</span></li>
+            <li class="action-item"><span class="action-check" onclick="this.parentElement.classList.toggle('done')"></span><span>Journal: define dream-job criteria</span></li>
+          </ul>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-header">
+            <div class="card-lbl">Assessments</div>
+            <div class="card-arrow">→</div>
+          </div>
+          <div style="font-size:0.875rem">
+            <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--line)"><span>Personality Profile</span><span style="color:var(--success)">✓</span></div>
+            <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--line)"><span>Leadership Readiness</span><span style="color:var(--success)">✓</span></div>
+            <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--line)"><span>Burnout Diagnostic</span><span style="color:var(--success)">✓</span></div>
+            <div style="display:flex;justify-content:space-between;padding:0.5rem 0"><span style="color:var(--text-mute)">Confidence Compass</span><span style="color:var(--text-mute)">→</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendations -->
+      <div class="recos-section">
+        <div class="section-lbl">— Curated For Your Journey</div>
+        <div class="recos-grid">
+          <div class="reco-card book">
+            <div class="reco-lbl">Suggested Reading</div>
+            <h4>Quiet Power</h4>
+            <p>Nesreen's bestseller on leading without burnout — read by 12k leaders.</p>
+            <button class="reco-btn" data-view="library" onclick="showToast('Opening library')">Preview Chapter →</button>
+          </div>
+          <div class="reco-card course">
+            <div class="reco-lbl">Course Match</div>
+            <h4>Confidence Reset</h4>
+            <p>A 7-day self-paced reset. Pairs perfectly with your current focus.</p>
+            <button class="reco-btn" data-view="academy" onclick="showToast('Opening Academy')">Start Course →</button>
+          </div>
+          <div class="reco-card rebook">
+            <div class="reco-lbl">Continue The Work</div>
+            <h4>Book Your Next Session</h4>
+            <p>Book your follow-up in advance — Nesreen's calendar is filling up fast.</p>
+            <button class="reco-btn" data-view="start" onclick="showToast('Opening booking')">Book Next Session</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: LIBRARY ============================== -->
+  <div class="view dash-body" id="view-library">
+    <div class="lib-container">
+      <div class="lib-header">
+        <div class="hero-eyebrow">— The Library</div>
+        <h1>Read by leaders. Written by Nesreen.</h1>
+        <p>Books, journals, and templates born from a decade of coaching the leaders of the Gulf.</p>
+      </div>
+
+      <!-- Featured book -->
+      <div class="lib-featured">
+        <div class="featured-cover">
+          <img class="bc-img" src="Assets/Quiet_Power.png" alt="Quiet Power" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+          <div class="book-title">Quiet Power</div>
+          <div class="book-author">— Nesreen</div>
+        </div>
+        <div class="lib-featured-info">
+          <div class="featured-tag">New Release · #1 Bestseller</div>
+          <h2>Quiet Power</h2>
+          <p class="lib-featured-desc">"The most common form of leadership in the Gulf is performed. The most powerful form is quiet. This book is for the leaders ready to stop performing and start leading."</p>
+          <div class="featured-stats">
+            <div class="featured-stat"><strong>12k+</strong>Copies sold</div>
+            <div class="featured-stat"><strong>4.8 ★</strong>Reader rating</div>
+            <div class="featured-stat"><strong>284</strong>Pages</div>
+          </div>
+          <div class="featured-actions">
+            <button class="btn btn-primary" onclick="showToast('Opening preview...')">Read Chapter 1</button>
+            <button class="btn btn-ghost" onclick="showToast('Buy on Amazon...')">Buy — AED 89</button>
+            <div class="audio-sample" onclick="showToast('Playing audio sample...')">
+              <div class="audio-play-btn">▶</div>
+              <div class="audio-info"><strong>Listen to sample</strong>Narrated by Nesreen · 3:42</div>
+              <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- All books -->
+      <div class="lib-section-title">
+        <h3>The Full Library</h3>
+        <div class="lib-filters">
+          <button class="lib-filter active">All</button>
+          <button class="lib-filter">Books</button>
+          <button class="lib-filter">Journals</button>
+          <button class="lib-filter">Templates</button>
+          <button class="lib-filter">Audio</button>
+        </div>
+      </div>
+
+      <div class="books-grid">
+        <div class="book-card" onclick="showToast('Opening preview...')">
+          <div class="book-cover b1">
+            <img class="bc-img" src="Assets/Quiet_Power.png" alt="Quiet Power" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+            <div class="book-title">Quiet Power</div>
+            <div class="book-author">— Nesreen</div>
+          </div>
+          <div class="book-info">
+            <h4>Quiet Power</h4>
+            <p>Leadership without burnout</p>
+            <div class="book-meta"><span class="book-price">AED 89</span><span class="book-format">Hardcover · Audio</span></div>
+          </div>
+        </div>
+        <div class="book-card" onclick="showToast('Opening preview...')">
+          <div class="book-cover b2">
+            <img class="bc-img" src="Assets/Career_Compass.png" alt="Career Compass" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+            <div class="book-title">Career Compass</div>
+            <div class="book-author">— Nesreen</div>
+          </div>
+          <div class="book-info">
+            <h4>Career Compass</h4>
+            <p>Direction when you feel lost</p>
+            <div class="book-meta"><span class="book-price">AED 79</span><span class="book-format">Hardcover</span></div>
+          </div>
+        </div>
+        <div class="book-card" onclick="showToast('Opening preview...')">
+          <div class="book-cover b3">
+            <img class="bc-img" src="Assets/Interview_Playbook.jpg" alt="The Interview Playbook" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+            <div class="book-title">The Interview Playbook</div>
+            <div class="book-author">— Nesreen</div>
+          </div>
+          <div class="book-info">
+            <h4>The Interview Playbook</h4>
+            <p>Land the offer with confidence</p>
+            <div class="book-meta"><span class="book-price">AED 59</span><span class="book-format">Digital + Audio</span></div>
+          </div>
+        </div>
+        <div class="book-card" onclick="showToast('Opening preview...')">
+          <div class="book-cover b4">
+            <img class="bc-img" src="Assets/Reset_Journal.png" alt="The Reset Journal" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+            <div class="book-title">The Reset Journal</div>
+            <div class="book-author">— Nesreen</div>
+          </div>
+          <div class="book-info">
+            <h4>The Reset Journal</h4>
+            <p>90-day burnout recovery</p>
+            <div class="book-meta"><span class="book-price">AED 49</span><span class="book-format">Journal + PDF</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: ACADEMY ============================== -->
+  <div class="view dash-body" id="view-academy">
+    <div class="academy-container">
+      <div class="academy-header">
+        <div class="hero-eyebrow">— The Academy</div>
+        <h1>Self-paced learning, deeply guided.</h1>
+        <p>Courses born from Nesreen's coaching practice. Every lesson includes a private AI tutor who knows the material — so help is one tap away.</p>
+      </div>
+
+      <!-- Featured / Continue learning -->
+      <div class="acad-featured">
+        <div class="acad-featured-visual">
+          <img class="cb-img" src="Assets/Confidence_Reset.png" alt="Confidence Reset" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+          <!-- Inline lesson mockup -->
+          <div class="acad-lesson-mockup">
+            <div class="acad-lesson-row done"><div class="acad-lesson-num">1</div>Why confidence collapses</div>
+            <div class="acad-lesson-row done"><div class="acad-lesson-num">2</div>The inner critic toolkit</div>
+            <div class="acad-lesson-row done"><div class="acad-lesson-num">3</div>Mapping your win history</div>
+            <div class="acad-lesson-row active"><div class="acad-lesson-num">4</div>Reframing the rejection</div>
+            <div class="acad-lesson-row"><div class="acad-lesson-num">5</div>Building a confidence ritual</div>
+          </div>
+          <div class="acad-featured-meta">
+            <div class="course-lbl">Continue Learning · Day 4 of 7</div>
+            <div class="acad-mockup-title">Confidence Reset</div>
+          </div>
+        </div>
+        <div class="acad-featured-content">
+          <div class="featured-tag">Featured Course</div>
+          <h2>Reframing the rejection.</h2>
+          <p>"Most career setbacks aren't about you. This 18-minute lesson teaches you to read the rejection accurately — so it stops defining your next move."</p>
+          <div class="acad-progress-bar"><div style="width:55%"></div></div>
+          <div class="acad-progress-text">55% complete · 3 lessons remaining</div>
+          <div class="acad-featured-stats">
+            <div><strong>18 min</strong>Lesson length</div>
+            <div><strong>4.9 ★</strong>Rating</div>
+            <div><strong>1,240</strong>Enrolled</div>
+          </div>
+          <div class="acad-featured-cta">
+            <button class="btn btn-primary btn-lg" onclick="showToast('Resuming lesson 4...')">Resume Lesson →</button>
+            <button class="btn btn-ghost" onclick="showToast('Course overview')">Course Overview</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI tutor banner -->
+      <div class="acad-tutor-banner">
+        <div class="tutor-info">
+          <div class="hero-eyebrow" style="margin-bottom:0.5rem">— Inside Every Lesson</div>
+          <h3>A private AI tutor who knows the material.</h3>
+          <p>Stuck on an idea? Ask Estrella inside any lesson. She knows the lesson context, your progress, and Nesreen's full philosophy.</p>
+        </div>
+        <div class="tutor-mockup">
+          <div class="tm-label">Estrella · Live in lesson</div>
+          <div class="tm-msg">"The 'reframe' Nesreen describes — she means the <em>story</em> you tell about the rejection, not the rejection itself. Want me to walk you through your specific example?"</div>
+          <div class="tm-input">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            Ask about this lesson...
+          </div>
+        </div>
+      </div>
+
+      <!-- All courses -->
+      <div class="acad-section-title">
+        <h3>All Courses</h3>
+        <div class="lib-filters">
+          <button class="lib-filter active">All</button>
+          <button class="lib-filter">Foundation</button>
+          <button class="lib-filter">Signature</button>
+          <button class="lib-filter">Interview</button>
+        </div>
+      </div>
+
+      <div class="courses-grid">
+        <div class="course-card" onclick="showToast('Starting course...')">
+          <div class="course-banner c1">
+            <img class="cb-img" src="Assets/Confidence_Reset.png" alt="Confidence Reset" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+            <div class="course-lbl">Foundation · 14 lessons</div>
+            <div class="course-title">Confidence Reset</div>
+          </div>
+          <div class="course-body">
+            <div class="course-rating"><span class="stars">★★★★★</span>4.8 · 892 enrolled</div>
+            <p class="course-desc">Reset patterns of self-doubt with daily exercises and AI check-ins. A 7-day program.</p>
+            <div class="course-footer">
+              <div class="course-price"><small>AED 499</small>AED 299</div>
+              <button class="btn btn-primary btn-sm">Start →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card" onclick="showToast('Starting course...')">
+          <div class="course-banner c2">
+            <img class="cb-img" src="Assets/Leadership_Burnout.png" alt="Leadership Without Burnout" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+            <div class="course-lbl">Signature · 24 lessons</div>
+            <div class="course-title">Leadership Without Burnout</div>
+          </div>
+          <div class="course-body">
+            <div class="course-rating"><span class="stars">★★★★★</span>4.9 · 1,240 enrolled</div>
+            <p class="course-desc">Lead high-stakes teams while protecting your energy. The signature Estrella course.</p>
+            <div class="course-footer">
+              <div class="course-price">AED 899</div>
+              <button class="btn btn-primary btn-sm">Enroll →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card" onclick="showToast('Starting course...')">
+          <div class="course-banner c3">
+            <img class="cb-img" src="Assets/Offer_machine.png" alt="The Offer Machine" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+            <div class="course-lbl">Interview · 18 lessons</div>
+            <div class="course-title">The Offer Machine</div>
+          </div>
+          <div class="course-body">
+            <div class="course-rating"><span class="stars">★★★★★</span>4.9 · 540 enrolled</div>
+            <p class="course-desc">Behavioral interviews, salary negotiation, executive presence. Includes AI mock interviewer.</p>
+            <div class="course-footer">
+              <div class="course-price">AED 499</div>
+              <button class="btn btn-primary btn-sm">Enroll →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: AI TWIN ============================== -->
+  <div class="view" id="view-twin">
+    <div class="twin-container">
+      <div class="twin-avatar-panel">
+        <div class="twin-orb-stage">
+          <div class="twin-orb-pulse"></div>
+          <div class="twin-orb-core">
+            <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
+          </div>
+        </div>
+        <div class="twin-status">
+          <div class="orb-status-dot"></div>
+          <span>Speaking · 14s remaining</span>
+        </div>
+        <div class="waveform active">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <p style="margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-2);font-size:1.1rem;text-align:center;max-width:300px;position:relative;z-index:1">Estrella · Premium tier — available between sessions, trained on Nesreen's method, reviewed by her weekly.</p>
+      </div>
+
+      <div class="twin-transcript">
+        <div class="section-label">— Live Transcript</div>
+        <div class="msg msg-user" style="max-width:90%;margin-bottom:1rem">
+          <div class="msg-label">You</div>
+          Nesreen, I keep replaying the meeting in my head. I think I sounded too uncertain.
+        </div>
+        <div class="msg msg-ai" style="max-width:95%">
+          <div class="msg-label">Estrella</div>
+          Sarah, what you're calling "uncertain" might be what we discussed last week — your tendency to question yourself out loud when you're actually thinking carefully.
+          <br/><br/>
+          That isn't weakness. That's the leadership style we named: <em>deliberate, not loud.</em>
+          <br/><br/>
+          <em>Tell me — what did your team actually do after the meeting?</em>
+        </div>
+        <div class="twin-input">
+          <input type="text" placeholder="Continue talking..." style="flex:1;padding:1rem 1.5rem;background:var(--bg-soft);border:1.5px solid transparent;border-radius:99px;font-family:inherit;font-size:0.95rem"/>
+          <button class="mic-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- ============================== BOTTOM NAV ============================== -->
+<nav class="bottomnav" id="bottomnav">
+  <button class="bn-item active" data-view="dashboard" title="Dashboard">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  </button>
+  <button class="bn-item" data-view="twin" title="AI Twin">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+  </button>
+  <button class="bn-item" data-view="library" title="Library">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+  </button>
+  <button class="bn-item" data-view="academy" title="Academy">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+  </button>
+  <button class="bn-item" data-view="start" title="Book new session">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+  </button>
+</nav>
+
+<script>
+/* ============================== DATA ============================== */
+/* Editorial line-art icons — each a small story for the track */
+const ICON_SVG = {
+  // Career — Compass rose with needle (direction & path)
+  career: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="7.5" opacity="0.35"/><path d="M16 7 L18.2 16 L16 25 L13.8 16 Z" fill="currentColor"/><circle cx="16" cy="16" r="1.4" fill="#FBF7EC"/><line x1="16" y1="2.5" x2="16" y2="4.5"/><line x1="16" y1="27.5" x2="16" y2="29.5"/><line x1="2.5" y1="16" x2="4.5" y2="16"/><line x1="27.5" y1="16" x2="29.5" y2="16"/></svg>',
+
+  // Interview — Open door with light streaming & sparkle (the offer)
+  interview: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 29V6a2 2 0 0 1 2-2h11"/><path d="M20 4 L25 9 V29"/><line x1="6" y1="29" x2="26" y2="29"/><line x1="17.5" y1="16" x2="17.5" y2="18"/><path d="M24.5 11 L25.2 13.2 L27.5 13.8 L25.2 14.4 L24.5 16.6 L23.8 14.4 L21.5 13.8 L23.8 13.2 Z" fill="currentColor"/></svg>',
+
+  // Leadership — Mountain peak with guiding star
+  leadership: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 25 L11 11 L16 20 L21 8 L28 25 Z"/><line x1="4" y1="25" x2="28" y2="25"/><path d="M11 11 L13 15 L16 20" stroke-opacity="0.3"/><path d="M22 3 L22.6 5.4 L25 6 L22.6 6.6 L22 9 L21.4 6.6 L19 6 L21.4 5.4 Z" fill="currentColor"/></svg>',
+
+  // Clarity — Lens with focused star within (seeing clearly)
+  clarity: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="13.5" r="8.5"/><circle cx="13.5" cy="13.5" r="5" opacity="0.25"/><line x1="20.5" y1="20.5" x2="27" y2="27"/><path d="M13.5 9 L14.2 12.8 L18 13.5 L14.2 14.2 L13.5 18 L12.8 14.2 L9 13.5 L12.8 12.8 Z" fill="currentColor"/></svg>',
+
+  // CV — Folded letter with elegant lines & seal
+  cv: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 H20 L25 9 V27 a1 1 0 0 1 -1 1 H7 a1 1 0 0 1 -1 -1 V5 a1 1 0 0 1 1 -1 Z"/><polyline points="20 4 20 9 25 9"/><line x1="10" y1="14" x2="22" y2="14"/><line x1="10" y1="18" x2="22" y2="18"/><line x1="10" y1="22" x2="17" y2="22"/><circle cx="22" cy="22" r="2" fill="currentColor"/></svg>',
+
+  // Burnout — Sunrise over horizon (renewal, reignite)
+  burnout: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="25" x2="29" y2="25"/><line x1="5" y1="28.5" x2="9" y2="28.5"/><line x1="13" y1="28.5" x2="19" y2="28.5"/><line x1="23" y1="28.5" x2="27" y2="28.5"/><circle cx="16" cy="20" r="6"/><path d="M16 20 a6 6 0 0 1 6 -6" stroke-opacity="0"/><line x1="16" y1="6" x2="16" y2="10"/><line x1="6.5" y1="10.5" x2="9" y2="13"/><line x1="25.5" y1="10.5" x2="23" y2="13"/><line x1="3" y1="20" x2="6" y2="20"/><line x1="26" y1="20" x2="29" y2="20"/></svg>',
+
+  // Executive — Crown with three gems
+  executive: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 24 L7 10 L12 15 L16 6 L20 15 L25 10 L27 24 Z"/><line x1="5" y1="27" x2="27" y2="27"/><circle cx="7" cy="10" r="1.4" fill="currentColor"/><circle cx="16" cy="6" r="1.8" fill="currentColor"/><circle cx="25" cy="10" r="1.4" fill="currentColor"/></svg>',
+
+  // Quiz — Question with surrounding sparkles (discovery)
+  quiz: '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="11"/><path d="M12.5 12.5 a4 4 0 0 1 7 1.5 c0 2.5 -3.5 2.8 -3.5 4.5"/><line x1="16" y1="22" x2="16.01" y2="22"/><path d="M27 5 L27.5 6.8 L29.3 7.3 L27.5 7.8 L27 9.6 L26.5 7.8 L24.7 7.3 L26.5 6.8 Z" fill="currentColor"/><path d="M5 26 L5.3 27 L6.3 27.3 L5.3 27.6 L5 28.6 L4.7 27.6 L3.7 27.3 L4.7 27 Z" fill="currentColor"/></svg>'
+};
+
+const services = [
+  {id:'career', name:'Career Coaching', tagline:'Clarity, direction, next-chapter design.', forWhom:'Mid-to-senior professionals at a crossroads', price:1200, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
+  {id:'interview', name:'Interview Coaching', tagline:'Land the offer. Confidence + tactics.', forWhom:'High-stakes interviews & negotiation', price:1000, duration:60, color:'var(--peach-bg)', accent:'#C57A4A'},
+  {id:'leadership', name:'Leadership Coaching', tagline:'For managers stepping into power.', forWhom:'New managers & senior leaders', price:1800, duration:75, color:'var(--lavender-bg)', accent:'#5B4B8A'},
+  {id:'clarity', name:'Career Clarity', tagline:'For the lost, the unsure, the searching.', forWhom:'Mid-career professionals questioning fit', price:1200, duration:60, color:'var(--sky-bg)', accent:'#4F7EAD'},
+  {id:'cv', name:'CV & LinkedIn', tagline:'Strategic profile + recruiter playbook.', forWhom:'Active job seekers rebuilding their story', price:900, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
+  {id:'burnout', name:'Burnout & Confidence', tagline:'Reset. Rebuild. Reignite.', forWhom:'Exhausted high-achievers needing reset', price:1200, duration:60, color:'var(--rose-bg)', accent:'#B8537B'},
+  {id:'executive', name:'Executive Coaching', tagline:'For C-suite & VP-level transformation.', forWhom:'C-suite, VP-level, founders', price:3500, duration:90, color:'var(--sage-bg)', accent:'#3F7E6F'},
+  {id:'quiz', name:'Not sure?', tagline:'Take the 60-second clarity quiz.', forWhom:'Estrella will recommend your path', price:0, duration:0, color:'var(--lavender-bg)', accent:'#5B4B8A', isQuiz:true},
+  // Prescribed default offered after the Estrella diagnostic — not shown in the (legacy) services grid
+  {id:'program', name:'3-Month Coaching Program', tagline:'Six sessions, fortnightly — for inflection points.', forWhom:'Recommended after your conversation with Estrella', price:6000, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
+];
+
+let state = {
+  selectedService: null,
+  selectedDate: null,
+  selectedTime: null,
+  currentMonth: 5, // June (0-indexed)
+  currentYear: 2026,
+  chatStep: 0
+};
+
+const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+/* ============================== VIEW SWITCHING ============================== */
+function switchView(viewId){
+  const current = document.querySelector('.view.active');
+  const next = document.getElementById('view-' + viewId);
+  if(!next || current === next) return;
+
+  current.classList.add('outgoing');
+  current.classList.remove('active');
+
+  setTimeout(()=>{
+    current.classList.remove('outgoing');
+    next.classList.add('active');
+    next.scrollTo(0,0);
+
+    // Toggle bottom nav for portal pages
+    const portalViews = ['dashboard','library','academy','twin'];
+    const bottomnav = document.getElementById('bottomnav');
+    if(portalViews.includes(viewId)){
+      bottomnav.classList.add('visible');
+      document.querySelectorAll('.bn-item').forEach(b => {
+        b.classList.toggle('active', b.dataset.view === viewId);
+      });
+    } else {
+      bottomnav.classList.remove('visible');
+    }
+
+    // Update top nav active tab
+    const topLinks = document.querySelectorAll('#topnav-links a');
+    topLinks.forEach(a => {
+      const linkView = a.dataset.view;
+      // Map booking flow back to "Coaching" tab
+      const isBookingFlow = ['services','start','calendar','checkout','onboarding','readiness'].includes(viewId);
+      const isPortal = portalViews.includes(viewId);
+      if(linkView === viewId){
+        a.classList.add('active');
+      } else if(isBookingFlow && linkView === 'services'){
+        a.classList.add('active');
+      } else {
+        a.classList.remove('active');
+      }
+      // Hide top nav on portal views (bottom nav takes over)
+      if(isPortal){a.classList.remove('active')}
+    });
+
+    // Hide topnav for some views
+    const hideNav = ['onboarding','readiness','start'];
+    document.getElementById('topnav').classList.toggle('hidden', hideNav.includes(viewId));
+
+    // Reset /start when entered (clean slate each visit)
+    if(viewId === 'start' && typeof startReset === 'function') startReset();
+
+    // Trigger view-specific init
+    if(viewId === 'readiness') animateRings();
+    if(viewId === 'dashboard') {/* maybe animate dash */}
+  }, 350);
+}
+
+// Wire up all data-view buttons
+document.addEventListener('click', (e)=>{
+  const target = e.target.closest('[data-view]');
+  if(target){
+    const view = target.dataset.view;
+    if(view) switchView(view);
+  }
+});
+
+/* ============================== TOAST ============================== */
+function showToast(msg){
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timeout);
+  t._timeout = setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+/* ============================== RENDER TRACKS ============================== */
+const ICON_FILES = {
+  career: 'Assets/Career_Coaching.jpg',
+  interview: 'Assets/Interview_Coaching.jpg',
+  leadership: 'Assets/Leadership_Coaching.jpg',
+  clarity: 'Assets/Career_Clarity.jpg',
+  cv: 'Assets/CV_LinkedIN.jpg',
+  burnout: 'Assets/Burnout_Confidence.jpg',
+  executive: 'Assets/Executive_Caoaching.jpg',
+  quiz: 'Assets/Not_Sure.jpg',
+  program: 'Assets/Career_Coaching.jpg'
+};
+
+function renderServices(container){
+  if(!container) return;
+  container.innerHTML = services.map(s => `
+    <div class="cn-track ${s.isQuiz ? 'is-quiz' : ''}" data-svc="${s.id}">
+      <div class="cn-track-icon" style="background:${s.color}">
+        <div class="icon-fallback" style="color:${s.accent}">${ICON_SVG[s.id] || ''}</div>
+        <img src="${ICON_FILES[s.id]}" alt="" onload="this.style.display='block';const f=this.parentElement.querySelector('.icon-fallback');if(f)f.style.display='none'" onerror="this.style.display='none'"/>
+      </div>
+      <h3>${s.name}</h3>
+      <div class="cn-track-tagline">${s.tagline}</div>
+      <div class="cn-track-for">${s.forWhom}</div>
+      <div class="cn-track-meta">
+        ${s.isQuiz
+          ? `<div><small>Quiz</small><span class="cn-track-price">AI recommends</span></div><span class="cn-track-duration">60 sec</span>`
+          : `<div><small>From</small><span class="cn-track-price">AED ${s.price.toLocaleString()}</span></div><span class="cn-track-duration">${s.duration} min</span>`}
+      </div>
+    </div>
+  `).join('');
+}
+
+renderServices(document.getElementById('book-services'));
+
+// Track selection
+document.getElementById('book-services').addEventListener('click', (e)=>{
+  let card = e.target.closest('.cn-track');
+  if(!card) return;
+  const id = card.dataset.svc;
+  const svc = services.find(s=>s.id===id);
+  if(svc.isQuiz){
+    showToast('Estrella clarity quiz — selecting Career Coaching for demo');
+    state.selectedService = services[0];
+    card = document.querySelector('.cn-track[data-svc="career"]') || card;
+  } else {
+    state.selectedService = svc;
+  }
+  document.querySelectorAll('#book-services .cn-track').forEach(c=>c.classList.remove('selected'));
+  const targetCard = document.querySelector(`.cn-track[data-svc="${state.selectedService.id}"]`) || card;
+  targetCard.classList.add('selected');
+  document.getElementById('svc-summary').innerHTML =
+    `Selected: <strong>${state.selectedService.name} · ${state.selectedService.duration} min · AED ${state.selectedService.price.toLocaleString()}</strong>`;
+  const btn = document.getElementById('to-calendar');
+  btn.disabled = false;
+  btn.style.opacity = '1';
+  btn.style.pointerEvents = 'auto';
+  btn.innerHTML = `Continue with ${state.selectedService.name} →`;
+});
+
+document.getElementById('to-calendar').addEventListener('click', ()=>{
+  if(!state.selectedService) return;
+  switchView('calendar');
+  renderCalendar();
+});
+
+/* ============================== CALENDAR ============================== */
+function renderCalendar(){
+  const monthLabel = document.getElementById('cal-month-label');
+  monthLabel.textContent = `${monthNames[state.currentMonth]} ${state.currentYear}`;
+
+  const labelsContainer = document.getElementById('cal-day-labels');
+  labelsContainer.innerHTML = dayLabels.map(l => `<div class="cal-day-label">${l}</div>`).join('');
+
+  const grid = document.getElementById('cal-grid');
+  const firstDay = new Date(state.currentYear, state.currentMonth, 1).getDay();
+  const daysInMonth = new Date(state.currentYear, state.currentMonth + 1, 0).getDate();
+
+  let html = '';
+  for(let i=0;i<firstDay;i++) html += '<button class="cal-day empty"></button>';
+
+  const today = new Date();
+  const todayD = today.getDate(), todayM = today.getMonth(), todayY = today.getFullYear();
+
+  for(let d=1; d<=daysInMonth; d++){
+    const isPast = (state.currentYear < todayY) ||
+                   (state.currentYear === todayY && state.currentMonth < todayM) ||
+                   (state.currentYear === todayY && state.currentMonth === todayM && d < todayD);
+    const isWeekend = new Date(state.currentYear, state.currentMonth, d).getDay() === 5;
+    const hasSlots = !isPast && !isWeekend && d % 3 !== 0; // mock availability
+    const selected = state.selectedDate &&
+                     state.selectedDate.day === d &&
+                     state.selectedDate.month === state.currentMonth &&
+                     state.selectedDate.year === state.currentYear;
+    html += `<button class="cal-day ${hasSlots ? 'has-slots' : ''} ${selected ? 'selected' : ''}"
+             ${!hasSlots ? 'disabled' : ''} data-day="${d}">${d}</button>`;
+  }
+  grid.innerHTML = html;
+
+  grid.querySelectorAll('.cal-day:not(:disabled):not(.empty)').forEach(btn => {
+    btn.addEventListener('click', ()=>{
+      const day = parseInt(btn.dataset.day);
+      state.selectedDate = {day, month: state.currentMonth, year: state.currentYear};
+      renderCalendar();
+      renderSlots();
+    });
+  });
+}
+
+function renderSlots(){
+  const sd = state.selectedDate;
+  if(!sd){
+    document.getElementById('slots-date').textContent = 'Select a date to see times';
+    document.getElementById('slots-grid').innerHTML = '';
+    return;
+  }
+  const dateObj = new Date(sd.year, sd.month, sd.day);
+  const formatted = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  document.getElementById('slots-date').textContent = formatted;
+
+  const slots = ['09:00','10:30','12:00','14:00','15:30','17:00'];
+  const grid = document.getElementById('slots-grid');
+  grid.innerHTML = slots.map(t =>
+    `<button class="slot ${state.selectedTime===t?'selected':''}" data-time="${t}">${t}</button>`
+  ).join('');
+
+  grid.querySelectorAll('.slot').forEach(s => {
+    s.addEventListener('click', ()=>{
+      state.selectedTime = s.dataset.time;
+      grid.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
+      s.classList.add('selected');
+      const summary = `Selected: <strong>${formatted} at ${state.selectedTime} GST</strong>`;
+      document.getElementById('cal-summary').innerHTML = summary;
+      const btn = document.getElementById('to-checkout');
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    });
+  });
+}
+
+document.getElementById('cal-prev').addEventListener('click', ()=>{
+  state.currentMonth--;
+  if(state.currentMonth < 0){state.currentMonth = 11; state.currentYear--;}
+  renderCalendar();
+});
+document.getElementById('cal-next').addEventListener('click', ()=>{
+  state.currentMonth++;
+  if(state.currentMonth > 11){state.currentMonth = 0; state.currentYear++;}
+  renderCalendar();
+});
+
+document.getElementById('to-checkout').addEventListener('click', ()=>{
+  // Populate checkout
+  const s = state.selectedService;
+  document.getElementById('ck-svc-name').textContent = s.name;
+  document.getElementById('ck-svc-tagline').textContent = `with Nesreen · ${s.duration} minutes · 1-on-1 video session`;
+  const sd = state.selectedDate;
+  const dateObj = new Date(sd.year, sd.month, sd.day);
+  const formatted = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  document.getElementById('ck-date').textContent = formatted;
+  document.getElementById('ck-time').textContent = state.selectedTime + ' · Dubai (GST)';
+  const sub = s.price;
+  const vat = Math.round(sub * 0.05);
+  const total = sub + vat;
+  document.getElementById('ck-sub').textContent = `AED ${sub.toLocaleString()}.00`;
+  document.getElementById('ck-vat').textContent = `AED ${vat.toLocaleString()}.00`;
+  document.getElementById('ck-total').textContent = `AED ${total.toLocaleString()}`;
+  document.getElementById('ck-pay-total').textContent = `AED ${total.toLocaleString()}`;
+  switchView('checkout');
+});
+
+/* ============================== PAYMENT SIM ============================== */
+function simulatePay(){
+  const btns = document.querySelectorAll('#view-checkout button');
+  btns.forEach(b => b.disabled = true);
+  showToast('Processing payment...');
+  setTimeout(()=>{
+    showToast('Payment successful — your session is confirmed');
+    setTimeout(()=>{
+      switchView('dashboard');
+      btns.forEach(b => b.disabled = false);
+    }, 800);
+  }, 1500);
+}
+
+/* ============================== CHAT ============================== */
+const chatScript = [
+  {user:"Honestly, last month. I got passed over for a promotion I'd worked toward for two years. Since then I've been questioning whether I'm even in the right field.",
+   ai:"That sounds painful — and the doubt afterward is often louder than the rejection itself. I'm making a note for Nesreen — this is exactly the kind of turning point she works with most powerfully.",
+   chips:["Continue", "Tell me more about this"],
+   readiness:50, node:'cn-3'},
+  {user:"It just shook my confidence in everything. Even decisions I used to make easily.",
+   ai:"That makes complete sense — when one assumption breaks, the others wobble. Quick question: what gave you energy in your work before all this happened?",
+   chips:["The team I built", "Solving hard problems"],
+   readiness:65, node:'cn-4'},
+  {user:"Honestly, the team I built. Watching them grow was the best part.",
+   ai:"There it is. You're describing a leadership instinct — not a marketing one. Sarah, I'm going to flag this for Nesreen as the heart of your session. On a scale of 1-10, how confident do you feel about your next chapter right now?",
+   chips:["3 — pretty low", "6 — wobbling"],
+   readiness:80, node:'cn-5'},
+  {user:"Maybe a 4. Some days lower.",
+   ai:"Thank you for being honest with me — and with yourself. That number is going to change. Last question before we finish: if everything went perfectly over the next 12 months, what would you be doing?",
+   chips:["Leading a team again", "Something I haven't named yet"],
+   readiness:95, node:'cn-6'},
+  {user:"Leading a team in a place that values what I actually bring.",
+   ai:"Beautiful. Sarah, your profile is complete. Nesreen will receive your full coaching brief 24 hours before your session — and I just want you to know, she's going to love working with you. Let me show you where you are.",
+   chips:["Show me my readiness"],
+   readiness:96, node:null, final:true}
+];
+
+let currentChat = 0;
+
+document.getElementById('send-btn').addEventListener('click', advanceChat);
+document.getElementById('chat-input').addEventListener('keypress', (e)=>{
+  if(e.key === 'Enter') advanceChat();
+});
+
+document.addEventListener('click', (e)=>{
+  if(e.target.classList.contains('qr-chip')){
+    document.getElementById('chat-input').value = e.target.textContent;
+    advanceChat();
+  }
+});
+
+function advanceChat(){
+  if(currentChat >= chatScript.length) return;
+  const input = document.getElementById('chat-input');
+  const userText = input.value.trim() || chatScript[currentChat].user;
+  input.value = '';
+
+  const panel = document.getElementById('chat-panel');
+  // Remove any existing quick-replies
+  panel.querySelectorAll('.quick-replies').forEach(qr => qr.remove());
+
+  // Add user message
+  const userMsg = document.createElement('div');
+  userMsg.className = 'msg msg-user';
+  userMsg.innerHTML = `<div class="msg-label">You</div>${userText}`;
+  panel.appendChild(userMsg);
+  panel.scrollTop = panel.scrollHeight;
+
+  // Update orb status
+  document.getElementById('orb-status-text').textContent = 'Thinking';
+
+  // Typing indicator
+  setTimeout(()=>{
+    const typing = document.createElement('div');
+    typing.className = 'typing-indicator active';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    typing.id = 'typing';
+    panel.appendChild(typing);
+    panel.scrollTop = panel.scrollHeight;
+  }, 400);
+
+  setTimeout(()=>{
+    document.getElementById('typing')?.remove();
+    const step = chatScript[currentChat];
+
+    // AI response
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'msg msg-ai';
+    aiMsg.innerHTML = `<div class="msg-label">Estrella</div>${step.ai}`;
+    panel.appendChild(aiMsg);
+
+    // Quick reply chips
+    if(step.chips){
+      const qr = document.createElement('div');
+      qr.className = 'quick-replies';
+      qr.innerHTML = step.chips.map(c => `<button class="qr-chip">${c}</button>`).join('');
+      panel.appendChild(qr);
+    }
+
+    // Update readiness bar
+    document.getElementById('onb-readiness-fill').style.width = step.readiness + '%';
+    document.getElementById('onb-readiness-pct').textContent = step.readiness + '%';
+
+    // Constellation node activation
+    if(step.node){
+      document.getElementById(step.node).classList.add('done');
+      const fillPct = Math.min(100, 30 + currentChat * 18);
+      document.getElementById('const-line').style.background = `linear-gradient(90deg, var(--gold) 0%, var(--gold) ${fillPct}%, var(--line-strong) ${fillPct}%, var(--line-strong) 100%)`;
+    }
+
+    document.getElementById('orb-status-text').textContent = 'Listening';
+    panel.scrollTop = panel.scrollHeight;
+
+    currentChat++;
+
+    // Trigger readiness view after final
+    if(step.final){
+      setTimeout(()=>{
+        switchView('readiness');
+      }, 3500);
+    }
+  }, 1600);
+}
+
+/* ============================== READINESS RING ANIMATION ============================== */
+function animateRings(){
+  const outerCirc = 2 * Math.PI * 86; // 540.35
+  const middleCirc = 2 * Math.PI * 68; // 427.25
+  const innerCirc = 2 * Math.PI * 50; // 314.16
+
+  const outerTarget = 96; // 96%
+  const middleTarget = 88;
+  const innerTarget = 90;
+
+  // Animate count
+  let pct = 0;
+  const pctEl = document.getElementById('ring-pct');
+  const counter = setInterval(()=>{
+    pct += 2;
+    if(pct >= outerTarget){pct = outerTarget; clearInterval(counter);}
+    pctEl.textContent = pct;
+  }, 35);
+
+  // Animate ring strokes
+  setTimeout(()=>{
+    document.getElementById('ring-outer').setAttribute('stroke-dasharray', `${outerCirc * outerTarget/100} ${outerCirc}`);
+    document.getElementById('ring-middle').setAttribute('stroke-dasharray', `${middleCirc * middleTarget/100} ${middleCirc}`);
+    document.getElementById('ring-inner').setAttribute('stroke-dasharray', `${innerCirc * innerTarget/100} ${innerCirc}`);
+
+    // Animate breakdown bars
+    document.querySelectorAll('.breakdown-bar div').forEach(b => {
+      const w = b.dataset.w;
+      b.style.width = w + '%';
+    });
+  }, 100);
+}
+
+/* ============================== START — ESTRELLA DIAGNOSTIC ============================== */
+const startScript = [
+  // Turn 1 — reflect first input back, give a fork
+  { ai: "There's a version of that where the work is the problem, and a version where the rooms are. They need different answers. <em>Which one feels closer?</em>" },
+  // Turn 2 — depth on the fork they picked
+  { ai: "Tell me about the last room. Who was in it, who spoke about you when you weren't there, and what got said." },
+  // Turn 3 — soft email moment, while the conversation has weight
+  { ai: "That's a familiar pattern — the people who notice the work and the people who decide on it are rarely the same people. Has anyone in your career ever been good at translating one to the other?", revealEmail: true },
+  // Turn 4 — future vision (plan §6.1 question)
+  { ai: "Let me ask you something different. If twelve months from now we were having coffee and everything had gone well — <em>what would be true that isn't true now?</em>" },
+  // Turn 5 — avoidance (plan §6.1 question)
+  { ai: "And the version of you that's already living that — what does she know that today's version is avoiding?" },
+  // Turn 6 — synthesis beat
+  { ai: "Mmm. So you've been doing the work <em>and</em> the translation, alone — and the next chapter isn't another promotion in the same room. It's a different kind of room." },
+  // Turn 7 — close
+  { ai: "Here's what I'm hearing. The work is fine. The rooms you've been in don't see it yet, and you've been carrying that translation by yourself. The next step isn't selling yourself sideways — it's leading from where you already are. That's the place to start.", final: true }
+];
+
+let startTurn = 0;
+
+function startAddMessage(html, type){
+  const conv = document.getElementById('start-conversation');
+  if(!conv) return null;
+  const el = document.createElement('div');
+  el.className = 'start-msg start-msg-' + type;
+  el.innerHTML = html;
+  conv.appendChild(el);
+  setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'end'}), 50);
+  return el;
+}
+
+function startShowTyping(){
+  const conv = document.getElementById('start-conversation');
+  if(!conv) return;
+  const el = document.createElement('div');
+  el.className = 'start-msg start-msg-ai';
+  el.id = 'start-typing-indicator';
+  el.innerHTML = '<span class="start-typing"><span></span><span></span><span></span></span>';
+  conv.appendChild(el);
+  setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'end'}), 50);
+}
+function startHideTyping(){
+  document.getElementById('start-typing-indicator')?.remove();
+}
+
+function startAdvance(){
+  const input = document.getElementById('start-input');
+  if(!input) return;
+  const userText = input.value.trim();
+  if(!userText) return;
+
+  const page = document.querySelector('.start-page');
+  page.classList.add('in-conversation');
+
+  startAddMessage(userText, 'user');
+  input.value = '';
+  input.disabled = true;
+
+  if(startTurn >= startScript.length){
+    input.disabled = false;
+    return;
+  }
+
+  setTimeout(()=>startShowTyping(), 500);
+
+  setTimeout(()=>{
+    startHideTyping();
+    const step = startScript[startTurn];
+    startAddMessage(step.ai, 'ai');
+
+    if(step.revealEmail){
+      setTimeout(()=>{
+        document.getElementById('start-email-corner')?.classList.add('visible');
+      }, 800);
+    }
+
+    if(step.final){
+      setTimeout(()=>startBeginClose(), 2200);
+      return;
+    }
+
+    startTurn++;
+    input.disabled = false;
+    input.focus();
+  }, 1700);
+}
+
+function startBeginClose(){
+  const inputbar = document.getElementById('start-inputbar');
+  if(inputbar){
+    inputbar.style.transition = 'opacity 0.6s';
+    inputbar.style.opacity = '0';
+  }
+  setTimeout(()=>{
+    if(inputbar) inputbar.style.display = 'none';
+    document.getElementById('start-close')?.classList.add('visible');
+    setTimeout(()=>{
+      document.getElementById('start-close')?.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 100);
+  }, 700);
+}
+
+function startReset(){
+  startTurn = 0;
+  const conv = document.getElementById('start-conversation');
+  if(conv) conv.innerHTML = '';
+  document.querySelector('.start-page')?.classList.remove('in-conversation');
+  const inputbar = document.getElementById('start-inputbar');
+  if(inputbar){
+    inputbar.style.opacity = '1';
+    inputbar.style.display = '';
+  }
+  document.getElementById('start-close')?.classList.remove('visible');
+  document.getElementById('start-email-corner')?.classList.remove('visible');
+  const input = document.getElementById('start-input');
+  if(input){ input.disabled = false; input.value = ''; }
+  const emailInput = document.getElementById('start-email');
+  if(emailInput) emailInput.value = '';
+  const saveBtn = document.getElementById('start-email-save');
+  if(saveBtn){ saveBtn.textContent = 'save'; saveBtn.classList.remove('saved'); }
+}
+
+document.getElementById('start-send')?.addEventListener('click', startAdvance);
+document.getElementById('start-input')?.addEventListener('keypress', (e)=>{
+  if(e.key === 'Enter') startAdvance();
+});
+
+// Demo: tapping the mic prefills a sample answer rather than wiring real speech
+document.getElementById('start-mic')?.addEventListener('click', ()=>{
+  const input = document.getElementById('start-input');
+  if(!input) return;
+  const prompts = [
+    "I keep getting passed over for promotions and I don't know why.",
+    "The rooms. I'm doing good work but it's not landing where it counts.",
+    "There was a hiring committee — three of them. My manager wasn't there.",
+    "Not really. My old mentor maybe, but he retired five years ago.",
+    "I'd be running my own team. Not chasing the next title — building something.",
+    "That I've already outgrown the role I keep applying for.",
+    "Yes. That's it."
+  ];
+  if(!input.value){
+    input.value = prompts[Math.min(startTurn, prompts.length - 1)];
+  }
+  input.focus();
+});
+
+document.getElementById('start-email-save')?.addEventListener('click', ()=>{
+  const email = document.getElementById('start-email')?.value.trim();
+  if(!email) return;
+  const btn = document.getElementById('start-email-save');
+  btn.textContent = 'saved';
+  btn.classList.add('saved');
+});
+document.getElementById('start-email')?.addEventListener('keypress', (e)=>{
+  if(e.key === 'Enter') document.getElementById('start-email-save')?.click();
+});
+
+document.getElementById('start-pick-time')?.addEventListener('click', ()=>{
+  // Primary path — the prescribed 3-month program
+  state.selectedService = services.find(s => s.id === 'program') || services[0];
+  switchView('calendar');
+  if(typeof renderCalendar === 'function') renderCalendar();
+});
+
+document.getElementById('start-pick-single')?.addEventListener('click', ()=>{
+  // Downgrade — single session (price-shocker edge case in coaching_UX.md §11.4)
+  state.selectedService = services.find(s => s.id === 'career') || services[0];
+  switchView('calendar');
+  if(typeof renderCalendar === 'function') renderCalendar();
+});
+
+document.getElementById('start-send-me')?.addEventListener('click', ()=>{
+  showToast('Conversation saved — check your inbox');
+});
+
+// Practice page escape hatch (coaching_UX.md §12)
+document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
+  state.selectedService = services.find(s => s.id === 'career') || services[0];
+  switchView('calendar');
+  if(typeof renderCalendar === 'function') renderCalendar();
+});
+
+</script>
+</body>
+</html>
