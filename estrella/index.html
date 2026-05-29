@@ -1500,6 +1500,204 @@ body{
 }
 .course-price{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.35rem;color:var(--ink)}
 .course-price small{font-size:0.7rem;color:var(--text-mute);text-decoration:line-through;font-weight:400;margin-right:0.4rem;font-family:'Inter',sans-serif}
+.course-banner.c4{background:linear-gradient(135deg,#5B7FB8 0%, #2E2752 100%)}
+.course-banner.c5{background:linear-gradient(135deg,#E0A06A 0%, #97793F 100%)}
+.course-banner.c6{background:linear-gradient(135deg,#D98AA0 0%, #5B4B8A 100%)}
+.course-banner.c7{background:linear-gradient(135deg,#6FB8A0 0%, #2E5247 100%)}
+.course-banner.c8{background:linear-gradient(135deg,#C9A24A 0%, #2A2620 100%)}
+.course-card .course-cta-row{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--line)}
+.course-tag-pill{display:inline-block;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--gold-deep);background:var(--gold-bg);padding:0.25rem 0.6rem;border-radius:99px;margin-bottom:0.75rem}
+.lib-filter{cursor:pointer}
+
+/* ============================== COURSE DETAIL ============================== */
+.cd-wrap{max-width:1080px;margin:0 auto;padding:5.5rem clamp(1.5rem,4vw,4rem) 5rem}
+.cd-back{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-dim);background:none;border:none;cursor:pointer;padding:0.4rem 0;margin-bottom:1.5rem;transition:color 0.2s var(--ease)}
+.cd-back:hover{color:var(--ink)}
+.cd-hero{display:grid;grid-template-columns:1.5fr 1fr;gap:2.5rem;align-items:start;margin-bottom:3rem}
+.cd-hero-eyebrow{color:var(--gold-deep);margin-bottom:1rem}
+.cd-hero h1{font-size:clamp(2rem,3.5vw,3rem);font-weight:400;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1rem;color:var(--ink)}
+.cd-hero .cd-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--text);line-height:1.45;margin-bottom:1.5rem}
+.cd-meta{display:flex;flex-wrap:wrap;gap:1.75rem;padding:1.25rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cd-meta div{font-size:0.68rem;color:var(--text-mute);letter-spacing:0.1em;text-transform:uppercase;font-weight:500}
+.cd-meta div strong{display:block;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ink);font-weight:600;letter-spacing:0;text-transform:none;margin-bottom:0.15rem}
+.cd-buy{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow);position:sticky;top:96px}
+.cd-buy-visual{height:120px;border-radius:var(--radius);margin-bottom:1.25rem;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:1rem}
+.cd-buy-visual .course-lbl{position:relative;z-index:2;color:#fff}
+.cd-buy-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,0.45) 100%)}
+.cd-buy-price{font-family:'Cormorant Garamond',serif;font-size:2.25rem;font-weight:600;color:var(--ink);margin-bottom:0.25rem}
+.cd-buy-price small{font-size:0.85rem;color:var(--text-mute);text-decoration:line-through;font-weight:400;margin-right:0.5rem;font-family:'Inter',sans-serif}
+.cd-buy-note{font-size:0.78rem;color:var(--text-dim);margin-bottom:1.25rem}
+.cd-buy .btn{width:100%;margin-bottom:0.6rem}
+.cd-buy-list{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:0.6rem}
+.cd-buy-list li{font-size:0.8rem;color:var(--text-dim);display:flex;align-items:flex-start;gap:0.5rem;line-height:1.4}
+.cd-buy-list li svg{flex-shrink:0;margin-top:2px;color:var(--success)}
+.cd-section{margin-bottom:3rem}
+.cd-section > h2{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:500;color:var(--ink);margin-bottom:1.25rem;letter-spacing:-0.01em}
+.cd-outcomes{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem 2rem}
+.cd-outcome{display:flex;gap:0.75rem;align-items:flex-start;font-size:0.92rem;color:var(--text);line-height:1.45}
+.cd-outcome svg{flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.cd-forwhom{background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:1.1rem 1.4rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text);line-height:1.5}
+.cd-module{border:1px solid var(--line);border-radius:var(--radius);margin-bottom:0.85rem;overflow:hidden;background:var(--surface)}
+.cd-module-head{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.35rem;cursor:pointer;user-select:none;transition:background 0.2s var(--ease)}
+.cd-module-head:hover{background:var(--surface-2)}
+.cd-module-num{width:30px;height:30px;border-radius:50%;background:var(--gold-bg);color:var(--gold-deep);font-size:0.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cd-module-head h4{flex:1;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:500;color:var(--ink)}
+.cd-module-meta{font-size:0.75rem;color:var(--text-mute);white-space:nowrap}
+.cd-module-chev{transition:transform 0.3s var(--ease);color:var(--text-mute);flex-shrink:0}
+.cd-module.open .cd-module-chev{transform:rotate(180deg)}
+.cd-module-body{max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease)}
+.cd-module.open .cd-module-body{max-height:600px}
+.cd-lesson-row{display:flex;align-items:center;gap:0.9rem;padding:0.8rem 1.35rem 0.8rem 1.5rem;border-top:1px solid var(--line);font-size:0.9rem;color:var(--text)}
+.cd-lesson-row.playable{cursor:pointer;transition:background 0.2s var(--ease)}
+.cd-lesson-row.playable:hover{background:var(--gold-bg)}
+.cd-lesson-ic{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--bg-soft);color:var(--text-mute)}
+.cd-lesson-row.playable .cd-lesson-ic{background:var(--gold);color:#fff}
+.cd-lesson-row .cd-lesson-title{flex:1}
+.cd-lesson-row .cd-free{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--success);border:1px solid var(--success);border-radius:99px;padding:0.15rem 0.5rem}
+.cd-lesson-row .cd-lesson-mins{font-size:0.75rem;color:var(--text-mute);white-space:nowrap}
+.cd-instructor{display:flex;gap:1.5rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.75rem}
+.cd-instructor-img{width:84px;height:84px;border-radius:50%;object-fit:cover;flex-shrink:0;background:var(--gold-bg)}
+.cd-instructor h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;color:var(--ink);margin-bottom:0.15rem}
+.cd-instructor .cd-inst-role{font-size:0.8rem;color:var(--gold-deep);letter-spacing:0.05em;margin-bottom:0.6rem}
+.cd-instructor p{font-size:0.9rem;color:var(--text-dim);line-height:1.5}
+
+/* ============================== LESSON PLAYER ============================== */
+.lp-wrap{display:grid;grid-template-columns:1fr 380px;gap:0;height:100vh;height:100dvh;padding-top:72px}
+.lp-main{overflow-y:auto;padding:3rem clamp(1.5rem,4vw,4rem)}
+.lp-inner{max-width:680px;margin:0 auto}
+.lp-back{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.85rem;color:var(--text-dim);background:none;border:none;cursor:pointer;padding:0.4rem 0;margin-bottom:1.25rem;transition:color 0.2s var(--ease)}
+.lp-back:hover{color:var(--ink)}
+.lp-breadcrumb{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:0.75rem}
+.lp-title{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;line-height:1.08;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.5rem}
+.lp-lessonmeta{font-size:0.82rem;color:var(--text-mute);margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--line)}
+.lp-section{margin-bottom:2rem}
+.lp-section h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;color:var(--ink);margin-bottom:0.75rem;line-height:1.15}
+.lp-section p{font-size:1rem;color:var(--text);line-height:1.7;margin-bottom:1rem}
+.lp-section strong{color:var(--ink);font-weight:600}
+.lp-role{border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.35rem;margin-bottom:1rem;background:var(--surface)}
+.lp-role h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:600;color:var(--ink);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.6rem}
+.lp-role h4 span{width:24px;height:24px;border-radius:50%;background:var(--gold-bg);color:var(--gold-deep);font-size:0.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lp-role .lp-leverage{font-size:0.92rem;color:var(--text);line-height:1.55;margin-bottom:0.4rem}
+.lp-role .lp-risk{font-size:0.88rem;color:var(--text-dim);line-height:1.5;font-style:italic}
+.lp-role .lp-risk b{color:var(--danger);font-style:normal;font-weight:600}
+.lp-takeaways{background:linear-gradient(135deg,var(--gold-bg) 0%, var(--sage-bg) 100%);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin:2rem 0}
+.lp-takeaways h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:1rem}
+.lp-takeaways ul{list-style:none;display:flex;flex-direction:column;gap:0.75rem}
+.lp-takeaways li{display:flex;gap:0.75rem;align-items:flex-start;font-size:0.95rem;color:var(--ink-2);line-height:1.5}
+.lp-takeaways li svg{flex-shrink:0;margin-top:3px;color:var(--gold-deep)}
+.lp-exercise{border:1.5px dashed var(--gold);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin:2rem 0;background:var(--surface)}
+.lp-exercise .lp-ex-label{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--gold-deep);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem}
+.lp-exercise h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:500;color:var(--ink);margin-bottom:0.75rem}
+.lp-exercise p{font-size:0.95rem;color:var(--text);line-height:1.6;margin-bottom:1rem}
+.lp-exercise textarea{width:100%;min-height:90px;border:1px solid var(--line-strong);border-radius:var(--radius);padding:0.9rem 1rem;font-family:inherit;font-size:0.92rem;color:var(--ink);background:var(--bg-soft);resize:vertical}
+.lp-exercise textarea:focus{outline:none;border-color:var(--gold)}
+.lp-footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:2rem;margin-top:1rem;border-top:1px solid var(--line)}
+/* Tutor dock */
+.lp-tutor{background:var(--surface);border-left:1px solid var(--line);display:flex;flex-direction:column;height:100%}
+.lp-tutor-head{padding:1.25rem 1.5rem;border-bottom:1px solid var(--line)}
+.lp-tutor-head .tm-label{font-size:0.65rem;letter-spacing:0.2em;color:var(--gold-deep);text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:0.45rem;margin-bottom:0.4rem}
+.lp-tutor-head .tm-label::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--success);animation:pulse 1.4s infinite}
+.lp-tutor-head p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.95rem;color:var(--text-dim);line-height:1.4}
+.lp-msgs{flex:1;overflow-y:auto;padding:1.25rem 1.5rem;display:flex;flex-direction:column;gap:1rem}
+.lp-msg{font-size:0.9rem;line-height:1.5;max-width:92%;padding:0.85rem 1.05rem;border-radius:16px}
+.lp-msg.ai{background:var(--gold-bg);color:var(--ink-2);align-self:flex-start;border-bottom-left-radius:5px}
+.lp-msg.user{background:var(--ink);color:#F2EBDC;align-self:flex-end;border-bottom-right-radius:5px}
+.lp-msg.ai em{color:var(--gold-deep);font-style:italic}
+.lp-typing{align-self:flex-start;display:flex;gap:4px;padding:0.85rem 1.05rem;background:var(--gold-bg);border-radius:16px;border-bottom-left-radius:5px}
+.lp-typing span{width:6px;height:6px;border-radius:50%;background:var(--gold-deep);opacity:0.5;animation:lpbounce 1.2s infinite}
+.lp-typing span:nth-child(2){animation-delay:0.2s}
+.lp-typing span:nth-child(3){animation-delay:0.4s}
+@keyframes lpbounce{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-5px);opacity:1}}
+.lp-chips{display:flex;flex-wrap:wrap;gap:0.5rem;padding:0 1.5rem 0.75rem}
+.lp-chip{font-size:0.78rem;color:var(--gold-deep);background:var(--surface-2);border:1px solid var(--line-strong);border-radius:99px;padding:0.4rem 0.85rem;cursor:pointer;transition:all 0.2s var(--ease)}
+.lp-chip:hover{background:var(--gold-bg);border-color:var(--gold)}
+.lp-tutor-input{display:flex;align-items:center;gap:0.6rem;padding:1rem 1.5rem 1.25rem;border-top:1px solid var(--line)}
+.lp-tutor-input input{flex:1;padding:0.8rem 1.1rem;background:var(--bg-soft);border:1.5px solid transparent;border-radius:99px;font-family:inherit;font-size:0.9rem;color:var(--ink)}
+.lp-tutor-input input:focus{outline:none;border-color:var(--gold)}
+.lp-tutor-send{width:40px;height:40px;border-radius:50%;background:var(--ink);color:#F2EBDC;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform 0.2s var(--ease)}
+.lp-tutor-send:hover{transform:scale(1.08)}
+@media (max-width:1024px){
+  .cd-hero{grid-template-columns:1fr}
+  .cd-buy{position:static}
+  .cd-outcomes{grid-template-columns:1fr}
+  .lp-wrap{grid-template-columns:1fr;height:auto;overflow-y:auto}
+  .lp-tutor{border-left:none;border-top:1px solid var(--line);height:auto;min-height:480px}
+  .lp-main{overflow-y:visible}
+}
+@media (max-width:560px){
+  .lp-main{padding:1.75rem 1.25rem}
+  .lp-title{font-size:1.6rem;overflow-wrap:break-word;hyphens:auto}
+  .cd-meta{gap:1.1rem}
+  .lp-progress,.lp-stickybar{display:none}
+}
+
+/* ---- Alan Dye polish: motion, depth, focus ---- */
+/* Staggered entrance for catalog + curriculum */
+@keyframes acadRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+#courses-grid .course-card{animation:acadRise 0.55s var(--ease-out) both}
+#courses-grid .course-card:nth-child(1){animation-delay:0.02s}
+#courses-grid .course-card:nth-child(2){animation-delay:0.07s}
+#courses-grid .course-card:nth-child(3){animation-delay:0.12s}
+#courses-grid .course-card:nth-child(4){animation-delay:0.17s}
+#courses-grid .course-card:nth-child(5){animation-delay:0.22s}
+#courses-grid .course-card:nth-child(6){animation-delay:0.27s}
+#courses-grid .course-card:nth-child(7){animation-delay:0.32s}
+#courses-grid .course-card:nth-child(8){animation-delay:0.37s}
+.course-card{transition:transform 0.35s var(--ease-out),box-shadow 0.35s var(--ease-out)}
+.course-card:active{transform:translateY(-2px) scale(0.992)}
+.course-card .course-banner .cb-img{transition:transform 0.6s var(--ease-out)}
+.course-card:hover .course-banner .cb-img{transform:scale(1.04)}
+/* Detail page entrance */
+#cd-wrap > *{animation:acadRise 0.5s var(--ease-out) both}
+#cd-wrap .cd-hero{animation-delay:0.04s}
+#cd-wrap .cd-section:nth-of-type(1){animation-delay:0.10s}
+#cd-wrap .cd-section:nth-of-type(2){animation-delay:0.14s}
+#cd-wrap .cd-section:nth-of-type(3){animation-delay:0.18s}
+.cd-buy{transition:transform 0.35s var(--ease-out),box-shadow 0.35s var(--ease-out)}
+.cd-outcome svg{transition:transform 0.3s var(--ease-bounce)}
+.cd-outcome:hover svg{transform:scale(1.25)}
+/* Focus-visible rings (accessibility + Apple-grade polish) */
+.lib-filter:focus-visible,.cd-back:focus-visible,.lp-back:focus-visible,
+.lp-chip:focus-visible,.cd-module-head:focus-visible,.lp-tutor-send:focus-visible{
+  outline:2px solid var(--gold);outline-offset:2px;border-radius:8px;
+}
+.lp-tutor-input input:focus,.lp-exercise textarea:focus{box-shadow:0 0 0 3px var(--gold-bg)}
+/* Lesson scroll-progress bar */
+.lp-progress{position:absolute;top:72px;left:0;height:3px;width:0;z-index:40;
+  background:linear-gradient(90deg,var(--gold-soft),var(--gold-deep));
+  transition:width 0.12s linear;border-radius:0 3px 3px 0}
+/* Lesson sticky chrome — title appears as you scroll past the H1 */
+.lp-stickybar{position:sticky;top:0;z-index:30;background:rgba(251,247,236,0.82);
+  backdrop-filter:blur(18px);border-bottom:1px solid var(--line);
+  padding:0.85rem clamp(1.5rem,4vw,4rem);
+  display:flex;align-items:center;gap:0.75rem;
+  opacity:0;transform:translateY(-100%);transition:opacity 0.3s var(--ease),transform 0.3s var(--ease);
+  pointer-events:none}
+.lp-stickybar.visible{opacity:1;transform:translateY(0)}
+.lp-stickybar .lp-sb-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:500;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.lp-stickybar .lp-sb-prog{font-size:0.72rem;color:var(--text-mute);white-space:nowrap;letter-spacing:0.04em}
+/* Estrella avatar in tutor head */
+.lp-tutor-head{display:flex;flex-direction:column}
+.lp-tutor-greet{display:flex;gap:0.75rem;align-items:flex-start}
+.lp-estrella-orb{width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold-soft),var(--gold-deep));
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 2px 10px rgba(151,121,63,0.35)}
+.lp-estrella-orb svg{width:16px;height:16px}
+/* First AI greeting bubble inside the head reads as a message, not a label */
+.lp-tutor-head .lp-tutor-greet p{margin:0}
+.lp-msg{animation:acadRise 0.35s var(--ease-out) both}
+.lp-takeaways li svg,.cd-buy-list li svg{transition:transform 0.25s var(--ease-bounce)}
+.lp-role{transition:border-color 0.3s var(--ease),box-shadow 0.3s var(--ease)}
+.lp-role:hover{box-shadow:var(--shadow-sm)}
+
+@media (prefers-reduced-motion: reduce){
+  #courses-grid .course-card,#cd-wrap > *,.lp-msg{animation:none !important}
+  .course-card:hover .course-banner .cb-img{transform:none}
+  .lp-progress,.lp-stickybar{transition:none}
+  *{scroll-behavior:auto !important}
+}
 
 /* ============================== AI TWIN ============================== */
 .twin-container{
@@ -4130,8 +4328,8 @@ body{
             <div><strong>1,240</strong>Enrolled</div>
           </div>
           <div class="acad-featured-cta">
-            <button class="btn btn-primary btn-lg" onclick="showToast('Resuming lesson 4...')">Resume Lesson →</button>
-            <button class="btn btn-ghost" onclick="showToast('Course overview')">Course Overview</button>
+            <button class="btn btn-primary btn-lg" onclick="openLesson('confidence')">Resume Lesson →</button>
+            <button class="btn btn-ghost" onclick="openCourse('confidence')">Course Overview</button>
           </div>
         </div>
       </div>
@@ -4156,64 +4354,26 @@ body{
       <!-- All courses -->
       <div class="acad-section-title">
         <h3>All Courses</h3>
-        <div class="lib-filters">
-          <button class="lib-filter active">All</button>
-          <button class="lib-filter">Foundation</button>
-          <button class="lib-filter">Signature</button>
-          <button class="lib-filter">Interview</button>
+        <div class="lib-filters" id="acad-filters">
+          <button class="lib-filter active" data-filter="all">All</button>
+          <button class="lib-filter" data-filter="Foundation">Foundation</button>
+          <button class="lib-filter" data-filter="Signature">Signature</button>
+          <button class="lib-filter" data-filter="Interview">Interview</button>
         </div>
       </div>
 
-      <div class="courses-grid">
-        <div class="course-card" onclick="showToast('Starting course...')">
-          <div class="course-banner c1">
-            <img class="cb-img" src="Assets/Confidence_Reset.png" alt="Confidence Reset" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-            <div class="course-lbl">Foundation · 14 lessons</div>
-            <div class="course-title">Confidence Reset</div>
-          </div>
-          <div class="course-body">
-            <div class="course-rating"><span class="stars">★★★★★</span>4.8 · 892 enrolled</div>
-            <p class="course-desc">Reset patterns of self-doubt with daily exercises and AI check-ins. A 7-day program.</p>
-            <div class="course-footer">
-              <div class="course-price"><small>AED 499</small>AED 299</div>
-              <button class="btn btn-primary btn-sm">Start →</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="course-card" onclick="showToast('Starting course...')">
-          <div class="course-banner c2">
-            <img class="cb-img" src="Assets/Leadership_Burnout.png" alt="Leadership Without Burnout" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-            <div class="course-lbl">Signature · 24 lessons</div>
-            <div class="course-title">Leadership Without Burnout</div>
-          </div>
-          <div class="course-body">
-            <div class="course-rating"><span class="stars">★★★★★</span>4.9 · 1,240 enrolled</div>
-            <p class="course-desc">Lead high-stakes teams while protecting your energy. The signature Estrella course.</p>
-            <div class="course-footer">
-              <div class="course-price">AED 899</div>
-              <button class="btn btn-primary btn-sm">Enroll →</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="course-card" onclick="showToast('Starting course...')">
-          <div class="course-banner c3">
-            <img class="cb-img" src="Assets/Offer_machine.png" alt="The Offer Machine" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-            <div class="course-lbl">Interview · 18 lessons</div>
-            <div class="course-title">The Offer Machine</div>
-          </div>
-          <div class="course-body">
-            <div class="course-rating"><span class="stars">★★★★★</span>4.9 · 540 enrolled</div>
-            <p class="course-desc">Behavioral interviews, salary negotiation, executive presence. Includes AI mock interviewer.</p>
-            <div class="course-footer">
-              <div class="course-price">AED 499</div>
-              <button class="btn btn-primary btn-sm">Enroll →</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="courses-grid" id="courses-grid"></div>
     </div>
+  </div>
+
+  <!-- ============================== VIEW: COURSE DETAIL ============================== -->
+  <div class="view dash-body" id="view-course">
+    <div class="cd-wrap" id="cd-wrap"></div>
+  </div>
+
+  <!-- ============================== VIEW: LESSON PLAYER ============================== -->
+  <div class="view" id="view-lesson">
+    <div class="lp-wrap" id="lp-wrap"></div>
   </div>
 
   <!-- ============================== VIEW: AI TWIN ============================== -->
@@ -4348,12 +4508,14 @@ function switchView(viewId){
     next.scrollTo(0,0);
 
     // Toggle bottom nav for portal pages
-    const portalViews = ['dashboard','library','academy','twin'];
+    const portalViews = ['dashboard','library','academy','twin','course'];
     const bottomnav = document.getElementById('bottomnav');
     if(portalViews.includes(viewId)){
       bottomnav.classList.add('visible');
+      // Course detail lives under the Academy tab
+      const navView = viewId === 'course' ? 'academy' : viewId;
       document.querySelectorAll('.bn-item').forEach(b => {
-        b.classList.toggle('active', b.dataset.view === viewId);
+        b.classList.toggle('active', b.dataset.view === navView);
       });
     } else {
       bottomnav.classList.remove('visible');
@@ -4378,7 +4540,7 @@ function switchView(viewId){
     });
 
     // Hide topnav for some views
-    const hideNav = ['onboarding','readiness','start'];
+    const hideNav = ['onboarding','readiness','start','lesson'];
     document.getElementById('topnav').classList.toggle('hidden', hideNav.includes(viewId));
 
     // Reset /start when entered (clean slate each visit)
@@ -5057,6 +5219,635 @@ document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
   switchView('calendar');
   if(typeof renderCalendar === 'function') renderCalendar();
 });
+
+/* ==================================================================
+   ACADEMY — COURSES SYSTEM
+   Catalog → Course Detail → Lesson Player (with in-lesson AI tutor)
+   ================================================================== */
+const NESREEN = {
+  name: 'Nesreen',
+  role: 'Founder & Lead Coach, Estrella',
+  img: 'nesreen-hero.jpg',
+  bio: 'Over a decade coaching executives, founders, and HR leaders across the Gulf. Every Academy course distills the methods she uses one-to-one — so the thinking travels even when she can\'t be in the room.'
+};
+
+const courses = [
+  /* ---------- 1. AI for HR Leaders (has playable sample lesson) ---------- */
+  {
+    id:'ai-hr', title:'AI for HR Leaders', track:'Signature', banner:'c4', img:'Assets/Career_Compass.png',
+    rating:4.9, enrolled:610, price:1200, oldPrice:1600,
+    tagline:'Adopt AI across the employee lifecycle without losing the human judgment that makes HR matter.',
+    desc:'A strategic playbook for bringing AI into hiring, performance, and people analytics — responsibly.',
+    hours:'5.5 hrs', level:'Intermediate',
+    outcomes:[
+      'Map where AI genuinely helps across the employee lifecycle — and where it must not',
+      'Audit an AI hiring tool for bias before it touches a single candidate',
+      'Use people analytics to answer questions leadership actually asks',
+      'Write an AI usage policy your legal and works-council teams will sign off on',
+      'Build a pragmatic 90-day adoption plan with clear guardrails',
+      'Protect employee trust while moving faster than your competitors'
+    ],
+    forWhom:'HR directors, CHROs, and people-ops leaders who are being asked "what\'s our AI plan?" and want a defensible answer.',
+    modules:[
+      { title:'Where AI Belongs in HR', mins:62, lessons:[
+        { title:'AI across the employee lifecycle: the strategic map', mins:18, free:true, lessonId:'ai-hr-1' },
+        { title:'The four HR roles in an AI era (Ulrich, revisited)', mins:16 },
+        { title:'What to automate, augment, and never touch', mins:14 },
+        { title:'Building your AI-in-HR thesis', mins:14 }
+      ]},
+      { title:'Bias-Aware Hiring', mins:71, lessons:[
+        { title:'How bias enters an algorithm', mins:17 },
+        { title:'Auditing a screening tool before you buy', mins:20 },
+        { title:'Structured interviews the AI can support', mins:16 },
+        { title:'Adverse impact: the math you must know', mins:18 }
+      ]},
+      { title:'Performance, L&D & People Analytics', mins:64, lessons:[
+        { title:'From gut feel to evidence: the analytics ladder', mins:16 },
+        { title:'AI-assisted feedback that stays fair', mins:15 },
+        { title:'Personalised learning paths at scale', mins:17 },
+        { title:'The metrics leadership actually asks for', mins:16 }
+      ]},
+      { title:'Ethics, Governance & Rollout', mins:69, lessons:[
+        { title:'Privacy, consent, and the works council', mins:18 },
+        { title:'Writing an AI usage policy', mins:17 },
+        { title:'Your 90-day responsible-adoption plan', mins:19 },
+        { title:'Keeping the human in the loop', mins:15 }
+      ]}
+    ]
+  },
+  /* ---------- 2. Personal Branding ---------- */
+  {
+    id:'branding', title:'Personal Branding', track:'Foundation', banner:'c5', img:'Assets/Quiet_Power.png',
+    rating:4.8, enrolled:1430, price:499, oldPrice:699,
+    tagline:'Build a reputation that opens doors before you walk through them — without performing or self-promoting.',
+    desc:'Define your value, shape your narrative, and become known for the right thing.',
+    hours:'4 hrs', level:'All levels',
+    outcomes:[
+      'Articulate a one-sentence value proposition that actually lands',
+      'Craft a professional narrative that connects your past to your next move',
+      'Rebuild your LinkedIn so it compounds while you sleep',
+      'Grow visibility without feeling like you\'re bragging',
+      'Decide what to be known for — and say no to the rest',
+      'Turn a strong reputation into inbound opportunities'
+    ],
+    forWhom:'Professionals at an inflection point who are excellent at the work but invisible in the market.',
+    modules:[
+      { title:'Your Foundation', mins:46, lessons:[
+        { title:'What personal branding actually is (and isn\'t)', mins:12 },
+        { title:'Finding your value proposition', mins:18 },
+        { title:'The reputation audit', mins:16 }
+      ]},
+      { title:'Your Narrative', mins:52, lessons:[
+        { title:'The story that connects your dots', mins:18 },
+        { title:'Positioning: own one thing, not ten', mins:17 },
+        { title:'Your bio, three ways', mins:17 }
+      ]},
+      { title:'LinkedIn That Compounds', mins:58, lessons:[
+        { title:'The profile teardown', mins:20 },
+        { title:'Content without cringe', mins:21 },
+        { title:'Engagement that builds relationships', mins:17 }
+      ]},
+      { title:'Visibility & Presence', mins:44, lessons:[
+        { title:'Visibility without self-promotion', mins:15 },
+        { title:'Speaking, writing, and being cited', mins:14 },
+        { title:'Turning reputation into opportunity', mins:15 }
+      ]}
+    ]
+  },
+  /* ---------- 3. Interview Mastery ---------- */
+  {
+    id:'interview', title:'Interview Mastery', track:'Interview', banner:'c6', img:'Assets/Interview_Playbook.jpg',
+    rating:4.9, enrolled:980, price:599, oldPrice:799,
+    tagline:'Walk into any interview room knowing what they\'re really asking — and exactly how to answer.',
+    desc:'Decode questions, build a story bank, master behavioral rounds, and negotiate the offer.',
+    hours:'4.5 hrs', level:'All levels',
+    outcomes:[
+      'Decode the real question hiding behind the asked one',
+      'Build a bank of 8 STAR stories you can flex to anything',
+      'Handle behavioral and competency rounds with calm structure',
+      'Project presence — voice, pacing, and body — under pressure',
+      'Negotiate the offer without burning goodwill',
+      'Practice live against an AI mock interviewer'
+    ],
+    forWhom:'Anyone facing a high-stakes interview — a promotion panel, a career switch, or a first executive role.',
+    modules:[
+      { title:'Before the Room', mins:48, lessons:[
+        { title:'Decoding what they\'re really asking', mins:16 },
+        { title:'Researching like an insider', mins:16 },
+        { title:'The story bank: your raw material', mins:16 }
+      ]},
+      { title:'The Behavioral Round', mins:60, lessons:[
+        { title:'STAR without sounding robotic', mins:18 },
+        { title:'Eight stories that cover everything', mins:22 },
+        { title:'Handling the question you dread', mins:20 }
+      ]},
+      { title:'Presence Under Pressure', mins:42, lessons:[
+        { title:'Voice, pacing, and the power of the pause', mins:14 },
+        { title:'What your body says before you do', mins:14 },
+        { title:'Recovering from a stumble', mins:14 }
+      ]},
+      { title:'The Offer', mins:50, lessons:[
+        { title:'Reading the real offer', mins:16 },
+        { title:'Negotiation that keeps goodwill', mins:18 },
+        { title:'Live AI mock interview', mins:16 }
+      ]}
+    ]
+  },
+  /* ---------- 4. Modern HR Foundations ---------- */
+  {
+    id:'hr-foundations', title:'Modern HR Foundations', track:'Foundation', banner:'c7', img:'Assets/Leadership_Coaching.jpg',
+    rating:4.7, enrolled:720, price:699, oldPrice:899,
+    tagline:'The complete operating model of modern HR — from the four roles to becoming a true business partner.',
+    desc:'The full employee lifecycle, talent, rewards, and culture — built on the Ulrich model.',
+    hours:'6 hrs', level:'Foundational',
+    outcomes:[
+      'Run the full employee lifecycle from hire to exit',
+      'Apply the four HR roles to your own organization',
+      'Design performance and talent systems that hold up',
+      'Understand total rewards beyond base pay',
+      'Shape culture deliberately instead of by accident',
+      'Earn a seat at the table as a strategic business partner'
+    ],
+    forWhom:'New HR professionals, founders running their own people function, and managers who inherited a team.',
+    modules:[
+      { title:'The HR Operating Model', mins:55, lessons:[
+        { title:'The four roles of modern HR', mins:18 },
+        { title:'HR as a business partner', mins:19 },
+        { title:'Aligning people strategy to business strategy', mins:18 }
+      ]},
+      { title:'The Employee Lifecycle', mins:66, lessons:[
+        { title:'Hiring and onboarding that sticks', mins:22 },
+        { title:'Developing and retaining talent', mins:22 },
+        { title:'Offboarding with dignity', mins:22 }
+      ]},
+      { title:'Performance & Rewards', mins:58, lessons:[
+        { title:'Performance systems that motivate', mins:20 },
+        { title:'Total rewards beyond salary', mins:20 },
+        { title:'Difficult conversations, handled', mins:18 }
+      ]},
+      { title:'Culture & Compliance', mins:52, lessons:[
+        { title:'Building culture on purpose', mins:18 },
+        { title:'The compliance floor you can\'t skip', mins:17 },
+        { title:'Measuring what matters', mins:17 }
+      ]}
+    ]
+  },
+  /* ---------- 5. Public Speaking & Executive Presence ---------- */
+  {
+    id:'speaking', title:'Public Speaking & Executive Presence', track:'Signature', banner:'c8', img:'Assets/Executive_Caoaching.jpg',
+    rating:4.9, enrolled:840, price:799, oldPrice:1100,
+    tagline:'Command any room — from the daily stand-up to the keynote stage — with a message that moves people.',
+    desc:'Conquer nerves, structure a talk, and deliver with the presence of a leader.',
+    hours:'5 hrs', level:'All levels',
+    outcomes:[
+      'Turn nerves into usable energy with a pre-talk ritual',
+      'Build a message map that keeps an audience with you',
+      'Tell a story that makes your point unforgettable',
+      'Use voice, pause, and body deliberately',
+      'Handle hostile questions and go off-script safely',
+      'Design and deliver one signature talk, end to end'
+    ],
+    forWhom:'Leaders who go quiet in the big moments — board updates, panels, all-hands, the keynote they keep declining.',
+    modules:[
+      { title:'The Inner Game', mins:44, lessons:[
+        { title:'Where stage fright actually comes from', mins:14 },
+        { title:'The pre-talk ritual', mins:15 },
+        { title:'From nerves to energy', mins:15 }
+      ]},
+      { title:'Building the Talk', mins:60, lessons:[
+        { title:'The message map', mins:20 },
+        { title:'Story as your delivery vehicle', mins:22 },
+        { title:'Openings and closings that land', mins:18 }
+      ]},
+      { title:'Delivery', mins:54, lessons:[
+        { title:'Voice: pace, pitch, and the pause', mins:18 },
+        { title:'Body language and the room', mins:18 },
+        { title:'Slides that help instead of hurt', mins:18 }
+      ]},
+      { title:'High-Stakes Speaking', mins:48, lessons:[
+        { title:'Q&A and the hostile question', mins:16 },
+        { title:'Panels, boards, and keynotes', mins:16 },
+        { title:'Your signature talk, delivered', mins:16 }
+      ]}
+    ]
+  },
+  /* ---------- Existing demo courses (kept) ---------- */
+  {
+    id:'confidence', title:'Confidence Reset', track:'Foundation', banner:'c1', img:'Assets/Confidence_Reset.png',
+    rating:4.8, enrolled:892, price:299, oldPrice:499,
+    tagline:'Reset the patterns of self-doubt that quietly cap your career — in seven guided days.',
+    desc:'Reset patterns of self-doubt with daily exercises and AI check-ins. A 7-day program.',
+    hours:'3 hrs', level:'All levels',
+    outcomes:[
+      'Recognize the moments your confidence collapses',
+      'Quiet the inner critic with a repeatable toolkit',
+      'Map your real history of wins',
+      'Reframe rejection so it stops defining you',
+      'Build a daily confidence ritual that sticks'
+    ],
+    forWhom:'High performers whose self-doubt doesn\'t match their track record.',
+    modules:[
+      { title:'Understanding the Pattern', mins:40, lessons:[
+        { title:'Why confidence collapses', mins:14 },
+        { title:'The inner critic toolkit', mins:13 },
+        { title:'Mapping your win history', mins:13 }
+      ]},
+      { title:'The Reset', mins:42, lessons:[
+        { title:'Reframing the rejection', mins:18 },
+        { title:'Building a confidence ritual', mins:12 },
+        { title:'Your 7-day plan', mins:12 }
+      ]}
+    ]
+  },
+  {
+    id:'leadership', title:'Leadership Without Burnout', track:'Signature', banner:'c2', img:'Assets/Leadership_Burnout.png',
+    rating:4.9, enrolled:1240, price:899, oldPrice:1200,
+    tagline:'Lead high-stakes teams while protecting the energy that makes you good at it.',
+    desc:'Lead high-stakes teams while protecting your energy. The signature Estrella course.',
+    hours:'6 hrs', level:'Intermediate',
+    outcomes:[
+      'Spot the early signals of burnout in yourself and your team',
+      'Delegate without losing control of outcomes',
+      'Protect deep-focus time inside a reactive culture',
+      'Lead through change without absorbing all the stress',
+      'Build a sustainable operating rhythm'
+    ],
+    forWhom:'Managers and senior leaders carrying more than is sustainable.',
+    modules:[
+      { title:'The Energy Audit', mins:50, lessons:[
+        { title:'The burnout early-warning system', mins:18 },
+        { title:'Where your energy actually goes', mins:16 },
+        { title:'Boundaries that hold', mins:16 }
+      ]},
+      { title:'Leading Sustainably', mins:55, lessons:[
+        { title:'Delegation without abdication', mins:20 },
+        { title:'Protecting focus in a reactive culture', mins:18 },
+        { title:'A rhythm you can sustain', mins:17 }
+      ]}
+    ]
+  },
+  {
+    id:'offer', title:'The Offer Machine', track:'Interview', banner:'c3', img:'Assets/Offer_machine.png',
+    rating:4.9, enrolled:540, price:499, oldPrice:699,
+    tagline:'Turn interviews into offers — and offers into the compensation you actually deserve.',
+    desc:'Behavioral interviews, salary negotiation, executive presence. Includes AI mock interviewer.',
+    hours:'4 hrs', level:'All levels',
+    outcomes:[
+      'Convert more interviews into real offers',
+      'Master the behavioral round',
+      'Negotiate compensation with confidence',
+      'Project executive presence in the room',
+      'Practice against an AI mock interviewer'
+    ],
+    forWhom:'Candidates in active processes who want to close stronger.',
+    modules:[
+      { title:'Winning the Interview', mins:48, lessons:[
+        { title:'The behavioral round, mastered', mins:18 },
+        { title:'Executive presence on demand', mins:15 },
+        { title:'Reading the room', mins:15 }
+      ]},
+      { title:'Closing the Offer', mins:46, lessons:[
+        { title:'Salary negotiation that works', mins:18 },
+        { title:'Multiple offers, handled', mins:14 },
+        { title:'Live AI mock interview', mins:14 }
+      ]}
+    ]
+  }
+];
+
+/* ---- The one fully-playable sample lesson (AI for HR Leaders · Lesson 1) ---- */
+const sampleLesson = {
+  courseId:'ai-hr',
+  lessonId:'ai-hr-1',
+  courseTitle:'AI for HR Leaders',
+  moduleTitle:'Module 1 · Where AI Belongs in HR',
+  title:'AI across the employee lifecycle: the strategic map',
+  mins:18, lessonNo:1, lessonTotal:16,
+  intro:'Before you evaluate a single tool, you need a map. Most AI-in-HR projects fail not because the technology is weak, but because nobody decided <strong>where</strong> it belongs. This lesson gives you that map — organised around the model Dave Ulrich gave HR thirty years ago, because the roles haven\'t changed even though the tools have.',
+  body:[
+    { h:'The mistake almost everyone makes', p:'When a CHRO is asked "what\'s our AI strategy?", the instinct is to start with tools — a résumé screener here, a chatbot there. That\'s backwards. AI is leverage, and leverage applied to the wrong activity just helps you do the wrong thing faster. The question isn\'t "which tool?" — it\'s "which part of our work should get sharper, and which part must stay unmistakably human?"' },
+    { h:'The four roles, in an AI era', p:'Ulrich split HR\'s job into four roles. Each one meets AI differently — and seeing that difference is the whole game. For each role below, notice the <strong>leverage</strong> AI offers and the <strong>risk</strong> it introduces.' }
+  ],
+  roles:[
+    { n:'1', title:'Strategic Partner', leverage:'People analytics turns workforce questions leadership actually asks — attrition risk, skills gaps, cost of a reorg — into evidence instead of opinion.', risk:'A confident dashboard can launder a bad assumption. <b>If the data is biased, the strategy inherits the bias.</b>' },
+    { n:'2', title:'Change Agent', leverage:'AI can personalise change communications and surface where adoption is stalling across a large organisation in near-real time.', risk:'Change is fundamentally about trust. <b>Automating the human contact out of it accelerates resistance, not adoption.</b>' },
+    { n:'3', title:'Administrative Expert', leverage:'This is AI\'s home turf — payroll queries, policy lookups, scheduling, first-line support. Automate aggressively here and free your team for the other three roles.', risk:'Edge cases are where people are most vulnerable. <b>A bot that mishandles a bereavement-leave request does lasting damage.</b>' },
+    { n:'4', title:'Employee Champion', leverage:'AI can spot patterns — sentiment dips, isolated teams, manager hotspots — far earlier than a human reading survey results once a quarter.', risk:'Surveillance dressed as care destroys the very trust the role exists to protect. <b>The line between listening and monitoring is thinner than vendors admit.</b>' }
+  ],
+  takeaways:[
+    'AI is leverage — decide where it belongs before you choose a tool',
+    'Map every initiative to one of the four HR roles',
+    'Automate the Administrative Expert role aggressively; touch the Employee Champion role with extreme care',
+    'Every leverage comes paired with a specific risk — name both before you buy'
+  ],
+  exercise:{
+    title:'Map one initiative',
+    prompt:'Think of one AI initiative someone has proposed in your organisation (or one you\'ve considered). Which of the four roles does it serve? Write one sentence on the leverage it offers — and one on the risk it introduces. If you can\'t name the risk, you\'re not ready to buy.'
+  },
+  tutorGreeting:'I\'m here inside this lesson with you. I know Nesreen\'s framework, where you are in the course, and the four-roles model we just covered. Ask me anything — or tap a question below.',
+  tutorChips:[
+    'Why use Ulrich\'s model and not something newer?',
+    'Give me an example of bias laundering',
+    'Where do most HR teams start with AI?'
+  ],
+  tutorReplies:{
+    'Why use Ulrich\'s model and not something newer?':'Because the <em>tools</em> change every eighteen months but the <em>jobs</em> don\'t. HR still has to be a strategic partner, drive change, run administration, and champion employees — that was true before software and it\'s true now. Newer frameworks tend to describe technology; Ulrich describes the work. Map AI to the work and you won\'t have to re-learn your strategy every time a new product launches.',
+    'Give me an example of bias laundering':'Say your historical "high performer" data skews toward people who never took parental leave. Train a model on it and it quietly learns that leave predicts low performance. The dashboard then shows a clean, confident attrition-risk score — and a manager trusts it precisely <em>because</em> it looks objective. The bias didn\'t disappear; the spreadsheet just gave it a lab coat. That\'s why Module 2 teaches you to audit <em>before</em> you deploy.',
+    'Where do most HR teams start with AI?':'The successful ones start in the Administrative Expert role — policy lookups, payroll questions, scheduling. It\'s high-volume, low-ambiguity, and a mistake is usually recoverable. That builds organisational confidence and frees your team\'s time. The teams that struggle start in hiring or performance, where the stakes and the bias risk are highest. Earn trust on the safe ground first.'
+  },
+  tutorDefault:'Good question. The core idea to hold onto: AI is leverage applied to one of the four HR roles, and each role carries its own risk. Tell me which role your question touches — strategic partner, change agent, administrative expert, or employee champion — and I\'ll go deeper on the trade-off there.'
+};
+
+/* ---- Catalog ---- */
+function courseLessonCount(c){ return c.modules.reduce((n,m)=>n+m.lessons.length,0); }
+
+function renderCourses(filter){
+  const grid = document.getElementById('courses-grid');
+  if(!grid) return;
+  const list = (!filter || filter==='all') ? courses : courses.filter(c=>c.track===filter);
+  grid.innerHTML = list.map(c => `
+    <div class="course-card" data-course="${c.id}">
+      <div class="course-banner ${c.banner}">
+        <img class="cb-img" src="${c.img}" alt="${c.title}" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+        <div class="course-lbl">${c.track} · ${courseLessonCount(c)} lessons</div>
+        <div class="course-title">${c.title}</div>
+      </div>
+      <div class="course-body">
+        <div class="course-rating"><span class="stars">★★★★★</span>${c.rating} · ${c.enrolled.toLocaleString()} enrolled</div>
+        <p class="course-desc">${c.desc}</p>
+        <div class="course-cta-row">
+          <div class="course-price">${c.oldPrice?`<small>AED ${c.oldPrice}</small>`:''}AED ${c.price.toLocaleString()}</div>
+          <button class="btn btn-primary btn-sm">View course →</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('courses-grid')?.addEventListener('click', (e)=>{
+  const card = e.target.closest('.course-card');
+  if(!card) return;
+  openCourse(card.dataset.course);
+});
+
+document.getElementById('acad-filters')?.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.lib-filter');
+  if(!btn) return;
+  document.querySelectorAll('#acad-filters .lib-filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCourses(btn.dataset.filter);
+});
+
+/* ---- Course Detail ---- */
+const CHECK_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+const CHEV_SVG = '<svg class="cd-module-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+function openCourse(id){
+  const c = courses.find(x=>x.id===id);
+  if(!c) return;
+  const wrap = document.getElementById('cd-wrap');
+  const lessons = courseLessonCount(c);
+  wrap.innerHTML = `
+    <button class="cd-back" id="cd-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All courses
+    </button>
+    <div class="cd-hero">
+      <div>
+        <div class="hero-eyebrow cd-hero-eyebrow">— ${c.track} Course</div>
+        <h1>${c.title}</h1>
+        <p class="cd-tagline">${c.tagline}</p>
+        <div class="cd-meta">
+          <div><strong>${lessons}</strong>Lessons</div>
+          <div><strong>${c.hours}</strong>Total</div>
+          <div><strong>${c.rating} ★</strong>${c.enrolled.toLocaleString()} enrolled</div>
+          <div><strong>${c.level}</strong>Level</div>
+        </div>
+      </div>
+      <div class="cd-buy">
+        <div class="cd-buy-visual ${c.banner}" style="${''}">
+          <img class="cb-img" src="${c.img}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"/>
+          <div class="course-lbl">${c.track}</div>
+        </div>
+        <div class="cd-buy-price">${c.oldPrice?`<small>AED ${c.oldPrice}</small>`:''}AED ${c.price.toLocaleString()}</div>
+        <div class="cd-buy-note">One-time payment · Lifetime access</div>
+        <button class="btn btn-primary btn-lg" id="cd-enroll">Enroll now</button>
+        <button class="btn btn-ghost" id="cd-preview">Preview a lesson</button>
+        <ul class="cd-buy-list">
+          <li>${CHECK_SVG} ${lessons} self-paced lessons</li>
+          <li>${CHECK_SVG} A private AI tutor inside every lesson</li>
+          <li>${CHECK_SVG} Practical exercises &amp; downloadable artifacts</li>
+          <li>${CHECK_SVG} Certificate on completion</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cd-section">
+      <h2>What you'll be able to do</h2>
+      <div class="cd-outcomes">
+        ${c.outcomes.map(o=>`<div class="cd-outcome">${CHECK_SVG}<span>${o}</span></div>`).join('')}
+      </div>
+    </div>
+
+    <div class="cd-section">
+      <h2>Who it's for</h2>
+      <div class="cd-forwhom">${c.forWhom}</div>
+    </div>
+
+    <div class="cd-section">
+      <h2>Curriculum</h2>
+      ${c.modules.map((m,mi)=>`
+        <div class="cd-module ${mi===0?'open':''}">
+          <div class="cd-module-head">
+            <div class="cd-module-num">${mi+1}</div>
+            <h4>${m.title}</h4>
+            <span class="cd-module-meta">${m.lessons.length} lessons · ${m.mins} min</span>
+            ${CHEV_SVG}
+          </div>
+          <div class="cd-module-body">
+            ${m.lessons.map(l=>`
+              <div class="cd-lesson-row ${l.lessonId?'playable':''}" ${l.lessonId?`data-lesson="${l.lessonId}"`:''}>
+                <div class="cd-lesson-ic">
+                  ${l.lessonId
+                    ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
+                    : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'}
+                </div>
+                <span class="cd-lesson-title">${l.title}</span>
+                ${l.free?'<span class="cd-free">Free</span>':''}
+                <span class="cd-lesson-mins">${l.mins} min</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="cd-section">
+      <h2>Your instructor</h2>
+      <div class="cd-instructor">
+        <img class="cd-instructor-img" src="${NESREEN.img}" alt="${NESREEN.name}" onerror="this.style.display='none'"/>
+        <div>
+          <h4>${NESREEN.name}</h4>
+          <div class="cd-inst-role">${NESREEN.role}</div>
+          <p>${NESREEN.bio}</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Wire detail interactions
+  wrap.querySelector('#cd-back').addEventListener('click', ()=>switchView('academy'));
+  wrap.querySelector('#cd-enroll').addEventListener('click', ()=>showToast('Enrolled — opening your first lesson'));
+  wrap.querySelector('#cd-enroll').addEventListener('click', ()=>{ setTimeout(()=>openLesson(c.id), 400); });
+  wrap.querySelector('#cd-preview').addEventListener('click', ()=>openLesson(c.id));
+  wrap.querySelectorAll('.cd-module-head').forEach(h=>{
+    h.addEventListener('click', ()=>h.parentElement.classList.toggle('open'));
+  });
+  wrap.querySelectorAll('.cd-lesson-row.playable').forEach(r=>{
+    r.addEventListener('click', ()=>openLesson(c.id, r.dataset.lesson));
+  });
+
+  wrap.scrollTo(0,0);
+  switchView('course');
+}
+
+/* ---- Lesson Player ---- */
+function openLesson(courseId, lessonId){
+  const wrap = document.getElementById('lp-wrap');
+  // Only the AI-HR lesson 1 has authored content; everything else previews it.
+  const hasContent = (courseId === sampleLesson.courseId) && (!lessonId || lessonId === sampleLesson.lessonId);
+  const L = sampleLesson;
+  const courseName = (courses.find(c=>c.id===courseId)||{}).title || L.courseTitle;
+
+  const banner = hasContent ? '' : `<div class="lp-role" style="border-color:var(--gold);background:var(--gold-bg)"><div class="lp-leverage" style="margin:0">This is a live preview of our most-developed lesson, from <strong>${L.courseTitle}</strong>. It shows exactly how every lesson in <strong>${courseName}</strong> will feel — full written content, key takeaways, a practical exercise, and Estrella, your AI tutor, live in the right-hand panel.</div></div>`;
+
+  wrap.innerHTML = `
+    <div class="lp-progress" id="lp-progress"></div>
+    <div class="lp-main" id="lp-main">
+      <div class="lp-stickybar" id="lp-stickybar">
+        <button class="lp-back" id="lp-back-sticky" style="margin:0">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
+        <span class="lp-sb-title">${L.title}</span>
+        <span class="lp-sb-prog" id="lp-sb-prog">0%</span>
+      </div>
+      <div class="lp-inner">
+        <button class="lp-back" id="lp-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to course
+        </button>
+        <div class="lp-breadcrumb">${L.moduleTitle}</div>
+        <h1 class="lp-title">${L.title}</h1>
+        <div class="lp-lessonmeta">Lesson ${L.lessonNo} of ${L.lessonTotal} · ${L.mins} min · ${L.courseTitle}</div>
+        ${banner}
+        <div class="lp-section"><p>${L.intro}</p></div>
+        ${L.body.map(b=>`<div class="lp-section"><h3>${b.h}</h3><p>${b.p}</p></div>`).join('')}
+        ${L.roles.map(r=>`
+          <div class="lp-role">
+            <h4><span>${r.n}</span>${r.title}</h4>
+            <div class="lp-leverage"><strong>Leverage —</strong> ${r.leverage}</div>
+            <div class="lp-risk">Risk — ${r.risk}</div>
+          </div>
+        `).join('')}
+        <div class="lp-takeaways">
+          <h3>Key takeaways</h3>
+          <ul>${L.takeaways.map(t=>`<li>${CHECK_SVG}<span>${t}</span></li>`).join('')}</ul>
+        </div>
+        <div class="lp-exercise">
+          <div class="lp-ex-label">${CHECK_SVG} Practice</div>
+          <h3>${L.exercise.title}</h3>
+          <p>${L.exercise.prompt}</p>
+          <textarea placeholder="Write your answer here — Estrella can react to it if you ask."></textarea>
+        </div>
+        <div class="lp-footer">
+          <button class="btn btn-ghost" id="lp-back2">← Back to course</button>
+          <button class="btn btn-primary" id="lp-complete">Mark complete →</button>
+        </div>
+      </div>
+    </div>
+    <aside class="lp-tutor">
+      <div class="lp-tutor-head">
+        <div class="tm-label">Estrella · Live in lesson</div>
+        <div class="lp-tutor-greet">
+          <div class="lp-estrella-orb"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg></div>
+          <p>${L.tutorGreeting}</p>
+        </div>
+      </div>
+      <div class="lp-msgs" id="lp-msgs"></div>
+      <div class="lp-chips" id="lp-chips">
+        ${L.tutorChips.map(q=>`<button class="lp-chip">${q}</button>`).join('')}
+      </div>
+      <div class="lp-tutor-input">
+        <input type="text" id="lp-tutor-field" placeholder="Ask about this lesson..." autocomplete="off"/>
+        <button class="lp-tutor-send" id="lp-tutor-send" aria-label="Send">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </aside>
+  `;
+
+  const back = ()=>openCourse(courseId);
+  wrap.querySelector('#lp-back').addEventListener('click', back);
+  wrap.querySelector('#lp-back-sticky').addEventListener('click', back);
+  wrap.querySelector('#lp-back2').addEventListener('click', back);
+  wrap.querySelector('#lp-complete').addEventListener('click', ()=>{ showToast('Lesson complete — nice work'); setTimeout(back, 500); });
+
+  // Scroll progress + sticky title bar
+  const main = wrap.querySelector('#lp-main');
+  const bar = wrap.querySelector('#lp-progress');
+  const sticky = wrap.querySelector('#lp-stickybar');
+  const sbProg = wrap.querySelector('#lp-sb-prog');
+  const titleEl = wrap.querySelector('.lp-title');
+  main.addEventListener('scroll', ()=>{
+    const max = main.scrollHeight - main.clientHeight;
+    const pct = max > 0 ? Math.min(100, Math.round(main.scrollTop / max * 100)) : 0;
+    bar.style.width = pct + '%';
+    if(sbProg) sbProg.textContent = pct + '%';
+    const past = main.scrollTop > (titleEl.offsetTop + titleEl.offsetHeight);
+    sticky.classList.toggle('visible', past);
+  }, {passive:true});
+
+  // Tutor wiring
+  const msgs = wrap.querySelector('#lp-msgs');
+  const field = wrap.querySelector('#lp-tutor-field');
+  const addMsg = (text, who)=>{
+    const d = document.createElement('div');
+    d.className = 'lp-msg ' + who;
+    d.innerHTML = text;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+  };
+  const tutorAnswer = (q)=>{
+    const reply = L.tutorReplies[q] || L.tutorDefault;
+    const typing = document.createElement('div');
+    typing.className = 'lp-typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    msgs.appendChild(typing);
+    msgs.scrollTop = msgs.scrollHeight;
+    setTimeout(()=>{ typing.remove(); addMsg(reply, 'ai'); }, 900);
+  };
+  const ask = (q)=>{
+    if(!q) return;
+    addMsg(q, 'user');
+    field.value = '';
+    tutorAnswer(q);
+  };
+  wrap.querySelector('#lp-chips').addEventListener('click', (e)=>{
+    const chip = e.target.closest('.lp-chip');
+    if(chip) ask(chip.textContent.trim());
+  });
+  wrap.querySelector('#lp-tutor-send').addEventListener('click', ()=>ask(field.value.trim()));
+  field.addEventListener('keypress', (e)=>{ if(e.key==='Enter') ask(field.value.trim()); });
+
+  wrap.querySelector('.lp-main').scrollTo(0,0);
+  switchView('lesson');
+}
+
+// Make "Resume Lesson" / featured CTAs in Academy open the real lesson
+document.querySelectorAll('.acad-featured-cta .btn, .acad-tutor-banner .tm-input').forEach(()=>{});
+
+// Initial catalog render
+renderCourses('all');
 
 </script>
 </body>
