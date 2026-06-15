@@ -89,6 +89,14 @@ body{
 .view.active{opacity:1;pointer-events:auto;transform:translateY(0)}
 .view.outgoing{opacity:0;transform:translateY(-20px)}
 
+/* GSAP owns view + hero motion when motion is allowed */
+.gsap-motion .view{transition:none}
+.gsap-motion #view-landing.active .hero-content > *,
+.gsap-motion #view-landing.active .hero-visual,
+.gsap-motion #view-landing.active .hero-dot{
+  opacity:0;visibility:hidden;
+}
+
 /* TOP NAV */
 .topnav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -2473,10 +2481,10 @@ body{
   --p6: 4.5rem;
   --p-rule: rgba(20,18,14,0.08);
 
-  max-width:1080px;
+  max-width:1300px;
   margin:0 auto;
   /* top padding clears the fixed 96px topnav + breathing room */
-  padding:calc(96px + var(--p4)) 2rem var(--p5);
+  padding:calc(96px + var(--p4)) clamp(2rem,5vw,5rem) var(--p4);
   text-align:left;
   min-height:100%;
 }
@@ -2484,15 +2492,15 @@ body{
 /* ---------- HERO (2-col) ---------- */
 .practice-hero{
   display:grid;
-  grid-template-columns:300px 1fr;
+  grid-template-columns:340px 1fr;
   gap:var(--p5);
   align-items:center;
-  margin-bottom:var(--p5);
+  margin-bottom:var(--p3);
 }
 .practice-portrait{
   position:relative;
   width:100%;
-  aspect-ratio:4/5;
+  aspect-ratio:1/1;
   border-radius:24px;
   overflow:hidden;
   background:var(--bg-soft);
@@ -2512,7 +2520,7 @@ body{
   object-position:center top;
 }
 .practice-hero-text{
-  display:flex;flex-direction:column;gap:var(--p3);
+  display:flex;flex-direction:column;gap:var(--p2);
 }
 .practice-eyebrow{
   font-size:0.6875rem;font-weight:500;
@@ -2534,7 +2542,7 @@ body{
 }
 .practice-lede{
   font-size:1rem;line-height:1.65;color:var(--text);
-  margin:0;max-width:42ch;
+  margin:0;max-width:58ch;
 }
 
 /* STAT STRIP — inline, hairline-separated */
@@ -2560,7 +2568,7 @@ body{
 /* ---------- SECTION HEADING ---------- */
 .practice-section-heading{
   text-align:center;
-  margin-bottom:var(--p4);
+  margin-bottom:var(--p3);
 }
 .practice-section-heading .practice-eyebrow{
   display:block;margin:0 0 0.625rem;text-align:center;
@@ -2582,7 +2590,7 @@ body{
   display:grid;
   grid-template-columns:repeat(3, 1fr);
   gap:var(--p3);
-  margin-bottom:var(--p5);
+  margin-bottom:var(--p3);
 }
 .practice-tile{
   position:relative;
@@ -2605,7 +2613,7 @@ body{
 .practice-tile-hero{
   position:relative;
   width:100%;
-  aspect-ratio:1/1;
+  height:108px;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
   border-bottom:1px solid var(--p-rule);
@@ -2641,8 +2649,8 @@ body{
 /* BODY area */
 .practice-tile-body-wrap{
   display:flex;flex-direction:column;
-  gap:0.5rem;
-  padding:var(--p3) var(--p3) var(--p4);
+  gap:0.4rem;
+  padding:var(--p3);
 }
 .practice-tile-name{
   font-family:'Cormorant Garamond',serif;
@@ -2675,7 +2683,7 @@ body{
   border-radius:20px;
   background:var(--surface);
   border:1px solid var(--p-rule);
-  margin-bottom:var(--p5);
+  margin-bottom:var(--p3);
 }
 .practice-prep-orb{
   width:48px;height:48px;flex-shrink:0;
@@ -3340,7 +3348,7 @@ body{
       <!-- HERO — 2-col compact -->
       <header class="practice-hero">
         <div class="practice-portrait">
-          <img src="nesreen-hero.jpg" alt="Nesreen Abdelhakim, founder of Estrella" onerror="this.style.display='none'"/>
+          <img src="nesreen-coaching.jpg" alt="Nesreen Abdelhakim, founder of Estrella" onerror="this.style.display='none'"/>
         </div>
         <div class="practice-hero-text">
           <div class="practice-eyebrow">The Practice</div>
@@ -4465,6 +4473,15 @@ body{
 </nav>
 
 <script>
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.documentElement.classList.add("gsap-motion");
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="gsap-estrella.js"></script>
+
+<script>
 /* ============================== DATA ============================== */
 /* Editorial line-art icons — each a small story for the track */
 const ICON_SVG = {
@@ -4519,62 +4536,76 @@ const monthNames = ['January','February','March','April','May','June','July','Au
 const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 /* ============================== VIEW SWITCHING ============================== */
+function afterViewSwitch(viewId, current){
+  current.classList.remove('outgoing');
+  const next = document.getElementById('view-' + viewId);
+  next.classList.add('active');
+  next.scrollTo(0,0);
+
+  // Toggle bottom nav for portal pages
+  const portalViews = ['dashboard','library','academy','twin','course'];
+  const bottomnav = document.getElementById('bottomnav');
+  if(portalViews.includes(viewId)){
+    bottomnav.classList.add('visible');
+    // Course detail lives under the Academy tab
+    const navView = viewId === 'course' ? 'academy' : viewId;
+    document.querySelectorAll('.bn-item').forEach(b => {
+      b.classList.toggle('active', b.dataset.view === navView);
+    });
+  } else {
+    bottomnav.classList.remove('visible');
+  }
+
+  // Update top nav active tab
+  const topLinks = document.querySelectorAll('#topnav-links a');
+  topLinks.forEach(a => {
+    const linkView = a.dataset.view;
+    // Map booking flow back to "Coaching" tab
+    const isBookingFlow = ['services','start','calendar','checkout','onboarding','readiness'].includes(viewId);
+    const isPortal = portalViews.includes(viewId);
+    if(linkView === viewId){
+      a.classList.add('active');
+    } else if(isBookingFlow && linkView === 'services'){
+      a.classList.add('active');
+    } else {
+      a.classList.remove('active');
+    }
+    // Hide top nav on portal views (bottom nav takes over)
+    if(isPortal){a.classList.remove('active')}
+  });
+
+  // Hide topnav for some views
+  const hideNav = ['onboarding','readiness','start','lesson'];
+  document.getElementById('topnav').classList.toggle('hidden', hideNav.includes(viewId));
+
+  // Reset /start when entered (clean slate each visit)
+  if(viewId === 'start' && typeof startReset === 'function') startReset();
+
+  // Trigger view-specific init
+  if(viewId === 'readiness') animateRings();
+  if(viewId === 'dashboard') {/* maybe animate dash */}
+
+  if(window.EstrellaGsap){
+    window.EstrellaGsap.staggerViewContent(viewId);
+    if(viewId === 'landing') window.EstrellaGsap.replayHero();
+  }
+}
+
 function switchView(viewId){
   const current = document.querySelector('.view.active');
   const next = document.getElementById('view-' + viewId);
   if(!next || current === next) return;
 
+  if(window.EstrellaGsap){
+    current.classList.remove('active');
+    window.EstrellaGsap.switchView(current, next, () => afterViewSwitch(viewId, current));
+    return;
+  }
+
   current.classList.add('outgoing');
   current.classList.remove('active');
 
-  setTimeout(()=>{
-    current.classList.remove('outgoing');
-    next.classList.add('active');
-    next.scrollTo(0,0);
-
-    // Toggle bottom nav for portal pages
-    const portalViews = ['dashboard','library','academy','twin','course'];
-    const bottomnav = document.getElementById('bottomnav');
-    if(portalViews.includes(viewId)){
-      bottomnav.classList.add('visible');
-      // Course detail lives under the Academy tab
-      const navView = viewId === 'course' ? 'academy' : viewId;
-      document.querySelectorAll('.bn-item').forEach(b => {
-        b.classList.toggle('active', b.dataset.view === navView);
-      });
-    } else {
-      bottomnav.classList.remove('visible');
-    }
-
-    // Update top nav active tab
-    const topLinks = document.querySelectorAll('#topnav-links a');
-    topLinks.forEach(a => {
-      const linkView = a.dataset.view;
-      // Map booking flow back to "Coaching" tab
-      const isBookingFlow = ['services','start','calendar','checkout','onboarding','readiness'].includes(viewId);
-      const isPortal = portalViews.includes(viewId);
-      if(linkView === viewId){
-        a.classList.add('active');
-      } else if(isBookingFlow && linkView === 'services'){
-        a.classList.add('active');
-      } else {
-        a.classList.remove('active');
-      }
-      // Hide top nav on portal views (bottom nav takes over)
-      if(isPortal){a.classList.remove('active')}
-    });
-
-    // Hide topnav for some views
-    const hideNav = ['onboarding','readiness','start','lesson'];
-    document.getElementById('topnav').classList.toggle('hidden', hideNav.includes(viewId));
-
-    // Reset /start when entered (clean slate each visit)
-    if(viewId === 'start' && typeof startReset === 'function') startReset();
-
-    // Trigger view-specific init
-    if(viewId === 'readiness') animateRings();
-    if(viewId === 'dashboard') {/* maybe animate dash */}
-  }, 350);
+  setTimeout(() => afterViewSwitch(viewId, current), 350);
 }
 
 // Wire up all data-view buttons
