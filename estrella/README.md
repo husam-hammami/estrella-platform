@@ -13,6 +13,7 @@ This repository contains the interactive frontend prototype, the full UI/UX mast
 ```
 estrella/
 ├── index.html                  # The interactive prototype (open in any browser)
+├── Estrella_Platform_Plan.md   # Master plan — orchestration, gates, audits (canonical)
 ├── nesreen-hero.jpg            # Brand portrait (Home + Dashboard)
 ├── nesreen-graduation.jpg      # MBA credential photo (About)
 ├── Assets/                     # All track icons, book covers, course banners, client headshots, logo
