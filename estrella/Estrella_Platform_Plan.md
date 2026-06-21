@@ -897,8 +897,37 @@ flowchart LR
 | **Recreate from PDF**            | Never as primary  | Loses interactivity; PDF layout ≠ web UX                  |
 | **New unified HTML template**    | Optional Phase 6b | Extract shared CSS/JS; each book keeps its palette tokens |
 
+### Books — locked decision: unify engineering, preserve sub-brands
 
-### Courses — full audit (all 8 + your workshop prompts)
+**Do not make all four editions look or behave like the Interview Playbook.** Unify the **platform reader layer**; preserve each title’s **product shape, palette, and signature interactions**.
+
+| Unify (shared) | Preserve per book (do not flatten) |
+|----------------|-------------------------------------|
+| `PAGE_ORDER` + `go()` navigation | Playbook: confession cards, STAR blocks, ch15 question bank, 30-day plan |
+| Migrate Playbook **off** `showPage()` onto shared nav (it is the outlier today) | Quiet Power: purple palette, Q.U.I.E.T. accordion, scored assessment |
+| Estrella cream **outer chrome** only (back to Library, title, progress %) | Career Compass: part dividers, toolkit tables, 1–10 scales, 15-ch arc |
+| `reader-nav.js`, `reader-storage.js`, keyboard ←/→, reduced motion | Reset Journal: **journal mode** — textareas, daily flow, wheels; not chapter-reader UX |
+| External PNG covers; fixed author byline | Four distinct sub-brand palettes + typography inside the reader |
+| PDF backfill into existing `page-body` blocks | Emoji policy: reduce chrome emojis on QP/CC/IP; Reset may keep warmer body prompts |
+
+**Product types (agents must respect):**
+
+| Type | Titles | Shell | Content work |
+|------|--------|-------|--------------|
+| **Chapter reader** | Playbook, Quiet Power, Compass | Shared chapter nav + progress | PDF backfill where HTML &lt; PDF coverage |
+| **Workbook / journal** | Reset Journal | Shared shell + **journal mode** (save, export) | Merge PDF instructional copy above fields; Days 22–90 **or** honest reposition |
+
+**Gold-standard inputs for shared components (not a single clone target):**
+
+- **Playbook** — completeness (~101% PDF), assignments, tactical patterns  
+- **Quiet Power** — best interactive model (Q.U.I.E.T.)  
+- **Compass** — best long-form structure (parts + tools)  
+
+Extract a **component kit** from all three chapter books; **Reset stays on its own journal track**.
+
+**Agent rule (B1–B4):** Refactor one HTML file each. Never restyle another book’s palette or replace Reset textareas with Playbook chapter layouts.
+
+---
 
 **What was checked:** All 8 courses in `[estrella/index.html](C:/Users/husam/OneDrive/Documents/Estrella_Final/estrella/index.html)` `courses[]` (~~5290–5572) and `sampleLesson` (~~5574–5615), Academy UI (`#view-academy`, `#view-course`, `#view-lesson`), `openLesson()` behavior (~5783), and a repo-wide search for course files. **Result: zero standalone course documents on disk** — no PDFs, HTML, or markdown curricula besides the JS catalog. Your Personal Branding / AI in HR prompts exist **only in chat**, not in the repo.
 
@@ -1318,3 +1347,221 @@ After Coaching + Books pipeline:
 ## Recommended first implementation slice
 
 **Do not start with Phase 2.** Ship **Gate G0 (Truth Sprint)** first — honest `openLesson`, library wire, metric audit — then **Wave 1** (Practice proof, funnel, DESIGN.md) per **Agent orchestration plan**. Full Session Brief GSAP opera and Phase 3 motion come **after G2**, via Agent G last.
+
+---
+
+## Funnel UX specification (design review — Pass 1 & 2)
+
+*Added from `/plan-design-review` + brainstorming. Scope: **conversion funnel only** (Practice → Diagnostic → Calendar → Checkout). Classifier: **HYBRID** — marketing editorial shell + focused app-like diagnostic/booking steps.*
+
+### Design system anchor (keep — do not replace)
+
+| Token | Value | Use |
+|-------|-------|-----|
+| Background | `#F2EBDC` | All funnel surfaces |
+| Ink / text | `#14120E` / `#3D3933` | Headlines / body |
+| Gold | `#B8985C` | Primary CTA, accents |
+| Lavender | `#B8A8E0` | Estrella / AI moments only |
+| Display | Cormorant Garamond (italic emphasis) | Headlines, quotes |
+| UI | Inter 400–600 | Labels, meta, buttons |
+| Radius | 18px (`--radius`) | Cards, inputs |
+
+**Reject:** ui-ux-pro-max "Liquid Glass" suggestion, Playfair swap, purple-on-white SaaS defaults, dashboard KPI tiles on Practice.
+
+### Screen hierarchy (what user sees 1 → 2 → 3)
+
+**Home `#view-landing`**
+1. Nesreen portrait + one-line brand promise  
+2. Dual CTA: **Start with Estrella** (primary) · **Meet Nesreen** (secondary)  
+3. Quiet trust strip — **no unverified logos or stats**
+
+**Practice `#view-services` — Session Brief concept**
+1. Manifesto hero — portrait left, **Nesreen first-person** manifesto (locked): standards, who this is for, what the room feels like — **one** primary CTA: *Start with Estrella*  
+2. **Redacted sample brief** (locked) — cream document panel: real-looking Session Brief (name, moment, strengths, pattern) with 1–2 lines softly blurred/obscured. Caption in Nesreen's register: *what she reads before you meet* — not a product tour. No stat row until verified proof exists.  
+3. Three engagements — Single / Program / Partnership as **editorial rows**, not equal card grid  
+4. Estrella ritual strip — "10 minutes · no signup · voice or text"  
+5. Testimonials — 2–3 portrait + quote (Layla, Karim, Sofia)  
+6. Founder note — pull-quote + signature  
+7. Footer — Sign in · **Book directly** (soft nudge sheet — locked) · Teams  
+
+**Diagnostic `#view-start`**
+1. Conversation stage — one question, one input bar (**text-first**; mic optional secondary — locked)  
+2. Profile reveal — Session Brief card (moment, strengths, pattern, goal)  
+3. Recommendation — engagement + price **or** separate beat (see open decision below)  
+4. Primary CTA — Book your first session · tertiary: single session · send profile · come back later  
+
+**Calendar `#view-calendar`**
+1. Context strip — "Booking for [name] · [engagement label from brief]"  
+2. Month grid — available slots only; no fake availability  
+3. Sticky footer — selected date/time + Continue  
+
+**Checkout `#view-checkout`**
+1. Order summary — engagement, date, **what Nesreen receives** (Brief link)  
+2. Payment — card / Apple Pay / Google Pay (simulated OK in prototype)  
+3. Post-pay — **go to Dashboard or session confirm** — **never** legacy onboarding warmth  
+
+### Funnel navigation (trunk test)
+
+| Question | Answer on every funnel step |
+|----------|----------------------------|
+| What site? | Estrella wordmark top-left |
+| Where am I? | Step label: Practice · Estrella · Calendar · Checkout |
+| What's next? | One primary button, visually dominant |
+| Escape? | Back preserves state; Book directly always reachable from Practice footer |
+
+Active nav tab: **Coaching** stays highlighted through Calendar/Checkout (existing `afterViewSwitch` behavior — keep).
+
+### Interaction state table (funnel)
+
+| Feature | Loading | Empty | Error | Success | Partial |
+|---------|---------|-------|-------|---------|---------|
+| Practice hero image | Skeleton portrait frame | Initials on cream if image fails | — | Portrait loaded | — |
+| Practice stats | — | **Hide row** until verified | — | Quiet proof line (sourced only) | — |
+| Brief preview | Stagger lines (reduced-motion: instant) | — | — | All lines visible | — |
+| Diagnostic Q flow | Typing indicator 400ms max | — | Mic denied → text-only hint (no modal shame) | Next question | Resume mid-flow ("Welcome back…") |
+| Profile synthesis | "Estrella is writing your brief…" 1–2s | Thin answers → honest 1–2 strengths max | LLM fail → heuristic fallback | Brief card populated | Edit not offered (v1) |
+| Calendar slots | Skeleton grid | "No slots this week — notify me" | Fetch fail + retry | Slot selected | — |
+| Checkout pay | Button disabled + spinner | — | Decline message + retry | Confirm → dashboard | Brief missing if bypassed — show honest note on summary |
+
+### Book directly (soft nudge — locked)
+
+Footer link opens a **small cream sheet** (not modal dark pattern):
+
+- Copy: *Ten minutes with Estrella helps Nesreen walk in prepared. Most clients start there — but the door is open.*
+- Primary: **Start with Estrella** → `#view-start`  
+- Secondary: **Book now** → `#view-calendar` with engagement picker if none selected; checkout summary states *No Session Brief yet — Nesreen will use your booking notes.*
+
+Remove legacy `services.find(s => s.id === 'career')` jump.
+
+### User journey (funnel emotional arc)
+| Send profile email | Button loading | — | Toast + retry | "Sent — check your inbox" | — |
+
+### AI slop denylist (funnel — remove or never add)
+
+- Activity rings, pulsing orb halos, fake radar on Dashboard entry from funnel  
+- 3-column equal SaaS feature grid on Practice  
+- Unverified **800+ / 98%** stats (hide or source with footnote)  
+- Post-payment *"I'm so glad you're here"* onboarding  
+- Seven-track taxonomy anywhere in live DOM  
+- Emoji as structural icons — SVG 1.2px stroke only  
+
+### Responsive (funnel)
+
+| Breakpoint | Practice | Diagnostic | Calendar/Checkout |
+|------------|----------|------------|-------------------|
+| 375px | Portrait stacks above headline; engagements = vertical editorial list; CTA full-width 48px min height | Input bar fixed bottom; brief card scrolls above | Single column; sticky footer CTA |
+| 768px | 2-col hero; engagements still vertical (not 3-col grid) | Same | 2-col summary + form |
+| 1024px+ | Asymmetric hero max-width ~1200px; brief preview beside or below hero per mockup | Brief card max-width 640px centered | Checkout max-width 960px |
+
+### Motion (funnel only — Agent G after G1)
+
+- Hero entrance 150–400ms `power3.out`, max 2 animated elements per viewport  
+- Brief panel: stagger 40ms per line; **no** pin/scrub until testimonials exist  
+- Diagnostic: question fade 200ms; profile reveal 300ms  
+- `prefers-reduced-motion`: all final states instant  
+
+### User journey (funnel emotional arc)
+
+| Step | User does | User feels | Design supports |
+|------|-----------|------------|-----------------|
+| 1 | Lands Home | Curious, not sold yet | Portrait + dual path (Estrella / Meet Nesreen) |
+| 2 | Opens Practice | "This is a real coach" | First-person manifesto, redacted brief sample |
+| 3 | Starts Estrella | Private, unhurried | Text-first, no progress bar, warm pauses |
+| 4 | Reads own Brief | Seen, slightly exposed | Their words quoted, not paraphrased |
+| 5 | Reads prescription | "That fits" | Vertical sequence; Nesreen's voice, not price grid |
+| 6 | Books + pays | Committed, calm | Checkout confirms what Nesreen receives; no fake onboarding warmth |
+| 7 | Dashboard | Oriented | Next session hero — not activity rings |
+
+**5-second test (Practice):** Nesreen's face + first-person line + one gold CTA.  
+**5-minute test (Diagnostic):** One question at a time, no quiz chrome.  
+**Reflective test:** Would someone describe this as "premium consultation" not "coaching app"?
+
+---
+
+**One continuous scene.** After Q7, the input bar fades. The visitor reads downward like a letter — not through checkout steps.
+
+1. **Synthesis line** (≤25 words) — *"Thank you. I heard more than you might think. Let me show you what I'm bringing to Nesreen."*  
+2. **Session Brief card** — the art object: their words in gold/lavender quote rails, strengths as weighted vertical list (not chips), initial-letter avatar on gold. Visitor must recognize themselves **before** any offer appears.  
+3. **Nesreen's prescription** — below the brief, never beside it. Framed as **tailored recommendation in Nesreen's voice**, not a pricing table. Program first (opinionated); single session as dignified secondary — *"Of course. Let's start with one session and see how it lands."*  
+4. **Invitation** — Book your first session (primary). Send profile · Come back later (warm deferrals, not abandonment).
+
+**Not:** separate `/start/recommendation` route for v1, side-by-side brief+price, progress bar, or e-commerce comparison thinking.
+
+**Prices:** Shown only here — never on Home hero, never on Practice landing. Earned, not hidden.
+
+### Open design decisions (funnel — all locked this review)
+
+1. ~~Practice brief preview~~ → **Redacted sample brief**  
+2. ~~Practice hero voice~~ → **Nesreen first-person manifesto**  
+3. ~~Diagnostic input~~ → **Text-first, mic optional**  
+4. ~~Book directly~~ → **Soft nudge sheet**  
+5. ~~Diagnostic close~~ → **One vertical scene: Brief → prescription → invitation** (`Estrella_Diagnostic_UX.md` §7.4)
+
+### Visual north star (locked — implementation reference)
+
+**Priority order for UI/UX work:** see the shell first, then the hero artifact, then secondary surfaces.
+
+| Priority | Screen | File | Direction |
+|----------|--------|------|-----------|
+| **1** | Home + global top nav | `estrella/docs/design-mockups/home-linkedin-nav-target.png` | Cream editorial shell on every page; **Continue with LinkedIn** in top bar (not buried in diagnostic); portrait-led hero; Session Brief teased as the product |
+| **2** | Diagnostic close | `estrella/docs/design-mockups/diagnostic-brief-target.png` | Session Brief as **designed document** — quotes, prescription in Cormorant, gold Book CTA |
+| **3** | Practice / Coaching | `estrella/docs/design-mockups/practice-target.png` | Portrait + Nesreen first-person manifesto; **redacted brief sample** (not three product tiles); editorial engagement rows |
+| 4 | Signed-in dashboard | (G1 mockup) | Avatar from LinkedIn, next session — no activity rings or fake KPI tiles |
+| 5 | Academy / Library | (G0 pass) | Secondary; same nav shell |
+
+**Build Home + top nav to match `home-linkedin-nav-target.png` first.** Then Brief close, then Practice. Do not treat Practice mockup as the whole platform north star.
+
+### LinkedIn sign-in (global — user request)
+
+**Where:** Top nav on **Home and every page** — alongside or replacing generic "Sign In". Visible from first visit, not optional enrichment inside diagnostic Q1 only.
+
+**Visual treatment:** Small LinkedIn icon + *Continue with LinkedIn* in cream/gold outline button — **not** a LinkedIn-blue OAuth wall. After sign-in: headshot in nav; profile data feeds Brief and dashboard quietly.
+
+**What changes after login (Session Brief + nav):**
+
+| Element | Signed out | Signed in |
+|---------|------------|-----------|
+| Top nav | Continue with LinkedIn + Book Session | Avatar + name truncate + Book Session |
+| Brief avatar | Gold circle + initial | LinkedIn headshot, same gold ring |
+| Brief header | From Q1 text | Name + headline (one editable line) |
+| Brief body | Conversation quotes | Same + optional collapsed experience strip (last 2 roles) |
+
+**What we do NOT show:** full CV dump, connection count, endorsements, LinkedIn feed widgets, diagnostic-only "Use LinkedIn" as the only entry point.
+
+**Prototype phase:** mock OAuth + static JSON (`linkedinProfileMock`); real OAuth after G1 if validated.
+
+**Trust copy (footer or sign-in sheet):** *"Only what helps Nesreen prepare — never posted anywhere."*
+
+---
+
+- Library / Academy surfaces (G0 truth sprint, separate pass)  
+- Dashboard activity rings and KPI tiles  
+- Full DESIGN.md token file (Agent D at G1 — funnel spec above is interim source of truth)  
+- GSAP Motion Bible (Agent G after G2)  
+- Book reader sub-brand interiors  
+- Dark `UIUX_Master_Plan.html` aesthetic  
+
+### What already exists (reuse)
+
+- Cream tokens in `estrella/index.html` `:root`  
+- `#view-start` Session Brief card structure and quote rails  
+- `coaching_UX.md` + `Estrella_Diagnostic_UX.md` strategy  
+- Portrait assets + testimonial names in prototype  
+- `afterViewSwitch` Coaching nav highlight through calendar/checkout  
+
+---
+
+## GSTACK REVIEW REPORT
+
+| Review | Trigger | Why | Runs | Status | Findings |
+|--------|---------|-----|------|--------|----------|
+| CEO Review | `/plan-ceo-review` | Scope & strategy | 0 | — | — |
+| Codex Review | `/codex review` | Independent 2nd opinion | 0 | — | — |
+| Eng Review | `/plan-eng-review` | Architecture & tests (required) | 0 | — | — |
+| Design Review | `/plan-design-review` | UI/UX gaps | 1 | issues_open | score: 5/10 → 8/10, 5 funnel decisions locked in plan |
+| DX Review | `/plan-devex-review` | Developer experience gaps | 0 | — | — |
+
+**UNRESOLVED:** 0 funnel decisions (all locked); DESIGN.md still deferred to G1  
+**VERDICT:** Design Review (FULL) complete for funnel scope — eng review required before ship
+
+---

@@ -53,6 +53,7 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --nav-h: 72px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
@@ -100,29 +101,37 @@ body{
 /* TOP NAV */
 .topnav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 2.5rem;
+  display:grid;
+  grid-template-columns:minmax(9rem, auto) 1fr auto;
+  align-items:center;
+  gap:1rem 1.5rem;
+  padding:0.75rem clamp(1.25rem, 3vw, 2.5rem);
   background:#F2EBDC;
   border-bottom:1px solid var(--line);
   transition:all 0.3s var(--ease);
-  min-height:96px;
-  overflow:visible;
+  min-height:var(--nav-h);
 }
 .topnav.hidden{transform:translateY(-100%)}
 .brand{
   display:flex;align-items:center;
   cursor:pointer;line-height:1;
+  min-width:0;
 }
-.logo-wrap{
-  position:relative;display:inline-flex;align-items:center;
+.brand-wordmark{
+  display:flex;flex-direction:column;gap:0.125rem;
+  font-family:'Cormorant Garamond',serif;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold-deep);
 }
-.brand-logo-img{
-  height:200px;width:auto;display:block;
-  flex-shrink:0;
-  margin:-52px 0;
-  filter:drop-shadow(0 1px 2px rgba(20,18,14,0.05));
+.brand-wordmark-main{
+  font-size:1.0625rem;font-weight:500;line-height:1;
 }
-.brand.compact .brand-logo-img{height:128px;margin:-32px 0}
+.brand-wordmark-sub{
+  font-size:0.5625rem;font-weight:500;letter-spacing:0.28em;
+  color:var(--gold);opacity:0.92;
+}
+.logo-wrap{display:none}
+.brand-logo-img{display:none}
 
 /* Single rising star — travels from below the E, up through the wordmark, to the static star position */
 .logo-sparkles{
@@ -156,18 +165,53 @@ body{
 .sparkle-md{width:20px;height:20px}
 .sparkle-sm{width:14px;height:14px}
 
-.topnav-links{display:flex;gap:0.25rem;align-items:center;font-size:0.875rem;color:var(--text-dim)}
+.topnav-links{
+  display:flex;gap:0.125rem;align-items:center;justify-content:center;
+  font-size:0.8125rem;color:var(--text-dim);
+  min-width:0;flex-wrap:nowrap;
+}
 .topnav-links a{
   color:var(--text-dim);text-decoration:none;cursor:pointer;
-  padding:0.5rem 1rem;border-radius:99px;
+  padding:0.375rem 0.75rem;border-radius:0;
   transition:all 0.2s var(--ease);
-  font-weight:500;
+  font-weight:500;white-space:nowrap;
 }
 .topnav-links a:hover{color:var(--ink);background:rgba(20,18,14,0.04)}
 .topnav-links a.active{
-  color:var(--ink);background:rgba(20,18,14,0.06);
+  color:var(--ink);background:transparent;
+  box-shadow:inset 0 -2px 0 var(--gold);
+  border-radius:0;
 }
-.topnav-actions{display:flex;gap:0.75rem;align-items:center}
+.topnav-actions{display:flex;gap:0.5rem;align-items:center;flex-shrink:0}
+.topnav-auth-guest.hidden{display:none!important}
+.topnav-auth-signed-in{display:none;gap:0.625rem;align-items:center}
+.topnav-auth-signed-in.visible{display:flex}
+.btn-linkedin{
+  background:var(--surface);color:var(--ink);
+  border:1px solid rgba(151,121,63,0.42);
+  padding:0.5rem 0.75rem;
+  border-radius:2px;
+  font-size:0.75rem;
+}
+.btn-linkedin:hover{background:#fff;border-color:var(--gold-deep)}
+.btn-linkedin svg{width:14px;height:14px;flex-shrink:0}
+.topnav .btn-gold{border-radius:2px;padding:0.5rem 0.875rem;font-size:0.75rem}
+.topnav-user{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:none;border:none;padding:0.375rem 0.5rem;
+  font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;
+  color:var(--ink);cursor:pointer;border-radius:99px;
+}
+.topnav-user:hover{background:rgba(20,18,14,0.04)}
+.topnav-user-avatar{
+  width:28px;height:28px;border-radius:50%;
+  object-fit:cover;border:1.5px solid var(--gold-soft);
+}
+.topnav-user-avatar--initial{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bg);color:var(--gold-deep);
+  font-family:'Cormorant Garamond',serif;font-size:0.875rem;font-weight:600;
+}
 
 /* BUTTONS */
 .btn{
@@ -202,10 +246,10 @@ body{
 .btn-block{width:100%}
 
 /* ============================== LANDING ============================== */
-.landing{padding-top:96px;height:100vh;height:100dvh;overflow:hidden}
+.landing{padding-top:var(--nav-h);height:100vh;height:100dvh;overflow:hidden}
 .view.landing{overflow:hidden}
 .hero{
-  min-height:calc(100vh - 96px);
+  min-height:calc(100vh - var(--nav-h));
   display:grid;grid-template-columns:minmax(0, 1.05fr) minmax(0, 1fr);
   align-items:stretch;
   padding:0;max-width:none;margin:0;
@@ -218,48 +262,28 @@ body{
   display:flex;flex-direction:column;justify-content:center;
   z-index:2;position:relative;
 }
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:0.6rem;
-  font-size:0.72rem;letter-spacing:0.28em;color:var(--gold-deep);
-  text-transform:uppercase;margin-bottom:1.75rem;font-weight:500;
+.hero-divider{
+  display:flex;align-items:center;gap:0.625rem;
+  margin:0 0 1.75rem;
 }
-.hero-eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
+.hero-divider svg{width:14px;height:14px;color:var(--gold-deep);flex-shrink:0}
+.hero-divider-line{flex:1;max-width:120px;height:1px;background:var(--gold-soft)}
 .hero h1{
-  font-size:clamp(3rem, 6vw, 5.75rem);
-  line-height:1.0;
-  font-weight:400;
-  margin-bottom:2rem;
-  letter-spacing:-0.025em;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem, 4.8vw, 4.25rem);
+  line-height:1.08;
+  font-weight:400;font-style:italic;
+  margin-bottom:1.75rem;
+  letter-spacing:-0.02em;
   color:var(--ink);
 }
-.hero h1 em{
-  display:block;
-  font-style:italic;
-  color:var(--gold-deep);
-  font-weight:500;
-  margin-top:0.25rem;
-}
 .hero-sub{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;color:var(--text);
-  font-style:italic;line-height:1.55;
-  max-width:560px;margin-bottom:2.75rem;font-weight:400;
+  font-family:'Inter',sans-serif;
+  font-size:1.0625rem;color:var(--text);
+  line-height:1.65;
+  max-width:520px;margin-bottom:2.25rem;font-weight:400;
 }
 .hero-ctas{display:flex;gap:0.875rem;flex-wrap:wrap;align-items:center}
-.hero-trust{
-  margin-top:3.5rem;padding-top:2rem;
-  border-top:1px solid var(--line);
-  display:flex;gap:2.5rem;align-items:center;
-  max-width:600px;
-}
-.hero-trust-label{
-  font-size:0.65rem;letter-spacing:0.32em;color:var(--text-mute);
-  text-transform:uppercase;font-weight:500;white-space:nowrap;
-}
-.hero-trust-logos{
-  font-family:'Cormorant Garamond',serif;
-  color:var(--text-dim);letter-spacing:0.06em;font-size:1.05rem;
-}
 
 /* Hero visual — full-bleed portrait */
 .hero-visual{
@@ -2465,31 +2489,208 @@ body{
 }
 .about-social svg{width:18px;height:18px}
 
-/* ============================== THE PRACTICE (new /coaching) ============================== */
-/* Apple Health category-landing layout:
-   • compact 2-col hero (rectangular portrait, no awkward circle crop)
-   • three tier tiles in ONE horizontal row (the centerpiece)
-   • single horizontal prep strip with inline CTA
-   • total scroll ≈ 1 viewport on desktop
-*/
-.practice-page{
-  --p1: 0.5rem;
-  --p2: 1rem;
-  --p3: 1.5rem;
-  --p4: 2rem;
-  --p5: 3rem;
-  --p6: 4.5rem;
+/* ============================== THE PRACTICE (coaching — single viewport) ============================== */
+#view-services{
+  overflow:hidden;
+}
+#view-services .practice-page{
   --p-rule: rgba(20,18,14,0.08);
 
-  max-width:1300px;
+  max-width:1280px;
   margin:0 auto;
-  /* top padding clears the fixed 96px topnav + breathing room */
-  padding:calc(96px + var(--p4)) clamp(2rem,5vw,5rem) var(--p4);
+  height:100dvh;
+  max-height:100dvh;
+  overflow:hidden;
+  padding:calc(var(--nav-h) + 0.5rem) clamp(1.25rem, 3vw, 3rem) 0.625rem;
   text-align:left;
-  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
 }
 
-/* ---------- HERO (2-col) ---------- */
+/* Left portrait | Right stack: manifesto → engage → brief bottom */
+.practice-stage{
+  flex:1;
+  min-height:0;
+  display:grid;
+  grid-template-columns:minmax(0, 40%) minmax(0, 1fr);
+  column-gap:clamp(1.5rem, 3.2vw, 3.25rem);
+  align-items:stretch;
+  height:100%;
+}
+
+.practice-coach-portrait{
+  grid-column:1;
+  margin:0;
+  min-height:0;
+  height:100%;
+  align-self:stretch;
+}
+.practice-coach-portrait img{
+  width:100%;
+  height:100%;
+  min-height:calc(100dvh - var(--nav-h) - 1.25rem);
+  display:block;
+  object-fit:cover;
+  object-position:50% 16%;
+  filter:none;
+  mask-image:linear-gradient(to bottom, #000 0%, #000 68%, rgba(0,0,0,0.35) 84%, transparent 97%);
+  -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 68%, rgba(0,0,0,0.35) 84%, transparent 97%);
+}
+
+.practice-col-right{
+  grid-column:2;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  min-height:0;
+  gap:0.5rem;
+  overflow:hidden;
+}
+
+.practice-manifesto-copy{
+  flex:0 0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:0.375rem;
+}
+.practice-manifesto-copy h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.55rem, 2.35vw, 2.35rem);
+  font-weight:400;font-style:italic;
+  line-height:1.04;letter-spacing:-0.02em;
+  color:var(--ink);margin:0;
+}
+.practice-manifesto-copy p{
+  font-size:0.78125rem;line-height:1.48;color:var(--text);
+  margin:0;max-width:46ch;
+}
+
+.practice-engage{
+  flex:0 0 auto;
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  margin-top:0.125rem;
+}
+.practice-engage-head{
+  font-size:0.4375rem;font-weight:600;
+  letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold-deep);
+  margin:0 0 0.35rem;
+  padding-bottom:0.3rem;
+  border-bottom:1px solid var(--p-rule);
+}
+.practice-engage-row{
+  display:grid;
+  grid-template-columns:1.25rem 1fr auto;
+  gap:0.15rem 0.5rem;
+  align-items:start;
+  padding:0.35rem 0;
+  border-bottom:1px solid var(--p-rule);
+}
+.practice-engage-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.875rem;color:var(--gold-deep);line-height:1;
+}
+.practice-engage-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.8125rem;color:var(--ink);margin:0;
+}
+.practice-engage-desc{
+  font-size:0.5625rem;line-height:1.35;color:var(--text-dim);margin:0;
+}
+.practice-engage-meta{
+  text-align:right;font-size:0.4375rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text-mute);line-height:1.25;
+  white-space:nowrap;padding-top:0.05rem;
+}
+.practice-cta-gold{
+  display:inline-flex;align-items:center;justify-content:center;gap:0.35rem;
+  align-self:flex-end;
+  width:100%;max-width:16rem;
+  margin-top:0.375rem;
+  padding:0.5625rem 1rem;
+  background:linear-gradient(135deg, var(--gold-soft), var(--gold-deep));
+  color:#fff;border:none;border-radius:2px;
+  font-family:'Inter',sans-serif;font-size:0.5625rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:0 8px 24px -8px rgba(151,121,63,0.45);
+}
+.practice-cta-gold:hover{transform:translateY(-1px);box-shadow:0 12px 32px -8px rgba(151,121,63,0.5)}
+
+/* Session Brief — bottom right */
+.session-brief-preview{
+  flex:0 0 auto;
+  margin-top:auto;
+  width:100%;
+  background:linear-gradient(165deg, #FDF9F0 0%, #F5EDD8 100%);
+  border:1px solid rgba(151,121,63,0.22);
+  border-radius:3px;
+  box-shadow:0 20px 50px -24px rgba(20,18,14,0.3), inset 0 1px 0 rgba(255,255,255,0.65);
+  padding:0.625rem 0.75rem 0.5rem;
+}
+.session-brief-label{
+  font-size:0.4375rem;font-weight:600;
+  letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 0.375rem;
+}
+.session-brief-client{margin-bottom:0.5rem}
+.session-brief-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.375rem;font-weight:400;
+  color:var(--ink);margin:0 0 0.15rem;
+  letter-spacing:-0.01em;line-height:1;
+}
+.session-brief-client-facts{
+  font-size:0.5625rem;line-height:1.45;color:var(--text-dim);
+  margin:0;
+}
+.session-brief-client-facts span{display:inline}
+.session-brief-client-facts span:not(:last-child)::after{
+  content:" ·";color:var(--text-mute);
+}
+.session-brief-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0.625rem;
+}
+.session-brief-col h3{
+  font-size:0.4375rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 0.25rem;
+}
+.session-brief-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.75rem;line-height:1.38;
+  font-style:italic;color:var(--ink);margin:0 0 0.35rem;
+}
+.session-brief-strengths{
+  list-style:none;padding:0;margin:0;
+  font-size:0.625rem;line-height:1.38;color:var(--text);
+}
+.session-brief-strengths li{padding:0}
+.session-brief-redacted{
+  filter:blur(4px);user-select:none;pointer-events:none;
+  opacity:0.45;font-size:0.625rem;line-height:1.45;color:var(--text-dim);
+}
+.session-brief-redacted p{margin:0 0 0.35rem}
+.session-brief-redacted h3{margin-bottom:0.2rem}
+.session-brief-footer{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-top:0.45rem;padding-top:0.45rem;
+  border-top:1px solid rgba(151,121,63,0.12);
+  font-size:0.375rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-mute);
+}
+.session-brief-footer svg{width:8px;height:8px;opacity:0.55;vertical-align:-1px;margin-right:0.2rem}
+.session-brief-sig{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.125rem;
+  color:var(--gold-deep);line-height:1;
+}
+
+.practice-footnav{display:none}
 .practice-hero{
   display:grid;
   grid-template-columns:340px 1fr;
@@ -2740,12 +2941,6 @@ body{
 .practice-cta:hover svg{transform:translateX(2px)}
 
 /* ---------- FOOTNAV ---------- */
-.practice-footnav{
-  padding-top:var(--p3);
-  border-top:1px solid var(--p-rule);
-  display:flex;justify-content:space-between;align-items:center;
-  gap:var(--p2);
-}
 .practice-footnav-link{
   background:none;border:none;padding:0.25rem 0;
   font-family:'Inter',sans-serif;
@@ -2772,7 +2967,23 @@ body{
 
 /* ---------- MOBILE ---------- */
 @media (max-width: 680px){
-  .practice-page{padding:calc(96px + var(--p3)) 1.25rem var(--p4)}
+  #view-services{overflow-y:auto}
+  #view-services .practice-page{
+    height:auto;max-height:none;overflow:visible;
+    padding:calc(var(--nav-h) + 0.75rem) 1.25rem 2rem;
+  }
+  .practice-stage{grid-template-columns:1fr}
+  .practice-coach-portrait img{min-height:260px;height:300px;object-position:50% 12%}
+  .practice-col-right{gap:1rem}
+  .session-brief-preview{margin-top:0}
+  .practice-footnav{
+    display:flex;margin-top:1rem;justify-content:center;gap:1rem;
+  }
+  .session-brief-grid{grid-template-columns:1fr}
+  .practice-engage-row{grid-template-columns:1.25rem 1fr;grid-template-rows:auto auto}
+  .practice-engage-meta{grid-column:2;text-align:left;white-space:normal}
+  .practice-cta-gold{max-width:none;width:100%}
+}
   .practice-hero{
     grid-template-columns:1fr;
     gap:var(--p3);
@@ -2909,9 +3120,97 @@ body{
 }
 .start-close{
   display:none;flex-direction:column;align-items:center;text-align:center;
-  padding:3rem 2rem 4rem;opacity:0;
+  padding:2rem 2rem 4rem;opacity:0;
   transition:opacity 1.2s var(--ease-out);
+  max-width:640px;margin:0 auto;
 }
+.start-profile-card{
+  width:100%;max-width:640px;
+  display:flex;flex-direction:column;
+  gap:0;
+  padding:2rem 2rem 1.5rem;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 24px 60px -28px rgba(20,18,14,0.18),
+             0 1px 2px rgba(20,18,14,0.04);
+  text-align:left;
+  margin-bottom:2rem;
+}
+.start-profile-id{
+  display:flex;align-items:center;gap:1rem;
+  padding-bottom:1.25rem;
+  margin-bottom:1.25rem;
+  border-bottom:1px solid var(--line);
+}
+.start-profile-avatar{
+  width:52px;height:52px;flex-shrink:0;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);
+  border:2px solid var(--gold-soft);
+  color:var(--gold-deep);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:500;
+  overflow:hidden;
+}
+.start-profile-avatar img{width:100%;height:100%;object-fit:cover}
+.start-profile-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2rem;
+}
+.start-profile-h{
+  font-size:0.5625rem;font-weight:600;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:0.5rem;
+}
+.start-profile-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.0625rem;line-height:1.5;
+  color:var(--ink);font-style:normal;
+  margin:0 0 1.25rem;padding:0;
+  border-left:none;
+}
+.start-profile-quote::before{
+  content:"“";color:var(--gold);font-size:1.25em;line-height:0;
+}
+.start-profile-quote-goal::before{color:var(--lavender)}
+.start-profile-strengths li::before{
+  content:"";
+  width:8px;height:8px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, var(--gold-soft), var(--gold));
+  margin-top:0.45rem;
+  box-shadow:none;
+}
+.start-prescription-block{
+  width:100%;text-align:center;margin-bottom:2rem;
+}
+.start-prescription-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.375rem, 2.5vw, 1.625rem);
+  font-style:italic;color:var(--ink);
+  margin:0.5rem 0 1rem;line-height:1.35;
+}
+.start-prescription-divider{
+  display:flex;align-items:center;justify-content:center;
+  gap:0.75rem;margin:0.75rem 0 1.25rem;
+  color:var(--gold-deep);font-size:0.75rem;
+}
+.start-prescription-divider::before,
+.start-prescription-divider::after{
+  content:"";width:80px;height:1px;background:var(--gold-soft);
+}
+.start-prescription-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;color:var(--ink);letter-spacing:-0.02em;
+}
+.start-close-cta--gold{
+  background:linear-gradient(135deg, var(--gold-soft), var(--gold-deep));
+  color:#fff;border-radius:4px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  font-size:0.8125rem;font-weight:600;
+  box-shadow:0 8px 24px -8px rgba(151,121,63,0.45);
+}
+.start-close-cta--gold:hover{box-shadow:0 12px 32px -8px rgba(151,121,63,0.5)}
 .start-close.visible{display:flex;opacity:1}
 .start-close-portrait{
   width:96px;height:96px;border-radius:50%;overflow:hidden;
@@ -2988,36 +3287,6 @@ body{
   text-align:center;
   margin:0 0 2.25rem;max-width:520px;
 }
-.start-profile-card{
-  width:100%;max-width:560px;
-  display:flex;flex-direction:column;
-  gap:1.5rem;
-  padding:2rem 2rem 1.75rem;
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:24px;
-  box-shadow:0 24px 60px -28px rgba(20,18,14,0.18),
-             0 1px 2px rgba(20,18,14,0.04);
-  text-align:left;
-  margin-bottom:2.5rem;
-}
-.start-profile-id{
-  display:flex;align-items:center;gap:1rem;
-  padding-bottom:1.5rem;
-  border-bottom:1px solid var(--line);
-}
-.start-profile-avatar{
-  width:56px;height:56px;flex-shrink:0;
-  border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 32% 28%, var(--gold-soft), var(--gold) 70%);
-  color:#FBF7EC;
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.625rem;font-weight:500;
-  letter-spacing:-0.02em;
-  box-shadow:0 6px 16px -4px rgba(184,152,92,0.4),
-             inset 0 1px 0 rgba(255,255,255,0.3);
-}
 .start-profile-id-text{display:flex;flex-direction:column;gap:0.25rem;min-width:0}
 .start-profile-name{
   font-family:'Cormorant Garamond',serif;
@@ -3031,19 +3300,6 @@ body{
   color:var(--text-dim);
 }
 .start-profile-section{display:flex;flex-direction:column;gap:0.5rem}
-.start-profile-h{
-  font-size:0.625rem;font-weight:500;
-  letter-spacing:0.14em;text-transform:uppercase;
-  color:var(--gold-deep);
-}
-.start-profile-quote{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.0625rem;line-height:1.5;
-  color:var(--ink);font-style:italic;
-  margin:0;padding-left:0.875rem;
-  border-left:2px solid var(--gold-soft);
-}
-.start-profile-quote-goal{border-left-color:var(--lavender)}
 .start-profile-strengths{
   list-style:none;padding:0;margin:0;
   display:flex;flex-direction:column;gap:0.625rem;
@@ -3092,6 +3348,7 @@ body{
 
 /* MOBILE */
 @media (max-width: 640px){
+  .start-profile-grid{grid-template-columns:1fr;gap:1.25rem}
   .start-profile-card{
     padding:1.5rem 1.25rem 1.25rem;
     gap:1.25rem;
@@ -3206,14 +3463,10 @@ body{
 <!-- ============================== TOP NAV ============================== -->
 <nav class="topnav" id="topnav">
   <div class="brand" data-view="landing">
-    <div class="logo-wrap">
-      <img class="brand-logo-img" src="Assets/Estrella.jpeg" alt="Estrella — Born to Shine"/>
-      <svg class="logo-sparkles" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <g class="rising-star">
-          <path d="M0 -4.5 L0.7 -0.7 L4.5 0 L0.7 0.7 L0 4.5 L-0.7 0.7 L-4.5 0 L-0.7 -0.7 Z"/>
-        </g>
-      </svg>
-    </div>
+    <span class="brand-wordmark">
+      <span class="brand-wordmark-main">Estrella</span>
+      <span class="brand-wordmark-sub">Coaching</span>
+    </span>
   </div>
   <div class="topnav-links" id="topnav-links">
     <a data-view="landing" class="active">Home</a>
@@ -3222,9 +3475,19 @@ body{
     <a data-view="academy">Academy</a>
     <a data-view="about">About</a>
   </div>
-  <div class="topnav-actions">
-    <button class="btn btn-ghost btn-sm" data-view="dashboard">Sign In</button>
-    <button class="btn btn-primary btn-sm" data-view="start">Book Session</button>
+  <div class="topnav-actions topnav-auth-guest" id="topnav-auth-guest">
+    <button class="btn btn-linkedin btn-sm" type="button" id="btn-linkedin-signin" title="Continue with LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"/></svg>
+      <span class="btn-linkedin-label">LinkedIn</span>
+    </button>
+    <button class="btn btn-gold btn-sm" data-view="start">Book Session</button>
+  </div>
+  <div class="topnav-actions topnav-auth-signed-in" id="topnav-auth-signed-in">
+    <button type="button" class="topnav-user" id="topnav-user-btn" data-view="dashboard">
+      <span class="topnav-user-avatar topnav-user-avatar--initial" id="topnav-user-avatar">?</span>
+      <span id="topnav-user-name">Account</span>
+    </button>
+    <button class="btn btn-gold btn-sm" data-view="start">Book Session</button>
   </div>
 </nav>
 
@@ -3235,21 +3498,19 @@ body{
 
     <section class="hero">
       <div class="hero-content">
-        <div class="hero-eyebrow">Estrella · Born to Shine</div>
-        <h1>Book your career coaching session <em>with Nesreen.</em></h1>
-        <p class="hero-sub">Find clarity when you feel stuck. Rebuild confidence when you're doubting yourself. Step into the career — and the leader — you were born to become.</p>
-        <div class="hero-ctas">
-          <button class="btn btn-primary btn-lg" data-view="start">Start with Estrella →</button>
-          <button class="btn btn-ghost btn-lg" data-view="services">Meet Nesreen</button>
+        <h1>Step into the leader you were born to become</h1>
+        <div class="hero-divider" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
+          <span class="hero-divider-line"></span>
         </div>
-        <div class="hero-trust">
-          <div class="hero-trust-label">Trusted by leaders at</div>
-          <div class="hero-trust-logos">Emirates · DAMAC · Aramex · L'Oréal · Etihad</div>
+        <p class="hero-sub">Estrella is a coaching and development platform for ambitious women in the Gulf — ready to lead with clarity, influence and impact.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-gold btn-lg" data-view="start">Start with Estrella →</button>
+          <button class="btn btn-ghost btn-lg" data-view="services">Meet Nesreen →</button>
         </div>
       </div>
 
       <div class="hero-visual">
-        <div class="hero-rings"></div>
         <div class="hero-portrait">
           <img src="nesreen-hero.jpg" alt="Nesreen — Founder of Estrella" onerror="this.style.display='none';this.parentElement.nextElementSibling.style.display='flex'"/>
         </div>
@@ -3258,9 +3519,6 @@ body{
           <div class="ph-title">Portrait will appear here</div>
           <div class="ph-note">Save the brand portrait as <code>nesreen-hero.jpg</code> in your Talos folder.</div>
         </div>
-        <div class="hero-dot d1"></div>
-        <div class="hero-dot d2"></div>
-        <div class="hero-dot d3"></div>
       </div>
     </section>
 
@@ -3345,94 +3603,91 @@ body{
   <div class="view" id="view-services">
     <div class="practice-page">
 
-      <!-- HERO — 2-col compact -->
-      <header class="practice-hero">
-        <div class="practice-portrait">
-          <img src="nesreen-coaching.jpg" alt="Nesreen Abdelhakim, founder of Estrella" onerror="this.style.display='none'"/>
-        </div>
-        <div class="practice-hero-text">
-          <div class="practice-eyebrow">The Practice</div>
-          <h1 class="practice-headline">
-            Coaching,
-            <em>by Nesreen.</em>
-          </h1>
-          <p class="practice-lede">I work with people at the moments their work and their life ask new things of them — a role they're growing into, a chapter that's ended, a confidence that's run thin. The work is honest, specific, and yours.</p>
-          <div class="practice-stats" aria-label="Practice at a glance">
-            <div class="practice-stat">
-              <span class="practice-stat-n">12+</span>
-              <span class="practice-stat-l">Years coaching</span>
-            </div>
-            <div class="practice-stat">
-              <span class="practice-stat-n">800+</span>
-              <span class="practice-stat-l">Leaders served</span>
-            </div>
-            <div class="practice-stat">
-              <span class="practice-stat-n">98%</span>
-              <span class="practice-stat-l">Rebook rate</span>
-            </div>
-          </div>
-        </div>
-      </header>
+      <div class="practice-stage">
+        <figure class="practice-coach-portrait">
+          <img src="nesreen-coaching.jpg" alt="Nesreen Abdelhakim" onerror="this.src='nesreen-coaching-editorial.jpg'"/>
+        </figure>
 
-      <!-- THREE TILES — one row -->
-      <section aria-labelledby="practice-tiles-h">
-        <div class="practice-section-heading">
-          <span class="practice-eyebrow">How the work works</span>
-          <h2 id="practice-tiles-h" class="practice-section-h">Three ways to work with me.</h2>
-        </div>
-        <div class="practice-tiles">
-          <article class="practice-tile practice-tile--single">
-            <div class="practice-tile-hero">
-              <img src="Assets/Career_Coaching.jpg" alt="Compass illustration" onerror="this.style.display='none'"/>
+        <div class="practice-col-right">
+          <header class="practice-manifesto-copy">
+            <h1>I help you lead with clarity — not performance.</h1>
+            <p>I coach executives and rising leaders on leadership, confidence, and the career decisions you keep postponing. You are already capable — you need someone who listens properly and tells you the truth.</p>
+            <p>Before we meet, you share your story through Estrella. I read your brief so we do not waste the first twenty minutes on small talk. You leave each session with a clear next step.</p>
+          </header>
+
+          <section class="practice-engage" aria-labelledby="practice-engage-h">
+            <h2 id="practice-engage-h" class="practice-engage-head">Ways to engage</h2>
+            <div class="practice-engage-row">
+              <span class="practice-engage-num">01</span>
+              <div>
+                <div class="practice-engage-title">Private Coaching</div>
+                <p class="practice-engage-desc">Three months, six sessions.</p>
+              </div>
+              <div class="practice-engage-meta">12 weeks</div>
             </div>
-            <div class="practice-tile-body-wrap">
-              <div class="practice-tile-name">A single session.</div>
-              <div class="practice-tile-meta">One hour · focused</div>
-              <p class="practice-tile-body">For decisions that need clarity, not depth.</p>
+            <div class="practice-engage-row">
+              <span class="practice-engage-num">02</span>
+              <div>
+                <div class="practice-engage-title">Intensive</div>
+                <p class="practice-engage-desc">Two to five days, fully focused.</p>
+              </div>
+              <div class="practice-engage-meta">2–5 days</div>
+            </div>
+            <div class="practice-engage-row">
+              <span class="practice-engage-num">03</span>
+              <div>
+                <div class="practice-engage-title">Strategy Session</div>
+                <p class="practice-engage-desc">One meeting, one problem.</p>
+              </div>
+              <div class="practice-engage-meta">90 minutes</div>
+            </div>
+            <button class="practice-cta-gold" type="button" data-view="start">
+              Start with Estrella
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </section>
+
+          <article class="session-brief-preview" aria-label="Sample client session brief">
+            <div class="session-brief-label">Session Brief</div>
+            <div class="session-brief-client">
+              <h2 class="session-brief-name">Sarah Chen</h2>
+              <div class="session-brief-client-facts">
+                <span>VP Operations</span>
+                <span>Regional Director, McKinsey</span>
+                <span>14 years experience</span>
+              </div>
+            </div>
+            <div class="session-brief-grid">
+              <div class="session-brief-col">
+                <h3>A moment</h3>
+                <blockquote class="session-brief-quote">"I realized I was performing confidence, instead of actually trusting myself."</blockquote>
+                <h3>Strengths</h3>
+                <ul class="session-brief-strengths">
+                  <li>Strategic thinking</li>
+                  <li>Emotional intelligence</li>
+                  <li>Resilience under pressure</li>
+                </ul>
+              </div>
+              <div class="session-brief-col session-brief-redacted" aria-hidden="true">
+                <h3>Focus areas</h3>
+                <p>Leadership transition · executive presence · delegation patterns</p>
+                <h3>Patterns</h3>
+                <p>Over-functioning in teams · difficulty receiving support · perfectionism as armour</p>
+                <h3>Notes from Nesreen</h3>
+                <p>Prepare for depth on identity shift — not tactics. She is ready for honesty.</p>
+              </div>
+            </div>
+            <div class="session-brief-footer">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Confidential — for Nesreen's eyes only</span>
+              <span class="session-brief-sig">Nesreen</span>
             </div>
           </article>
-          <article class="practice-tile practice-tile--program">
-            <div class="practice-tile-hero">
-              <img src="Assets/Leadership_Coaching.jpg" alt="Mountain peak illustration" onerror="this.style.display='none'"/>
-            </div>
-            <div class="practice-tile-body-wrap">
-              <div class="practice-tile-name">A three-month program.</div>
-              <div class="practice-tile-meta">Six sessions · fortnightly</div>
-              <p class="practice-tile-body">For inflection points — the changes that need room to land.</p>
-            </div>
-          </article>
-          <article class="practice-tile practice-tile--partnership">
-            <div class="practice-tile-hero">
-              <img src="Assets/Executive_Caoaching.jpg" alt="Crown illustration" onerror="this.style.display='none'"/>
-            </div>
-            <div class="practice-tile-body-wrap">
-              <div class="practice-tile-name">An executive partnership.</div>
-              <div class="practice-tile-meta">Twelve months · on call</div>
-              <p class="practice-tile-body">For leaders whose decisions affect rooms beyond their own.</p>
-            </div>
-          </article>
         </div>
-      </section>
+      </div>
 
-      <!-- PREP STRIP — orb + body + CTA in one horizontal row -->
-      <section class="practice-prep" aria-label="Estrella preparation">
-        <div class="practice-prep-orb" aria-hidden="true">
-          <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
-        </div>
-        <div class="practice-prep-text">
-          <div class="practice-prep-eyebrow">Before we meet</div>
-          <p class="practice-prep-body">Ten minutes with <em>Estrella</em> — voice or text — gives me a brief I read before you walk in. No small talk.</p>
-        </div>
-        <button class="practice-cta" data-view="start">
-          Start with Estrella
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-      </section>
-
-      <!-- FOOTNAV — equal-weight secondaries -->
       <nav class="practice-footnav" aria-label="Other paths">
-        <button type="button" class="practice-footnav-link" data-view="dashboard">Already a client → Sign in</button>
-        <button type="button" class="practice-footnav-link" id="practice-book-direct">I know what I want — book directly</button>
+        <button type="button" class="practice-footnav-link" data-view="dashboard">Already a client? Sign in</button>
+        <button type="button" class="practice-footnav-link" id="practice-book-direct">Book directly</button>
       </nav>
 
     </div>
@@ -3447,57 +3702,38 @@ body{
       </div>
 
       <div class="start-close" id="start-close" aria-hidden="true">
-        <!-- PROFILE REVEAL — what Estrella synthesizes for Nesreen -->
-        <div class="start-profile-eyebrow">Your profile</div>
-        <h2 class="start-profile-title">This is what Nesreen will read before we meet.</h2>
-
         <article class="start-profile-card">
           <header class="start-profile-id">
-            <div class="start-profile-avatar"><span id="profile-avatar-letter">?</span></div>
+            <div class="start-profile-avatar" id="profile-avatar-wrap"><span id="profile-avatar-letter">?</span></div>
             <div class="start-profile-id-text">
               <div class="start-profile-name" id="profile-name">—</div>
               <div class="start-profile-role" id="profile-role">—</div>
             </div>
           </header>
 
-          <section class="start-profile-section">
-            <div class="start-profile-h">The moment</div>
-            <blockquote class="start-profile-quote" id="profile-trigger">—</blockquote>
-          </section>
-
-          <section class="start-profile-section">
-            <div class="start-profile-h">Strengths I heard</div>
-            <ul class="start-profile-strengths" id="profile-strengths"></ul>
-          </section>
-
-          <section class="start-profile-section">
-            <div class="start-profile-h">Pattern to work with</div>
-            <p class="start-profile-pattern" id="profile-pattern">—</p>
-          </section>
-
-          <section class="start-profile-section">
-            <div class="start-profile-h">Where you want to go</div>
-            <blockquote class="start-profile-quote start-profile-quote-goal" id="profile-goal">—</blockquote>
-          </section>
-
-          <div class="start-profile-trustline">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Nesreen reads this before your session. No re-introductions.
+          <div class="start-profile-grid">
+            <div class="start-profile-col">
+              <div class="start-profile-h">Your past moment</div>
+              <blockquote class="start-profile-quote" id="profile-trigger">—</blockquote>
+              <div class="start-profile-h">Your 12-month vision</div>
+              <blockquote class="start-profile-quote start-profile-quote-goal" id="profile-goal">—</blockquote>
+            </div>
+            <div class="start-profile-col">
+              <div class="start-profile-h">Your strengths</div>
+              <ul class="start-profile-strengths" id="profile-strengths"></ul>
+            </div>
           </div>
         </article>
 
-        <!-- RECOMMENDATION -->
-        <div class="start-profile-rec-divider">
-          <span>Nesreen's recommendation</span>
+        <div class="start-prescription-block">
+          <div class="start-profile-eyebrow">Nesreen's prescription</div>
+          <p class="start-prescription-quote">"I'd start with the three-month program"</p>
+          <div class="start-prescription-divider" aria-hidden="true">✦</div>
+          <div class="start-prescription-price">AED 6,000</div>
+          <div class="start-prescription-meta">For three months of private coaching</div>
         </div>
 
-        <div class="start-prescription">
-          <div class="start-prescription-h">A three-month coaching program.</div>
-          <div class="start-prescription-meta">AED 6,000 &nbsp;·&nbsp; 6 sessions &nbsp;·&nbsp; fortnightly</div>
-          <div class="start-prescription-incl">Includes your first session, all five follow-ups, and full Estrella support between them. The first session is booked for the depth this asks for — not a 30-minute scan.</div>
-        </div>
-
-        <button class="start-close-cta" id="start-pick-time">
+        <button class="start-close-cta start-close-cta--gold" id="start-pick-time">
           <span>Book your first session</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
@@ -4270,7 +4506,7 @@ body{
       </div>
 
       <div class="books-grid">
-        <div class="book-card" onclick="showToast('Opening preview...')">
+        <div class="book-card" onclick="window.open('Assets/Books/Quiet_Power_Digital_Edition.html','_blank','noopener')">
           <div class="book-cover b1">
             <img class="bc-img" src="Assets/Quiet_Power.png" alt="Quiet Power" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
             <div class="book-title">Quiet Power</div>
@@ -4282,7 +4518,7 @@ body{
             <div class="book-meta"><span class="book-price">AED 89</span><span class="book-format">Hardcover · Audio</span></div>
           </div>
         </div>
-        <div class="book-card" onclick="showToast('Opening preview...')">
+        <div class="book-card" onclick="window.open('Assets/Books/Career_Compass_Digital_Edition.html','_blank','noopener')">
           <div class="book-cover b2">
             <img class="bc-img" src="Assets/Career_Compass.png" alt="Career Compass" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
             <div class="book-title">Career Compass</div>
@@ -4294,7 +4530,7 @@ body{
             <div class="book-meta"><span class="book-price">AED 79</span><span class="book-format">Hardcover</span></div>
           </div>
         </div>
-        <div class="book-card" onclick="showToast('Opening preview...')">
+        <div class="book-card" onclick="window.open('Assets/Books/The_Interview_Playbook_Digital_Edition.html','_blank','noopener')">
           <div class="book-cover b3">
             <img class="bc-img" src="Assets/Interview_Playbook.jpg" alt="The Interview Playbook" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
             <div class="book-title">The Interview Playbook</div>
@@ -4306,7 +4542,7 @@ body{
             <div class="book-meta"><span class="book-price">AED 59</span><span class="book-format">Digital + Audio</span></div>
           </div>
         </div>
-        <div class="book-card" onclick="showToast('Opening preview...')">
+        <div class="book-card" onclick="window.open('Assets/Books/The_Reset_Journal_Digital_Edition.html','_blank','noopener')">
           <div class="book-cover b4">
             <img class="bc-img" src="Assets/Reset_Journal.png" alt="The Reset Journal" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
             <div class="book-title">The Reset Journal</div>
@@ -4529,8 +4765,63 @@ let state = {
   selectedTime: null,
   currentMonth: 5, // June (0-indexed)
   currentYear: 2026,
-  chatStep: 0
+  chatStep: 0,
+  linkedInUser: null
 };
+
+const LINKEDIN_MOCK = {
+  name: 'Amal Hassan',
+  headline: 'Founder & Leader',
+  photoUrl: 'Assets/layla.jpg'
+};
+
+function getLinkedInUser(){
+  if(state.linkedInUser) return state.linkedInUser;
+  try{
+    const raw = sessionStorage.getItem('estrella_linkedin_user');
+    if(raw) state.linkedInUser = JSON.parse(raw);
+  }catch(e){}
+  return state.linkedInUser;
+}
+
+function setLinkedInUser(user){
+  state.linkedInUser = user;
+  try{ sessionStorage.setItem('estrella_linkedin_user', JSON.stringify(user)); }catch(e){}
+  updateTopNavAuth();
+}
+
+function updateTopNavAuth(){
+  const user = getLinkedInUser();
+  const guest = document.getElementById('topnav-auth-guest');
+  const signed = document.getElementById('topnav-auth-signed-in');
+  const avatarEl = document.getElementById('topnav-user-avatar');
+  const nameEl = document.getElementById('topnav-user-name');
+  if(!guest || !signed) return;
+  if(user){
+    guest.classList.add('hidden');
+    signed.classList.add('visible');
+    const first = (user.name || 'Account').split(/\s+/)[0];
+    if(nameEl) nameEl.textContent = first;
+    if(avatarEl){
+      if(user.photoUrl){
+        avatarEl.outerHTML = `<img class="topnav-user-avatar" id="topnav-user-avatar" src="${user.photoUrl}" alt="" onerror="this.outerHTML='<span class=\\'topnav-user-avatar topnav-user-avatar--initial\\' id=\\'topnav-user-avatar\\'>${(first[0]||'?').toUpperCase()}</span>'"/>`;
+      }else{
+        avatarEl.className = 'topnav-user-avatar topnav-user-avatar--initial';
+        avatarEl.textContent = (first[0] || '?').toUpperCase();
+      }
+    }
+  }else{
+    guest.classList.remove('hidden');
+    signed.classList.remove('visible');
+  }
+}
+
+document.getElementById('btn-linkedin-signin')?.addEventListener('click', ()=>{
+  setLinkedInUser({...LINKEDIN_MOCK});
+  showToast('Signed in with LinkedIn');
+});
+
+updateTopNavAuth();
 
 const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -5149,10 +5440,16 @@ function startPopulateProfile(){
   const initial = (firstName[0] || '?').toUpperCase();
 
   const setText = (id, text) => { const el = document.getElementById(id); if(el) el.textContent = text; };
-  setText('profile-avatar-letter', initial);
-  setText('profile-name', name);
-  setText('profile-role', role);
-  setText('profile-trigger', p.trigger ? '"' + p.trigger.trim() + '"' : '—');
+  const liUser = getLinkedInUser();
+  const avatarWrap = document.getElementById('profile-avatar-wrap');
+  if(liUser?.photoUrl && avatarWrap){
+    avatarWrap.innerHTML = `<img src="${liUser.photoUrl}" alt=""/>`;
+  }else if(avatarWrap){
+    avatarWrap.innerHTML = `<span id="profile-avatar-letter">${initial}</span>`;
+  }
+  setText('profile-name', liUser?.name || name);
+  setText('profile-role', liUser?.headline || role);
+  setText('profile-trigger', p.trigger ? p.trigger.trim() : '—');
 
   // Strengths list
   const ul = document.getElementById('profile-strengths');
@@ -5165,8 +5462,7 @@ function startPopulateProfile(){
     });
   }
 
-  setText('profile-pattern', startDerivePattern(p.pattern, p.depth));
-  setText('profile-goal', p.goal ? '"' + p.goal.trim() + '"' : '—');
+  setText('profile-goal', p.goal ? p.goal.trim() : '—');
 }
 
 function startBeginClose(){
@@ -5271,7 +5567,7 @@ document.getElementById('start-send-me')?.addEventListener('click', ()=>{
 
 // Practice page escape hatch (coaching_UX.md §12)
 document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
-  state.selectedService = services.find(s => s.id === 'career') || services[0];
+  state.selectedService = services.find(s => s.id === 'program') || services[0];
   switchView('calendar');
   if(typeof renderCalendar === 'function') renderCalendar();
 });

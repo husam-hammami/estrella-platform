@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Interview Playbook — Nesrin Abdelhakim</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark-green: #1B3A2D;
+  --mid-green: #2E6B4F;
+  --light-green: #3D8B68;
+  --gold: #C5A028;
+  --gold-light: #E8C84A;
+  --cream: #F8F4EC;
+  --paper: #FDFAF5;
+  --ink: #2A2A2A;
+  --muted: #6B6B6B;
+  --sidebar-w: 280px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--dark-green);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* SIDEBAR */
+#sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--dark-green);
+  overflow-y: auto;
+  z-index: 100;
+  border-right: 1px solid rgba(197,160,40,0.2);
+  transition: transform 0.3s ease;
+  padding-bottom: 40px;
+}
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-track { background: transparent; }
+#sidebar::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+.sidebar-header {
+  padding: 28px 20px 20px;
+  border-bottom: 1px solid rgba(197,160,40,0.25);
+  margin-bottom: 12px;
+}
+.sidebar-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.sidebar-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+.nav-item {
+  display: block;
+  padding: 9px 20px 9px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+  line-height: 1.35;
+  cursor: pointer;
+}
+.nav-item:hover, .nav-item.active {
+  color: var(--gold-light);
+  border-left-color: var(--gold);
+  background: rgba(197,160,40,0.06);
+  padding-left: 28px;
+}
+.nav-chapter-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  color: rgba(197,160,40,0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 20px 4px;
+  display: block;
+}
+
+/* MAIN CONTENT */
+#content {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+/* COVER PAGE */
+.cover-page {
+  min-height: 100vh;
+  background: var(--dark-green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.cover-page::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(197,160,40,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(61,139,104,0.06) 0%, transparent 50%);
+}
+.cover-img {
+  width: 320px;
+  max-width: 80%;
+  border-radius: 4px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(197,160,40,0.3);
+  position: relative; z-index: 1;
+  animation: floatIn 1s ease-out forwards;
+}
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.cover-cta {
+  margin-top: 40px;
+  position: relative; z-index: 1;
+  text-align: center;
+  animation: floatIn 1s ease-out 0.3s both;
+}
+.cover-tagline {
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+  margin-bottom: 24px;
+  letter-spacing: 0.3px;
+}
+.btn-read {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--gold);
+  color: var(--dark-green);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-read:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(197,160,40,0.3); }
+
+/* CHAPTER PAGES */
+.chapter-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 70px 60px 100px;
+  min-height: 100vh;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  animation: pageIn 0.5s ease-out;
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* CHAPTER HERO */
+.chapter-hero {
+  background: var(--dark-green);
+  margin: -70px -60px 55px;
+  padding: 55px 60px 50px;
+  position: relative;
+  overflow: hidden;
+}
+.chapter-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.ch-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.ch-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.ch-subtitle {
+  font-family: 'Crimson Pro', serif;
+  font-size: 18px;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+}
+
+/* INTRO PAGE */
+.intro-hero {
+  background: linear-gradient(135deg, var(--dark-green) 0%, #0F2219 100%);
+  margin: -70px -60px 55px;
+  padding: 55px 60px 50px;
+}
+
+/* TYPOGRAPHY */
+p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 19px;
+  line-height: 1.8;
+  color: #2A2A2A;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--dark-green);
+  margin: 45px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(27,58,45,0.12);
+}
+h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mid-green);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 30px 0 12px;
+}
+strong { font-weight: 600; color: var(--ink); }
+
+/* LISTS */
+ul, ol {
+  margin: 8px 0 24px 0;
+  padding-left: 0;
+  list-style: none;
+}
+ul li, ol li {
+  font-family: 'Crimson Pro', serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #2A2A2A;
+  font-weight: 300;
+  padding: 5px 0 5px 28px;
+  position: relative;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+ul li::before {
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--gold);
+  font-style: normal;
+  font-size: 14px;
+  top: 8px;
+}
+ol { counter-reset: item; }
+ol li { counter-increment: item; }
+ol li::before {
+  content: counter(item);
+  position: absolute; left: 0;
+  width: 20px; height: 20px;
+  background: var(--dark-green);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  top: 7px;
+}
+
+/* CALLOUT BOXES */
+.callout {
+  border-left: 4px solid var(--gold);
+  background: rgba(197,160,40,0.06);
+  padding: 20px 24px;
+  margin: 28px 0;
+  border-radius: 0 6px 6px 0;
+}
+.callout-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.callout p { font-size: 17px; margin: 0; color: #333; }
+
+.callout-funny {
+  border-left-color: var(--mid-green);
+  background: rgba(46,107,79,0.06);
+}
+.callout-funny .callout-label { color: var(--mid-green); }
+
+.callout-assignment {
+  border-left: none;
+  border: 2px solid var(--dark-green);
+  background: rgba(27,58,45,0.04);
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+}
+.assignment-header {
+  background: var(--dark-green);
+  padding: 14px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+}
+.assignment-body { padding: 20px 24px; }
+.assignment-body li {
+  font-size: 17px;
+  border-bottom: 1px solid rgba(27,58,45,0.08);
+  padding: 8px 0 8px 32px;
+}
+.assignment-body li:last-child { border-bottom: none; }
+.assignment-body li::before {
+  content: '☐';
+  color: var(--dark-green);
+  background: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 400;
+  top: 9px;
+}
+
+/* QUOTE */
+.pull-quote {
+  text-align: center;
+  padding: 36px 40px;
+  margin: 36px -20px;
+  position: relative;
+}
+.pull-quote::before, .pull-quote::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin-bottom: 24px;
+}
+.pull-quote::after { margin-top: 24px; margin-bottom: 0; }
+.pull-quote p {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: var(--dark-green);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 400;
+}
+.pull-quote .quote-attr {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-top: 12px;
+  font-style: normal;
+}
+
+/* COMPARISON TABLE */
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 16px;
+}
+.compare-table th {
+  padding: 12px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.compare-table th:first-child {
+  background: #c0392b22;
+  color: #c0392b;
+  border-bottom: 2px solid #c0392b;
+}
+.compare-table th:last-child {
+  background: rgba(27,58,45,0.1);
+  color: var(--dark-green);
+  border-bottom: 2px solid var(--dark-green);
+}
+.compare-table td {
+  padding: 10px 18px;
+  font-family: 'Crimson Pro', serif;
+  color: #333;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.compare-table td:first-child {
+  background: #fff8f7;
+  color: #888;
+  text-decoration: line-through;
+  text-decoration-color: #c0392b66;
+}
+.compare-table td:last-child { background: #f5faf7; }
+
+/* TOC */
+.toc-grid { display: grid; gap: 2px; margin: 24px 0; }
+.toc-row {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.toc-row:hover { padding-left: 6px; }
+.toc-row:hover .toc-chapter { color: var(--gold); }
+.toc-chapter {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mid-green);
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.toc-dots { flex: 1; border-bottom: 1px dotted rgba(0,0,0,0.2); height: 1em; }
+.toc-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 18px;
+  color: var(--ink);
+}
+.toc-page {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ABOUT AUTHOR */
+.author-section { text-align: center; padding: 40px 0; }
+.author-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--dark-green);
+  margin-bottom: 8px;
+}
+.author-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.author-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 24px auto;
+}
+.hashtag {
+  display: inline-block;
+  margin-top: 32px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark-green);
+  background: rgba(197,160,40,0.12);
+  padding: 10px 22px;
+  border-radius: 100px;
+  letter-spacing: 0.5px;
+}
+
+/* ACTION PLAN */
+.week-block {
+  background: var(--cream);
+  border-radius: 10px;
+  padding: 24px 28px;
+  margin: 20px 0;
+  border: 1px solid rgba(27,58,45,0.1);
+}
+.week-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(197,160,40,0.25);
+}
+
+/* PROGRESS BAR */
+#progress-bar {
+  position: fixed;
+  top: 0; left: var(--sidebar-w); right: 0;
+  height: 3px;
+  background: rgba(197,160,40,0.2);
+  z-index: 200;
+}
+#progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  width: 0%;
+  transition: width 0.1s;
+}
+
+/* HAMBURGER for mobile */
+#menu-toggle {
+  display: none;
+  position: fixed;
+  top: 16px; left: 16px;
+  z-index: 300;
+  background: var(--dark-green);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+#overlay { display: none; }
+
+/* STAR BOX */
+.star-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin: 24px 0;
+}
+.star-card {
+  background: var(--cream);
+  border: 1px solid rgba(27,58,45,0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+.star-letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  color: var(--dark-green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.star-word {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.star-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* PPF */
+.ppf-row {
+  display: flex; gap: 20px; margin: 20px 0;
+}
+.ppf-card {
+  flex: 1;
+  border-top: 3px solid var(--dark-green);
+  padding: 18px 20px;
+  background: var(--cream);
+  border-radius: 0 0 8px 8px;
+}
+.ppf-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: var(--dark-green);
+  line-height: 1;
+}
+.ppf-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.ppf-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* RECRUITER CARD */
+.confession-item {
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  margin: 16px 0;
+  background: var(--cream);
+}
+.confession-item strong {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-green);
+  margin-bottom: 6px;
+}
+.confession-item p { font-size: 17px; margin: 0; }
+
+/* COVER HERO */
+.page-cover-hero {
+  background: linear-gradient(135deg, var(--dark-green) 0%, #102619 50%, #0A1F12 100%);
+  margin: -70px -60px 55px;
+  padding: 80px 60px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-cover-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(197,160,40,0.08) 0%, transparent 60%);
+}
+.cover-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.05;
+  position: relative; z-index: 1;
+  margin-bottom: 16px;
+}
+.cover-hero-sub {
+  font-family: 'Crimson Pro', serif;
+  font-size: 20px;
+  font-style: italic;
+  color: var(--gold);
+  position: relative; z-index: 1;
+}
+
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+  #sidebar { transform: translateX(-280px); width: 280px; }
+  #sidebar.open { transform: translateX(0); }
+  #content { margin-left: 0; }
+  #menu-toggle { display: block; }
+  #overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  #overlay.show { opacity: 1; pointer-events: all; }
+  .chapter-page { padding: 50px 28px 80px; }
+  .chapter-hero, .intro-hero { margin: -50px -28px 40px; padding: 40px 28px 35px; }
+  .ppf-row { flex-direction: column; }
+  .star-grid { grid-template-columns: 1fr; }
+  .pull-quote { margin: 20px 0; padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"><div id="progress-fill"></div></div>
+<button id="menu-toggle" onclick="toggleMenu()">☰</button>
+<div id="overlay" onclick="closeMenu()"></div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">The Interview<br>Playbook</div>
+    <div class="sidebar-sub">Nesrin Abdelhakim</div>
+  </div>
+  <a class="nav-item active" onclick="showPage('cover')">◆ Cover</a>
+  <a class="nav-item" onclick="showPage('toc')">Table of Contents</a>
+  <span class="nav-chapter-label">Opening</span>
+  <a class="nav-item" onclick="showPage('intro')">Introduction</a>
+  <span class="nav-chapter-label">Chapters</span>
+  <a class="nav-item" onclick="showPage('ch1')">1 · Inside the Recruiter's Mind</a>
+  <a class="nav-item" onclick="showPage('ch2')">2 · The Psychology of Interviews</a>
+  <a class="nav-item" onclick="showPage('ch3')">3 · Your LinkedIn Profile</a>
+  <a class="nav-item" onclick="showPage('ch4')">4 · The CV That Gets You Shortlisted</a>
+  <a class="nav-item" onclick="showPage('ch5')">5 · Getting Interviews Without Applying</a>
+  <a class="nav-item" onclick="showPage('ch6')">6 · Research Like a Detective</a>
+  <a class="nav-item" onclick="showPage('ch7')">7 · Tell Me About Yourself</a>
+  <a class="nav-item" onclick="showPage('ch8')">8 · Mastering Behavioral Questions</a>
+  <a class="nav-item" onclick="showPage('ch9')">9 · Body Language & Virtual Interviews</a>
+  <a class="nav-item" onclick="showPage('ch10')">10 · Salary Negotiation</a>
+  <a class="nav-item" onclick="showPage('ch11')">11 · Questions You Should Ask</a>
+  <a class="nav-item" onclick="showPage('ch12')">12 · The Follow-Up Formula</a>
+  <a class="nav-item" onclick="showPage('ch13')">13 · Executive & Leadership Interviews</a>
+  <a class="nav-item" onclick="showPage('ch14')">14 · AI, ATS & The Future of Hiring</a>
+  <a class="nav-item" onclick="showPage('ch15')">15 · 100 Tough Questions</a>
+  <a class="nav-item" onclick="showPage('ch16')">16 · Recruiter Confessions</a>
+  <span class="nav-chapter-label">Closing</span>
+  <a class="nav-item" onclick="showPage('conclusion')">Your 30-Day Action Plan</a>
+  <a class="nav-item" onclick="showPage('author')">About the Author</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main id="content">
+
+<!-- COVER PAGE -->
+<div id="page-cover" class="page-active">
+  <div class="cover-page">
+    <img src="data:image/jpeg;base64,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" alt="The Interview Playbook" class="cover-img">
+    <div class="cover-cta">
+      <p class="cover-tagline">From CV to Offer Letter: The Secrets Recruiters Don't Tell You</p>
+      <button class="btn-read" onclick="showPage('toc')">START READING →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TABLE OF CONTENTS -->
+<div id="page-toc" class="page-hidden">
+<div class="chapter-page">
+  <div class="page-cover-hero">
+    <div class="cover-hero-title">Table of Contents</div>
+    <div class="cover-hero-sub">Your complete guide to landing the offer</div>
+  </div>
+  <div class="toc-grid">
+    <div class="toc-row" onclick="showPage('intro')"><span class="toc-chapter">INTRO</span><span class="toc-title">Why Most People Fail Interviews</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch1')"><span class="toc-chapter">CH 1</span><span class="toc-title">Inside the Recruiter's Mind</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch2')"><span class="toc-chapter">CH 2</span><span class="toc-title">The Psychology of Interviews</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch3')"><span class="toc-chapter">CH 3</span><span class="toc-title">Your LinkedIn Profile — The Silent Interview</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch4')"><span class="toc-chapter">CH 4</span><span class="toc-title">The CV That Gets You Shortlisted</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch5')"><span class="toc-chapter">CH 5</span><span class="toc-title">Getting Interviews Without Applying</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch6')"><span class="toc-chapter">CH 6</span><span class="toc-title">Research Like a Detective</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch7')"><span class="toc-chapter">CH 7</span><span class="toc-title">Tell Me About Yourself</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch8')"><span class="toc-chapter">CH 8</span><span class="toc-title">Mastering Behavioral Questions (STAR)</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch9')"><span class="toc-chapter">CH 9</span><span class="toc-title">Body Language & Virtual Interviews</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch10')"><span class="toc-chapter">CH 10</span><span class="toc-title">Salary Negotiation</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch11')"><span class="toc-chapter">CH 11</span><span class="toc-title">Questions You Should Always Ask</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch12')"><span class="toc-chapter">CH 12</span><span class="toc-title">The Follow-Up Formula</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch13')"><span class="toc-chapter">CH 13</span><span class="toc-title">Executive & Leadership Interviews</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch14')"><span class="toc-chapter">CH 14</span><span class="toc-title">AI, ATS & The Future of Hiring</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch15')"><span class="toc-chapter">CH 15</span><span class="toc-title">100 Tough Questions — With Guidance</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('ch16')"><span class="toc-chapter">CH 16</span><span class="toc-title">Recruiter Confessions</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('conclusion')"><span class="toc-chapter">CLOSE</span><span class="toc-title">Your 30-Day Action Plan</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+    <div class="toc-row" onclick="showPage('author')"><span class="toc-chapter">ABOUT</span><span class="toc-title">About the Author</span><div class="toc-dots"></div><span class="toc-page">→</span></div>
+  </div>
+  <div class="nav-footer"><button onclick="showPage('intro')">Begin Reading →</button></div>
+</div>
+</div>
+
+
+<!-- INTRODUCTION -->
+<div id="page-intro" class="page-hidden">
+<div class="chapter-page">
+  <div class="intro-hero chapter-hero">
+    <div class="ch-num">INTRODUCTION</div>
+    <div class="ch-title">Why Most People Fail Interviews</div>
+    <div class="ch-subtitle">The truth no one tells you</div>
+  </div>
+
+  <p>Let me start with a confession: I have seen thousands of candidates. I have reviewed tens of thousands of CVs. And I have sat across the table from brilliant people who completely fell apart — not because they lacked skills, but because they lacked <em>strategy</em>.</p>
+
+  <p>Here is the painful truth about interviews:</p>
+  <ul>
+    <li>Most people prepare for the wrong things.</li>
+    <li>Most people show up hoping to "wing it."</li>
+    <li>Most people rehearse answers but forget to prepare their <em>presence</em>.</li>
+    <li>Most people treat the interview as the beginning — when actually, you have already been evaluated long before you walked in.</li>
+  </ul>
+
+  <p>The interview process starts the moment someone Googles your name, lands on your LinkedIn profile, or opens your CV. By the time you sit down for the actual conversation, the recruiter has already formed a first impression. Your job is to confirm it — or fix it.</p>
+
+  <div class="pull-quote"><p>"The interview room is the final round. The real competition started months ago, online."</p></div>
+
+  <h2>The Three Types of Candidates</h2>
+  <p>After years of interviewing professionals across industries and countries, I can tell you that candidates fall into three distinct categories:</p>
+
+  <p><strong>Type 1: The Unprepared.</strong> They know they need a job. They know interviews exist. They just never truly prepared. They ramble through answers, forget key achievements, and hope their experience "speaks for itself." It rarely does.</p>
+
+  <p><strong>Type 2: The Over-Rehearsed.</strong> They memorised every possible question. They sound like a robot reading from a script. Their answers are technically correct but emotionally flat. Recruiters can smell rehearsed answers from across the table. The moment you go off-script, they panic.</p>
+
+  <p><strong>Type 3: The Strategic Candidate.</strong> They understand the game. They did their research. They know how to tell their story. They make the recruiter feel like they are already on the team. They follow up. They negotiate. They land the offer.</p>
+
+  <div class="callout">
+    <div class="callout-label">💡 This book's promise</div>
+    <p>By the time you reach the final page, you will be a Type 3 candidate. Every chapter builds a specific skill. Every assignment develops a specific habit. The offer is waiting.</p>
+  </div>
+
+  <h2>How to Use This Book</h2>
+  <ul>
+    <li>Frameworks and formulas you can apply immediately</li>
+    <li>Real stories and examples (names changed, embarrassment preserved)</li>
+    <li>Assignments at the end of key chapters — do them. They work.</li>
+    <li>Action plans you can implement today</li>
+  </ul>
+
+  <div class="nav-footer"><button onclick="showPage('ch1')">Chapter 1 →</button></div>
+</div>
+</div>
+
+
+<!-- CHAPTER 1 -->
+<div id="page-ch1" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 1</div>
+    <div class="ch-title">Inside the Recruiter's Mind</div>
+    <div class="ch-subtitle">What we are really thinking</div>
+  </div>
+
+  <p>Before you can impress a recruiter, you need to understand how a recruiter thinks. And here is a secret the hiring industry rarely advertises: recruiters are human beings under enormous pressure.</p>
+  <p>We have deadlines. We have hiring managers who change requirements three times before we even post the job. We have 200 CVs to review in one afternoon. And we have a gut feeling that develops very quickly — sometimes unfairly.</p>
+
+  <h2>The Five Questions Every Recruiter Asks</h2>
+  <p>Consciously or not, every recruiter evaluates you through five core questions:</p>
+  <ol>
+    <li><strong>Can this person actually do the job?</strong> This goes beyond qualifications. Recruiters want evidence — specific, measurable, recent examples of you doing exactly what this role requires.</li>
+    <li><strong>Can I trust this person?</strong> Trust is built through consistency. Does your story match your CV? Does your LinkedIn match what you are saying right now?</li>
+    <li><strong>Will they fit the team?</strong> Culture fit is real. A brilliant professional who cannot work collaboratively will cost the company far more than their salary.</li>
+    <li><strong>Will they create problems?</strong> Recruiters are also risk managers. Red flags include unexplained gaps, negative talk about previous employers, or an inability to take accountability.</li>
+    <li><strong>Will my manager like them?</strong> Many recruiters are managing upward too. The easier you make it for them to say "I recommend this person," the better.</li>
+  </ol>
+
+  <h2>The 30-Second Rule</h2>
+  <p>Research consistently shows that initial impressions form within the first few seconds of meeting someone. By 30 seconds in, the recruiter has already begun building a mental model of who you are.</p>
+  <p>This means your entrance, your handshake, your first sentence, your energy — all of it matters before you have said a single intelligent thing.</p>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>True story: I once interviewed a candidate who started the conversation by saying, "Before we begin, let me just say I'm terrible at interviews." He was. But more importantly — he <em>told me</em> he would be.</p>
+  </div>
+
+  <h2>What Happens After You Submit Your CV</h2>
+  <p>Most candidates imagine a careful, thorough review of every word they wrote. Here is what actually happens:</p>
+  <ol>
+    <li>An ATS scans your CV for keywords and ranks you — often before a human ever sees it.</li>
+    <li>A recruiter does a 6–10 second skim: title, company, years of experience, visible achievements.</li>
+    <li>If you pass the skim, you move to a 60-second detailed read.</li>
+    <li>If you pass that, you get a call.</li>
+  </ol>
+  <p>The majority of CVs never make it past step one. This book will make sure yours does.</p>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Make it easy for the recruiter to say yes. Remove friction. Be clear, confident, and concise. Recruiters do not have time to dig for your value — you need to put it front and centre.</p>
+  </div>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 1 Assignment</div>
+    <div class="assignment-body"><ul>
+      <li>Google yourself right now. What does a recruiter see?</li>
+      <li>Open LinkedIn and note the first 5 words of your headline. Are they specific and compelling?</li>
+      <li>Ask a friend or colleague: "What would you say about me if a recruiter asked?" Their answer may surprise you.</li>
+      <li>Write down the five recruiter questions. For each one, write a 2-sentence answer based on your own experience.</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch2')">Chapter 2 →</button></div>
+</div>
+</div>
+
+
+<!-- CHAPTER 2 -->
+<div id="page-ch2" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 2</div>
+    <div class="ch-title">The Psychology of Interviews</div>
+    <div class="ch-subtitle">Why confidence beats perfection</div>
+  </div>
+
+  <p>Interviews are not intelligence tests. They are not always won by the most qualified candidate. They are won by the candidate who understands the <em>psychological dynamics</em> at play — and uses them.</p>
+
+  <h2>The Halo Effect</h2>
+  <p>The Halo Effect is one of the most powerful and underappreciated forces in hiring. When a recruiter forms a positive first impression — based on your appearance, energy, or opening line — that positivity unconsciously colours everything they hear afterward.</p>
+  <p>A confident opening answer makes your second answer seem more impressive. A warm smile makes your qualifications feel more credible. This is not manipulation — it is human psychology. And the best candidates know how to activate it.</p>
+
+  <h2>Confirmation Bias in Action</h2>
+  <p>Here is the flip side: if you start poorly, the recruiter will unconsciously look for evidence to confirm their negative impression. A shaky opening, a rambling answer, or a confused expression early in the interview can put you in a hole that is very hard to climb out of.</p>
+
+  <div class="pull-quote"><p>"Your first answer sets the tone for everything that follows. Make it count."</p></div>
+
+  <h2>The Likeability Factor</h2>
+  <p>Research from Harvard Business School found that interviewers often make hiring decisions based on likeability and then look for evidence to justify the decision logically. Likeability in an interview context is not about being popular. It is about:</p>
+  <ul>
+    <li>Making the recruiter feel heard and respected</li>
+    <li>Matching their communication energy without mimicking them</li>
+    <li>Showing genuine curiosity about the role and the company</li>
+    <li>Being confident without being arrogant</li>
+  </ul>
+
+  <h2>The Power of Storytelling</h2>
+  <p>The human brain is wired for stories. Facts are forgotten. Stories are remembered. When you answer an interview question with a story — a real, structured, vivid account of something you actually did — you trigger a neurological response that data cannot replicate.</p>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>Candidate: "I'm a people person." Recruiter: "Great. Tell me about a time you had a very difficult person at work." Candidate: "...I mean, everyone loves me."</p>
+  </div>
+
+  <h2>Body Language — The Signals You Send Unconsciously</h2>
+  <ul>
+    <li><strong>Eye contact:</strong> Natural and consistent. Not a staring contest, but not shifty either.</li>
+    <li><strong>Posture:</strong> Upright but relaxed. Leaning slightly forward shows engagement.</li>
+    <li><strong>Hands:</strong> Keep them visible. Hiding your hands unconsciously signals distrust.</li>
+    <li><strong>Voice:</strong> Slow down. When we are nervous, we speed up. Pace yourself.</li>
+    <li><strong>Nodding:</strong> Shows active listening. Do not overdo it or you will look like a dashboard toy.</li>
+  </ul>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 2 Assignment</div>
+    <div class="assignment-body"><ul>
+      <li>Record yourself answering: "Tell me about yourself." Watch it back without audio first. What does your body language say?</li>
+      <li>Now watch with audio. How many times do you say "um," "like," or "you know"?</li>
+      <li>Practice the same answer standing up. Notice how your energy changes.</li>
+      <li>Tell your career story to someone as if it were a story — with a beginning, turning point, and conclusion.</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch3')">Chapter 3 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 3 -->
+<div id="page-ch3" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 3</div>
+    <div class="ch-title">Your LinkedIn Profile</div>
+    <div class="ch-subtitle">The silent interview that never sleeps</div>
+  </div>
+
+  <p>Before you ever walk into an interview room, a recruiter has likely already visited your LinkedIn profile. Your LinkedIn page is a 24-hour, 7-day-a-week silent interview. And most people are failing it without knowing it.</p>
+
+  <h2>The Headline: Your Professional Identity in 220 Characters</h2>
+  <p>Your LinkedIn headline is the most valuable real estate on your profile. It appears in search results, connection requests, and comment sections. Most people waste it entirely.</p>
+
+  <table class="compare-table">
+    <tr><th>❌ Weak Headline</th><th>✅ Strong Headline</th></tr>
+    <tr><td>HR Professional</td><td>HR Leader | Talent Acquisition Expert | MBA in HR & AI | Helping Organizations Build High-Performing Teams</td></tr>
+    <tr><td>Marketing Manager at ABC Company</td><td>B2B Marketing Strategist | Demand Generation | SaaS & Tech | Revenue-Focused Marketer</td></tr>
+    <tr><td>Looking for New Opportunities</td><td>Finance Professional | FP&A | Budgeting & Forecasting | Ex-Big 4 | Open to CFO & Director Roles</td></tr>
+    <tr><td>Engineer</td><td>Civil Engineer | Infrastructure Projects | PMP Certified | 12+ Years in UAE & GCC</td></tr>
+  </table>
+
+  <h2>The Keyword Strategy</h2>
+  <p>LinkedIn is fundamentally a search engine. Recruiters type keywords into the search bar and get ranked results. If those keywords are not on your profile, you are invisible.</p>
+  <ol>
+    <li>Open 10 job descriptions for roles you want.</li>
+    <li>Highlight the skills and titles that appear repeatedly.</li>
+    <li>Make sure those exact words appear in your headline, summary, and experience sections.</li>
+    <li>Search your own keywords and see if your profile appears.</li>
+  </ol>
+
+  <h2>The About Section: Your Story in 2,600 Characters</h2>
+  <p>A powerful About section follows this structure:</p>
+  <ul>
+    <li><strong>Opening hook:</strong> One or two sentences that immediately communicate your value or unique angle.</li>
+    <li><strong>Your professional story:</strong> How you got here. What you do. Why you are excellent at it.</li>
+    <li><strong>Specific achievements:</strong> Numbers, scale, scope — things that prove your claims.</li>
+    <li><strong>What you are looking for:</strong> Give recruiters a reason to reach out.</li>
+    <li><strong>Call to action:</strong> "Feel free to connect" or "Message me to discuss opportunities."</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Write your About section in first person. "I led a team of 40" is more human and compelling than "Led a team of 40." Recruiters are hiring people, not resumes.</p>
+  </div>
+
+  <h2>The Algorithm Secrets</h2>
+  <ul>
+    <li><strong>Comments over posts:</strong> Commenting on others' posts puts you in front of their network.</li>
+    <li><strong>Dwell time matters:</strong> Short, punchy posts with line breaks perform better than walls of text.</li>
+    <li><strong>Connections over followers:</strong> First-degree connections see your content first.</li>
+    <li><strong>Consistency beats virality:</strong> Posting twice a week consistently for three months outperforms one viral post followed by silence.</li>
+  </ul>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 3 Assignment — LinkedIn Audit</div>
+    <div class="assignment-body"><ul>
+      <li>Rewrite your headline: [Role] | [Specialty] | [Credential] | [Value You Deliver]</li>
+      <li>Add 10 relevant keywords to your About section, headline, and experience sections</li>
+      <li>Update your profile photo: professional, bright background, genuine smile, recent</li>
+      <li>Write or request at least one new recommendation this week</li>
+      <li>Post one piece of original content this week — a lesson learned, career insight, or industry observation</li>
+      <li>Comment thoughtfully on 5 posts by people in your target industry today</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch4')">Chapter 4 →</button></div>
+</div>
+</div>
+
+
+<!-- CHAPTER 4 -->
+<div id="page-ch4" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 4</div>
+    <div class="ch-title">The CV That Gets You Shortlisted</div>
+    <div class="ch-subtitle">Six seconds is all you get</div>
+  </div>
+
+  <p>A CV is not a biography. It is not a list of duties. It is a <em>marketing document</em>. And like any great marketing document, its only job is to make someone want to know more.</p>
+
+  <h2>The Six-Second Reality</h2>
+  <p>Eye-tracking studies show that the initial scan of a CV takes between six and ten seconds. In that time, recruiters look at five things: your current job title, the company you worked for, how long you worked there, your previous title, and your education credentials. Everything else is secondary — unless those five pass the test.</p>
+
+  <h2>The Transformation Formula</h2>
+  <p>The single most powerful CV upgrade: shift from duties to achievements. Every bullet point should answer: <em>"So what?"</em></p>
+
+  <table class="compare-table">
+    <tr><th>❌ Duty-Based</th><th>✅ Achievement-Based</th></tr>
+    <tr><td>Responsible for recruitment activities.</td><td>Delivered end-to-end recruitment for 250+ roles across GCC, reducing time-to-fill by 35%.</td></tr>
+    <tr><td>Managed a team of HR professionals.</td><td>Led a team of 8 HR professionals, achieving 94% employee satisfaction score.</td></tr>
+    <tr><td>Involved in training and development.</td><td>Designed and delivered 12 training programmes for 400+ employees across 3 countries.</td></tr>
+    <tr><td>Handled employee relations issues.</td><td>Resolved 30+ complex ER cases with zero escalations to legal proceedings.</td></tr>
+  </table>
+
+  <h2>The ATS Survival Guide</h2>
+  <ul>
+    <li>Use the exact keywords from the job description — not synonyms.</li>
+    <li>Avoid tables, columns, text boxes, and graphics in your CV — ATS often cannot read them.</li>
+    <li>Use standard headings: Work Experience, Education, Skills.</li>
+    <li>Submit as .docx or clean PDF. Avoid Canva-designed CV files.</li>
+    <li>Customise your CV for each role. One generic CV for every job is a recipe for rejection.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Create a "master CV" with every achievement, role, and project. Then create a tailored 2-page version for each application, keeping only the most relevant content.</p>
+  </div>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>I once received a 9-page CV. With a photo on every page. Different photos. I still think about it.</p>
+  </div>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 4 Assignment — CV Audit</div>
+    <div class="assignment-body"><ul>
+      <li>Rewrite your top 3 CV bullet points: Action Verb + What You Did + Measurable Result</li>
+      <li>Run your CV through a free ATS checker online (search "free ATS resume checker")</li>
+      <li>Remove every use of the phrase "responsible for" and replace it with a strong action verb</li>
+      <li>Ask someone outside your field to read your CV for 10 seconds and tell you what they understand about you</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch5')">Chapter 5 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 5 -->
+<div id="page-ch5" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 5</div>
+    <div class="ch-title">Getting Interviews Without Applying</div>
+    <div class="ch-subtitle">The hidden job market is real</div>
+  </div>
+
+  <p>Here is a statistic that surprises most people: a significant portion of jobs are never publicly advertised. They are filled through referrals, networking, internal moves, and direct outreach — before a job post is ever written.</p>
+  <p>If you are only applying to posted jobs, you are competing in the most visible, most crowded part of the market. The smartest candidates are winning opportunities that never even had a job description.</p>
+
+  <h2>The CEO Connection Method</h2>
+  <p>Identify decision-makers at companies you genuinely want to work for. Reach out with a message that demonstrates research and offers value — not just something to ask for.</p>
+
+  <div class="callout">
+    <div class="callout-label">✉️ Message That Works</div>
+    <p>"Hi [Name], I have been following [Company]'s expansion into [market] with great interest. I recently led a similar initiative at [Your Company] and achieved [specific result]. I would love to connect and learn more about where [Company] is headed. No ask — just genuine professional curiosity."</p>
+  </div>
+
+  <p>Notice what this message does <em>not</em> include: "I am looking for a job," "Do you have any openings." Those phrases put people in an awkward position. Your message puts them in a comfortable one.</p>
+
+  <h2>Referrals — Your Highest Conversion Strategy</h2>
+  <p>Candidates referred by an internal employee are hired at a dramatically higher rate than those who apply cold. A referred candidate already has a trust signal attached to their name.</p>
+  <ul>
+    <li>Add genuine value to your professional relationships before you need anything from them.</li>
+    <li>Be specific about what you are looking for so people can spot opportunities for you.</li>
+    <li>Make it easy to refer you — keep your LinkedIn updated and your pitch sharp.</li>
+    <li>Always follow up and thank people who tried to help, whether it worked or not.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>For every 10 applications you send online, send 10 personal messages to people in your network. The conversion rate from personal outreach is dramatically higher than cold applications.</p>
+  </div>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 5 Assignment</div>
+    <div class="assignment-body"><ul>
+      <li>List 10 people in your warm network you have not spoken to in 6+ months. Send 3 a genuine reconnection message today.</li>
+      <li>Identify 5 companies where you would love to work. Find the hiring manager on LinkedIn.</li>
+      <li>Write your "elevator pitch" — a 3-sentence description of who you are, what you do, and what you are looking for.</li>
+      <li>Ask one person in your network: "If you heard of an opportunity in [your field], would you think of me?"</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch6')">Chapter 6 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 6 -->
+<div id="page-ch6" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 6</div>
+    <div class="ch-title">Research Like a Detective</div>
+    <div class="ch-subtitle">Never go into an interview blind</div>
+  </div>
+
+  <p>Every interview you attend without doing research is a gamble. And the house usually wins. Thorough preparation is not just about answering questions well — it is about walking in with the confidence that comes from knowing exactly what you are walking into.</p>
+
+  <h2>The Pre-Interview Research Checklist</h2>
+  <h3>The Company</h3>
+  <ul>
+    <li>What does the company actually do? (Not just their tagline — their real business model.)</li>
+    <li>Recent news: expansions, wins, challenges, leadership changes</li>
+    <li>Their values and culture — how do they describe themselves?</li>
+    <li>Who are their competitors and how do they differentiate?</li>
+    <li>What is their growth trajectory — growing, restructuring, stable?</li>
+  </ul>
+  <h3>The Role</h3>
+  <ul>
+    <li>Re-read the job description and underline every requirement.</li>
+    <li>For each requirement, prepare a specific example from your experience.</li>
+    <li>What problems is this role hired to solve? Your answers should address those problems.</li>
+  </ul>
+  <h3>The People</h3>
+  <ul>
+    <li>Research your interviewers on LinkedIn — their background, tenure, recent posts.</li>
+    <li>Check if you have mutual connections or shared experiences.</li>
+    <li>Note their communication style if they post content — it tells you a lot about their personality.</li>
+  </ul>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk — Golden Rule</div>
+    <p>Never — under any circumstances — ask "So what does your company do?" in an interview. This is not a question. It is a resignation letter.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Prepare three company-specific insights you can naturally drop into the conversation. This alone puts you in the top 5% of candidates.</p>
+  </div>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 6 Assignment</div>
+    <div class="assignment-body"><ul>
+      <li>For your next interview, spend 90 minutes on research before spending any time on answer preparation</li>
+      <li>Read the company's LinkedIn page, "About" section, and most recent 5 posts</li>
+      <li>Research each interviewer and write down one professional fact about each of them</li>
+      <li>Prepare one smart, specific question about the company's direction or challenges</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch7')">Chapter 7 →</button></div>
+</div>
+</div>
+
+
+<!-- CHAPTER 7 -->
+<div id="page-ch7" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 7</div>
+    <div class="ch-title">Tell Me About Yourself</div>
+    <div class="ch-subtitle">The most important answer you will ever give</div>
+  </div>
+
+  <p>"Tell me about yourself."</p>
+  <p>Four words. Infinite ways to get it wrong.</p>
+  <p>This question is the recruiter's warm-up pitch. They are giving you the floor — completely — to set the tone, establish your credibility, and make them want to hear more. Most candidates either ramble for five minutes or summarise their entire CV chronologically from birth to present. Neither works.</p>
+
+  <h2>The PPF Formula: Present · Past · Future</h2>
+  <div class="ppf-row">
+    <div class="ppf-card">
+      <div class="ppf-label">P</div>
+      <div class="ppf-sub">Present</div>
+      <div class="ppf-desc">Who are you today? Your current role, level, and most relevant context. One to two sentences. Be specific about your scope and impact.</div>
+    </div>
+    <div class="ppf-card">
+      <div class="ppf-label">P</div>
+      <div class="ppf-sub">Past</div>
+      <div class="ppf-desc">How did you get here? Two or three career-defining moments most relevant to this role. This is a highlight reel, not a timeline.</div>
+    </div>
+    <div class="ppf-card">
+      <div class="ppf-label">F</div>
+      <div class="ppf-sub">Future</div>
+      <div class="ppf-desc">Why this role? Connect your trajectory to this specific opportunity. Why this company? Why now? Should feel natural, not scripted.</div>
+    </div>
+  </div>
+
+  <h2>Sample Answers by Profile</h2>
+  <h3>For an HR Professional</h3>
+  <div class="callout">
+    <div class="callout-label">📝 Sample Answer</div>
+    <p>"Currently, I am a Talent Acquisition Partner managing end-to-end recruitment across UAE, Jordan, and Iraq — overseeing roughly 60 active roles at any time. Over the past nine years, I have built my career across telecommunications, manufacturing, and healthcare, developing a particular strength in building recruitment frameworks from scratch in high-growth environments. More recently, I completed an MBA in HR and AI, which has sharpened my thinking on how data and technology can transform the talent function. I am now looking for a senior role where I can combine strategic HR leadership with a technology-forward approach — which is exactly what drew me to this opportunity."</p>
+  </div>
+
+  <h3>For a Fresh Graduate</h3>
+  <div class="callout">
+    <div class="callout-label">📝 Sample Answer</div>
+    <p>"I recently completed my degree in Business Administration, where I specialised in marketing and graduated in the top 10% of my class. During my studies, I led a student team project that redesigned the university's recruitment campaign, increasing applicant numbers by 40%. I also completed an internship where I managed social media content and supported two product launches. I am now ready for my first full-time role in marketing, and I am particularly drawn to this company because of your reputation for investing in your graduate talent."</p>
+  </div>
+
+  <h3>For a Senior Leader</h3>
+  <div class="callout">
+    <div class="callout-label">📝 Sample Answer</div>
+    <p>"For the past twelve years, I have operated at the intersection of operations and strategy — most recently as COO where I led a transformation programme that restructured three business units and improved EBITDA by 18% over two years. Earlier in my career, I led international expansion into four markets across the Middle East and Africa. I am at a point in my career where I want to apply that experience in a context where the strategic challenges are genuinely significant — and the opportunity to lead this company's next growth phase is exactly that."</p>
+  </div>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>Actual candidate answer: "I was born in [city], moved to [city], studied [subject], had some jobs, here I am." The recruiter actually typed "here I am" in the notes. Not a compliment.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Time yourself. Your "Tell me about yourself" answer should be between 90 seconds and 2.5 minutes. Under 60 seconds feels dismissive. Over 3 minutes loses the room.</p>
+  </div>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 7 Assignment</div>
+    <div class="assignment-body"><ul>
+      <li>Write your PPF answer in full — on paper, not just in your head</li>
+      <li>Practice it out loud three times today</li>
+      <li>Time yourself — aim for 90–150 seconds</li>
+      <li>Customise the FUTURE section specifically for the next role you are applying to</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch8')">Chapter 8 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 8 -->
+<div id="page-ch8" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 8</div>
+    <div class="ch-title">Mastering Behavioral Questions</div>
+    <div class="ch-subtitle">STAR — your most powerful interview tool</div>
+  </div>
+
+  <p>Behavioral questions are the most predictive interview format ever developed. The core principle: the best predictor of future behaviour is past behaviour. Interviewers are not asking what you <em>would</em> do — they are asking what you actually <em>did</em>.</p>
+
+  <h2>The STAR Framework</h2>
+  <div class="star-grid">
+    <div class="star-card">
+      <div class="star-letter">S</div>
+      <div class="star-word">Situation</div>
+      <div class="star-desc">The context. Where, when, who was involved. Keep it brief — this is setup, not the main event.</div>
+    </div>
+    <div class="star-card">
+      <div class="star-letter">T</div>
+      <div class="star-word">Task</div>
+      <div class="star-desc">Your specific responsibility in that situation. What were you accountable for?</div>
+    </div>
+    <div class="star-card">
+      <div class="star-letter">A</div>
+      <div class="star-word">Action</div>
+      <div class="star-desc">Exactly what YOU did. Not the team — you. This is the longest part. Give it 60% of your answer time.</div>
+    </div>
+    <div class="star-card">
+      <div class="star-letter">R</div>
+      <div class="star-word">Result</div>
+      <div class="star-desc">What happened as a result? Quantify if possible. Include what you learned.</div>
+    </div>
+  </div>
+
+  <h2>The Most Common STAR Questions</h2>
+  <h3>"Tell me about a time you faced a major challenge."</h3>
+  <p>Choose a challenge that was genuinely difficult and where your actions made a measurable difference. <strong>Common mistake:</strong> Spending 90% on the Situation and Task, then rushing through Action and Result. The Action is what they are evaluating.</p>
+
+  <h3>"Tell me about a conflict at work."</h3>
+  <p>This question terrifies candidates. But it should not. Everyone has had conflict — the question is whether you navigated it maturely. Choose a conflict where you communicated professionally and found a resolution. Never blame the other party. Never say "I was right." Say "I learned."</p>
+
+  <h3>"Tell me about a failure."</h3>
+  <p>This is a test of self-awareness and growth mindset. Choose something real. Own it fully. Then explain specifically what you learned and how you applied that learning.</p>
+
+  <div class="pull-quote"><p>"The best answer to 'Tell me about a failure' shows that you are someone who fails forward."</p></div>
+
+  <h2>Building Your STAR Story Bank</h2>
+  <p>Before any interview, prepare 8–10 STAR stories covering:</p>
+  <ul>
+    <li>A major achievement or success</li>
+    <li>A challenge or setback you overcame</li>
+    <li>A conflict or disagreement you navigated</li>
+    <li>A time you showed initiative without being asked</li>
+    <li>A time you led or influenced others</li>
+    <li>A time you failed and what you learned</li>
+    <li>A time you worked under pressure with tight deadlines</li>
+    <li>A time you had to adapt quickly to significant change</li>
+  </ul>
+
+  <div class="callout callout-assignment">
+    <div class="assignment-header">✏️ Chapter 8 Assignment</div>
+    <div class="assignment-body"><ul>
+      <li>Write out 5 full STAR stories from your career using the framework above</li>
+      <li>Identify which behavioral questions each story could answer</li>
+      <li>Practice one STAR story out loud — focus on giving 60% of your time to the ACTION section</li>
+      <li>Time each story — they should be 2–3 minutes each</li>
+    </ul></div>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch9')">Chapter 9 →</button></div>
+</div>
+</div>
+
+
+<!-- CHAPTER 9 -->
+<div id="page-ch9" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 9</div>
+    <div class="ch-title">Body Language & Virtual Interviews</div>
+    <div class="ch-subtitle">How you say it matters as much as what you say</div>
+  </div>
+
+  <p>Body language in interviews is not about tricks. It is about alignment — making sure that what your body communicates matches what your words are saying. Incongruence is the enemy of credibility.</p>
+
+  <h2>In-Person Interview Presence</h2>
+  <ul>
+    <li>Enter the room with energy — not chaos. Walk with purpose, not rush.</li>
+    <li>Greet everyone in the room, not just the most senior person.</li>
+    <li>Shake hands firmly — not a bone-crusher, not a wet fish.</li>
+    <li>Wait to be invited to sit. It signals respect.</li>
+    <li>Keep both feet on the floor. No crossed legs, no fidgeting feet.</li>
+    <li>Keep your phone in your bag. Completely out of sight.</li>
+  </ul>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>A candidate once gave a perfect, textbook answer to every question. Then checked his phone three times during the panel. He did not get the job. He did get a very clear rejection email.</p>
+  </div>
+
+  <h2>Virtual Interview Mastery — Your Checklist</h2>
+  <ul>
+    <li><strong>Camera:</strong> Position at eye level. Stack books or use a stand. Looking up at you or down at you is unflattering.</li>
+    <li><strong>Lighting:</strong> Natural light from a window in front of you is ideal. Never interview with a window behind you — you become a silhouette.</li>
+    <li><strong>Background:</strong> Clean, neutral, professional. Virtual backgrounds are fine if realistic.</li>
+    <li><strong>Audio:</strong> Use headphones with a built-in mic if possible. Test your audio the day before.</li>
+    <li><strong>Internet:</strong> Hardwire your connection if possible. Position yourself close to your router.</li>
+    <li><strong>Dress:</strong> Business professional from head to waist. If you need to stand up unexpectedly, you will be glad you wore trousers.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Log in 5 minutes early. Not 30 seconds before. Use that buffer time to breathe, review your notes, and get in the right mindset. Arriving virtually flustered is as damaging as arriving physically late.</p>
+  </div>
+
+  <h2>The Cat Rule</h2>
+  <p>If something goes wrong during a virtual interview — a child appears, a cat walks across the keyboard, the internet drops momentarily — handle it with grace and a light smile. Acknowledge it briefly. Move on. Do not spend three minutes apologising.</p>
+  <p>Composure under unexpected pressure is, after all, exactly what employers are trying to assess.</p>
+
+  <div class="nav-footer"><button onclick="showPage('ch10')">Chapter 10 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 10 -->
+<div id="page-ch10" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 10</div>
+    <div class="ch-title">Salary Negotiation</div>
+    <div class="ch-subtitle">Know your worth — then ask for it</div>
+  </div>
+
+  <p>Salary negotiation is the part of the process that makes most candidates physically uncomfortable. People will negotiate the price of a car without hesitation, but when it comes to their own value, they freeze.</p>
+  <p>Here is the truth: everything is negotiable. And recruiters expect you to negotiate. Accepting the first offer without negotiation is one of the most expensive mistakes a professional can make.</p>
+
+  <h2>Answering "What Are Your Salary Expectations?"</h2>
+
+  <h3>During Early Screening</h3>
+  <div class="callout">
+    <div class="callout-label">💬 Script</div>
+    <p>"I would love to understand the full scope and responsibilities of the role before settling on a specific number — I want to make sure we are both aligned on the value I would be bringing. Could you share the budgeted range for this position?"</p>
+  </div>
+
+  <h3>When You Are Ready to Give a Number</h3>
+  <div class="callout">
+    <div class="callout-label">💬 Script</div>
+    <p>"Based on the scope of this role, the market benchmarks I have researched, and my experience delivering [specific result], I am looking for a total package in the range of [X to Y]. I am open to discussing the full structure of the offer."</p>
+  </div>
+
+  <h2>The Counteroffer Conversation</h2>
+  <ul>
+    <li>State your number calmly: "Based on my research and experience, I was expecting something closer to [X]. Is there flexibility there?"</li>
+    <li>Justify with value, not need: "Because I bring [specific skill]" not "Because I need to pay rent."</li>
+    <li>Be prepared to negotiate non-salary items: extra leave, flexible working, training budget, earlier performance review.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Silence is powerful in negotiation. After stating your number, stop talking. The next person who speaks tends to make a concession. Let it be them.</p>
+  </div>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>Candidate: "I will accept whatever you think is fair." Recruiter internally: "Oh good — fair it is." Reader, they did not get a fair offer.</p>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch11')">Chapter 11 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 11 -->
+<div id="page-ch11" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 11</div>
+    <div class="ch-title">Questions You Should Always Ask</div>
+    <div class="ch-subtitle">The interview is a two-way conversation</div>
+  </div>
+
+  <p>At the end of almost every interview, the recruiter will say: "Do you have any questions for us?" The correct answer is always <em>yes</em>. Always.</p>
+  <p>Candidates who say "No, I think you have covered everything" signal one of two things: they are not genuinely curious about the role, or they have not done enough research to know what to ask. Neither is a good signal.</p>
+
+  <h2>Questions About the Role</h2>
+  <ul>
+    <li>"What does success look like in this role in the first 90 days?"</li>
+    <li>"What are the most significant challenges the person in this role will need to navigate?"</li>
+    <li>"How would you describe the team's current dynamic?"</li>
+  </ul>
+
+  <h2>Questions About the Organisation</h2>
+  <ul>
+    <li>"What does the company's growth trajectory look like over the next 2–3 years?"</li>
+    <li>"How would you describe the leadership culture here?"</li>
+    <li>"I noticed [recent company news] — how is that affecting the team's priorities right now?"</li>
+  </ul>
+
+  <h2>The Question That Closes the Room</h2>
+  <p>Save this for the end of the interview:</p>
+  <div class="pull-quote"><p>"Based on what we have discussed today, do you have any reservations about my suitability for this role that I could address right now?"</p></div>
+  <p>This question shows confidence, gives you a chance to handle objections in real time, and signals that you are a decisive, proactive professional. Very few candidates have the courage to ask it.</p>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Prepare 6 questions before every interview. You will likely only ask 3, but having more gives you flexibility when some are answered during the conversation.</p>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch12')">Chapter 12 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 12 -->
+<div id="page-ch12" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 12</div>
+    <div class="ch-title">The Follow-Up Formula</div>
+    <div class="ch-subtitle">Most candidates disappear — do not be most candidates</div>
+  </div>
+
+  <p>The interview ended. You shook hands. You walked out. Most candidates go home, check their phone obsessively, and wait. Top candidates send a follow-up.</p>
+
+  <h2>The Thank-You Message That Actually Works</h2>
+  <p>Send a follow-up within 24 hours of the interview. Not immediately after (it can feel desperate), and not three days later (too late). Your message should include:</p>
+  <ol>
+    <li>A genuine thank you for their time — specific, not generic.</li>
+    <li>One specific thing from the conversation that reinforced your interest.</li>
+    <li>A brief restatement of why you are the right person for this role.</li>
+  </ol>
+
+  <div class="callout">
+    <div class="callout-label">✉️ Template</div>
+    <p>"Dear [Name], Thank you for taking the time to speak with me today about the [Role] position. Our conversation about [specific topic] was genuinely exciting — particularly [specific detail]. It confirmed my belief that this role aligns closely with both my experience in [area] and my professional goals. I remain very enthusiastic about the opportunity and look forward to the next steps. Please do not hesitate to reach out if you need any additional information. Best regards, [Your Name]"</p>
+  </div>
+
+  <h2>The Waiting Game — With Strategy</h2>
+  <p>If you have not heard back within the timeframe they gave you, follow up professionally. One email. Polite. Direct.</p>
+  <div class="callout">
+    <div class="callout-label">✉️ Follow-Up Template</div>
+    <p>"Dear [Name], I wanted to check in regarding the [Role] position. I remain very interested in the opportunity and would love to understand the timeline for next steps. Please let me know if there is any additional information I can provide. Thank you."</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Following up is not desperation — it is professionalism. The candidates who follow up appropriately stand out from the 90% who disappear after the interview.</p>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch13')">Chapter 13 →</button></div>
+</div>
+</div>
+
+
+<!-- CHAPTER 13 -->
+<div id="page-ch13" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 13</div>
+    <div class="ch-title">Executive & Leadership Interviews</div>
+    <div class="ch-subtitle">The higher the role, the different the game</div>
+  </div>
+
+  <p>Executive interviews operate by different rules. The technical questions become secondary. The strategic, relational, and leadership questions take centre stage. Boards and senior leaders are not just hiring for what you can do — they are hiring for <em>who you are</em> and how you think.</p>
+
+  <h2>What Senior Interviewers Are Really Assessing</h2>
+  <ul>
+    <li><strong>Strategic thinking:</strong> Can you see the big picture? Can you connect operational decisions to long-term business goals?</li>
+    <li><strong>Leadership philosophy:</strong> How do you build, motivate, and develop teams? What kind of culture do you create?</li>
+    <li><strong>Executive presence:</strong> Do you inspire confidence in a room? Does your communication feel authoritative without being arrogant?</li>
+    <li><strong>Self-awareness:</strong> Do you know your blind spots? Have you learned from failure at scale?</li>
+    <li><strong>Stakeholder management:</strong> Can you manage upward, laterally, and downward simultaneously?</li>
+  </ul>
+
+  <h2>The Board-Level Questions</h2>
+  <h3>"Where do you see your industry in five years?"</h3>
+  <p>This is a thinking test. They want to see how you analyse trends, form views, and communicate uncertainty. Identify 2–3 key forces reshaping the industry, take a position, and acknowledge the variables.</p>
+
+  <h3>"Tell me about a strategic decision that did not work out."</h3>
+  <p>The worst answer here is "I cannot think of one." The best answer demonstrates strategic rigor, ability to make decisions under ambiguity, and the wisdom to learn and adjust quickly. Be honest. Be specific. Show how you course-corrected.</p>
+
+  <h3>"How would you describe your leadership philosophy?"</h3>
+  <p>Have a clear, genuine answer. Not a list of buzzwords. Something that reflects how you actually lead. Weave in a real example that demonstrates the philosophy in action.</p>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>For executive-level preparation, read the company's last 3 annual reports, any investor presentations, and the CEO's public statements. Walk in knowing where the business is going — and be ready to say how you would help get it there.</p>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch14')">Chapter 14 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 14 -->
+<div id="page-ch14" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 14</div>
+    <div class="ch-title">AI, ATS & The Future of Hiring</div>
+    <div class="ch-subtitle">The machines are already in the room</div>
+  </div>
+
+  <p>Artificial intelligence is reshaping every stage of the hiring process. Candidates who understand this reality will have a significant advantage over those who do not.</p>
+
+  <h2>How ATS Systems Actually Work</h2>
+  <p>Most organisations with more than 50 employees use Applicant Tracking Systems. These systems parse your CV, extract information, and score you against the job requirements — before a human ever reads your name.</p>
+  <p>What ATS systems prioritise:</p>
+  <ul>
+    <li><strong>Keyword match:</strong> How closely your CV language matches the job description language</li>
+    <li><strong>Job title similarity:</strong> Whether your titles suggest the right level and experience type</li>
+    <li><strong>Education credentials:</strong> Degree level, field, and sometimes institution</li>
+    <li><strong>Tenure:</strong> Length of stay at previous organisations</li>
+    <li><strong>Formatting compliance:</strong> Clean formatting with standard sections scores higher</li>
+  </ul>
+
+  <h2>AI-Powered Video Assessments</h2>
+  <p>An increasing number of organisations use AI video interview platforms that analyse your facial expressions, word choice, speaking pace, and response structure — before a human ever watches the recording. How to perform well:</p>
+  <ul>
+    <li>Speak clearly and at a moderate pace — not too fast, not too slow</li>
+    <li>Structure your answers with clear beginnings, middles, and ends</li>
+    <li>Look directly at the camera, not the screen</li>
+    <li>Use positive, achievement-oriented language</li>
+  </ul>
+
+  <h2>AI-Generated CVs — The Trap</h2>
+  <p>AI tools can help you write a CV faster than ever. They can also get you rejected faster than ever. AI-generated CV language has a recognisable style — and experienced recruiters spot it immediately. More critically, if you cannot explain or elaborate on anything in your CV during an interview, you will be caught. Instantly.</p>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>"I see on your CV that you are proficient in implementing cross-functional synergies." "Yes." "What does that mean?" "..." "Did you write this yourself?" "..."</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>Use AI to assist your writing, never to replace your thinking. After using any AI tool, read it out loud. If any sentence sounds like it was written by a machine — it was. Rewrite it in your own voice.</p>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch15')">Chapter 15 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 15 -->
+<div id="page-ch15" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 15</div>
+    <div class="ch-title">100 Tough Interview Questions</div>
+    <div class="ch-subtitle">With guidance for each</div>
+  </div>
+
+  <p>What follows is not a list of scripted answers. It is a guide to thinking through the toughest questions interviewers ask — across all functions and levels. Use these to stress-test your preparation, not to memorise scripts.</p>
+
+  <h2>General & Personal Questions</h2>
+  <ol>
+    <li><strong>Tell me about yourself.</strong> (See Chapter 7)</li>
+    <li><strong>What are your greatest strengths?</strong> Give three, each with a brief evidence-based example. Never say "I'm a perfectionist."</li>
+    <li><strong>What is your greatest weakness?</strong> Choose a real one. Show what you are doing to address it.</li>
+    <li><strong>Where do you see yourself in five years?</strong> Be ambitious but realistic. Connect your growth to what this company can offer.</li>
+    <li><strong>Why are you leaving your current role?</strong> Be honest but positive. Never speak negatively about your current employer.</li>
+    <li><strong>What motivates you?</strong> Align your motivators to what this role genuinely offers.</li>
+    <li><strong>How do you handle stress and pressure?</strong> Give a specific example, not a theory.</li>
+    <li><strong>Describe your ideal working environment.</strong> Research the company culture and align authentically.</li>
+    <li><strong>What makes you unique?</strong> This is not a trick question. Have a clear, confident answer.</li>
+    <li><strong>Why should we hire you?</strong> Summarise your three strongest value propositions, tailored to their needs.</li>
+  </ol>
+
+  <h2>Behavioral Questions</h2>
+  <ol>
+    <li>Tell me about a time you exceeded expectations.</li>
+    <li>Tell me about a challenging project and how you managed it.</li>
+    <li>Tell me about a time you failed and what you learned.</li>
+    <li>Tell me about a conflict with a colleague and how you resolved it.</li>
+    <li>Tell me about a time you led a team through change.</li>
+    <li>Tell me about a time you had to make a decision with incomplete information.</li>
+    <li>Tell me about a time you handled a difficult client or stakeholder.</li>
+    <li>Tell me about a time you had to adapt quickly to a major change.</li>
+    <li>Tell me about a time you mentored or developed someone on your team.</li>
+    <li>Tell me about your biggest professional achievement.</li>
+  </ol>
+
+  <h2>HR-Specific Questions</h2>
+  <ol>
+    <li>How do you balance being an employee advocate with being a business partner?</li>
+    <li>Tell me about a time you had to push back on a senior leader's decision.</li>
+    <li>How do you measure the effectiveness of your recruitment process?</li>
+    <li>Describe your approach to managing a high-volume recruitment campaign.</li>
+    <li>How do you stay current with employment law in multiple jurisdictions?</li>
+    <li>Tell me about a time you handled a sensitive employee relations matter.</li>
+    <li>How do you approach building compensation frameworks from scratch?</li>
+    <li>What is your philosophy on employer branding?</li>
+    <li>How have you used data or analytics to drive an HR decision?</li>
+    <li>Tell me about the most complex organisational design challenge you have faced.</li>
+  </ol>
+
+  <h2>Leadership & Management Questions</h2>
+  <ol>
+    <li>What is your leadership style?</li>
+    <li>How do you handle underperformance in your team?</li>
+    <li>Tell me about a time you had to let someone go. How did you handle it?</li>
+    <li>How do you build trust with a new team?</li>
+    <li>How do you make decisions under pressure?</li>
+    <li>How do you balance short-term results with long-term development?</li>
+    <li>Tell me about a time you had to change course mid-project.</li>
+    <li>How do you manage conflict between team members?</li>
+    <li>How do you give difficult feedback?</li>
+    <li>What do you do when you disagree with your own manager?</li>
+  </ol>
+
+  <h2>Curveball Questions</h2>
+  <ol>
+    <li>If you could redesign your career, what would you do differently?</li>
+    <li>What book has most influenced your professional thinking?</li>
+    <li>If I called your previous manager right now, what would they say about you?</li>
+    <li>What is the hardest feedback you have ever received?</li>
+    <li>What are you most proud of in your career — that is not on your CV?</li>
+  </ol>
+
+  <div class="callout">
+    <div class="callout-label">💡 Pro Tip</div>
+    <p>For every question in this chapter, write a one-line summary of which STAR story from your bank you would use. This is your personal interview map.</p>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('ch16')">Chapter 16 →</button></div>
+</div>
+</div>
+
+<!-- CHAPTER 16 -->
+<div id="page-ch16" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Chapter 16</div>
+    <div class="ch-title">Recruiter Confessions</div>
+    <div class="ch-subtitle">What we never say out loud</div>
+  </div>
+
+  <p>After years of sitting on the other side of the table, here is what recruiters really think — but almost never say out loud. Consider this chapter the honest conversation you never got to have.</p>
+
+  <div class="confession-item">
+    <strong>We know when you have not researched the company.</strong>
+    <p>You give generic answers. You ask questions that are clearly on the website. You talk about "a company like yours" instead of "your company." We know within five minutes.</p>
+  </div>
+  <div class="confession-item">
+    <strong>We know when your answer is memorised.</strong>
+    <p>Memorised answers have a rhythm that is slightly off. They are smooth in the wrong places and stumble when we push back. Tell your story — do not recite it.</p>
+  </div>
+  <div class="confession-item">
+    <strong>We know when you are reading from another screen.</strong>
+    <p>Your eyes move in a specific way when you are reading. Your "spontaneous" answer is suspiciously complete. We see it. Every time.</p>
+  </div>
+  <div class="confession-item">
+    <strong>We know when your CV was written by AI — and you did not understand it.</strong>
+    <p>The vocabulary on your CV and the vocabulary you use when speaking are sometimes dramatically different. When we probe on something you apparently did, and you go blank — that is the moment of reckoning.</p>
+  </div>
+  <div class="confession-item">
+    <strong>We are rooting for you.</strong>
+    <p>Recruiters want to find the right person. Every interview costs time, money, and energy. When you walk in, we genuinely hope you are the one. Help us want to hire you.</p>
+  </div>
+  <div class="confession-item">
+    <strong>First impressions are formed in seconds and they are very hard to reverse.</strong>
+    <p>This is not fair. But it is human. Which is why the opening of your interview matters more than almost anything else.</p>
+  </div>
+  <div class="confession-item">
+    <strong>Sometimes the decision was made before you arrived.</strong>
+    <p>Internal candidates, referrals, or preferences set before the process started can make an external interview feel predetermined. When you are rejected and cannot figure out why — this is sometimes the reason. It is not a reflection of your worth.</p>
+  </div>
+  <div class="confession-item">
+    <strong>The follow-up email genuinely matters.</strong>
+    <p>In close calls between two strong candidates, a thoughtful follow-up has changed the outcome. It has happened. More than once.</p>
+  </div>
+  <div class="confession-item">
+    <strong>We remember how you made us feel more than what you said.</strong>
+    <p>Interview notes capture facts. Memory captures feelings. The candidate who made the recruiter feel energised, respected, and genuinely excited — that is the candidate who stays top of mind.</p>
+  </div>
+  <div class="confession-item">
+    <strong>No is not always final.</strong>
+    <p>Candidates who handled rejection graciously and kept in touch professionally have later been hired for different roles. The right no can be the foundation of a future yes.</p>
+  </div>
+
+  <div class="callout callout-funny">
+    <div class="callout-label">😂 Real Talk</div>
+    <p>The strangest interview I ever conducted: the candidate brought a PowerPoint presentation about themselves. Fifteen slides. Including a slide titled "My Weaknesses" with professionally designed icons. I hired them. Confident and prepared wins.</p>
+  </div>
+
+  <div class="nav-footer"><button onclick="showPage('conclusion')">Conclusion →</button></div>
+</div>
+</div>
+
+
+<!-- CONCLUSION -->
+<div id="page-conclusion" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">Conclusion</div>
+    <div class="ch-title">Your 30-Day Action Plan</div>
+    <div class="ch-subtitle">The interview is waiting for you</div>
+  </div>
+
+  <p>You have now read every chapter. You have the knowledge. The question is what you do with it.</p>
+  <p>Knowledge without action is just entertainment. The following 30-day plan transforms everything in this book from theory into reality — one step at a time.</p>
+
+  <div class="week-block">
+    <div class="week-title">Week 1 — Foundation</div>
+    <ul>
+      <li>Day 1: Google yourself. Conduct a full LinkedIn audit using Chapter 3.</li>
+      <li>Day 2: Rewrite your LinkedIn headline and first paragraph of your About section.</li>
+      <li>Day 3: Revise your CV using the achievement formula from Chapter 4.</li>
+      <li>Day 4: Run your CV through an ATS checker. Fix any issues.</li>
+      <li>Day 5: Write your "Tell Me About Yourself" answer in full.</li>
+      <li>Day 6: Record yourself answering it. Watch it back critically.</li>
+      <li>Day 7: Refine. Practice with someone who will give you honest feedback.</li>
+    </ul>
+  </div>
+
+  <div class="week-block">
+    <div class="week-title">Week 2 — Stories and Skills</div>
+    <ul>
+      <li>Day 8: Write five STAR stories from your career.</li>
+      <li>Day 9: Map each story to the behavioral questions from Chapter 8.</li>
+      <li>Day 10: Practice one STAR story out loud every day this week.</li>
+      <li>Day 11: Research three companies you genuinely want to work for.</li>
+      <li>Day 12: Identify and message two people in your warm network.</li>
+      <li>Day 13: Post one piece of content on LinkedIn.</li>
+      <li>Day 14: Comment thoughtfully on 10 posts in your target industry.</li>
+    </ul>
+  </div>
+
+  <div class="week-block">
+    <div class="week-title">Week 3 — Practice and Outreach</div>
+    <ul>
+      <li>Day 15: Do a mock interview with a friend, colleague, or career coach.</li>
+      <li>Day 16: Research salary benchmarks for your target roles.</li>
+      <li>Day 17: Prepare your salary response using the framework from Chapter 10.</li>
+      <li>Day 18: Prepare 6 questions you would ask in your next interview.</li>
+      <li>Day 19: Reach out to three people in your extended professional network.</li>
+      <li>Day 20: Send 5 tailored applications — not mass applications.</li>
+      <li>Day 21: Ask one former manager or client for a LinkedIn recommendation.</li>
+    </ul>
+  </div>
+
+  <div class="week-block">
+    <div class="week-title">Week 4 — Execution and Reflection</div>
+    <ul>
+      <li>Days 22–24: Apply to roles consistently. Customise each application.</li>
+      <li>Day 25: Conduct an interview — real or practice — and review your performance immediately after.</li>
+      <li>Day 26: Send follow-up messages for any pending applications or conversations.</li>
+      <li>Day 27: Expand your LinkedIn network by 20 strategic connections.</li>
+      <li>Day 28: Post a piece of content that demonstrates your professional expertise.</li>
+      <li>Day 29: Reflect on the month. What worked? What needs to change?</li>
+      <li>Day 30: Set your goals for Month 2. The process does not stop.</li>
+    </ul>
+  </div>
+
+  <div class="pull-quote">
+    <p>"The interview room is not where careers are decided. It is where prepared people are rewarded."</p>
+    <div class="quote-attr">— Nesrin Abdelhakim</div>
+  </div>
+
+  <p style="text-align:center; font-size: 22px; color: var(--dark-green); font-weight: 600; margin-top: 32px;">Now go get the offer.</p>
+
+  <div class="nav-footer"><button onclick="showPage('author')">About the Author →</button></div>
+</div>
+</div>
+
+<!-- ABOUT AUTHOR -->
+<div id="page-author" class="page-hidden">
+<div class="chapter-page">
+  <div class="chapter-hero">
+    <div class="ch-num">About the Author</div>
+    <div class="ch-title">Nesrin Abdelhakim</div>
+    <div class="ch-subtitle">Executive Coach · HR Leader · Interview Strategist</div>
+  </div>
+
+  <div class="author-section">
+    <div class="author-name">Nesrin Abdelhakim</div>
+    <div class="author-title">Executive Coach · HR Leader · Interview Strategist</div>
+    <div class="author-divider"></div>
+  </div>
+
+  <p>Nesrin Abdelhakim is an HR Leader, Career Coach, and Professional Trainer based in the UAE. With more than nine years of experience across industries including telecommunications, manufacturing, healthcare, hospitality, and food and beverage, she has helped organisations attract, develop, and retain top talent.</p>
+  <p>Holding a Master's degree in Human Resources and Artificial Intelligence, Nesrin combines practical HR expertise with a passion for helping people grow in their careers. Throughout her journey, she has interviewed and coached professionals at all levels — from fresh graduates to senior leaders — helping them build confidence, improve their interview skills, and achieve their career goals.</p>
+  <p>As the co-founder of 7Shots Recruitment and Training Consultancy, Nesrin is dedicated to supporting individuals and organisations through training, coaching, recruitment, and career development initiatives.</p>
+  <p>In this book, she shares real-world insights, practical strategies, and lessons learned from years of experience on both sides of the interview table — helping readers navigate interviews with confidence and professionalism.</p>
+
+  <div style="text-align:center">
+    <span class="hashtag">#NesrinaYourCareerCoach</span>
+  </div>
+
+  <p style="text-align:center; margin-top:32px; color: var(--muted); font-size:15px; font-family: 'DM Sans', sans-serif;">
+    © 2026 Nesrin Abdelhakim · All rights reserved<br>
+    Published by 7Shots Recruitment & Training Consultancy
+  </p>
+
+  <div class="nav-footer"><button onclick="showPage('cover')">↑ Back to Cover</button></div>
+</div>
+</div>
+
+</main>
+
+<style>
+.page-hidden { display: none; }
+.page-active { display: block; }
+.nav-footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  text-align: right;
+}
+.nav-footer button {
+  background: var(--dark-green);
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-footer button:hover { background: var(--mid-green); transform: translateX(4px); }
+</style>
+
+<script>
+const pages = ['cover','toc','intro','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10','ch11','ch12','ch13','ch14','ch15','ch16','conclusion','author'];
+const navIds = ['cover','toc','intro','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8','ch9','ch10','ch11','ch12','ch13','ch14','ch15','ch16','conclusion','author'];
+
+function showPage(id) {
+  pages.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) { el.classList.remove('page-active'); el.classList.add('page-hidden'); }
+  });
+  const target = document.getElementById('page-' + id);
+  if (target) { target.classList.remove('page-hidden'); target.classList.add('page-active'); }
+  
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(item => {
+    if (item.getAttribute('onclick') && item.getAttribute('onclick').includes("'" + id + "'")) {
+      item.classList.add('active');
+    }
+  });
+  
+  document.getElementById('content').scrollTop = 0;
+  window.scrollTo(0,0);
+  updateProgress(id);
+  closeMenu();
+}
+
+function updateProgress(id) {
+  const idx = pages.indexOf(id);
+  const pct = idx < 0 ? 0 : Math.round((idx / (pages.length - 1)) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeMenu() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  const cur = pages.findIndex(p => {
+    const el = document.getElementById('page-' + p);
+    return el && el.classList.contains('page-active');
+  });
+  if (e.key === 'ArrowRight' && cur < pages.length - 1) showPage(pages[cur + 1]);
+  if (e.key === 'ArrowLeft' && cur > 0) showPage(pages[cur - 1]);
+});
+
+// Scroll progress
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  if (total > 0) {
+    // Just visual enhancement
+  }
+});
+
+showPage('cover');
+</script>
+</body>
+</html>
