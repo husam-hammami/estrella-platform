@@ -36,7 +36,7 @@
     if (!landing || !landing.classList.contains("active") || heroPlayed) return;
 
     const content = landing.querySelectorAll(
-      ".hero-eyebrow, .hero h1, .hero-sub, .hero-ctas, .hero-trust"
+      ".hero-kicker, .hero h1, .hero-divider, .hero-sub, .hero-ctas, .hero-options, .hero-trust"
     );
     const visual = landing.querySelector(".hero-visual");
     const dots = landing.querySelectorAll(".hero-dot");
