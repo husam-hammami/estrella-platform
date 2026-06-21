@@ -4574,6 +4574,8 @@ body{
         <p>Courses born from Nesreen's coaching practice. Every lesson includes a private AI tutor who knows the material — so help is one tap away.</p>
       </div>
 
+      <div id="acad-gamebar"></div>
+
       <!-- Featured / Continue learning -->
       <div class="acad-featured">
         <div class="acad-featured-visual">
@@ -4722,6 +4724,63 @@ body{
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="gsap-estrella.js"></script>
+<script src="academy-content.js"></script>
+<style id="academy-game-css">
+.lp-objectives{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.35rem;margin-bottom:1.5rem}
+.lp-objectives .lp-obj-label{font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--gold-deep);margin-bottom:0.6rem}
+.lp-objectives ul{list-style:none;display:flex;flex-direction:column;gap:0.45rem}
+.lp-objectives li{font-size:0.92rem;color:var(--text);line-height:1.5;padding-left:1.1rem;position:relative}
+.lp-objectives li::before{content:"";position:absolute;left:0;top:0.55em;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.lp-section.lp-lead p{font-size:1.08rem;line-height:1.7;color:var(--ink)}
+.lp-quiz{border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.75rem 2rem;margin:2rem 0;background:var(--surface)}
+.lp-quiz-head{display:flex;flex-direction:column;gap:0.2rem;margin-bottom:1.25rem}
+.lp-quiz-label{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--gold-deep)}
+.lp-quiz-sub{font-size:0.85rem;color:var(--text-dim)}
+.lp-q{margin-bottom:1.5rem}
+.lp-q-text{font-size:0.98rem;font-weight:500;color:var(--ink);margin-bottom:0.75rem;line-height:1.4}
+.lp-q-opts{display:flex;flex-direction:column;gap:0.5rem}
+.lp-opt{text-align:left;font-family:inherit;font-size:0.92rem;color:var(--ink);background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:0.7rem 0.95rem;cursor:pointer;transition:border-color 0.15s var(--ease),background 0.15s var(--ease)}
+.lp-opt:hover:not(:disabled){border-color:var(--gold);background:var(--gold-bg)}
+.lp-opt.sel{border-color:var(--gold);background:var(--gold-bg);box-shadow:inset 0 0 0 1px var(--gold)}
+.lp-opt.correct{border-color:var(--success);background:var(--sage-bg);color:var(--ink)}
+.lp-opt.wrong{border-color:var(--danger);background:#F8E9E6}
+.lp-opt:disabled{cursor:default}
+.lp-q-explain{margin-top:0.6rem;font-size:0.86rem;color:var(--text-dim);line-height:1.5;padding:0.6rem 0.85rem;background:var(--bg-soft);border-left:2px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0}
+.lp-quiz-foot{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.lp-quiz-result{font-size:0.9rem;font-weight:500}
+.lp-quiz-result.pass{color:var(--success)}
+.lp-quiz-result.fail{color:var(--danger)}
+#acad-gamebar{margin:0 0 2rem;border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;background:linear-gradient(135deg,var(--gold-bg) 0%, var(--surface) 65%)}
+.gb-row{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.gb-level{display:flex;align-items:center;gap:0.85rem}
+.gb-orb{width:42px;height:42px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 32% 28%, var(--gold-soft,#D9C28E), var(--gold) 75%);color:#FBF7EC;box-shadow:0 6px 16px -4px rgba(184,152,92,0.45)}
+.gb-orb svg{width:18px;height:18px}
+.gb-level-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500;color:var(--ink);line-height:1}
+.gb-xp{font-size:0.78rem;color:var(--text-dim);margin-top:0.2rem}
+.gb-stat{display:flex;flex-direction:column;line-height:1.1}
+.gb-stat .gb-n{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;color:var(--ink)}
+.gb-stat .gb-l{font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mute)}
+.gb-badges{display:flex;align-items:center;gap:0.4rem;margin-left:auto;flex-wrap:wrap;max-width:280px;justify-content:flex-end}
+.gb-badge{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gold-bg);border:1px solid var(--gold);color:var(--gold-deep)}
+.gb-badge svg{width:13px;height:13px}
+.gb-badge-empty{font-size:0.78rem;color:var(--text-mute);font-style:italic}
+.gb-bar{height:5px;border-radius:99px;background:rgba(20,18,14,0.08);margin-top:1rem;overflow:hidden}
+.gb-bar div{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-deep));border-radius:99px;transition:width 0.6s var(--ease)}
+.cd-lesson-row.done .cd-lesson-ic{color:var(--success)}
+.cert-overlay{position:fixed;inset:0;z-index:9999;background:rgba(20,18,14,0.55);display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(3px)}
+.cert-card{position:relative;max-width:540px;width:100%;background:var(--bg,#F2EBDC);border:1px solid var(--gold);box-shadow:0 40px 80px -20px rgba(20,18,14,0.5);border-radius:6px;padding:3rem 2.5rem;text-align:center;outline:5px double rgba(184,152,92,0.4);outline-offset:-14px}
+.cert-close{position:absolute;top:0.6rem;right:1rem;background:none;border:none;font-size:1.6rem;color:var(--text-mute);cursor:pointer;line-height:1}
+.cert-emblem{width:38px;height:38px;margin:0 auto 0.75rem;color:var(--gold)}
+.cert-kicker{font-size:0.7rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:1.5rem}
+.cert-pre{font-size:0.85rem;color:var(--text-dim);margin:0.4rem 0}
+.cert-name{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--ink)}
+.cert-course{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:var(--ink);line-height:1.1;margin:0.3rem 0 0.6rem}
+.cert-seal{display:inline-block;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-deep);border:1px solid var(--gold);border-radius:99px;padding:0.3rem 0.8rem;margin-bottom:0.6rem}
+.cert-copy{font-size:0.92rem;color:var(--text);line-height:1.6;max-width:40ch;margin:1rem auto 1.5rem}
+.cert-sign-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--ink)}
+.cert-sign-role{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mute);margin-top:0.2rem}
+.cert-id{margin-top:1.5rem;font-size:0.62rem;letter-spacing:0.12em;color:var(--text-mute);font-family:monospace}
+</style>
 
 <script>
 /* ============================== DATA ============================== */
@@ -4892,6 +4951,7 @@ function switchView(viewId){
   const current = document.querySelector('.view.active');
   const next = document.getElementById('view-' + viewId);
   if(!next || current === next) return;
+  if(viewId==='academy' && typeof aRenderHeader==='function'){ try{ aRenderHeader(); }catch(e){} }
 
   if(window.EstrellaGsap){
     current.classList.remove('active');
@@ -6035,18 +6095,20 @@ function openCourse(id){
             ${CHEV_SVG}
           </div>
           <div class="cd-module-body">
-            ${m.lessons.map(l=>`
-              <div class="cd-lesson-row ${l.lessonId?'playable':''}" ${l.lessonId?`data-lesson="${l.lessonId}"`:''}>
-                <div class="cd-lesson-ic">
-                  ${l.lessonId
-                    ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>'
-                    : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'}
+            ${m.lessons.map((l,li)=>{
+              const lid = c.id + '-' + (c.modules.slice(0,mi).reduce((a,mm)=>a+mm.lessons.length,0) + li + 1);
+              const done = (typeof aIsDone==='function') && aIsDone(lid);
+              return `
+              <div class="cd-lesson-row playable ${done?'done':''}" data-lesson="${lid}">
+                <div class="cd-lesson-ic">${done
+                  ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+                  : '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>'}
                 </div>
                 <span class="cd-lesson-title">${l.title}</span>
                 ${l.free?'<span class="cd-free">Free</span>':''}
                 <span class="cd-lesson-mins">${l.mins} min</span>
-              </div>
-            `).join('')}
+              </div>`;
+            }).join('')}
           </div>
         </div>
       `).join('')}
@@ -6081,8 +6143,217 @@ function openCourse(id){
   switchView('course');
 }
 
-/* ---- Lesson Player ---- */
+/* ======================================================================
+   ACADEMY ENGINE — data-driven lessons + gamification ("Light")
+   Content: window.ESTRELLA_ACADEMY (academy-content.js). Spec: gamification.json
+   ====================================================================== */
+const ACAD = (window.ESTRELLA_ACADEMY) || { courses:{}, gamification:{} };
+const GAM  = ACAD.gamification || {};
+const XPR  = (GAM.xp && GAM.xp.rules) || { lessonCompleted:50, quizCorrectAnswer:10, quizMasteryBonus:40, courseCompletionBonus:200, dailyStreakBonus:15, trackCompletionBonus:500 };
+const PASS = (GAM.scoring && GAM.scoring.passThreshold) || 0.7;
+const LADDER = (GAM.levels && GAM.levels.ladder) || [{name:'First Light',minXP:0}];
+const BADGES = (GAM.badges && GAM.badges.catalog) || [];
+const TRACKS = (GAM.tracks && GAM.tracks.list) || [];
+
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+const ARROW_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>';
+const STAR_SVG  = '<svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>';
+const SEND_SVG  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+
+// flat lessonId -> {lesson, courseId, moduleTitle, order, total, ids}
+const LIDX = {};
+for(const cid in ACAD.courses){
+  const co = ACAD.courses[cid]; let n = 0; const ids = [];
+  (co.modules||[]).forEach(m => (m.lessons||[]).forEach(l => { LIDX[l.lessonId] = {lesson:l, courseId:cid, moduleTitle:m.title, order:n, ids}; ids.push(l.lessonId); n++; }));
+  ids.forEach(x => { LIDX[x].total = n; });
+}
+
+// ---- progress state (localStorage) ----
+const AKEY = 'estrella.academy.v1';
+function aLoad(){ try{ return JSON.parse(localStorage.getItem(AKEY)) || {}; }catch(e){ return {}; } }
+let AST = Object.assign({ xp:0, lessons:{}, courses:{}, tracks:{}, badges:[], streak:{count:0,last:null,tokens:1}, day:{d:null,n:0} }, aLoad());
+function aSave(){ try{ localStorage.setItem(AKEY, JSON.stringify(AST)); }catch(e){} }
+function aToday(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function aYesterday(){ const d=new Date(); d.setDate(d.getDate()-1); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function aIsDone(id){ return !!(AST.lessons[id] && AST.lessons[id].completed); }
+function aLevel(){ let cur=LADDER[0]; for(const t of LADDER){ if(AST.xp>=t.minXP) cur=t; } const i=LADDER.indexOf(cur); const next=LADDER[i+1]||null; const pct = next ? Math.max(0,Math.min(100,Math.round((AST.xp-cur.minXP)/(next.minXP-cur.minXP)*100))) : 100; return {tier:cur,next,pct}; }
+function aCourseProgress(cid){ const ids = (ACAD.courses[cid]?[]:[]); const list = LIDX[cid+'-1'] ? LIDX[cid+'-1'].ids : []; const done = list.filter(aIsDone).length; return {done, total:list.length, pct: list.length?Math.round(done/list.length*100):0}; }
+function aAddBadge(bid){ if(bid && AST.badges.indexOf(bid)<0){ AST.badges.push(bid); return BADGES.find(b=>b.id===bid)||{id:bid,name:bid}; } return null; }
+function aStreakTick(out){
+  const t=aToday(), s=AST.streak;
+  if(s.last===t) return;
+  if(s.last===aYesterday()) s.count++;
+  else if(s.last && s.tokens>0){ s.tokens--; s.count++; }
+  else s.count = 1;
+  s.last = t; AST.xp += XPR.dailyStreakBonus; out.xp += XPR.dailyStreakBonus;
+  (GAM.streak && GAM.streak.milestones || []).forEach(ms => { if(s.count>=ms.days){ const b=aAddBadge(ms.reward.badge); if(b) out.badges.push(b); } });
+}
+function aGradeQuiz(quiz, picks, retried){ let correct=0, allFirst=true; (quiz||[]).forEach((q,i)=>{ const ok = picks[i]===q.answer; if(ok) correct++; if(!ok||retried) allFirst=false; }); const total=(quiz||[]).length; return { passed: total? correct/total>=PASS : true, correct, total, mastered: allFirst && correct===total && !retried }; }
+function aComplete(id, grade){
+  const info = LIDX[id]; const out = {xp:0, badges:[], level:null};
+  if(!info) return out;
+  const before = aLevel().tier.name;
+  const ls = AST.lessons[id] || (AST.lessons[id]={});
+  if(!ls.completed){ ls.completed=true; AST.xp+=XPR.lessonCompleted; out.xp+=XPR.lessonCompleted; const fs=aAddBadge('first-step'); if(fs) out.badges.push(fs); }
+  if(grade){
+    const nc = Math.max(ls.quizCorrect||0, grade.correct); const delta = nc-(ls.quizCorrect||0);
+    if(delta>0){ AST.xp+=delta*XPR.quizCorrectAnswer; out.xp+=delta*XPR.quizCorrectAnswer; ls.quizCorrect=nc; }
+    if(grade.mastered && !ls.mastered){ ls.mastered=true; AST.xp+=XPR.quizMasteryBonus; out.xp+=XPR.quizMasteryBonus; const fb=aAddBadge('flawless'); if(fb) out.badges.push(fb); }
+  }
+  // busy-day badge (3 lessons same day)
+  const t=aToday(); if(AST.day.d!==t) AST.day={d:t,n:0}; AST.day.n++; if(AST.day.n>=3){ const bb=aAddBadge('in-flow'); if(bb) out.badges.push(bb); }
+  aStreakTick(out);
+  // course completion
+  const cp = aCourseProgress(info.courseId);
+  if(cp.total>0 && cp.done===cp.total && !(AST.courses[info.courseId] && AST.courses[info.courseId].done)){
+    AST.courses[info.courseId] = {done:true, at:t}; AST.xp+=XPR.courseCompletionBonus; out.xp+=XPR.courseCompletionBonus; out.courseComplete=info.courseId;
+    const gb=aAddBadge(info.courseId+'-graduate'); if(gb) out.badges.push(gb);
+    if(info.ids.every(x=>AST.lessons[x] && AST.lessons[x].mastered)){ AST.courses[info.courseId].mastered=true; const pb=aAddBadge('perfect-course'); if(pb) out.badges.push(pb); }
+    TRACKS.forEach(tr=>{ if(tr.courses.every(c=>AST.courses[c] && AST.courses[c].done) && !(AST.tracks[tr.id])){ AST.tracks[tr.id]={done:true}; AST.xp+=XPR.trackCompletionBonus; out.xp+=XPR.trackCompletionBonus; const tb=aAddBadge('track-finisher'); if(tb) out.badges.push(tb); out.trackComplete=tr; } });
+  }
+  const after = aLevel().tier; if(after.name!==before) out.level=after;
+  aSave(); return out;
+}
+
+// ---- lesson body renderer ----
+function aBody(L){
+  let h = `<div class="lp-section lp-lead"><p>${esc(L.hook)}</p></div>`;
+  if(L.objectives && L.objectives.length) h += `<div class="lp-objectives"><div class="lp-obj-label">What you'll be able to do</div><ul>${L.objectives.map(o=>`<li>${esc(o)}</li>`).join('')}</ul></div>`;
+  (L.sections||[]).forEach(s=>{ h += `<div class="lp-section"><h3>${esc(s.heading)}</h3>${(s.body||[]).map(p=>`<p>${esc(p)}</p>`).join('')}</div>`; });
+  if(L.takeaways && L.takeaways.length) h += `<div class="lp-takeaways"><h3>Key takeaways</h3><ul>${L.takeaways.map(t=>`<li>${CHECK_SVG}<span>${esc(t)}</span></li>`).join('')}</ul></div>`;
+  if(L.exercise) h += `<div class="lp-exercise"><div class="lp-ex-label">${CHECK_SVG} Practice</div><h3>${esc(L.exercise.title)}</h3><p>${esc(L.exercise.prompt)}</p><textarea id="lp-ex-text" placeholder="${esc(L.exercise.placeholder||'')}"></textarea></div>`;
+  if(L.quiz && L.quiz.length) h += `<div class="lp-quiz" id="lp-quiz"><div class="lp-quiz-head"><span class="lp-quiz-label">Quick check</span><span class="lp-quiz-sub">Answer to finish the lesson and earn Light.</span></div>${L.quiz.map((q,i)=>`<div class="lp-q" data-q="${i}"><div class="lp-q-text">${i+1}. ${esc(q.q)}</div><div class="lp-q-opts">${q.options.map((o,j)=>`<button type="button" class="lp-opt" data-q="${i}" data-o="${j}">${esc(o)}</button>`).join('')}</div><div class="lp-q-explain" hidden></div></div>`).join('')}<div class="lp-quiz-foot"><button class="btn btn-primary" id="lp-quiz-check">Check answers</button><span class="lp-quiz-result" id="lp-quiz-result"></span></div></div>`;
+  return h;
+}
+
+function aCelebrate(aw){
+  if(!aw || (!aw.xp && !(aw.badges||[]).length)) return;
+  if(aw.xp) showToast('+' + aw.xp + ' Light' + (aw.level ? ' · You reached ' + aw.level.name : ''));
+  (aw.badges||[]).forEach((b,i)=> setTimeout(()=> showToast('Badge earned · ' + b.name), 450*(i+1)));
+  if(aw.courseComplete) setTimeout(()=> aShowCertificate(aw.courseComplete), 700);
+}
+
+function aShowCertificate(cid){
+  const co = courses.find(c=>c.id===cid) || {title:cid}; const cp = aCourseProgress(cid);
+  const mastered = !!(AST.courses[cid] && AST.courses[cid].mastered);
+  const cert = (GAM.certificate||{}); const copy = cert.copy||{};
+  const id = 'ESTR-' + cid.replace(/[^a-z]/gi,'').toUpperCase().slice(0,6) + '-2026-' + String((cp.done||0)+1).padStart(4,'0');
+  const m = document.createElement('div'); m.className='cert-overlay';
+  m.innerHTML = `<div class="cert-card">
+    <button class="cert-close" aria-label="Close">&times;</button>
+    <div class="cert-emblem">${STAR_SVG}</div>
+    <div class="cert-kicker">Estrella Academy</div>
+    <div class="cert-pre">This certifies that</div>
+    <div class="cert-name">You</div>
+    <div class="cert-pre">have completed</div>
+    <div class="cert-course">${esc(co.title)}</div>
+    ${mastered?'<div class="cert-seal">★ Finished with Full Marks</div>':''}
+    <p class="cert-copy">${esc(copy.congratulatory||'You did the real work, and it shows.')}</p>
+    <div class="cert-sign"><div class="cert-sign-name">Nesreen</div><div class="cert-sign-role">Lead Trainer, Estrella Academy</div></div>
+    <div class="cert-id">${id}</div>
+  </div>`;
+  m.addEventListener('click', e=>{ if(e.target===m || e.target.closest('.cert-close')) m.remove(); });
+  document.body.appendChild(m);
+}
+
+function aRenderHeader(){
+  const host = document.getElementById('acad-gamebar'); if(!host) return;
+  const lv = aLevel();
+  const earned = AST.badges.map(id=>BADGES.find(b=>b.id===id)).filter(Boolean);
+  const doneLessons = Object.values(AST.lessons).filter(l=>l.completed).length;
+  host.innerHTML = `
+    <div class="gb-row">
+      <div class="gb-level">
+        <div class="gb-orb">${STAR_SVG}</div>
+        <div><div class="gb-level-name">${esc(lv.tier.name)}</div><div class="gb-xp">${AST.xp.toLocaleString()} Light${lv.next?' · '+(lv.next.minXP-AST.xp).toLocaleString()+' to '+esc(lv.next.name):''}</div></div>
+      </div>
+      <div class="gb-stat"><span class="gb-n">${doneLessons}</span><span class="gb-l">/ 82 lessons</span></div>
+      <div class="gb-stat"><span class="gb-n">${AST.streak.count}</span><span class="gb-l">day streak</span></div>
+      <div class="gb-badges">${earned.length? earned.slice(0,8).map(b=>`<span class="gb-badge" title="${esc(b.name)} — ${esc(b.description||'')}">${STAR_SVG}</span>`).join('') : '<span class="gb-badge-empty">Badges appear as you learn</span>'}</div>
+    </div>
+    <div class="gb-bar"><div style="width:${lv.pct}%"></div></div>`;
+}
+
+window.__acadOpen = function(courseId, lessonId){
+  const wrap = document.getElementById('lp-wrap');
+  const id = (lessonId && LIDX[lessonId]) ? lessonId : (LIDX[courseId+'-1'] ? courseId+'-1' : null);
+  const info = id ? LIDX[id] : null;
+  if(!info) return false;
+  const L = info.lesson;
+  const courseName = (courses.find(c=>c.id===info.courseId)||{}).title || '';
+  const seed = L.tutorSeed || {opening:'Ask me anything about this lesson.', suggested:[]};
+  const done = aIsDone(id);
+  wrap.innerHTML = `
+    <div class="lp-progress" id="lp-progress"></div>
+    <div class="lp-main" id="lp-main">
+      <div class="lp-stickybar" id="lp-stickybar">
+        <button class="lp-back" id="lp-back-sticky" style="margin:0">${ARROW_SVG}</button>
+        <span class="lp-sb-title">${esc(L.title)}</span>
+        <span class="lp-sb-prog" id="lp-sb-prog">0%</span>
+      </div>
+      <div class="lp-inner">
+        <button class="lp-back" id="lp-back">${ARROW_SVG} Back to course</button>
+        <div class="lp-breadcrumb">${esc(courseName)} · ${esc(info.moduleTitle)}</div>
+        <h1 class="lp-title">${esc(L.title)}</h1>
+        <div class="lp-lessonmeta">Lesson ${info.order+1} of ${info.total} · ≈ ${L.mins} min${done?' · <span style="color:var(--success);font-weight:600">Completed</span>':''}</div>
+        ${aBody(L)}
+        <div class="lp-footer">
+          <button class="btn btn-ghost" id="lp-back2">← Back to course</button>
+          <button class="btn btn-primary" id="lp-complete">${done?'Completed ✓':'Finish lesson'}</button>
+        </div>
+      </div>
+    </div>
+    <aside class="lp-tutor">
+      <div class="lp-tutor-head">
+        <div class="tm-label">Estrella · Live in lesson</div>
+        <div class="lp-tutor-greet"><div class="lp-estrella-orb">${STAR_SVG}</div><p>${esc(seed.opening)}</p></div>
+      </div>
+      <div class="lp-msgs" id="lp-msgs"></div>
+      <div class="lp-chips" id="lp-chips">${(seed.suggested||[]).map(q=>`<button class="lp-chip">${esc(q)}</button>`).join('')}</div>
+      <div class="lp-tutor-input"><input type="text" id="lp-tutor-field" placeholder="Ask about this lesson..." autocomplete="off"/><button class="lp-tutor-send" id="lp-tutor-send" aria-label="Send">${SEND_SVG}</button></div>
+    </aside>`;
+
+  const back = ()=>openCourse(info.courseId);
+  wrap.querySelector('#lp-back').addEventListener('click', back);
+  wrap.querySelector('#lp-back-sticky').addEventListener('click', back);
+  wrap.querySelector('#lp-back2').addEventListener('click', back);
+
+  // scroll progress + sticky
+  const main = wrap.querySelector('#lp-main'), pbar = wrap.querySelector('#lp-progress'), sticky = wrap.querySelector('#lp-stickybar'), sbProg = wrap.querySelector('#lp-sb-prog'), titleEl = wrap.querySelector('.lp-title');
+  main.addEventListener('scroll', ()=>{ const max=main.scrollHeight-main.clientHeight; const pct=max>0?Math.min(100,Math.round(main.scrollTop/max*100)):0; pbar.style.width=pct+'%'; if(sbProg)sbProg.textContent=pct+'%'; sticky.classList.toggle('visible', main.scrollTop>(titleEl.offsetTop+titleEl.offsetHeight)); }, {passive:true});
+
+  // quiz
+  const quizEl = wrap.querySelector('#lp-quiz'); let retried = false;
+  function finishLesson(grade){ const aw = aComplete(id, grade); wrap.querySelector('#lp-complete').textContent='Completed ✓'; aCelebrate(aw); aRenderHeader(); return aw; }
+  if(quizEl){
+    quizEl.querySelectorAll('.lp-opt').forEach(b=> b.addEventListener('click', ()=>{ if(b.disabled) return; quizEl.querySelectorAll('.lp-opt[data-q="'+b.dataset.q+'"]').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); }));
+    wrap.querySelector('#lp-quiz-check').addEventListener('click', ()=>{
+      const picks = L.quiz.map((q,i)=>{ const s=quizEl.querySelector('.lp-opt.sel[data-q="'+i+'"]'); return s?parseInt(s.dataset.o):-1; });
+      if(picks.some(p=>p<0)){ showToast('Please answer every question first'); return; }
+      const grade = aGradeQuiz(L.quiz, picks, retried);
+      L.quiz.forEach((q,i)=>{ const qd=quizEl.querySelector('.lp-q[data-q="'+i+'"]'); qd.querySelectorAll('.lp-opt').forEach(o=>{ const j=parseInt(o.dataset.o); o.classList.remove('sel'); if(j===q.answer)o.classList.add('correct'); else if(j===picks[i])o.classList.add('wrong'); o.disabled=true; }); const ex=qd.querySelector('.lp-q-explain'); ex.textContent=q.explain; ex.hidden=false; });
+      const res = wrap.querySelector('#lp-quiz-result');
+      if(grade.passed){ const aw=finishLesson(grade); res.className='lp-quiz-result pass'; res.textContent = (grade.mastered?'Full marks — mastery! ':grade.correct+'/'+grade.total+' — passed. ') + (aw.xp?('+'+aw.xp+' Light'):'Already counted'); }
+      else { retried=true; res.className='lp-quiz-result fail'; res.textContent = grade.correct+'/'+grade.total+' — not passed yet. Review the lesson and try again.'; quizEl.querySelectorAll('.lp-opt').forEach(o=>{o.disabled=false;o.classList.remove('correct','wrong');}); }
+    });
+  }
+  wrap.querySelector('#lp-complete').addEventListener('click', ()=>{ if(aIsDone(id)){ back(); return; } if(quizEl){ showToast('Answer the quick check below to finish'); quizEl.scrollIntoView({behavior:'smooth',block:'center'}); } else { finishLesson(null); setTimeout(back,600); } });
+
+  // tutor (scripted, lesson-aware)
+  const msgs = wrap.querySelector('#lp-msgs'), field = wrap.querySelector('#lp-tutor-field');
+  const addMsg = (t,who)=>{ const d=document.createElement('div'); d.className='lp-msg '+who; d.innerHTML=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; };
+  const reply = ()=>{ const tk=(L.takeaways||[])[0]||''; return 'Good question. For this lesson, the key idea is: <em>'+esc(tk)+'</em> Read the section above for the steps, then try the practice box.'; };
+  const ask = (q)=>{ if(!q) return; addMsg(esc(q),'user'); field.value=''; const ty=document.createElement('div'); ty.className='lp-typing'; ty.innerHTML='<span></span><span></span><span></span>'; msgs.appendChild(ty); msgs.scrollTop=msgs.scrollHeight; setTimeout(()=>{ ty.remove(); addMsg(reply(),'ai'); }, 850); };
+  wrap.querySelector('#lp-chips').addEventListener('click', e=>{ const c=e.target.closest('.lp-chip'); if(c) ask(c.textContent.trim()); });
+  wrap.querySelector('#lp-tutor-send').addEventListener('click', ()=>ask(field.value.trim()));
+  field.addEventListener('keypress', e=>{ if(e.key==='Enter') ask(field.value.trim()); });
+
+  main.scrollTo(0,0); switchView('lesson'); return true;
+};
+
+/* ---- Lesson Player (legacy fallback below; engine handles real content) ---- */
 function openLesson(courseId, lessonId){
+  if(window.__acadOpen && window.__acadOpen(courseId, lessonId)) return;
   const wrap = document.getElementById('lp-wrap');
   // Only the AI-HR lesson 1 has authored content; everything else previews it.
   const hasContent = (courseId === sampleLesson.courseId) && (!lessonId || lessonId === sampleLesson.lessonId);

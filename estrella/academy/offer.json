@@ -1,0 +1,502 @@
+{
+  "courseId": "offer",
+  "title": "The Offer Machine",
+  "modules": [
+    {
+      "title": "Winning the Interview",
+      "lessons": [
+        {
+          "lessonId": "offer-1",
+          "title": "The behavioral round, mastered",
+          "mins": 18,
+          "hook": "Most strong candidates lose the behavioral round not because their story is weak, but because they tell it in the wrong order. This lesson fixes that.",
+          "objectives": [
+            "By the end you can answer any \"tell me about a time\" question in a clear, structured way.",
+            "By the end you can turn a real work moment into a short, strong story in under two minutes.",
+            "By the end you can show your own impact without sounding like you are bragging."
+          ],
+          "sections": [
+            {
+              "heading": "What the behavioral round is really testing",
+              "body": [
+                "A behavioral interview asks about your past. The questions usually start with \"Tell me about a time when...\" The idea is simple. The way you acted before is a good sign of how you will act in the next job.",
+                "Here is the part many people miss. The interviewer is not only listening to what happened. They are listening for three things: did you understand the problem, did you take real action yourself, and did your action change the result. When your answer jumps straight to the happy ending, they cannot see any of this. So the story feels empty, even when the work was strong."
+              ]
+            },
+            {
+              "heading": "The STAR framework",
+              "body": [
+                "STAR is a simple way to put a story in the right order. It stands for Situation, Task, Action, Result. You give a little background (Situation), say what you had to do (Task), explain the steps you took (Action), and end with the outcome (Result).",
+                "Spend most of your time on Action, because that is the part that is about you. A common mistake is to spend two minutes on background and ten seconds on what you did. Flip that. Keep Situation and Task short. Make Action the heart of the story. End the Result with a number when you can, because numbers feel true.",
+                "Worked example. A recruitment officer in Dubai is asked, \"Tell me about a time you handled a difficult hiring deadline.\" Weak answer: \"We were very busy and somehow we made it work.\" STAR answer: \"Our retail client needed forty sales staff before the Dubai Shopping Festival, in three weeks (Situation). I owned the full pipeline (Task). I split the roles into three batches, ran two open assessment days at the mall, and moved interviews to WhatsApp video to save travel time (Action). We filled thirty-eight of the forty roles before opening day, and the client renewed for the next season (Result).\" Same person, same job. The second answer wins because you can see the thinking and the impact."
+              ]
+            },
+            {
+              "heading": "Build a story bank before you walk in",
+              "body": [
+                "Do not invent stories live in the room. Under pressure your memory gets worse, not better. Instead, prepare a small story bank. Pick six to eight real moments from your work. Good ones to include: a conflict you solved, a goal you hit, a mistake you fixed, a time you led without a title, and a time you worked across a team.",
+                "Write each story once in STAR form. Then notice that one strong story can answer many questions. Your \"difficult deadline\" story can also answer questions about pressure, planning, and teamwork. With eight good stories, you are ready for most of what an interviewer can ask."
+              ]
+            }
+          ],
+          "takeaways": [
+            "The behavioral round tests how you acted before, because it predicts how you will act next.",
+            "Use STAR: Situation, Task, Action, Result, in that order.",
+            "Spend most of your answer on Action, because that part is about you.",
+            "End with a number when you can; numbers make impact feel real.",
+            "Prepare a bank of six to eight stories before the interview, not during it."
+          ],
+          "exercise": {
+            "title": "Write your first STAR story",
+            "prompt": "Pick one real moment from your work where you solved a problem. Write it out in four short parts: Situation, Task, Action, Result. Keep Situation and Task to one line each. Give Action at least three sentences. End the Result with a number or a clear outcome.",
+            "placeholder": "Situation: ...\nTask: ...\nAction: I ... then I ... and I ...\nResult: ..."
+          },
+          "quiz": [
+            {
+              "q": "An interviewer asks, \"Tell me about a time you missed a target.\" Which approach is strongest?",
+              "options": [
+                "Say you have never really missed a target, to look reliable.",
+                "Describe the miss honestly, then spend most of the answer on what you did and what changed.",
+                "Blame the market and the team so the miss is not your fault.",
+                "Give a long background and end quickly with \"but it worked out fine.\""
+              ],
+              "answer": 1,
+              "explain": "Behavioral questions test self-awareness and action. Owning the miss and focusing on your Action and Result shows growth. Denying it or blaming others is a red flag."
+            },
+            {
+              "q": "In a STAR answer, which part should usually take the most time?",
+              "options": [
+                "Situation, so they fully understand the background.",
+                "Task, so they know exactly what was asked of you.",
+                "Action, because it shows what you personally did.",
+                "Result, because the ending is all that matters."
+              ],
+              "answer": 2,
+              "explain": "Action is the only part that is fully about you and your judgement. Keep Situation and Task short and let Action carry the story."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome in. I am here to help you master the behavioral round. We just covered STAR. Tell me a real work moment and I will help you shape it into a strong, short story.",
+            "suggested": [
+              "Help me turn my last project into a STAR story.",
+              "How do I show impact without sounding like I am bragging?",
+              "What if I do not have a number for my Result?"
+            ]
+          }
+        },
+        {
+          "lessonId": "offer-2",
+          "title": "Executive presence on demand",
+          "mins": 15,
+          "hook": "Two people can give the same answer, and only one sounds like a leader. The difference is presence, and presence can be learned.",
+          "objectives": [
+            "By the end you can name the three parts of executive presence and work on each one.",
+            "By the end you can use your voice and body to sound calm and sure, even when you feel nervous.",
+            "By the end you can give a clear, short answer instead of a long, worried one."
+          ],
+          "sections": [
+            {
+              "heading": "What executive presence really means",
+              "body": [
+                "Executive presence is the sense that you are calm, clear, and in control. It is not about being loud or perfect. It is about making the other person feel they can trust you with something important.",
+                "Researcher Sylvia Ann Hewlett studied this and found presence has three parts: how you act (gravitas), how you speak (communication), and how you look (appearance). Gravitas is the biggest part by far. It means staying steady, speaking with weight, and not panicking when a question is hard. The good news is that all three parts are skills. You are not born with them. You build them with practice."
+              ]
+            },
+            {
+              "heading": "Voice and body that signal calm",
+              "body": [
+                "Your body speaks before your words do. Three simple habits change how you come across. First, slow down. Nervous people rush. When you slow your speech by a little, you sound more sure. Second, pause on purpose. A short, quiet pause before you answer shows you are thinking, not panicking. Silence is a sign of control, not weakness. Third, sit or stand tall and keep your hands calm and visible. Hidden or busy hands make you look nervous.",
+                "Worked example. A finance manager in Riyadh is asked a sharp question in a panel interview: \"Why should we pick you over someone with more years?\" The nervous version answers fast, voice rising, eyes down. The version with presence takes one breath, holds a short pause, looks at the panel, and says slowly: \"Years matter. But I want to show you what I did in mine.\" The same words could sound weak said in a rush. The pause and the steady voice make them strong."
+              ]
+            },
+            {
+              "heading": "Say less, mean more",
+              "body": [
+                "Long answers show your nerves. When people are unsure, they keep talking, hoping one sentence will work. It has the opposite effect. The room loses the point and starts to doubt you.",
+                "Use a simple rule: answer the question in your first sentence, then give one or two reasons, then stop. This is sometimes called \"headline first.\" Say your main point, then support it. For example: \"Yes, I can lead this team. I have done it twice before, and both teams hit their targets.\" That is complete. You do not need three more sentences. Stopping on time is itself a sign of presence."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Executive presence has three parts: how you act, how you speak, and how you look.",
+            "Gravitas, staying calm and steady, matters most.",
+            "Slow down and use short pauses; silence shows control.",
+            "Keep your body tall and your hands calm and visible.",
+            "Lead with your main point, give one or two reasons, then stop."
+          ],
+          "exercise": {
+            "title": "The headline-first answer",
+            "prompt": "Take this question: \"Why should we hire you?\" Write an answer that follows the headline-first rule. First sentence is your main point. Then give one or two reasons. Then stop. Keep the whole thing under sixty words. Read it out loud slowly and notice where you want to pause.",
+            "placeholder": "Main point: ...\nReason 1: ...\nReason 2: ..."
+          },
+          "quiz": [
+            {
+              "q": "Which behaviour signals the strongest executive presence in an interview?",
+              "options": [
+                "Answering very quickly so there is never any silence.",
+                "Taking a short pause before a hard question, then answering in a steady voice.",
+                "Giving long, detailed answers to show how much you know.",
+                "Speaking loudly so the panel knows you are confident."
+              ],
+              "answer": 1,
+              "explain": "A short pause and a steady voice signal control, which is the core of gravitas. Speed, volume, and length are often signs of nerves, not presence."
+            },
+            {
+              "q": "You give your main point, then keep adding more sentences to support it. What usually happens?",
+              "options": [
+                "The panel trusts you more because you gave so much detail.",
+                "The point gets lost and you start to sound unsure.",
+                "It always makes the answer stronger.",
+                "It shows you are a deep thinker."
+              ],
+              "answer": 1,
+              "explain": "Talking too much weakens your point and shows your nerves. Headline first, one or two reasons, then stop. Knowing when to stop is itself a sign of presence."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Good to see you. Presence feels mysterious, but it is just a set of habits. Tell me where you freeze up in interviews and we will work on the calm version together.",
+            "suggested": [
+              "How do I stop my voice from shaking when I am nervous?",
+              "Give me a headline-first answer for a tough question.",
+              "Is it bad to pause before I answer?"
+            ]
+          }
+        },
+        {
+          "lessonId": "offer-3",
+          "title": "Reading the room",
+          "mins": 15,
+          "hook": "The best candidates do not just answer questions. They notice what the interviewer cares about and shape every answer around it.",
+          "objectives": [
+            "By the end you can spot the signals an interviewer gives without saying them out loud.",
+            "By the end you can adjust your answer in real time when you are losing the room.",
+            "By the end you can ask questions that show you understand the real need behind the role."
+          ],
+          "sections": [
+            {
+              "heading": "Every interviewer has a hidden question",
+              "body": [
+                "On the surface, an interviewer asks about your skills. Underneath, they have one hidden question: \"Will this person solve my problem and make my life easier?\" Reading the room means hearing that hidden question and answering it.",
+                "Different interviewers have different problems. A hiring manager worries about getting work done. An HR partner worries about whether you fit the team and will stay. A senior leader worries about risk and the bigger picture. The same answer should be aimed differently for each. When you talk to the hiring manager, talk about results. When you talk to HR, talk about how you work with people. When you talk to the leader, talk about judgement and the long view."
+              ]
+            },
+            {
+              "heading": "Reading the signals",
+              "body": [
+                "People tell you how an interview is going, even when they say nothing. Learn to read three signals. First, body language: leaning in, nodding, and taking notes are good signs. Leaning back, checking the time, or short replies mean you are losing them. Second, follow-up questions: when they dig deeper, they are interested. When they move on quickly, your last answer did not land. Third, energy: a warm voice and small talk mean things are going well.",
+                "Worked example. A marketing candidate in Abu Dhabi is giving a long answer about a campaign. She notices the hiring manager has stopped nodding and is glancing at her notes. Instead of pushing on, she stops and says: \"I can go deeper on the numbers, or I can tell you how I would apply this here. Which is more useful?\" The manager sits up. By reading the signal, she turned a fading answer into a moment of connection. That question also shows confidence and respect for the manager's time."
+              ]
+            },
+            {
+              "heading": "Ask questions that show you get it",
+              "body": [
+                "Most interviews end with \"Do you have any questions for us?\" This is not a small moment. It is a test. Weak questions are about you: pay, holidays, working hours. Save those for later, after the offer. Strong questions are about their problem.",
+                "Try questions like: \"What does success in this role look like in the first six months?\" or \"What is the biggest challenge the team is facing right now?\" These do two things. They show you are already thinking like someone in the job. And the answers give you useful facts for your next round and for the salary talk later. A simple framework to remember: ask about the role, the team, and the challenge. Three good questions, one from each area, is plenty."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Every interviewer has a hidden question: will you solve their problem?",
+            "Aim your answers differently for the hiring manager, HR, and senior leaders.",
+            "Read body language, follow-up questions, and energy to see how you are doing.",
+            "If you are losing the room, stop and offer the interviewer a choice.",
+            "End with questions about the role, the team, and the challenge, not about pay."
+          ],
+          "exercise": {
+            "title": "Prepare three closing questions",
+            "prompt": "Imagine you are interviewing for a role you want. Write three questions you would ask at the end. Make one about the role, one about the team, and one about the biggest challenge they face. Avoid anything about pay or holidays. For each one, write a short note on what a good answer would tell you.",
+            "placeholder": "Role question: ...\nTeam question: ...\nChallenge question: ..."
+          },
+          "quiz": [
+            {
+              "q": "Mid-answer, you notice the hiring manager has leaned back and is checking the time. What is the best move?",
+              "options": [
+                "Keep going and finish your full point, since stopping looks weak.",
+                "Speak faster to get through the rest before they lose interest.",
+                "Pause and offer a choice, like \"Should I go deeper, or move to how I would apply this here?\"",
+                "Ask them directly if they are bored."
+              ],
+              "answer": 2,
+              "explain": "Offering a choice respects their time and hands them control. It turns a fading answer into a moment of connection, and shows real presence."
+            },
+            {
+              "q": "At the end of an interview, which question is strongest?",
+              "options": [
+                "How many holiday days does the role give?",
+                "What does success in this role look like in the first six months?",
+                "Is there room to work from home?",
+                "What is the salary range for this position?"
+              ],
+              "answer": 1,
+              "explain": "Asking about success shows you are already thinking like someone in the job, and the answer helps you in later rounds and in negotiation. Pay and holidays are best saved for after the offer."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Hello again. Reading the room is a skill you can sharpen fast. Tell me about an interview where you felt you were losing them, and we will work out what the signals were.",
+            "suggested": [
+              "How do I aim my answer for a senior leader versus a hiring manager?",
+              "What are good signs the interview is going well?",
+              "Help me write three strong closing questions."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Closing the Offer",
+      "lessons": [
+        {
+          "lessonId": "offer-4",
+          "title": "Salary negotiation that works",
+          "mins": 18,
+          "hook": "The minutes after \"we would like to make you an offer\" can be worth more than a year of hard work. Most people give them away by saying yes too fast.",
+          "objectives": [
+            "By the end you can decide your numbers before any salary talk begins.",
+            "By the end you can answer the \"what are your expectations?\" question without losing power.",
+            "By the end you can ask for more in a calm, professional way that keeps the relationship warm."
+          ],
+          "sections": [
+            {
+              "heading": "Know your numbers before you talk",
+              "body": [
+                "Never start a salary talk without your numbers ready. You need three. Your floor is the lowest you will accept and still say yes. Your target is what you really want, based on the market. Your reach is a number a little above target, the one you open with so there is room to move.",
+                "To set these, do research. Look at salary guides from firms like Hays, Cooper Fitch, and Robert Half, which publish yearly Gulf salary reports. Ask people in similar roles. Remember the full package, not just base pay: housing allowance, transport, school fees, flights home, bonus, and end-of-service benefits. In the UAE and KSA, allowances can be a large part of the total. A lower base with a strong housing allowance can beat a higher base with none."
+              ]
+            },
+            {
+              "heading": "Never name the first number if you can help it",
+              "body": [
+                "There is an idea in negotiation called the anchor. The first number named pulls the whole talk toward it. So if you can, let the employer name a number first. When they ask, \"What are your salary expectations?\", you can gently pass it back: \"I would like to understand the full range for the role first. What did you have in mind for this position?\"",
+                "If they push and you must give a number, give your reach number, and give a range, not a single figure. Always base it on research, not a wish. For example: \"Based on the market for this role in Dubai, I am looking in the range of 28,000 to 32,000 dirhams per month, depending on the full package.\" The range keeps the door open, and naming the package reminds them it is not only about base pay."
+              ]
+            },
+            {
+              "heading": "The counter-offer, done with grace",
+              "body": [
+                "When the offer comes and it is below your target, do not say yes and do not say no. Pause and counter. A clean way to do this has three steps. First, show real warmth: \"Thank you, I am very excited about this role.\" Second, make a clear, specific ask with a reason: \"Based on my experience and the market, could we look at a base of 30,000 rather than 27,000?\" Third, stay quiet and let them respond. The silence after your ask is powerful. Do not fill it.",
+                "Worked example. An HR specialist in Sharjah is offered 18,000 dirhams. Her target is 21,000. She replies: \"Thank you, I am genuinely keen to join. Based on my five years in this area and the Gulf market for this role, I was hoping for 21,000. Is there room to move toward that?\" The employer comes back with 20,000 and an extra flight allowance. By asking calmly and giving a reason, she gained 2,000 a month plus a benefit, and the relationship stayed warm. Saying yes too fast would have lost all of that."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Set three numbers before any talk: floor, target, and reach.",
+            "Judge the full package, not just base pay; allowances matter a lot in the Gulf.",
+            "Try to let the employer name the first number; the first number anchors the talk.",
+            "If you must name one, give a researched range, not a single figure.",
+            "Counter with warmth, a clear ask with a reason, and then silence."
+          ],
+          "exercise": {
+            "title": "Build your number sheet",
+            "prompt": "For a role you want, write your three numbers: floor, target, and reach. Under each, note the research that supports it. Then write one sentence you could say if the employer asks for your expectations, passing the question back politely. Finally, write your three-step counter for an offer that comes in below target.",
+            "placeholder": "Floor: ...\nTarget: ...\nReach: ...\nPass-back line: ...\nCounter (warmth / ask + reason / silence): ..."
+          },
+          "quiz": [
+            {
+              "q": "The interviewer asks early on, \"What salary are you expecting?\" What is usually the strongest response?",
+              "options": [
+                "Give your exact floor number so you seem reasonable and easy.",
+                "Politely pass it back and ask what range they have in mind for the role.",
+                "Say you are flexible and happy with whatever they offer.",
+                "Name a number far above market so there is lots of room to drop."
+              ],
+              "answer": 1,
+              "explain": "The first number anchors the whole talk. Passing the question back lets the employer anchor first. Naming your floor caps you low, and a wild number can damage trust."
+            },
+            {
+              "q": "An offer arrives 3,000 below your target. What is the best next step?",
+              "options": [
+                "Accept quickly so you do not seem difficult or risk the offer.",
+                "Reject it firmly and say the number is insulting.",
+                "Thank them warmly, make a specific counter with a reason, then stay quiet.",
+                "Ask for a week to think and avoid giving any number."
+              ],
+              "answer": 2,
+              "explain": "Warmth keeps the relationship strong, a reasoned ask gives them a way to say yes, and silence after the ask puts gentle pressure on them to respond."
+            },
+            {
+              "q": "Two Dubai offers: A is 25,000 base with no allowances; B is 22,000 base plus housing and a flight home. Which is the smartest way to compare them?",
+              "options": [
+                "Pick A, because the base salary is clearly higher.",
+                "Pick B, because more lines on the offer is always better.",
+                "Add up the full yearly value of each package, then compare the totals.",
+                "Pick whichever one offered first."
+              ],
+              "answer": 2,
+              "explain": "In the Gulf, allowances can be a large part of pay. Always compare the full package value, not just base. B may well be worth more once housing and flights are counted."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Glad you are here. This is the lesson that pays for the course. Tell me about an offer you are weighing, or one you expect soon, and we will set your floor, target, and reach.",
+            "suggested": [
+              "Help me set my three numbers for a role in Dubai.",
+              "What do I say when they ask my expectations first?",
+              "How do I compare two offers with different allowances?"
+            ]
+          }
+        },
+        {
+          "lessonId": "offer-5",
+          "title": "Multiple offers, handled",
+          "mins": 14,
+          "hook": "Having two offers at once is a strong position, and also an easy one to ruin. Handled well, it improves both offers. Handled badly, it can damage a working relationship for years.",
+          "objectives": [
+            "By the end you can use a second offer to improve the first one without lying.",
+            "By the end you can buy time politely when one offer comes before the other.",
+            "By the end you can turn down an offer in a way that keeps a good relationship for the future."
+          ],
+          "sections": [
+            {
+              "heading": "Why a second offer gives you real power",
+              "body": [
+                "When two companies want you, both learn that someone else has judged you to be worth hiring. This is real proof of your value, and it gives you room to ask for more. But this power only works when it is true and used with respect. Never invent an offer you do not have. The Gulf hiring world is small, and recruiters talk to each other. A lie that gets found out can cost you both jobs.",
+                "Used honestly, a second offer is simple to mention. You do not threaten. You inform. \"I want to be open with you. I have another offer in hand, and you are my first choice. Is there room to improve the package so I can say yes with full confidence?\" This is calm, honest, and hard to be angry at."
+              ]
+            },
+            {
+              "heading": "Managing the clock",
+              "body": [
+                "The hardest case is timing. One company gives you a deadline, but your preferred company has not finished its process. You do not want to lose offer A, and you do not want to say yes before you hear from B.",
+                "Two moves help. First, ask the slower company to speed up: \"I have an offer with a deadline this Thursday, but your role is my first choice. Is there any way to bring my final decision forward?\" Companies move faster than you think when they fear losing you. Second, ask the faster company for a little more time: \"Thank you, I am very keen. This is an important decision for my family, so could I confirm by Monday?\" A short, polite extension is normal and usually granted. Worked example: a project manager in Doha had an offer from a contractor due Thursday and a preferred offer from a developer still in process. She told the developer about the deadline and they moved her final interview to Tuesday. She told the contractor she needed until Monday. Both said yes. She ended with two offers and chose freely."
+              ]
+            },
+            {
+              "heading": "Saying no without damaging the relationship",
+              "body": [
+                "When you choose, you must turn one offer down. Do it well, because the person you reject today may hire you in three years, or move to a company you want. Be quick, be warm, and be clear.",
+                "A simple message works: \"Thank you so much for the offer and for your time during the process. After careful thought, I have decided to accept another role that fits me better right now. I have real respect for your team and hope we meet again in future.\" Send it quickly, so they can move to their next candidate. Do not go quiet and stop replying. Silence is what people remember, and it is the one thing that truly damages the relationship for good."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A real second offer is honest proof of your value and gives you room to ask for more.",
+            "Never invent an offer; the Gulf market is small and lies get found out.",
+            "Inform, do not threaten: share the other offer calmly and name your first choice.",
+            "Manage timing by asking the slower firm to speed up and the faster firm for a little more time.",
+            "Turn down offers quickly and warmly; going silent is what damages the relationship."
+          ],
+          "exercise": {
+            "title": "Draft your three messages",
+            "prompt": "Imagine you have Offer A with a Thursday deadline and a preferred Offer B still in process. Write three short messages: one asking Company B to speed up, one asking Company A for a few more days, and one polite message turning down whichever offer you do not take. Keep each message warm, honest, and under five sentences.",
+            "placeholder": "To B (speed up): ...\nTo A (more time): ...\nDecline message: ..."
+          },
+          "quiz": [
+            {
+              "q": "You have a genuine offer from Company A and prefer Company B. How should you use this with B?",
+              "options": [
+                "Tell B that A offered far more than it really did, to push harder.",
+                "Say nothing, in case mentioning it makes B angry.",
+                "Tell B honestly that you have another offer and they are your first choice, and ask if there is room to improve.",
+                "Threaten B that you will take A unless they beat it within an hour."
+              ],
+              "answer": 2,
+              "explain": "Honest, calm bargaining works and protects your good name. Lying about the amount is risky in a small market, threats damage the relationship, and silence wastes a real chance to ask for more."
+            },
+            {
+              "q": "Company A's deadline is Thursday but preferred Company B has not finished. What is the best pair of moves?",
+              "options": [
+                "Accept A now and quietly keep interviewing with B.",
+                "Ask B to speed up its decision, and ask A politely for a few more days.",
+                "Reject A immediately and hope B comes through.",
+                "Ignore A's deadline and assume they will wait."
+              ],
+              "answer": 1,
+              "explain": "Asking B to move faster and A for a short extension keeps both options alive. Companies often move when they fear losing you, and short, polite extensions are normal."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome. Two offers is a good problem, and a delicate one. Tell me your situation, the timing and which one you prefer, and we will plan your messages together.",
+            "suggested": [
+              "How do I ask the slower company to speed up?",
+              "Help me word an honest message about my other offer.",
+              "How do I turn down an offer without damaging the relationship?"
+            ]
+          }
+        },
+        {
+          "lessonId": "offer-6",
+          "title": "Live AI mock interview",
+          "mins": 14,
+          "hook": "You have learned the moves. Now you practise them out loud, against an AI interviewer that pushes back, so the real room feels easy.",
+          "objectives": [
+            "By the end you can run a full mock interview and use the feedback to improve fast.",
+            "By the end you can spot your own filler words, rushed answers, and weak endings.",
+            "By the end you can build a short practice routine you can repeat before any real interview."
+          ],
+          "sections": [
+            {
+              "heading": "Why practising out loud changes everything",
+              "body": [
+                "Reading about interviews is not the same as doing them. The skill lives in your mouth, not your head. When you say an answer out loud, you find the gaps you cannot see on paper: the rushed start, the answer that has no ending, the filler words like \"basically\" and \"you know.\"",
+                "There is a learning idea behind this called retrieval practice. You learn faster when you pull an answer out of your memory under a little pressure, rather than just reading it again. A mock interview is retrieval practice for your career. The AI mock interviewer in this course asks you real behavioral and pressure questions, lets you answer, and then gives you honest feedback on your structure, your length, and your clarity."
+              ]
+            },
+            {
+              "heading": "How to run a strong mock session",
+              "body": [
+                "Treat the mock like the real thing. Sit up, dress as you would, and answer out loud, not in your head. Use everything from this course. Put your stories in STAR form. Lead with your headline, then stop. Read the signals in the feedback and adjust.",
+                "Use a simple loop called Answer, Review, Redo. First, answer the question fully. Second, review the feedback and pick the one biggest weakness, not ten small ones. Third, redo the same answer with that one fix. Then move on. Worked example: a candidate in Kuwait answers \"Tell me about a conflict you handled.\" The AI notes the answer was ninety seconds of background and ten seconds of action. She redoes it, cutting the background to one line and growing the action. The second answer is half as long and twice as strong. One question, one fix, real progress."
+              ]
+            },
+            {
+              "heading": "Your pre-interview routine",
+              "body": [
+                "Build a short routine you repeat before every real interview. Three days before, run a full mock and fix your three weakest answers. The day before, run your best six stories once, out loud, in STAR form. One hour before, do not cram. Instead, do two things: read your closing questions, and say your headline answer to \"Why you?\" once, slowly, to set your voice and pace.",
+                "Keep practising in short bursts over several days rather than one long session the night before. Spacing your practice out helps it stick. The goal is not to memorise scripts word for word. Scripts sound stiff and break under a surprise question. The goal is to make the structure automatic, so that under pressure your answers fall into shape on their own. That is when the real room starts to feel easy."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Practise out loud; the skill lives in your mouth, not your head.",
+            "A mock interview is retrieval practice, which makes answers stick under pressure.",
+            "Use the Answer, Review, Redo loop and fix one biggest weakness at a time.",
+            "Build a routine: a full mock three days out, your stories the day before, light prep one hour before.",
+            "Practise the structure, not a word-for-word script, so surprise questions do not break you."
+          ],
+          "exercise": {
+            "title": "Run your first mock loop",
+            "prompt": "Pick one likely question for your next interview. Answer it out loud and write down what you actually said. Then review it: was it in STAR form, did it have a clear ending, were there filler words? Choose the single biggest weakness. Redo the answer with that one fix and write the improved version.",
+            "placeholder": "Question: ...\nFirst answer (what I said): ...\nBiggest weakness: ...\nRedone answer: ..."
+          },
+          "quiz": [
+            {
+              "q": "After a mock answer, the AI gives you six things to improve. What is the best way to use this feedback?",
+              "options": [
+                "Try to fix all six at once in your next answer.",
+                "Pick the single biggest weakness, redo the answer with that one fix, then move on.",
+                "Ignore the feedback and just answer more questions for volume.",
+                "Write a full word-for-word script that avoids every mistake."
+              ],
+              "answer": 1,
+              "explain": "Fixing one big weakness at a time leads to real, lasting improvement. Trying to fix everything at once overloads you, and word-for-word scripts break under surprise questions."
+            },
+            {
+              "q": "One hour before a real interview, what is the best use of your time?",
+              "options": [
+                "Cram every story and fact you can in case it comes up.",
+                "Run a long full mock to catch any last weakness.",
+                "Read your closing questions and say your \"Why you?\" headline once, slowly.",
+                "Read silently through your notes one more time."
+              ],
+              "answer": 2,
+              "explain": "Cramming raises stress and rarely helps. A light touch, reading your questions and speaking one headline answer out loud, sets your pace and calm without overloading you."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Here we go, this is the practice room. I can play your interviewer and ask real questions, then give you honest feedback. Pick a question to start, or tell me the role you are preparing for.",
+            "suggested": [
+              "Ask me a behavioral question and judge my STAR structure.",
+              "Give me a hard pressure question and push back on my answer.",
+              "Help me build my pre-interview routine for next week."
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

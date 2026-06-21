@@ -1,0 +1,1032 @@
+{
+  "courseId": "interview",
+  "title": "Interview Mastery",
+  "modules": [
+    {
+      "title": "Before the Room",
+      "lessons": [
+        {
+          "lessonId": "interview-1",
+          "title": "Decoding what they're really asking",
+          "mins": 16,
+          "hook": "Most people answer the words of a question. The strong candidate answers what the question is really testing.",
+          "objectives": [
+            "By the end you can spot the hidden worry behind a common interview question.",
+            "By the end you can answer the real concern, not just the surface words.",
+            "By the end you can use a simple two-step method to decode any question on the spot."
+          ],
+          "sections": [
+            {
+              "heading": "Every question hides a worry",
+              "body": [
+                "An interviewer has very little time with you. So almost every question is a quick test. They are not just curious. They are checking for a risk or looking for proof that you can do the job.",
+                "Take a simple question like \"Tell me about yourself.\" The words sound open. But the real test is: can you explain who you are in a clear, short, and relevant way? They want to see focus, not your whole life story.",
+                "Or take \"Why are you leaving your current job?\" The real worry is: will you be a problem here too? They are checking if you blame others, or if you speak about old bosses with anger. The safe answer is calm and forward-looking."
+              ]
+            },
+            {
+              "heading": "The Question-Behind-The-Question method",
+              "body": [
+                "Here is a simple method I teach. I call it the Question-Behind-The-Question, or QBQ. It has two steps.",
+                "Step one: before you answer, pause for one second and ask yourself, \"What risk are they checking?\" Step two: answer that risk first, then add a short example as proof.",
+                "Example from the Gulf market. A hiring manager in Dubai asks, \"This role needs a lot of travel across the GCC. Is that fine for you?\" The surface words ask about travel. The real worry is: will you quit in three months when the travel gets hard? A weak answer is just \"Yes, no problem.\" A strong answer names the worry: \"Yes. I have done regular trips to Riyadh and Doha in my last role, so I know what it takes and I plan for it. It suits me.\" Now you have answered the real concern with proof."
+              ]
+            },
+            {
+              "heading": "Common questions and their hidden test",
+              "body": [
+                "\"What is your biggest weakness?\" The real test is self-awareness and honesty. They want to see that you know yourself and are working to improve. They do not want a fake weakness like \"I work too hard.\"",
+                "\"Where do you see yourself in five years?\" The real worry is: will you stay, and do your goals fit this role? Show that your plan and their job point in the same direction.",
+                "\"Do you have any questions for us?\" This is not just a polite ending. It tests how seriously you think about the role. Always have two or three good questions ready."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Every interview question is a quiet test of a risk or a skill.",
+            "Pause one second and ask: what worry are they checking?",
+            "Answer the real concern first, then add short proof.",
+            "Never answer only the surface words.",
+            "Prepare the hidden test for the most common questions before you walk in."
+          ],
+          "exercise": {
+            "title": "Decode three questions",
+            "prompt": "Pick three questions you expect in your next interview. For each one, write the surface words, then the hidden worry behind it, then one sentence that answers that worry with proof.",
+            "placeholder": "Question 1: \"Why this company?\" Hidden worry: ... My answer with proof: ..."
+          },
+          "quiz": [
+            {
+              "q": "An interviewer asks, \"Why are you leaving your current job?\" What is the real worry behind this question?",
+              "options": [
+                "They want to know your exact salary history.",
+                "They are checking if you will become a problem at their company too.",
+                "They are testing your knowledge of labour law.",
+                "They want a full timeline of every job you have had."
+              ],
+              "answer": 1,
+              "explain": "The hidden test is risk. They watch how you speak about past jobs. Calm and forward-looking answers lower their worry."
+            },
+            {
+              "q": "Using the QBQ method, what is the first thing you should do before answering?",
+              "options": [
+                "Start talking quickly so there is no silence.",
+                "Give the longest answer you can to show effort.",
+                "Pause one second and ask what risk they are checking.",
+                "Ask the interviewer to repeat the question."
+              ],
+              "answer": 2,
+              "explain": "Step one of QBQ is to find the hidden worry first. Then you answer that worry and add proof."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "I am right here in this lesson with you. We just covered the Question-Behind-The-Question method. Tell me a question you are nervous about, and we will decode the real worry together.",
+            "suggested": [
+              "What is the hidden worry behind \"Tell me about yourself\"?",
+              "How do I answer a weakness question honestly?",
+              "Help me decode \"Why do you want this job?\""
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-2",
+          "title": "Researching like an insider",
+          "mins": 16,
+          "hook": "Anyone can read the company website. The candidate who gets the offer knows the real problems the team is worried about right now.",
+          "objectives": [
+            "By the end you can research a company in layers, from public facts to real pain points.",
+            "By the end you can connect your skills to the company's current goals.",
+            "By the end you can turn your research into smart questions and strong answers."
+          ],
+          "sections": [
+            {
+              "heading": "Three layers of research",
+              "body": [
+                "Most people stop at layer one. To stand out, go all three layers deep.",
+                "Layer one is the public face. This is the website, the products, the mission, and recent news. You need this so you do not sound lost. But everyone has it, so it does not make you special.",
+                "Layer two is the business context. What market are they in? Who are their competitors? Are they growing fast, cutting costs, or entering a new country? In the Gulf, check if the company is part of a Vision 2030 plan in Saudi Arabia, or growing under UAE goals to build new industries beyond oil. This tells you what they care about right now.",
+                "Layer three is the human layer. Who will interview you? Look at their LinkedIn. What does the team struggle with? Job ads, recent posts, and news about layoffs or new funding all give clues. This is where you find the real pain points."
+              ]
+            },
+            {
+              "heading": "The Pain-and-Proof map",
+              "body": [
+                "Here is a tool I use with my clients. I call it the Pain-and-Proof map.",
+                "On the left side, write the company's likely pain points from your research. On the right side, write proof from your own experience that you can ease that pain. Draw a line between each pair.",
+                "Example. You are interviewing for an HR role at a fast-growing fintech in Abu Dhabi. Your research shows they hired 200 people in one year. The likely pain is messy onboarding and weak culture during fast growth. Your proof is that you built an onboarding plan at your last company that cut new-hire dropout by half. Now you have a clear story that fits their exact problem."
+              ]
+            },
+            {
+              "heading": "Turn research into questions",
+              "body": [
+                "Good research gives you good questions to ask the panel. This shows you understand their world from the inside, not just from the homepage.",
+                "Weak question: \"What does your company do?\" This shows you did no homework. Strong question: \"I saw you opened a Riyadh office this year. How is the team there settling into the wider culture?\" This shows you read the news and you think about people.",
+                "Aim for two or three questions that only someone who did real research could ask. Save them for the end of the interview."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Research in three layers: public face, business context, and the human layer.",
+            "Layer one is the floor, not the goal. Go deeper.",
+            "Use the Pain-and-Proof map to link their problems to your skills.",
+            "In the Gulf, link your research to Vision 2030 and national growth goals when they fit.",
+            "Turn your findings into two or three insider questions for the panel."
+          ],
+          "exercise": {
+            "title": "Build a Pain-and-Proof map",
+            "prompt": "For a real company you may interview with, list three likely pain points from your research. Next to each, write one piece of proof from your own work that shows you can help. End with one insider question.",
+            "placeholder": "Pain 1: fast hiring is hurting culture. My proof: ... Insider question: ..."
+          },
+          "quiz": [
+            {
+              "q": "Which research finding is most likely to help you stand out in an interview?",
+              "options": [
+                "The company's office address and opening hours.",
+                "A current pain point you can connect to your own experience.",
+                "The exact year the company was founded.",
+                "The colours used in the company logo."
+              ],
+              "answer": 1,
+              "explain": "Linking a real pain point to your proof shows you understand their world. Basic facts alone do not set you apart."
+            },
+            {
+              "q": "What makes a question to the panel sound like you did deep research, not just a quick look?",
+              "options": [
+                "It asks something you could find on the homepage in one click.",
+                "It is about your salary and holidays only.",
+                "It shows you read recent news and thought about their real situation.",
+                "It is as long and detailed as possible."
+              ],
+              "answer": 2,
+              "explain": "Deep questions show real research and thought. Homepage questions show you did no homework."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome back. This lesson is about digging deeper than the website. Tell me the company you are targeting, and I will help you find the layers and build a Pain-and-Proof map.",
+            "suggested": [
+              "Where do I look for a company's real pain points?",
+              "How do I tie my skills to Vision 2030 goals?",
+              "Give me three insider questions to ask the panel."
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-3",
+          "title": "The story bank: your raw material",
+          "mins": 16,
+          "hook": "You cannot make up good stories under pressure. The calm candidate prepared a small bank of them in advance.",
+          "objectives": [
+            "By the end you can understand why a story bank beats memorised answers.",
+            "By the end you can choose strong stories from your own career.",
+            "By the end you can sort your stories by the skill each one proves."
+          ],
+          "sections": [
+            {
+              "heading": "Why a story bank, not a script",
+              "body": [
+                "Many people try to memorise answers to exact questions. This fails for two reasons. First, you never get the exact question you practised. Second, memorised answers sound flat and stiff.",
+                "A story bank works better. A story bank is a small set of real events from your work life, ready to use. You do not memorise words. You remember the event. Then you shape it to fit whatever question comes.",
+                "One good story can answer many questions. A story about saving a late project can show leadership, problem-solving, or staying calm under pressure. You just stress a different part for each question."
+              ]
+            },
+            {
+              "heading": "Choosing your raw material",
+              "body": [
+                "A strong story has three parts: a real challenge, your specific actions, and a clear result. Vague stories with no result do not work.",
+                "Look across your career for moments that matter. Think about a time you fixed a problem, led a change, handled conflict, missed a target and recovered, or learned a hard lesson. These are your raw material.",
+                "Example. A project manager in Sharjah remembers a time a key supplier failed two weeks before a launch. She found a new supplier, agreed a new timeline, and still delivered on time. That single event can prove problem-solving, leadership, and staying calm under pressure. It is perfect for a story bank."
+              ]
+            },
+            {
+              "heading": "Sort by the skill it proves",
+              "body": [
+                "Once you have eight to ten stories, sort them by skill. This is the part most people skip, and it is the most useful step.",
+                "Make a simple table. In one column, list common skills: leadership, conflict, failure, teamwork, results, change. In the next column, write which story proves each one. Some stories will sit under more than one skill. That is good. It means the story is flexible.",
+                "Now, when an interviewer asks about teamwork, you do not panic. You glance at your mental table and pull the right story. You walk in with raw material ready for any question."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A story bank beats memorised scripts because real questions vary.",
+            "One strong story can answer several different questions.",
+            "A good story needs a real challenge, your actions, and a clear result.",
+            "Aim for eight to ten real stories from your career.",
+            "Sort each story by the skill it proves so you can pull it fast."
+          ],
+          "exercise": {
+            "title": "Start your story bank",
+            "prompt": "Write down four real events from your career. For each one, note the challenge, your main action, and the result in one line each. Then label which skill each story proves.",
+            "placeholder": "Story 1: Supplier failed before launch. Action: found new supplier, fixed timeline. Result: delivered on time. Proves: problem-solving, pressure."
+          },
+          "quiz": [
+            {
+              "q": "Why is a story bank better than memorising answers word for word?",
+              "options": [
+                "It takes much less time to prepare than anything else.",
+                "Real questions vary, and one flexible story can fit many of them.",
+                "It lets you avoid giving any real examples.",
+                "Interviewers always ask the exact same questions."
+              ],
+              "answer": 1,
+              "explain": "You rarely get the exact question you practised. A flexible story bank lets you shape one real event to fit many questions."
+            },
+            {
+              "q": "What makes an event strong enough for your story bank?",
+              "options": [
+                "It is very old and happened long ago.",
+                "It has a real challenge, your specific actions, and a clear result.",
+                "It involves only other people, not you.",
+                "It has no measurable outcome."
+              ],
+              "answer": 1,
+              "explain": "A usable story needs all three: a real challenge, what you specifically did, and a clear result. Vague stories fall flat."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "This is one of my favourite lessons. A story bank is your raw material for the whole interview. Tell me one event from your career, and I will help you sharpen it into a story you can use.",
+            "suggested": [
+              "How many stories do I really need?",
+              "Can one story answer more than one question?",
+              "Help me turn a messy project into a clear story."
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "The Behavioral Round",
+      "lessons": [
+        {
+          "lessonId": "interview-4",
+          "title": "STAR without sounding robotic",
+          "mins": 18,
+          "hook": "The STAR method gives your answer a clear shape. Used badly, it sounds like a robot reading a form. Here is how to keep it human.",
+          "objectives": [
+            "By the end you can structure any behavioral answer with the STAR method.",
+            "By the end you can avoid the stiff, robotic version that interviewers dislike.",
+            "By the end you can balance structure with a natural, warm voice."
+          ],
+          "sections": [
+            {
+              "heading": "What STAR is",
+              "body": [
+                "STAR is a simple shape for telling a work story. The four letters stand for Situation, Task, Action, and Result.",
+                "Situation: set the scene in one or two sentences. Task: say what you needed to do or fix. Action: explain what you did, step by step. This is the longest part. Result: share the clear outcome, with a number if you have one.",
+                "STAR matters because most people ramble. They jump around with no end point. STAR keeps your answer clear and complete, so the interviewer can follow you and remember you."
+              ]
+            },
+            {
+              "heading": "Why it sounds robotic, and how to fix it",
+              "body": [
+                "STAR goes wrong when people announce each part out loud. Saying \"The situation was... the task was... my action was...\" sounds like reading a form. It feels cold.",
+                "The fix is to use STAR as a hidden skeleton, not a visible label. The structure is inside your head. The words that come out sound like a normal person telling a real story.",
+                "Spend most of your time on Action and Result. Many people give a long Situation and rush the Result. Flip that. The interviewer cares most about what you did and what happened."
+              ]
+            },
+            {
+              "heading": "A worked example",
+              "body": [
+                "Here is a STAR answer that sounds human. The question is, \"Tell me about a time you handled a difficult client.\"",
+                "\"Last year I managed a key client in Dubai who was upset about a delayed delivery. (Situation) My job was to keep the account and rebuild their trust. (Task) I called them the same day, listened fully, and did not make excuses. I gave them a clear new plan with weekly updates, and I checked in personally each Friday. (Action) Within a month they renewed their contract and later referred us to a partner company. (Result)\"",
+                "Notice that the speaker never said the words \"situation\" or \"task.\" The shape is there, but it sounds like a real person. Most of the answer is Action and Result. That is STAR done right."
+              ]
+            }
+          ],
+          "takeaways": [
+            "STAR stands for Situation, Task, Action, and Result.",
+            "Keep STAR as a hidden skeleton, not a spoken label.",
+            "Spend most of your time on Action and Result, not the setup.",
+            "Never announce each part out loud. Tell it like a real story.",
+            "End with a clear result, and use a number when you can."
+          ],
+          "exercise": {
+            "title": "Write one human STAR answer",
+            "prompt": "Take one story from your story bank. Write it out using STAR, but do not label the parts. Read it aloud and check it sounds like a real person, not a form.",
+            "placeholder": "Question I am answering: ... My STAR story (no labels): ..."
+          },
+          "quiz": [
+            {
+              "q": "Which part of a STAR answer should usually take the most time?",
+              "options": [
+                "The Situation, with full background detail.",
+                "The Task, explained at great length.",
+                "The Action and the Result.",
+                "A long apology for any mistakes."
+              ],
+              "answer": 2,
+              "explain": "Interviewers care most about what you did and what happened. Keep the setup short and spend your time on Action and Result."
+            },
+            {
+              "q": "What is the most common way STAR ends up sounding robotic?",
+              "options": [
+                "The speaker uses too many real numbers.",
+                "The speaker announces each label out loud, like reading a form.",
+                "The story is too short and simple.",
+                "The speaker smiles too much."
+              ],
+              "answer": 1,
+              "explain": "Saying \"the situation was, the task was\" out loud feels cold. Keep the structure hidden and tell a natural story."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "STAR is powerful, but only when it sounds human. Give me a story you want to tell, and I will help you shape it with STAR while keeping your natural voice.",
+            "suggested": [
+              "How long should my Situation be?",
+              "My STAR answer sounds stiff. How do I fix it?",
+              "What if my story has no number for the result?"
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-5",
+          "title": "Eight stories that cover everything",
+          "mins": 22,
+          "hook": "You do not need fifty stories. Eight well-chosen ones can answer almost any behavioral question you will ever face.",
+          "objectives": [
+            "By the end you can name the eight story types that cover most interviews.",
+            "By the end you can match each of your own stories to a type.",
+            "By the end you can spot gaps in your bank and fill them before the interview."
+          ],
+          "sections": [
+            {
+              "heading": "Why eight is the magic number",
+              "body": [
+                "Behavioral questions sound endless, but they fall into a small number of groups. Most questions are really asking about one of eight things. If you have one strong story for each group, you are ready for almost anything.",
+                "This is the Core Eight framework I teach. It gives you wide coverage without forcing you to memorise dozens of stories. Eight is enough to feel ready and few enough to remember under pressure."
+              ]
+            },
+            {
+              "heading": "The Core Eight",
+              "body": [
+                "Here are the eight story types. For each, prepare one strong, real example.",
+                "One, Leadership: a time you led people or a project. Two, Conflict: a time you handled a disagreement well. Three, Failure: a time you failed and what you learned. Four, Success: a clear win you are proud of. Five, Change: a time you adapted to a big change. Six, Pressure: a time you stayed calm under stress. Seven, Teamwork: a time you helped a team succeed. Eight, Influence: a time you convinced others without authority.",
+                "Notice that some questions blend two types. \"Tell me about a hard team project\" touches Teamwork and Pressure. That is fine. A good story often covers more than one type, which means you may not even need eight separate events."
+              ]
+            },
+            {
+              "heading": "Find your gaps",
+              "body": [
+                "Now check your story bank against the Core Eight. Which types do you have covered? Which are missing?",
+                "Example. An HR officer in Riyadh checks her bank. She has strong stories for Leadership, Success, Teamwork, and Pressure. But she has nothing for Failure or Influence. Those are her gaps. Failure questions are very common, so she sits down and finds a real failure story before her interview.",
+                "Do this gap check now. Most people find two or three missing types. Fill them in advance. The worst time to search for a failure story is live, in the room, with the panel waiting."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Most behavioral questions fall into eight core types.",
+            "The Core Eight are: leadership, conflict, failure, success, change, pressure, teamwork, influence.",
+            "One strong story per type gives you wide coverage.",
+            "Some stories cover more than one type, so you may need fewer than eight.",
+            "Check your bank for gaps and fill them before the interview, especially failure."
+          ],
+          "exercise": {
+            "title": "Map your Core Eight",
+            "prompt": "List the eight story types. Next to each, write which of your real stories covers it. Mark any type you cannot cover yet. Then plan one story to fill your biggest gap.",
+            "placeholder": "Leadership: led the launch team. Failure: GAP. Plan to fill failure: the time I missed a target and recovered."
+          },
+          "quiz": [
+            {
+              "q": "What is the main benefit of the Core Eight framework?",
+              "options": [
+                "It forces you to memorise fifty different stories.",
+                "It gives wide coverage with a small, memorable set of story types.",
+                "It removes the need to give any real examples.",
+                "It only works for senior leadership roles."
+              ],
+              "answer": 1,
+              "explain": "Eight story types cover most questions while staying small enough to remember under pressure."
+            },
+            {
+              "q": "You realise you have no failure story prepared. What is the best move?",
+              "options": [
+                "Hope the failure question does not come up.",
+                "Plan to make one up live in the room.",
+                "Find a real failure story now and prepare it before the interview.",
+                "Refuse to answer any failure question."
+              ],
+              "answer": 2,
+              "explain": "Failure questions are very common. Find a real story in advance so you are never caught searching live."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "The Core Eight is a simple way to feel ready for almost any behavioral question. Tell me which types you already have covered, and we will hunt down your gaps together.",
+            "suggested": [
+              "Can one story cover two of the eight types?",
+              "I have no failure story. Help me find one.",
+              "Which of the eight types come up most often?"
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-6",
+          "title": "Handling the question you dread",
+          "mins": 20,
+          "hook": "Every candidate has one question they fear. With the right method, that question becomes your chance to look honest and mature.",
+          "objectives": [
+            "By the end you can handle hard questions about weakness, failure, and gaps.",
+            "By the end you can use a calm method that turns a risk into trust.",
+            "By the end you can answer a question you do not want to answer with honesty and control."
+          ],
+          "sections": [
+            {
+              "heading": "The questions people fear",
+              "body": [
+                "Some questions make the heart race. \"What is your biggest weakness?\" \"Tell me about a time you failed.\" \"Why is there a gap in your CV?\" \"Why were you let go?\"",
+                "These feel like traps. But they are not designed to destroy you. They test your honesty and your self-awareness. The interviewer wants to see that you can face a hard truth without panic or excuses.",
+                "The mistake most people make is to hide. They give a fake weakness or blame others for a failure. Interviewers see this every day. It lowers their trust, not raises it."
+              ]
+            },
+            {
+              "heading": "The Own-Learn-Grow method",
+              "body": [
+                "Here is a method I use for every dreaded question. I call it Own, Learn, Grow.",
+                "Own: take honest responsibility for the real thing. Do not hide or blame. Learn: explain what you understood from it. Grow: show the concrete change you made after. End on the growth, so the answer rises, not falls.",
+                "Example. \"Tell me about a time you failed.\" A strong answer: \"In my first manager role, I tried to do too much myself and my team felt left out. A project slipped because of it. (Own) I learned that holding on too tight slows everyone down. (Learn) Since then I delegate clearly and check in weekly instead of doing the work myself. My last team delivered two projects early. (Grow)\" The failure is real, but the answer ends in strength."
+              ]
+            },
+            {
+              "heading": "Gaps and hard truths",
+              "body": [
+                "For a CV gap, be calm and brief. Say what happened in one honest line, then move forward. \"I took eight months to care for a family member. I used some of that time to finish a course in HR analytics, and I am fully ready to return.\" No long apology. No shame.",
+                "If you were let go, never attack your old company. Stay calm and short. \"The role was cut in a restructure. I learned a lot there, and I am looking for a place where I can grow long term.\"",
+                "The rule across all of these: stay calm, stay honest, and always point forward. A hard question, handled with control, builds more trust than an easy one."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Dreaded questions test honesty and self-awareness, not perfection.",
+            "Never give a fake weakness or blame others for a failure.",
+            "Use Own, Learn, Grow so the answer ends in strength.",
+            "For CV gaps, give one honest line and then move forward.",
+            "If you were let go, stay calm and never attack your old employer."
+          ],
+          "exercise": {
+            "title": "Rehearse your dreaded question",
+            "prompt": "Write your most feared interview question. Answer it using Own, Learn, Grow. Make sure the answer ends on the growth, not the problem.",
+            "placeholder": "My dreaded question: ... Own: ... Learn: ... Grow: ..."
+          },
+          "quiz": [
+            {
+              "q": "What are interviewers really testing with a \"biggest weakness\" question?",
+              "options": [
+                "Whether you are perfect with no flaws.",
+                "Your honesty and self-awareness.",
+                "How fast you can change the subject.",
+                "Your ability to blame other people smoothly."
+              ],
+              "answer": 1,
+              "explain": "These questions test if you can face a real flaw with honesty and show growth. A fake weakness lowers trust."
+            },
+            {
+              "q": "Using Own, Learn, Grow, where should your answer end?",
+              "options": [
+                "On the problem, to show how bad it was.",
+                "On blaming the situation around you.",
+                "On the concrete change and growth you made after.",
+                "On a long apology."
+              ],
+              "answer": 2,
+              "explain": "Ending on Grow makes the answer rise. The interviewer remembers your maturity, not the failure."
+            },
+            {
+              "q": "You were let go in a restructure. What is the best way to explain it?",
+              "options": [
+                "Attack your old manager to show you were treated unfairly.",
+                "Stay calm, say the role was cut, and point forward.",
+                "Refuse to talk about it at all.",
+                "Give a long, emotional account of how unfair it was."
+              ],
+              "answer": 1,
+              "explain": "Stay calm and brief, never attack the old employer, and point forward. Control here builds trust."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let us face the question you dread most. Tell me which one it is, and we will build a calm, honest answer using Own, Learn, Grow.",
+            "suggested": [
+              "How do I explain a gap in my CV?",
+              "What is a good real weakness to share?",
+              "How do I talk about being let go without sounding bitter?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Presence Under Pressure",
+      "lessons": [
+        {
+          "lessonId": "interview-7",
+          "title": "Voice, pacing, and the power of the pause",
+          "mins": 14,
+          "hook": "Your words matter, but how you say them often matters more. A calm voice and a well-placed pause signal confidence before you finish a sentence.",
+          "objectives": [
+            "By the end you can control your pace so you sound calm and clear.",
+            "By the end you can use pauses on purpose instead of filling silence with noise.",
+            "By the end you can use your voice to project steady confidence."
+          ],
+          "sections": [
+            {
+              "heading": "Slow down to sound sure",
+              "body": [
+                "When we are nervous, we speak fast. Fast talking sounds anxious and is hard to follow. The fix is simple but hard: slow down on purpose.",
+                "A calm pace gives your words weight. It tells the listener you are thinking, not rushing. Aim to speak a little slower than feels natural. To you it may feel too slow, but to the listener it sounds steady and sure.",
+                "Breathe before you answer. One slow breath before you speak resets your pace and your nerves. It also gives you a second to find the real answer."
+              ]
+            },
+            {
+              "heading": "The power of the pause",
+              "body": [
+                "Silence feels scary in an interview, so people fill it with \"um,\" \"like,\" and \"you know.\" These filler words make you sound unsure.",
+                "The fix is the pause. When you need a moment to think, just pause in silence. A short pause is not weakness. It is a sign of a careful mind. The interviewer reads it as confidence.",
+                "Use the pause for impact too. Before your key point, pause for one beat. After your strongest line, pause again. Pause, make your point, then pause. The silence frames your best words and makes them land. (You will meet this same pause skill again, named in full, in the Public Speaking course.)"
+              ]
+            },
+            {
+              "heading": "A quick practice plan",
+              "body": [
+                "Voice is a physical skill. You cannot fix it by thinking. You must practise out loud.",
+                "Record yourself answering one common question on your phone. Listen back. Count your filler words. Notice where you rushed. This honest feedback is worth more than any tip.",
+                "Example. A candidate in Doha recorded herself and found she said \"basically\" eleven times in two minutes. She practised pausing instead. In her next mock, the count dropped to one. Her answers sounded twice as calm. Small change, big result."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Slow your pace on purpose. It signals calm and confidence.",
+            "Take one slow breath before you answer.",
+            "Replace filler words with a short, silent pause.",
+            "Pause before and after your key line to make it land.",
+            "Record yourself and count your fillers to improve fast."
+          ],
+          "exercise": {
+            "title": "Record and review",
+            "prompt": "Record yourself answering one interview question for ninety seconds. Listen back. Count your filler words and mark where you rushed. Write down one fix to practise.",
+            "placeholder": "Filler words I used: ... Where I rushed: ... My one fix to practise: ..."
+          },
+          "quiz": [
+            {
+              "q": "You need a moment to think during an answer. What is the best thing to do?",
+              "options": [
+                "Fill the silence with \"um\" and \"you know\" so there is no gap.",
+                "Speak faster to get through the answer.",
+                "Pause in silence for a moment, then speak.",
+                "Apologise for needing time."
+              ],
+              "answer": 2,
+              "explain": "A short silent pause signals a careful mind. Filler words signal the opposite. The pause reads as confidence."
+            },
+            {
+              "q": "Why should you slow your speaking pace in an interview?",
+              "options": [
+                "To use up more of the time available.",
+                "Because a calm pace gives your words weight and signals confidence.",
+                "Because slow talking hides weak answers.",
+                "Because interviewers prefer very long answers."
+              ],
+              "answer": 1,
+              "explain": "Nerves make us rush. A calm pace sounds steady and sure, and gives the listener time to follow you."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "How you say something often matters as much as what you say. Tell me what worries you about your voice or pace, and we will build a simple practice plan.",
+            "suggested": [
+              "How do I stop saying \"um\" so much?",
+              "I talk too fast when nervous. What helps?",
+              "How long should a good pause be?"
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-8",
+          "title": "What your body says before you do",
+          "mins": 14,
+          "hook": "Before you say a word, your body has already spoken. Learn to make it say calm and confident, not nervous and small.",
+          "objectives": [
+            "By the end you can use posture and eye contact to project presence.",
+            "By the end you can avoid common nervous body habits.",
+            "By the end you can adapt your body language to in-person and video interviews."
+          ],
+          "sections": [
+            {
+              "heading": "Your body speaks first",
+              "body": [
+                "The moment you walk in, the interviewer reads your body. Slumped shoulders and a weak handshake say nervous. An upright posture and steady eyes say confident. This happens before you speak.",
+                "You do not need to fake a power pose. You just need to remove the signals of fear and add the signals of calm. Sit up straight. Keep your shoulders open, not hunched. Plant both feet on the floor. This is the Open-and-Grounded posture.",
+                "Open and grounded does two things. It looks confident to others, and it actually helps you feel calmer inside. Body and mind are linked. Sit like you belong there, and you start to feel it."
+              ]
+            },
+            {
+              "heading": "Eye contact and hands",
+              "body": [
+                "Eye contact builds trust, but staring is too much. The simple rule is to hold eye contact while you listen, and let your eyes move naturally while you think. With a panel, share your gaze. Look at the person who asked, then include the others.",
+                "Your hands often show your nerves. Tapping, moving them too much, and touching your face all signal stress. Rest your hands calmly on the table or your lap. Use natural hand movements when you explain something. They help, as long as they are calm and not fast and shaky.",
+                "Watch for nervous habits you may not notice: bouncing a leg, clicking a pen, playing with hair. Ask a friend in a mock interview to point out yours."
+              ]
+            },
+            {
+              "heading": "Body language on video",
+              "body": [
+                "Many Gulf interviews now happen on video. The rules shift a little. Look at the camera, not the screen, when you want to make eye contact. It feels strange but it looks like you are looking at them.",
+                "Sit up, frame yourself from the chest up, and keep the camera at eye level. A camera looking up at you or down at you both feel off. Good light on your face matters more than a fancy background.",
+                "Example. A candidate in Dubai kept looking at his own image on screen during a video interview. It looked like his eyes were always drifting away. He moved his window right under the camera and looked there instead. The next call, the panel said he seemed much more present. Small fix, real difference."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Your body sends a message before you speak.",
+            "Use the Open-and-Grounded posture: upright, open shoulders, feet planted.",
+            "Hold eye contact while listening; share your gaze with a panel.",
+            "Keep hands calm and watch for nervous habits like leg bouncing.",
+            "On video, look at the camera and keep it at eye level."
+          ],
+          "exercise": {
+            "title": "Check your body habits",
+            "prompt": "Do a two-minute mock answer in front of a mirror or camera. Note your posture, your eye contact, and any nervous habit you see. Write one thing to change.",
+            "placeholder": "My posture: ... My eye contact: ... Nervous habit I spotted: ... One change: ..."
+          },
+          "quiz": [
+            {
+              "q": "What is the best way to handle eye contact with an interview panel?",
+              "options": [
+                "Stare hard at one person the whole time.",
+                "Avoid eye contact so you do not seem aggressive.",
+                "Look at who asked, then include the others naturally.",
+                "Keep your eyes on your notes throughout."
+              ],
+              "answer": 2,
+              "explain": "Share your gaze. Answer the person who asked, then include the rest. This builds trust without staring."
+            },
+            {
+              "q": "On a video interview, where should you look to seem like you are making eye contact?",
+              "options": [
+                "At your own image on the screen.",
+                "At the camera lens.",
+                "Down at your keyboard.",
+                "Out of the window to relax."
+              ],
+              "answer": 1,
+              "explain": "Looking at the camera lens looks like eye contact to the panel. Looking at your own image makes your eyes seem to drift."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Your body talks before you do. Tell me about your next interview, in person or on video, and we will set up the right body language for it.",
+            "suggested": [
+              "What do I do with my hands during answers?",
+              "How do I look confident on a video call?",
+              "I bounce my leg when nervous. How do I stop?"
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-9",
+          "title": "Recovering from a stumble",
+          "mins": 14,
+          "hook": "Everyone stumbles in an interview. The difference between candidates is not whether they slip, but how they recover.",
+          "objectives": [
+            "By the end you can recover calmly from a blank mind or a bad answer.",
+            "By the end you can use simple lines that buy you time without losing face.",
+            "By the end you can stay confident after a mistake instead of panicking."
+          ],
+          "sections": [
+            {
+              "heading": "Stumbles are normal",
+              "body": [
+                "Your mind goes blank. You lose your point halfway through. You give an answer and instantly wish you had said something else. This happens to everyone, even strong candidates.",
+                "The interviewer is not looking for a perfect robot. They are watching how you handle pressure. A calm recovery can actually score higher than a perfect answer, because it shows you stay calm under stress.",
+                "The danger is not the stumble itself. The danger is panic, where one small slip makes you nervous, and that causes more slips. The skill is to stop this early."
+              ]
+            },
+            {
+              "heading": "Lines that buy you time",
+              "body": [
+                "When your mind goes blank, you need a calm line to buy time. These are your recovery lines. Prepare them in advance.",
+                "If you lose your point: \"Let me take that back to the main idea.\" Then restate your key message. If you need to think: \"That is a good question. Let me think for a moment.\" Then pause. Both lines sound thoughtful, not lost.",
+                "If you realise in the middle of an answer that you went the wrong way: \"Actually, let me give you a better example.\" Then switch to a stronger story. This shows confidence, not weakness. You are in control, not lost."
+              ]
+            },
+            {
+              "heading": "Fixing an answer you regret",
+              "body": [
+                "Sometimes you finish an answer and know it was weak. You can fix it. Later in the interview, or even right after, you can say, \"Earlier you asked about teamwork. I would like to add a clearer example.\" Then give a better one.",
+                "This is the Reset-and-Return move. It shows you think about your work and care about giving your best, which leaves a strong final impression.",
+                "Example. A candidate in Abu Dhabi gave a rushed answer about leadership early on. Near the end, when asked if she had anything to add, she said, \"Yes. I want to return to your leadership question with a stronger example.\" She gave a sharp story. The panel later said that moment stood out. The recovery beat the original stumble."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Everyone stumbles. The recovery is what gets judged.",
+            "Stop the panic early with a calm line.",
+            "Prepare recovery lines to buy time and restate your point.",
+            "Switching to a better example mid-answer shows confidence.",
+            "Use Reset-and-Return to fix a weak answer later in the interview."
+          ],
+          "exercise": {
+            "title": "Prepare your recovery lines",
+            "prompt": "Write three calm recovery lines in your own words: one for a blank mind, one to buy thinking time, and one to switch to a better example. Practise saying them out loud.",
+            "placeholder": "Blank mind line: ... Thinking-time line: ... Switch-example line: ..."
+          },
+          "quiz": [
+            {
+              "q": "Your mind goes blank during an answer. What is the best response?",
+              "options": [
+                "Panic and apologise many times.",
+                "Use a calm line to buy time, then restate your main point.",
+                "Sit in long silence and hope it passes.",
+                "Make up a fake answer quickly."
+              ],
+              "answer": 1,
+              "explain": "A prepared recovery line buys you a moment and sounds thoughtful. The skill is stopping the panic early."
+            },
+            {
+              "q": "You gave a weak answer earlier. What is the Reset-and-Return move?",
+              "options": [
+                "Pretend the weak answer never happened.",
+                "Apologise for it and move on quickly.",
+                "Later, offer a stronger example for that question.",
+                "Ask the panel to forget your earlier answer."
+              ],
+              "answer": 2,
+              "explain": "Returning later with a better example shows you think about your work and care about doing your best. It leaves a strong impression."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Stumbling is human. The recovery is the skill. Tell me what kind of stumble you fear most, and we will prepare calm lines to handle it.",
+            "suggested": [
+              "What do I say when my mind goes blank?",
+              "How do I switch to a better answer mid-sentence?",
+              "Can I really fix a bad answer later in the interview?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "The Offer",
+      "lessons": [
+        {
+          "lessonId": "interview-10",
+          "title": "Reading the real offer",
+          "mins": 16,
+          "hook": "An offer is more than a base salary. Read only the big number and you may miss what really matters.",
+          "objectives": [
+            "By the end you can read an offer as a full package, not just base pay.",
+            "By the end you can compare two offers fairly across many parts.",
+            "By the end you can spot the parts of a Gulf offer that people often overlook."
+          ],
+          "sections": [
+            {
+              "heading": "An offer has many parts",
+              "body": [
+                "When an offer arrives, the eye jumps to the base salary. But the base is only one part of the total package. To judge an offer well, you must see the whole thing.",
+                "The full package includes base pay, bonus, allowances, benefits, and growth. In the Gulf, allowances matter a lot. Housing allowance, transport allowance, flight tickets home, school fees for children, and health cover can add up to a large share of the total.",
+                "Two offers with the same base can be very different once you add the allowances. A lower base with strong housing and school support may beat a higher base with none."
+              ]
+            },
+            {
+              "heading": "The Total-Value checklist",
+              "body": [
+                "Here is a simple checklist I give clients. I call it the Total-Value checklist. Go through every line before you judge an offer.",
+                "Base salary. Annual bonus and how it is decided. Housing allowance. Transport allowance. Flight tickets and how many per year. Health insurance and who it covers. School fees support. End-of-service gratuity. Notice period and visa terms. Growth: title, learning, and the path ahead.",
+                "Example. An offer in Dubai shows a base that looks lower than a candidate's current job. But it adds a housing allowance, full family health cover, and school fees for two children. Once she totals the real value, the new offer is clearly stronger. Without the checklist, she might have said no to a better deal."
+              ]
+            },
+            {
+              "heading": "Look beyond money",
+              "body": [
+                "Money is not the only value in an offer. Some parts are harder to price but just as real.",
+                "Think about the growth path. Will this role build skills that raise your value? Think about the manager and culture from what you saw in the interview. A great manager is worth a lot. Think about job security and the company's health.",
+                "Weigh these against the numbers. A slightly lower offer with a strong growth path and a good manager can be the smarter choice for your career over five years. Read the whole offer, money and meaning together."
+              ]
+            }
+          ],
+          "takeaways": [
+            "An offer is a full package, not just the base salary.",
+            "In the Gulf, allowances like housing, flights, and school fees can be large.",
+            "Use the Total-Value checklist to see every part of an offer.",
+            "Two offers with the same base can differ a lot once you add allowances.",
+            "Weigh growth, manager, and security alongside the money."
+          ],
+          "exercise": {
+            "title": "Total up an offer",
+            "prompt": "Take a real or imagined offer. List every part using the Total-Value checklist. Add up the full value. Then note two non-money factors that matter to you.",
+            "placeholder": "Base: ... Housing: ... Flights: ... School fees: ... Total value: ... Non-money factors: ..."
+          },
+          "quiz": [
+            {
+              "q": "Why can an offer with a lower base salary still be the better deal in the Gulf?",
+              "options": [
+                "Lower base always means lower tax only.",
+                "Allowances like housing, flights, and school fees can add large value.",
+                "A lower base means the company likes you more.",
+                "Base salary is the only part that ever matters."
+              ],
+              "answer": 1,
+              "explain": "In the Gulf, allowances can be a big share of the package. The full total can beat a higher base with no allowances."
+            },
+            {
+              "q": "Which factor below is a non-money part of an offer worth weighing?",
+              "options": [
+                "The exact font used in the offer letter.",
+                "The quality of the manager and the growth path.",
+                "The colour of the office walls.",
+                "The brand of coffee in the kitchen."
+              ],
+              "answer": 1,
+              "explain": "A strong manager and a real growth path add lasting career value, even when they are hard to put a price on."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "An offer is bigger than the base number. Tell me the parts of your offer, and we will total up its real value together using the Total-Value checklist.",
+            "suggested": [
+              "Which Gulf allowances do people forget to count?",
+              "How do I compare two offers fairly?",
+              "Is a lower base ever the smarter choice?"
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-11",
+          "title": "Negotiation that keeps goodwill",
+          "mins": 18,
+          "hook": "You can ask for more and still start the job loved, not resented. The secret is how you ask, not just what you ask for.",
+          "objectives": [
+            "By the end you can negotiate an offer without harming the relationship.",
+            "By the end you can use a calm, evidence-based method to ask for more.",
+            "By the end you can know when to push, when to trade, and when to stop."
+          ],
+          "sections": [
+            {
+              "heading": "Negotiation is not a fight",
+              "body": [
+                "Many people fear negotiation. They think asking for more will make the employer angry or pull the offer. So they accept the first number, even when more was possible.",
+                "Done well, negotiation is not a fight. It is a calm, respectful talk to reach a fair deal. A good employer expects you to negotiate. It shows you value yourself. The way you do it decides whether goodwill stays or breaks.",
+                "The goal is simple: get a fairer deal and start the job on warm terms. Both can happen at once if you stay calm, kind, and clear."
+              ]
+            },
+            {
+              "heading": "The Anchor-Reason-Range method",
+              "body": [
+                "Here is the method I teach for asking with goodwill. I call it Anchor, Reason, Range.",
+                "Anchor: open with warmth and gratitude. \"Thank you for the offer. I am excited to join.\" This sets a positive tone. Reason: give evidence for your ask. Use market data, your experience, or a competing offer. \"Based on my eight years and the market rate for this role in Dubai, I was hoping for a higher base.\" Range: ask for a specific range, not a vague \"more.\" \"Could we look at a base between X and Y?\"",
+                "Notice the order. Warmth first, then reasons, then a clear number. You never demand. You ask, with respect and proof. This keeps the other side open instead of defensive."
+              ]
+            },
+            {
+              "heading": "Trade, and know when to stop",
+              "body": [
+                "If the base cannot move, trade. Other parts of the package may have room. Ask about a sign-on bonus, an extra flight ticket, more leave days, a faster review, or a training budget. A good negotiator finds value in many places, not just the base.",
+                "Know when to stop. If the employer says a firm no twice on the same point, do not keep pushing. Pushing past a clear no damages goodwill. Accept it warmly and move to another item or close the deal.",
+                "Example. A candidate in Riyadh asked for a higher base using Anchor, Reason, Range. The company could not raise the base, but offered an extra annual flight ticket and a sign-on bonus instead. She accepted warmly. She got more value and started the job on great terms. That is a win that keeps goodwill."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Negotiation is a respectful talk, not a fight.",
+            "Most employers expect and respect a calm ask.",
+            "Use Anchor, Reason, Range: warmth, then evidence, then a clear number.",
+            "If the base will not move, trade on other parts of the package.",
+            "Stop pushing after a firm no, and close on warm terms."
+          ],
+          "exercise": {
+            "title": "Draft your negotiation ask",
+            "prompt": "Write your negotiation message using Anchor, Reason, Range. Start with warmth, add your evidence, and name a clear range. Then list two items you could trade for if the base will not move.",
+            "placeholder": "Anchor: Thank you... Reason: Based on... Range: a base between... Items to trade for: extra flight, sign-on bonus..."
+          },
+          "quiz": [
+            {
+              "q": "In the Anchor, Reason, Range method, what comes first?",
+              "options": [
+                "A firm demand for a higher number.",
+                "Warmth and gratitude to set a positive tone.",
+                "A threat to take another offer.",
+                "A long list of complaints about the offer."
+              ],
+              "answer": 1,
+              "explain": "You anchor with warmth first. A positive tone keeps the employer open before you give reasons and a number."
+            },
+            {
+              "q": "The employer says a firm no to a base increase twice. What is the best move?",
+              "options": [
+                "Keep pushing on the base until they give in.",
+                "Walk away from the offer in anger.",
+                "Stop pushing the base and try trading on other parts of the package.",
+                "Accept the original offer silently and feel resentful."
+              ],
+              "answer": 2,
+              "explain": "Pushing past a firm no harms goodwill. Trade on other items like bonus, flights, or leave to still gain value."
+            },
+            {
+              "q": "Why should you give a clear range instead of just asking for \"more\"?",
+              "options": [
+                "Because a range sounds more aggressive.",
+                "Because a specific range is clear, fair, and easy to act on.",
+                "Because vague asks always get a higher result.",
+                "Because numbers confuse the employer in your favour."
+              ],
+              "answer": 1,
+              "explain": "A specific range gives the employer something concrete to work with. \"More\" is vague and easy to dismiss."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "You can ask for more and keep the relationship warm. Tell me what you want to negotiate, and we will shape it with Anchor, Reason, Range.",
+            "suggested": [
+              "What can I trade for if the base will not move?",
+              "How do I find the market rate for my role?",
+              "What words keep my ask warm, not pushy?"
+            ]
+          }
+        },
+        {
+          "lessonId": "interview-12",
+          "title": "Live AI mock interview",
+          "mins": 16,
+          "hook": "You have built the skills. Now put them together in a real practice run, and learn how to get the most from every mock interview.",
+          "objectives": [
+            "By the end you can run an effective mock interview that builds real readiness.",
+            "By the end you can combine decoding, stories, presence, and recovery in one go.",
+            "By the end you can review your own performance and fix the right things."
+          ],
+          "sections": [
+            {
+              "heading": "Why mock practice works",
+              "body": [
+                "You cannot learn to swim by reading. You learn by getting in the water. Interviews are the same. Reading about skills is not enough. You must practise out loud, under light pressure, before the real day.",
+                "A mock interview is a safe practice run. You answer real questions, feel the pressure, and find your weak spots while it is safe to fail. The mistakes you make in a mock are the ones you will not make for real.",
+                "This is your chance to bring together everything from this course: decoding the real question, pulling from your story bank, using STAR, holding your presence, and recovering from a stumble. It all comes together here."
+              ]
+            },
+            {
+              "heading": "Run a strong mock",
+              "body": [
+                "A good mock follows a simple shape. I call it Prepare, Perform, Review.",
+                "Prepare: choose the role and pick a mix of questions, including one dreaded question. Set up as if it were real. Sit up, dress the part, use video if your real interview is on video. Perform: answer in full, out loud, without stopping to fix mistakes. Push through stumbles like you would for real. Review: this is the most valuable part. Look back honestly at what worked and what did not.",
+                "You can run a mock with our AI mock interviewer, a friend, or even alone with a recording. The AI tutor in this academy can ask you questions, listen to your answers, and give honest feedback on structure, clarity, and presence."
+              ]
+            },
+            {
+              "heading": "Review the right things",
+              "body": [
+                "Most people review badly. They only notice they felt nervous. That is not useful. Review the specific skills instead.",
+                "Ask yourself: Did I decode the real question? Did my stories have a clear result? Did I keep STAR human, not robotic? Did I pause instead of using filler words? Did I recover calmly from any stumble? Score each one and pick just one or two to fix before your next mock.",
+                "Example. A candidate in Dubai ran three mocks. After the first, she fixed her rambling by using STAR. After the second, she cut her filler words with pauses. After the third, she felt calm and ready. She did not try to fix everything at once. She fixed one thing per round. That is how real progress happens. Now you are ready. Walk into the room knowing what they are really asking, and exactly how to answer."
+              ]
+            }
+          ],
+          "takeaways": [
+            "You learn interviews by practising out loud, not just reading.",
+            "A mock interview lets you fail safely and find weak spots early.",
+            "Follow Prepare, Perform, Review for every mock.",
+            "Review specific skills, not just whether you felt nervous.",
+            "Fix one or two things per round, not everything at once."
+          ],
+          "exercise": {
+            "title": "Plan and run a mock",
+            "prompt": "Plan a mock interview. Choose the role, pick five questions including one you dread, and set up as if it were real. Run it out loud, then review using the skill checklist. Write the one thing you will fix next.",
+            "placeholder": "Role: ... My five questions: ... After review, the one thing I will fix: ..."
+          },
+          "quiz": [
+            {
+              "q": "Which part of a mock interview is the most valuable for improvement?",
+              "options": [
+                "The preparation, because the rest does not matter.",
+                "The honest review of specific skills afterward.",
+                "Feeling nervous, because nerves mean you tried hard.",
+                "Stopping mid-answer to fix every small mistake."
+              ],
+              "answer": 1,
+              "explain": "The review is where learning happens. Reviewing specific skills, not just nerves, tells you exactly what to fix."
+            },
+            {
+              "q": "How should you improve across several mock interviews?",
+              "options": [
+                "Try to fix everything at once in one session.",
+                "Only run one mock and assume you are ready.",
+                "Fix one or two specific things per round.",
+                "Avoid reviewing so you do not feel bad."
+              ],
+              "answer": 2,
+              "explain": "Real progress comes from fixing one or two things per round. Trying to fix everything at once overwhelms you and sticks less."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "This is your practice run. I can be your mock interviewer right now. Tell me the role you are targeting, and I will ask you real questions and give honest feedback on your answers.",
+            "suggested": [
+              "Start a mock interview for an HR role with me.",
+              "Ask me one dreaded question and review my answer.",
+              "What should I check in my self-review?"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,555 @@
+{
+  "courseId": "confidence",
+  "title": "Confidence Reset",
+  "modules": [
+    {
+      "title": "Understanding the Pattern",
+      "lessons": [
+        {
+          "lessonId": "confidence-1",
+          "title": "Why confidence collapses",
+          "mins": 14,
+          "hook": "You can be very good at your job and still freeze in the moment that matters. This lesson shows you why that happens, so you can stop blaming yourself for it.",
+          "objectives": [
+            "By the end you can name the three triggers that make your confidence drop",
+            "By the end you can tell the difference between a real skill gap and a confidence gap",
+            "By the end you can spot your own collapse moment before it controls you"
+          ],
+          "sections": [
+            {
+              "heading": "Confidence is a state, not a trait",
+              "body": [
+                "Many people think confidence is something you either have or you do not. That is not true. Confidence is a state. It goes up and down depending on the situation, the people in the room, and how tired or safe you feel. The same person can feel strong in one meeting and small in the next.",
+                "This matters because a trait feels fixed. A state can be changed. When you see your low-confidence moments as states, you stop saying \"I am not a confident person\" and start asking \"what made my confidence drop right there?\" That question has answers. The first one does not.",
+                "Here is a simple way to hold this. Skill is what you can do. Confidence is whether you believe you can do it in this moment. A skilled engineer in Riyadh can give a perfect demo to her team and then go silent when a senior director walks in. Her skill did not change in those ten seconds. Her state did."
+              ]
+            },
+            {
+              "heading": "The three common triggers",
+              "body": [
+                "Confidence usually collapses for one of three reasons. I call this the \"Threat-Compare-Stakes\" check, because naming the trigger is the first step to managing it.",
+                "First, threat. Your brain reads a situation as risky, even a social one. A harsh tone, a powerful person, or a public setting can flip your body into a stress response. Your heart speeds up and clear thinking gets harder.",
+                "Second, compare. You measure yourself against someone else in the room and decide you fall short. The comparison is often unfair, because you compare your inside doubts to their calm outside.",
+                "Third, stakes. The more an outcome matters to you, the more pressure you feel. A pitch for a promotion feels heavier than a normal update, so your confidence shakes more.",
+                "Try it with a real example. Imagine you present a budget to leadership in Dubai. The room is full (threat), a sharp colleague is also presenting (compare), and your bonus depends on it (stakes). All three triggers fire at once. No wonder your voice shakes. The problem is not your ability. It is three triggers stacking up."
+              ]
+            },
+            {
+              "heading": "Skill gap or confidence gap?",
+              "body": [
+                "Before you fix anything, you must know what you are fixing. A skill gap means you truly do not yet know how to do the thing. A confidence gap means you can do it, but you do not believe you can in the moment.",
+                "The test is simple. Ask: \"Have I done this well before, in calmer conditions?\" If yes, it is a confidence gap, and this course is built for that. If no, you may need practice or training first, which is a different and honest answer.",
+                "Most high performers who feel self-doubt have a confidence gap, not a skill gap. Their track record is strong. Their belief just has not caught up with it yet."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Confidence is a state you can change, not a fixed trait",
+            "Skill is what you can do; confidence is whether you believe it right now",
+            "Three triggers cause most collapses: threat, comparison, and high stakes",
+            "Triggers often stack, so name each one separately",
+            "If you have done it well before, it is a confidence gap, not a skill gap"
+          ],
+          "exercise": {
+            "title": "Find your collapse moment",
+            "prompt": "Think of one recent moment when your confidence dropped at work. Write what happened in two or three sentences. Then name which of the three triggers were present: threat, comparison, or high stakes. If more than one was present, list them all.",
+            "placeholder": "The moment was... The triggers I notice are..."
+          },
+          "quiz": [
+            {
+              "q": "A skilled manager presents well to her team but goes quiet when the CEO joins. What is the most likely cause?",
+              "options": [
+                "She has a skill gap and needs more training",
+                "A threat trigger changed her state, not her skill",
+                "She is simply not a confident person",
+                "She did not prepare enough for the meeting"
+              ],
+              "answer": 1,
+              "explain": "Her skill did not change in seconds. The CEO joining acted as a threat trigger, which lowered her state. This is a confidence gap, not a skill gap."
+            },
+            {
+              "q": "Which question best tells you if you have a confidence gap rather than a skill gap?",
+              "options": [
+                "Do other people think I am good at this?",
+                "Is this task important to my career?",
+                "Have I done this well before in calmer conditions?",
+                "Do I feel nervous right now?"
+              ],
+              "answer": 2,
+              "explain": "If you have done it well before under calmer conditions, the ability is there. The issue is belief in the moment, which is a confidence gap."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome to your first lesson. I know the idea that confidence is a state, not a trait, and the three triggers we just covered: threat, comparison, and stakes. Tell me about a moment your confidence dropped, and we can find the trigger together.",
+            "suggested": [
+              "How do I tell a skill gap from a confidence gap?",
+              "What if all three triggers happen at once?",
+              "Why do I freeze only around senior people?"
+            ]
+          }
+        },
+        {
+          "lessonId": "confidence-2",
+          "title": "The inner critic toolkit",
+          "mins": 13,
+          "hook": "There is a voice in your head that says you are not good enough. This lesson gives you a simple set of tools to answer it back.",
+          "objectives": [
+            "By the end you can catch your inner critic in the moment it speaks",
+            "By the end you can use a three-step method to question its claims",
+            "By the end you can replace harsh self-talk with fair, useful self-talk"
+          ],
+          "sections": [
+            {
+              "heading": "What the inner critic really is",
+              "body": [
+                "The inner critic is the harsh voice that judges you. It says things like \"you will fail,\" \"they will see you are weak,\" or \"who do you think you are?\" Almost everyone has one. Very capable people often have a loud one.",
+                "Here is the key point. The inner critic is not telling the truth. It is trying to protect you from risk, but it does this in a rough and unhelpful way. Long ago, staying safe meant avoiding any chance of looking bad in front of the group. The critic still uses that old rule, even when the real risk today is small.",
+                "So the goal is not to delete the voice. You cannot. The goal is to hear it, question it, and decide for yourself. You move from obeying the critic to managing it."
+              ]
+            },
+            {
+              "heading": "The Catch-Check-Change method",
+              "body": [
+                "Use a simple three-step method called Catch-Check-Change. It turns a vague bad feeling into something you can work with.",
+                "Step one, Catch. Notice the exact thought in words. Not just \"I feel bad,\" but the real sentence: \"I am going to embarrass myself in this meeting.\" Writing it down makes it visible.",
+                "Step two, Check. Question the thought like a fair judge. Ask: \"Is this a fact or a fear? What is the proof for and against it? Would I say this to a colleague I respect?\" Most critic thoughts fail this test quickly.",
+                "Step three, Change. Replace the harsh thought with a fair and true one. Not fake praise, but a balanced line. Instead of \"I will embarrass myself,\" you write \"I am well prepared, and some nerves are normal. I can handle a tough question.\"",
+                "An example. A finance lead in Jeddah has to present to the board. Her critic says, \"They will think you are not ready for this level.\" She catches it, writes it down, and checks it. The proof against it is strong: she was chosen for this role, her numbers are solid, and she has presented before. She changes the thought to, \"I earned my seat here, and I know these numbers better than anyone in the room.\" Her hands still shake a little, but now she is in charge of her own mind."
+              ]
+            },
+            {
+              "heading": "Speak to yourself like a coach",
+              "body": [
+                "A useful test is the friend test. Ask: \"Would I speak to a good friend the way I am speaking to myself?\" Usually the answer is no. We are far harsher with ourselves than with others.",
+                "Aim for the voice of a good coach. A good coach is honest about mistakes but never cruel. A coach says, \"That part did not land, here is what to fix,\" not \"You always ruin everything.\"",
+                "This is not about lying to yourself or pretending you are perfect. It is about being fair. Fair self-talk keeps you steady and able to think. Cruel self-talk shuts your thinking down right when you need it most."
+              ]
+            }
+          ],
+          "takeaways": [
+            "The inner critic protects you in a rough, unhelpful way; it is not telling the truth",
+            "You cannot delete the critic, but you can manage it",
+            "Use Catch-Check-Change: name the thought, question it, replace it",
+            "Replace harsh thoughts with fair and true ones, not fake praise",
+            "Speak to yourself like a good coach: honest but never cruel"
+          ],
+          "exercise": {
+            "title": "Run one thought through the method",
+            "prompt": "Catch one inner-critic thought you had this week and write it word for word. Then check it: what is the proof for and against it? Finally, write a fair replacement thought you could actually believe.",
+            "placeholder": "Catch: The thought was... Check: Proof against it is... Change: A fairer thought is..."
+          },
+          "quiz": [
+            {
+              "q": "In the Catch-Check-Change method, what does the Change step ask you to do?",
+              "options": [
+                "Repeat positive affirmations that may not be true",
+                "Replace the harsh thought with a fair and true one",
+                "Push the thought away and ignore it",
+                "Prove the critic completely wrong every time"
+              ],
+              "answer": 1,
+              "explain": "Change means swapping a cruel thought for a balanced, believable one. It is not fake praise and it is not denial."
+            },
+            {
+              "q": "Why should you not try to delete the inner critic completely?",
+              "options": [
+                "Because the critic is always right",
+                "Because deleting it would make you arrogant",
+                "Because it cannot be deleted; the goal is to manage it",
+                "Because positive thinking is the only real fix"
+              ],
+              "answer": 2,
+              "explain": "The critic is a built-in protective voice you cannot erase. The skill is to hear it, question it, and choose your own response."
+            },
+            {
+              "q": "The friend test asks you to check whether...",
+              "options": [
+                "Your friends agree with your critic",
+                "You would speak to a friend the way you speak to yourself",
+                "Your friends have the same fears as you",
+                "You can perform without any nerves at all"
+              ],
+              "answer": 1,
+              "explain": "The friend test exposes how harsh self-talk really is. We rarely speak to people we respect the way we speak to ourselves."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Good to see you here. I know the Catch-Check-Change method from this lesson and the friend test. Share one harsh thought your inner critic likes to repeat, and I will help you run it through the three steps.",
+            "suggested": [
+              "What if the critic's thought is partly true?",
+              "Give me an example of a fair replacement thought",
+              "How do I catch the thought when things move fast?"
+            ]
+          }
+        },
+        {
+          "lessonId": "confidence-3",
+          "title": "Mapping your win history",
+          "mins": 13,
+          "hook": "Your brain forgets your wins and keeps your failures. This lesson helps you build a record of proof you can return to when doubt hits.",
+          "objectives": [
+            "By the end you can list real evidence of your past wins",
+            "By the end you can see the pattern of strengths inside those wins",
+            "By the end you can use your win record to answer self-doubt with facts"
+          ],
+          "sections": [
+            {
+              "heading": "Why your brain hides your wins",
+              "body": [
+                "The brain holds on to bad memories more strongly than good ones. This is called the negativity bias. Long ago, remembering danger kept people alive. So one piece of harsh feedback can stay with you for years, while ten compliments fade by next week.",
+                "This creates an unfair record inside your head. When you feel doubt, your brain quickly brings up every mistake and stays quiet about every success. You then make decisions based on a record that is missing half the facts.",
+                "The fix is to build the missing half on purpose. You write down your real wins so they are saved outside your memory, where doubt cannot delete them. This is your win history."
+              ]
+            },
+            {
+              "heading": "Building your evidence file",
+              "body": [
+                "Use a method called the Evidence File. The rule is simple: only real, specific facts count. Not \"I am a hard worker,\" but \"I led the supplier move that cut costs by twelve percent.\" Facts beat feelings.",
+                "Collect wins from four areas to get a full picture. One, results you delivered, such as a project finished or a target hit. Two, hard moments you handled, such as a crisis or a difficult client. Three, skills others rely on you for, such as the person people ask when the data is messy. Four, growth over time, such as a fear you once had that you no longer have.",
+                "Here is how it looks in practice. An HR officer in Abu Dhabi feels she is not ready to lead a team. She builds her Evidence File and writes: \"Ran the onboarding for forty new hires with zero complaints. Calmed an angry department head and kept the project alive. People come to me first when a policy is unclear. Two years ago I was scared of public speaking; now I run training sessions.\" Reading that list, the doubt has a much harder time. The facts are right there on the page."
+              ]
+            },
+            {
+              "heading": "Reading the pattern in your wins",
+              "body": [
+                "Once you have ten or more wins listed, look for the pattern. Ask: \"What strengths show up again and again?\" Maybe you stay calm under pressure. Maybe you are the one who brings order to chaos. Maybe people trust you with hard conversations.",
+                "These repeated strengths are your true confidence base. They are not a guess or a hope. They are proven by a list of real events. When self-doubt says \"you cannot do this,\" you can answer, \"here is the proof that I can.\"",
+                "Keep the file alive. Add to it every time something goes well, even small things. Over weeks, you build a record that doubt cannot argue with, because it is made of facts and not feelings."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Negativity bias makes your brain keep failures and forget wins",
+            "Build an Evidence File of real, specific wins outside your memory",
+            "Collect from four areas: results, hard moments, skills, and growth",
+            "Look for repeated strengths; these are your true confidence base",
+            "Keep adding wins so the record grows stronger than your doubt"
+          ],
+          "exercise": {
+            "title": "Start your Evidence File",
+            "prompt": "Write five real wins from your career. Make each one specific, with a fact or number if you can. Use the four areas as a guide: results you delivered, hard moments you handled, skills others rely on you for, and growth over time. Then note one strength that shows up in more than one of them.",
+            "placeholder": "Win 1... Win 2... A strength I see repeating is..."
+          },
+          "quiz": [
+            {
+              "q": "What is the negativity bias, and why does it matter for confidence?",
+              "options": [
+                "A habit of expecting bad outcomes, which you can simply choose to stop",
+                "The brain holding failures more strongly than wins, creating an unfair inner record",
+                "A sign that you lack the skills for your job",
+                "A rule that you should focus only on your mistakes"
+              ],
+              "answer": 1,
+              "explain": "The negativity bias keeps failures clear and strong and lets wins fade. That leaves you judging yourself on only half the facts, which feeds doubt."
+            },
+            {
+              "q": "Which entry belongs in a strong Evidence File?",
+              "options": [
+                "I am a dedicated and reliable professional",
+                "I think I am quite good at my job",
+                "I led the supplier move that cut costs by twelve percent",
+                "People probably like working with me"
+              ],
+              "answer": 2,
+              "explain": "The Evidence File uses real, specific facts. A measurable result beats a general self-description, which doubt can easily dismiss."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome. I know the negativity bias and the Evidence File method from this lesson, including the four areas to collect wins from. Tell me one win you are proud of, and I will help you write it as solid evidence.",
+            "suggested": [
+              "What counts as a real win versus a vague one?",
+              "I cannot think of any wins. How do I start?",
+              "How do I find the pattern in my wins?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "The Reset",
+      "lessons": [
+        {
+          "lessonId": "confidence-4",
+          "title": "Reframing the rejection",
+          "mins": 18,
+          "hook": "One rejection can sit in your mind for years and quietly shrink what you try next. This lesson teaches you to read rejection as useful information, not as a final judgement on your worth.",
+          "objectives": [
+            "By the end you can separate a single rejection from your value as a person",
+            "By the end you can use a clear method to learn from a no without being crushed by it",
+            "By the end you can decide what a rejection should and should not change in your behaviour"
+          ],
+          "sections": [
+            {
+              "heading": "Rejection is feedback about a fit, not a final judgement on you",
+              "body": [
+                "When you are rejected, the inner critic says one thing: \"this proves you are not good enough.\" That is the most common and most harmful mistake. A rejection is information about a specific fit at a specific time. It is not a final score on your worth.",
+                "Think about what a \"no\" actually contains. A job rejection might mean another person matched the exact need a little better, or the budget changed, or the timing was wrong. A rejected idea might mean the room was not ready, or the case was not made clearly. None of these mean \"you, as a person, have no value.\"",
+                "The skill is to make the rejection small and specific instead of large and personal. \"They chose someone else for this one role\" is true and manageable. \"I always fail and never will be enough\" is false and crushing. Same event, two very different stories. You get to choose the accurate one."
+              ]
+            },
+            {
+              "heading": "The 3R method: Receive, Read, Respond",
+              "body": [
+                "Use a method called the 3R method to handle any rejection in a calm and useful way. The three steps are Receive, Read, and Respond.",
+                "Receive. First, let the feeling pass through without acting on it. Rejection hurts, and that is normal. Do not send an angry email or make a big decision in the first hour. Name the feeling: \"I feel disappointed and a bit embarrassed.\" Naming it lowers its power.",
+                "Read. Next, look for the real lesson, like a scientist reading data. Ask: \"What can I actually learn here? What part was in my control, and what part was not?\" Separate useful feedback from noise. If they gave reasons, study them. If the no was about timing or budget, accept that it was not about you at all.",
+                "Respond. Finally, decide your next action on purpose. Maybe you improve one specific skill. Maybe you ask for feedback. Maybe you simply try again somewhere with a better fit. The response is a choice you make with a clear head, not a reaction you throw out in pain.",
+                "An example. A consultant in Dubai is turned down for a senior project lead role. Her first thought is, \"I am not leadership material.\" She uses the 3R method. She receives the disappointment and lets a day pass. She reads the feedback and learns the firm wanted more experience with government clients, which is a specific and fixable gap, not a flaw in her. She responds by asking to join a smaller government project to build that exact experience. Eight months later, she is ready, and the next door opens. The rejection became a map, not a wall."
+              ]
+            },
+            {
+              "heading": "What rejection should and should not change",
+              "body": [
+                "A healthy response changes your method, not your worth. After a no, it is fair to adjust your approach, your preparation, or your target. It is never fair to lower your view of yourself as a person.",
+                "Watch for over-correction. Over-correction means you change far too much after one no. Some people take one rejection and stop trying for years. That is letting a single result control a whole life. One no is a very small sample. It cannot prove a rule about your future.",
+                "Here is a steady rule to hold. Let rejection sharpen you, not shrink you. Sharpen means you get clearer and better at the thing. Shrink means you ask for less and hide. The first builds a career. The second slowly ends one."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A rejection is feedback about a specific fit, not a final judgement on your worth",
+            "Make the no small and specific, not large and personal",
+            "Use the 3R method: Receive the feeling, Read the lesson, Respond on purpose",
+            "Change your method after a no, never your view of yourself",
+            "Let rejection sharpen you, not shrink you"
+          ],
+          "exercise": {
+            "title": "Reframe one rejection",
+            "prompt": "Think of one rejection that still stings. Run it through the 3R method. Receive: what did you feel? Read: what was actually in your control, and what was not? Respond: what is one useful action you could take now, with a clear head?",
+            "placeholder": "Receive: I felt... Read: In my control was... Not in my control was... Respond: One action I can take is..."
+          },
+          "quiz": [
+            {
+              "q": "A strong candidate is rejected because the company wanted more experience in one specific area. What is the most accurate reading?",
+              "options": [
+                "It proves she is not leadership material",
+                "It is a specific, fixable gap, not a flaw in her worth",
+                "She should stop applying for senior roles",
+                "The decision was unfair and not worth learning from"
+              ],
+              "answer": 1,
+              "explain": "The rejection points to one concrete gap she can close. Reading it as proof of low worth is the personal-and-large error the lesson warns against."
+            },
+            {
+              "q": "In the 3R method, what is the purpose of the Receive step?",
+              "options": [
+                "To quickly fight back and defend yourself",
+                "To accept the no without ever learning from it",
+                "To let the feeling pass before you act, so you respond with a clear head",
+                "To prove the other person made the wrong choice"
+              ],
+              "answer": 2,
+              "explain": "Receive is about feeling the hurt without acting in the heat of it. A calm head later leads to a far better Read and Respond."
+            },
+            {
+              "q": "Which response shows a healthy reframe rather than over-correction?",
+              "options": [
+                "Deciding never to apply for that level of role again",
+                "Lowering your view of yourself as a person",
+                "Adjusting your method while keeping your sense of worth",
+                "Treating one no as proof of a permanent rule about your future"
+              ],
+              "answer": 2,
+              "explain": "A healthy reframe changes your method, not your worth. Over-correction lets one result shrink your whole future."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "I am glad you are here for this one. I know the 3R method from this lesson: Receive, Read, Respond, and the difference between a no that is about you and a no that is about fit. Tell me about a rejection that still bothers you, and we can reframe it together.",
+            "suggested": [
+              "How do I stop taking rejection so personally?",
+              "What if the rejection really was about my own mistake?",
+              "How long should the Receive step take?"
+            ]
+          }
+        },
+        {
+          "lessonId": "confidence-5",
+          "title": "Building a confidence ritual",
+          "mins": 12,
+          "hook": "Confidence that depends on mood will fail you on hard days. This lesson helps you build a small daily ritual that keeps you steady no matter how you feel.",
+          "objectives": [
+            "By the end you can design a short daily ritual that builds confidence over time",
+            "By the end you can use a pre-event routine to steady yourself before high-pressure moments",
+            "By the end you can make the ritual small enough that you actually keep it"
+          ],
+          "sections": [
+            {
+              "heading": "Why rituals beat willpower",
+              "body": [
+                "Confidence is not built in one big moment. It is built in small actions repeated often. A ritual is a simple action you do at a set time, the same way each time, until it becomes automatic. Rituals work because they do not depend on how you feel that day.",
+                "Willpower runs out. On a tired or stressful day, you will not feel like doing the brave thing. A ritual removes the need to decide. You just follow the routine, the same as brushing your teeth. The action happens even when motivation is low.",
+                "Think of confidence like fitness. You do not get strong from one heavy session. You get strong from regular, smaller sessions over time. A daily confidence ritual is your training plan for a steadier mind."
+              ]
+            },
+            {
+              "heading": "The daily ritual: three small parts",
+              "body": [
+                "Build a daily ritual with three small parts. Keep it under five minutes so it survives busy days. I call this the Notice-Name-Note ritual.",
+                "Notice. In the morning, take one slow breath and notice how you feel, without judging it. This builds the habit of catching your state early, which you learned in lesson one.",
+                "Name. Pick one thing you will face today that needs confidence, and name it. \"Today I will speak up in the strategy meeting.\" Naming it turns a vague worry into a clear, single target.",
+                "Note. At the end of the day, write one line in your Evidence File about what went well. Even small wins count. This feeds the win history you started in lesson three and ends your day on proof, not doubt.",
+                "An example. A project manager in Sharjah does this ritual on her phone each day. Morning: she notices she feels tense before a client call. She names her target: \"Today I will ask the client the hard question about the deadline.\" Evening: she notes, \"Asked the question. The client respected it.\" In one month she has thirty small wins recorded and a calmer start to each day. Nothing dramatic happened. The repetition did the work."
+              ]
+            },
+            {
+              "heading": "The pre-event routine for high-pressure moments",
+              "body": [
+                "For big moments, add a short pre-event routine. This is a fixed set of actions you do in the five minutes before a meeting, pitch, or hard talk. A fixed routine gives your nervous mind something solid to hold.",
+                "A simple version has three steps. First, breathe: take three slow breaths out longer than in, which calms the body. Second, posture: stand or sit tall, feet steady, shoulders open, because the body shapes the mind. Third, anchor: recall one line from your Evidence File, such as \"I have handled rooms harder than this.\"",
+                "Keep the routine exactly the same every time. The point is that it is familiar. When everything else feels uncertain, your routine is the one thing you can control. That control is where calm confidence comes from."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Confidence is built by small actions repeated often, not by big moments",
+            "Rituals beat willpower because they do not depend on your mood",
+            "Use the daily Notice-Name-Note ritual and keep it under five minutes",
+            "Add a fixed pre-event routine: breathe, fix posture, anchor on one win",
+            "Keep routines the same each time so they feel familiar under pressure"
+          ],
+          "exercise": {
+            "title": "Design your ritual",
+            "prompt": "Write your own daily confidence ritual using Notice-Name-Note. Decide the exact time you will do each part and where you will record it. Then write your three-step pre-event routine for high-pressure moments, including one anchor line from your Evidence File.",
+            "placeholder": "Daily ritual: Notice... Name... Note... Pre-event routine: Breathe... Posture... Anchor line..."
+          },
+          "quiz": [
+            {
+              "q": "Why does the lesson say rituals beat willpower for building confidence?",
+              "options": [
+                "Because willpower is a sign of weakness",
+                "Because rituals run automatically and do not depend on your mood",
+                "Because rituals require no effort at all",
+                "Because willpower only works for physical fitness"
+              ],
+              "answer": 1,
+              "explain": "Willpower fades on hard days. A ritual is automatic, so the action still happens when motivation is low. That is its main advantage."
+            },
+            {
+              "q": "What is the main reason to keep a pre-event routine exactly the same every time?",
+              "options": [
+                "It impresses the people watching you",
+                "It guarantees you will never feel nervous",
+                "Familiarity gives your nervous mind something solid to control",
+                "It makes the event finish faster"
+              ],
+              "answer": 2,
+              "explain": "A fixed routine is the one thing you control when everything else is uncertain. That familiar control is where calm confidence comes from."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Happy to build this with you. I know the Notice-Name-Note daily ritual and the three-step pre-event routine from this lesson. Tell me about a high-pressure moment you face often, and we can design a routine that fits it.",
+            "suggested": [
+              "How do I keep the ritual when my days are very busy?",
+              "What anchor line should I use before a big meeting?",
+              "What if I forget the ritual for a few days?"
+            ]
+          }
+        },
+        {
+          "lessonId": "confidence-6",
+          "title": "Your 7-day plan",
+          "mins": 12,
+          "hook": "Knowing the tools is not the same as living them. This lesson turns everything you learned into a simple seven-day plan you can start tomorrow.",
+          "objectives": [
+            "By the end you can follow a clear day-by-day plan to apply the whole course",
+            "By the end you can choose one stretch action that grows your confidence through real practice",
+            "By the end you can set up a simple way to keep the habit going after day seven"
+          ],
+          "sections": [
+            {
+              "heading": "From knowing to doing",
+              "body": [
+                "You now have the full toolkit. You understand triggers, the inner critic, your win history, reframing rejection, and daily rituals. The last step is the one that changes your life: using them. Knowledge that stays in your head does nothing. Practice is what rewires confidence.",
+                "Confidence grows in one main way: you do a slightly hard thing, you survive it, and your brain updates its belief. This is called earned confidence. You cannot think your way to it. You act your way to it, one small brave step at a time.",
+                "So this plan is built around small daily actions, not big leaps. Each day asks for one clear thing. Small steps done daily beat one big effort that you never repeat. The aim is steady progress you can actually keep."
+              ]
+            },
+            {
+              "heading": "The 7-day plan, day by day",
+              "body": [
+                "Here is your plan. Each day takes about fifteen minutes plus one real-world action.",
+                "Day 1, Map. Write your three most common confidence triggers from lesson one. Watch for them all day.",
+                "Day 2, Answer back. Use Catch-Check-Change on one inner-critic thought, as in lesson two. Write all three steps.",
+                "Day 3, Build proof. Add ten wins to your Evidence File from lesson three. Find one repeating strength.",
+                "Day 4, Reframe. Pick one old rejection and run the 3R method from lesson four. Decide one new action.",
+                "Day 5, Ritual. Start the daily Notice-Name-Note ritual from lesson five. Do it morning and evening.",
+                "Day 6, Stretch. Do one small brave action you have been avoiding. Ask the question, send the email, or speak up once.",
+                "Day 7, Review. Read everything you wrote this week. Notice what changed. Choose which two tools you will keep using.",
+                "An example of a day-six stretch. A marketing lead in Riyadh has avoided asking her director for a bigger budget. On day six, she uses her pre-event routine, then asks. The director says he needs to check, which is not a no. She survives the moment and her belief updates: \"I can ask for what I need.\" That single action did more than a week of reading."
+              ]
+            },
+            {
+              "heading": "Keeping it going after day seven",
+              "body": [
+                "Seven days starts the change. Habits need more time to set. To keep going, use a simple rule called \"two tools and a tracker.\" Choose the two tools that helped you most and keep doing only those, so it stays light and real.",
+                "Add a tracker. This can be a note on your phone where you mark each day you do your ritual and each brave action you take. Seeing the marks build up is its own quiet reward and keeps you honest.",
+                "Plan for bad days, because they will come. A bad day does not erase your progress. When you slip, you simply return to the ritual the next morning. Confidence is not a straight line up. It is a steady habit you return to, again and again, until it becomes who you are."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Confidence is earned through action, not gained through thinking alone",
+            "Small brave steps done daily beat one big effort you never repeat",
+            "Follow the 7-day plan: map, answer back, build proof, reframe, ritual, stretch, review",
+            "After day seven, keep going with two tools and a simple tracker",
+            "Plan for bad days; just return to the ritual the next morning"
+          ],
+          "exercise": {
+            "title": "Commit to your 7-day plan",
+            "prompt": "Write your start date for day one. Then choose your day-six stretch action now: one small brave thing you have been avoiding. Finally, name the two tools from this course you think will help you most after the week ends.",
+            "placeholder": "I start on... My day-six stretch action is... The two tools I will keep are..."
+          },
+          "quiz": [
+            {
+              "q": "What does the lesson mean by earned confidence?",
+              "options": [
+                "Confidence you gain by reading and thinking about the topic",
+                "Confidence that comes from doing a hard thing, surviving it, and updating your belief",
+                "Confidence that other people give you through praise",
+                "Confidence you are simply born with"
+              ],
+              "answer": 1,
+              "explain": "Earned confidence comes from action. You do a slightly hard thing, survive, and your brain updates its belief. Thinking alone does not do this."
+            },
+            {
+              "q": "On day six, a leader asks for a bigger budget and the director says he needs to check first. Why is this still a win?",
+              "options": [
+                "Because she got the budget she asked for",
+                "Because she avoided the risk entirely",
+                "Because she took the brave action and survived it, so her belief updated",
+                "Because the director clearly said yes"
+              ],
+              "answer": 2,
+              "explain": "The win is the action, not the outcome. By asking and surviving, her belief updates to 'I can ask for what I need,' which is earned confidence."
+            },
+            {
+              "q": "What is the best response to a bad day after the plan ends?",
+              "options": [
+                "Decide the plan did not work and stop",
+                "Treat the slip as proof that you cannot change",
+                "Return to your ritual the next morning and continue",
+                "Start the whole seven days over from zero each time"
+              ],
+              "answer": 2,
+              "explain": "Confidence is not a straight line. A bad day does not erase progress. The habit is simply returning to the ritual the next morning."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "This is where it all comes together. I know your 7-day plan from this lesson and the idea of earned confidence through small brave actions. Tell me which day feels hardest for you, and we can make it doable.",
+            "suggested": [
+              "Help me choose my day-six stretch action",
+              "Which two tools should I keep after the week?",
+              "How do I stay consistent once the seven days end?"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

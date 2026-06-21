@@ -1,0 +1,976 @@
+{
+  "courseId": "hr-foundations",
+  "title": "Modern HR Foundations",
+  "modules": [
+    {
+      "title": "The HR Operating Model",
+      "lessons": [
+        {
+          "lessonId": "hr-foundations-1",
+          "title": "The four roles of modern HR",
+          "mins": 18,
+          "hook": "Most HR teams feel busy but not respected. The reason is they only play one of the four roles HR is meant to play. This lesson shows you all four.",
+          "objectives": [
+            "By the end you can name the four roles of modern HR in your own words.",
+            "By the end you can spot which role you spend most of your time in today.",
+            "By the end you can decide which role your team needs to grow next."
+          ],
+          "sections": [
+            {
+              "heading": "Why HR needs a model, not just tasks",
+              "body": [
+                "Many HR teams describe their job as a long list of tasks. Hiring, payroll, contracts, leave, complaints. The list is real, but it hides the bigger picture. When you only see tasks, you stay busy with small jobs and react all day.",
+                "A model groups the tasks into a few clear roles. It tells you what HR is for, not only what HR does. The model we use is the Ulrich Model, created by Dave Ulrich in 1997. It is still the most used way to describe HR work, because the tools change but the jobs stay the same."
+              ]
+            },
+            {
+              "heading": "The four roles",
+              "body": [
+                "Role one is the Strategic Partner. Here you help leaders plan the workforce they will need. You answer questions like: do we have the skills for next year, and what will a new branch cost in people?",
+                "Role two is the Change Agent. Here you help the company move through change. A new system, a merger, a new way of working. You prepare people so the change actually sticks.",
+                "Role three is the Administrative Expert. Here you run the daily machine well. Payroll on time, contracts correct, leave tracked, questions answered. This is the trust base. If this breaks, nobody listens to your strategy.",
+                "Role four is the Employee Champion. Here you speak for the people. You listen to how staff feel, you protect fairness, and you carry their voice into leadership rooms."
+              ]
+            },
+            {
+              "heading": "A Gulf example",
+              "body": [
+                "Picture an HR team of three people at a growing retail company in Riyadh. Today they spend almost all their time on the Administrative Expert role. Payroll, visas, and leave fill the whole week.",
+                "Their CEO asks for a Saudization plan to meet Nitaqat targets. That is Strategic Partner work, and nobody has time for it. The fix is not to work harder. The fix is to automate more of the admin, then move one person into partner work. The model showed them the gap. The task list never would."
+              ]
+            }
+          ],
+          "takeaways": [
+            "HR has four roles: Strategic Partner, Change Agent, Administrative Expert, Employee Champion.",
+            "The Ulrich Model describes the work, so it stays true even as tools change.",
+            "Strong admin is the trust base for everything else.",
+            "If you only play one role, you stay stuck doing small daily jobs.",
+            "Growth often means moving time, not adding hours."
+          ],
+          "exercise": {
+            "title": "Find your role balance",
+            "prompt": "Think about your last full work week. Guess what percent of your time went to each of the four roles. Which role got the most time, and which got almost none? Write one sentence on the role you most need to grow next, and why.",
+            "placeholder": "Last week I spent about ... percent on admin and almost none on ... The role I need to grow next is ... because ..."
+          },
+          "quiz": [
+            {
+              "q": "An HR team is praised for fast, error-free payroll but is never invited to planning meetings. Which role are they strong in, and which are they missing?",
+              "options": [
+                "Strong in Strategic Partner, missing Administrative Expert",
+                "Strong in Administrative Expert, missing Strategic Partner",
+                "Strong in Change Agent, missing Employee Champion",
+                "Strong in Employee Champion, missing Change Agent"
+              ],
+              "answer": 1,
+              "explain": "Reliable payroll is the Administrative Expert role. Being absent from planning means they are not yet acting as a Strategic Partner."
+            },
+            {
+              "q": "Why does the Ulrich Model stay useful even when HR software keeps changing?",
+              "options": [
+                "It lists the exact tools every HR team should buy",
+                "It describes the underlying work, not the technology",
+                "It is the newest model available",
+                "It only applies to large companies"
+              ],
+              "answer": 1,
+              "explain": "The model describes the jobs HR must do. Tools change every few years, but the four roles remain."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome to the course. We just met the four roles of HR using the Ulrich Model. Tell me where you spend most of your time, and I will help you see your gaps.",
+            "suggested": [
+              "How do I move from admin work to partner work?",
+              "Can one small team really play all four roles?",
+              "Which role should a brand new HR person start with?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-2",
+          "title": "HR as a business partner",
+          "mins": 19,
+          "hook": "A place in big decisions is not given to HR for free. You earn it by speaking the language of the business. This lesson shows you how.",
+          "objectives": [
+            "By the end you can explain what a true HR business partner does.",
+            "By the end you can link a people problem to a business number.",
+            "By the end you can prepare for a leadership meeting like a partner, not just someone who takes notes."
+          ],
+          "sections": [
+            {
+              "heading": "What business partner really means",
+              "body": [
+                "Business partner is one of the most used and least understood terms in HR. Many people think it means being friendly with managers. It does not. It means you help the business reach its goals through people, and you can prove it.",
+                "A real partner starts with the business problem, not the HR activity. A manager says sales are dropping. A weak HR response is to offer a training course. A partner first asks why sales are dropping. Maybe the best sellers are leaving. Maybe new hires take too long to learn. The people answer should fit the business problem."
+              ]
+            },
+            {
+              "heading": "Speak in business numbers",
+              "body": [
+                "Leaders make decisions with numbers. If HR only speaks in feelings and good intentions, it gets ignored. The skill is to turn a people issue into a number the business cares about.",
+                "Use a simple bridge. People issue, then business cost, then your proposed action. For example: our call centre loses 30 agents a year. Each exit costs about 50,000 dirhams to replace and retrain. That is 1.5 million dirhams a year. A small plan to keep staff could cut this cost in half. Now leaders are listening, because you are talking in their terms."
+              ]
+            },
+            {
+              "heading": "A worked example",
+              "body": [
+                "Layla is an HR partner at a logistics firm in Dubai. Drivers keep quitting in their first three months. The operations head is frustrated and blames pay.",
+                "Layla does not argue. She looks at exit interviews and finds the real cause: drivers get almost no support in week one, so they feel lost and leave. She brings one slide to the leadership meeting. It shows the cost of early exits, the true cause, and a simple buddy system for the first month. The plan is cheap and clear. It is approved that day. That is partnering: business problem, evidence, and a practical fix."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Start with the business problem, not the HR activity.",
+            "Turn people issues into numbers leaders care about.",
+            "Use the bridge: people issue, business cost, proposed action.",
+            "Evidence beats opinion in a leadership room.",
+            "A good partner brings a fix, not just a complaint."
+          ],
+          "exercise": {
+            "title": "Build your business bridge",
+            "prompt": "Pick one people problem in your team right now, such as high turnover or slow hiring. Write it as a bridge: the people issue, the rough business cost, and one action you would propose. Use real numbers if you can, even rough ones.",
+            "placeholder": "People issue: ... Business cost: about ... Proposed action: ..."
+          },
+          "quiz": [
+            {
+              "q": "A sales manager says results are weak and asks HR for a motivation workshop. What is the strongest partner response?",
+              "options": [
+                "Book the workshop quickly to look helpful",
+                "First investigate why results are weak before choosing a solution",
+                "Tell the manager motivation is not an HR job",
+                "Send a survey and wait a month for results"
+              ],
+              "answer": 1,
+              "explain": "A partner starts with the real business problem. The workshop may not fit the cause. Investigate first, then act."
+            },
+            {
+              "q": "Why should HR translate people problems into money or business numbers?",
+              "options": [
+                "Because leaders are only interested in cost cutting",
+                "Because numbers help leaders compare and decide, so HR is taken seriously",
+                "Because feelings have no place in HR",
+                "Because it makes HR reports longer"
+              ],
+              "answer": 1,
+              "explain": "Numbers let leaders weigh the issue against other priorities. It earns HR a real voice in decisions."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let us turn you into a real business partner. Bring me a people problem from your work, and we will build it into a business case together.",
+            "suggested": [
+              "How do I find the cost of turnover?",
+              "What if I do not have good data yet?",
+              "How do I get invited to leadership meetings?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-3",
+          "title": "Aligning people strategy to business strategy",
+          "mins": 18,
+          "hook": "If your HR plan does not point at the company goal, it is just a list of activities. This lesson connects the two.",
+          "objectives": [
+            "By the end you can read a business goal and find the people needs inside it.",
+            "By the end you can use a simple tool to link strategy to HR action.",
+            "By the end you can cut HR work that helps no business goal."
+          ],
+          "sections": [
+            {
+              "heading": "Strategy starts with the business goal",
+              "body": [
+                "People strategy is the plan for the people side of the business. It only makes sense when it serves a business goal. So you always start at the top: what is the company trying to achieve this year?",
+                "Common goals are things like grow revenue 20 percent, open a new market, cut costs, or improve service quality. Each goal hides a people need. Growth needs more skilled hires. A new market needs local talent and language skills. Better service needs training and lower turnover. Your job is to make those needs clear."
+              ]
+            },
+            {
+              "heading": "The line of sight tool",
+              "body": [
+                "A simple and powerful tool is the Line of Sight. You draw a straight line from a business goal, to the people capability it needs, to the HR action that builds it. If you cannot draw the line, the HR action may not be worth doing.",
+                "For example: business goal is to open three new stores in Jeddah. People capability needed is enough trained store managers. HR action is a manager development program plus a hiring plan. Now every step connects. Leaders can see why the HR work matters."
+              ]
+            },
+            {
+              "heading": "A Gulf example",
+              "body": [
+                "A bank in Abu Dhabi sets a goal to grow its digital services. The HR team first lists its usual plans: a wellness week, a new dress code, a values poster campaign.",
+                "None of these point at digital growth. So they redraw the Line of Sight. The goal needs digital and data skills. The real HR actions become hiring data analysts and reskilling current staff. The wellness week is nice, but it does not move the goal, so it drops down the list. The bank now spends its limited HR budget where it counts."
+              ]
+            }
+          ],
+          "takeaways": [
+            "People strategy must serve a business goal.",
+            "Every business goal hides a people need.",
+            "Use the Line of Sight: goal, capability, HR action.",
+            "If you cannot draw the line, question the activity.",
+            "Aligned HR spends limited budget where it matters most."
+          ],
+          "exercise": {
+            "title": "Draw your line of sight",
+            "prompt": "Write down one main goal of your company this year. Then complete the line: the people capability that goal needs, and one HR action that would build it. If the line is hard to draw, note why.",
+            "placeholder": "Business goal: ... Capability needed: ... HR action: ..."
+          },
+          "quiz": [
+            {
+              "q": "An HR team plans a values poster campaign, but the company goal is to enter a new export market. What does the Line of Sight tool suggest?",
+              "options": [
+                "Run the campaign anyway because culture always helps",
+                "Check if the campaign builds a capability the goal needs, and reprioritise if not",
+                "Cancel all HR activity that is not hiring",
+                "Ask leaders to change the company goal"
+              ],
+              "answer": 1,
+              "explain": "The tool tests whether each action builds a capability the goal needs. If the link is weak, move it down the list."
+            },
+            {
+              "q": "Why is it useful to find the people need hidden inside a business goal?",
+              "options": [
+                "So HR can ask for a bigger budget every year",
+                "So HR action clearly supports what the business is trying to achieve",
+                "So HR can avoid working with managers",
+                "So HR reports look more detailed"
+              ],
+              "answer": 1,
+              "explain": "Finding the people need links HR action to the goal, which makes the work relevant and easy to defend."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Strategy alignment sounds heavy, but it is just drawing a clear line. Share your company goal and we will trace it down to one HR action.",
+            "suggested": [
+              "What if my company has no clear written strategy?",
+              "How do I drop a popular HR project that does not align?",
+              "Can you show another Line of Sight example?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "The Employee Lifecycle",
+      "lessons": [
+        {
+          "lessonId": "hr-foundations-4",
+          "title": "Hiring and onboarding that sticks",
+          "mins": 22,
+          "hook": "A great hire who quits in three months is a loss, not a win. This lesson helps you hire right and start them well.",
+          "objectives": [
+            "By the end you can write a job profile based on real needs, not a copied template.",
+            "By the end you can use a structured interview to reduce bias.",
+            "By the end you can plan a first 90 days that keeps new hires."
+          ],
+          "sections": [
+            {
+              "heading": "Hire for the real need",
+              "body": [
+                "Good hiring starts before the interview. It starts with a clear picture of what the job truly needs. Many teams copy an old job description, list every skill they can think of, and hope. This wastes time and scares off good people.",
+                "Instead, define the few must-have outcomes for the role. Ask the hiring manager: in one year, what must this person have achieved for us to say the hire worked? Build the profile around those outcomes. This keeps you focused on what matters and away from a long wish list."
+              ]
+            },
+            {
+              "heading": "Structured interviews beat gut feeling",
+              "body": [
+                "Most interviews are a friendly chat, and friendly chats favour people who are like us. That is bias, and it leads to weak and unfair hiring. The fix is the structured interview. You ask every candidate the same planned questions and score answers against a simple guide.",
+                "A strong method is the STAR question. You ask about a real past situation: the Situation, the Task, the Action they took, and the Result. Past behaviour predicts future behaviour better than promises. Scoring each answer the same way makes your choice fairer and easier to defend."
+              ]
+            },
+            {
+              "heading": "Onboarding that prevents early exits",
+              "body": [
+                "Many new hires decide within weeks whether they will stay. A messy first month pushes good people out. Onboarding is not the laptop and the badge. It is helping someone feel useful, welcome, and clear.",
+                "Plan the first 90 days in three parts. Week one is welcome and setup: people, tools, and a clear first task. Month one is learning and small wins. Month three is a real check-in on fit and progress. Picture a new analyst joining a firm in Doha. On day one she has a buddy, a clear goal, and a lunch with the team. By month three she feels part of the place. That is onboarding that sticks."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Define must-have outcomes before you write the job profile.",
+            "Use structured interviews and the same questions for everyone.",
+            "STAR questions ask about real past behaviour.",
+            "Onboarding is about belonging and clarity, not just equipment.",
+            "Plan the first 90 days, because new hires decide early."
+          ],
+          "exercise": {
+            "title": "Design a sticky start",
+            "prompt": "Pick a role you hire for. Write the one outcome that role must achieve in a year. Then write one STAR question you would ask all candidates, and one thing you would do in week one to help the new hire feel welcome.",
+            "placeholder": "Role and key outcome: ... STAR question: ... Week one welcome action: ..."
+          },
+          "quiz": [
+            {
+              "q": "Two managers interview the same candidates but ask each person different casual questions. What is the main risk?",
+              "options": [
+                "Interviews will take too long",
+                "Bias creeps in and choices are hard to compare or defend",
+                "Candidates will feel too relaxed",
+                "There is no real risk if the managers are experienced"
+              ],
+              "answer": 1,
+              "explain": "Different questions for each person let bias in and make fair comparison impossible. Structured interviews fix this."
+            },
+            {
+              "q": "A new hire has a laptop and a desk on day one but no clear task and nobody to ask. What does good onboarding add?",
+              "options": [
+                "A longer probation period",
+                "A clear first goal, a buddy, and a planned first 90 days",
+                "More paperwork to sign",
+                "A pay rise to keep them happy"
+              ],
+              "answer": 1,
+              "explain": "Belonging and clarity keep new hires. A clear goal, a buddy, and a 90-day plan prevent early exits."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let us make your hiring stick. Tell me a role you are filling and we will sharpen the profile, the questions, and the first month.",
+            "suggested": [
+              "How do I write a STAR question for a sales role?",
+              "What should week one of onboarding include?",
+              "How do I reduce bias when I interview alone?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-5",
+          "title": "Developing and retaining talent",
+          "mins": 22,
+          "hook": "Your best people leave when they stop growing. This lesson helps you develop talent so they stay and improve.",
+          "objectives": [
+            "By the end you can use a simple model to plan how people learn.",
+            "By the end you can spot why your best people might leave.",
+            "By the end you can build a basic growth plan for one person."
+          ],
+          "sections": [
+            {
+              "heading": "How people really grow",
+              "body": [
+                "Development does not mean only sending people to courses. Most growth happens at work, not in a classroom. A useful guide is the 70-20-10 model. About 70 percent of growth comes from real work and stretch tasks. About 20 percent comes from other people, like coaching and feedback. About 10 percent comes from formal courses.",
+                "This changes how you plan. Instead of only booking training, you give people harder projects, pair them with a mentor, and add a short course where needed. The mix is cheaper and works better than courses alone."
+              ]
+            },
+            {
+              "heading": "Why good people leave",
+              "body": [
+                "People rarely leave for one reason. But the most common cause is a feeling that they have no future where they are. Pay matters, but lack of growth, a poor manager, and no clear next step drive many exits.",
+                "A simple tool is the stay conversation. You do not wait for the exit interview, which is too late. You ask your good people now: what makes you stay, what might tempt you to leave, and what do you want to learn next? You act on the answers. This is far cheaper than replacing them."
+              ]
+            },
+            {
+              "heading": "A worked example",
+              "body": [
+                "Omar is a strong engineer at a tech company in Riyadh. He is quiet and doing well, so his manager leaves him alone. That is the mistake. Omar feels stuck and starts looking elsewhere.",
+                "His manager runs a stay conversation just in time. Omar says he wants to lead a project and learn cloud skills. The manager gives him a real project to lead, which is the 70 percent, pairs him with a senior mentor for the 20 percent, and adds one short cloud course for the 10 percent. Omar stays, grows, and becomes a future team lead. Small effort, big result."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Use 70-20-10: most growth comes from real work, not courses.",
+            "People often leave because they see no future, not only for pay.",
+            "Run stay conversations before it is too late.",
+            "Ask what people want to learn next, then act on it.",
+            "Keeping a strong person is cheaper than replacing them."
+          ],
+          "exercise": {
+            "title": "Plan one person's growth",
+            "prompt": "Choose one strong person on your team. Using 70-20-10, write one stretch task (the 70), one person who could coach them (the 20), and one short course or resource (the 10). Add one question you would ask in a stay conversation.",
+            "placeholder": "Person: ... Stretch task: ... Coach: ... Course: ... Stay question: ..."
+          },
+          "quiz": [
+            {
+              "q": "A manager wants to develop a team member and books a two-day course. What does the 70-20-10 model suggest is missing?",
+              "options": [
+                "Nothing, the course is enough on its own",
+                "Real stretch work and coaching, which drive most growth",
+                "A longer course of at least one week",
+                "A pay rise to match the new skills"
+              ],
+              "answer": 1,
+              "explain": "Courses are only about 10 percent of growth. Most learning comes from real work and from coaching by others."
+            },
+            {
+              "q": "Why is a stay conversation better than relying on the exit interview?",
+              "options": [
+                "It is shorter and easier to schedule",
+                "It happens while you can still act and keep the person",
+                "It avoids talking about pay",
+                "It is only for poor performers"
+              ],
+              "answer": 1,
+              "explain": "The exit interview happens after the person has already decided to leave. A stay conversation lets you act in time."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Keeping your best people is mostly about growth. Tell me about someone strong on your team and we will build them a simple plan.",
+            "suggested": [
+              "What questions work best in a stay conversation?",
+              "How do I develop someone with a tight budget?",
+              "How do I spot early that someone might leave?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-6",
+          "title": "Offboarding with dignity",
+          "mins": 22,
+          "hook": "How you say goodbye is watched by everyone who stays. This lesson helps you handle exits with care and fairness.",
+          "objectives": [
+            "By the end you can run a respectful exit process for anyone who leaves.",
+            "By the end you can use the exit interview to gather useful, honest feedback.",
+            "By the end you can protect the company and the person leaving during a difficult exit."
+          ],
+          "sections": [
+            {
+              "heading": "Why endings matter",
+              "body": [
+                "Offboarding is the process of someone leaving the company. People often rush it or do it coldly. That is a costly mistake. The people who stay watch how you treat those who go. A harsh exit tells everyone that loyalty means little here.",
+                "There are different kinds of exit. A person who resigns, a person whose contract ends, and a person who is let go. Each needs care, but each is handled a little differently. The shared rule is simple: treat the person with dignity, even when the news is hard."
+              ]
+            },
+            {
+              "heading": "The exit interview, used well",
+              "body": [
+                "When someone resigns, the exit interview is a rare chance for honest feedback. The person is leaving, so they often tell the truth. But many exit interviews are wasted. They are rushed, or the person fears that honesty will hurt their reference.",
+                "Do three things. Hold it shortly before the last day, not on it. Ask open questions: what made you start looking, and what would have made you stay? Then look for patterns across many exits, not just one story. If five people in one team all mention the same manager, that is data you must act on."
+              ]
+            },
+            {
+              "heading": "Handling a difficult exit",
+              "body": [
+                "Sometimes you must let someone go for poor performance or because the role is no longer needed. This is the hardest exit. You must handle it with kindness and also follow the law carefully. Plan the conversation. Be clear, be kind, and be brief. Do not give false hope or start a long debate.",
+                "Picture a company in Sharjah that must remove a role to cut costs. The manager meets the person privately, explains the reason honestly, and confirms the notice period, final pay, and end-of-service benefits the UAE law requires. HR has the paperwork ready and offers support, such as a reference and time to find a new role. The person leaves with their dignity, and the team sees that the company acts fairly even in hard moments."
+              ]
+            }
+          ],
+          "takeaways": [
+            "How you handle exits is seen by everyone who stays.",
+            "Resignation, contract end, and dismissal each need care.",
+            "Use exit interviews to find patterns, not just single stories.",
+            "In a difficult exit, be clear, kind, and brief.",
+            "Follow local law on notice, final pay, and end-of-service benefits."
+          ],
+          "exercise": {
+            "title": "Plan a respectful exit",
+            "prompt": "Think of an exit you may face soon, or one you handled before. Write two open exit-interview questions you would ask. Then list two things you would do to make sure the person leaves with dignity.",
+            "placeholder": "Exit-interview questions: ... and ... Dignity actions: ... and ..."
+          },
+          "quiz": [
+            {
+              "q": "Three people leave the same team in two months. In each exit interview they mention the same manager. What should HR do?",
+              "options": [
+                "Treat each exit as a personal choice and move on",
+                "Look at the pattern and act on the manager issue",
+                "Stop doing exit interviews to save time",
+                "Tell the people leaving that they are wrong about the manager"
+              ],
+              "answer": 1,
+              "explain": "A repeated theme across exits is real data. The value of exit interviews comes from spotting and acting on patterns."
+            },
+            {
+              "q": "What is the best way to run a difficult dismissal conversation?",
+              "options": [
+                "Make it long so the person feels heard for an hour",
+                "Be clear, kind, and brief, and follow the legal requirements",
+                "Avoid giving the real reason to prevent upset",
+                "Send the news by email to avoid a hard meeting"
+              ],
+              "answer": 1,
+              "explain": "Clear, kind, and brief protects the person's dignity. Following notice and end-of-service rules protects everyone legally."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Endings are where your culture shows. Tell me about an exit you are planning, and we will make it fair and clear.",
+            "suggested": [
+              "How do I prepare to tell someone their role is ending?",
+              "What are the main UAE end-of-service rules?",
+              "How do I get honest answers in an exit interview?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Performance & Rewards",
+      "lessons": [
+        {
+          "lessonId": "hr-foundations-7",
+          "title": "Performance systems that motivate",
+          "mins": 20,
+          "hook": "The yearly review most people dread does not improve performance. This lesson shows a better way that actually motivates.",
+          "objectives": [
+            "By the end you can explain why the old yearly review often fails.",
+            "By the end you can set clear goals using a simple goal method.",
+            "By the end you can run regular check-ins that lift performance."
+          ],
+          "sections": [
+            {
+              "heading": "Why the yearly review fails",
+              "body": [
+                "Many companies still rate people once a year in a long, formal review. People dread it, managers delay it, and it rarely changes behaviour. By the time feedback arrives, the work is months old and forgotten.",
+                "A performance system is the way you set goals, give feedback, and review work. The modern view is simple: feedback should be frequent, not once a year. Small, regular conversations beat one big judgement. They keep people on track while there is still time to improve."
+              ]
+            },
+            {
+              "heading": "Set goals people understand",
+              "body": [
+                "Performance starts with clear goals. A vague goal like improve customer service helps nobody. A good goal method is SMART: Specific, Measurable, Achievable, Relevant, and Time-bound.",
+                "Compare two goals. Weak: improve service. SMART: raise our customer satisfaction score from 80 to 88 by the end of the year. The second goal is clear. The person knows exactly what success looks like and when. Clear goals are motivating because progress is visible."
+              ]
+            },
+            {
+              "heading": "Run check-ins, not just reviews",
+              "body": [
+                "The engine of good performance is the regular check-in. A short monthly or quarterly chat between manager and team member. You review progress on goals, remove blockers, and give honest feedback while it still matters.",
+                "Picture a sales team in Kuwait. Instead of one yearly review, each rep has a 30-minute check-in every month. They look at the numbers, talk about one win and one problem, and agree the next step. A rep who is slipping gets help in month two, not bad news in month twelve. Performance rises because problems are caught early."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Once-a-year reviews give feedback too late to help.",
+            "A performance system covers goals, feedback, and review.",
+            "Use SMART goals so success is clear and visible.",
+            "Regular check-ins beat one big yearly judgement.",
+            "Catch problems early, while there is still time to fix them."
+          ],
+          "exercise": {
+            "title": "Rewrite a goal and plan a check-in",
+            "prompt": "Take one fuzzy goal from your team and rewrite it as a SMART goal. Then describe how often you would hold a check-in for it, and the two questions you would ask each time.",
+            "placeholder": "Fuzzy goal: ... SMART goal: ... Check-in rhythm: ... My two questions: ..."
+          },
+          "quiz": [
+            {
+              "q": "A manager gives a struggling employee detailed feedback once, at the yearly review in December. What is the core problem?",
+              "options": [
+                "The feedback was too kind",
+                "The feedback came too late to help the person improve in time",
+                "The manager should never give feedback in December",
+                "Yearly reviews are always illegal"
+              ],
+              "answer": 1,
+              "explain": "Yearly-only feedback arrives after months of off-track work. Regular check-ins let people correct course in time."
+            },
+            {
+              "q": "Which goal is properly SMART?",
+              "options": [
+                "Be better at handling customers",
+                "Work harder on sales this year",
+                "Increase repeat orders from 100 to 130 per month by June",
+                "Improve teamwork as much as possible"
+              ],
+              "answer": 2,
+              "explain": "It is specific, measurable, and time-bound. The others are vague, so success cannot be seen or tracked."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let us build a performance system people do not dread. Share a goal or a review problem from your team and we will fix it.",
+            "suggested": [
+              "How often should check-ins happen?",
+              "How do I give hard feedback without crushing someone?",
+              "Can you make this goal SMART for me?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-8",
+          "title": "Total rewards beyond salary",
+          "mins": 20,
+          "hook": "If you only compete on salary, you will always lose to a richer company. This lesson shows the full reward picture.",
+          "objectives": [
+            "By the end you can name the parts of a total rewards package.",
+            "By the end you can explain why pay alone does not keep people.",
+            "By the end you can design a reward mix that fits your budget."
+          ],
+          "sections": [
+            {
+              "heading": "Reward is more than the salary number",
+              "body": [
+                "When people think about pay, they think about the monthly salary. But salary is only one part of what an employee receives. The full picture is called total rewards. It is everything of value a person gets for working at your company.",
+                "Total rewards has two sides. Financial rewards are things like salary, bonus, allowances, and end-of-service benefits. Non-financial rewards are things like flexible hours, learning, good managers, recognition, and career growth. Both sides matter, and the second side is often cheaper and stronger than people expect."
+              ]
+            },
+            {
+              "heading": "Why salary alone does not hold people",
+              "body": [
+                "Salary attracts people to join, but it rarely keeps them. Research on motivation, such as the work of Frederick Herzberg, shows a useful idea. Pay is mostly what we call a hygiene factor. This means pay is like clean water: if it is unfair, people are unhappy, but making it higher and higher does not create lasting motivation.",
+                "Real motivation comes from the work itself: growth, respect, achievement, and purpose. This is good news for smaller companies. You may not be able to pay the highest salary, but you can win on growth, flexibility, and a manager who cares. Those are rewards a rich competitor often forgets."
+              ]
+            },
+            {
+              "heading": "Design a smart reward mix",
+              "body": [
+                "A reward mix is how you split your budget across the parts of total rewards. The skill is to give people what they value most, not just more cash.",
+                "Picture a startup in Dubai that cannot match the big banks on salary. Instead it offers a fair base pay, plus four things the banks are slow to give: remote Fridays, a real learning budget, clear promotion steps, and public recognition for good work. Many strong people choose the startup. They traded a slightly higher salary for growth and freedom. That is total rewards working in your favour."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Total rewards is everything of value an employee receives.",
+            "It has financial and non-financial sides.",
+            "Pay is a hygiene factor: it stops unhappiness but does not motivate people for long.",
+            "Growth, respect, and purpose drive real motivation.",
+            "A smart reward mix gives people what they value most, not just cash."
+          ],
+          "exercise": {
+            "title": "Map your total rewards",
+            "prompt": "List the financial rewards your company offers, then the non-financial ones. Which non-financial reward could you strengthen cheaply to keep people? Write one idea you could try this quarter.",
+            "placeholder": "Financial: ... Non-financial: ... One cheap reward to strengthen: ..."
+          },
+          "quiz": [
+            {
+              "q": "A company keeps raising salaries but people still leave. Based on Herzberg's idea, what is the likely cause?",
+              "options": [
+                "Salaries are still not high enough",
+                "Pay removes unhappiness but does not create motivation; growth and respect are missing",
+                "The company should stop paying bonuses",
+                "People always leave no matter what you do"
+              ],
+              "answer": 1,
+              "explain": "Pay is a hygiene factor. Once pay is fair, more money does not motivate. People need growth, respect, and purpose."
+            },
+            {
+              "q": "A small firm cannot match big-company salaries. What is the smartest reward strategy?",
+              "options": [
+                "Borrow money to match every salary offer",
+                "Compete on non-financial rewards like growth, flexibility, and recognition",
+                "Stop hiring until salaries can match",
+                "Tell candidates that pay does not matter"
+              ],
+              "answer": 1,
+              "explain": "Small firms can win on rewards big firms are slow to give: growth, flexibility, and recognition, all within budget."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Reward is much bigger than salary. Tell me your budget worries and we will build a reward mix that keeps people without spending too much.",
+            "suggested": [
+              "What non-financial rewards work best in the Gulf?",
+              "How do I explain total rewards to staff?",
+              "How much should bonus be versus base pay?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-9",
+          "title": "Difficult conversations, handled",
+          "mins": 18,
+          "hook": "Avoiding a hard conversation never makes the problem smaller. This lesson gives you a calm, fair way to handle it.",
+          "objectives": [
+            "By the end you can prepare for a difficult conversation in a clear structure.",
+            "By the end you can give feedback that is honest without being harsh.",
+            "By the end you can stay calm when the other person reacts strongly."
+          ],
+          "sections": [
+            {
+              "heading": "Why we avoid them, and why that fails",
+              "body": [
+                "A difficult conversation is any talk we fear because it may upset someone. A pay refusal, a performance problem, a complaint between two staff. Most people delay them, hoping the issue will fade. It rarely does. It usually grows.",
+                "Avoiding the talk feels kind, but it is not. The problem continues, the team notices, and trust drops. Handling it well is a core HR skill. The goal is not to win. The goal is to be honest and fair, and to keep the relationship where you can."
+              ]
+            },
+            {
+              "heading": "Use a clear structure",
+              "body": [
+                "A helpful method is SBI: Situation, Behaviour, Impact. You describe the exact situation, the specific behaviour you saw, and the impact it had. You stick to facts, not labels.",
+                "Compare two openings. Harsh and vague: you are lazy and unprofessional. SBI: in yesterday's client meeting (situation), you arrived twenty minutes late and did not share the report (behaviour), so the client questioned whether we were ready (impact). The second is honest but fair. It talks about actions, not character, so the person can actually fix it."
+              ]
+            },
+            {
+              "heading": "Stay calm when emotions rise",
+              "body": [
+                "Even with good words, people may get upset, angry, or quiet. Your job is to stay steady. Pause, let them speak, and listen without arguing. You do not have to solve everything in one minute.",
+                "Picture an HR officer in Jeddah telling a team leader his reports are often late. He gets defensive and raises his voice. She does not raise hers back. She says calmly: I can see this is frustrating. Let us look at what is getting in the way. The tension goes down, and they move from blame to a plan. Calm is a skill, and it is yours to choose."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Avoiding hard talks lets problems grow and trust fall.",
+            "Use SBI: Situation, Behaviour, Impact.",
+            "Talk about actions and facts, not character.",
+            "Stay calm and listen when emotions rise.",
+            "The goal is honesty and fairness, not winning."
+          ],
+          "exercise": {
+            "title": "Script a hard conversation",
+            "prompt": "Think of a difficult conversation you need to have. Write your opening using SBI: the situation, the specific behaviour, and the impact. Then write one calm line you would use if the person reacts strongly.",
+            "placeholder": "Situation: ... Behaviour: ... Impact: ... Calm line if they react: ..."
+          },
+          "quiz": [
+            {
+              "q": "Which feedback follows the SBI method best?",
+              "options": [
+                "You are careless and never focus",
+                "In Monday's report (situation) three figures were wrong (behaviour), so the client lost trust in our numbers (impact)",
+                "Everyone thinks your work has gone downhill lately",
+                "You need to seriously improve your whole attitude"
+              ],
+              "answer": 1,
+              "explain": "SBI names the situation, the specific behaviour, and the impact, using facts. The others attack character or stay vague."
+            },
+            {
+              "q": "During a hard conversation the employee becomes angry and raises their voice. What is the best response?",
+              "options": [
+                "Raise your voice too so you are not ignored",
+                "Stay calm, listen, and acknowledge the feeling before moving to a plan",
+                "End the meeting at once and walk out",
+                "Tell them they are being unprofessional"
+              ],
+              "answer": 1,
+              "explain": "Matching anger makes it worse. Staying calm and acknowledging the feeling lowers the heat and reopens problem solving."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Hard conversations get easier with a plan. Tell me the one you are dreading and we will script it together using SBI.",
+            "suggested": [
+              "How do I start a conversation about poor performance?",
+              "What if the person cries or shuts down?",
+              "How do I keep my own emotions in check?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Culture & Compliance",
+      "lessons": [
+        {
+          "lessonId": "hr-foundations-10",
+          "title": "Building culture on purpose",
+          "mins": 18,
+          "hook": "Every company has a culture, even if nobody chose it. This lesson helps you shape it on purpose instead of by accident.",
+          "objectives": [
+            "By the end you can explain what culture really is in plain words.",
+            "By the end you can spot the gap between stated values and real behaviour.",
+            "By the end you can use simple levers to shape culture on purpose."
+          ],
+          "sections": [
+            {
+              "heading": "What culture actually is",
+              "body": [
+                "People make culture sound mysterious. It is simpler than that. Culture is how things really work around here. It is the normal behaviour, the unwritten rules, and what gets rewarded or ignored every day.",
+                "A short and honest definition is this: culture is the worst behaviour the leaders are willing to accept. If managers say honesty matters but stay silent when a top seller lies, the real value is results at any cost. People watch what you allow, not what you print on a poster."
+              ]
+            },
+            {
+              "heading": "The gap between words and actions",
+              "body": [
+                "Most companies have nice values posted on a wall: respect, teamwork, integrity. The problem is the gap between those words and daily life. Culture lives in actions, not posters. A values poster with no matching behaviour makes people cynical.",
+                "To find the gap, compare a stated value with a real moment. Say a value is we put people first. Then ask: what happened the last time someone needed urgent leave for a sick parent? The answer tells you the true culture. Close the gap by changing the behaviour, not the poster."
+              ]
+            },
+            {
+              "heading": "Levers you can pull",
+              "body": [
+                "You cannot order people to have a culture, but you can shape it through a few strong levers. Who you promote sends the loudest message. What you reward, what you measure, and what leaders do daily all teach people what really matters.",
+                "Picture a company in Abu Dhabi that says it values teamwork but keeps promoting the loudest individual stars. Staff learn that teamwork is just talk. The leaders change one lever: they start promoting people who lift the whole team and they praise team wins in meetings. Within a year, behaviour shifts. Culture changed because the rewards changed, not because of a new slogan."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Culture is how things really work, not what the poster says.",
+            "It is the worst behaviour leaders are willing to accept.",
+            "Look for the gap between stated values and daily actions.",
+            "Who you promote is the loudest culture signal.",
+            "Shape culture by changing rewards and behaviour, not slogans."
+          ],
+          "exercise": {
+            "title": "Find your culture gap",
+            "prompt": "Pick one value your company states. Write one recent real moment that shows whether the value is true in practice. If there is a gap, name one lever (promotion, reward, or leader behaviour) you would change to close it.",
+            "placeholder": "Stated value: ... Real moment: ... Gap and the lever I would change: ..."
+          },
+          "quiz": [
+            {
+              "q": "A company's posters say it values collaboration, but it only ever promotes solo stars. What does this teach staff?",
+              "options": [
+                "That collaboration is the true path to promotion",
+                "That the real value is individual results, whatever the posters say",
+                "That posters are the strongest culture tool",
+                "That promotions have nothing to do with culture"
+              ],
+              "answer": 1,
+              "explain": "People learn from what is rewarded. Promoting solo stars teaches that individual results matter more than collaboration."
+            },
+            {
+              "q": "Which action most reliably shapes culture?",
+              "options": [
+                "Printing larger and brighter values posters",
+                "Changing who gets promoted and rewarded",
+                "Sending a company-wide email about values",
+                "Adding the values to the website footer"
+              ],
+              "answer": 1,
+              "explain": "Promotions and rewards are powerful signals. They show people what truly matters far more than words do."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Culture is built by what you allow and reward. Tell me about your company's values and we will check if daily life matches them.",
+            "suggested": [
+              "How do I change a culture that is already negative?",
+              "What are the strongest culture levers?",
+              "How do I measure culture without a huge survey?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-11",
+          "title": "The compliance floor you can't skip",
+          "mins": 17,
+          "hook": "Good intentions do not protect you in a labour dispute. Clear records and fair process do. This lesson covers the basics you must get right.",
+          "objectives": [
+            "By the end you can explain why compliance is the floor, not the ceiling.",
+            "By the end you can name the core areas HR must keep legal.",
+            "By the end you can build a simple habit that lowers legal risk."
+          ],
+          "sections": [
+            {
+              "heading": "Compliance is the floor, not the goal",
+              "body": [
+                "Compliance means following the law and your own rules. It covers contracts, working hours, pay, leave, safety, and fair treatment. Some people find it boring, so they skip it until something goes wrong.",
+                "Think of compliance as the floor of a building. It is not the goal of HR, but if the floor breaks, everything above it falls. A single unfair dismissal or unpaid benefit can cost money, time, and trust. You do not need to be a lawyer, but you must know the basics and when to ask for legal help."
+              ]
+            },
+            {
+              "heading": "The core areas to get right",
+              "body": [
+                "A few areas cause most legal trouble, so guard them well. First, contracts and terms must be clear, written, and signed. Second, pay and working hours must follow the law, including overtime and rest days. Third, end-of-service benefits and final pay must be correct when people leave.",
+                "Fourth, treat people fairly and equally, with no discrimination. Fifth, keep health and safety basics in place. In the Gulf, also stay current with local labour laws and rules like the UAE Labour Law or Saudi GOSI and wage protection systems. Rules change, so check sources, do not rely on old memory."
+              ]
+            },
+            {
+              "heading": "The habit that protects you",
+              "body": [
+                "The simplest way to lower legal risk is good records. If it is not written down, in the eyes of the law it may not have happened. Document warnings, agreements, decisions, and the reasons behind them.",
+                "Picture an HR officer in Riyadh handling a dismissal for poor performance. She has a file: clear goals that were set, written warnings, support that was offered, and dated notes of each meeting. When the employee disputes it, the company is protected because the process was fair and recorded. The HR officer with no records is the one who loses, even when she was right. Document as you go, not after a problem appears."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Compliance is the floor that holds up everything else.",
+            "Get contracts, pay, hours, benefits, and fair treatment right.",
+            "Know local Gulf rules and check current sources.",
+            "If it is not written down, it may not count legally.",
+            "Document warnings, decisions, and reasons as you go."
+          ],
+          "exercise": {
+            "title": "Check your compliance basics",
+            "prompt": "List the five core areas from this lesson. For each, mark whether your team is solid, unsure, or weak. Pick the weakest one and write one action to fix it this month.",
+            "placeholder": "Contracts: ... Pay/hours: ... Benefits: ... Fair treatment: ... Safety: ... Weakest area and my fix: ..."
+          },
+          "quiz": [
+            {
+              "q": "A manager fairly warned an employee several times but kept no written record. The employee disputes the later dismissal. What is the main risk?",
+              "options": [
+                "There is no risk because the manager acted fairly",
+                "Without records, the company struggles to prove a fair process",
+                "The employee will simply accept the decision",
+                "The manager can recall everything from memory in court"
+              ],
+              "answer": 1,
+              "explain": "Fair intent is not enough. Without written records, it is hard to prove the process, and the company is exposed."
+            },
+            {
+              "q": "Why should HR check current sources for labour law instead of relying on memory?",
+              "options": [
+                "Because laws never change, so checking is just a formality",
+                "Because rules and thresholds change, and old knowledge can be wrong",
+                "Because checking sources is required to look professional",
+                "Because memory is always perfectly reliable"
+              ],
+              "answer": 1,
+              "explain": "Labour rules in the Gulf and elsewhere change over time. Relying on old memory risks applying outdated, incorrect rules."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Compliance is your safety floor. Tell me which area worries you most and we will turn it into a simple, safe habit.",
+            "suggested": [
+              "What records should I keep for a dismissal?",
+              "Which Gulf labour rules trip people up most?",
+              "When should I bring in a lawyer?"
+            ]
+          }
+        },
+        {
+          "lessonId": "hr-foundations-12",
+          "title": "Measuring what matters",
+          "mins": 17,
+          "hook": "If you cannot measure your HR work, you cannot prove its value or improve it. This lesson shows which numbers matter and how to use them.",
+          "objectives": [
+            "By the end you can choose a few HR metrics that link to business goals.",
+            "By the end you can tell a vanity metric from a useful one.",
+            "By the end you can present HR numbers in a way leaders act on."
+          ],
+          "sections": [
+            {
+              "heading": "Measure to improve, not to look busy",
+              "body": [
+                "HR collects a lot of numbers. How many people were hired, how many courses were run, how many surveys were sent. Many of these are vanity metrics. They look active but do not tell you if anything got better.",
+                "A useful metric links to a business result. The test is simple: if this number changes, does a leader care, and would we act differently? Number of courses run is vanity. Whether those courses cut errors or lifted sales is value. Always choose the metric that drives a decision."
+              ]
+            },
+            {
+              "heading": "A small set of metrics that matter",
+              "body": [
+                "You do not need fifty numbers. You need a few that connect to goals. Common strong ones are: turnover rate, especially of your best people; time to fill key roles; and employee engagement or satisfaction.",
+                "Add cost-based ones leaders feel, like cost per hire and the cost of turnover. A simple framework is leading versus lagging indicators. A lagging indicator shows what already happened, like turnover last year. A leading indicator warns early, like a drop in engagement scores that often comes before people quit. Watch both, but act on the leading ones."
+              ]
+            },
+            {
+              "heading": "Present numbers leaders act on",
+              "body": [
+                "A number alone changes nothing. You must turn it into a story with a clear next step. Show the metric, the trend, the likely cause, and your recommended action.",
+                "Picture an HR lead at a hospital in Dubai. Instead of a long report, she shows one chart: nurse turnover rose from 12 to 19 percent in a year, mostly in the night shift, costing about 2 million dirhams. Her recommendation is a night-shift allowance and a new buddy system. Leaders approve it because the number, the cause, and the fix are all on one page. That is measurement that leads to action."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Vanity metrics look busy; value metrics drive decisions.",
+            "Test each metric: would a leader act differently if it changed?",
+            "Track a few that matter: turnover, time to fill, engagement, cost.",
+            "Use leading indicators to act before problems grow.",
+            "Present metric, trend, cause, and recommended action together."
+          ],
+          "exercise": {
+            "title": "Pick your three metrics",
+            "prompt": "Choose three HR metrics that link to your company's goals. For each, note whether it is leading or lagging, and what action you would take if it moved the wrong way. Drop any metric you cannot act on.",
+            "placeholder": "Metric 1 (leading/lagging) and action: ... Metric 2 ...: ... Metric 3 ...: ..."
+          },
+          "quiz": [
+            {
+              "q": "Which of these is a vanity metric?",
+              "options": [
+                "Turnover rate of top performers",
+                "Number of training sessions delivered, with no link to any result",
+                "Time to fill critical roles",
+                "Cost of replacing employees who leave"
+              ],
+              "answer": 1,
+              "explain": "Counting sessions shows activity but not impact. The others link to a business result and can guide decisions."
+            },
+            {
+              "q": "Why is a leading indicator like falling engagement useful?",
+              "options": [
+                "It confirms what already happened last year",
+                "It warns you early, so you can act before people quit",
+                "It is the only number leaders ever care about",
+                "It replaces the need for any lagging indicators"
+              ],
+              "answer": 1,
+              "explain": "Leading indicators give early warning. Acting on a drop in engagement can prevent the turnover that follows."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Numbers give HR its credibility. Tell me your company's main goal and we will pick a few metrics that prove your impact.",
+            "suggested": [
+              "How do I calculate the cost of turnover?",
+              "Which metrics matter most for a small team?",
+              "How do I present HR data to a skeptical CFO?"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

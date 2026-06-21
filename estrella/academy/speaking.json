@@ -1,0 +1,974 @@
+{
+  "courseId": "speaking",
+  "title": "Public Speaking & Executive Presence",
+  "modules": [
+    {
+      "title": "The Inner Game",
+      "lessons": [
+        {
+          "lessonId": "speaking-1",
+          "title": "Where stage fright actually comes from",
+          "mins": 14,
+          "hook": "Your fear of speaking is not a flaw in you. It is an old survival system doing its job at the wrong time. Once you see how it works, you can stop fighting it.",
+          "objectives": [
+            "By the end you can name the real cause of your stage fright.",
+            "By the end you can spot the three thoughts that make fear grow.",
+            "By the end you can use one quick reframe before you speak."
+          ],
+          "sections": [
+            {
+              "heading": "It is your body, not your character",
+              "body": [
+                "Many people think fear of speaking means they are weak or not ready. This is not true. When you stand in front of a group, your brain reads many eyes on you as a threat. Long ago, being watched by a group could mean danger. Your body still reacts the same way today.",
+                "So your heart beats faster. Your hands get cold. Your mouth goes dry. This is the fight-or-flight response. It is your body getting ready to act. The problem is simple. Your body is ready to run from a lion, but all you need to do is talk. The energy has nowhere to go, so it feels like panic."
+              ]
+            },
+            {
+              "heading": "The three thoughts that make it worse",
+              "body": [
+                "Fear gets bigger when we add certain thoughts. The first is catastrophe: 'I will forget everything and look stupid.' The second is mind-reading: 'They think I am boring.' The third is perfection: 'I must not make one mistake.' These three thoughts take a small fear and make it much bigger.",
+                "Here is a simple way to remember them. I call it the CMP check: Catastrophe, Mind-reading, Perfection. Before a talk, ask yourself: which of these three am I doing right now? Just naming the thought makes it weaker. You move from feeling the fear to looking at it."
+              ]
+            },
+            {
+              "heading": "A worked example",
+              "body": [
+                "Layla is a finance manager in Riyadh. She must present quarterly numbers to her board. The night before, she cannot sleep. Her thought: 'If I freeze, they will think I am not fit for this role.' That is catastrophe plus mind-reading together.",
+                "Layla runs the CMP check. She writes the thought down. Then she writes a calmer, true version: 'If I pause, I can look at my notes. The board wants the numbers, not a perfect show.' Her heart still beats fast on the day. But now that fast heart feels like readiness, not danger. She gets through it, and the next time is easier."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Stage fright is a body response, not a sign of weakness.",
+            "Fight-or-flight gives you energy with nowhere to go.",
+            "Three thoughts make fear grow: catastrophe, mind-reading, perfection.",
+            "Run the CMP check and name the thought to shrink it.",
+            "The goal is not zero fear. The goal is fear you can use."
+          ],
+          "exercise": {
+            "title": "Name your fear thought",
+            "prompt": "Think about the last time you felt nervous before speaking. Write down the exact thought in your head. Then label it: was it catastrophe, mind-reading, or perfection? Now write one calmer, true version of that thought.",
+            "placeholder": "My fear thought was... This is mostly [catastrophe / mind-reading / perfection]... A calmer, true version is..."
+          },
+          "quiz": [
+            {
+              "q": "You feel your heart racing right before a presentation. What is the most useful way to read this?",
+              "options": [
+                "It means I am not ready and should cancel.",
+                "It is my body giving me energy I can use to perform.",
+                "It proves I am bad at public speaking.",
+                "It means the audience can tell I am scared."
+              ],
+              "answer": 1,
+              "explain": "A racing heart is the fight-or-flight response giving you energy. The skill is to read that energy as readiness, not danger. It does not mean you are unready or that others can see it."
+            },
+            {
+              "q": "A colleague says, 'They will all judge me if I stumble.' Which fear thought is this?",
+              "options": [
+                "Perfection only",
+                "Catastrophe only",
+                "Mind-reading, plus a bit of catastrophe",
+                "None of these"
+              ],
+              "answer": 2,
+              "explain": "Guessing that others will judge you is mind-reading. Adding 'if I stumble' as a disaster is catastrophe. Naming both helps you challenge them."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Hi, I am here with you for this lesson on where stage fright comes from. We just covered the body's fight-or-flight response and the CMP check: catastrophe, mind-reading, perfection. Tell me what makes you most nervous, or pick a question below.",
+            "suggested": [
+              "Why does my mind go blank when I start?",
+              "How do I run the CMP check in the moment?",
+              "Is some fear actually good for me?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-2",
+          "title": "The pre-talk ritual",
+          "mins": 15,
+          "hook": "Calm before a talk is not luck. It is a routine you build and repeat. A good ritual settles your body and mind in the same way every time.",
+          "objectives": [
+            "By the end you can build a simple pre-talk ritual you can repeat.",
+            "By the end you can use a breathing pattern that slows your heart.",
+            "By the end you can prepare your first 30 seconds so you never freeze at the start."
+          ],
+          "sections": [
+            {
+              "heading": "Why a ritual works",
+              "body": [
+                "A ritual is a fixed set of steps you do the same way each time. Athletes use them. So do actors and pilots. The steps are simple, but doing them in order tells your brain: 'I have done this before. I know what comes next.' This sense of control lowers fear.",
+                "Without a ritual, you wait around and let nerves build. Your mind drifts to worst cases. A ritual gives those last minutes a job. You are not waiting to be scared. You are working through your steps."
+              ]
+            },
+            {
+              "heading": "The 4-7-8 breath",
+              "body": [
+                "The fastest way to calm your body is your breath. When you slow your breathing out, your heart rate drops. A simple pattern is the 4-7-8 breath. Breathe in through your nose for 4 counts. Hold for 7 counts. Breathe out slowly through your mouth for 8 counts.",
+                "Do this three or four times. The long out-breath is the key part. It switches on the calming side of your nervous system. Do it in the bathroom, in your car, or quietly in your seat before you stand up. No one needs to see it."
+              ]
+            },
+            {
+              "heading": "A worked ritual you can copy",
+              "body": [
+                "Here is a five-step ritual I teach. I call it the SETUP ritual. Step one, Settle: do three rounds of 4-7-8 breathing. Step two, Earth: stand with feet flat and feel the floor for ten seconds. Step three, Talk small: chat with one friendly person so your voice is already warm. Step four, Use your line: say your first sentence silently in your head. Step five, Purpose: remind yourself of one thing you want the audience to gain.",
+                "Take Omar, a project lead in Dubai who hated the moment before town-hall meetings. He built the SETUP ritual into the ten minutes before he spoke. Same five steps, every time. After a month, he said the walk to the front no longer felt like a cliff edge. It felt like a routine. The fear did not vanish, but it stopped running the show."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A ritual gives your nervous last minutes a clear job.",
+            "The 4-7-8 breath slows your heart through a long out-breath.",
+            "Feeling your feet on the floor brings you back to the present.",
+            "Warm your voice by talking to one person first.",
+            "Plan your first sentence so the start is never a blank."
+          ],
+          "exercise": {
+            "title": "Design your SETUP ritual",
+            "prompt": "Write your own five-step pre-talk ritual using SETUP: Settle, Earth, Talk small, Use your line, Purpose. Make each step specific to you. For 'Use your line', write the exact first sentence you will say in your next talk.",
+            "placeholder": "Settle: ... Earth: ... Talk small: ... Use your line (my first sentence): ... Purpose: ..."
+          },
+          "quiz": [
+            {
+              "q": "In the 4-7-8 breath, which part does the most to calm you down?",
+              "options": [
+                "The 4-count in-breath",
+                "The 7-count hold",
+                "The 8-count slow out-breath",
+                "Holding your breath as long as possible"
+              ],
+              "answer": 2,
+              "explain": "The long, slow out-breath switches on the calming side of your nervous system and lowers your heart rate. The in-breath and hold set it up, but the out-breath does the work."
+            },
+            {
+              "q": "Why is planning your first sentence part of a strong ritual?",
+              "options": [
+                "It impresses the audience with big words.",
+                "It removes the riskiest moment, the blank start, so you begin with certainty.",
+                "It lets you skip the rest of your preparation.",
+                "It guarantees you will not feel any nerves."
+              ],
+              "answer": 1,
+              "explain": "The start is where freezing is most likely. A prepared first line gives you a sure footing, so momentum carries you into the rest. It does not remove nerves entirely, and it is no substitute for full preparation."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome back. This lesson is about building a pre-talk ritual you can repeat every time. We covered the 4-7-8 breath and the five-step SETUP ritual. Want help shaping yours, or a question below?",
+            "suggested": [
+              "How early before a talk should I start my ritual?",
+              "What if I cannot find a quiet place to breathe?",
+              "Can I use this ritual for video calls too?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-3",
+          "title": "From nerves to energy",
+          "mins": 15,
+          "hook": "You cannot switch off nerves. But you can change what they turn into. The same energy that feels like fear can become focus and drive.",
+          "objectives": [
+            "By the end you can turn nervous energy into useful energy on purpose.",
+            "By the end you can use the 'reappraisal' method to calm yourself fast.",
+            "By the end you can move your body to burn off excess tension before you speak."
+          ],
+          "sections": [
+            {
+              "heading": "Excitement and fear feel the same",
+              "body": [
+                "Fear and excitement are very close in the body. Both speed up your heart. Both make you alert. The difference is mostly the story you tell about the feeling. This is good news. It means you do not have to calm down to a flat state. You only have to point the same energy in a better direction.",
+                "Trying to 'just relax' often fails. Telling yourself to calm down when your heart is racing is a big jump. It rarely works. A smaller, easier jump is from fear to excitement, because the body is already in that state."
+              ]
+            },
+            {
+              "heading": "The 'I am excited' reappraisal",
+              "body": [
+                "Reappraisal means choosing a new label for a feeling. Research by Professor Alison Wood Brooks found that people who said out loud 'I am excited' before a stressful task did better than those who tried to calm down. The energy was the same. The label changed how they used it.",
+                "So before you speak, say to yourself, quietly but with meaning, 'I am excited.' Then add why: 'I am excited to share this. I am excited that they will learn something useful.' You are not lying to yourself. You are giving the energy a job instead of a warning."
+              ]
+            },
+            {
+              "heading": "Move the energy out of your body",
+              "body": [
+                "Nervous energy is physical. If you sit still and stiff, it stays trapped and builds. So move it. Before you go on, find a private spot. Shake out your hands. Roll your shoulders. Take a short, brisk walk. Even a few jumps help. This burns off the extra stress chemicals.",
+                "Picture Fatima, a young engineer in Abu Dhabi giving her first conference talk. Backstage she felt frozen. Her coach told her to walk fast up and down the corridor for two minutes and whisper 'I am excited to show this.' By the time she reached the stage, the trapped feeling had turned into forward drive. She spoke with energy instead of stiffness."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Fear and excitement share the same body signals.",
+            "Going from fear to excitement is easier than forcing calm.",
+            "Say 'I am excited' and name a real reason why.",
+            "Move your body to burn off trapped stress energy.",
+            "Aim to use the energy, not erase it."
+          ],
+          "exercise": {
+            "title": "Write your excitement script",
+            "prompt": "For your next talk, write three short 'I am excited' lines. Each one should name a real reason: something you will share, something the audience will gain, or a moment you look forward to. Keep them simple and true.",
+            "placeholder": "I am excited to... I am excited that the audience will... I am excited for the part where..."
+          },
+          "quiz": [
+            {
+              "q": "Why is it easier to shift from fear to excitement than from fear to calm?",
+              "options": [
+                "Because excitement is a weaker feeling than calm.",
+                "Because fear and excitement already share the same high-energy body state.",
+                "Because calm is not a real emotion.",
+                "Because excitement removes all the nerves instantly."
+              ],
+              "answer": 1,
+              "explain": "Fear and excitement both run on a fast, alert, high-energy body state, so the jump between them is small. Jumping to flat calm is a much bigger change and usually fails under pressure."
+            },
+            {
+              "q": "A speaker says 'I am excited' but feels nothing change. What is the most likely fix?",
+              "options": [
+                "Stop using the method, it does not work.",
+                "Say it louder so the audience hears.",
+                "Add a real, specific reason why they are excited.",
+                "Repeat the word twenty times fast."
+              ],
+              "answer": 2,
+              "explain": "The label works better when it is tied to a true reason, such as what you will share or what the audience gains. A specific 'why' gives the energy a clear direction."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Good to see you. This lesson is about turning nerves into useful energy. We covered the 'I am excited' reappraisal and moving your body to release tension. What part would you like to work on?",
+            "suggested": [
+              "Does saying 'I am excited' really work?",
+              "What if I feel too tired, not too nervous?",
+              "How do I do this when I am sitting at a table?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Building the Talk",
+      "lessons": [
+        {
+          "lessonId": "speaking-4",
+          "title": "The message map",
+          "mins": 20,
+          "hook": "Most talks fail before the speaker opens their mouth, because there was no clear plan. A message map keeps both you and your audience on the same path.",
+          "objectives": [
+            "By the end you can build a message map with one core message and three points.",
+            "By the end you can cut a talk down to what truly matters.",
+            "By the end you can keep an audience following you from start to finish."
+          ],
+          "sections": [
+            {
+              "heading": "One core message, not ten",
+              "body": [
+                "The most common speaking mistake is trying to say too much. The speaker knows a lot, so they share all of it. The audience cannot hold all of it, so they remember none of it. A strong talk has one core message. That is the single sentence you want people to repeat to a colleague the next day.",
+                "Before you build slides or notes, write that one sentence. For example: 'Our new safety process cuts site accidents by half, and it is simple to follow.' If you cannot say it in one clear line, you are not ready to build the talk. The core message is your anchor."
+              ]
+            },
+            {
+              "heading": "The Rule of Three",
+              "body": [
+                "Under your core message, choose three supporting points. Why three? People remember things in threes well. Two feels thin. Five feels like a list no one can hold. Three is the sweet spot. Each point should clearly support the core message, not wander off.",
+                "Here is the structure I teach, called the Message Map. At the top, your one core message. Below it, three points. Under each point, one piece of proof: a story, a number, or an example. That is it. A whole talk on a single page. This map is your skeleton. Everything else is muscle on these bones."
+              ]
+            },
+            {
+              "heading": "A worked example",
+              "body": [
+                "Khalid runs operations for a logistics firm in Jeddah. He must convince leadership to fund a new tracking system. His first draft had fifteen slides full of features. The audience would have drowned.",
+                "We built a message map instead. Core message: 'This tracking system pays for itself in one year by cutting lost shipments.' Point one: it reduces lost parcels, with a number from a pilot test. Point two: it saves staff time, with a short story from a warehouse lead. Point three: it improves customer trust, with two real customer quotes. Three points, three proofs, one clear message. The leadership team approved it. The map made the case easy to follow and hard to argue with."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Pick one core message you want people to repeat.",
+            "If you cannot say it in one line, you are not ready.",
+            "Support it with exactly three points.",
+            "Give each point one proof: a story, a number, or an example.",
+            "Fit the whole map on one page before you build anything."
+          ],
+          "exercise": {
+            "title": "Build your message map",
+            "prompt": "Choose a talk you need to give soon. Write your one core message in a single sentence. Then list three supporting points. Under each point, write one proof: a story, a number, or an example.",
+            "placeholder": "Core message: ... Point 1: ... (proof: ...) Point 2: ... (proof: ...) Point 3: ... (proof: ...)"
+          },
+          "quiz": [
+            {
+              "q": "You have prepared eight key points for a 15-minute talk. What does the message map suggest?",
+              "options": [
+                "Keep all eight; more points means more value.",
+                "Cut down to one core message and three supporting points.",
+                "Pick two points and skip any proof.",
+                "Turn each point into its own slide and read them fast."
+              ],
+              "answer": 1,
+              "explain": "Audiences cannot hold eight points. The message map asks for one core message and three supporting points, each with proof. Cutting down is what makes a talk memorable, not adding more."
+            },
+            {
+              "q": "Why does each supporting point need a proof such as a story, number, or example?",
+              "options": [
+                "To make the talk longer.",
+                "Because proof makes a point believable and easy to remember.",
+                "Because the audience expects exactly one slide per point.",
+                "To show how much research you did."
+              ],
+              "answer": 1,
+              "explain": "A bare claim is easy to forget and easy to doubt. A story, number, or example makes the point land and stick. Proof turns a statement into something the audience can trust."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome. This lesson is about the message map: one core message, three points, one proof each. Share the talk you are planning and I can help you find your core message, or pick a question below.",
+            "suggested": [
+              "How do I choose my one core message?",
+              "What if I really have four important points?",
+              "What counts as good proof for a point?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-5",
+          "title": "Story as your delivery vehicle",
+          "mins": 22,
+          "hook": "Facts inform, but stories move people. A short, well-built story makes your point impossible to forget.",
+          "objectives": [
+            "By the end you can build a clear story using a simple four-part shape.",
+            "By the end you can link a story directly to your core message.",
+            "By the end you can keep a story short and on point."
+          ],
+          "sections": [
+            {
+              "heading": "Why stories stick",
+              "body": [
+                "When you hear a list of facts, only the language part of your brain works. When you hear a story, much more of your brain lights up. You picture the scene. You feel the tension. This is why people forget your statistics but remember your story months later.",
+                "A story is not decoration. It is how you carry your message into someone's memory. The mistake is to tell a story for its own sake, with no link to the point. A good speaking story always lands on the message you want."
+              ]
+            },
+            {
+              "heading": "The four-part story shape",
+              "body": [
+                "You do not need to be a born storyteller. You need a shape. I teach a simple one called CTRL: Context, Trouble, Resolution, Lesson. Context: who and where, in one or two lines. Trouble: the problem or tension that makes us care. Resolution: what happened, the turning point. Lesson: the single point that links straight to your core message.",
+                "Keep it tight. A speaking story is usually 60 to 90 seconds, not five minutes. Cut every detail that does not serve the trouble or the lesson. The colour of someone's shirt does not matter unless it matters to the point."
+              ]
+            },
+            {
+              "heading": "A worked example",
+              "body": [
+                "Imagine you want to make this point: 'Listening to frontline staff prevents big mistakes.' Here is a CTRL story. Context: 'Last year, a junior nurse at our clinic noticed a labelling error on a medicine box.' Trouble: 'She was unsure. New staff were told not to question the system, and she nearly stayed quiet.' Resolution: 'She spoke up anyway. The pharmacy checked, and the wrong dose was caught before it reached a patient.' Lesson: 'The person closest to the work often sees the danger first. That is why we must make it safe to speak up.'",
+                "Notice how short it is. Four parts, under 90 seconds. The lesson points straight at the core message. The audience will remember the nurse long after they forget any policy slide. That is the power of story as your delivery vehicle."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Stories activate more of the brain than facts alone.",
+            "Use the CTRL shape: Context, Trouble, Resolution, Lesson.",
+            "The trouble is what makes people care, so do not skip it.",
+            "End on a lesson that links straight to your core message.",
+            "Keep it to 60 to 90 seconds and cut every spare detail."
+          ],
+          "exercise": {
+            "title": "Build a CTRL story",
+            "prompt": "Take one point from your message map. Build a short story for it using CTRL. Write one or two lines for each part: Context, Trouble, Resolution, Lesson. Make sure the Lesson links to your core message.",
+            "placeholder": "Context: ... Trouble: ... Resolution: ... Lesson (links to my message): ..."
+          },
+          "quiz": [
+            {
+              "q": "A speaker tells a long, funny story that the audience enjoys, but it does not connect to the talk's point. What is the main problem?",
+              "options": [
+                "The story was too short.",
+                "A story with no link to the message wastes time and confuses the point.",
+                "Funny stories are never allowed in talks.",
+                "The speaker should have added more detail."
+              ],
+              "answer": 1,
+              "explain": "A speaking story must serve the message. If it does not link to the point, even an enjoyable story pulls the audience away from what you want them to remember."
+            },
+            {
+              "q": "In the CTRL shape, which part makes the audience care about what happens?",
+              "options": [
+                "Context",
+                "Trouble",
+                "Resolution",
+                "Lesson"
+              ],
+              "answer": 1,
+              "explain": "The Trouble is the tension or problem. Without it, there is nothing at stake and the audience has no reason to lean in. Context sets the scene, but Trouble creates the pull."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Hello again. This lesson is about using stories to carry your message, with the CTRL shape: Context, Trouble, Resolution, Lesson. Tell me the point you want to make and I can help you build a story for it.",
+            "suggested": [
+              "What if I do not have a dramatic story?",
+              "How do I keep a story short enough?",
+              "Can I use a story about myself?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-6",
+          "title": "Openings and closings that land",
+          "mins": 18,
+          "hook": "The first 30 seconds decide if people listen. The last 30 seconds decide what they remember. Both are too important to leave to chance.",
+          "objectives": [
+            "By the end you can open a talk in a way that grabs attention fast.",
+            "By the end you can avoid the weak openings that lose a room.",
+            "By the end you can close with a clear call that people act on."
+          ],
+          "sections": [
+            {
+              "heading": "Never open with an apology",
+              "body": [
+                "The most common weak opening is the apology or the warm-up filler. 'Sorry, I am a bit nervous.' 'I did not have much time to prepare.' 'Can everyone hear me?' These lines tell the audience to expect less. You lose them before you start.",
+                "Also avoid the slow start: 'Today I am going to talk about...'. It is not wrong, but it is flat. The first 30 seconds are your best chance to make people pay attention. Do not spend them on small details or apologies. Spend them on a hook."
+              ]
+            },
+            {
+              "heading": "Four strong openings",
+              "body": [
+                "There are four reliable hooks. First, a surprising fact or number: 'Forty percent of the food we buy in this city is thrown away.' Second, a short story dropped straight in: 'Last Tuesday, a customer waited two hours for an answer that took us ten seconds to give.' Third, a sharp question: 'What would you do with one extra hour every day?' Fourth, a bold statement: 'The way we run our meetings is costing us a fortune.'",
+                "Pick one and make it tight. The job of the opening is not to cover everything. Its job is to earn the next two minutes of attention. Once you have that, you lead into your core message."
+              ]
+            },
+            {
+              "heading": "Close with a clear ask",
+              "body": [
+                "A weak closing fades out: 'So, yeah, that is it. Any questions?' A strong closing does two things. It returns to the core message, and it gives one clear next step. This is the bookend method: your closing echoes your opening, so the talk feels whole.",
+                "Take Noura, who pitched a wellbeing programme to her HR leadership in Dubai. She opened with a number: 'One in four of our staff felt burned out last quarter.' She closed by returning to it: 'We can move that one in four. I am asking for approval to run the pilot in two departments next month.' Clear message, clear ask, same thread from start to finish. The room knew exactly what to do next."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Never open with an apology or a sound check.",
+            "Use one of four hooks: surprising fact, story, question, or bold statement.",
+            "The opening's only job is to earn the next two minutes.",
+            "Close by returning to your core message.",
+            "End with one clear next step, not a fade-out."
+          ],
+          "exercise": {
+            "title": "Write your open and close",
+            "prompt": "For your next talk, write one strong opening using a fact, story, question, or bold statement. Then write a closing that returns to that same idea and ends with one clear ask. Make the open and close echo each other.",
+            "placeholder": "Opening hook: ... Closing (returns to the hook) + clear ask: ..."
+          },
+          "quiz": [
+            {
+              "q": "A speaker starts with 'Sorry, I'm not great at this and I didn't have much time.' What is the effect?",
+              "options": [
+                "It makes the audience trust them more.",
+                "It lowers the audience's expectations and loses attention early.",
+                "It is the safest way to begin.",
+                "It has no effect on how the talk is received."
+              ],
+              "answer": 1,
+              "explain": "An apology at the start tells the audience to expect a poor talk. It wastes the most valuable 30 seconds. A hook earns attention instead of giving it away."
+            },
+            {
+              "q": "What makes the 'bookend' closing method effective?",
+              "options": [
+                "It introduces a brand new topic at the end.",
+                "It returns to the opening idea, so the talk feels complete, and adds a clear next step.",
+                "It lists every point again in full detail.",
+                "It ends quickly with 'any questions?'"
+              ],
+              "answer": 1,
+              "explain": "Bookending links the close back to the open, giving the talk a satisfying whole. Pairing it with one clear ask tells the audience exactly what to do, which a fade-out never does."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Good to have you here. This lesson is about openings and closings: avoid the apology, use a strong hook, and bookend your close with a clear ask. Share your topic and I can help you craft both ends.",
+            "suggested": [
+              "Which opening hook fits a serious board update?",
+              "How do I close when there is no clear 'ask'?",
+              "Is it okay to open with a question?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Delivery",
+      "lessons": [
+        {
+          "lessonId": "speaking-7",
+          "title": "Voice: pace, pitch, and the pause",
+          "mins": 18,
+          "hook": "Your voice is an instrument you already own. Small changes in pace and pause can make a plain message sound confident and clear.",
+          "objectives": [
+            "By the end you can slow your pace so people can follow you.",
+            "By the end you can use the pause as a tool, not a gap to fear.",
+            "By the end you can vary your voice so you do not sound flat."
+          ],
+          "sections": [
+            {
+              "heading": "Slow down to sound sure",
+              "body": [
+                "When we are nervous, we speak fast. Fast speech is hard to follow and sounds anxious. The fix is simple but feels strange at first: slow down. A slower pace gives the audience time to take in your words. It also makes you sound calm and in control, even when you are not.",
+                "A good guide is to speak a little slower than feels natural. What feels too slow to you usually sounds just right to the audience. Aim for clear, not fast. If people often ask you to repeat yourself, pace is likely the cause."
+              ]
+            },
+            {
+              "heading": "The power of the pause",
+              "body": [
+                "New speakers fear silence. They fill every gap with 'um' and 'ah'. But the pause is one of your strongest tools. A short pause after a key point lets it sink in. A pause before a key point builds attention. Silence makes the room lean in.",
+                "Try this rule, which I call Pause-Point-Pause. Pause to gather the room. Make your point. Pause again to let it land. Two or three seconds of silence feels long to you but powerful to them. It also gives you time to breathe and think. The pause replaces the filler words."
+              ]
+            },
+            {
+              "heading": "Vary your voice and a worked example",
+              "body": [
+                "A flat voice sends people to sleep, even with good content. Vary three things: pace (speed up for energy, slow down for weight), pitch (let your voice rise and fall), and volume (drop it low to draw people in, lift it to mark a big point). You do not need to act. Small, natural changes are enough.",
+                "Take Yousef, a team lead in Sharjah who got feedback that his updates were 'hard to follow and a bit dull'. He changed two things. He slowed his pace by about a quarter. And he added a clear pause after each main point. He did not change a single word of his content. His next update got praise for being 'much clearer and more confident'. The voice carried the same message far better."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Nerves make you fast, so slow down on purpose.",
+            "What feels too slow to you sounds clear to the audience.",
+            "Use Pause-Point-Pause to make key points land.",
+            "Silence is stronger than 'um' and 'ah'.",
+            "Vary pace, pitch, and volume so you never sound flat."
+          ],
+          "exercise": {
+            "title": "Record and listen",
+            "prompt": "Record yourself saying one minute of your talk on your phone. Listen back. Note one place to slow down, one place to add a pause, and one place to change your pitch or volume. Then record it again with those changes.",
+            "placeholder": "Where I will slow down: ... Where I will add a pause: ... Where I will change pitch or volume: ..."
+          },
+          "quiz": [
+            {
+              "q": "A speaker is told their talks are 'hard to follow'. They speak quickly and rarely pause. What is the best first change?",
+              "options": [
+                "Add more slides to explain each point.",
+                "Slow the pace and add pauses after key points.",
+                "Use bigger, more advanced words.",
+                "Speak even faster to fit everything in."
+              ],
+              "answer": 1,
+              "explain": "Fast speech with no pauses is the most common reason a talk is hard to follow. Slowing down and adding pauses gives the audience time to absorb each point, with no change to the content needed."
+            },
+            {
+              "q": "Why is a pause better than saying 'um' before a key point?",
+              "options": [
+                "A pause builds attention and makes you sound in control; 'um' sounds unsure.",
+                "There is no real difference between them.",
+                "'Um' is always more professional.",
+                "A pause is only useful at the very end of a talk."
+              ],
+              "answer": 0,
+              "explain": "Silence before a point draws the room in and signals control. Filler words like 'um' do the opposite, making you sound hesitant. The pause also gives you time to breathe and think."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome. This lesson is about your voice: pace, pitch, and the pause, with the Pause-Point-Pause rule. Tell me what feedback you have had on your speaking voice and I can suggest where to focus.",
+            "suggested": [
+              "How slow is too slow?",
+              "How do I stop saying 'um' so much?",
+              "What if my voice is naturally quiet?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-8",
+          "title": "Body language and the room",
+          "mins": 18,
+          "hook": "Before you say a word, your body has already spoken. How you stand, move, and look at people shapes whether they trust you.",
+          "objectives": [
+            "By the end you can stand and move in a way that signals calm authority.",
+            "By the end you can use eye contact to connect with a real audience.",
+            "By the end you can use your hands on purpose instead of hiding them."
+          ],
+          "sections": [
+            {
+              "heading": "Your base: stand still and grounded",
+              "body": [
+                "Nervous speakers move too much. They rock side to side, shift their weight, or pace without reason. This movement leaks anxiety to the room. Your base should be still and grounded. Stand with feet about shoulder-width apart, weight even, shoulders relaxed and back.",
+                "From this stable base, you can move with purpose. Step toward the audience for an important point. Move to a new spot when you change topic. Purposeful movement looks confident. Random movement looks nervous. The rule: be still by default, move on purpose."
+              ]
+            },
+            {
+              "heading": "Eye contact that connects",
+              "body": [
+                "Looking over people's heads or staring at your slides breaks the connection. Real eye contact builds trust. But do not sweep your eyes around the room fast. That looks anxious. Instead, hold one person for one full thought, then move to another person for the next thought.",
+                "I call this one-thought-one-person. Land on a face, share a complete idea with them, then move on. In a big room, you cannot reach everyone, so pick a few friendly faces in different areas. Each person you look at feels spoken to. The whole room feels included."
+              ]
+            },
+            {
+              "heading": "Open hands and a worked example",
+              "body": [
+                "Hidden hands worry people. Hands in pockets, behind your back, or gripped tight all signal unease. Keep your hands open and visible, around waist height, ready to gesture. Natural gestures that match your words make you look honest and clear. You do not need to plan every move. Just free your hands and let them help.",
+                "Take Mariam, a department head in Doha who clutched the lectern with both hands during talks. Her coach asked her to step to the side of the lectern and let her hands rest open in front of her. At first it felt exposed. But her audience said she suddenly seemed 'warmer and more sure of herself'. She had not changed her words. She had simply stopped hiding. Her open base and free hands did the work."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Be still by default; move only on purpose.",
+            "A grounded stance signals calm authority.",
+            "Use one-thought-one-person for real eye contact.",
+            "In a big room, pick a few friendly faces in different areas.",
+            "Keep hands open and visible, never hidden."
+          ],
+          "exercise": {
+            "title": "Audit your body language",
+            "prompt": "Record one minute of yourself speaking on video, or ask a colleague to watch you. Note three things: do you rock or stay still, where do your eyes go, and what do your hands do? Write one fix for each.",
+            "placeholder": "My stance: ... (fix: ...) My eye contact: ... (fix: ...) My hands: ... (fix: ...)"
+          },
+          "quiz": [
+            {
+              "q": "A speaker keeps shifting their weight from foot to foot during a talk. What does this most likely signal to the audience?",
+              "options": [
+                "Calm and confidence",
+                "Nervousness and unease",
+                "Deep expertise",
+                "Nothing at all"
+              ],
+              "answer": 1,
+              "explain": "Constant, unplanned movement leaks anxiety to the room. A still, grounded base signals calm authority. The aim is to be still by default and move only with purpose."
+            },
+            {
+              "q": "What is the best way to use eye contact in a large room?",
+              "options": [
+                "Stare at one person for the whole talk.",
+                "Sweep your eyes quickly across everyone.",
+                "Hold one friendly face for a full thought, then move to another.",
+                "Look just above people's heads to avoid pressure."
+              ],
+              "answer": 2,
+              "explain": "One-thought-one-person makes each person feel spoken to and looks calm. Fast sweeping looks anxious, and avoiding eyes breaks trust. In a big room, choose a few faces in different areas."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Hello. This lesson is about body language: a grounded stance, one-thought-one-person eye contact, and open hands. Tell me what you tend to do with your body when nervous and I can suggest a fix.",
+            "suggested": [
+              "What do I do with my hands when not gesturing?",
+              "How do I make eye contact without feeling awkward?",
+              "Should I move around or stay in one place?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-9",
+          "title": "Slides that help instead of hurt",
+          "mins": 18,
+          "hook": "Bad slides compete with you for attention and you lose. Good slides do the opposite: they make you look clearer and more in control.",
+          "objectives": [
+            "By the end you can build slides that support you instead of replacing you.",
+            "By the end you can cut text so the audience listens to you, not reads ahead.",
+            "By the end you can use one strong image or number per slide."
+          ],
+          "sections": [
+            {
+              "heading": "The slide is not your script",
+              "body": [
+                "The biggest slide mistake is putting your whole talk on the screen, then reading it out. When you do this, two bad things happen. The audience reads faster than you speak, so they get bored and ahead of you. And you become the person who reads slides, not the expert who leads the room.",
+                "Your slides are not your notes. They are a visual aid for the audience. If a slide can be read and understood without you in the room, you have written a document, not a slide. The talk lives in you. The slide only supports it."
+              ]
+            },
+            {
+              "heading": "One idea per slide",
+              "body": [
+                "Follow one simple rule: one idea per slide. Not one section. Not five bullet points. One idea. This keeps the audience focused on the single thing you are saying right now. When you move to the next idea, you move to the next slide.",
+                "Cut the text hard. A slide should have a few words, not full sentences. A useful guide is the six-word headline: can you state the slide's idea in about six words at the top? Then support it with one image, one chart, or one big number. The audience should glance at the slide, get it in two seconds, and return their eyes to you."
+              ]
+            },
+            {
+              "heading": "Show, do not list: a worked example",
+              "body": [
+                "One strong image beats a wall of words. A single clear number beats a busy table. If you want to show growth, one rising line is better than a grid of figures. If you want to show a problem, one honest photo beats three bullet points describing it.",
+                "Take Hassan, a sales lead in Kuwait who presented results with slides full of dense tables. Nobody followed them. We rebuilt the deck. Each slide became one headline and one big number or one simple chart. The slide that said 'Revenue up 32% this year' with a single rising line landed instantly. His leadership finally understood the story. Same data, far fewer words, much more impact. The slides started helping him instead of hurting him."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Slides support you; they are not your script.",
+            "If a slide works without you, it is a document, not a slide.",
+            "Use one idea per slide and move slides as you move ideas.",
+            "Aim for a six-word headline plus one image, chart, or number.",
+            "One strong image or number beats a busy table."
+          ],
+          "exercise": {
+            "title": "Rebuild one slide",
+            "prompt": "Take one busy slide from a past talk. Rewrite it to follow one idea per slide. Give it a headline of about six words. Choose one image, one chart, or one number to support it. Describe the new, simpler slide.",
+            "placeholder": "Old slide had: ... New headline (about six words): ... One supporting visual: ..."
+          },
+          "quiz": [
+            {
+              "q": "A speaker puts full sentences on every slide and reads them aloud. Why does this hurt the talk?",
+              "options": [
+                "The audience reads ahead and tunes out, and the speaker becomes a slide-reader.",
+                "Full sentences are always more professional.",
+                "It makes the talk too short.",
+                "It has no real effect on the audience."
+              ],
+              "answer": 0,
+              "explain": "People read faster than you speak, so they race ahead and lose interest. Reading slides also removes your role as the expert leading the room. Slides should support you, not replace you."
+            },
+            {
+              "q": "Which slide best follows the 'one idea per slide' rule?",
+              "options": [
+                "A slide with five bullet points covering the whole section.",
+                "A dense table with twenty numbers.",
+                "A short headline plus one rising chart showing a single trend.",
+                "A paragraph of text the speaker reads word for word."
+              ],
+              "answer": 2,
+              "explain": "One headline and one clear visual carries a single idea the audience grasps in seconds. Bullet lists, dense tables, and paragraphs all break the one-idea rule and pull attention away from you."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Good to see you. This lesson is about slides that help instead of hurt: one idea per slide, a short headline, and one visual. Describe a slide you are unsure about and I can help you simplify it.",
+            "suggested": [
+              "How do I show lots of data without a busy table?",
+              "What if my boss wants detailed slides?",
+              "Do I still need notes if my slides are simple?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "High-Stakes Speaking",
+      "lessons": [
+        {
+          "lessonId": "speaking-10",
+          "title": "Q&A and the hostile question",
+          "mins": 16,
+          "hook": "The questions after your talk can shake you more than the talk itself. With a simple method, you can stay calm even when a question feels like an attack.",
+          "objectives": [
+            "By the end you can answer hard questions with a clear, calm method.",
+            "By the end you can handle a hostile question without getting defensive.",
+            "By the end you can say 'I don't know' in a way that builds trust."
+          ],
+          "sections": [
+            {
+              "heading": "Pause before you answer",
+              "body": [
+                "The most common Q&A mistake is answering too fast. A sharp question raises your heart rate, and you rush to defend yourself. Instead, pause. Take one breath. This short gap does two things. It calms you, and it shows the room you are thoughtful, not rattled.",
+                "It also helps to repeat or rephrase the question first. This buys you a few seconds to think. It makes sure everyone heard the question. And it lets you frame it fairly before you answer. 'So the question is, how do we fund this in year one?' Now you are ready to respond, not react."
+              ]
+            },
+            {
+              "heading": "The ACE method for hard questions",
+              "body": [
+                "For tough or hostile questions, use a simple method I call ACE: Acknowledge, Clarify, Engage. Acknowledge the concern so the person feels heard: 'That is a fair worry.' Clarify what they really mean if needed: 'Are you asking about cost or about timing?' Engage with a calm, honest answer to the real issue.",
+                "The key is to separate the person from the question. A hostile tone is often just stress or strong feeling. If you stay calm and answer the real concern, you often win over not just that person but the whole room, who are watching how you handle pressure. Never match their heat. Your calm is your power."
+              ]
+            },
+            {
+              "heading": "When you don't know, and a worked example",
+              "body": [
+                "Pretending to know an answer is dangerous. People sense it, and one bluff can sink your whole credibility. It is far stronger to say: 'I do not have that number with me. I will find out and send it to you by tomorrow.' This shows honesty and gives a clear next step.",
+                "Take Sara, presenting a new policy to managers in Riyadh. One manager asked sharply, 'Did you even consult the field teams, or was this decided in an office?' Her instinct was to defend. Instead she used ACE. Acknowledge: 'That is exactly the right question to ask.' Clarify: she checked he meant the frontline staff. Engage: 'We consulted two regions but not all. You are right that we should widen that, and here is how I will do it.' She stayed calm, the room relaxed, and the hostile manager became an ally."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Pause and breathe before answering any hard question.",
+            "Repeat or rephrase the question to buy thinking time.",
+            "Use ACE: Acknowledge, Clarify, Engage.",
+            "Never match a hostile tone; your calm is your power.",
+            "Say 'I will find out and follow up' instead of bluffing."
+          ],
+          "exercise": {
+            "title": "Prepare for the hard question",
+            "prompt": "Think of the hardest or most hostile question you might get after your next talk. Write it down. Then draft an answer using ACE: one line to Acknowledge, one to Clarify if needed, and a calm, honest Engage.",
+            "placeholder": "The hard question: ... Acknowledge: ... Clarify: ... Engage: ..."
+          },
+          "quiz": [
+            {
+              "q": "An audience member asks an aggressive, challenging question. What is the strongest first move?",
+              "options": [
+                "Answer fast and firmly to show you are not weak.",
+                "Pause, breathe, and rephrase the question before answering.",
+                "Match their tone so they know you are serious.",
+                "Skip the question and move on."
+              ],
+              "answer": 1,
+              "explain": "Pausing calms you and signals control. Rephrasing buys thinking time and frames the question fairly. Rushing or matching their heat usually makes things worse, and skipping looks evasive."
+            },
+            {
+              "q": "You are asked for a figure you do not have. What is the best response?",
+              "options": [
+                "Guess a number that sounds about right.",
+                "Say you cannot discuss it.",
+                "Admit you do not have it and promise a clear follow-up.",
+                "Change the subject quickly."
+              ],
+              "answer": 2,
+              "explain": "Bluffing risks your whole credibility if you are caught. Honestly saying you will find out and follow up builds trust and gives a clear next step. People respect honesty over a fake answer."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Welcome. This lesson is about Q&A and the hostile question, using the ACE method: Acknowledge, Clarify, Engage. Tell me the kind of tough question you fear most and we can prepare a calm answer.",
+            "suggested": [
+              "How do I stay calm when a question feels personal?",
+              "What if someone keeps interrupting me?",
+              "How do I handle a question I truly cannot answer?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-11",
+          "title": "Panels, boards, and keynotes",
+          "mins": 16,
+          "hook": "Each high-stakes setting has its own rules. What works on a keynote stage can fail in a boardroom. Knowing the format is most of the work.",
+          "objectives": [
+            "By the end you can adjust your style to panels, boards, and keynotes.",
+            "By the end you can make a strong point in a short panel slot.",
+            "By the end you can speak to senior leaders with confidence and brevity."
+          ],
+          "sections": [
+            {
+              "heading": "Panels: be short and be remembered",
+              "body": [
+                "On a panel, you share the stage. Your time is short and broken up. The mistake is to give a long, full answer like a mini-speech. People tune out. The skill is to make one sharp point and stop. Say your point, give one quick reason or example, then hand back.",
+                "A simple tool is the headline-first answer. Lead with your conclusion in one line, then support it briefly. 'My answer is yes, and here is the one reason why.' This makes you clear and quotable. On a panel, the person who says less but lands cleaner is the one people remember."
+              ]
+            },
+            {
+              "heading": "Boards: lead with the answer",
+              "body": [
+                "A boardroom is not a stage. Senior leaders are busy and want clarity, not a build-up. The worst thing you can do is save your main point for the end. They may interrupt before you reach it. Instead, use the BLUF method: Bottom Line Up Front. Start with your conclusion and your ask. Then give the support only if they want it.",
+                "For example: 'I recommend we approve the new system. It pays for itself in one year and reduces risk. I am happy to walk through the detail.' Now the board has the decision in front of them. They can ask for the parts they care about. You respect their time, and you look like a leader who thinks clearly."
+              ]
+            },
+            {
+              "heading": "Keynotes: one big idea and a worked example",
+              "body": [
+                "A keynote is the opposite of a board update. Here you have time and a stage. The audience wants to feel something, not just learn facts. A keynote needs one big idea, strong stories, and emotion. Slow down. Use the stage. Let moments breathe.",
+                "Take Ahmed, who in one week had a board meeting and a conference keynote. For the board, he used BLUF: 'We should enter the Saudi market now. Here are the three numbers.' Five minutes, decision made. For the keynote, he opened with a story about his grandfather's small shop, built to one big idea about local trust, and closed with a call to the audience. Same speaker, two very different styles, both right for the room. Reading the format was his real skill."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Match your style to the format, not the other way around.",
+            "On a panel, make one sharp point and hand back.",
+            "Use headline-first answers to be clear and quotable.",
+            "In a boardroom, use BLUF: bottom line and your ask first.",
+            "A keynote needs one big idea, stories, and emotion."
+          ],
+          "exercise": {
+            "title": "Adapt one message to three rooms",
+            "prompt": "Take one recommendation you need to make. Write how you would say it in three settings: a 60-second panel answer (headline first), a boardroom (BLUF, decision first), and a keynote (one big idea with feeling).",
+            "placeholder": "Panel (headline first): ... Board (BLUF): ... Keynote (big idea + emotion): ..."
+          },
+          "quiz": [
+            {
+              "q": "You are presenting a recommendation to a busy board. How should you structure it?",
+              "options": [
+                "Build up slowly and reveal your recommendation at the very end.",
+                "Lead with your bottom line and ask, then offer detail if wanted.",
+                "Tell a long emotional story first.",
+                "Give every supporting number before stating your view."
+              ],
+              "answer": 1,
+              "explain": "Boards want clarity fast. BLUF puts the decision and ask up front, so they can engage with what matters to them. Saving your point for the end risks being interrupted before you get there."
+            },
+            {
+              "q": "On a panel with limited time, what is the most effective approach?",
+              "options": [
+                "Give a full, detailed answer like a short speech.",
+                "Make one sharp point with a quick reason, then hand back.",
+                "Repeat what other panelists said.",
+                "Wait until the end to say anything important."
+              ],
+              "answer": 1,
+              "explain": "Panel time is short and shared. A single clear point, stated headline-first, is what people remember. Long answers lose the room, and the strongest panelists say less but land cleaner."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Hello again. This lesson is about adjusting your style across panels, boards, and keynotes, using tools like headline-first and BLUF. Tell me which setting you have coming up and we can shape your approach.",
+            "suggested": [
+              "How long should a panel answer be?",
+              "What is BLUF and when do I use it?",
+              "How is a keynote different from a normal talk?"
+            ]
+          }
+        },
+        {
+          "lessonId": "speaking-12",
+          "title": "Your signature talk, delivered",
+          "mins": 16,
+          "hook": "Now you bring it all together. In this final lesson you design and deliver one talk that is truly yours, from first nerve to final word.",
+          "objectives": [
+            "By the end you can plan a full signature talk using everything you learned.",
+            "By the end you can rehearse in a way that actually improves your delivery.",
+            "By the end you can deliver one complete talk with presence."
+          ],
+          "sections": [
+            {
+              "heading": "Bring the whole course together",
+              "body": [
+                "A signature talk is one talk you can give well, again and again, on a topic you own. To build it, walk back through this course. Use your pre-talk ritual for nerves. Build a message map: one core message, three points, one proof each. Add one CTRL story. Write a strong opening hook and a bookend close with a clear ask.",
+                "Then plan delivery. Mark where you will slow down and pause. Plan a grounded stance and open hands. Cut your slides to one idea each. Prepare for the hardest question with ACE. Every skill you learned has a place. The signature talk is where they all come together into one piece."
+              ]
+            },
+            {
+              "heading": "Rehearse the right way",
+              "body": [
+                "Reading your talk silently is not rehearsal. Real rehearsal means saying it out loud, standing up, as if the audience is there. Do it at least three times. The first time will be rough. The third time will flow. This is the rule of three rehearsals, and it is the single biggest thing most people skip.",
+                "Record at least one run and watch it back. It feels uncomfortable, but it is the fastest way to improve. Watch for pace, pauses, and your hands. Better still, deliver it to one trusted person and ask for one thing to keep and one thing to change. Rehearsal is where a good talk becomes a confident one."
+              ]
+            },
+            {
+              "heading": "Deliver, then reflect: a worked example",
+              "body": [
+                "On the day, trust your preparation. Run your ritual. Open with your hook. Follow your map. Tell your story. Use your pauses. Close with your ask. You will not be perfect, and that is fine. Presence does not mean perfect. It means present, calm, and clear.",
+                "Take Reem, an HR director in Dubai who had avoided the company all-hands for years. Across this course she built one signature talk on building a speak-up culture. She used the message map, one story about a junior colleague, and a clear ask. She rehearsed out loud four times and recorded one. On the day, her hands shook a little, but she ran her ritual, paused on her key points, and delivered. The feedback was the best of her career. After this lesson, write your own short reflection: what worked, and what is the one thing you will improve next time."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A signature talk brings every course skill into one piece.",
+            "Use the message map, one story, a hook, and a bookend close.",
+            "Rehearse out loud, standing up, at least three times.",
+            "Record one run and watch it back, however uncomfortable.",
+            "Presence means present and clear, not perfect."
+          ],
+          "exercise": {
+            "title": "Plan and reflect on your signature talk",
+            "prompt": "Outline your signature talk on one page: core message, three points with proof, one story, opening hook, and closing ask. Note where you will pause. After you deliver or rehearse it, write what worked and one thing to improve next time.",
+            "placeholder": "Core message: ... Three points + proof: ... Story: ... Hook: ... Closing ask: ... After delivery, what worked: ... One thing to improve: ..."
+          },
+          "quiz": [
+            {
+              "q": "Which counts as real rehearsal for a signature talk?",
+              "options": [
+                "Reading the slides silently once the night before.",
+                "Saying it out loud, standing up, at least three times.",
+                "Just thinking through the main points in your head.",
+                "Writing the whole script and never speaking it."
+              ],
+              "answer": 1,
+              "explain": "Real rehearsal means speaking out loud and standing, close to real conditions, at least three times. Silent reading or thinking does not prepare your voice, pace, or body for the actual moment."
+            },
+            {
+              "q": "On delivery day, what is the most useful mindset?",
+              "options": [
+                "I must be perfect or the talk fails.",
+                "Trust my preparation and aim to be present, calm, and clear.",
+                "Improvise everything to seem natural.",
+                "Speak as fast as possible to get it over with."
+              ],
+              "answer": 1,
+              "explain": "Presence is about being present, calm, and clear, not flawless. Trusting your ritual and your map lets you deliver well even with some nerves. Chasing perfection adds pressure, and rushing undoes your work."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Here we are at the final lesson, where you bring it all together into your signature talk. We covered planning with the message map, rehearsing out loud three times, and delivering with presence. Tell me your topic and we can build it.",
+            "suggested": [
+              "How do I choose my signature talk topic?",
+              "What should I look for when I watch my recording?",
+              "How do I calm last-minute nerves on the day?"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

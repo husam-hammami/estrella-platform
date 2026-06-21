@@ -1,0 +1,978 @@
+{
+  "courseId": "branding",
+  "title": "Personal Branding",
+  "modules": [
+    {
+      "title": "Your Foundation",
+      "lessons": [
+        {
+          "lessonId": "branding-1",
+          "title": "What personal branding actually is (and isn't)",
+          "mins": 12,
+          "hook": "Many smart people think a personal brand is a logo, a slogan, or constant posting. It is none of those. This lesson tells you what it really is, so you stop wasting energy on the wrong things.",
+          "objectives": [
+            "By the end you can explain a personal brand in one plain sentence.",
+            "By the end you can tell the difference between a brand and self-promotion.",
+            "By the end you can name the one thing your brand must protect: trust."
+          ],
+          "sections": [
+            {
+              "heading": "A simple definition",
+              "body": [
+                "Your personal brand is simple to say: it is what people think and feel when they hear your name and you are not in the room. That is all. It is your reputation, made on purpose instead of by accident.",
+                "Notice the key part: \"when you are not in the room.\" You cannot control this with a clever photo or a long bio. You control it with the work you do, how you treat people, and what you choose to be known for. A brand is not a mask you wear. It is the honest pattern people see over time."
+              ]
+            },
+            {
+              "heading": "What it is NOT",
+              "body": [
+                "A personal brand is not bragging. It is not posting every day. It is not a polished logo or a clever tagline. Those are marketing tricks, and most professionals in Dubai or Riyadh can feel when they are fake.",
+                "Here is a useful test, the \"Room Test.\" Imagine two colleagues talking about you after a meeting. What do they say? \"She is the one who always finds the risk before it costs us money.\" That is a brand. \"He posts a lot on LinkedIn\" is not a brand. One is about value. The other is about noise."
+              ]
+            },
+            {
+              "heading": "Why this matters now",
+              "body": [
+                "In the Gulf, careers move through trust and word of mouth. A manager at an Abu Dhabi bank hears your name from a friend before they ever read your CV. That early reputation decides if a door opens.",
+                "So the goal of this course is not to make you loud. It is to make you clear. When people know exactly what you are good at, they bring the right work to you. A strong, honest brand does this quietly, even while you sleep."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Your brand is what people say about you when you are not there.",
+            "A brand is built by real work and behaviour, not by posting.",
+            "Use the Room Test: would a colleague describe your value, or just your noise?",
+            "The aim is to be clear, not loud.",
+            "Trust is the thing your brand must always protect."
+          ],
+          "exercise": {
+            "title": "Run the Room Test",
+            "prompt": "Imagine two colleagues talking about you after you leave a meeting. Write down, in their words, the one sentence you hope they say. Then write the sentence you fear they might actually say today. The gap between the two is your work for this course.",
+            "placeholder": "What I hope they say: \"...\"\nWhat I fear they say: \"...\"\nThe gap I want to close: ..."
+          },
+          "quiz": [
+            {
+              "q": "A colleague says, \"My personal brand is my new LinkedIn banner and headshot.\" What is the best response?",
+              "options": [
+                "Agree, because a strong visual is the core of a brand.",
+                "Explain that a brand is the reputation people hold of you, and visuals are only a small surface layer.",
+                "Tell them to post more often to build the brand faster.",
+                "Say that brands only matter for senior leaders."
+              ],
+              "answer": 1,
+              "explain": "A brand lives in what people think and feel about your value. Visuals are a thin surface. They support a brand but never create one."
+            },
+            {
+              "q": "Which of these is the clearest sign of a real personal brand?",
+              "options": [
+                "You post on social media every single day.",
+                "You have a clever tagline under your name.",
+                "Colleagues describe your specific value when you are not in the room.",
+                "You have many followers."
+              ],
+              "answer": 2,
+              "explain": "A brand is the reputation that travels without you. When others can name your value without you present, the brand is real and working."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Hello, I am here in the lesson with you. We just defined a personal brand as what people say when you are not in the room. Ask me anything, or tap a question below.",
+            "suggested": [
+              "Isn't building a brand just bragging?",
+              "Why does this matter if I am good at my job already?",
+              "Can an introvert build a strong brand?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-2",
+          "title": "Finding your value proposition",
+          "mins": 18,
+          "hook": "If you cannot say what you are good at in one clear sentence, others will guess for you. This lesson gives you a simple formula to write that sentence and make it land.",
+          "objectives": [
+            "By the end you can write a one-sentence value proposition using a clear formula.",
+            "By the end you can name who you help and the result you create.",
+            "By the end you can test your sentence so it sounds real, not generic."
+          ],
+          "sections": [
+            {
+              "heading": "What a value proposition is",
+              "body": [
+                "A value proposition is one short sentence. It says who you help, what problem you solve, and the result you create. It is the answer to the question \"what do you do?\" that makes someone lean in instead of nod politely.",
+                "Most people answer with a job title: \"I am an HR manager.\" A title tells people your box, not your value. A value proposition tells them why you matter to them."
+              ]
+            },
+            {
+              "heading": "The Who-What-Result formula",
+              "body": [
+                "Use this simple structure: \"I help [WHO] do [WHAT] so they get [RESULT].\" Fill in each part with plain words.",
+                "Here is a Gulf example. A learning specialist in Jeddah could say: \"I help Saudi banks turn new graduates into confident branch staff in 90 days, so they serve customers without long, costly extra support.\" Compare that to \"I do training.\" The first sentence has a who (Saudi banks), a what (turn graduates into confident staff), and a result (faster service, lower cost). The second has nothing to hold on to.",
+                "Make the result something a leader cares about: money saved, time saved, risk reduced, or growth created. Soft words like \"synergy\" or \"empower\" do not land. Concrete results do."
+              ]
+            },
+            {
+              "heading": "Test it before you use it",
+              "body": [
+                "Run your sentence through three quick checks. First, the Specific check: could a competitor say the exact same thing? If yes, it is too general. Second, the Proof check: can you back it up with one real example? If not, soften the claim. Third, the Plain check: would a busy person understand it in one read?",
+                "Say your sentence out loud to a trusted colleague. Watch their face. If they say \"oh, interesting, tell me more,\" it works. If they say \"okay\" and change the subject, go back and make the result sharper."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A value proposition is one sentence: who you help, what you solve, the result.",
+            "Use the formula: I help [WHO] do [WHAT] so they get [RESULT].",
+            "Make the result concrete: money, time, risk, or growth.",
+            "A job title is not a value proposition.",
+            "Test it for being specific, provable, and plain."
+          ],
+          "exercise": {
+            "title": "Write your one sentence",
+            "prompt": "Using the formula \"I help [WHO] do [WHAT] so they get [RESULT],\" write your value proposition. Then run it through the three checks: is it specific, can you prove it, is it plain? Rewrite it once to make the result sharper.",
+            "placeholder": "Draft 1: I help ___ do ___ so they get ___.\nSpecific? Provable? Plain?\nDraft 2 (sharper result): ..."
+          },
+          "quiz": [
+            {
+              "q": "Which value proposition is strongest?",
+              "options": [
+                "I am a passionate, results-driven HR professional.",
+                "I help mid-size UAE retailers cut new-hire turnover in the first 90 days, so they stop losing training money.",
+                "I leverage synergies to empower people and processes.",
+                "I am an experienced manager with many skills."
+              ],
+              "answer": 1,
+              "explain": "It names a clear who (UAE retailers), a real problem (early turnover), and a result a leader cares about (saved training money). The others are vague or full of filler."
+            },
+            {
+              "q": "Your draft says, \"I help companies improve their culture.\" What is the main weakness?",
+              "options": [
+                "It is too long.",
+                "It is too specific.",
+                "It is too general; any consultant could say it and there is no clear result.",
+                "It uses the word help."
+              ],
+              "answer": 2,
+              "explain": "The Specific check fails. A competitor could say the same words. Name the exact who and a concrete result to make it yours."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's sharpen your one sentence. We used the formula: I help [WHO] do [WHAT] so they get [RESULT]. Share your draft and I will help you make the result land.",
+            "suggested": [
+              "How do I pick the result if I do many things?",
+              "My work is hard to measure. What result do I use?",
+              "Can you give me three more Gulf examples?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-3",
+          "title": "The reputation audit",
+          "mins": 16,
+          "hook": "Before you build a brand, you need to know what people already think of you. This lesson shows you a simple, honest way to find out, without guessing.",
+          "objectives": [
+            "By the end you can run a short reputation audit using real evidence.",
+            "By the end you can spot the gap between how you see yourself and how others see you.",
+            "By the end you can pick one clear thing to fix first."
+          ],
+          "sections": [
+            {
+              "heading": "Why audit before you build",
+              "body": [
+                "You cannot change a reputation you have not measured. Many people build a brand on a guess, then wonder why it does not match how the market sees them. An audit replaces the guess with evidence.",
+                "Think of it like a health check before training. You measure first, then you train the right muscles. Skipping the check means you might train the wrong thing for months."
+              ]
+            },
+            {
+              "heading": "The three-source audit",
+              "body": [
+                "Gather evidence from three places. Source one is your own view: write the three words you want to be known for. Source two is feedback: ask three or four trusted colleagues a simple question, \"When you describe my work to someone else, what do you say?\" Ask people who will be honest, not just kind. Source three is your digital trail: read your own LinkedIn, your email tone, and how you show up in meetings, as if you were a stranger.",
+                "Here is a real pattern. A project lead in Dubai wanted to be known as \"strategic.\" But all three feedback replies said \"reliable\" and \"fast.\" Her digital trail showed many task updates and few big-picture posts. The audit revealed the gap clearly. She was seen as a strong doer, not a strategic thinker. That is not failure. It is the exact information she needed."
+              ]
+            },
+            {
+              "heading": "Find the gap, pick one fix",
+              "body": [
+                "Put your three answers side by side: how you see yourself, how others see you, and what your trail shows. The gap between them is your starting point.",
+                "Do not try to fix everything. Pick the single most important gap and one action to close it. The project lead above chose to share one short \"why we made this decision\" note after each project. Small, repeatable, and it slowly moved her reputation toward \"strategic.\" One clear action beats ten vague intentions."
+              ]
+            }
+          ],
+          "takeaways": [
+            "You cannot change a reputation you have not measured.",
+            "Use three sources: your own view, honest feedback, your digital trail.",
+            "Ask colleagues what they say about your work when they describe it to others.",
+            "The gap between your view and theirs is your real starting point.",
+            "Pick one gap and one repeatable action to close it."
+          ],
+          "exercise": {
+            "title": "Your three-source audit",
+            "prompt": "Write the three words you want to be known for. Then message three trusted colleagues and ask: \"When you describe my work to someone, what do you say?\" Finally, read your own LinkedIn as a stranger. Note the biggest gap, then choose one small action to close it.",
+            "placeholder": "Words I want: ...\nWhat colleagues say: ...\nWhat my trail shows: ...\nBiggest gap: ...\nOne action: ..."
+          },
+          "quiz": [
+            {
+              "q": "Who should you ask for feedback in a reputation audit?",
+              "options": [
+                "Only your closest friends, because they support you.",
+                "Trusted colleagues who will be honest, even if the answer is uncomfortable.",
+                "Your manager only, because their view is the one that counts.",
+                "Nobody; self-reflection is enough."
+              ],
+              "answer": 1,
+              "explain": "Honest colleagues give you real evidence. Friends who only praise you, or a single boss, give you a narrow or soft picture that hides the true gap."
+            },
+            {
+              "q": "Your audit shows a big gap between how you see yourself and how others see you. What is the best next step?",
+              "options": [
+                "Ignore the feedback; you know yourself best.",
+                "Try to fix every gap at once.",
+                "Pick the single most important gap and one small, repeatable action to close it.",
+                "Conclude that branding is not for you."
+              ],
+              "answer": 2,
+              "explain": "A gap is useful information, not a final judgement. Focusing on one gap with one repeatable action creates real, steady change. Fixing everything at once usually changes nothing."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Time for an honest look. We use three sources: your own view, real feedback, and your digital trail. Tell me what you found and I will help you read the gap.",
+            "suggested": [
+              "How do I ask for feedback without it being awkward?",
+              "What if the feedback contradicts itself?",
+              "How do I know which gap to fix first?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Your Narrative",
+      "lessons": [
+        {
+          "lessonId": "branding-4",
+          "title": "The story that connects your dots",
+          "mins": 18,
+          "hook": "Your career may look like a set of unrelated jobs. A good story connects them into one clear path. This lesson shows you how to build that story.",
+          "objectives": [
+            "By the end you can build a career story with a simple three-part structure.",
+            "By the end you can connect past roles to your next move with a clear thread.",
+            "By the end you can explain a career change without sounding lost."
+          ],
+          "sections": [
+            {
+              "heading": "Why a story beats a list",
+              "body": [
+                "A CV is a list of jobs. A story is a path with meaning. People remember stories, not lists. When you give a clear story, the listener does the rest: they see where you fit and what you could do next.",
+                "Without a story, people make up their own. They might decide you are a job-hopper or that your career has no direction. A clear story takes that decision back into your hands."
+              ]
+            },
+            {
+              "heading": "The Past-Pivot-Promise structure",
+              "body": [
+                "Use three simple parts. Past: where you started and what you learned. Pivot: the moment or choice that changed your direction. Promise: where you are heading and the value you now bring.",
+                "Here is a Gulf example. \"I started in retail operations in Sharjah, where I learned how front-line teams really work [Past]. I kept seeing good people leave because training was poor, so I moved into learning and development [Pivot]. Now I design training that keeps front-line staff and cuts turnover for Gulf retailers [Promise].\" Three sentences. Every job now points in one direction.",
+                "The Pivot is the key. It is the reason you changed, and it turns a random jump into a logical step. A strong pivot is usually about a problem you cared about, not just a better salary."
+              ]
+            },
+            {
+              "heading": "Handling a messy path",
+              "body": [
+                "Most careers are messy. That is normal. You do not lie about it. You choose which thread to follow. Look across all your roles and find the one skill or interest that keeps appearing. That repeating thread becomes the centre of your story.",
+                "Say you worked in sales, then HR, then operations. The thread might be \"I keep ending up where people and process meet.\" That single thread makes three different jobs feel like one journey. You are not hiding the change. You are giving it meaning."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A story connects your jobs; a list just stacks them.",
+            "Use Past, Pivot, Promise to give your career one clear direction.",
+            "The Pivot explains why you changed and makes the path logical.",
+            "Find the one thread that repeats across your roles.",
+            "If you do not give people a story, they invent one for you."
+          ],
+          "exercise": {
+            "title": "Build your three-part story",
+            "prompt": "Write your career story in three sentences using Past, Pivot, Promise. Make the Pivot about a problem you cared about, not just money. Then read it aloud and check: does every past role now point toward your Promise?",
+            "placeholder": "Past: I started in ___, where I learned ___.\nPivot: I changed because ___.\nPromise: Now I help ___ get ___."
+          },
+          "quiz": [
+            {
+              "q": "What is the most important job of the 'Pivot' in your story?",
+              "options": [
+                "To list every role you have ever held.",
+                "To explain why you changed direction, turning a random jump into a logical step.",
+                "To hide the fact that you changed careers.",
+                "To impress people with a big salary increase."
+              ],
+              "answer": 1,
+              "explain": "The Pivot gives meaning to the change. A reason the listener understands, usually a problem you cared about, makes your different roles feel like one path."
+            },
+            {
+              "q": "You have worked in three unrelated fields. What is the best way to tell your story?",
+              "options": [
+                "Pretend two of the jobs never happened.",
+                "List all three with equal detail and let the listener decide.",
+                "Find the one skill or interest that repeats across all three and make it the centre of your story.",
+                "Say your career has no real direction yet."
+              ],
+              "answer": 2,
+              "explain": "A repeating thread gives a messy path meaning. You stay honest about the changes while showing one clear thread that ties them together."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's connect your dots. We use Past, Pivot, Promise to turn a list of jobs into one clear path. Tell me your rough history and I will help you find the thread.",
+            "suggested": [
+              "My career feels random. How do I find the thread?",
+              "How do I explain a gap or a layoff?",
+              "Can you turn my three jobs into one story?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-5",
+          "title": "Positioning: own one thing, not ten",
+          "mins": 17,
+          "hook": "When you try to be known for everything, you get known for nothing. This lesson helps you choose the one thing you will own, and say a confident no to the rest.",
+          "objectives": [
+            "By the end you can explain why a narrow position is stronger than a wide one.",
+            "By the end you can choose one clear thing to be known for.",
+            "By the end you can decide what to say no to."
+          ],
+          "sections": [
+            {
+              "heading": "Why narrow wins",
+              "body": [
+                "Positioning means choosing the one space in people's minds that is yours. The fear is that being narrow will limit you. The truth is the opposite. A narrow position is easy to remember and easy to refer.",
+                "Think about it from the other side. If a friend needs help with hiring in Saudi healthcare, they will call the person known for exactly that, not the generalist who \"does a bit of everything.\" Being known for one thing is what makes people send work your way."
+              ]
+            },
+            {
+              "heading": "The sweet spot: three circles",
+              "body": [
+                "Find your position where three circles overlap. Circle one: what you are genuinely good at. Circle two: what the market actually needs and will pay for. Circle three: what energises you, so you can keep doing it for years.",
+                "Here is an example. A consultant in Doha was good at many HR tasks. But her best skill was helping family businesses set up fair pay systems. The market needed it (many Gulf family firms struggle here), and she enjoyed it. So she stopped saying \"HR consultant\" and started saying \"I fix pay fairness in Gulf family businesses.\" Her referrals doubled, because now people knew exactly when to think of her."
+              ]
+            },
+            {
+              "heading": "The power of no",
+              "body": [
+                "A position is only real if you protect it. That means saying no to work that does not fit, even good work. Every time you take a project that does not match your one thing, you blur the picture people hold of you.",
+                "Use a simple rule, the One-Line Filter: \"Does this match the one thing I want to be known for?\" If yes, lean in. If no, refer it kindly to someone else. Saying no is not losing. It is keeping your position sharp so the right work keeps coming."
+              ]
+            }
+          ],
+          "takeaways": [
+            "If you are known for everything, you are known for nothing.",
+            "A narrow position is easy to remember and easy to refer.",
+            "Find your spot where skill, market need, and energy overlap.",
+            "Use the One-Line Filter to decide what fits your position.",
+            "Saying no to work that does not fit keeps your position sharp."
+          ],
+          "exercise": {
+            "title": "Find your one thing",
+            "prompt": "Draw three circles: what you are good at, what the market needs, and what energises you. Write what sits in the middle of all three. That is your candidate position. Then write one type of work you will now say no to, to protect it.",
+            "placeholder": "Good at: ...\nMarket needs: ...\nEnergises me: ...\nMy one thing (the overlap): ...\nWhat I will say no to: ..."
+          },
+          "quiz": [
+            {
+              "q": "Why does a narrow position often bring MORE opportunities than a wide one?",
+              "options": [
+                "Because narrow people work harder.",
+                "Because it is easy to remember and refer, so people know exactly when to think of you.",
+                "Because clients only hire specialists who charge less.",
+                "Because wide positions are against the rules."
+              ],
+              "answer": 1,
+              "explain": "Referrals depend on memory. When your one thing is clear, people recall you at the exact moment a matching need appears. A wide position is forgettable."
+            },
+            {
+              "q": "You are known for talent development. A client offers well-paid work redesigning their payroll system, far from your focus. What does strong positioning suggest?",
+              "options": [
+                "Take it; money is money and you should never refuse work.",
+                "Take it and add payroll to your list of skills permanently.",
+                "Politely refer it to a payroll specialist to keep your position sharp.",
+                "Accept it but hide it from your network."
+              ],
+              "answer": 2,
+              "explain": "Work that does not fit your one thing, even paid work, blurs the picture people hold of you. Referring it kindly protects your position and builds goodwill with the specialist you helped."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's narrow your focus. We find your position where skill, market need, and energy overlap, then protect it with a confident no. What are you tempted to be known for?",
+            "suggested": [
+              "I am scared narrowing will cost me work. Is that true?",
+              "How do I say no without damaging the relationship?",
+              "What if I have two strong things, not one?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-6",
+          "title": "Your bio, three ways",
+          "mins": 17,
+          "hook": "You need different bios for different places: a long one, a short one, and a one-liner. This lesson gives you all three from one core message.",
+          "objectives": [
+            "By the end you can write a one-line, a short, and a long bio.",
+            "By the end you can keep one consistent message across all three lengths.",
+            "By the end you can match each bio to the right place to use it."
+          ],
+          "sections": [
+            {
+              "heading": "One message, three lengths",
+              "body": [
+                "A bio is just your value proposition and your story, written for others to read. You need it in three sizes because different places ask for different lengths. The trick is to keep the same core message in all of them, so you sound like one consistent person.",
+                "Start from your value proposition (Lesson 2) and your story (Lesson 4). Those are your raw material. The three bios are simply that material, cut to fit."
+              ]
+            },
+            {
+              "heading": "The three sizes",
+              "body": [
+                "The One-Liner (about 10 to 15 words): this is your introduction line and your LinkedIn headline. Example: \"I help Gulf family businesses build fair pay systems people trust.\"",
+                "The Short bio (about 40 to 60 words): this is for a speaker introduction, an event programme, or the top of a profile. It adds one proof point and a touch of personality. Example: \"I help Gulf family businesses build fair pay systems people trust. Over the last ten years I have redesigned pay for more than thirty firms across the UAE and KSA. I care most about fairness that survives the next generation. Based in Doha.\"",
+                "The Long bio (about 100 to 150 words): this is for a website 'About' page or a detailed profile. It includes your story (Past, Pivot, Promise), two or three proof points, and how to reach you. It is written in a warm, human voice, not a list of duties."
+              ]
+            },
+            {
+              "heading": "First person or third person",
+              "body": [
+                "Choose based on the place. Use first person (\"I help...\") for LinkedIn, your own website, and friendly settings. It feels warm and direct. Use third person (\"Sara helps...\") for formal event programmes and conference introductions, where it is the standard.",
+                "Whatever you choose, stay consistent within one document. Mixing \"I\" and \"she\" in the same bio looks careless. And always lead with value, not job title. \"I help...\" pulls the reader in. \"I am a Senior Manager at...\" makes them wait for the point."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Write your bio in three sizes: one-liner, short, and long.",
+            "Keep one consistent core message across all three.",
+            "Build them from your value proposition and your story.",
+            "Use first person for friendly places, third person for formal ones.",
+            "Always lead with value, not job title."
+          ],
+          "exercise": {
+            "title": "Write all three bios",
+            "prompt": "Using your value proposition and story, write your one-liner (10 to 15 words), your short bio (40 to 60 words), and your long bio (100 to 150 words). Check that the same core message appears in all three, and that each one leads with value, not title.",
+            "placeholder": "One-liner: ...\nShort bio: ...\nLong bio: ..."
+          },
+          "quiz": [
+            {
+              "q": "What should all three versions of your bio have in common?",
+              "options": [
+                "The exact same number of words.",
+                "One consistent core message, so you sound like one person everywhere.",
+                "A formal third-person voice.",
+                "A full list of every job you have held."
+              ],
+              "answer": 1,
+              "explain": "The lengths differ, but the message must not. Consistency across all three is what makes your brand feel solid and recognisable wherever someone meets it."
+            },
+            {
+              "q": "You are writing a bio for a conference programme. Which choice fits best?",
+              "options": [
+                "First person, starting with your job title.",
+                "Third person, leading with the value you bring.",
+                "A long, casual story with no proof points.",
+                "A mix of first and third person in the same paragraph."
+              ],
+              "answer": 1,
+              "explain": "Formal programmes normally use third person, and leading with value beats leading with a title. Mixing voices in one bio looks careless."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's write your bio in three sizes from one message. Share your value proposition and story, and I will help you cut them to a one-liner, a short, and a long bio.",
+            "suggested": [
+              "When should I use first person versus third person?",
+              "What proof point should I include if I am early in my career?",
+              "Can you tighten my one-liner?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "LinkedIn That Works for You",
+      "lessons": [
+        {
+          "lessonId": "branding-7",
+          "title": "Rebuild your profile, section by section",
+          "mins": 20,
+          "hook": "Your LinkedIn profile works for you 24 hours a day, even when you are asleep. This lesson rebuilds it section by section so it attracts the right people.",
+          "objectives": [
+            "By the end you can rewrite your headline and About section to lead with value.",
+            "By the end you can use the right keywords so the right people find you.",
+            "By the end you can fix the three sections that matter most."
+          ],
+          "sections": [
+            {
+              "heading": "Your profile is a shop window, not a CV",
+              "body": [
+                "Many people copy their CV into LinkedIn. That is a mistake. A CV looks backward and lists duties. A profile should look forward and show value. It is a shop window: in a few seconds, a visitor decides whether to stop or walk past.",
+                "The good news is that a strong profile keeps working while you sleep. A recruiter in Dubai searches at midnight, your profile answers for you, and you wake up to a message. That only happens if the window is clear."
+              ]
+            },
+            {
+              "heading": "The three sections that matter most",
+              "body": [
+                "Focus your energy here. First, the Headline. Do not just write your job title. Use your one-liner from Lesson 6: \"I help Gulf retailers cut new-hire turnover.\" This is the line people see most.",
+                "Second, the About section. Open with one strong sentence about the value you bring. Then add your Past-Pivot-Promise story in short paragraphs, two or three proof points with numbers, and a clear line on how to reach you. Write \"I,\" not \"he\" or \"she.\" Keep sentences short.",
+                "Third, your Experience. Under each role, do not list duties. List results. Change \"Responsible for training programmes\" to \"Built a training programme that cut new-hire turnover by 30 percent in one year.\" Results are what make a reader trust you."
+              ]
+            },
+            {
+              "heading": "Keywords help the right people find you",
+              "body": [
+                "LinkedIn is a search engine. If a recruiter searches for \"talent development KSA,\" your profile only appears if those words are on it. So use the real words your target audience searches for, in your headline, About, and experience.",
+                "Do not stuff keywords in an ugly way. Just make sure the two or three terms you want to be found for appear naturally a few times. A pay specialist should have \"compensation,\" \"reward,\" and \"pay\" across the profile, not hidden in one line nobody reads."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A profile is a forward-looking shop window, not a backward-looking CV.",
+            "Lead your headline with value, using your one-liner.",
+            "Open your About with value, then tell your story with proof.",
+            "Write results under each role, not duties.",
+            "Use the real keywords your audience searches for."
+          ],
+          "exercise": {
+            "title": "Rewrite your top three sections",
+            "prompt": "Rewrite your LinkedIn Headline using your one-liner. Rewrite the first sentence of your About to lead with value. Then pick your current role and turn one duty into a result with a number. Note the two or three keywords you want to be found for.",
+            "placeholder": "New headline: ...\nAbout opening line: ...\nDuty turned into result: ...\nMy keywords: ..."
+          },
+          "quiz": [
+            {
+              "q": "What is the biggest mistake in a LinkedIn 'Experience' section?",
+              "options": [
+                "Writing in the first person.",
+                "Listing duties instead of results.",
+                "Including the dates you worked there.",
+                "Adding the company name."
+              ],
+              "answer": 1,
+              "explain": "Duties tell people what you were assigned. Results tell people what you achieved. Results, ideally with a number, are what build a reader's trust."
+            },
+            {
+              "q": "A recruiter cannot find you when searching for your specialty. What is the most likely reason?",
+              "options": [
+                "Your profile photo is too small.",
+                "You have not connected with enough people.",
+                "The keywords your audience searches for do not appear naturally on your profile.",
+                "You used the first person in your About section."
+              ],
+              "answer": 2,
+              "explain": "LinkedIn is a search engine. If the exact terms a recruiter types are missing from your profile, you will not appear in their results, no matter how good your work is."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's rebuild your profile so it works while you sleep. We focus on three sections: headline, About, and experience. Paste any section and I will help you make it lead with value.",
+            "suggested": [
+              "Can you rewrite my headline to lead with value?",
+              "How many keywords is too many?",
+              "What proof points work if my results are hard to measure?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-8",
+          "title": "Content without cringe",
+          "mins": 21,
+          "hook": "Most people avoid posting because so much LinkedIn content feels fake. This lesson shows you how to share useful posts that sound like you, not a performer.",
+          "objectives": [
+            "By the end you can choose post topics that fit your position.",
+            "By the end you can use a simple structure to write a clear post.",
+            "By the end you can avoid the 'cringe' patterns that lose trust."
+          ],
+          "sections": [
+            {
+              "heading": "Why post at all",
+              "body": [
+                "Posting is how a small network learns what you know. You do not need to go viral. You need the right 200 people to slowly see your value. Over a year, regular useful posts make you the name people remember when a need appears.",
+                "The fear is sounding like a show-off or a fake guru. That fear is healthy. It will keep you honest. The goal is to be useful, not impressive."
+              ]
+            },
+            {
+              "heading": "Pick topics from your position",
+              "body": [
+                "Do not post about random things. Post inside your one thing (Lesson 5). Use three simple buckets. Bucket one, Lessons: something you learned from real work. Bucket two, Observations: a pattern you notice in your field. Bucket three, How-to: a small, practical tip the reader can use today.",
+                "A pay specialist in Riyadh might post: \"Three signs your bonus system is quietly pushing your best people out.\" That is useful, on-topic, and not bragging. It shows expertise by helping, not by boasting."
+              ]
+            },
+            {
+              "heading": "A simple post structure, and what to avoid",
+              "body": [
+                "Use the Hook-Value-Invite structure. Hook: one short line that makes people stop scrolling. Value: the real content, three short points or a short story. Invite: one honest question to start a conversation. Keep sentences short and use white space, because most people read on a phone.",
+                "Now avoid the cringe patterns. Avoid fake humility (\"I am so humbled to announce...\"). Avoid empty motivation with no real point. Avoid claiming to have all the answers. Avoid long, dramatic stories that exist only to praise yourself. The test is simple: would I say this out loud to a respected colleague over coffee? If not, rewrite it."
+              ]
+            }
+          ],
+          "takeaways": [
+            "You do not need to go viral; you need the right people to see your value.",
+            "Post inside your one thing, using Lessons, Observations, or How-to.",
+            "Use Hook, Value, Invite to structure a clear post.",
+            "Be useful, not impressive.",
+            "The coffee test: would you say this to a respected colleague out loud?"
+          ],
+          "exercise": {
+            "title": "Draft one honest post",
+            "prompt": "Pick one topic from your position using Lessons, Observations, or How-to. Write a post using Hook, Value, Invite. Keep sentences short. Then run the coffee test: would you say this out loud to a respected colleague? Edit out anything that fails.",
+            "placeholder": "Topic bucket: ...\nHook: ...\nValue (3 points or a short story): ...\nInvite (one question): ..."
+          },
+          "quiz": [
+            {
+              "q": "What is the main goal of posting for most professionals?",
+              "options": [
+                "To go viral and get the highest number of likes.",
+                "To be useful to the right people so they remember your value.",
+                "To prove you are smarter than others in your field.",
+                "To post every single day no matter what."
+              ],
+              "answer": 1,
+              "explain": "Reach for the right audience beats raw virality. Steady, useful posts make you the name people recall when a matching need appears."
+            },
+            {
+              "q": "Which post idea best avoids the 'cringe' trap?",
+              "options": [
+                "A long, dramatic story whose only point is how great you are.",
+                "\"I am so humbled and blessed to announce my own brilliance.\"",
+                "\"Three signs your bonus system is quietly losing your best people,\" with practical tips.",
+                "A motivational quote with no connection to your work."
+              ],
+              "answer": 2,
+              "explain": "It is on-topic, genuinely useful, and helps the reader rather than praising the writer. It passes the coffee test; the others do not."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's write a post that sounds like you, not a guru. We use Hook, Value, Invite, and the coffee test. Tell me your topic and I will help you shape it.",
+            "suggested": [
+              "How often should I post without burning out?",
+              "Can you check if my draft passes the coffee test?",
+              "What do I do if a post gets no engagement?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-9",
+          "title": "Engagement that builds relationships",
+          "mins": 17,
+          "hook": "Posting is only half the game. The real relationships come from how you engage with others. This lesson shows you how to do it well, not just collect connections.",
+          "objectives": [
+            "By the end you can leave comments that start real conversations.",
+            "By the end you can grow a network of relationships, not just numbers.",
+            "By the end you can use a simple weekly routine that takes 15 minutes."
+          ],
+          "sections": [
+            {
+              "heading": "Connections are not relationships",
+              "body": [
+                "Many people chase connection counts. A big number looks nice but does little. A relationship is different. It is a person who would reply to your message, take your call, or recommend you. Ten real relationships beat a thousand silent connections.",
+                "Engagement is how you turn a connection into a relationship. It is the daily, small act of showing up usefully in other people's space, not just your own."
+              ]
+            },
+            {
+              "heading": "Comments that add value",
+              "body": [
+                "A good comment is a mini-post. It adds a thought, shares a related example, or asks a real question. A weak comment is \"Great post!\" which adds nothing and is forgotten.",
+                "Use the Add-One-Thing rule: every comment should add one new idea, story, or question. For example, under a post about onboarding, instead of \"Nice,\" write: \"This matches what I see in Gulf retail. The first week sets the tone. We added a buddy on day one and turnover dropped. Did you try anything in week one specifically?\" That comment is seen by the writer and all their readers. It shows your value and starts a conversation."
+              ]
+            },
+            {
+              "heading": "A simple weekly routine",
+              "body": [
+                "Relationships need consistency, not intensity. Use a small, repeatable routine, the 15-Minute Round. Three times a week, spend 15 minutes doing three things: read posts from 10 people in your field, leave two thoughtful comments using Add-One-Thing, and send one warm, personal message to someone (not a sales pitch, just a genuine note).",
+                "Over three months, this quiet routine builds a real network. People start to know your name in a good way. When you later need an introduction or a referral, the relationship is already warm. Trust is built in small, regular steps, not in one big push."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A connection count is not a relationship.",
+            "Ten real relationships beat a thousand silent connections.",
+            "Use the Add-One-Thing rule so every comment adds value.",
+            "Send warm, personal messages, not sales pitches.",
+            "Use the 15-Minute Round three times a week for steady growth."
+          ],
+          "exercise": {
+            "title": "Your first 15-Minute Round",
+            "prompt": "Pick 10 people in your field to follow. Find two recent posts and write a comment on each using Add-One-Thing (a new idea, example, or question). Then send one warm, personal message to a contact with no ask attached. Note how it felt and one person who replied.",
+            "placeholder": "Two comments I left: ...\nWarm message I sent: ...\nWho replied: ..."
+          },
+          "quiz": [
+            {
+              "q": "What makes a comment build a relationship rather than waste a moment?",
+              "options": [
+                "It is short and says 'Great post!' quickly.",
+                "It adds one new idea, example, or real question to the conversation.",
+                "It includes a link to your own services.",
+                "It tags as many people as possible."
+              ],
+              "answer": 1,
+              "explain": "The Add-One-Thing rule turns a comment into a mini-post that the writer and their readers notice. Empty praise and self-promotion add nothing and are forgotten."
+            },
+            {
+              "q": "Which approach builds a strong network over three months?",
+              "options": [
+                "One huge burst of activity, then silence for weeks.",
+                "Sending the same sales message to hundreds of strangers.",
+                "A small, consistent routine of reading, commenting, and one warm message.",
+                "Only posting your own content and never engaging with others."
+              ],
+              "answer": 2,
+              "explain": "Relationships grow through consistency, not intensity. The 15-Minute Round, repeated three times a week, quietly builds trust that is ready when you need it."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's turn connections into real relationships. We use the Add-One-Thing rule and a simple 15-Minute Round. Want me to help you find people to follow or sharpen a comment?",
+            "suggested": [
+              "How do I comment on a senior leader's post without seeming pushy?",
+              "What do I write in a warm message with no ask?",
+              "How do I stay consistent when I am busy?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": "Visibility & Presence",
+      "lessons": [
+        {
+          "lessonId": "branding-10",
+          "title": "Visibility without self-promotion",
+          "mins": 15,
+          "hook": "You can become well known without ever bragging. This lesson shows you how to be visible by being useful, which feels natural and earns trust.",
+          "objectives": [
+            "By the end you can become visible without feeling like you are showing off.",
+            "By the end you can use a 'give first' approach to build a reputation.",
+            "By the end you can pick visibility actions that fit your personality."
+          ],
+          "sections": [
+            {
+              "heading": "Visibility is a result of usefulness",
+              "body": [
+                "Many people in the Gulf find self-promotion uncomfortable, and that is a fair instinct. The good news is that you do not need to promote yourself. You need to be useful in public. Visibility is what happens when many people see you help.",
+                "Flip the question. Do not ask \"how do I get noticed?\" Ask \"how can I be useful to people in my field?\" Answer that often enough, in public, and being noticed takes care of itself."
+              ]
+            },
+            {
+              "heading": "The 'give first' approach",
+              "body": [
+                "Build your reputation by giving before you ask. Share what you know freely. Answer questions. Introduce two people who should meet. Recommend a colleague's good work. Each act is small, but together they make you the helpful, generous person everyone respects.",
+                "Here is a real example. An HR leader in Dubai started answering questions in a regional HR group, with no sales pitch. She just helped. Within a year she was the person people tagged when a hard question appeared. She never once promoted herself. Her usefulness did the promoting for her. That is visibility that feels clean, because it is."
+              ]
+            },
+            {
+              "heading": "Choose actions that fit you",
+              "body": [
+                "Visibility does not mean you must perform on stage. Match the action to your nature. If you are quiet, write helpful posts or detailed comments, mentor one person well, or answer questions in a group. If you are outgoing, speak on a panel or run a small workshop.",
+                "Use the Comfort-Plus-One rule: pick the visibility action that is just one small step outside your comfort zone, not ten. Steady, comfortable visibility you can keep doing beats a single brave act you never repeat. Consistency is what builds a reputation."
+              ]
+            }
+          ],
+          "takeaways": [
+            "You do not need to self-promote; you need to be useful in public.",
+            "Ask 'how can I be useful?' instead of 'how do I get noticed?'",
+            "Use 'give first': share, answer, introduce, recommend.",
+            "Match visibility actions to your personality.",
+            "Use Comfort-Plus-One: one small step out, repeated often."
+          ],
+          "exercise": {
+            "title": "Plan three 'give first' actions",
+            "prompt": "Write three give-first actions you could do this month: one thing to share, one question to answer publicly, and one helpful introduction to make. Then pick the visibility style that fits you and choose one Comfort-Plus-One action to repeat weekly.",
+            "placeholder": "Share: ...\nAnswer: ...\nIntroduce: ...\nMy Comfort-Plus-One action: ..."
+          },
+          "quiz": [
+            {
+              "q": "What is the cleanest way to become visible without bragging?",
+              "options": [
+                "Announce every achievement loudly and often.",
+                "Be useful in public, so people notice you while you help them.",
+                "Wait quietly and hope someone discovers your work.",
+                "Only speak about yourself in every post."
+              ],
+              "answer": 1,
+              "explain": "Visibility is a result of usefulness. When you help in public, being noticed takes care of itself, and it never feels like self-promotion because it is not."
+            },
+            {
+              "q": "You are an introvert who dreads public speaking. What is the best visibility plan?",
+              "options": [
+                "Force yourself onto a big stage because that is the only way to be seen.",
+                "Decide visibility is impossible for you and give up.",
+                "Choose written, lower-key actions like helpful posts and mentoring, repeated consistently.",
+                "Pay for ads about yourself instead."
+              ],
+              "answer": 2,
+              "explain": "Match the action to your nature and use Comfort-Plus-One. Consistent, comfortable visibility builds a reputation far better than one brave act you never repeat."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's make you visible without the bragging. The secret is being useful in public and giving first. Tell me your comfort level and I will help you pick actions that fit.",
+            "suggested": [
+              "I hate self-promotion. Will this really work for me?",
+              "What can I give if I am early in my career?",
+              "How do I stay consistent with give-first actions?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-11",
+          "title": "Speaking, writing, and being cited",
+          "mins": 14,
+          "hook": "When others quote you, invite you to speak, or share your writing, your reputation grows on its own. This lesson shows you how to become a person worth citing.",
+          "objectives": [
+            "By the end you can choose one platform (speaking or writing) to grow.",
+            "By the end you can create work that others want to share and cite.",
+            "By the end you can take a small first step toward a speaking or writing habit."
+          ],
+          "sections": [
+            {
+              "heading": "Why being cited matters",
+              "body": [
+                "There is a level above being visible: being cited. This is when other people use your ideas, quote you, or invite you to speak. At this point your reputation grows without you pushing it. Others carry your name for you.",
+                "You reach this level by creating clear, useful ideas that are easy to repeat. A simple framework, a memorable phrase, or a strong short article gives people something to point to. They cite you because you made their job easier."
+              ]
+            },
+            {
+              "heading": "Pick one lane: speak or write",
+              "body": [
+                "Do not try to do everything at once. Choose the lane that fits you. If you think well on your feet and enjoy people, choose speaking: panels, small workshops, podcasts, internal talks. If you think best on paper, choose writing: articles, a short newsletter, or detailed posts.",
+                "Start small and local. A learning specialist in Riyadh did not aim for a big conference first. She offered to run a 30-minute session at a local HR meetup. It went well, someone recorded it, and that clip brought two more invitations. One small, good talk opened the next door. Going deep in one lane beats doing a little in many places."
+              ]
+            },
+            {
+              "heading": "Make work that travels",
+              "body": [
+                "To be cited, your ideas must be easy to carry. Use the Name-It rule: give your useful idea a simple, clear name. \"The 15-Minute Round\" is easier to share than \"a routine I do sometimes.\" A named idea sticks in people's minds and gets repeated.",
+                "Also make one strong point per piece, not ten weak ones. People remember and repeat single, clear ideas. When you give the field a clear, named idea that helps them, they will use it and credit you, and your reputation will travel further than you ever could in person."
+              ]
+            }
+          ],
+          "takeaways": [
+            "Being cited is when others carry your name for you.",
+            "Choose one lane, speaking or writing, that fits how you think.",
+            "Start small and local, then let good work open the next door.",
+            "Use the Name-It rule to make ideas easy to share.",
+            "Make one strong point per piece, not ten weak ones."
+          ],
+          "exercise": {
+            "title": "Choose your lane and name one idea",
+            "prompt": "Decide your lane: speaking or writing, and explain in one line why it fits you. Then take one useful idea from your work and give it a clear, simple name using the Name-It rule. Finally, write one small first step you can take in the next two weeks.",
+            "placeholder": "My lane: ... because ...\nMy named idea: ...\nMy small first step: ..."
+          },
+          "quiz": [
+            {
+              "q": "Why does giving your idea a clear name (the Name-It rule) help you get cited?",
+              "options": [
+                "Because long, complex names sound more expert.",
+                "Because a named idea is easy to remember and repeat, so people share and credit it.",
+                "Because names are required on LinkedIn.",
+                "Because it hides the idea from competitors."
+              ],
+              "answer": 1,
+              "explain": "A simple, named idea sticks in memory and travels by word of mouth. People can point to it and credit you, which spreads your reputation without you pushing."
+            },
+            {
+              "q": "You want to start speaking but have no big invitations. What is the smartest first move?",
+              "options": [
+                "Wait until a major conference invites you.",
+                "Offer a short session at a local meetup or an internal talk, then build from there.",
+                "Try to speak and write everywhere at once.",
+                "Decide you are not ready and do nothing."
+              ],
+              "answer": 1,
+              "explain": "Start small and local. One good, short talk creates proof and often leads to the next invitation. Going deep in one lane beats doing a little in many places."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "Let's make you worth citing. We choose one lane, speaking or writing, and name one clear idea. Which feels more like you, the stage or the page?",
+            "suggested": [
+              "How do I name an idea well?",
+              "Where do I find my first small speaking chance in the Gulf?",
+              "Speaking or writing: which should I pick?"
+            ]
+          }
+        },
+        {
+          "lessonId": "branding-12",
+          "title": "Turning reputation into opportunity",
+          "mins": 15,
+          "hook": "A strong reputation is only useful if it brings real opportunities. This final lesson shows you how to turn the brand you built into work, offers, and growth that come to you.",
+          "objectives": [
+            "By the end you can turn your reputation into opportunities that come to you.",
+            "By the end you can make a simple ask when the moment is right.",
+            "By the end you can keep your brand alive with a light, ongoing routine."
+          ],
+          "sections": [
+            {
+              "heading": "The point of a brand is the open door",
+              "body": [
+                "You have done the real work: a clear value proposition, a story, a strong profile, useful content, real relationships, and growing visibility. Now comes the payoff. A good brand makes opportunities come to you. People bring you work because they already know what you are good at.",
+                "This is the difference between chasing and attracting. When your reputation is clear, you spend less time applying and more time choosing. The door opens before you knock."
+              ]
+            },
+            {
+              "heading": "Make it easy to say yes",
+              "body": [
+                "When opportunities come to you, they need a clear path. Make it easy for people to act. Your profile should say plainly what you do and how to reach you. When someone shows interest, respond quickly and warmly.",
+                "There are also moments to make a gentle, direct ask. Use the Plant-the-Seed approach: after you help someone or finish good work, simply say what you are open to. \"If your team ever needs help with pay fairness, I would be glad to talk.\" This is not bragging. It is telling people how to use you. Most people will not guess; you have to plant the seed so they remember when the need appears."
+              ]
+            },
+            {
+              "heading": "Keep the brand alive",
+              "body": [
+                "A reputation fades if you stop showing up. But you do not need to do everything forever. Use a light maintenance routine, the Monthly Three: each month, post or share one useful thing, have one real conversation with someone in your network, and update one part of your profile or story if it has changed.",
+                "That small routine keeps your brand warm and current with very little effort. Think of it as watering a plant. A little, often, keeps it alive and growing. Over years, this quiet consistency is what turns a good reputation into a steady stream of the right opportunities. You have built the foundation in this course. The Monthly Three keeps it working for you."
+              ]
+            }
+          ],
+          "takeaways": [
+            "A strong brand makes opportunities come to you, so you choose instead of chase.",
+            "Make it easy to say yes: clear profile, fast warm replies.",
+            "Use Plant-the-Seed to make a gentle, direct ask after helping someone.",
+            "People will not guess your goals; you have to tell them.",
+            "Use the Monthly Three to keep your brand warm with little effort."
+          ],
+          "exercise": {
+            "title": "Plant a seed and set your routine",
+            "prompt": "Write one gentle, direct ask you could make this month using Plant-the-Seed, after helping someone or finishing good work. Then write your own Monthly Three: one thing to share, one conversation to have, and one profile part to keep updated.",
+            "placeholder": "My Plant-the-Seed ask: ...\nMonthly Three:\n1. Share: ...\n2. Conversation: ...\n3. Update: ..."
+          },
+          "quiz": [
+            {
+              "q": "After finishing a piece of good work for a contact, what is the smartest move to turn reputation into opportunity?",
+              "options": [
+                "Say nothing and hope they remember you later.",
+                "Send them a hard sales pitch for all your services.",
+                "Plant a seed: warmly mention one specific way you could help if the need ever arises.",
+                "Ask them to promote you to their whole company immediately."
+              ],
+              "answer": 2,
+              "explain": "Plant-the-Seed is direct but gentle. It tells people how to use you without pressure. Most people will not guess your goals, so a clear, friendly signal is what opens the door."
+            },
+            {
+              "q": "Why does the 'Monthly Three' routine matter once your brand is built?",
+              "options": [
+                "Because a brand needs constant, exhausting effort or it is worthless.",
+                "Because a reputation fades if you stop showing up, and a small steady routine keeps it warm.",
+                "Because you must post every day to stay relevant.",
+                "Because opportunities only come from paid advertising."
+              ],
+              "answer": 1,
+              "explain": "Reputations fade without presence, but maintenance does not require huge effort. Like watering a plant, a little done often keeps the brand alive and the opportunities flowing."
+            }
+          ],
+          "xp": 50,
+          "tutorSeed": {
+            "opening": "This is the payoff lesson: turning your reputation into real opportunities. We use Plant-the-Seed for gentle asks and the Monthly Three to stay warm. What opportunity are you hoping to attract?",
+            "suggested": [
+              "How do I make an ask without sounding desperate?",
+              "What should my Monthly Three look like?",
+              "How do I respond when an opportunity finally comes to me?"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

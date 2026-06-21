@@ -1,0 +1,243 @@
+{
+  "$schema": "estrella.academy.gamification/v1",
+  "brand": {
+    "name": "Estrella Academy",
+    "palette": { "cream": "#F2EBDC", "gold": "#B8985C", "ink": "#14120E" },
+    "typeface": "Cormorant",
+    "tone": "Elegant and earned, never like a children's game. Progress is a sign of real work, not a points race."
+  },
+
+  "xp": {
+    "unit": "Light",
+    "unitNote": "We call points 'Light'. You gather Light as you move through the academy. The numbers are shown, but kept calm and quiet.",
+    "rules": {
+      "lessonCompleted": 50,
+      "quizCorrectAnswer": 10,
+      "quizMasteryBonus": 40,
+      "courseCompletionBonus": 200,
+      "dailyStreakBonus": 15,
+      "trackCompletionBonus": 500
+    },
+    "notes": {
+      "lessonCompleted": "You earn 50 Light the first time you finish a lesson.",
+      "quizCorrectAnswer": "You earn 10 Light for each quiz question you answer correctly.",
+      "quizMasteryBonus": "You earn 40 extra Light when you get every answer in a quiz right on your first try. See scoring.mastery.",
+      "courseCompletionBonus": "You earn 200 Light one time, when you finish the last lesson of a course.",
+      "dailyStreakBonus": "You earn 15 Light once per day, on top of your lesson and quiz Light, as long as your streak is alive.",
+      "trackCompletionBonus": "You earn 500 Light one time, when you finish every course in a track."
+    }
+  },
+
+  "levels": {
+    "model": "Six levels. The names go from one small star up to a full group of stars. Each level needs a total amount of Light.",
+    "ladder": [
+      { "tier": 1, "name": "First Light",        "minXP": 0,     "blurb": "Your first lesson is done. The sky has one star now, and it is yours." },
+      { "tier": 2, "name": "Rising Star",         "minXP": 500,   "blurb": "You are building a habit. You keep coming back, and your light stays bright." },
+      { "tier": 3, "name": "Guiding Star",        "minXP": 1500,  "blurb": "You know enough to lead the way. Other people start to notice you." },
+      { "tier": 4, "name": "Star Pattern",        "minXP": 3500,  "blurb": "Your skills join together into one clear shape. People can see what you are good at." },
+      { "tier": 5, "name": "Bright Star",         "minXP": 6500,  "blurb": "Steady and strong. You are the person others look to in the room." },
+      { "tier": 6, "name": "Estrella",            "minXP": 10000, "blurb": "The name of the academy. Kept for those who finished the work and carry it well. 'Estrella' means 'star'." }
+    ]
+  },
+
+  "badges": {
+    "model": "Fifteen marks of honor. Each one is a small gold disc. Some are earned by finishing a course. Others are earned by how you show up and study.",
+    "catalog": [
+      {
+        "id": "first-step",
+        "name": "First Step",
+        "description": "You finished your first lesson. Every group of stars starts with one.",
+        "criteria": { "type": "behaviour", "event": "lesson.completed", "count": 1, "scope": "lifetime" }
+      },
+      {
+        "id": "flawless",
+        "name": "Full Marks",
+        "description": "You answered a whole quiz correctly on your first try. This is real skill, not luck.",
+        "criteria": { "type": "behaviour", "event": "quiz.mastery", "count": 1, "scope": "lifetime" }
+      },
+      {
+        "id": "in-flow",
+        "name": "Busy Day",
+        "description": "You finished three lessons in one day. You have good momentum.",
+        "criteria": { "type": "behaviour", "event": "lesson.completed", "count": 3, "scope": "sameDay" }
+      },
+      {
+        "id": "seven-nights",
+        "name": "Seven Days",
+        "description": "You studied every day for seven days in a row. This takes real discipline.",
+        "criteria": { "type": "behaviour", "event": "streak.reached", "days": 7 }
+      },
+      {
+        "id": "constant",
+        "name": "Always There",
+        "description": "You studied every day for thirty days in a row. Showing up has become part of who you are.",
+        "criteria": { "type": "behaviour", "event": "streak.reached", "days": 30 }
+      },
+      {
+        "id": "perfect-course",
+        "name": "Clean Sweep",
+        "description": "You got full marks on every quiz in one course, all on the first try.",
+        "criteria": { "type": "behaviour", "event": "course.allQuizzesMastered", "count": 1, "scope": "perCourse" }
+      },
+      {
+        "id": "track-finisher",
+        "name": "Whole Track",
+        "description": "You finished a full track from start to end. You did not stop halfway. You finished.",
+        "criteria": { "type": "behaviour", "event": "track.completed", "count": 1, "scope": "anyTrack" }
+      },
+      {
+        "id": "ai-hr-graduate",
+        "name": "AI for HR",
+        "description": "You finished the AI for HR course. You can now use AI as a tool to help your work, while you stay in charge of the decisions.",
+        "criteria": { "type": "course", "courseId": "ai-hr", "event": "course.completed" }
+      },
+      {
+        "id": "branding-graduate",
+        "name": "Your Brand",
+        "description": "You finished the Personal Branding course. You can say clearly what you stand for, and others can see it too.",
+        "criteria": { "type": "course", "courseId": "branding", "event": "course.completed" }
+      },
+      {
+        "id": "interview-graduate",
+        "name": "Interview Ready",
+        "description": "You finished the Interview course. You stay calm and clear when people ask you hard questions.",
+        "criteria": { "type": "course", "courseId": "interview", "event": "course.completed" }
+      },
+      {
+        "id": "foundations-graduate",
+        "name": "Strong Base",
+        "description": "You finished the HR Foundations course. You now know the main rules that all HR work is built on.",
+        "criteria": { "type": "course", "courseId": "hr-foundations", "event": "course.completed" }
+      },
+      {
+        "id": "speaking-graduate",
+        "name": "Clear Voice",
+        "description": "You finished the Public Speaking course. You can hold a room with a calm and clear voice.",
+        "criteria": { "type": "course", "courseId": "speaking", "event": "course.completed" }
+      },
+      {
+        "id": "confidence-graduate",
+        "name": "Quiet Confidence",
+        "description": "You finished the Confidence course. You feel sure of yourself in a calm, steady way.",
+        "criteria": { "type": "course", "courseId": "confidence", "event": "course.completed" }
+      },
+      {
+        "id": "leadership-graduate",
+        "name": "Ready to Lead",
+        "description": "You finished the Leadership course. People can follow how you make and stand by your decisions.",
+        "criteria": { "type": "course", "courseId": "leadership", "event": "course.completed" }
+      },
+      {
+        "id": "offer-graduate",
+        "name": "Offer in Hand",
+        "description": "You finished the Offer and Pay course. You can ask for fair pay for your work, and get it.",
+        "criteria": { "type": "course", "courseId": "offer", "event": "course.completed" }
+      }
+    ]
+  },
+
+  "scoring": {
+    "model": "We score each quiz in a kind way. We reward learning, not being perfect on the first try. But we still mark it when you do reach full marks.",
+    "perCorrectAnswer": 10,
+    "passThreshold": 0.7,
+    "passThresholdNote": "You pass a quiz with 70 percent correct or more. Passing opens the next lesson.",
+    "retries": {
+      "allowed": true,
+      "note": "You can take a quiz again to learn from your mistakes. You earn Light for each correct answer only once, so taking the quiz again does not give you more Light."
+    },
+    "mastery": {
+      "rule": "Mastery means you answered every single question in a quiz correctly on your first try, with no retries.",
+      "reward": { "xpBonus": 40, "contributesTo": ["flawless", "perfect-course"] },
+      "courseMastery": "When you reach Mastery on every quiz in a course, the course is marked 'Mastered' and you earn the Clean Sweep badge."
+    }
+  },
+
+  "streak": {
+    "model": "A streak counts the days in a row that you study. A day counts when you finish at least one lesson or pass at least one quiz that day.",
+    "qualifyingActivity": ["lesson.completed", "quiz.passed"],
+    "dailyBonusXP": 15,
+    "timezone": "learnerLocal",
+    "grace": {
+      "freezeTokens": 1,
+      "note": "Each learner gets one 'Free Day' every 30 days. This is one missed day that will not break your streak. It comes back on its own. We do not make a game out of missing days."
+    },
+    "milestones": [
+      { "days": 7, "reward": { "badge": "seven-nights" } },
+      { "days": 30, "reward": { "badge": "constant" } }
+    ]
+  },
+
+  "tracks": {
+    "model": "Three set paths. A course can be in more than one track. To finish a track, you must finish all the courses listed in it.",
+    "list": [
+      {
+        "id": "foundation",
+        "name": "Foundation",
+        "blurb": "The base you build a career on. Learn the main rules, how to carry yourself, and how to feel sure of yourself before you specialise.",
+        "courses": ["hr-foundations", "confidence", "branding"],
+        "reward": {
+          "xpBonus": 500,
+          "badge": "track-finisher",
+          "title": "Grounded",
+          "titleNote": "Shown as a title on your profile."
+        }
+      },
+      {
+        "id": "signature",
+        "name": "Signature",
+        "blurb": "The work that makes you stand out and gets you noticed. Build your voice, your brand, your leadership, and your AI skills.",
+        "courses": ["branding", "speaking", "leadership", "ai-hr"],
+        "reward": {
+          "xpBonus": 500,
+          "badge": "track-finisher",
+          "title": "Named",
+          "titleNote": "Shown as a title on your profile."
+        }
+      },
+      {
+        "id": "interview",
+        "name": "Interview",
+        "blurb": "From the first question to the signed offer. Stay calm, tell your story well, and ask for fair pay.",
+        "courses": ["interview", "speaking", "offer"],
+        "reward": {
+          "xpBonus": 500,
+          "badge": "track-finisher",
+          "title": "Interview Ready",
+          "titleNote": "Shown as a title on your profile."
+        }
+      }
+    ]
+  },
+
+  "certificate": {
+    "model": "Given one time for each course you finish. It uses the brand colors, the Cormorant font, and a gold line on a cream background. It is signed.",
+    "fields": {
+      "recipientName": "string",
+      "courseId": "string",
+      "courseTitle": "string",
+      "track": "string | null",
+      "issuedOn": "ISO-8601 date",
+      "masteryAttained": "boolean",
+      "finalScore": "number (0-100)",
+      "certificateId": "string (for example ESTR-AIHR-2026-0001)",
+      "verificationUrl": "string",
+      "issuingAcademy": "Estrella Academy",
+      "signatory": "Nesreen",
+      "signatoryTitle": "Lead Trainer, Estrella Academy"
+    },
+    "copy": {
+      "congratulatory": "You did the real work, and it shows. This is more than a finished course. It is a new skill that is now yours to keep.",
+      "signature": "With pride in your progress,\nNesreen, Lead Trainer, Estrella Academy"
+    },
+    "masteryVariant": {
+      "condition": "masteryAttained == true",
+      "sealText": "Finished with Full Marks",
+      "note": "Adds a small gold seal next to the signature."
+    }
+  },
+
+  "pedagogy": {
+    "framework": "Bloom's taxonomy, used as a path inside each course.",
+    "note": "Every course climbs the same six steps, from easy to deep. The first lessons are 'Remember' and 'Understand'. We name the idea and make sure it is clear. The middle lessons are 'Apply' and 'Analyze'. Here you use the skill on a real example from your own work, not a textbook one. The last lessons are 'Evaluate' and 'Create'. Here you make a real choice and explain it, or build something of your own, like a brand statement, a pay talk plan, or a leadership decision. The quizzes follow the same path: simple memory questions early, and real judgment questions late. So 'Mastery' near the end of a course shows true, used skill, not just memory. Light and badges are set to reward finishing the hard last steps, not just the easy first ones."
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "courses": [
+    {
+      "id": "ai-hr",
+      "title": "AI for HR Leaders",
+      "track": "signature",
+      "tracks": [
+        "signature"
+      ],
+      "lessonCount": 16,
+      "lessonIds": [
+        "ai-hr-1",
+        "ai-hr-2",
+        "ai-hr-3",
+        "ai-hr-4",
+        "ai-hr-5",
+        "ai-hr-6",
+        "ai-hr-7",
+        "ai-hr-8",
+        "ai-hr-9",
+        "ai-hr-10",
+        "ai-hr-11",
+        "ai-hr-12",
+        "ai-hr-13",
+        "ai-hr-14",
+        "ai-hr-15",
+        "ai-hr-16"
+      ]
+    },
+    {
+      "id": "branding",
+      "title": "Personal Branding",
+      "track": [
+        "foundation",
+        "signature"
+      ],
+      "tracks": [
+        "foundation",
+        "signature"
+      ],
+      "lessonCount": 12,
+      "lessonIds": [
+        "branding-1",
+        "branding-2",
+        "branding-3",
+        "branding-4",
+        "branding-5",
+        "branding-6",
+        "branding-7",
+        "branding-8",
+        "branding-9",
+        "branding-10",
+        "branding-11",
+        "branding-12"
+      ]
+    },
+    {
+      "id": "interview",
+      "title": "Interview Mastery",
+      "track": "interview",
+      "tracks": [
+        "interview"
+      ],
+      "lessonCount": 12,
+      "lessonIds": [
+        "interview-1",
+        "interview-2",
+        "interview-3",
+        "interview-4",
+        "interview-5",
+        "interview-6",
+        "interview-7",
+        "interview-8",
+        "interview-9",
+        "interview-10",
+        "interview-11",
+        "interview-12"
+      ]
+    },
+    {
+      "id": "hr-foundations",
+      "title": "Modern HR Foundations",
+      "track": "foundation",
+      "tracks": [
+        "foundation"
+      ],
+      "lessonCount": 12,
+      "lessonIds": [
+        "hr-foundations-1",
+        "hr-foundations-2",
+        "hr-foundations-3",
+        "hr-foundations-4",
+        "hr-foundations-5",
+        "hr-foundations-6",
+        "hr-foundations-7",
+        "hr-foundations-8",
+        "hr-foundations-9",
+        "hr-foundations-10",
+        "hr-foundations-11",
+        "hr-foundations-12"
+      ]
+    },
+    {
+      "id": "speaking",
+      "title": "Public Speaking & Executive Presence",
+      "track": [
+        "signature",
+        "interview"
+      ],
+      "tracks": [
+        "signature",
+        "interview"
+      ],
+      "lessonCount": 12,
+      "lessonIds": [
+        "speaking-1",
+        "speaking-2",
+        "speaking-3",
+        "speaking-4",
+        "speaking-5",
+        "speaking-6",
+        "speaking-7",
+        "speaking-8",
+        "speaking-9",
+        "speaking-10",
+        "speaking-11",
+        "speaking-12"
+      ]
+    },
+    {
+      "id": "confidence",
+      "title": "Confidence Reset",
+      "track": "foundation",
+      "tracks": [
+        "foundation"
+      ],
+      "lessonCount": 6,
+      "lessonIds": [
+        "confidence-1",
+        "confidence-2",
+        "confidence-3",
+        "confidence-4",
+        "confidence-5",
+        "confidence-6"
+      ]
+    },
+    {
+      "id": "leadership",
+      "title": "Leadership Without Burnout",
+      "track": "signature",
+      "tracks": [
+        "signature"
+      ],
+      "lessonCount": 6,
+      "lessonIds": [
+        "leadership-1",
+        "leadership-2",
+        "leadership-3",
+        "leadership-4",
+        "leadership-5",
+        "leadership-6"
+      ]
+    },
+    {
+      "id": "offer",
+      "title": "The Offer Machine",
+      "track": "interview",
+      "tracks": [
+        "interview"
+      ],
+      "lessonCount": 6,
+      "lessonIds": [
+        "offer-1",
+        "offer-2",
+        "offer-3",
+        "offer-4",
+        "offer-5",
+        "offer-6"
+      ]
+    }
+  ],
+  "totals": {
+    "courses": 8,
+    "lessons": 82
+  }
+}
