@@ -250,15 +250,16 @@ body{
 .view.landing{overflow:hidden}
 .hero{
   min-height:calc(100vh - var(--nav-h));
-  display:grid;grid-template-columns:minmax(0, 1.05fr) minmax(0, 1fr);
-  align-items:stretch;
+  display:block;
   padding:0;max-width:none;margin:0;
   position:relative;
-  gap:0;
+  overflow:hidden;
 }
 .hero-content{
   padding:4rem 3rem 4rem clamp(2rem, 6vw, 6rem);
   max-width:760px;
+  width:min(48vw, 760px);
+  min-height:calc(100vh - var(--nav-h));
   display:flex;flex-direction:column;justify-content:center;
   z-index:2;position:relative;
 }
@@ -287,10 +288,12 @@ body{
 
 /* Hero visual — full-bleed portrait */
 .hero-visual{
-  position:relative;
-  min-height:calc(100vh - 80px);
+  position:absolute;
+  inset:0;
+  min-height:0;
   overflow:hidden;
   background:var(--bg);
+  z-index:1;
 }
 .hero-portrait{
   position:absolute;inset:0;
@@ -298,15 +301,17 @@ body{
 .hero-portrait img{
   width:100%;height:100%;
   object-fit:cover;
-  object-position:center 18%;
+  object-position:center center;
   display:block;
 }
-/* Soft left-edge blend into cream */
-.hero-portrait::after{
+.hero-visual::before{
   content:"";position:absolute;
-  left:0;top:0;bottom:0;width:240px;
-  background:linear-gradient(to right, var(--bg) 0%, rgba(242,235,220,0.6) 35%, rgba(242,235,220,0.15) 70%, transparent 100%);
+  inset:0;
+  background:linear-gradient(90deg, rgba(242,235,220,0.96) 0%, rgba(242,235,220,0.84) 24%, rgba(242,235,220,0.46) 45%, rgba(242,235,220,0.08) 64%, transparent 82%);
   pointer-events:none;z-index:2;
+}
+.hero-portrait::after{
+  display:none;
 }
 /* Concentric ring behind subject */
 .hero-rings{
@@ -3412,13 +3417,14 @@ body{
 
 /* Responsive */
 @media(max-width:1024px){
-  .hero{grid-template-columns:1fr;text-align:left;padding:0;gap:0}
-  .hero-content{padding:3rem 2rem;max-width:none;text-align:center;align-items:center}
+  .hero{display:flex;flex-direction:column;text-align:left;padding:0;gap:0}
+  .hero-content{padding:3rem 2rem;max-width:none;width:100%;min-height:auto;text-align:center;align-items:center}
   .hero-eyebrow{justify-content:center}
   .hero-trust{justify-content:center;text-align:center;flex-direction:column;gap:0.75rem;margin:2.5rem auto 0}
   .hero-ctas{justify-content:center}
-  .hero-visual{min-height:500px;order:-1}
-  .hero-portrait img{object-position:center 15%}
+  .hero-visual{position:relative;min-height:500px;order:-1}
+  .hero-visual::before{display:none}
+  .hero-portrait img{object-position:65% center}
   .hero-portrait::after{display:none}
   .hero-rings{width:380px;height:380px;left:50%}
   .orb-stage{width:340px;height:340px}
@@ -3512,7 +3518,7 @@ body{
 
       <div class="hero-visual">
         <div class="hero-portrait">
-          <img src="nesreen-hero.jpg" alt="Nesreen — Founder of Estrella" onerror="this.style.display='none';this.parentElement.nextElementSibling.style.display='flex'"/>
+          <img src="portrait_face_enhanced_v1.png" alt="Nesreen — Founder of Estrella" onerror="this.style.display='none';this.parentElement.nextElementSibling.style.display='flex'"/>
         </div>
         <div class="hero-placeholder">
           <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
