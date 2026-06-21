@@ -2632,9 +2632,11 @@ body{
 .practice-coach-portrait{
   grid-column:1;
   margin:0;
+  width:100%;
   min-height:0;
   height:100%;
   align-self:stretch;
+  background:linear-gradient(180deg,#F5E8D2 0%,#E3BA80 100%);
 }
 .practice-coach-portrait img{
   width:100%;
@@ -2642,7 +2644,7 @@ body{
   min-height:calc(100dvh - var(--nav-h) - 1.25rem);
   display:block;
   object-fit:cover;
-  object-position:50% 16%;
+  object-position:50% 44%;
   filter:none;
   mask-image:linear-gradient(to bottom, #000 0%, #000 68%, rgba(0,0,0,0.35) 84%, transparent 97%);
   -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 68%, rgba(0,0,0,0.35) 84%, transparent 97%);
@@ -3083,7 +3085,9 @@ body{
     padding:calc(var(--nav-h) + 0.75rem) 1.25rem 2rem;
   }
   .practice-stage{grid-template-columns:1fr}
-  .practice-coach-portrait img{min-height:260px;height:300px;object-position:50% 12%}
+  .practice-coach-portrait,.practice-col-right{grid-column:1}
+  .practice-coach-portrait{height:auto}
+  .practice-coach-portrait img{min-height:260px;height:300px;object-position:50% 21%}
   .practice-col-right{gap:1rem}
   .session-brief-preview{margin-top:0}
   .practice-footnav{
@@ -3750,7 +3754,7 @@ body{
 
       <div class="practice-stage">
         <figure class="practice-coach-portrait">
-          <img src="nesreen-coaching.jpg" alt="Nesreen Abdelhakim" onerror="this.src='nesreen-coaching-editorial.jpg'"/>
+          <img src="nesreen-coaching-v2.png" alt="Nesreen Abdelhakim" onerror="this.src='nesreen-coaching.jpg'"/>
         </figure>
 
         <div class="practice-col-right">
