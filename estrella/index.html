@@ -3631,7 +3631,7 @@ body{
           <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
           <span class="hero-divider-line"></span>
         </div>
-        <p class="hero-sub">For ambitious women in the Gulf who want sharper self-trust, influence, and direction. Estrella prepares your story before you meet Nesreen.</p>
+        <p class="hero-sub">For ambitious professionals in the Gulf who want sharper self-trust, influence, and direction. Estrella prepares your story before you meet Nesreen.</p>
         <div class="hero-options" aria-label="Choose your path">
           <button class="hero-option hero-option-primary" type="button" data-view="start">
             <span class="hero-option-label">Recommended start</span>
@@ -5035,6 +5035,9 @@ const monthNames = ['January','February','March','April','May','June','July','Au
 const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 /* ============================== VIEW SWITCHING ============================== */
+let isViewSwitching = false;
+let viewSwitchFallback = null;
+
 function afterViewSwitch(viewId, current){
   current.classList.remove('outgoing');
   const next = document.getElementById('view-' + viewId);
@@ -5073,9 +5076,7 @@ function afterViewSwitch(viewId, current){
     if(isPortal){a.classList.remove('active')}
   });
 
-  // Hide topnav for some views
-  const hideNav = ['onboarding','readiness','start','lesson'];
-  document.getElementById('topnav').classList.toggle('hidden', hideNav.includes(viewId));
+  document.getElementById('topnav').classList.remove('hidden');
 
   // Reset /start when entered (clean slate each visit)
   if(viewId === 'start' && typeof startReset === 'function') startReset();
@@ -5093,19 +5094,34 @@ function afterViewSwitch(viewId, current){
 function switchView(viewId){
   const current = document.querySelector('.view.active');
   const next = document.getElementById('view-' + viewId);
-  if(!next || current === next) return;
+  if(!next || current === next || isViewSwitching) return;
   if(viewId==='academy' && typeof aRenderHeader==='function'){ try{ aRenderHeader(); }catch(e){} }
+  if(!current){
+    document.querySelectorAll('.view.outgoing').forEach(v => v.classList.remove('outgoing'));
+    afterViewSwitch(viewId, next);
+    return;
+  }
+
+  isViewSwitching = true;
+  const finishSwitch = () => {
+    if(!isViewSwitching) return;
+    isViewSwitching = false;
+    clearTimeout(viewSwitchFallback);
+    viewSwitchFallback = null;
+    afterViewSwitch(viewId, current);
+  };
 
   if(window.EstrellaGsap){
     current.classList.remove('active');
-    window.EstrellaGsap.switchView(current, next, () => afterViewSwitch(viewId, current));
+    viewSwitchFallback = setTimeout(finishSwitch, 1400);
+    window.EstrellaGsap.switchView(current, next, finishSwitch);
     return;
   }
 
   current.classList.add('outgoing');
   current.classList.remove('active');
 
-  setTimeout(() => afterViewSwitch(viewId, current), 350);
+  setTimeout(finishSwitch, 350);
 }
 
 // Wire up all data-view buttons
