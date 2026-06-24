@@ -6030,7 +6030,7 @@ body{
             <div class="acad-course-list" id="courses-grid"></div>
           </section>
 
-          <section class="acad-panel acad-preview-panel" id="acad-course-preview" aria-live="polite"></section>
+          <section class="acad-panel acad-preview-panel" id="acad-course-preview" aria-label="Selected course"></section>
 
           <aside class="acad-panel acad-guide-panel">
             <div class="acad-panel-head">
@@ -7886,8 +7886,11 @@ function courseSigil(course, variant='thumb'){
 function courseVisual(course, variant='thumb'){
   const cover = COURSE_COVER_FILES[course.id];
   if(!cover) return courseSigil(course, variant);
-  const label = variant === 'preview' ? `<span class="course-cover-label"><span>Estrella Academy</span><strong>${course.title}</strong></span>` : '';
-  return `<div class="course-cover course-cover-${variant}" role="img" aria-label="${course.title}">
+  const isPreview = variant === 'preview';
+  const label = isPreview ? `<span class="course-cover-label"><span>Estrella Academy</span><strong>${course.title}</strong></span>` : '';
+  // Thumb covers are decorative — the row's visible title already names the button.
+  const a11y = isPreview ? `role="img" aria-label="${course.title}"` : 'aria-hidden="true"';
+  return `<div class="course-cover course-cover-${variant}" ${a11y}>
     ${courseSigil(course, variant)}
     <img src="${cover}" alt="" loading="lazy" onerror="this.remove()">
     ${label}
