@@ -1820,6 +1820,13 @@ body{
   letter-spacing:0;
   text-transform:none;
 }
+.acad-panel-head .acad-panel-title{
+  margin:0;
+  font:inherit;
+  letter-spacing:inherit;
+  text-transform:inherit;
+  color:inherit;
+}
 .acad-course-list{
   height:calc(100% - 51px);
   display:flex;
@@ -1981,14 +1988,17 @@ body{
   font-weight:800;
   color:rgba(244,218,164,0.95);
 }
-.course-cover-label strong{
+.course-cover-label strong,
+.course-cover-label .course-cover-title{
   display:block;
+  margin:0;
   max-width:14ch;
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(1.2rem,3.3vw,2.25rem);
   font-weight:600;
   line-height:0.94;
   letter-spacing:0;
+  color:inherit;
 }
 .course-cover-thumb{
   width:48px;
@@ -6024,7 +6034,7 @@ body{
         <div class="academy-workspace">
           <section class="acad-panel acad-rail-panel" aria-label="Courses">
             <div class="acad-panel-head">
-              <span>Courses</span>
+              <h2 class="acad-panel-title">Courses</h2>
               <strong id="acad-course-count">8</strong>
             </div>
             <div class="acad-course-list" id="courses-grid"></div>
@@ -6034,7 +6044,7 @@ body{
 
           <aside class="acad-panel acad-guide-panel">
             <div class="acad-panel-head">
-              <span>How it works</span>
+              <h2 class="acad-panel-title">How it works</h2>
               <strong>3 steps</strong>
             </div>
             <div class="acad-flow">
@@ -7887,9 +7897,10 @@ function courseVisual(course, variant='thumb'){
   const cover = COURSE_COVER_FILES[course.id];
   if(!cover) return courseSigil(course, variant);
   const isPreview = variant === 'preview';
-  const label = isPreview ? `<span class="course-cover-label"><span>Estrella Academy</span><strong>${course.title}</strong></span>` : '';
+  // The featured title doubles as the panel heading (h2); the decorative photo carries alt="".
+  const label = isPreview ? `<span class="course-cover-label"><span>Estrella Academy</span><h2 class="course-cover-title">${course.title}</h2></span>` : '';
   // Thumb covers are decorative — the row's visible title already names the button.
-  const a11y = isPreview ? `role="img" aria-label="${course.title}"` : 'aria-hidden="true"';
+  const a11y = isPreview ? '' : 'aria-hidden="true"';
   return `<div class="course-cover course-cover-${variant}" ${a11y}>
     ${courseSigil(course, variant)}
     <img src="${cover}" alt="" loading="lazy" onerror="this.remove()">
