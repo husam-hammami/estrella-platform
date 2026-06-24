@@ -8233,11 +8233,23 @@ function aRenderHeader(){
   const lv = aLevel();
   const earned = AST.badges.map(id=>BADGES.find(b=>b.id===id)).filter(Boolean);
   const doneLessons = Object.values(AST.lessons).filter(l=>l.completed).length;
+  const empty = (AST.xp||0)===0 && doneLessons===0 && !(AST.streak && AST.streak.count);
+  if(empty){
+    // New visitor: a quiet invitation beats a scoreboard of zeros on the landing fold.
+    host.innerHTML = `
+    <div class="gb-row gb-row-empty">
+      <div class="gb-level">
+        <div class="gb-orb">${STAR_SVG}</div>
+        <div><div class="gb-level-name">${esc(lv.tier.name)}</div><div class="gb-xp">Start your first lesson to begin earning progress.</div></div>
+      </div>
+    </div>`;
+    return;
+  }
   host.innerHTML = `
     <div class="gb-row">
       <div class="gb-level">
         <div class="gb-orb">${STAR_SVG}</div>
-        <div><div class="gb-level-name">${esc(lv.tier.name)}</div><div class="gb-xp">${AST.xp.toLocaleString()} Light${lv.next?' · '+(lv.next.minXP-AST.xp).toLocaleString()+' to '+esc(lv.next.name):''}</div></div>
+        <div><div class="gb-level-name">${esc(lv.tier.name)}</div><div class="gb-xp">${AST.xp.toLocaleString()} XP${lv.next?' · '+(lv.next.minXP-AST.xp).toLocaleString()+' to '+esc(lv.next.name):''}</div></div>
       </div>
       <div class="gb-stat"><span class="gb-n">${doneLessons}</span><span class="gb-l">/ 82 lessons</span></div>
       <div class="gb-stat"><span class="gb-n">${AST.streak.count}</span><span class="gb-l">day streak</span></div>
