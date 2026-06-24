@@ -1822,10 +1822,17 @@ body{
   flex-direction:column;
   gap:0.5rem;
   padding:0.75rem;
-  overflow:hidden;
+  overflow-y:auto;
+  overflow-x:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(151,121,63,0.4) transparent;
+  scrollbar-gutter:stable;
 }
+.acad-course-list::-webkit-scrollbar{width:8px}
+.acad-course-list::-webkit-scrollbar-thumb{background:rgba(151,121,63,0.35);border-radius:99px;border:2px solid transparent;background-clip:padding-box}
 .acad-course-row{
   width:100%;
+  flex-shrink:0;
   min-height:58px;
   display:grid;
   grid-template-columns:48px minmax(0,1fr);
@@ -2012,14 +2019,14 @@ body{
   border-radius:7px;
 }
 .acad-course-row-title{
-  display:block;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
   font-size:0.86rem;
   font-weight:700;
-  line-height:1.14;
+  line-height:1.2;
   color:var(--ink);
-  white-space:nowrap;
   overflow:hidden;
-  text-overflow:ellipsis;
 }
 .acad-course-row-meta{
   display:block;
@@ -2417,9 +2424,6 @@ body{
   .academy-workspace{
     grid-template-columns:1fr;
   }
-  .acad-rail-panel{
-    display:none;
-  }
   .acad-preview-panel{
     grid-template-rows:minmax(230px,0.95fr) auto minmax(0,1fr);
   }
@@ -2450,6 +2454,19 @@ body{
   .cd-bottom{
     display:none;
   }
+}
+
+/* Academy: below 1024px, release the single-viewport lock and let the view scroll
+   so the full 8-course catalogue stays reachable instead of being clipped/hidden */
+@media (max-width:1024px){
+  #view-academy{overflow-y:auto;overflow-x:hidden}
+  #view-academy.dash-body{padding-bottom:88px}
+  #view-academy .academy-container{height:auto;overflow:visible}
+  #view-academy .academy-shell{height:auto;min-height:0}
+  #view-academy .academy-workspace{grid-template-columns:1fr;min-height:0}
+  #view-academy .acad-rail-panel{display:flex;flex-direction:column;min-height:0}
+  #view-academy .acad-rail-panel .acad-course-list{height:auto;max-height:none;overflow:visible}
+  #view-academy .acad-preview-panel{min-height:0}
 }
 
 @media (max-width:560px){
@@ -7886,7 +7903,7 @@ function renderCourses(filter, selectedId){
 
   grid.className = 'acad-course-list';
   grid.innerHTML = list.map(c => `
-    <button class="acad-course-row ${c.id===academySelectedId?'active':''}" type="button" data-course="${c.id}">
+    <button class="acad-course-row ${c.id===academySelectedId?'active':''}" type="button" data-course="${c.id}" title="${c.title}">
       ${courseVisual(c,'thumb')}
       <span>
         <span class="acad-course-row-title">${c.title}</span>
