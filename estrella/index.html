@@ -6571,6 +6571,27 @@ body{
 }
 .lp-tutor-input input{background:#EFE4D1}
 
+/* Lesson player: scroll the main column (the JS already tracks scroll progress
+   + sticky bar) instead of clipping every card to fit one fixed screen.
+   Removes the overflow:hidden / fixed-row / line-clamp cramming that cut text
+   mid-sentence and made the quiz button overlap the options. */
+#view-lesson .lp-main{overflow-y:auto;overflow-x:hidden;min-height:0;scrollbar-width:thin;scrollbar-color:rgba(151,121,63,0.4) transparent}
+#view-lesson .lp-inner{height:auto;min-height:100%;grid-template-rows:auto;gap:0.9rem}
+#view-lesson .lp-lesson-grid{grid-template-rows:auto;align-items:start}
+#view-lesson .lp-card{overflow:visible;min-height:0}
+#view-lesson .lp-card p{-webkit-line-clamp:unset;display:block;overflow:visible}
+#view-lesson .lp-map-list{overflow:visible;grid-template-rows:auto}
+#view-lesson .lp-map-item{overflow:visible}
+#view-lesson .lp-map-item span{-webkit-line-clamp:unset;display:block;overflow:visible}
+#view-lesson .lp-objective-list li,#view-lesson .lp-takeaway-list li{overflow:visible}
+#view-lesson .lp-q-text{font-size:0.9rem;line-height:1.3}
+#view-lesson .lp-opt{min-height:44px;font-size:0.82rem;line-height:1.25;padding:0.55rem 0.7rem;white-space:normal;align-items:center}
+#view-lesson .lp-title{max-width:22ch;font-size:clamp(1.9rem,2.6vw,2.9rem);line-height:0.98}
+@media (max-width:700px){
+  #view-lesson .lp-lesson-grid{grid-template-columns:1fr}
+  #view-lesson .lp-title{max-width:100%;font-size:1.6rem}
+}
+
 @media (max-width:1180px){
   #view-course .cd-cockpit{grid-template-columns:minmax(0,1fr) minmax(260px,300px)}
   #view-course .cd-focus{grid-template-columns:minmax(260px,0.7fr) minmax(0,1fr)}
@@ -8193,7 +8214,7 @@ function aBody(L){
 
   const quizPanel = `
     <section class="lp-card">
-      ${quiz.length ? `<div class="lp-quiz" id="lp-quiz"><div class="lp-quiz-head"><span class="lp-quiz-label">Quick check</span><span class="lp-quiz-sub">Answer to finish and earn Light.</span></div>${quiz.map((q,i)=>`<div class="lp-q" data-q="${i}"><div class="lp-q-text">${i+1}. ${esc(aClip(q.q, 76))}</div><div class="lp-q-opts">${q.options.map((o,j)=>`<button type="button" class="lp-opt" data-q="${i}" data-o="${j}">${esc(aClip(o, 28))}</button>`).join('')}</div><div class="lp-q-explain" hidden></div></div>`).join('')}<div class="lp-quiz-foot"><button class="btn btn-primary btn-sm" id="lp-quiz-check">Check answers</button><span class="lp-quiz-result" id="lp-quiz-result"></span></div></div>` : `<div class="lp-panel-label">Finish</div><p>Complete the practice, then mark this lesson done.</p>`}
+      ${quiz.length ? `<div class="lp-quiz" id="lp-quiz"><div class="lp-quiz-head"><span class="lp-quiz-label">Quick check</span><span class="lp-quiz-sub">Answer to finish and earn Light.</span></div>${quiz.map((q,i)=>`<div class="lp-q" data-q="${i}"><div class="lp-q-text">${i+1}. ${esc(aClip(q.q, 130))}</div><div class="lp-q-opts">${q.options.map((o,j)=>`<button type="button" class="lp-opt" data-q="${i}" data-o="${j}">${esc(aClip(o, 110))}</button>`).join('')}</div><div class="lp-q-explain" hidden></div></div>`).join('')}<div class="lp-quiz-foot"><button class="btn btn-primary btn-sm" id="lp-quiz-check">Check answers</button><span class="lp-quiz-result" id="lp-quiz-result"></span></div></div>` : `<div class="lp-panel-label">Finish</div><p>Complete the practice, then mark this lesson done.</p>`}
     </section>`;
 
   return `<div class="lp-lesson-grid">${focus}${map}${practice}${quizPanel}</div>`;
