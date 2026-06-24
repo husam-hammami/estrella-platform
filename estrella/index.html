@@ -6581,9 +6581,11 @@ body{
    Removes the overflow:hidden / fixed-row / line-clamp cramming that cut text
    mid-sentence and made the quiz button overlap the options. */
 #view-lesson .lp-main{overflow-y:auto;overflow-x:hidden;min-height:0;scrollbar-width:thin;scrollbar-color:rgba(151,121,63,0.4) transparent}
-#view-lesson .lp-inner{height:auto;min-height:100%;grid-template-rows:auto;gap:0.9rem}
-#view-lesson .lp-lesson-grid{grid-template-rows:auto;align-items:start}
-#view-lesson .lp-card{overflow:visible;min-height:0}
+#view-lesson .lp-inner{height:auto;min-height:100%;max-width:1280px;grid-template-rows:auto;gap:0.9rem}
+/* Flow the 4 cards into 2 balanced (masonry) columns so full content fills the
+   space evenly instead of clipping into a fixed 2x2 grid with dead corners */
+#view-lesson .lp-lesson-grid{display:block;column-count:2;column-gap:0.9rem}
+#view-lesson .lp-card{overflow:visible;min-height:0;break-inside:avoid;margin:0 0 0.9rem}
 #view-lesson .lp-card p{-webkit-line-clamp:unset;display:block;overflow:visible}
 #view-lesson .lp-map-list{overflow:visible;grid-template-rows:auto}
 #view-lesson .lp-map-item{overflow:visible}
@@ -6592,8 +6594,14 @@ body{
 #view-lesson .lp-q-text{font-size:0.9rem;line-height:1.3}
 #view-lesson .lp-opt{min-height:44px;font-size:0.82rem;line-height:1.25;padding:0.55rem 0.7rem;white-space:normal;align-items:center}
 #view-lesson .lp-title{max-width:22ch;font-size:clamp(1.9rem,2.6vw,2.9rem);line-height:0.98}
+/* Empty chat: center the welcome + prompts so the panel reads as intentional
+   instead of stranding the greeting above a tall void; reverts to top-aligned
+   once a message exists */
+#view-lesson .lp-msgs:empty{display:none}
+#view-lesson .lp-tutor:has(.lp-msgs:empty) .lp-tutor-head{margin-top:auto;border-bottom:0;padding-bottom:0.4rem}
+#view-lesson .lp-tutor:has(.lp-msgs:empty) .lp-chips{margin-bottom:auto}
 @media (max-width:700px){
-  #view-lesson .lp-lesson-grid{grid-template-columns:1fr}
+  #view-lesson .lp-lesson-grid{column-count:1}
   #view-lesson .lp-title{max-width:100%;font-size:1.6rem}
 }
 
@@ -8198,23 +8206,23 @@ function aBody(L){
   const focus = `
     <section class="lp-card lp-card-primary">
       <div class="lp-panel-label">Lesson focus</div>
-      <p>${esc(aClip(L.hook, 150))}</p>
-      ${objectives.length ? `<ul class="lp-objective-list">${objectives.map(o=>`<li>${esc(aClip(o, 72))}</li>`).join('')}</ul>` : ''}
+      <p>${esc(aClip(L.hook, 340))}</p>
+      ${objectives.length ? `<ul class="lp-objective-list">${objectives.map(o=>`<li>${esc(aClip(o, 200))}</li>`).join('')}</ul>` : ''}
     </section>`;
 
   const map = `
     <section class="lp-card">
       <div class="lp-panel-label">Lesson map</div>
       <div class="lp-map-list">
-        ${sections.map(s=>`<div class="lp-map-item"><strong>${esc(s.heading)}</strong><span>${esc(aClip((s.body || []).join(' '), 96))}</span></div>`).join('')}
+        ${sections.map(s=>`<div class="lp-map-item"><strong>${esc(s.heading)}</strong><span>${esc(aClip((s.body || []).join(' '), 1200))}</span></div>`).join('')}
       </div>
     </section>`;
 
   const practice = `
     <section class="lp-card lp-card-practice">
       <div class="lp-panel-label">Practice</div>
-      ${exercise ? `<div class="lp-exercise"><h3>${esc(exercise.title)}</h3><p>${esc(aClip(exercise.prompt, 96))}</p><textarea id="lp-ex-text" placeholder="${esc(exercise.placeholder || 'Write your answer here...')}"></textarea></div>` : ''}
-      ${!exercise && takeaways.length ? `<ul class="lp-takeaway-list">${takeaways.map(t=>`<li>${esc(aClip(t, 72))}</li>`).join('')}</ul>` : ''}
+      ${exercise ? `<div class="lp-exercise"><h3>${esc(exercise.title)}</h3><p>${esc(aClip(exercise.prompt, 300))}</p><textarea id="lp-ex-text" placeholder="${esc(exercise.placeholder || 'Write your answer here...')}"></textarea></div>` : ''}
+      ${!exercise && takeaways.length ? `<ul class="lp-takeaway-list">${takeaways.map(t=>`<li>${esc(aClip(t, 200))}</li>`).join('')}</ul>` : ''}
     </section>`;
 
   const quizPanel = `
@@ -8344,8 +8352,8 @@ window.__acadOpen = function(courseId, lessonId){
         <div class="tm-label">Estrella · Live in lesson</div>
         <div class="lp-tutor-greet"><div class="lp-estrella-orb">${STAR_SVG}</div><p>${esc(seed.opening)}</p></div>
       </div>
-      <div class="lp-msgs" id="lp-msgs"></div>
       <div class="lp-chips" id="lp-chips">${(seed.suggested||[]).map(q=>`<button class="lp-chip">${esc(q)}</button>`).join('')}</div>
+      <div class="lp-msgs" id="lp-msgs"></div>
       <div class="lp-tutor-input"><input type="text" id="lp-tutor-field" placeholder="Ask about this lesson..." autocomplete="off"/><button class="lp-tutor-send" id="lp-tutor-send" aria-label="Send">${SEND_SVG}</button></div>
     </aside>`;
 
