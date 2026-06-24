@@ -2483,6 +2483,11 @@ body{
   #view-academy .acad-rail-panel .acad-course-list{height:auto;max-height:none;overflow:visible}
   #view-academy .acad-preview-panel{min-height:0}
   #view-academy .lib-filter{min-height:44px}
+  /* course-detail page has the same single-viewport lock — release it so the
+     stacked layout can scroll instead of cutting off the lower content */
+  #view-course{overflow-y:auto;overflow-x:hidden}
+  #view-course.dash-body{padding-bottom:88px}
+  #view-course .cd-wrap{height:auto;overflow:visible}
 }
 
 @media (max-width:560px){
