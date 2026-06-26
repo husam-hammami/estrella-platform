@@ -1194,133 +1194,66 @@ body{
 .session-readiness-line{
   margin-top:1.25rem;display:flex;align-items:center;gap:0.875rem;font-size:0.9rem;color:var(--ink-2);
 }
-.session-mini-bar{width:140px;height:6px;border-radius:99px;background:rgba(20,18,14,0.08);overflow:hidden}
-.session-mini-bar div{height:100%;width:90%;background:var(--success);border-radius:99px}
+.session-mini-bar{width:120px;height:6px;border-radius:99px;background:rgba(20,18,14,0.08);overflow:hidden}
+.session-mini-bar div{height:100%;width:100%;background:var(--success);border-radius:99px}
 
-/* Activity rings — Apple Health inspired */
-.activity-section{
-  background:var(--surface);border-radius:var(--radius-xl);
-  padding:2rem;margin-bottom:2rem;
-  box-shadow:var(--shadow-sm);border:1px solid var(--line);
+/* One-card dashboard — strictly no scroll, fits one screen */
+#view-dashboard.dash-body{padding:0;overflow:hidden}
+.dash-solo{
+  box-sizing:border-box;
+  height:100dvh;
+  max-width:760px;margin:0 auto;
+  padding:calc(var(--nav-h) + 1.25rem) clamp(1.25rem,4vw,2.5rem) 1.5rem;
+  display:flex;flex-direction:column;justify-content:center;gap:clamp(1rem,2.2vh,1.5rem);
 }
-.activity-grid{display:grid;grid-template-columns:280px 1fr;gap:2.5rem;align-items:center}
-.activity-rings-svg{width:240px;height:240px;display:block;margin:0 auto}
-.activity-legend{display:flex;flex-direction:column;gap:1rem}
-.legend-item{
-  display:flex;align-items:center;gap:1rem;
-  padding:1rem;background:var(--bg-soft);border-radius:14px;
+/* Compact the shared session card for the no-scroll dashboard */
+.dash-solo .dash-greeting{margin-bottom:0}
+.dash-solo .dash-greeting h1{font-size:clamp(1.9rem,3.2vw,2.5rem);margin-bottom:0.25rem}
+.dash-solo .dash-greeting p{font-size:1.1rem}
+.dash-solo .dash-eyebrow{margin-bottom:0.4rem}
+.dash-solo .session-hero{margin-bottom:0;padding:clamp(1.4rem,2.5vh,2rem)}
+.dash-solo .session-info h2{font-size:clamp(1.6rem,2.6vw,2rem);margin-bottom:0.4rem}
+.dash-solo .coach-row{margin-bottom:0.7rem}
+.dash-solo .coach-avatar{width:52px;height:52px}
+.dash-solo .session-readiness-line{margin-top:0.9rem}
+.dash-links{display:flex;gap:0.75rem;flex-wrap:wrap}
+.dash-link{
+  flex:1 1 0;min-width:140px;
+  display:flex;align-items:center;gap:0.6rem;
+  padding:0.9rem 1.1rem;
+  border:1px solid var(--line);border-radius:12px;
+  background:rgba(255,252,246,0.7);
+  color:var(--ink);font:inherit;font-size:0.9rem;font-weight:500;
+  cursor:pointer;text-align:left;
+  transition:border-color 0.2s var(--ease),background 0.2s var(--ease),transform 0.2s var(--ease);
 }
-.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.legend-info{flex:1}
-.legend-name{font-size:0.78rem;color:var(--text-dim);margin-bottom:0.2rem;letter-spacing:0.05em}
-.legend-val{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.5rem;font-weight:500;color:var(--ink);
-  display:flex;align-items:baseline;gap:0.3rem;
+.dash-link svg{color:var(--gold-deep);flex-shrink:0}
+.dash-link:hover{border-color:rgba(151,121,63,0.4);background:#fff;transform:translateY(-1px)}
+@media (max-width:560px){
+  .dash-solo{justify-content:flex-start;gap:1.25rem}
+  .dash-links{flex-direction:column}
+  .dash-link{flex:none}
 }
-.legend-val small{font-size:0.75rem;color:var(--text-mute);font-weight:400;font-family:'Inter',sans-serif}
-
-/* Cards grid for dashboard */
-.dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2rem}
-.dash-card{
-  background:var(--surface);
-  border-radius:var(--radius-lg);
-  padding:1.75rem;
-  border:1px solid var(--line);
-  box-shadow:var(--shadow-sm);
-  transition:all 0.3s var(--ease);
-  cursor:pointer;
-}
-.dash-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
-.dash-card-header{
-  display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;
-}
-.card-lbl{font-size:0.7rem;letter-spacing:0.2em;color:var(--text-mute);text-transform:uppercase;font-weight:500}
-.card-arrow{
-  width:32px;height:32px;border-radius:50%;background:var(--bg-soft);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--ink);font-size:0.85rem;
-  transition:all 0.2s var(--ease);
-}
-.dash-card:hover .card-arrow{background:var(--ink);color:#fff}
-.dash-card h3{font-size:1.5rem;margin-bottom:0.4rem;font-weight:500}
-.dash-card p{font-size:0.875rem;color:var(--text-dim);line-height:1.5}
-
-/* Action list */
-.actions-list{margin-top:1rem;list-style:none}
-.action-item{
-  display:flex;align-items:center;gap:0.75rem;
-  padding:0.625rem 0;font-size:0.875rem;color:var(--text);
-}
-.action-check{
-  width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line-strong);
-  flex-shrink:0;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s var(--ease);
-}
-.action-item.done .action-check{background:var(--success);border-color:var(--success);color:#fff;font-size:0.7rem}
-.action-item.done span{color:var(--text-mute);text-decoration:line-through}
-
-/* Cross-sell recommendations */
-.recos-section{margin-bottom:2rem}
-.recos-section .section-lbl{
-  font-size:0.7rem;letter-spacing:0.25em;color:var(--text-mute);
-  text-transform:uppercase;font-weight:500;margin-bottom:1rem;
-}
-.recos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-.reco-card{
-  background:var(--surface);
-  border-radius:var(--radius-lg);
-  padding:1.75rem;
-  border:1px solid var(--line);
-  box-shadow:var(--shadow-sm);
-  position:relative;overflow:hidden;
-}
-.reco-card.book{background:linear-gradient(135deg,var(--lavender-bg),#fff)}
-.reco-card.course{background:linear-gradient(135deg,var(--sage-bg),#fff)}
-.reco-card.rebook{background:linear-gradient(135deg,var(--gold-bg),#fff)}
-.reco-lbl{
-  font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;
-  font-weight:600;margin-bottom:0.875rem;
-}
-.book .reco-lbl{color:#5B4B8A}
-.course .reco-lbl{color:#3F7E6F}
-.rebook .reco-lbl{color:var(--gold-deep)}
-.reco-card h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:500;margin-bottom:0.4rem;color:var(--ink)}
-.reco-card p{font-size:0.85rem;color:var(--text-dim);line-height:1.5;margin-bottom:1.25rem;min-height:2.5rem}
-.reco-btn{
-  padding:0.625rem 1.25rem;background:var(--ink);color:#fff;
-  border-radius:99px;font-size:0.78rem;font-weight:500;
-  border:none;cursor:pointer;transition:all 0.2s var(--ease);
-}
-.reco-btn:hover{transform:translateY(-1px)}
-
-/* ============================== BOTTOM NAV ============================== */
-.bottomnav{
-  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);
-  display:none;align-items:center;gap:0.25rem;
-  padding:0.5rem;background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(20px) saturate(180%);
-  border:1px solid var(--line);
-  border-radius:99px;box-shadow:var(--shadow-lg);
-  z-index:100;
-}
-.bottomnav.visible{display:flex}
-.bn-item{
-  width:48px;height:48px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all 0.2s var(--ease);
-  color:var(--text-mute);
-  border:none;background:transparent;
-}
-.bn-item:hover{color:var(--ink);background:var(--bg-soft)}
-.bn-item.active{background:var(--ink);color:#fff}
 
 /* ============================== LIBRARY ============================== */
-.lib-container{max-width:1400px;margin:0 auto;padding:6rem clamp(2rem,5vw,5rem) 6rem}
-.lib-header{margin-bottom:3rem}
-.lib-header h1{font-size:clamp(2.5rem,4vw,3.5rem);font-weight:400;margin-bottom:0.5rem;letter-spacing:-0.02em}
-.lib-header p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--text-dim);max-width:600px}
+.lib-container{max-width:1280px;margin:0 auto;padding:calc(var(--nav-h) + 1.75rem) clamp(2rem,5vw,5rem) 4rem}
+.lib-top{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.lib-top h1{font-size:clamp(2rem,3.4vw,3rem);font-weight:400;letter-spacing:-0.02em;line-height:1}
+.lib-top .hero-eyebrow{margin:0}
+
+/* Featured book — promoted hero, crossfades on swap */
+.lib-featured{
+  transition:opacity 0.18s var(--ease), transform 0.18s var(--ease);
+}
+.lib-featured.swapping{opacity:0;transform:translateY(6px)}
+.lib-rail-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin:0 0 1.25rem;flex-wrap:wrap;gap:0.5rem;
+}
+.lib-rail-head h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--ink);font-weight:500}
+.lib-rail-head span{font-size:0.8rem;color:var(--text-mute)}
+.book-card.is-featured .book-cover{outline:2px solid var(--gold);outline-offset:3px}
+.book-card.is-featured .book-format{color:var(--gold-deep);font-weight:600}
 
 /* Featured book */
 .lib-featured{
@@ -1415,25 +1348,6 @@ body{
 .audio-wave span:nth-child(6){height:7px}
 .audio-wave span:nth-child(7){height:12px}
 .audio-wave span:nth-child(8){height:5px}
-
-/* Library section title */
-.lib-section-title{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;
-}
-.lib-section-title h3{
-  font-family:'Cormorant Garamond',serif;font-size:1.75rem;color:var(--ink);font-weight:500;letter-spacing:-0.01em;
-}
-.lib-filters{display:flex;gap:0.5rem;flex-wrap:wrap}
-.lib-filter{
-  padding:0.4rem 0.875rem;border-radius:99px;
-  background:var(--surface);border:1px solid var(--line);
-  font-family:inherit;
-  font-size:0.78rem;cursor:pointer;color:var(--text-dim);
-  transition:background-color 0.2s var(--ease),border-color 0.2s var(--ease),color 0.2s var(--ease),box-shadow 0.2s var(--ease),transform 0.2s var(--ease);font-weight:500;
-}
-.lib-filter:hover{border-color:var(--ink);color:var(--ink)}
-.lib-filter.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 .books-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.75rem}
 .book-card{
@@ -3390,509 +3304,78 @@ body{
   .practice-footnav-link{transition:none}
 }
 
-/* ============================== COACHING CONSOLE ============================== */
+/* ============================== COACHING — THE DOORWAY ============================== */
 #view-services{
   overflow:hidden;
 }
-.coaching-console{
-  height:100dvh;
-  max-height:100dvh;
-  box-sizing:border-box;
-  max-width:1380px;
-  margin:0 auto;
-  padding:calc(var(--nav-h) + 1rem) clamp(1rem,3vw,3rem) 1rem;
-  display:grid;
-  grid-template-columns:minmax(280px,0.82fr) minmax(420px,1.16fr) minmax(280px,0.78fr);
-  gap:1rem;
-  overflow:hidden;
+.coaching-door{
+  height:100dvh;max-height:100dvh;box-sizing:border-box;
+  display:grid;grid-template-columns:1fr 1fr;
 }
-.coaching-portrait,
-.coaching-main,
-.coaching-brief{
-  min-height:0;
-  overflow:hidden;
-  border:1px solid rgba(151,121,63,0.18);
-  border-radius:8px;
-  background:rgba(255,252,246,0.76);
-  box-shadow:0 18px 44px rgba(87,65,28,0.08);
-}
-.coaching-portrait{
-  position:relative;
+.door-portrait{
+  position:relative;margin:0;overflow:hidden;
   background:linear-gradient(180deg,#F5E8D2 0%,#E0B982 100%);
 }
-.coaching-portrait img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:50% 22%;
-  display:block;
+.door-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 24%;display:block}
+.door-portrait::after{
+  content:"";position:absolute;inset:auto 0 0;height:42%;
+  background:linear-gradient(180deg,transparent,rgba(20,18,14,0.55));pointer-events:none;
 }
-.coaching-portrait::after{
-  content:"";
-  position:absolute;
-  inset:auto 0 0;
-  height:45%;
-  background:linear-gradient(180deg,transparent,rgba(20,18,14,0.58));
-  pointer-events:none;
-}
-.coaching-portrait-card{
-  position:absolute;
-  left:1rem;
-  right:1rem;
-  bottom:1rem;
-  z-index:1;
-  padding:0.9rem 1rem;
-  border-radius:8px;
-  background:rgba(255,250,240,0.9);
-  border:1px solid rgba(255,255,255,0.5);
+.door-portrait-card{
+  position:absolute;left:1.5rem;bottom:1.5rem;z-index:1;
+  padding:0.85rem 1.1rem;border-radius:10px;
+  background:rgba(255,250,240,0.92);border:1px solid rgba(255,255,255,0.5);
   backdrop-filter:blur(14px);
 }
-.coaching-portrait-card span{
-  display:block;
-  font-size:0.68rem;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--gold-deep);
-  font-weight:700;
-  margin-bottom:0.2rem;
+.door-portrait-card span{
+  display:block;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:700;margin-bottom:0.2rem;
 }
-.coaching-portrait-card strong{
-  display:block;
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.55rem;
-  line-height:1;
-  color:var(--ink);
-  font-weight:500;
+.door-portrait-card strong{
+  display:block;font-family:'Cormorant Garamond',serif;font-size:1.4rem;line-height:1;
+  color:var(--ink);font-weight:500;
 }
-.coaching-main{
-  padding:clamp(1rem,2.4vw,1.75rem);
-  display:grid;
-  grid-template-rows:auto minmax(0,1fr);
-  gap:1rem;
+.door-panel{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--nav-h) + 2rem) clamp(2rem,5vw,5rem) 2rem;
+  max-width:620px;
 }
-.coaching-copy h1{
-  font-size:clamp(2.3rem,4.2vw,4.25rem);
-  line-height:0.95;
-  letter-spacing:0;
-  color:var(--ink);
-  margin:0.3rem 0 0.85rem;
-  max-width:9.5em;
+.door-panel .hero-eyebrow{margin-bottom:1.25rem}
+.door-h1{
+  font-size:clamp(2.6rem,4.5vw,4.5rem);line-height:0.98;letter-spacing:-0.01em;
+  color:var(--ink);margin:0 0 1.25rem;
 }
-.coaching-copy p{
-  max-width:38ch;
-  margin:0;
-  color:var(--text);
-  font-size:1rem;
-  line-height:1.5;
+.door-h1 em{font-style:italic;color:var(--gold-deep);font-weight:500}
+.door-sub{
+  font-size:1.05rem;line-height:1.55;color:var(--text);max-width:46ch;margin:0 0 2rem;
 }
-.coaching-paths{
-  min-height:0;
-  display:grid;
-  gap:0.7rem;
-  align-content:stretch;
+.door-price{
+  display:flex;align-items:baseline;gap:0.85rem;flex-wrap:wrap;
+  padding-bottom:2rem;margin-bottom:2rem;border-bottom:1px solid var(--line);
 }
-.coaching-path{
-  width:100%;
-  min-height:0;
-  padding:0.95rem 1rem;
-  display:grid;
-  grid-template-columns:2.2rem minmax(0,1fr) auto;
-  gap:0.75rem;
-  align-items:center;
-  border:1px solid rgba(151,121,63,0.16);
-  border-radius:8px;
-  background:#fffaf0;
-  text-align:left;
-  cursor:pointer;
-  transition:background 0.18s var(--ease),border-color 0.18s var(--ease),transform 0.18s var(--ease);
+.door-price strong{
+  font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:500;line-height:1;color:var(--ink);
 }
-.coaching-path:hover,
-.coaching-path.is-selected{
-  background:#fff6e2;
-  border-color:rgba(151,121,63,0.38);
-}
-.coaching-path:focus-visible{
-  outline:2px solid var(--gold);
-  outline-offset:2px;
-}
-.coaching-path-num{
-  width:2.2rem;
-  height:2.2rem;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--ink);
-  color:#fff;
-  font-size:0.78rem;
-  font-weight:700;
-}
-.coaching-path strong{
-  display:block;
-  color:var(--ink);
-  font-size:1rem;
-  line-height:1.12;
-  margin-bottom:0.22rem;
-}
-.coaching-path span:not(.coaching-path-num):not(.coaching-path-time){
-  display:block;
-  color:var(--text-dim);
-  font-size:0.82rem;
-  line-height:1.32;
-}
-.coaching-path-time{
-  font-size:0.68rem;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--gold-deep);
-  font-weight:700;
-  white-space:nowrap;
-}
-.coaching-brief{
-  padding:1rem;
-  display:grid;
-  grid-template-rows:auto minmax(0,1fr) auto;
-  gap:0.9rem;
-  background:linear-gradient(150deg,rgba(255,252,246,0.94),rgba(247,239,222,0.86));
-}
-.coaching-brief-label{
-  font-size:0.68rem;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--gold-deep);
-  font-weight:700;
-}
-.coaching-brief h2{
-  margin:0.35rem 0 0;
-  font-size:clamp(1.9rem,3vw,2.55rem);
-  line-height:0.98;
-  color:var(--ink);
-}
-.coaching-brief-body{
-  min-height:0;
-  display:grid;
-  gap:0.7rem;
-  align-content:start;
-}
-.coaching-brief-body p{
-  margin:0;
-  color:var(--text);
-  font-size:0.92rem;
-  line-height:1.45;
-}
-.coaching-offer-price{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.6rem;
-  font-weight:500;
-  line-height:1;
-  color:var(--ink);
-}
-.coaching-offer-meta{
-  font-size:0.78rem;
-  color:var(--text-dim);
-  margin-top:0.3rem;
-  margin-bottom:0.2rem;
-}
-.coaching-brief-lines{
-  display:grid;
-  gap:0.55rem;
-}
-.coaching-brief-line{
-  padding:0.7rem;
-  border-radius:8px;
-  border:1px solid rgba(151,121,63,0.14);
-  background:rgba(255,255,255,0.54);
-}
-.coaching-brief-line span{
-  display:block;
-  margin-bottom:0.16rem;
-  font-size:0.62rem;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--gold-deep);
-  font-weight:700;
-}
-.coaching-brief-line strong{
-  display:block;
-  font-size:0.88rem;
-  line-height:1.28;
-  color:var(--ink);
-}
-.coaching-actions{
-  display:grid;
-  gap:0.55rem;
-}
-.coaching-actions .btn{
-  width:100%;
-  justify-content:center;
-}
-.coaching-direct{
-  border:0;
-  background:transparent;
-  color:var(--text-dim);
-  font:inherit;
-  font-size:0.82rem;
-  cursor:pointer;
-  padding:0.35rem;
-}
-.coaching-direct:hover,
-.coaching-direct:focus-visible{
-  color:var(--gold-deep);
-  outline:none;
-}
-
-/* ---- About → discreet coach access ---- */
-.about-coach-link{
-  display:inline-block;
-  margin-top:1.5rem;
-  font-size:0.72rem;
-  letter-spacing:0.04em;
-  color:var(--text-mute);
-  cursor:pointer;
-  text-decoration:none;
+.door-price span{font-size:0.85rem;color:var(--text-dim)}
+.door-cta{align-self:flex-start}
+.door-secondary{
+  align-self:flex-start;margin-top:1rem;
+  border:0;background:transparent;color:var(--text-mute);
+  font:inherit;font-size:0.84rem;cursor:pointer;padding:0.35rem 0;
   transition:color 0.2s var(--ease);
 }
-.about-coach-link:hover{color:var(--gold-deep)}
-
-/* ====================== COACH DESK (Nesreen's review queue) ====================== */
-.coach-console{
-  max-width:1040px;
-  margin:0 auto;
-  padding:calc(var(--nav-h) + 1.75rem) clamp(1rem,4vw,2.5rem) 4rem;
-}
-.coach-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:1.5rem;
-  flex-wrap:wrap;
-  padding-bottom:1.5rem;
-  margin-bottom:1.75rem;
-  border-bottom:1px solid var(--line);
-}
-.coach-h1{
-  font-size:clamp(2.2rem,4vw,3.2rem);
-  line-height:1;
-  color:var(--ink);
-  margin:0.5rem 0 0.5rem;
-}
-.coach-sub{
-  color:var(--text);
-  font-size:0.96rem;
-  max-width:46ch;
-  margin:0;
-}
-.coach-head-meta{display:flex;gap:1.75rem}
-.coach-stat{text-align:right}
-.coach-stat strong{
-  display:block;
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.4rem;
-  font-weight:500;
-  line-height:1;
-  color:var(--gold-deep);
-}
-.coach-stat span{
-  font-size:0.66rem;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--text-mute);
-}
-.coach-briefs{
-  display:grid;
-  gap:1.1rem;
-}
-.coach-brief{
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:rgba(255,252,246,0.85);
-  box-shadow:0 14px 40px rgba(87,65,28,0.06);
-  padding:1.4rem 1.5rem;
-  transition:box-shadow 0.25s var(--ease),border-color 0.25s var(--ease);
-}
-.coach-brief.is-new{border-color:rgba(151,121,63,0.42)}
-.coach-brief-top{
-  display:flex;
-  align-items:center;
-  gap:0.9rem;
-  padding-bottom:1.1rem;
-  margin-bottom:1.1rem;
-  border-bottom:1px solid var(--line);
-}
-.coach-brief-avatar{
-  width:46px;height:46px;flex:0 0 46px;
-  border-radius:50%;
-  background:var(--gold-bg);
-  color:var(--gold-deep);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.4rem;font-weight:600;
-  overflow:hidden;
-}
-.coach-brief-avatar img{width:100%;height:100%;object-fit:cover}
-.coach-brief-id{flex:1;min-width:0}
-.coach-brief-name{font-size:1.15rem;font-weight:600;color:var(--ink);line-height:1.2}
-.coach-brief-role{font-size:0.85rem;color:var(--text-dim);line-height:1.3}
-.coach-brief-when{
-  text-align:right;
-  font-size:0.78rem;
-  color:var(--text-dim);
-  white-space:nowrap;
-}
-.coach-brief-when strong{display:block;color:var(--ink);font-weight:600}
-.coach-tag{
-  display:inline-block;
-  font-size:0.6rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  font-weight:700;
-  padding:0.22rem 0.5rem;
-  border-radius:99px;
-  margin-top:0.3rem;
-}
-.coach-tag.new{background:var(--gold-deep);color:#fff}
-.coach-tag.done{background:var(--sage-bg,#E4F0EC);color:#3F7E6F}
-.coach-brief-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:1.4rem;
-}
-.coach-col-h{
-  font-size:0.64rem;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--gold-deep);
-  font-weight:700;
-  margin-bottom:0.45rem;
-}
-.coach-field{margin-bottom:0.9rem}
-.coach-field:last-child{margin-bottom:0}
-.coach-field-lbl{
-  font-size:0.7rem;
-  color:var(--text-mute);
-  margin-bottom:0.15rem;
-}
-.coach-field-val{
-  font-size:0.9rem;
-  line-height:1.45;
-  color:var(--ink);
-}
-.coach-field-val.quote{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.05rem;
-  font-style:italic;
-  color:var(--text);
-}
-.coach-strengths{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0.4rem}
-.coach-strengths li{
-  font-size:0.78rem;
-  padding:0.28rem 0.6rem;
-  border-radius:99px;
-  background:rgba(151,121,63,0.1);
-  color:var(--gold-deep);
-}
-.coach-brief-foot{
-  display:flex;
-  justify-content:flex-end;
-  margin-top:1.2rem;
-  padding-top:1rem;
-  border-top:1px solid var(--line);
-}
-.coach-review-btn{
-  border:1px solid var(--gold-deep);
-  background:transparent;
-  color:var(--gold-deep);
-  font:inherit;
-  font-size:0.82rem;
-  font-weight:500;
-  padding:0.5rem 1.1rem;
-  border-radius:99px;
-  cursor:pointer;
-  transition:background 0.2s var(--ease),color 0.2s var(--ease);
-}
-.coach-review-btn:hover{background:var(--gold-deep);color:#fff}
-.coach-review-btn.done{
-  border-color:var(--line-strong,#ddd);
-  color:var(--text-mute);
-  cursor:default;
-}
-.coach-review-btn.done:hover{background:transparent;color:var(--text-mute)}
-.coach-empty{
-  text-align:center;
-  padding:4rem 1rem;
-  color:var(--text-dim);
-}
-.coach-empty p{margin-top:0.75rem;font-size:0.95rem}
-@media (max-width:640px){
-  .coach-brief-grid{grid-template-columns:1fr;gap:1rem}
-  .coach-brief-top{flex-wrap:wrap}
-  .coach-head-meta{gap:1.25rem}
-}
-@media (max-width:1020px){
-  .coaching-console{
-    grid-template-columns:minmax(0,1fr) minmax(260px,0.62fr);
+.door-secondary:hover{color:var(--gold-deep)}
+@media (max-width:860px){
+  .coaching-door{
+    grid-template-columns:1fr;grid-template-rows:38vh 1fr;
+    height:auto;min-height:100dvh;max-height:none;
   }
-  .coaching-portrait{display:none}
-}
-@media (max-width:720px){
-  .coaching-console{
-    grid-template-columns:1fr;
-    grid-template-rows:auto auto;
-    gap:0.75rem;
-    /* phones: scroll the page instead of clipping a fixed-height layout */
-    height:auto;
-    max-height:none;
-    min-height:100dvh;
-    overflow:visible;
-    padding:calc(var(--nav-h) + 0.75rem) 0.85rem 1.25rem;
-  }
-  .coaching-main{
-    padding:0.9rem;
-    gap:0.75rem;
-    overflow:visible;
-  }
-  .coaching-copy h1{
-    font-size:clamp(2rem,12vw,3rem);
-    max-width:9em;
-    margin-bottom:0.55rem;
-  }
-  .coaching-copy p{
-    font-size:0.88rem;
-    max-width:none;
-  }
-  .coaching-path{
-    padding:0.78rem;
-    grid-template-columns:2rem minmax(0,1fr);
-  }
-  .coaching-path-num{
-    width:2rem;
-    height:2rem;
-  }
-  .coaching-path-time{
-    grid-column:2;
-    justify-self:start;
-  }
-  .coaching-brief{
-    padding:0.85rem;
-    grid-template-columns:minmax(0,1fr) auto;
-    grid-template-rows:auto auto;
-    align-items:end;
-  }
-  .coaching-brief-body{
-    display:block;
-  }
-  .coaching-brief-lines{display:none}
-  .coaching-offer-price{font-size:2rem}
-  .coaching-offer-meta{font-size:0.72rem}
-  .coaching-brief h2{
-    font-size:1.65rem;
-  }
-  .coaching-actions{
-    min-width:132px;
-  }
-  .coaching-direct{
-    display:none;
-  }
+  #view-services{overflow-y:auto}
+  .door-portrait{border-radius:0}
+  .door-panel{padding:1.75rem 1.5rem 2.5rem;max-width:none}
+  .door-h1{font-size:clamp(2.2rem,9vw,3rem)}
+  .door-sub{font-size:0.95rem;margin-bottom:1.5rem}
+  .door-price{padding-bottom:1.5rem;margin-bottom:1.5rem}
 }
 
 /* ============================== VIEW: START (Estrella diagnostic) ============================== */
@@ -4560,59 +4043,26 @@ body{
 
   <!-- ============================== VIEW: SERVICES (COACHING) ============================== -->
   <div class="view" id="view-services">
-    <div class="coaching-console">
-      <figure class="coaching-portrait">
+    <div class="coaching-door">
+      <figure class="door-portrait">
         <img src="nesreen-coaching-v2.png" alt="Nesreen Abdelhakim" onerror="this.src='nesreen-coaching.jpg'"/>
-        <figcaption class="coaching-portrait-card">
+        <figcaption class="door-portrait-card">
           <span>Nesreen Abdelhakim</span>
-          <strong>Career coaching</strong>
+          <strong>Founder · Career coach</strong>
         </figcaption>
       </figure>
 
-      <main class="coaching-main">
-        <header class="coaching-copy">
-          <div class="hero-eyebrow">Private coaching with Nesreen</div>
-          <h1>One hour that moves things.</h1>
-          <p>A single private session with Nesreen. Estrella prepares your brief first, so the hour is spent on you — not on catching her up.</p>
-        </header>
-
-        <section class="coaching-paths" aria-label="How it works">
-          <div class="coaching-path">
-            <span class="coaching-path-num">01</span>
-            <span><strong>Talk to Estrella</strong><span>A few smart questions. Five minutes, voice or text.</span></span>
-            <span class="coaching-path-time">5 min</span>
-          </div>
-          <div class="coaching-path">
-            <span class="coaching-path-num">02</span>
-            <span><strong>Nesreen prepares</strong><span>She reads your brief before you meet — who you are, what you need.</span></span>
-            <span class="coaching-path-time">Before</span>
-          </div>
-          <div class="coaching-path">
-            <span class="coaching-path-num">03</span>
-            <span><strong>Your session</strong><span>Sixty focused minutes, 1-on-1 over video. A clear next step.</span></span>
-            <span class="coaching-path-time">60 min</span>
-          </div>
-        </section>
-      </main>
-
-      <aside class="coaching-brief" aria-label="Book a session">
-        <div>
-          <div class="coaching-brief-label">Private session</div>
-          <h2>One hour with Nesreen</h2>
+      <div class="door-panel">
+        <div class="hero-eyebrow">Private coaching with Nesreen</div>
+        <h1 class="door-h1">One hour.<em> A clear next step.</em></h1>
+        <p class="door-sub">Tell Estrella what's going on. She'll brief Nesreen on who you are and what you need — so your hour together starts where it matters.</p>
+        <div class="door-price">
+          <strong>AED 500</strong>
+          <span>60 minutes · 1-on-1 video · Brief included</span>
         </div>
-        <div class="coaching-brief-body">
-          <div class="coaching-offer-price">AED 500</div>
-          <div class="coaching-offer-meta">60 minutes · 1-on-1 video · Brief included</div>
-          <div class="coaching-brief-lines">
-            <div class="coaching-brief-line"><span>Includes</span><strong>Your brief, prepared for Nesreen.</strong></div>
-            <div class="coaching-brief-line"><span>Flexible</span><strong>Full refund up to 48 hours before.</strong></div>
-          </div>
-        </div>
-        <div class="coaching-actions">
-          <button class="btn btn-primary" type="button" data-view="start">Begin with Estrella</button>
-          <button class="coaching-direct" type="button" id="practice-book-direct">Skip to choosing a time</button>
-        </div>
-      </aside>
+        <button class="btn btn-primary btn-lg door-cta" type="button" data-view="start">Talk to Nesreen →</button>
+        <button class="door-secondary" type="button" id="practice-book-direct">I already know — just pick a time</button>
+      </div>
     </div>
   </div>
 
@@ -4636,14 +4086,12 @@ body{
 
           <div class="start-profile-grid">
             <div class="start-profile-col">
-              <div class="start-profile-h">What brought you here</div>
-              <blockquote class="start-profile-quote" id="profile-trigger">—</blockquote>
-              <div class="start-profile-h">12-month goal</div>
+              <div class="start-profile-h">Where you want to get to</div>
               <blockquote class="start-profile-quote start-profile-quote-goal" id="profile-goal">—</blockquote>
             </div>
             <div class="start-profile-col">
-              <div class="start-profile-h">Your strengths</div>
-              <ul class="start-profile-strengths" id="profile-strengths"></ul>
+              <div class="start-profile-h">What's in the way</div>
+              <blockquote class="start-profile-quote" id="profile-trigger">—</blockquote>
             </div>
           </div>
         </article>
@@ -5219,11 +4667,11 @@ body{
 
   <!-- ============================== VIEW: DASHBOARD ============================== -->
   <div class="view dash-body" id="view-dashboard">
-    <div class="dash-container">
+    <div class="dash-solo">
       <div class="dash-greeting">
         <div class="dash-eyebrow" style="display:flex;align-items:center;gap:0.5rem">
           <svg width="10" height="10" viewBox="0 0 32 32" fill="#97793F"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
-          Client dashboard
+          Your dashboard
         </div>
         <h1>Good evening, Sarah.</h1>
         <p>Your next session with Nesreen is in 18 hours.</p>
@@ -5232,7 +4680,7 @@ body{
       <div class="session-hero">
         <div class="session-hero-content">
           <div class="session-info">
-            <div class="session-info-lbl">Your Next Session</div>
+            <div class="session-info-lbl">Your next session</div>
             <div class="coach-row">
               <div class="coach-avatar">
                 <img src="nesreen-hero.jpg" alt="Nesreen" onerror="this.style.display='none';this.parentElement.innerHTML='N'"/>
@@ -5245,231 +4693,48 @@ body{
             <h2>Career Coaching Session</h2>
             <div class="meta">Tuesday, 9 June · 14:00 GST · 60 minutes · Zoom</div>
             <div class="session-readiness-line">
-              <span>Brief readiness:</span>
+              <span>Your brief is ready for Nesreen</span>
               <div class="session-mini-bar"><div></div></div>
-              <strong style="color:var(--success)">90%</strong>
-              <span style="color:var(--text-dim)">Ready</span>
+              <strong style="color:var(--success)">Sent</strong>
             </div>
           </div>
-          <button class="btn btn-primary btn-lg" onclick="showToast('Opening session link')">Join Session →</button>
+          <button class="btn btn-primary btn-lg" onclick="showToast('Opening session link')">Join session →</button>
         </div>
       </div>
 
-      <!-- Activity Rings (Apple Health style) -->
-      <div class="activity-section">
-        <div class="section-label">— Your Growth Indicators</div>
-        <div class="activity-grid">
-          <div>
-            <svg class="activity-rings-svg" viewBox="0 0 200 200">
-              <!-- Track rings -->
-              <circle cx="100" cy="100" r="80" fill="none" stroke="#FAE5EA" stroke-width="16"/>
-              <circle cx="100" cy="100" r="60" fill="none" stroke="#EDE7F8" stroke-width="16"/>
-              <circle cx="100" cy="100" r="40" fill="none" stroke="#E4F0EC" stroke-width="16"/>
-              <!-- Fills -->
-              <g transform="rotate(-90 100 100)">
-                <circle cx="100" cy="100" r="80" fill="none" stroke="#E8A5B8" stroke-width="16" stroke-linecap="round"
-                        stroke-dasharray="427 502" />
-                <circle cx="100" cy="100" r="60" fill="none" stroke="#B8A8E0" stroke-width="16" stroke-linecap="round"
-                        stroke-dasharray="320 377" />
-                <circle cx="100" cy="100" r="40" fill="none" stroke="#9BC2B5" stroke-width="16" stroke-linecap="round"
-                        stroke-dasharray="226 251" />
-              </g>
-            </svg>
-          </div>
-          <div class="activity-legend">
-            <div class="legend-item">
-              <div class="legend-dot" style="background:#E8A5B8"></div>
-              <div class="legend-info">
-                <div class="legend-name">Confidence</div>
-                <div class="legend-val">7.2<small>/10</small></div>
-              </div>
-              <div style="font-size:0.78rem;color:var(--success);font-weight:600">↑ +2.1</div>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot" style="background:#B8A8E0"></div>
-              <div class="legend-info">
-                <div class="legend-name">Emotional Clarity</div>
-                <div class="legend-val">8.5<small>/10</small></div>
-              </div>
-              <div style="font-size:0.78rem;color:var(--success);font-weight:600">↑ +1.4</div>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot" style="background:#9BC2B5"></div>
-              <div class="legend-info">
-                <div class="legend-name">Goal Alignment</div>
-                <div class="legend-val">9.0<small>/10</small></div>
-              </div>
-              <div style="font-size:0.78rem;color:var(--success);font-weight:600">↑ +3.0</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3-card grid -->
-      <div class="dash-grid">
-        <div class="dash-card">
-          <div class="dash-card-header">
-            <div class="card-lbl">My Journey</div>
-            <div class="card-arrow">→</div>
-          </div>
-          <h3>3 sessions completed</h3>
-          <p style="margin-bottom:1rem">5 of 9 actions checked. Last: Career Clarity, 2 May.</p>
-          <div style="height:6px;border-radius:99px;background:var(--bg-soft);overflow:hidden"><div style="height:100%;width:55%;background:var(--gold);border-radius:99px"></div></div>
-        </div>
-
-        <div class="dash-card">
-          <div class="dash-card-header">
-            <div class="card-lbl">Action Plan — This Week</div>
-            <div class="card-arrow">→</div>
-          </div>
-          <ul class="actions-list">
-            <li class="action-item"><span class="action-check" onclick="this.parentElement.classList.toggle('done')"></span><span>Complete leadership self-assessment</span></li>
-            <li class="action-item"><span class="action-check" onclick="this.parentElement.classList.toggle('done')"></span><span>Reach out to 2 ex-colleagues</span></li>
-            <li class="action-item done"><span class="action-check">✓</span><span>Update LinkedIn headline</span></li>
-            <li class="action-item"><span class="action-check" onclick="this.parentElement.classList.toggle('done')"></span><span>Journal: define dream-job criteria</span></li>
-          </ul>
-        </div>
-
-        <div class="dash-card">
-          <div class="dash-card-header">
-            <div class="card-lbl">Assessments</div>
-            <div class="card-arrow">→</div>
-          </div>
-          <div style="font-size:0.875rem">
-            <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--line)"><span>Personality Profile</span><span style="color:var(--success)">✓</span></div>
-            <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--line)"><span>Leadership Readiness</span><span style="color:var(--success)">✓</span></div>
-            <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid var(--line)"><span>Burnout Diagnostic</span><span style="color:var(--success)">✓</span></div>
-            <div style="display:flex;justify-content:space-between;padding:0.5rem 0"><span style="color:var(--text-mute)">Confidence Compass</span><span style="color:var(--text-mute)">→</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recommendations -->
-      <div class="recos-section">
-        <div class="section-lbl">For you</div>
-        <div class="recos-grid">
-          <div class="reco-card book">
-            <div class="reco-lbl">Suggested Reading</div>
-            <h4>Quiet Power</h4>
-            <p>A practical guide to leading with clarity and boundaries.</p>
-            <button class="reco-btn" data-view="library" onclick="showToast('Opening library')">Preview chapter →</button>
-          </div>
-          <div class="reco-card course">
-            <div class="reco-lbl">Course Match</div>
-            <h4>Confidence Reset</h4>
-            <p>A short reset for rebuilding trust in your own judgment.</p>
-            <button class="reco-btn" data-view="academy" onclick="showToast('Opening Academy')">Start course →</button>
-          </div>
-          <div class="reco-card rebook">
-            <div class="reco-lbl">Continue</div>
-            <h4>Book a follow-up</h4>
-            <p>Choose the next time while the work is still fresh.</p>
-            <button class="reco-btn" data-view="start" onclick="showToast('Opening booking')">Book session</button>
-          </div>
-        </div>
-      </div>
+      <nav class="dash-links" aria-label="More">
+        <button class="dash-link" data-view="coach">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
+          <span>View my brief</span>
+        </button>
+        <button class="dash-link" data-view="academy">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <span>Continue in Academy</span>
+        </button>
+        <button class="dash-link" data-view="library">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span>Library</span>
+        </button>
+      </nav>
     </div>
   </div>
 
   <!-- ============================== VIEW: LIBRARY ============================== -->
   <div class="view dash-body" id="view-library">
     <div class="lib-container">
-      <div class="lib-header">
+      <div class="lib-top">
         <div class="hero-eyebrow">— The Library</div>
         <h1>Books by Nesreen.</h1>
-        <p>Books, journals, and guides from her coaching work.</p>
       </div>
 
-      <!-- Featured book -->
-      <div class="lib-featured">
-        <div class="featured-cover">
-          <img class="bc-img" src="Assets/Quiet_Power.png" alt="Quiet Power" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-          <div class="book-title">Quiet Power</div>
-          <div class="book-author">— Nesreen</div>
-        </div>
-        <div class="lib-featured-info">
-          <div class="featured-tag">New Release · #1 Bestseller</div>
-          <h2>Quiet Power</h2>
-          <p class="lib-featured-desc">For leaders who want to lead well without burning out or pretending.</p>
-          <div class="featured-stats">
-            <div class="featured-stat"><strong>12k+</strong>Copies sold</div>
-            <div class="featured-stat"><strong>4.8 ★</strong>Reader rating</div>
-            <div class="featured-stat"><strong>284</strong>Pages</div>
-          </div>
-          <div class="featured-actions">
-            <button class="btn btn-primary" onclick="showToast('Opening preview')">Read Chapter 1</button>
-            <button class="btn btn-ghost" onclick="showToast('Opening store')">Buy — AED 89</button>
-            <div class="audio-sample" onclick="showToast('Playing sample')">
-              <div class="audio-play-btn">▶</div>
-              <div class="audio-info"><strong>Listen to sample</strong>Narrated by Nesreen · 3:42</div>
-              <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Featured book — promoted from the rail below -->
+      <div class="lib-featured" id="lib-featured"></div>
 
-      <!-- All books -->
-      <div class="lib-section-title">
-        <h3>Library</h3>
-        <div class="lib-filters">
-          <button class="lib-filter active">All</button>
-          <button class="lib-filter">Books</button>
-          <button class="lib-filter">Journals</button>
-          <button class="lib-filter">Templates</button>
-          <button class="lib-filter">Audio</button>
-        </div>
+      <div class="lib-rail-head">
+        <h3>All books</h3>
+        <span>Tap any cover to feature it</span>
       </div>
-
-      <div class="books-grid">
-        <div class="book-card" onclick="window.open('Assets/Books/Quiet_Power_Digital_Edition.html','_blank','noopener')">
-          <div class="book-cover b1">
-            <img class="bc-img" src="Assets/Quiet_Power.png" alt="Quiet Power" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-            <div class="book-title">Quiet Power</div>
-            <div class="book-author">— Nesreen</div>
-          </div>
-          <div class="book-info">
-            <h4>Quiet Power</h4>
-            <p>Leadership without burnout</p>
-            <div class="book-meta"><span class="book-price">AED 89</span><span class="book-format">Hardcover · Audio</span></div>
-          </div>
-        </div>
-        <div class="book-card" onclick="window.open('Assets/Books/Career_Compass_Digital_Edition.html','_blank','noopener')">
-          <div class="book-cover b2">
-            <img class="bc-img" src="Assets/Career_Compass.png" alt="Career Compass" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-            <div class="book-title">Career Compass</div>
-            <div class="book-author">— Nesreen</div>
-          </div>
-          <div class="book-info">
-            <h4>Career Compass</h4>
-            <p>Direction when you feel lost</p>
-            <div class="book-meta"><span class="book-price">AED 79</span><span class="book-format">Hardcover</span></div>
-          </div>
-        </div>
-        <div class="book-card" onclick="window.open('Assets/Books/The_Interview_Playbook_Digital_Edition.html','_blank','noopener')">
-          <div class="book-cover b3">
-            <img class="bc-img" src="Assets/Interview_Playbook.jpg" alt="The Interview Playbook" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-            <div class="book-title">The Interview Playbook</div>
-            <div class="book-author">— Nesreen</div>
-          </div>
-          <div class="book-info">
-            <h4>The Interview Playbook</h4>
-            <p>Land the offer with confidence</p>
-            <div class="book-meta"><span class="book-price">AED 59</span><span class="book-format">Digital + Audio</span></div>
-          </div>
-        </div>
-        <div class="book-card" onclick="window.open('Assets/Books/The_Reset_Journal_Digital_Edition.html','_blank','noopener')">
-          <div class="book-cover b4">
-            <img class="bc-img" src="Assets/Reset_Journal.png" alt="The Reset Journal" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-            <div class="book-title">The Reset Journal</div>
-            <div class="book-author">— Nesreen</div>
-          </div>
-          <div class="book-info">
-            <h4>The Reset Journal</h4>
-            <p>90-day burnout recovery</p>
-            <div class="book-meta"><span class="book-price">AED 49</span><span class="book-format">Journal + PDF</span></div>
-          </div>
-        </div>
-      </div>
+      <div class="books-grid" id="lib-rail"></div>
     </div>
   </div>
 
@@ -5535,24 +4800,6 @@ body{
 </div><!-- /app -->
 
 <!-- ============================== BOTTOM NAV ============================== -->
-<nav class="bottomnav" id="bottomnav">
-  <button class="bn-item active" data-view="dashboard" title="Dashboard">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  </button>
-  <button class="bn-item" data-view="twin" title="AI Twin">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-  </button>
-  <button class="bn-item" data-view="library" title="Library">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-  </button>
-  <button class="bn-item" data-view="academy" title="Academy">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-  </button>
-  <button class="bn-item" data-view="start" title="Book new session">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-  </button>
-</nav>
-
 <script>
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.documentElement.classList.add("gsap-motion");
@@ -6171,36 +5418,16 @@ function afterViewSwitch(viewId, current){
   next.classList.add('active');
   next.scrollTo(0,0);
 
-  // Toggle bottom nav for portal pages
-  const portalViews = ['dashboard','library','academy','twin'];
-  const bottomnav = document.getElementById('bottomnav');
-  if(portalViews.includes(viewId)){
-    bottomnav.classList.add('visible');
-    // Course detail lives under the Academy tab
-    const navView = viewId === 'course' ? 'academy' : viewId;
-    document.querySelectorAll('.bn-item').forEach(b => {
-      b.classList.toggle('active', b.dataset.view === navView);
-    });
-  } else {
-    bottomnav.classList.remove('visible');
-  }
-
-  // Update top nav active tab
+  // One consistent top nav across all non-immersive views.
   const topLinks = document.querySelectorAll('#topnav-links a');
+  const bookingFlow = ['services','start','calendar','checkout','onboarding','readiness'];
+  const academyFlow = ['academy','course','lesson'];
   topLinks.forEach(a => {
     const linkView = a.dataset.view;
-    // Map booking flow back to "Coaching" tab
-    const isBookingFlow = ['services','start','calendar','checkout','onboarding','readiness'].includes(viewId);
-    const isPortal = portalViews.includes(viewId);
-    if(linkView === viewId){
-      a.classList.add('active');
-    } else if(isBookingFlow && linkView === 'services'){
-      a.classList.add('active');
-    } else {
-      a.classList.remove('active');
-    }
-    // Hide top nav on portal views (bottom nav takes over)
-    if(isPortal){a.classList.remove('active')}
+    const match = linkView === viewId
+      || (bookingFlow.includes(viewId) && linkView === 'services')
+      || (academyFlow.includes(viewId) && linkView === 'academy');
+    a.classList.toggle('active', match);
   });
 
   document.getElementById('topnav').classList.remove('hidden');
@@ -6564,15 +5791,15 @@ function renderCoachBriefs(){
       </div>
       <div class="coach-brief-grid">
         <div class="coach-brief-col">
-          <div class="coach-col-h">Who they are</div>
-          ${field('What brought them here', b.trigger, 'quote')}
-          ${strengthsHtml}
+          <div class="coach-col-h">Where they want to get to</div>
+          ${field('Their goal', b.goal, 'quote')}
           ${field('What they’ve already tried', b.history)}
         </div>
         <div class="coach-brief-col">
-          <div class="coach-col-h">What they need</div>
-          ${field('12-month goal', b.goal, 'quote')}
-          ${field('What feels unclear', b.pattern)}
+          <div class="coach-col-h">What's in the way</div>
+          ${field('The obstacle', b.pattern, 'quote')}
+          ${field('What brought them here', b.trigger)}
+          ${strengthsHtml}
           ${field('What they don’t usually say', b.depth)}
         </div>
       </div>
@@ -6746,26 +5973,18 @@ const startProfile = {
   goal: '', history: '', depth: ''
 };
 
-// Order in which slots are captured. The headline = identity (Q1);
-// each subsequent script[i].ai is shown AFTER capturing the corresponding slot below.
-const captureOrder = ['identity', 'trigger', 'strengths', 'pattern', 'goal', 'history', 'depth'];
+// Three core questions — Sam's brief: WHO they are, WHAT they want, WHAT's in the way.
+// The headline = identity (Q1); each script[i].ai is shown AFTER capturing the slot below.
+const captureOrder = ['identity', 'goal', 'pattern'];
 
 // AI responses shown after each user turn. Index = turn index (0 = after Q1 answered, etc.)
 const startScript = [
-  // After identity (Q1) → ask trigger
-  { ai: "Good to meet you{nameSuffix}. What brings you to coaching now?" },
-  // After trigger (Q2) → ask strengths
-  { ai: "Tell me about a recent work moment where you felt clear, capable, or fully yourself." },
-  // After strengths (Q3) → ask pattern
-  { ai: "Now the other side. What feels unclear right now?", revealEmail: true },
-  // After pattern (Q4) → ask goal
-  { ai: "If the next 12 months went well, what would be different?" },
-  // After goal (Q5) → ask history
-  { ai: "What have you already tried, and what did or did not help?" },
-  // After history (Q6) → ask depth
-  { ai: "Last one. What do you not usually say out loud, but suspect matters here?" },
-  // After depth (Q7) → synthesis + final
-  { ai: "Thank you. I have enough to build your brief for Nesreen.", final: true }
+  // After identity (Q1) → ask goal
+  { ai: "Good to meet you{nameSuffix}. If the next year went the way you want — what's different?" },
+  // After goal (Q2) → ask obstacle
+  { ai: "And honestly — what's getting in the way of that right now?", revealEmail: true },
+  // After obstacle (Q3) → synthesis + final
+  { ai: "That's what I needed. I'll have your brief ready for Nesreen.", final: true }
 ];
 
 let startTurn = 0;
@@ -6938,19 +6157,8 @@ function startPopulateProfile(){
   }
   setText('profile-name', liUser?.name || name);
   setText('profile-role', liUser?.headline || role);
-  setText('profile-trigger', p.trigger ? p.trigger.trim() : '—');
-
-  // Strengths list
-  const ul = document.getElementById('profile-strengths');
-  if(ul){
-    ul.innerHTML = '';
-    startExtractStrengths(p.strengths).forEach(s => {
-      const li = document.createElement('li');
-      li.textContent = s;
-      ul.appendChild(li);
-    });
-  }
-
+  // profile-trigger now shows the obstacle (pattern); profile-goal shows the goal
+  setText('profile-trigger', p.pattern ? p.pattern.trim() : '—');
   setText('profile-goal', p.goal ? p.goal.trim() : '—');
 }
 
@@ -7006,18 +6214,10 @@ document.getElementById('start-mic')?.addEventListener('click', ()=>{
   const prompts = [
     // Q1 — identity
     "I'm Sarah Chen. Head of Product at a Series B fintech in Dubai.",
-    // Q2 — trigger
-    "I just got passed over for VP. Third time in eighteen months. I'm starting to wonder if it's not the role I want — it's that I've been quietly outgrowing it.",
-    // Q3 — strengths
-    "Last month I led a war room through a launch crisis. Everyone else was panicking and I just got calm. I knew exactly what to ask, who to push on, what to drop. Felt completely in my body.",
-    // Q4 — unclear area
-    "I'm bad at self-promotion. I won't talk about my own work. My peers run circles around me on visibility — they post, they tag, they take credit. I think it's beneath me, and the system rewards them for it.",
-    // Q5 — goal
-    "I'd be running my own org. Not chasing the next title — owning the strategy and the team that executes it. Probably a B2B fintech, probably 80–150 people, with real product-market fit.",
-    // Q6 — history
-    "Two executive coaches. The first was too soft — lots of affirmation, no edge. The second gave me frameworks but no honesty. I want someone who'll push back when I'm hiding.",
-    // Q7 — depth
-    "That I've been pretending I'm fine with the slower path. I'm not. I'm running out of patience with my own patience, and I think that's the real thing."
+    // Q2 — goal
+    "I'd be running my own org — owning the strategy and the team that executes it. Not chasing the next title. Probably a B2B fintech, 80–150 people, with real product-market fit.",
+    // Q3 — obstacle
+    "I won't talk about my own work. My peers run circles around me on visibility — they post, they tag, they take credit. I half-believe it's beneath me, and the system rewards them for it."
   ];
   if(!input.value){
     input.value = prompts[Math.min(startTurn, prompts.length - 1)];
@@ -7054,6 +6254,99 @@ document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
   switchView('calendar');
   if(typeof renderCalendar === 'function') renderCalendar();
 });
+
+/* ============================== LIBRARY — PROMOTE TO HERO ============================== */
+const libBooks = [
+  { id:'quiet', title:'Quiet Power', tag:'New Release · #1 Bestseller', cls:'b1',
+    desc:'For leaders who want to lead well without burning out or pretending.',
+    sub:'Leadership without burnout', sold:'12k+', rating:'4.8 ★', pages:'284', price:'AED 89',
+    img:'Assets/Quiet_Power.png', audio:'3:42', url:'Assets/Books/Quiet_Power_Digital_Edition.html' },
+  { id:'compass', title:'Career Compass', tag:'Bestseller', cls:'b2',
+    desc:'Find direction when every path looks the same — and the nerve to commit to one.',
+    sub:'Direction when you feel lost', sold:'8k+', rating:'4.7 ★', pages:'226', price:'AED 79',
+    img:'Assets/Career_Compass.png', audio:'4:05', url:'Assets/Books/Career_Compass_Digital_Edition.html' },
+  { id:'interview', title:'The Interview Playbook', tag:'Reader Favorite', cls:'b3',
+    desc:'Walk into the room knowing what they are really asking — and exactly how to answer.',
+    sub:'Land the offer with confidence', sold:'6k+', rating:'4.9 ★', pages:'198', price:'AED 59',
+    img:'Assets/Interview_Playbook.jpg', audio:'3:18', url:'Assets/Books/The_Interview_Playbook_Digital_Edition.html' },
+  { id:'reset', title:'The Reset Journal', tag:'90-Day Guide', cls:'b4',
+    desc:'A daily structure to recover energy and rebuild trust in your own judgment.',
+    sub:'90-day burnout recovery', sold:'5k+', rating:'4.8 ★', pages:'160', price:'AED 49',
+    img:'Assets/Reset_Journal.png', audio:'2:54', url:'Assets/Books/The_Reset_Journal_Digital_Edition.html' }
+];
+let libActive = 0;
+
+function libCoverInner(b){
+  return `<img class="bc-img" src="${b.img}" alt="${b.title}" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+    <div class="book-title">${b.title}</div><div class="book-author">— Nesreen</div>`;
+}
+
+function renderLibFeatured(){
+  const b = libBooks[libActive];
+  const el = document.getElementById('lib-featured');
+  if(!el) return;
+  el.innerHTML = `
+    <div class="featured-cover ${b.cls}">${libCoverInner(b)}</div>
+    <div class="lib-featured-info">
+      <div class="featured-tag">${b.tag}</div>
+      <h2>${b.title}</h2>
+      <p class="lib-featured-desc">${b.desc}</p>
+      <div class="featured-stats">
+        <div class="featured-stat"><strong>${b.sold}</strong>Copies sold</div>
+        <div class="featured-stat"><strong>${b.rating}</strong>Reader rating</div>
+        <div class="featured-stat"><strong>${b.pages}</strong>Pages</div>
+      </div>
+      <div class="featured-actions">
+        <button class="btn btn-primary" onclick="window.open('${b.url}','_blank','noopener')">Read Chapter 1</button>
+        <button class="btn btn-ghost" onclick="showToast('Opening store')">Buy — ${b.price}</button>
+        <div class="audio-sample" onclick="showToast('Playing sample')">
+          <div class="audio-play-btn">▶</div>
+          <div class="audio-info"><strong>Listen to sample</strong>Narrated by Nesreen · ${b.audio}</div>
+          <div class="audio-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderLibRail(){
+  const rail = document.getElementById('lib-rail');
+  if(!rail) return;
+  rail.innerHTML = libBooks.map((b,i)=>`
+    <div class="book-card ${i===libActive?'is-featured':''}" data-lib="${i}">
+      <div class="book-cover ${b.cls}">${libCoverInner(b)}</div>
+      <div class="book-info">
+        <h4>${b.title}</h4>
+        <p>${b.sub}</p>
+        <div class="book-meta"><span class="book-price">${b.price}</span><span class="book-format">${i===libActive?'Featured':'Tap to feature'}</span></div>
+      </div>
+    </div>`).join('');
+}
+
+function promoteLibBook(i){
+  if(i===libActive || i<0 || i>=libBooks.length) return;
+  libActive = i;
+  const el = document.getElementById('lib-featured');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ renderLibFeatured(); renderLibRail(); return; }
+  el.classList.add('swapping');
+  setTimeout(()=>{
+    renderLibFeatured();
+    renderLibRail();
+    requestAnimationFrame(()=>el.classList.remove('swapping'));
+  }, 180);
+}
+
+document.getElementById('lib-rail')?.addEventListener('click', (e)=>{
+  const card = e.target.closest('[data-lib]');
+  if(!card) return;
+  const i = parseInt(card.dataset.lib);
+  if(i===libActive){ window.open(libBooks[i].url,'_blank','noopener'); return; }
+  promoteLibBook(i);
+  document.getElementById('lib-featured')?.scrollIntoView({behavior:'smooth', block:'nearest'});
+});
+
+function renderLibrary(){ renderLibFeatured(); renderLibRail(); }
+renderLibrary();
 
 /* ==================================================================
    ACADEMY — CONSTELLATION
