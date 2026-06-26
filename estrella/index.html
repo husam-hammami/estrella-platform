@@ -3580,6 +3580,19 @@ body{
   font-size:0.92rem;
   line-height:1.45;
 }
+.coaching-offer-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.6rem;
+  font-weight:500;
+  line-height:1;
+  color:var(--ink);
+}
+.coaching-offer-meta{
+  font-size:0.78rem;
+  color:var(--text-dim);
+  margin-top:0.3rem;
+  margin-bottom:0.2rem;
+}
 .coaching-brief-lines{
   display:grid;
   gap:0.55rem;
@@ -3627,6 +3640,194 @@ body{
   color:var(--gold-deep);
   outline:none;
 }
+
+/* ---- About → discreet coach access ---- */
+.about-coach-link{
+  display:inline-block;
+  margin-top:1.5rem;
+  font-size:0.72rem;
+  letter-spacing:0.04em;
+  color:var(--text-mute);
+  cursor:pointer;
+  text-decoration:none;
+  transition:color 0.2s var(--ease);
+}
+.about-coach-link:hover{color:var(--gold-deep)}
+
+/* ====================== COACH DESK (Nesreen's review queue) ====================== */
+.coach-console{
+  max-width:1040px;
+  margin:0 auto;
+  padding:calc(var(--nav-h) + 1.75rem) clamp(1rem,4vw,2.5rem) 4rem;
+}
+.coach-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:1.5rem;
+  flex-wrap:wrap;
+  padding-bottom:1.5rem;
+  margin-bottom:1.75rem;
+  border-bottom:1px solid var(--line);
+}
+.coach-h1{
+  font-size:clamp(2.2rem,4vw,3.2rem);
+  line-height:1;
+  color:var(--ink);
+  margin:0.5rem 0 0.5rem;
+}
+.coach-sub{
+  color:var(--text);
+  font-size:0.96rem;
+  max-width:46ch;
+  margin:0;
+}
+.coach-head-meta{display:flex;gap:1.75rem}
+.coach-stat{text-align:right}
+.coach-stat strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;
+  font-weight:500;
+  line-height:1;
+  color:var(--gold-deep);
+}
+.coach-stat span{
+  font-size:0.66rem;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--text-mute);
+}
+.coach-briefs{
+  display:grid;
+  gap:1.1rem;
+}
+.coach-brief{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(255,252,246,0.85);
+  box-shadow:0 14px 40px rgba(87,65,28,0.06);
+  padding:1.4rem 1.5rem;
+  transition:box-shadow 0.25s var(--ease),border-color 0.25s var(--ease);
+}
+.coach-brief.is-new{border-color:rgba(151,121,63,0.42)}
+.coach-brief-top{
+  display:flex;
+  align-items:center;
+  gap:0.9rem;
+  padding-bottom:1.1rem;
+  margin-bottom:1.1rem;
+  border-bottom:1px solid var(--line);
+}
+.coach-brief-avatar{
+  width:46px;height:46px;flex:0 0 46px;
+  border-radius:50%;
+  background:var(--gold-bg);
+  color:var(--gold-deep);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;font-weight:600;
+  overflow:hidden;
+}
+.coach-brief-avatar img{width:100%;height:100%;object-fit:cover}
+.coach-brief-id{flex:1;min-width:0}
+.coach-brief-name{font-size:1.15rem;font-weight:600;color:var(--ink);line-height:1.2}
+.coach-brief-role{font-size:0.85rem;color:var(--text-dim);line-height:1.3}
+.coach-brief-when{
+  text-align:right;
+  font-size:0.78rem;
+  color:var(--text-dim);
+  white-space:nowrap;
+}
+.coach-brief-when strong{display:block;color:var(--ink);font-weight:600}
+.coach-tag{
+  display:inline-block;
+  font-size:0.6rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:0.22rem 0.5rem;
+  border-radius:99px;
+  margin-top:0.3rem;
+}
+.coach-tag.new{background:var(--gold-deep);color:#fff}
+.coach-tag.done{background:var(--sage-bg,#E4F0EC);color:#3F7E6F}
+.coach-brief-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.4rem;
+}
+.coach-col-h{
+  font-size:0.64rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+  font-weight:700;
+  margin-bottom:0.45rem;
+}
+.coach-field{margin-bottom:0.9rem}
+.coach-field:last-child{margin-bottom:0}
+.coach-field-lbl{
+  font-size:0.7rem;
+  color:var(--text-mute);
+  margin-bottom:0.15rem;
+}
+.coach-field-val{
+  font-size:0.9rem;
+  line-height:1.45;
+  color:var(--ink);
+}
+.coach-field-val.quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;
+  font-style:italic;
+  color:var(--text);
+}
+.coach-strengths{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0.4rem}
+.coach-strengths li{
+  font-size:0.78rem;
+  padding:0.28rem 0.6rem;
+  border-radius:99px;
+  background:rgba(151,121,63,0.1);
+  color:var(--gold-deep);
+}
+.coach-brief-foot{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:1.2rem;
+  padding-top:1rem;
+  border-top:1px solid var(--line);
+}
+.coach-review-btn{
+  border:1px solid var(--gold-deep);
+  background:transparent;
+  color:var(--gold-deep);
+  font:inherit;
+  font-size:0.82rem;
+  font-weight:500;
+  padding:0.5rem 1.1rem;
+  border-radius:99px;
+  cursor:pointer;
+  transition:background 0.2s var(--ease),color 0.2s var(--ease);
+}
+.coach-review-btn:hover{background:var(--gold-deep);color:#fff}
+.coach-review-btn.done{
+  border-color:var(--line-strong,#ddd);
+  color:var(--text-mute);
+  cursor:default;
+}
+.coach-review-btn.done:hover{background:transparent;color:var(--text-mute)}
+.coach-empty{
+  text-align:center;
+  padding:4rem 1rem;
+  color:var(--text-dim);
+}
+.coach-empty p{margin-top:0.75rem;font-size:0.95rem}
+@media (max-width:640px){
+  .coach-brief-grid{grid-template-columns:1fr;gap:1rem}
+  .coach-brief-top{flex-wrap:wrap}
+  .coach-head-meta{gap:1.25rem}
+}
 @media (max-width:1020px){
   .coaching-console{
     grid-template-columns:minmax(0,1fr) minmax(260px,0.62fr);
@@ -3636,13 +3837,19 @@ body{
 @media (max-width:720px){
   .coaching-console{
     grid-template-columns:1fr;
-    grid-template-rows:minmax(0,1fr) auto;
+    grid-template-rows:auto auto;
     gap:0.75rem;
-    padding:calc(var(--nav-h) + 0.75rem) 0.85rem 0.85rem;
+    /* phones: scroll the page instead of clipping a fixed-height layout */
+    height:auto;
+    max-height:none;
+    min-height:100dvh;
+    overflow:visible;
+    padding:calc(var(--nav-h) + 0.75rem) 0.85rem 1.25rem;
   }
   .coaching-main{
     padding:0.9rem;
     gap:0.75rem;
+    overflow:visible;
   }
   .coaching-copy h1{
     font-size:clamp(2rem,12vw,3rem);
@@ -3672,8 +3879,11 @@ body{
     align-items:end;
   }
   .coaching-brief-body{
-    display:none;
+    display:block;
   }
+  .coaching-brief-lines{display:none}
+  .coaching-offer-price{font-size:2rem}
+  .coaching-offer-meta{font-size:0.72rem}
   .coaching-brief h2{
     font-size:1.65rem;
   }
@@ -4321,6 +4531,29 @@ body{
             Connect on LinkedIn
           </a>
         </div>
+        <a class="about-coach-link" data-view="coach">Nesreen's coach desk →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: COACH (Nesreen's review queue) ============================== -->
+  <div class="view" id="view-coach">
+    <div class="coach-console">
+      <header class="coach-head">
+        <div>
+          <div class="hero-eyebrow">Estrella · Coach desk</div>
+          <h1 class="coach-h1">Your client briefs.</h1>
+          <p class="coach-sub">Prepared by Estrella before each session — who they are, and what they need from the hour.</p>
+        </div>
+        <div class="coach-head-meta">
+          <div class="coach-stat"><strong id="coach-count-new">0</strong><span>To review</span></div>
+          <div class="coach-stat"><strong id="coach-count-total">0</strong><span>Total</span></div>
+        </div>
+      </header>
+      <div class="coach-briefs" id="coach-briefs"></div>
+      <div class="coach-empty" id="coach-empty" hidden>
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+        <p>No briefs yet. They appear here the moment a client finishes with Estrella.</p>
       </div>
     </div>
   </div>
@@ -4339,45 +4572,45 @@ body{
       <main class="coaching-main">
         <header class="coaching-copy">
           <div class="hero-eyebrow">Private coaching with Nesreen</div>
-          <h1>Choose your coaching path.</h1>
-          <p>Create a short brief first so Nesreen sees your goal before the call.</p>
+          <h1>One hour that moves things.</h1>
+          <p>A single private session with Nesreen. Estrella prepares your brief first, so the hour is spent on you — not on catching her up.</p>
         </header>
 
-        <section class="coaching-paths" id="coaching-paths" aria-label="Coaching options">
-          <button class="coaching-path is-selected" type="button" data-coach-service="program" data-coach-title="Private Coaching">
+        <section class="coaching-paths" aria-label="How it works">
+          <div class="coaching-path">
             <span class="coaching-path-num">01</span>
-            <span><strong>Private Coaching</strong><span>Structured support across your next career move.</span></span>
-            <span class="coaching-path-time">12 weeks</span>
-          </button>
-          <button class="coaching-path" type="button" data-coach-service="intensive" data-coach-title="Coaching Intensive">
+            <span><strong>Talk to Estrella</strong><span>A few smart questions. Five minutes, voice or text.</span></span>
+            <span class="coaching-path-time">5 min</span>
+          </div>
+          <div class="coaching-path">
             <span class="coaching-path-num">02</span>
-            <span><strong>Coaching Intensive</strong><span>Focused support when timing is tight.</span></span>
-            <span class="coaching-path-time">2-5 days</span>
-          </button>
-          <button class="coaching-path" type="button" data-coach-service="career" data-coach-title="Strategy Session">
+            <span><strong>Nesreen prepares</strong><span>She reads your brief before you meet — who you are, what you need.</span></span>
+            <span class="coaching-path-time">Before</span>
+          </div>
+          <div class="coaching-path">
             <span class="coaching-path-num">03</span>
-            <span><strong>Strategy Session</strong><span>One conversation for a clear next step.</span></span>
-            <span class="coaching-path-time">90 min</span>
-          </button>
+            <span><strong>Your session</strong><span>Sixty focused minutes, 1-on-1 over video. A clear next step.</span></span>
+            <span class="coaching-path-time">60 min</span>
+          </div>
         </section>
       </main>
 
-      <aside class="coaching-brief" aria-label="Booking brief">
+      <aside class="coaching-brief" aria-label="Book a session">
         <div>
-          <div class="coaching-brief-label">First step</div>
-          <h2>Create your brief</h2>
+          <div class="coaching-brief-label">Private session</div>
+          <h2>One hour with Nesreen</h2>
         </div>
         <div class="coaching-brief-body">
-          <p>A few answers before booking. Nesreen can prepare for the person, goal, and context in front of her.</p>
+          <div class="coaching-offer-price">AED 500</div>
+          <div class="coaching-offer-meta">60 minutes · 1-on-1 video · Brief included</div>
           <div class="coaching-brief-lines">
-            <div class="coaching-brief-line"><span>Your goal</span><strong>What you want to move toward.</strong></div>
-            <div class="coaching-brief-line"><span>Your context</span><strong>Role, timing, and what matters now.</strong></div>
-            <div class="coaching-brief-line"><span>Best format</span><strong id="coaching-selected-label">Private Coaching</strong></div>
+            <div class="coaching-brief-line"><span>Includes</span><strong>Your brief, prepared for Nesreen.</strong></div>
+            <div class="coaching-brief-line"><span>Flexible</span><strong>Full refund up to 48 hours before.</strong></div>
           </div>
         </div>
         <div class="coaching-actions">
-          <button class="btn btn-primary" type="button" data-view="start">Start brief</button>
-          <button class="coaching-direct" type="button" id="practice-book-direct">Book selected format directly</button>
+          <button class="btn btn-primary" type="button" data-view="start">Begin with Estrella</button>
+          <button class="coaching-direct" type="button" id="practice-book-direct">Skip to choosing a time</button>
         </div>
       </aside>
     </div>
@@ -4416,21 +4649,18 @@ body{
         </article>
 
         <div class="start-prescription-block">
-          <div class="start-profile-eyebrow">Nesreen's recommendation</div>
-          <p class="start-prescription-quote">"Start with the three-month program."</p>
+          <div class="start-profile-eyebrow">Your next step</div>
+          <p class="start-prescription-quote">"Let's talk it through, properly."</p>
           <div class="start-prescription-divider" aria-hidden="true">✦</div>
-          <div class="start-prescription-price">AED 6,000</div>
-          <div class="start-prescription-meta">Six private sessions over 12 weeks</div>
+          <div class="start-prescription-price">AED 500</div>
+          <div class="start-prescription-meta">One private session with Nesreen · 60 minutes</div>
         </div>
 
         <button class="start-close-cta start-close-cta--gold" id="start-pick-time">
-          <span>Book the program</span>
+          <span>Book your session</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
 
-        <div class="start-close-tertiary">
-          <a id="start-pick-single">Book one session first (AED 1,200)</a>
-        </div>
         <div class="start-close-tertiary">
           <a id="start-send-me">Email me this profile</a>
           <span> · </span>
@@ -4786,15 +5016,10 @@ body{
           <div class="summary-row"><span class="lbl">Date</span><span class="val" id="ck-date">Tuesday, 9 June 2026</span></div>
           <div class="summary-row"><span class="lbl">Time</span><span class="val" id="ck-time">14:00 · Dubai (GST)</span></div>
           <div class="summary-row"><span class="lbl">Format</span><span class="val">Zoom · link emailed after booking</span></div>
-          <div class="summary-row"><span class="lbl">Includes</span><span class="val" style="color:var(--gold-deep)">AI Preparation + Coaching Brief</span></div>
+          <div class="summary-row"><span class="lbl">Includes</span><span class="val" style="color:var(--gold-deep)">Your brief, prepared for Nesreen</span></div>
 
           <div class="summary-divider"></div>
-
-          <div class="summary-row"><span class="lbl">Subtotal</span><span class="val" id="ck-sub">AED 1,200.00</span></div>
-          <div class="summary-row"><span class="lbl">VAT (5%)</span><span class="val" id="ck-vat">AED 60.00</span></div>
-
-          <div class="summary-divider"></div>
-          <div class="summary-total"><span class="lbl">Total</span><span class="val" id="ck-total">AED 1,260</span></div>
+          <div class="summary-total"><span class="lbl">Total</span><span class="val" id="ck-total">AED 500</span></div>
 
           <div class="guarantee">
             <div class="guarantee-icon">✓</div>
@@ -5863,7 +6088,11 @@ const services = [
   {id:'quiz', name:'Not sure?', tagline:'Take the 60-second clarity quiz.', forWhom:'Estrella will recommend your path', price:0, duration:0, color:'var(--lavender-bg)', accent:'#5B4B8A', isQuiz:true},
   // Prescribed default offered after the Estrella diagnostic — not shown in the (legacy) services grid
   {id:'program', name:'3-Month Coaching Program', tagline:'Six sessions for a real inflection point.', forWhom:'Recommended after your conversation with Estrella', price:6000, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
+  // CANONICAL — the one coaching product. A single private session with Nesreen, AED 500.
+  {id:'session', name:'Private Coaching Session', tagline:'One focused hour with Nesreen.', forWhom:'Anyone ready to move on a real decision', price:500, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
 ];
+// The single offering everything routes to.
+const COACHING_SESSION = services.find(s => s.id === 'session');
 
 let state = {
   selectedService: null,
@@ -5983,6 +6212,7 @@ function afterViewSwitch(viewId, current){
 
   // Trigger view-specific init
   if(viewId === 'readiness') animateRings();
+  if(viewId === 'coach' && typeof renderCoachBriefs === 'function') renderCoachBriefs();
   if(viewId === 'dashboard') {/* maybe animate dash */}
 
   if(window.EstrellaGsap){
@@ -6205,11 +6435,7 @@ document.getElementById('to-checkout').addEventListener('click', ()=>{
   const formatted = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
   document.getElementById('ck-date').textContent = formatted;
   document.getElementById('ck-time').textContent = state.selectedTime + ' · Dubai (GST)';
-  const sub = s.price;
-  const vat = Math.round(sub * 0.05);
-  const total = sub + vat;
-  document.getElementById('ck-sub').textContent = `AED ${sub.toLocaleString()}.00`;
-  document.getElementById('ck-vat').textContent = `AED ${vat.toLocaleString()}.00`;
+  const total = s.price; // flat, all-in — no VAT line to confuse
   document.getElementById('ck-total').textContent = `AED ${total.toLocaleString()}`;
   document.getElementById('ck-pay-total').textContent = `AED ${total.toLocaleString()}`;
   switchView('checkout');
@@ -6221,13 +6447,150 @@ function simulatePay(){
   btns.forEach(b => b.disabled = true);
   showToast('Processing payment');
   setTimeout(()=>{
-    showToast('Payment complete. Session confirmed.');
+    // Persist the brief for Nesreen, attached to the booked session
+    saveBrief({ booked: true });
+    showToast('Payment complete. Nesreen has your brief.');
     setTimeout(()=>{
       switchView('dashboard');
       btns.forEach(b => b.disabled = false);
     }, 800);
   }, 1500);
 }
+
+/* ============================== COACH DESK — BRIEFS ============================== */
+const BRIEFS_KEY = 'estrella_briefs';
+
+function loadBriefs(){
+  try{ return JSON.parse(localStorage.getItem(BRIEFS_KEY) || '[]'); }
+  catch(e){ return []; }
+}
+function storeBriefs(list){
+  try{ localStorage.setItem(BRIEFS_KEY, JSON.stringify(list)); }catch(e){}
+}
+
+// Build a brief from the live screening answers + booking, and persist it.
+function saveBrief(opts){
+  opts = opts || {};
+  const p = startProfile || {};
+  // Need at least an identity answer to make a meaningful brief
+  if(!p.identity && !opts.booked) return;
+  const name = (typeof startExtractName === 'function' && startExtractName(p.identity)) || 'New client';
+  const role = (typeof startExtractRole === 'function' && startExtractRole(p.identity, startExtractName(p.identity))) || '—';
+  const strengths = (typeof startExtractStrengths === 'function' && p.strengths) ? startExtractStrengths(p.strengths) : [];
+
+  let when = null;
+  if(opts.booked && state.selectedDate && state.selectedTime){
+    const sd = state.selectedDate;
+    const dateObj = new Date(sd.year, sd.month, sd.day);
+    when = {
+      date: dateObj.toLocaleDateString('en-US',{weekday:'short', day:'numeric', month:'short'}),
+      time: state.selectedTime + ' GST'
+    };
+  }
+
+  const brief = {
+    id: 'b' + Date.now(),
+    name, role, strengths,
+    trigger: (p.trigger || '').trim(),
+    goal: (p.goal || '').trim(),
+    pattern: (p.pattern || '').trim(),
+    history: (p.history || '').trim(),
+    depth: (p.depth || '').trim(),
+    when,
+    status: opts.booked ? 'new' : 'lead',
+    reviewed: false
+  };
+  const list = loadBriefs();
+  list.unshift(brief);
+  storeBriefs(list);
+}
+
+// Demo seed so Nesreen's desk is never empty on first open
+function seedBriefsIfEmpty(){
+  if(loadBriefs().length) return;
+  storeBriefs([{
+    id: 'seed1',
+    name: 'Sarah Chen',
+    role: 'Head of Product · Series B fintech, Dubai',
+    strengths: ['Calm under pressure', 'Sharp judgment in crisis', 'Quiet leadership'],
+    trigger: "Passed over for VP a third time in eighteen months. Starting to suspect she's quietly outgrowing the role.",
+    goal: "Running her own org — owning the strategy and team, not chasing the next title. Likely a B2B fintech, 80–150 people.",
+    pattern: "Won't talk about her own work. Peers run circles around her on visibility, and she half-believes self-promotion is beneath her.",
+    history: "Two executive coaches. One too soft, one all frameworks and no honesty. Wants someone who pushes back when she's hiding.",
+    depth: "She's been pretending she's fine with the slower path. She isn't — and she thinks that's the real thing.",
+    when: { date: 'Tue, 30 Jun', time: '14:00 GST' },
+    status: 'new',
+    reviewed: false
+  }]);
+}
+
+function renderCoachBriefs(){
+  seedBriefsIfEmpty();
+  const list = loadBriefs();
+  const wrap = document.getElementById('coach-briefs');
+  const empty = document.getElementById('coach-empty');
+  if(!wrap) return;
+
+  const newCount = list.filter(b => !b.reviewed).length;
+  document.getElementById('coach-count-new').textContent = newCount;
+  document.getElementById('coach-count-total').textContent = list.length;
+
+  if(!list.length){ wrap.innerHTML = ''; if(empty) empty.hidden = false; return; }
+  if(empty) empty.hidden = true;
+
+  const esc = s => (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const field = (lbl, val, cls) => val ? `<div class="coach-field"><div class="coach-field-lbl">${lbl}</div><div class="coach-field-val ${cls||''}">${esc(val)}</div></div>` : '';
+
+  wrap.innerHTML = list.map(b => {
+    const initial = (b.name && b.name[0] || '?').toUpperCase();
+    const strengthsHtml = (b.strengths && b.strengths.length)
+      ? `<div class="coach-field"><div class="coach-field-lbl">Strengths</div><ul class="coach-strengths">${b.strengths.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>` : '';
+    const whenHtml = b.when
+      ? `<div class="coach-brief-when">Session<strong>${esc(b.when.date)}</strong>${esc(b.when.time)}</div>`
+      : `<div class="coach-brief-when">${b.status==='lead'?'Not booked yet':''}</div>`;
+    const tag = b.reviewed
+      ? '<span class="coach-tag done">Reviewed</span>'
+      : (b.status === 'new' ? '<span class="coach-tag new">New booking</span>' : '<span class="coach-tag new">Lead</span>');
+    return `
+    <article class="coach-brief ${b.reviewed?'':'is-new'}" data-id="${b.id}">
+      <div class="coach-brief-top">
+        <div class="coach-brief-avatar">${initial}</div>
+        <div class="coach-brief-id">
+          <div class="coach-brief-name">${esc(b.name)}</div>
+          <div class="coach-brief-role">${esc(b.role)}</div>
+          ${tag}
+        </div>
+        ${whenHtml}
+      </div>
+      <div class="coach-brief-grid">
+        <div class="coach-brief-col">
+          <div class="coach-col-h">Who they are</div>
+          ${field('What brought them here', b.trigger, 'quote')}
+          ${strengthsHtml}
+          ${field('What they’ve already tried', b.history)}
+        </div>
+        <div class="coach-brief-col">
+          <div class="coach-col-h">What they need</div>
+          ${field('12-month goal', b.goal, 'quote')}
+          ${field('What feels unclear', b.pattern)}
+          ${field('What they don’t usually say', b.depth)}
+        </div>
+      </div>
+      <div class="coach-brief-foot">
+        <button class="coach-review-btn ${b.reviewed?'done':''}" data-review="${b.id}">${b.reviewed?'Reviewed ✓':'Mark reviewed'}</button>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+document.getElementById('coach-briefs')?.addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-review]');
+  if(!btn) return;
+  const id = btn.dataset.review;
+  const list = loadBriefs();
+  const item = list.find(b => b.id === id);
+  if(item && !item.reviewed){ item.reviewed = true; storeBriefs(list); renderCoachBriefs(); }
+});
 
 /* ============================== CHAT ============================== */
 const chatScript = [
@@ -6674,45 +7037,20 @@ document.getElementById('start-email')?.addEventListener('keypress', (e)=>{
 });
 
 document.getElementById('start-pick-time')?.addEventListener('click', ()=>{
-  // Primary path — the prescribed 3-month program
-  state.selectedService = services.find(s => s.id === 'program') || services[0];
-  switchView('calendar');
-  if(typeof renderCalendar === 'function') renderCalendar();
-});
-
-document.getElementById('start-pick-single')?.addEventListener('click', ()=>{
-  // Downgrade — single session (price-shocker edge case in coaching_UX.md §11.4)
-  state.selectedService = services.find(s => s.id === 'career') || services[0];
+  // One path: the single private session with Nesreen (AED 500)
+  state.selectedService = COACHING_SESSION || services[0];
   switchView('calendar');
   if(typeof renderCalendar === 'function') renderCalendar();
 });
 
 document.getElementById('start-send-me')?.addEventListener('click', ()=>{
-  showToast('Profile emailed');
+  saveBrief({ emailedOnly: true });
+  showToast('Profile saved. Nesreen has it for review.');
 });
 
-// Practice page escape hatch (coaching_UX.md §12)
-function selectCoachingService(id){
-  const svc = services.find(s => s.id === id) || services.find(s => s.id === 'program') || services[0];
-  state.selectedService = svc;
-  const selectedButton = document.querySelector(`#coaching-paths [data-coach-service="${svc.id}"]`);
-  document.querySelectorAll('#coaching-paths .coaching-path').forEach(btn => {
-    btn.classList.toggle('is-selected', btn.dataset.coachService === svc.id);
-  });
-  const label = document.getElementById('coaching-selected-label');
-  if(label) label.textContent = selectedButton?.dataset.coachTitle || svc.name;
-  return svc;
-}
-
-document.getElementById('coaching-paths')?.addEventListener('click', (e)=>{
-  const btn = e.target.closest('[data-coach-service]');
-  if(!btn) return;
-  selectCoachingService(btn.dataset.coachService);
-});
-selectCoachingService('program');
-
+// "Skip to choosing a time" — book the single session directly
 document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
-  state.selectedService = state.selectedService || services.find(s => s.id === 'program') || services[0];
+  state.selectedService = COACHING_SESSION || services[0];
   switchView('calendar');
   if(typeof renderCalendar === 'function') renderCalendar();
 });
