@@ -1,0 +1,9 @@
+{
+  "name": "estrella",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Estrella — premium AI-assisted career coaching prototype with real LinkedIn sign-in.",
+  "engines": {
+    "node": ">=18"
+  }
+}

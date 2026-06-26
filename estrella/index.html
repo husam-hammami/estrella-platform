@@ -217,6 +217,12 @@ body{
   background:var(--gold-bg);color:var(--gold-deep);
   font-family:'Cormorant Garamond',serif;font-size:0.875rem;font-weight:600;
 }
+.topnav-signout{
+  background:none;border:none;padding:0.375rem 0.5rem;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:500;
+  color:var(--text-dim);border-radius:99px;
+}
+.topnav-signout:hover{color:var(--ink);background:rgba(20,18,14,0.04)}
 
 /* BUTTONS */
 .btn{
@@ -3885,6 +3891,7 @@ body{
       <span class="topnav-user-avatar topnav-user-avatar--initial" id="topnav-user-avatar">?</span>
       <span id="topnav-user-name">Account</span>
     </button>
+    <button type="button" class="topnav-signout" id="topnav-signout" title="Sign out">Sign out</button>
     <button class="btn btn-gold btn-sm" data-view="start">Book Session</button>
   </div>
 </nav>
@@ -5351,11 +5358,15 @@ let state = {
   linkedInUser: null
 };
 
+// Offline fallback only — used when the prototype is opened from disk (file://)
+// with no backend. The real flow pulls the live LinkedIn profile via /api.
 const LINKEDIN_MOCK = {
   name: 'Amal Hassan',
   headline: 'Founder & Leader',
   photoUrl: 'Assets/layla.jpg'
 };
+// Real OAuth needs the serverless /api routes, which only exist over http(s).
+const BACKEND_AVAILABLE = location.protocol === 'http:' || location.protocol === 'https:';
 
 function getLinkedInUser(){
   if(state.linkedInUser) return state.linkedInUser;
@@ -5398,12 +5409,58 @@ function updateTopNavAuth(){
   }
 }
 
+function signOut(){
+  state.linkedInUser = null;
+  try{ sessionStorage.removeItem('estrella_linkedin_user'); }catch(e){}
+  if(BACKEND_AVAILABLE){ window.location.href = '/api/logout'; return; }
+  updateTopNavAuth();
+}
+
 document.getElementById('btn-linkedin-signin')?.addEventListener('click', ()=>{
+  if(BACKEND_AVAILABLE){
+    // Real Sign In with LinkedIn (OpenID Connect). Server handles the token
+    // exchange and returns to the app with a session — see docs/LINKEDIN_SETUP.md.
+    window.location.href = '/api/linkedin/login';
+    return;
+  }
+  // Offline prototype (opened from disk): use the local demo profile.
   setLinkedInUser({...LINKEDIN_MOCK});
-  showToast('Signed in with LinkedIn');
+  showToast('Signed in with LinkedIn (demo)');
 });
 
-updateTopNavAuth();
+document.getElementById('topnav-signout')?.addEventListener('click', (e)=>{
+  e.preventDefault();
+  signOut();
+});
+
+// Restore an existing LinkedIn session (set by the server after OAuth), and
+// surface the result of a just-completed sign-in redirect.
+function initLinkedInSession(){
+  if(BACKEND_AVAILABLE){
+    const params = new URLSearchParams(location.search);
+    const justSignedIn = params.has('li');
+    if(params.get('li_error')){
+      showToast('LinkedIn sign-in failed. Please try again.');
+    }
+    if(justSignedIn || params.has('li_error')){
+      // Clean the OAuth params out of the URL.
+      params.delete('li'); params.delete('li_error');
+      const qs = params.toString();
+      history.replaceState({}, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+    }
+    fetch('/api/me', { credentials: 'same-origin' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if(d && d.user){
+          setLinkedInUser(d.user);
+          if(justSignedIn) showToast('Signed in with LinkedIn');
+        }
+      })
+      .catch(()=>{});
+  }
+  updateTopNavAuth();
+}
+initLinkedInSession();
 
 const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
