@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Estrella Academy — Constellation (no-scroll mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#F2EBDC; --bg-soft:#ECE3D0; --surface:#FBF7EC; --surface-2:#F7F1E2;
+  --line:rgba(20,18,14,.07); --line-strong:rgba(20,18,14,.12);
+  --ink:#14120E; --ink-2:#2A2620; --text:#3D3933; --text-dim:#6E6862; --text-mute:#A39B91;
+  --gold:#B8985C; --gold-deep:#97793F; --gold-soft:#DCC589; --gold-bg:#F1E6C7;
+  --sage:#9BC2B5; --rose:#E8A5B8; --sky:#A8C8E0;
+  --success:#4FA381;
+  --r:18px; --r-lg:26px; --r-sm:12px;
+  --sh-sm:0 2px 8px rgba(20,18,14,.04);
+  --sh:0 10px 30px rgba(20,18,14,.07);
+  --sh-lg:0 24px 70px rgba(20,18,14,.10);
+  --ease:cubic-bezier(.4,0,.2,1); --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;
+  background-image:
+    radial-gradient(circle at 12% 18%,rgba(201,169,97,.06)0%,transparent 38%),
+    radial-gradient(circle at 88% 82%,rgba(184,168,224,.045)0%,transparent 42%);
+}
+.serif{font-family:'Cormorant Garamond',serif;letter-spacing:-.01em;color:var(--ink);font-weight:500}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep)}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:14px;font-weight:600;border-radius:99px;
+  padding:.7rem 1.3rem;transition:transform .18s var(--ease),box-shadow .18s var(--ease),background .18s var(--ease)}
+.btn-primary{background:var(--ink);color:#FAF7F1;box-shadow:0 8px 22px rgba(20,18,14,.18)}
+.btn-primary:hover{background:var(--ink-2);transform:translateY(-1px);box-shadow:0 12px 28px rgba(20,18,14,.24)}
+.btn-ghost{color:var(--ink);border:1px solid var(--line-strong);background:transparent}
+.btn-ghost:hover{border-color:var(--ink);background:var(--surface)}
+
+/* ---- app shell: fixed to viewport, never scrolls ---- */
+.app{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+.appbar{height:54px;flex:none;display:flex;align-items:center;gap:1rem;padding:0 22px;border-bottom:1px solid var(--line);
+  background:rgba(251,247,236,.7);backdrop-filter:blur(8px)}
+.appbar .brand{display:flex;align-items:center;gap:.55rem;font-weight:600;color:var(--ink);font-size:14px;letter-spacing:.02em}
+.appbar .brand svg{width:18px;height:18px;color:var(--gold)}
+.appbar .crumb{font-size:12.5px;color:var(--text-dim)}
+.appbar .crumb b{color:var(--ink);font-weight:600}
+.spacer{flex:1}
+.seg{display:flex;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:3px}
+.seg button{font-size:12.5px;font-weight:600;color:var(--text-dim);padding:.4rem .9rem;border-radius:99px;transition:color .18s,background .18s}
+.seg button.on{background:var(--surface);color:var(--ink);box-shadow:var(--sh-sm)}
+.screen{flex:1;min-height:0;display:none}
+.screen.on{display:block}
+
+/* ============================ STUDIO ============================ */
+.studio{height:100%;display:grid;grid-template-columns:206px minmax(0,1fr) 336px;gap:0}
+.col{min-height:0;display:flex;flex-direction:column}
+
+/* method spine */
+.spine{padding:22px 18px;border-right:1px solid var(--line);background:linear-gradient(180deg,var(--surface-2)0%,transparent 60%)}
+.spine .back{display:inline-flex;align-items:center;gap:.4rem;font-size:12.5px;font-weight:600;color:var(--text-dim);margin-bottom:20px}
+.spine .back:hover{color:var(--ink)}
+.spine .arch{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:4px}
+.spine .ctitle{font-size:19px;line-height:1.15;margin-bottom:22px}
+.steps{position:relative;display:flex;flex-direction:column;gap:2px}
+.steps::before{content:"";position:absolute;left:13px;top:14px;bottom:14px;width:1.5px;background:var(--line-strong)}
+.step{position:relative;display:flex;align-items:center;gap:11px;padding:8px 6px;border-radius:10px;z-index:1}
+.step .dot{width:27px;height:27px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;
+  background:var(--bg);border:1.5px solid var(--line-strong);color:var(--text-mute)}
+.step .lbl{font-size:13px;color:var(--text-dim);font-weight:500}
+.step.done .dot{background:var(--gold);border-color:var(--gold);color:#fff}
+.step.done .lbl{color:var(--ink-2)}
+.step.active{background:var(--surface)}
+.step.active .dot{background:var(--ink);border-color:var(--ink);color:var(--gold-soft);box-shadow:0 0 0 5px rgba(184,152,92,.16)}
+.step.active .lbl{color:var(--ink);font-weight:600}
+.spine .foot{margin-top:auto;font-size:11.5px;line-height:1.5;color:var(--text-mute);font-style:italic;
+  font-family:'Cormorant Garamond',serif;font-size:14px}
+
+/* stage = paced deck */
+.stage{padding:30px 44px 24px;position:relative}
+.stage-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.lesson-meta{font-size:12px;color:var(--text-mute);letter-spacing:.02em}
+.dots{display:flex;gap:6px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--line-strong);transition:all .25s}
+.dots i.on{background:var(--gold);width:20px;border-radius:3px}
+.beat{flex:1;min-height:0;display:flex;flex-direction:column}
+.beat .eyebrow{margin-bottom:14px}
+.beat h1{font-size:34px;line-height:1.08;font-weight:500;margin-bottom:18px;max-width:18ch}
+.beat .body{max-width:60ch;overflow:auto}
+.beat .body p{font-size:15.5px;line-height:1.62;color:var(--text);margin-bottom:13px}
+.beat .body p strong{color:var(--ink);font-weight:600}
+.tool-chip{display:inline-flex;align-items:center;gap:.5rem;margin-top:6px;padding:.5rem .85rem;border-radius:99px;
+  background:var(--gold-bg);border:1px solid var(--gold-soft);font-size:12.5px;color:var(--gold-deep);font-weight:600}
+.tool-chip svg{width:13px;height:13px}
+
+/* the work box */
+.work{margin-top:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:18px 20px;box-shadow:var(--sh-sm);max-width:60ch}
+.work .wlabel{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.work .wlabel span{font-size:13px;font-weight:600;color:var(--ink)}
+.work .wlabel em{font-size:11.5px;color:var(--text-mute);font-style:normal}
+.work textarea{width:100%;height:74px;resize:none;border:1px solid var(--line-strong);border-radius:14px;
+  background:var(--surface-2);padding:12px 14px;font-family:inherit;font-size:14px;color:var(--ink);line-height:1.55}
+.work textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,152,92,.14);background:#fff}
+.work textarea::placeholder{color:var(--text-mute)}
+.work .wact{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:13px}
+
+/* stage footer nav */
+.stage-foot{margin-top:auto;padding-top:20px;display:flex;align-items:center;justify-content:space-between}
+.beat-nav{display:flex;gap:8px}
+.beat-nav button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;
+  color:var(--ink);transition:all .18s var(--ease)}
+.beat-nav button:hover{background:var(--surface);border-color:var(--ink)}
+.beat-nav button svg{width:16px;height:16px}
+
+/* estrella tutor */
+.tutor{border-left:1px solid var(--line);background:var(--surface);padding:0;position:relative}
+.tutor-head{padding:20px 22px 16px;border-bottom:1px solid var(--line)}
+.tutor-head .row{display:flex;align-items:center;gap:10px}
+.orb{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold-deep));box-shadow:0 4px 14px rgba(151,121,63,.34)}
+.orb svg{width:17px;height:17px;color:#fff}
+.tutor-head .who{font-size:13.5px;font-weight:600;color:var(--ink)}
+.tutor-head .stat{font-size:11px;color:var(--success);font-weight:600;display:flex;align-items:center;gap:5px}
+.tutor-head .stat::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--success)}
+.msgs{flex:1;min-height:0;overflow:auto;padding:18px 22px;display:flex;flex-direction:column;gap:12px}
+.msgs::before{content:"";margin-top:auto}
+.msg{font-size:13.5px;line-height:1.55;padding:11px 14px;border-radius:16px;max-width:92%}
+.msg.ai{background:var(--surface-2);border:1px solid var(--line);color:var(--text);border-bottom-left-radius:5px}
+.msg.ai em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold-deep)}
+.msg.user{align-self:flex-end;background:var(--ink);color:#F4EFE6;border-bottom-right-radius:5px}
+.msg .mlabel{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);margin-bottom:4px}
+.typing{display:flex;gap:4px;padding:12px 14px;background:var(--surface-2);border:1px solid var(--line);border-radius:16px;border-bottom-left-radius:5px;width:fit-content}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.5;animation:bob 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bob{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+.chips{padding:0 22px 12px;display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:12px;font-weight:500;color:var(--gold-deep);background:var(--gold-bg);border:1px solid var(--gold-soft);
+  border-radius:99px;padding:.45rem .8rem;transition:all .16s}
+.chip:hover{background:var(--gold-soft);color:var(--ink)}
+.tutor-input{margin:0 18px 18px;display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line-strong);
+  border-radius:99px;padding:5px 6px 5px 16px}
+.tutor-input input{flex:1;border:none;background:none;outline:none;font-family:inherit;font-size:13.5px;color:var(--ink)}
+.tutor-input input::placeholder{color:var(--text-mute)}
+.tutor-input .send{width:34px;height:34px;flex:none;border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.tutor-input .send svg{width:15px;height:15px;color:var(--gold-soft)}
+
+/* ============================ THE SKY ============================ */
+.sky{height:100%;display:grid;grid-template-columns:minmax(0,1.32fr) 372px;grid-template-rows:auto minmax(0,1fr);
+  gap:18px;padding:24px 26px}
+.continue{grid-column:1;grid-row:1;background:linear-gradient(110deg,var(--ink)0%,#241F18 58%,#2E281D 100%);
+  border-radius:var(--r-lg);padding:26px 30px;color:#F4EFE6;display:flex;align-items:center;gap:28px;position:relative;overflow:hidden;box-shadow:var(--sh-lg)}
+.continue::after{content:"";position:absolute;right:-40px;top:-40px;width:240px;height:240px;
+  background:radial-gradient(circle,rgba(184,152,92,.22),transparent 68%);pointer-events:none}
+.continue .ctxt{flex:1;position:relative;z-index:1}
+.continue .eyebrow{color:var(--gold-soft);margin-bottom:9px}
+.continue h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:27px;line-height:1.1;color:#FBF7EC;margin-bottom:7px}
+.continue p{font-size:13px;color:#C9C1B2;margin-bottom:18px}
+.continue .meter{height:4px;border-radius:99px;background:rgba(255,255,255,.13);width:230px;margin-bottom:16px;overflow:hidden}
+.continue .meter i{display:block;height:100%;width:44%;background:linear-gradient(90deg,var(--gold-soft),var(--gold))}
+.continue .btn-primary{background:var(--gold);color:var(--ink);box-shadow:0 10px 24px rgba(184,152,92,.34)}
+.continue .btn-primary:hover{background:var(--gold-soft)}
+.streak{position:relative;z-index:1;text-align:center;padding-left:26px;border-left:1px solid rgba(255,255,255,.12)}
+.streak .n{font-family:'Cormorant Garamond',serif;font-size:52px;line-height:1;color:var(--gold-soft);font-weight:500}
+.streak .lbl{font-size:11px;letter-spacing:.06em;color:#C9C1B2;margin-top:4px;max-width:120px}
+
+.skymap{grid-column:1;grid-row:2;background:#17130D;border-radius:var(--r-lg);padding:20px 24px;position:relative;overflow:hidden;
+  box-shadow:var(--sh-lg);display:flex;flex-direction:column}
+.skymap::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(circle at 20% 30%,rgba(184,152,92,.10),transparent 45%),
+    radial-gradient(circle at 80% 75%,rgba(168,200,224,.07),transparent 45%)}
+.skymap .smhead{display:flex;align-items:baseline;justify-content:space-between;position:relative;z-index:1;margin-bottom:10px}
+.skymap .smhead h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:20px;color:#F4EFE6}
+.skymap .smhead a{font-size:12px;color:var(--gold-soft);font-weight:600}
+.constellations{flex:1;min-height:0;position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cst{border-radius:16px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);transition:all .2s var(--ease)}
+.cst:hover{background:rgba(255,255,255,.05);border-color:rgba(184,152,92,.3)}
+.cst svg{width:100%;height:62px;display:block}
+.cst .cname{font-size:11.5px;font-weight:600;color:#E8E1D2;margin-top:6px;line-height:1.25}
+.cst .cprog{font-size:10px;color:#9A9286;margin-top:2px}
+.cst.done{background:rgba(184,152,92,.10);border-color:rgba(184,152,92,.34)}
+.cst.done .cname{color:var(--gold-soft)}
+
+.siderail{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;gap:14px;min-height:0}
+.levelcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;box-shadow:var(--sh-sm)}
+.levelcard .lvrow{display:flex;align-items:center;gap:12px}
+.levelcard .lvorb{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold-deep));box-shadow:0 4px 14px rgba(151,121,63,.3)}
+.levelcard .lvorb svg{width:20px;height:20px;color:#fff}
+.levelcard .lvname{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);font-weight:500;line-height:1}
+.levelcard .lvxp{font-size:11.5px;color:var(--text-dim);margin-top:3px}
+.levelcard .lvbar{height:4px;border-radius:99px;background:var(--bg-soft);margin-top:14px;overflow:hidden}
+.levelcard .lvbar i{display:block;height:100%;width:62%;background:linear-gradient(90deg,var(--gold-soft),var(--gold))}
+
+.tabs{display:flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:3px}
+.tabs button{flex:1;font-size:12px;font-weight:600;color:var(--text-dim);padding:.45rem;border-radius:99px;transition:all .16s}
+.tabs button.on{background:var(--surface);color:var(--ink);box-shadow:var(--sh-sm)}
+.trackpanel{flex:1;min-height:0;display:flex;flex-direction:column;gap:11px}
+.track{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;
+  box-shadow:var(--sh-sm);display:flex;flex-direction:column;justify-content:space-between;transition:all .2s;position:relative;overflow:hidden}
+.track:hover{box-shadow:var(--sh);transform:translateY(-1px);border-color:var(--gold-soft)}
+.track .trow{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.track .tname{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--ink);font-weight:600}
+.track .ttitle{font-size:10.5px;font-weight:600;letter-spacing:.04em;color:var(--gold-deep);background:var(--gold-bg);
+  border:1px solid var(--gold-soft);border-radius:99px;padding:.2rem .6rem}
+.track p{font-size:12px;color:var(--text-dim);line-height:1.45;margin-bottom:10px}
+.track .pips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.track .pip{font-size:10.5px;font-weight:500;color:var(--text-dim);background:var(--bg-soft);border:1px solid var(--line);
+  border-radius:99px;padding:.22rem .55rem}
+.track .pip.done{color:var(--gold-deep);background:var(--gold-bg);border-color:var(--gold-soft)}
+.track .pip.done::before{content:"✓ ";font-weight:700}
+.track .ring{display:flex;align-items:center;gap:9px}
+.track .ring .rbar{flex:1;height:3px;background:var(--bg-soft);border-radius:99px;overflow:hidden}
+.track .ring .rbar i{display:block;height:100%;background:var(--gold)}
+.track .ring .rn{font-size:11px;color:var(--text-mute);font-weight:600}
+
+/* mobile: chrome stays fixed; one internal scroll region (the a11y/space safety valve).
+   the lesson surface stays no-scroll via a Lesson⇄Estrella toggle. */
+.mtoggle{display:none}
+@media(max-width:900px){
+  .seg{display:none}
+  .screen.on{overflow:hidden}
+  /* studio: single column, toggle between stage and tutor */
+  .studio{grid-template-columns:1fr;grid-template-rows:1fr auto;height:100%}
+  .spine{display:none}
+  .stage{padding:22px 20px 16px}
+  .beat h1{font-size:27px}
+  .tutor{border-left:none;border-top:1px solid var(--line)}
+  .studio .stage,.studio .tutor{grid-column:1;grid-row:1;min-height:0}
+  .studio[data-m="stage"] .tutor{display:none}
+  .studio[data-m="tutor"] .stage{display:none}
+  .mtoggle{display:flex;grid-row:2;background:var(--surface);border-top:1px solid var(--line);padding:8px;gap:6px}
+  .mtoggle button{flex:1;font-size:13px;font-weight:600;color:var(--text-dim);padding:.6rem;border-radius:99px;min-height:44px}
+  .mtoggle button.on{background:var(--ink);color:var(--gold-soft)}
+  /* sky: continue pinned, lower zone scrolls internally under fixed chrome */
+  .sky{grid-template-columns:1fr;grid-template-rows:auto auto minmax(0,1fr);height:100%;padding:16px;gap:14px}
+  .siderail{grid-column:1;grid-row:3;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .continue{grid-column:1;grid-row:2;flex-direction:column;align-items:flex-start;gap:14px;padding:20px 22px}
+  .continue .streak{padding-left:0;border-left:none;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;text-align:left;display:flex;align-items:baseline;gap:10px}
+  .continue .streak .lbl{max-width:none}
+  .skymap{display:none}
+  .levelcard{grid-row:1}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="appbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17.4 14.6 L31 16 L17.4 17.4 L16 31 L14.6 17.4 L1 16 L14.6 14.6 Z"/></svg>
+      Estrella · Academy
+    </div>
+    <span class="crumb" id="crumb"><b>The Studio</b> · single-viewport lesson</span>
+    <div class="spacer"></div>
+    <div class="seg">
+      <button class="on" data-go="studio">The Studio</button>
+      <button data-go="sky">The Sky</button>
+    </div>
+  </header>
+
+  <!-- ===================== STUDIO ===================== -->
+  <section class="screen on" id="studio">
+    <div class="studio" data-m="stage">
+      <!-- method spine -->
+      <aside class="col spine">
+        <button class="back"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6"/></svg> Course</button>
+        <div class="arch">Identity · Positioning</div>
+        <div class="ctitle serif">Say what you stand for</div>
+        <div class="steps">
+          <div class="step done"><span class="dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span class="lbl">The mirror</span></div>
+          <div class="step active"><span class="dot">2</span><span class="lbl">Nesreen's lens</span></div>
+          <div class="step"><span class="dot">3</span><span class="lbl">Draft</span></div>
+          <div class="step"><span class="dot">4</span><span class="lbl">Sharpen with Estrella</span></div>
+          <div class="step"><span class="dot">5</span><span class="lbl">It's yours</span></div>
+        </div>
+        <div class="foot">Stay in the lesson. Ask Estrella when a point needs clarifying.</div>
+      </aside>
+
+      <!-- stage: paced deck -->
+      <main class="col stage">
+        <div class="stage-head">
+          <span class="lesson-meta">Personal Branding · Module 2 · Lesson 4 of 9</span>
+          <div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="beat">
+          <div class="eyebrow">How Nesreen reads it</div>
+          <h1 class="serif">A brand isn't what you say. It's what people repeat when you leave the room.</h1>
+          <div class="body">
+            <p>Most people write a personal brand as a list of adjectives. <strong>Strategic. Driven. Collaborative.</strong> Everyone picks the same five. They describe no one.</p>
+            <p>I work the other way. Start from the <strong>one decision you want people to trust you with</strong> — then your brand is just the evidence that you're the right call. The words follow. They never lead.</p>
+            <div class="tool-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2-6.3-4.6L5.7 21l2.3-7.2-6-4.4h7.6z"/></svg> Tool: the one-decision test</div>
+          </div>
+          <div class="work">
+            <div class="wlabel"><span>Your move</span><em>One sentence — we'll sharpen it together</em></div>
+            <textarea placeholder="When people think of me, the decision they trust me with is…">When my company faces a hard people-call under pressure, they trust me to make it without flinching — and to be right.</textarea>
+            <div class="wact">
+              <button class="btn btn-ghost">Save draft</button>
+              <button class="btn btn-primary">Pressure-test my answer →</button>
+            </div>
+          </div>
+        </div>
+        <div class="stage-foot">
+          <div class="beat-nav">
+            <button title="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button title="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+          <span class="lesson-meta">Beat 2 of 5 · ≈ 6 min</span>
+        </div>
+      </main>
+
+      <!-- estrella -->
+      <aside class="col tutor">
+        <div class="tutor-head">
+          <div class="row">
+            <div class="orb"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17.4 14.6 L31 16 L17.4 17.4 L16 31 L14.6 17.4 L1 16 L14.6 14.6 Z"/></svg></div>
+            <div><div class="who">Estrella</div><div class="stat">Coaching live · in Nesreen's voice</div></div>
+          </div>
+        </div>
+        <div class="msgs">
+          <div class="msg ai"><div class="mlabel">Estrella</div>Good — you named a real decision, not an adjective. That already puts you ahead of most.<br><br>But <em>"and to be right"</em> is doing a lot of quiet work. How would someone <strong>know</strong> you're right more often than not? Give me the evidence, not the claim.</div>
+          <div class="msg user">The two restructures I ran last year — no legal claims, and the teams stayed.</div>
+          <div class="typing"><span></span><span></span><span></span></div>
+        </div>
+        <div class="chips">
+          <button class="chip">Why does the adjective version fail?</button>
+          <button class="chip">Show me a strong example</button>
+        </div>
+        <div class="tutor-input">
+          <input placeholder="Answer Estrella…"/>
+          <button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+        </div>
+      </aside>
+      <div class="mtoggle"><button class="on" data-m="stage">Lesson</button><button data-m="tutor">Estrella</button></div>
+    </div>
+  </section>
+
+  <!-- ===================== THE SKY ===================== -->
+  <section class="screen" id="sky">
+    <div class="sky">
+      <!-- continue -->
+      <div class="continue">
+        <div class="ctxt">
+          <div class="eyebrow">Continue</div>
+          <h2>Say what you stand for</h2>
+          <p>Personal Branding · Lesson 4 of 9 — you're three beats from your brand statement.</p>
+          <div class="meter"><i></i></div>
+          <button class="btn btn-primary">Continue the lesson →</button>
+        </div>
+        <div class="streak">
+          <div class="n">12</div>
+          <div class="lbl">days. Your sky's been lit every day this week.</div>
+        </div>
+      </div>
+
+      <!-- sky map -->
+      <div class="skymap">
+        <div class="smhead">
+          <h3>Your sky</h3>
+          <a href="#">View full constellation →</a>
+        </div>
+        <div class="constellations" id="cst"></div>
+      </div>
+
+      <!-- side rail -->
+      <aside class="siderail">
+        <div class="levelcard">
+          <div class="lvrow">
+            <div class="lvorb"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17.4 14.6 L31 16 L17.4 17.4 L16 31 L14.6 17.4 L1 16 L14.6 14.6 Z"/></svg></div>
+            <div><div class="lvname serif">Guiding Star</div><div class="lvxp">2,180 Light · 1,320 to Star Pattern</div></div>
+          </div>
+          <div class="lvbar"><i></i></div>
+        </div>
+        <div class="tabs"><button class="on">Tracks</button><button>Browse</button><button>You</button></div>
+        <div class="trackpanel">
+          <div class="track">
+            <div class="trow"><span class="tname serif">Foundation</span><span class="ttitle">Grounded</span></div>
+            <p>The base you build a career on — the rules, the bearing, the certainty.</p>
+            <div class="pips"><span class="pip done">HR Foundations</span><span class="pip done">Confidence</span><span class="pip done">Branding</span></div>
+            <div class="ring"><div class="rbar"><i style="width:100%"></i></div><span class="rn">3/3</span></div>
+          </div>
+          <div class="track">
+            <div class="trow"><span class="tname serif">Signature</span><span class="ttitle">Named</span></div>
+            <p>The work that makes you stand out — voice, brand, leadership, AI.</p>
+            <div class="pips"><span class="pip done">Branding</span><span class="pip done">AI for HR</span><span class="pip">Speaking</span><span class="pip">Leadership</span></div>
+            <div class="ring"><div class="rbar"><i style="width:48%"></i></div><span class="rn">2/4</span></div>
+          </div>
+          <div class="track">
+            <div class="trow"><span class="tname serif">Interview</span><span class="ttitle">Interview Ready</span></div>
+            <p>From the first question to the signed offer — calm, clear, paid fairly.</p>
+            <div class="pips"><span class="pip done">Interview</span><span class="pip">Speaking</span><span class="pip">The Offer</span></div>
+            <div class="ring"><div class="rbar"><i style="width:33%"></i></div><span class="rn">1/3</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<script>
+// view switch
+document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.seg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  const go=b.dataset.go;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===go));
+  document.getElementById('crumb').innerHTML=go==='studio'?'<b>The Studio</b> · single-viewport lesson':'<b>The Sky</b> · single-viewport home';
+}));
+// mobile studio toggle
+document.querySelectorAll('.mtoggle button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.mtoggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  document.querySelector('.studio').dataset.m=b.dataset.m;
+}));
+// constellation generator — 8 courses, deterministic star clusters
+const courses=[
+  {n:'AI for HR',p:'9/9 · done',done:1,s:7},
+  {n:'HR Foundations',p:'8/8 · done',done:1,s:6},
+  {n:'Personal Branding',p:'4/9 in progress',done:0,s:8},
+  {n:'Public Speaking',p:'2/7',done:0,s:6},
+  {n:'Leadership',p:'Not started',done:0,s:7},
+  {n:'Confidence Reset',p:'6/6 · done',done:1,s:5},
+  {n:'Interview Mastery',p:'3/8',done:0,s:7},
+  {n:'The Offer Machine',p:'Not started',done:0,s:5},
+];
+function stars(seed,count,lit){
+  // pseudo-random but stable positions
+  let r=seed*9301+49297;const rnd=()=>{r=(r*9301+49297)%233280;return r/233280;};
+  const pts=[];for(let i=0;i<count;i++)pts.push([14+rnd()*72,16+rnd()*64]);
+  let lines='';for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i];
+    lines+=`<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${lit?'rgba(220,197,137,.5)':'rgba(255,255,255,.12)'}" stroke-width="1"/>`;}
+  let dots='';pts.forEach((p,i)=>{const on=lit||i<Math.ceil(count*0.5);
+    dots+=`<circle cx="${p[0]}" cy="${p[1]}" r="${on?2.4:1.6}" fill="${on?(lit?'#DCC589':'#C9A961'):'rgba(255,255,255,.3)'}"/>`;
+    if(on&&lit)dots+=`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="rgba(220,197,137,.18)"/>`;});
+  return `<svg viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet">${lines}${dots}</svg>`;
+}
+document.getElementById('cst').innerHTML=courses.map((c,i)=>
+  `<div class="cst${c.done?' done':''}">${stars(i+3,c.s,c.done)}<div><div class="cname">${c.n}</div><div class="cprog">${c.p}</div></div></div>`
+).join('');
+</script>
+</body>
+</html>
