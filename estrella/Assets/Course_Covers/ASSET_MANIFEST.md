@@ -14,3 +14,18 @@ Generated on 2026-06-24 using the built-in image generation tool. Originals rema
 | `offer-cover.png` | The Offer Machine | Premium offer-letter and negotiation table scene with polished career outcome cues. |
 
 Shared constraints: warm Estrella palette, editorial photorealistic style, no logos, no watermarks, no intentional in-image typography.
+
+## Book-page artifact plates
+
+Generated on 2026-06-27 using the built-in image generation tool. These are portrait `941x1672` assets for the selected-course artifact page inside the open-book Academy layout. They are intentionally separate from the 16:9 course covers, because the right book page is a tall artifact frame.
+
+| Filename | Course | Visual direction |
+| --- | --- | --- |
+| `ai-hr-bookpage-v1.png` | AI for HR Leaders | Tall HR decision map with luminous gold decision nodes and tactile blank cards. |
+| `branding-bookpage-v1.png` | Personal Branding | Tall portfolio workspace with profile cards, spotlight, compass, and brand-material cues. |
+| `confidence-bookpage-v1.png` | Confidence Reset | Tall reset desk with mirror, journal, reset dial, and calm gold progress ring. |
+| `hr-foundations-bookpage-v1.png` | Modern HR Foundations | Tall HR operating map with lifecycle cards, brass pins, and structured people-flow objects. |
+| `interview-bookpage-v1.png` | Interview Mastery | Tall interview playbook desk with story cards, timer, portfolio, and room-ready cues. |
+| `leadership-bookpage-v1.png` | Leadership Without Burnout | Tall sustainable leadership workspace with rhythm blocks, balance, lamp, and protected-energy cues. |
+| `offer-bookpage-v1.png` | The Offer Machine | Tall negotiation table with blank offer letter, envelope, brass pen, and compensation tiles. |
+| `speaking-bookpage-v1.png` | Public Speaking & Executive Presence | Tall rehearsal-stage plate with microphone, cue cards, footlights, and calm audience depth. |

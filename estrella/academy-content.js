@@ -12,8 +12,8 @@ window.ESTRELLA_ACADEMY = {
       "tone": "Elegant and earned, never like a children's game. Progress is a sign of real work, not a points race."
     },
     "xp": {
-      "unit": "Light",
-      "unitNote": "We call points 'Light'. You gather Light as you move through the academy. The numbers are shown, but kept calm and quiet.",
+      "unit": "points",
+      "unitNote": "Points are kept quiet. The main reward is seeing the course artifact become more complete.",
       "rules": {
         "lessonCompleted": 50,
         "quizCorrectAnswer": 10,
@@ -361,8 +361,8 @@ window.ESTRELLA_ACADEMY = {
       }
     },
     "pedagogy": {
-      "framework": "Bloom's taxonomy, used as a path inside each course.",
-      "note": "Every course climbs the same six steps, from easy to deep. The first lessons are 'Remember' and 'Understand'. We name the idea and make sure it is clear. The middle lessons are 'Apply' and 'Analyze'. Here you use the skill on a real example from your own work, not a textbook one. The last lessons are 'Evaluate' and 'Create'. Here you make a real choice and explain it, or build something of your own, like a brand statement, a pay talk plan, or a leadership decision. The quizzes follow the same path: simple memory questions early, and real judgment questions late. So 'Mastery' near the end of a course shows true, used skill, not just memory. Light and badges are set to reward finishing the hard last steps, not just the easy first ones."
+      "framework": "Course-specific practice mechanics.",
+      "note": "Each course has its own learning mechanic: a decision map, reputation studio, interview lab, operating map, rehearsal room, mirror journal, energy board, or offer desk. Lessons add decisions, selections, rehearsals, checks, and only occasional writing to the course artifact. The learner should feel progress through a useful artifact taking shape, not through a repeated school worksheet."
     }
   },
   "courses": {
@@ -410,7 +410,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Map one initiative",
                 "prompt": "Think of one AI idea someone has proposed in your organisation, or one you have considered. Which of the four roles does it serve? Write one sentence on the benefit it offers, and one sentence on the risk it brings. If you cannot name the risk, you are not ready to buy.",
-                "placeholder": "Initiative: ...\nRole it serves: ...\nBenefit (one sentence): ...\nRisk (one sentence): ..."
+                "placeholder": "Initiative: ...\nRole it serves: ...\nBenefit (one sentence): ...\nRisk (one sentence): ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -482,7 +496,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Find your human line",
                 "prompt": "Pick one of the four roles where your team uses or plans to use AI. Write one task in that role that AI can take fully, and one task that must stay human. Then write the rule in one sentence, like \"AI drafts, a person decides for X.\"",
-                "placeholder": "Role: ...\nAI can take: ...\nMust stay human: ...\nMy one-sentence rule: ..."
+                "placeholder": "Role: ...\nAI can take: ...\nMust stay human: ...\nMy one-sentence rule: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -554,7 +582,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Sort five tasks",
                 "prompt": "List five HR tasks your team does. Sort each into Automate, Augment, or Never. For each \"Never\", write one sentence on why a mistake would be too costly. Keep this sheet; it is your defence under pressure.",
-                "placeholder": "1. Task — bucket — reason\n2. ...\n3. ...\n4. ...\n5. ..."
+                "placeholder": "1. Task — bucket — reason\n2. ...\n3. ...\n4. ...\n5. ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -626,7 +668,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Draft your one-page thesis",
                 "prompt": "Write a draft AI-in-HR thesis using the four parts: Focus, Outcome, Guardrails, Proof. Keep it to one page. Use real numbers where you can, even rough ones.",
-                "placeholder": "Focus: ...\nOutcome (with a number): ...\nGuardrails: ...\nProof (1-2 measures): ..."
+                "placeholder": "Focus: ...\nOutcome (with a number): ...\nGuardrails: ...\nProof (1-2 measures): ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -703,7 +759,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Hunt for proxies",
                 "prompt": "Pick an AI hiring tool you use or might buy. List three features it uses to score candidates. For each, ask: could this quietly track gender, age, nationality, or family status? Mark any feature that could be a proxy.",
-                "placeholder": "Feature 1: ... possible proxy for: ...\nFeature 2: ... possible proxy for: ...\nFeature 3: ... possible proxy for: ..."
+                "placeholder": "Feature 1: ... possible proxy for: ...\nFeature 2: ... possible proxy for: ...\nFeature 3: ... possible proxy for: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -775,7 +845,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Run the five-question audit",
                 "prompt": "Take a screening tool you are considering. Answer the five audit questions as best you can from what the vendor has told you. Mark each green, amber, or red. Write your go or no-go decision and the reason.",
-                "placeholder": "1. Training data: ... (G/A/R)\n2. Labels: ... (G/A/R)\n3. Adverse-impact testing: ... (G/A/R)\n4. Top features: ... (G/A/R)\n5. Appeals path: ... (G/A/R)\nDecision: ..."
+                "placeholder": "1. Training data: ... (G/A/R)\n2. Labels: ... (G/A/R)\n3. Adverse-impact testing: ... (G/A/R)\n4. Top features: ... (G/A/R)\n5. Appeals path: ... (G/A/R)\nDecision: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -847,7 +931,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build a mini rubric",
                 "prompt": "Pick one role. Write three job-related interview questions. For one of them, write a simple three-level rubric: what a weak, fair, and strong answer looks like. Note one task you would let AI help with and one you would not.",
-                "placeholder": "Role: ...\nQ1: ...\nQ2: ...\nQ3: ...\nRubric for Q1 — Weak: ... Fair: ... Strong: ...\nAI may help with: ...\nAI must not: ..."
+                "placeholder": "Role: ...\nQ1: ...\nQ2: ...\nQ3: ...\nRubric for Q1 — Weak: ... Fair: ... Strong: ...\nAI may help with: ...\nAI must not: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -919,7 +1017,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Run the four-fifths check",
                 "prompt": "Using real or sample numbers, calculate the selection rate for two groups at one hiring stage. Find the highest rate, take 80% of it, and check whether the other group falls below. Write whether the rule passes or fails and what you would do next.",
-                "placeholder": "Group A: passed / applied = ...%\nGroup B: passed / applied = ...%\nHighest rate: ...% → 80% of it: ...%\nResult: pass / fail\nNext step: ..."
+                "placeholder": "Group A: passed / applied = ...%\nGroup B: passed / applied = ...%\nHighest rate: ...% → 80% of it: ...%\nResult: pass / fail\nNext step: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -996,7 +1108,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Find your rung",
                 "prompt": "Pick one people question your leadership keeps asking. Which rung does answering it well require? Which rung is your data actually on today? Write one honest sentence you could say to leadership about the gap.",
-                "placeholder": "Question: ...\nRung needed: ...\nRung we're on: ...\nHonest sentence to leadership: ..."
+                "placeholder": "Question: ...\nRung needed: ...\nRung we're on: ...\nHonest sentence to leadership: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1068,7 +1194,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Fix vague feedback",
                 "prompt": "Take a vague feedback line like \"not a team player\" or \"lacks confidence.\" Rewrite it to name one specific behaviour, its impact, and a next step. Note one rule you would set so AI helps without hiding the truth.",
-                "placeholder": "Vague line: ...\nBehaviour: ...\nImpact: ...\nNext step: ...\nMy fairness rule: ..."
+                "placeholder": "Vague line: ...\nBehaviour: ...\nImpact: ...\nNext step: ...\nMy fairness rule: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1140,7 +1280,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Draft a mini skills map",
                 "prompt": "Pick one role. List three or four skills it needs. For one skill, describe what beginner, capable, and expert look like. Note how AI could use this map to suggest a learning path.",
-                "placeholder": "Role: ...\nSkills: ...\nSkill X — Beginner: ... Capable: ... Expert: ...\nHow AI would route learning: ..."
+                "placeholder": "Role: ...\nSkills: ...\nSkill X — Beginner: ... Capable: ... Expert: ...\nHow AI would route learning: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1212,7 +1366,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build a one-slide metric",
                 "prompt": "Choose one HR metric leadership should care about. Write its recent trend, translate it into money or risk, and add one recommended action. Then write the cost of doing nothing.",
-                "placeholder": "Metric: ...\nTrend: ...\nIn money/risk terms: ...\nRecommended action: ...\nCost of doing nothing: ..."
+                "placeholder": "Metric: ...\nTrend: ...\nIn money/risk terms: ...\nRecommended action: ...\nCost of doing nothing: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1289,7 +1457,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Privacy-check a project",
                 "prompt": "Take one AI-in-HR project. Write what data it collects, the single clear purpose, and the least data needed. Then note who should be consulted before you build, and one sentence you would tell staff in plain words.",
-                "placeholder": "Project: ...\nData collected: ...\nClear purpose: ...\nLeast data needed: ...\nWho to consult first: ...\nPlain-words message to staff: ..."
+                "placeholder": "Project: ...\nData collected: ...\nClear purpose: ...\nLeast data needed: ...\nWho to consult first: ...\nPlain-words message to staff: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1361,7 +1543,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Draft a may / must-not table",
                 "prompt": "Write a simple two-column table for your team. List three things staff MAY do with AI and three they MUST NOT. Add a one-line real example to each row. Note who owns the policy and how staff raise concerns.",
-                "placeholder": "MAY: 1. ... 2. ... 3. ...\nMUST NOT: 1. ... 2. ... 3. ...\nPolicy owner: ...\nHow to raise a concern: ..."
+                "placeholder": "MAY: 1. ... 2. ... 3. ...\nMUST NOT: 1. ... 2. ... 3. ...\nPolicy owner: ...\nHow to raise a concern: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1433,7 +1629,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Sketch your 90 days",
                 "prompt": "Write a simple 90-day plan in three phases. For each phase, list one or two key actions. Name your safe first pilot and the one measure you will track. Add a checkpoint question for the end of each phase.",
-                "placeholder": "Days 1-30 (Foundations): ...\nDays 31-60 (Pilot): ... | First pilot: ... | Measure: ...\nDays 61-90 (Review & scale): ...\nCheckpoint questions: ..."
+                "placeholder": "Days 1-30 (Foundations): ...\nDays 31-60 (Pilot): ... | First pilot: ... | Measure: ...\nDays 61-90 (Review & scale): ...\nCheckpoint questions: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1505,7 +1715,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Stress-test your oversight",
                 "prompt": "Pick one AI-assisted decision in your work. Check it against the three features: does the reviewer have time and information, can they really override, and is one named person accountable? Note any feature that is missing and how you would fix it.",
-                "placeholder": "Decision: ...\nTime & information? ...\nReal power to override? ...\nNamed accountable person? ...\nWhat's missing and my fix: ..."
+                "placeholder": "Decision: ...\nTime & information? ...\nReal power to override? ...\nNamed accountable person? ...\nWhat's missing and my fix: ...",
+                "interaction": {
+                  "mechanic": "Decision Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
+                  "actionLabel": "Check the AI decision",
+                  "artifactLabel": "Add to AI map",
+                  "choices": [
+                    "Automate",
+                    "Augment",
+                    "Keep human",
+                    "Not ready"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1543,7 +1767,14 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Decision Map",
+        "short": "Sort the decision before choosing the tool.",
+        "artifact": "AI adoption map",
+        "interaction": "sort, audit, choose, stress-test",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
     },
     "branding": {
       "courseId": "branding",
@@ -1595,7 +1826,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Run the Room Test",
                 "prompt": "Imagine two colleagues talking about you after you leave a meeting. Write down, in their words, the one sentence you hope they say. Then write the sentence you fear they might actually say today. The gap between the two is your work for this course.",
-                "placeholder": "What I hope they say: \"...\"\nWhat I fear they say: \"...\"\nThe gap I want to close: ..."
+                "placeholder": "What I hope they say: \"...\"\nWhat I fear they say: \"...\"\nThe gap I want to close: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1675,7 +1920,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Write your one sentence",
                 "prompt": "Using the formula \"I help [WHO] do [WHAT] so they get [RESULT],\" write your value proposition. Then run it through the three checks: is it specific, can you prove it, is it plain? Rewrite it once to make the result sharper.",
-                "placeholder": "Draft 1: I help ___ do ___ so they get ___.\nSpecific? Provable? Plain?\nDraft 2 (sharper result): ..."
+                "placeholder": "Draft 1: I help ___ do ___ so they get ___.\nSpecific? Provable? Plain?\nDraft 2 (sharper result): ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -1754,7 +2008,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Your three-source audit",
                 "prompt": "Write the three words you want to be known for. Then message three trusted colleagues and ask: \"When you describe my work to someone, what do you say?\" Finally, read your own LinkedIn as a stranger. Note the biggest gap, then choose one small action to close it.",
-                "placeholder": "Words I want: ...\nWhat colleagues say: ...\nWhat my trail shows: ...\nBiggest gap: ...\nOne action: ..."
+                "placeholder": "Words I want: ...\nWhat colleagues say: ...\nWhat my trail shows: ...\nBiggest gap: ...\nOne action: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1839,7 +2107,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build your three-part story",
                 "prompt": "Write your career story in three sentences using Past, Pivot, Promise. Make the Pivot about a problem you cared about, not just money. Then read it aloud and check: does every past role now point toward your Promise?",
-                "placeholder": "Past: I started in ___, where I learned ___.\nPivot: I changed because ___.\nPromise: Now I help ___ get ___."
+                "placeholder": "Past: I started in ___, where I learned ___.\nPivot: I changed because ___.\nPromise: Now I help ___ get ___.",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1918,7 +2200,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Find your one thing",
                 "prompt": "Draw three circles: what you are good at, what the market needs, and what energises you. Write what sits in the middle of all three. That is your candidate position. Then write one type of work you will now say no to, to protect it.",
-                "placeholder": "Good at: ...\nMarket needs: ...\nEnergises me: ...\nMy one thing (the overlap): ...\nWhat I will say no to: ..."
+                "placeholder": "Good at: ...\nMarket needs: ...\nEnergises me: ...\nMy one thing (the overlap): ...\nWhat I will say no to: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -1998,7 +2294,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Write all three bios",
                 "prompt": "Using your value proposition and story, write your one-liner (10 to 15 words), your short bio (40 to 60 words), and your long bio (100 to 150 words). Check that the same core message appears in all three, and that each one leads with value, not title.",
-                "placeholder": "One-liner: ...\nShort bio: ...\nLong bio: ..."
+                "placeholder": "One-liner: ...\nShort bio: ...\nLong bio: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -2083,7 +2388,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Rewrite your top three sections",
                 "prompt": "Rewrite your LinkedIn Headline using your one-liner. Rewrite the first sentence of your About to lead with value. Then pick your current role and turn one duty into a result with a number. Note the two or three keywords you want to be found for.",
-                "placeholder": "New headline: ...\nAbout opening line: ...\nDuty turned into result: ...\nMy keywords: ..."
+                "placeholder": "New headline: ...\nAbout opening line: ...\nDuty turned into result: ...\nMy keywords: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2162,7 +2481,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Draft one honest post",
                 "prompt": "Pick one topic from your position using Lessons, Observations, or How-to. Write a post using Hook, Value, Invite. Keep sentences short. Then run the coffee test: would you say this out loud to a respected colleague? Edit out anything that fails.",
-                "placeholder": "Topic bucket: ...\nHook: ...\nValue (3 points or a short story): ...\nInvite (one question): ..."
+                "placeholder": "Topic bucket: ...\nHook: ...\nValue (3 points or a short story): ...\nInvite (one question): ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -2241,7 +2569,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Your first 15-Minute Round",
                 "prompt": "Pick 10 people in your field to follow. Find two recent posts and write a comment on each using Add-One-Thing (a new idea, example, or question). Then send one warm, personal message to a contact with no ask attached. Note how it felt and one person who replied.",
-                "placeholder": "Two comments I left: ...\nWarm message I sent: ...\nWho replied: ..."
+                "placeholder": "Two comments I left: ...\nWarm message I sent: ...\nWho replied: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2325,7 +2667,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Plan three 'give first' actions",
                 "prompt": "Write three give-first actions you could do this month: one thing to share, one question to answer publicly, and one helpful introduction to make. Then pick the visibility style that fits you and choose one Comfort-Plus-One action to repeat weekly.",
-                "placeholder": "Share: ...\nAnswer: ...\nIntroduce: ...\nMy Comfort-Plus-One action: ..."
+                "placeholder": "Share: ...\nAnswer: ...\nIntroduce: ...\nMy Comfort-Plus-One action: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2404,7 +2760,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Choose your lane and name one idea",
                 "prompt": "Decide your lane: speaking or writing, and explain in one line why it fits you. Then take one useful idea from your work and give it a clear, simple name using the Name-It rule. Finally, write one small first step you can take in the next two weeks.",
-                "placeholder": "My lane: ... because ...\nMy named idea: ...\nMy small first step: ..."
+                "placeholder": "My lane: ... because ...\nMy named idea: ...\nMy small first step: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2483,7 +2853,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Plant a seed and set your routine",
                 "prompt": "Write one gentle, direct ask you could make this month using Plant-the-Seed, after helping someone or finishing good work. Then write your own Monthly Three: one thing to share, one conversation to have, and one profile part to keep updated.",
-                "placeholder": "My Plant-the-Seed ask: ...\nMonthly Three:\n1. Share: ...\n2. Conversation: ...\n3. Update: ..."
+                "placeholder": "My Plant-the-Seed ask: ...\nMonthly Three:\n1. Share: ...\n2. Conversation: ...\n3. Update: ...",
+                "interaction": {
+                  "mechanic": "Reputation Studio",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the strongest reputation move first. Words can come later if they are the artifact.",
+                  "actionLabel": "Check the brand move",
+                  "artifactLabel": "Add to brand plan",
+                  "choices": [
+                    "Clear",
+                    "Too broad",
+                    "Needs proof",
+                    "More specific"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2521,7 +2905,14 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Reputation Studio",
+        "short": "Shape how the market reads you.",
+        "artifact": "brand statement and visibility plan",
+        "interaction": "audit, choose, sharpen, draft only when words are the artifact",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
     },
     "interview": {
       "courseId": "interview",
@@ -2576,7 +2967,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Decode three questions",
                 "prompt": "Pick three questions you expect in your next interview. For each one, write the surface words, then the hidden worry behind it, then one sentence that answers that worry with proof.",
-                "placeholder": "Question 1: \"Why this company?\" Hidden worry: ... My answer with proof: ..."
+                "placeholder": "Question 1: \"Why this company?\" Hidden worry: ... My answer with proof: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2659,7 +3064,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build a Pain-and-Proof map",
                 "prompt": "For a real company you may interview with, list three likely pain points from your research. Next to each, write one piece of proof from your own work that shows you can help. End with one insider question.",
-                "placeholder": "Pain 1: fast hiring is hurting culture. My proof: ... Insider question: ..."
+                "placeholder": "Pain 1: fast hiring is hurting culture. My proof: ... Insider question: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2741,7 +3160,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Start your story bank",
                 "prompt": "Write down four real events from your career. For each one, note the challenge, your main action, and the result in one line each. Then label which skill each story proves.",
-                "placeholder": "Story 1: Supplier failed before launch. Action: found new supplier, fixed timeline. Result: delivered on time. Proves: problem-solving, pressure."
+                "placeholder": "Story 1: Supplier failed before launch. Action: found new supplier, fixed timeline. Result: delivered on time. Proves: problem-solving, pressure.",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2784,66 +3217,75 @@ window.ESTRELLA_ACADEMY = {
           "lessons": [
             {
               "lessonId": "interview-4",
-              "title": "STAR without sounding robotic",
+              "title": "Proof stories without sounding scripted",
               "mins": 18,
-              "hook": "The STAR method gives your answer a clear shape. Used badly, it sounds like a robot reading a form. Here is how to keep it human.",
+              "hook": "A proof story gives your answer a clear shape. Used badly, any formula sounds stiff. Here is how to keep it human.",
               "objectives": [
-                "By the end you can structure any behavioral answer with the STAR method.",
+                "By the end you can structure any behavioral answer as a clear proof story.",
                 "By the end you can avoid the stiff, robotic version that interviewers dislike.",
                 "By the end you can balance structure with a natural, warm voice."
               ],
               "sections": [
                 {
-                  "heading": "What STAR is",
+                  "heading": "What a proof story needs",
                   "body": [
-                    "STAR is a simple shape for telling a work story. The four letters stand for Situation, Task, Action, and Result.",
-                    "Situation: set the scene in one or two sentences. Task: say what you needed to do or fix. Action: explain what you did, step by step. This is the longest part. Result: share the clear outcome, with a number if you have one.",
-                    "STAR matters because most people ramble. They jump around with no end point. STAR keeps your answer clear and complete, so the interviewer can follow you and remember you."
+                    "A proof story is a simple shape for telling a work moment: brief context, your responsibility, the action you took, and the result.",
+                    "Context: set the scene in one or two sentences. Responsibility: say what you needed to do or fix. Action: explain what you did, step by step. This is the longest part. Result: share the clear outcome, with a number if you have one.",
+                    "The structure matters because most people ramble. They jump around with no end point. A proof story keeps your answer clear and complete, so the interviewer can follow you and remember you."
                   ]
                 },
                 {
-                  "heading": "Why it sounds robotic, and how to fix it",
+                  "heading": "Why structure can sound scripted, and how to fix it",
                   "body": [
-                    "STAR goes wrong when people announce each part out loud. Saying \"The situation was... the task was... my action was...\" sounds like reading a form. It feels cold.",
-                    "The fix is to use STAR as a hidden skeleton, not a visible label. The structure is inside your head. The words that come out sound like a normal person telling a real story.",
+                    "Structure goes wrong when people announce each part out loud. Saying \"the context was... my responsibility was... my action was...\" sounds like reading a form. It feels cold.",
+                    "The fix is to keep the structure as a quiet spine, not a visible label. The order is inside your head. The words that come out sound like a normal person telling a real story.",
                     "Spend most of your time on Action and Result. Many people give a long Situation and rush the Result. Flip that. The interviewer cares most about what you did and what happened."
                   ]
                 },
                 {
                   "heading": "A worked example",
                   "body": [
-                    "Here is a STAR answer that sounds human. The question is, \"Tell me about a time you handled a difficult client.\"",
-                    "\"Last year I managed a key client in Dubai who was upset about a delayed delivery. (Situation) My job was to keep the account and rebuild their trust. (Task) I called them the same day, listened fully, and did not make excuses. I gave them a clear new plan with weekly updates, and I checked in personally each Friday. (Action) Within a month they renewed their contract and later referred us to a partner company. (Result)\"",
-                    "Notice that the speaker never said the words \"situation\" or \"task.\" The shape is there, but it sounds like a real person. Most of the answer is Action and Result. That is STAR done right."
+                    "Here is a proof story that sounds human. The question is, \"Tell me about a time you handled a difficult client.\"",
+                    "\"Last year I managed a key client in Dubai who was upset about a delayed delivery. My job was to keep the account and rebuild their trust. I called them the same day, listened fully, and did not make excuses. I gave them a clear new plan with weekly updates, and I checked in personally each Friday. Within a month they renewed their contract and later referred us to a partner company.\"",
+                    "Notice that the speaker never announces the structure. The shape is there, but it sounds like a real person. Most of the answer is action and result. That is a proof story done well."
                   ]
                 }
               ],
               "takeaways": [
-                "STAR stands for Situation, Task, Action, and Result.",
-                "Keep STAR as a hidden skeleton, not a spoken label.",
+                "A proof story has context, responsibility, action, and result.",
+                "Keep the structure as a quiet spine, not a spoken label.",
                 "Spend most of your time on Action and Result, not the setup.",
                 "Never announce each part out loud. Tell it like a real story.",
                 "End with a clear result, and use a number when you can."
               ],
               "exercise": {
-                "title": "Write one human STAR answer",
-                "prompt": "Take one story from your story bank. Write it out using STAR, but do not label the parts. Read it aloud and check it sounds like a real person, not a form.",
-                "placeholder": "Question I am answering: ... My STAR story (no labels): ..."
+                "title": "Shape one human proof story",
+                "prompt": "Take one story from your story bank. Write it out using proof-story structure, but do not label the parts. Read it aloud and check it sounds like a real person, not a form.",
+                "placeholder": "Question I am answering: ... My proof story (no labels): ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to playbook",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
-                  "q": "Which part of a STAR answer should usually take the most time?",
+                  "q": "Which part of a proof story should usually take the most time?",
                   "options": [
-                    "The Situation, with full background detail.",
-                    "The Task, explained at great length.",
-                    "The Action and the Result.",
+                    "The context, with full background detail.",
+                    "The responsibility, explained at great length.",
+                    "The action and the result.",
                     "A long apology for any mistakes."
                   ],
                   "answer": 2,
                   "explain": "Interviewers care most about what you did and what happened. Keep the setup short and spend your time on Action and Result."
                 },
                 {
-                  "q": "What is the most common way STAR ends up sounding robotic?",
+                  "q": "What is the most common way a structured answer ends up sounding scripted?",
                   "options": [
                     "The speaker uses too many real numbers.",
                     "The speaker announces each label out loud, like reading a form.",
@@ -2856,10 +3298,10 @@ window.ESTRELLA_ACADEMY = {
               ],
               "xp": 50,
               "tutorSeed": {
-                "opening": "STAR is powerful, but only when it sounds human. Give me a story you want to tell, and I will help you shape it with STAR while keeping your natural voice.",
+                "opening": "A proof story works only when it sounds human. Give me a story you want to tell, and I will help you shape it while keeping your natural voice.",
                 "suggested": [
-                  "How long should my Situation be?",
-                  "My STAR answer sounds stiff. How do I fix it?",
+                  "How long should my setup be?",
+                  "My answer sounds stiff. How do I fix it?",
                   "What if my story has no number for the result?"
                 ]
               }
@@ -2909,7 +3351,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Map your Core Eight",
                 "prompt": "List the eight story types. Next to each, write which of your real stories covers it. Mark any type you cannot cover yet. Then plan one story to fill your biggest gap.",
-                "placeholder": "Leadership: led the launch team. Failure: GAP. Plan to fill failure: the time I missed a target and recovered."
+                "placeholder": "Leadership: led the launch team. Failure: GAP. Plan to fill failure: the time I missed a target and recovered.",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -2991,7 +3447,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Rehearse your dreaded question",
                 "prompt": "Write your most feared interview question. Answer it using Own, Learn, Grow. Make sure the answer ends on the growth, not the problem.",
-                "placeholder": "My dreaded question: ... Own: ... Learn: ... Grow: ..."
+                "placeholder": "My dreaded question: ... Own: ... Learn: ... Grow: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3089,7 +3559,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Record and review",
                 "prompt": "Record yourself answering one interview question for ninety seconds. Listen back. Count your filler words and mark where you rushed. Write down one fix to practise.",
-                "placeholder": "Filler words I used: ... Where I rushed: ... My one fix to practise: ..."
+                "placeholder": "Filler words I used: ... Where I rushed: ... My one fix to practise: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3171,7 +3655,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Check your body habits",
                 "prompt": "Do a two-minute mock answer in front of a mirror or camera. Note your posture, your eye contact, and any nervous habit you see. Write one thing to change.",
-                "placeholder": "My posture: ... My eye contact: ... Nervous habit I spotted: ... One change: ..."
+                "placeholder": "My posture: ... My eye contact: ... Nervous habit I spotted: ... One change: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3253,7 +3751,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Prepare your recovery lines",
                 "prompt": "Write three calm recovery lines in your own words: one for a blank mind, one to buy thinking time, and one to switch to a better example. Practise saying them out loud.",
-                "placeholder": "Blank mind line: ... Thinking-time line: ... Switch-example line: ..."
+                "placeholder": "Blank mind line: ... Thinking-time line: ... Switch-example line: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to playbook",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -3340,7 +3847,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Total up an offer",
                 "prompt": "Take a real or imagined offer. List every part using the Total-Value checklist. Add up the full value. Then note two non-money factors that matter to you.",
-                "placeholder": "Base: ... Housing: ... Flights: ... School fees: ... Total value: ... Non-money factors: ..."
+                "placeholder": "Base: ... Housing: ... Flights: ... School fees: ... Total value: ... Non-money factors: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3422,7 +3943,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Draft your negotiation ask",
                 "prompt": "Write your negotiation message using Anchor, Reason, Range. Start with warmth, add your evidence, and name a clear range. Then list two items you could trade for if the base will not move.",
-                "placeholder": "Anchor: Thank you... Reason: Based on... Range: a base between... Items to trade for: extra flight, sign-on bonus..."
+                "placeholder": "Anchor: Thank you... Reason: Based on... Range: a base between... Items to trade for: extra flight, sign-on bonus...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to playbook",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -3485,7 +4015,7 @@ window.ESTRELLA_ACADEMY = {
                   "body": [
                     "You cannot learn to swim by reading. You learn by getting in the water. Interviews are the same. Reading about skills is not enough. You must practise out loud, under light pressure, before the real day.",
                     "A mock interview is a safe practice run. You answer real questions, feel the pressure, and find your weak spots while it is safe to fail. The mistakes you make in a mock are the ones you will not make for real.",
-                    "This is your chance to bring together everything from this course: decoding the real question, pulling from your story bank, using STAR, holding your presence, and recovering from a stumble. It all comes together here."
+                    "This is your chance to bring together everything from this course: decoding the real question, pulling from your story bank, using proof-story structure, holding your presence, and recovering from a stumble. It all comes together here."
                   ]
                 },
                 {
@@ -3500,8 +4030,8 @@ window.ESTRELLA_ACADEMY = {
                   "heading": "Review the right things",
                   "body": [
                     "Most people review badly. They only notice they felt nervous. That is not useful. Review the specific skills instead.",
-                    "Ask yourself: Did I decode the real question? Did my stories have a clear result? Did I keep STAR human, not robotic? Did I pause instead of using filler words? Did I recover calmly from any stumble? Score each one and pick just one or two to fix before your next mock.",
-                    "Example. A candidate in Dubai ran three mocks. After the first, she fixed her rambling by using STAR. After the second, she cut her filler words with pauses. After the third, she felt calm and ready. She did not try to fix everything at once. She fixed one thing per round. That is how real progress happens. Now you are ready. Walk into the room knowing what they are really asking, and exactly how to answer."
+                    "Ask yourself: Did I decode the real question? Did my stories have a clear result? Did I keep the structure human, not scripted? Did I pause instead of using filler words? Did I recover calmly from any stumble? Score each one and pick just one or two to fix before your next mock.",
+                    "Example. A candidate in Dubai ran three mocks. After the first, she fixed her rambling by using proof-story structure. After the second, she cut her filler words with pauses. After the third, she felt calm and ready. She did not try to fix everything at once. She fixed one thing per round. That is how real progress happens. Now you are ready. Walk into the room knowing what they are really asking, and exactly how to answer."
                   ]
                 }
               ],
@@ -3515,7 +4045,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Plan and run a mock",
                 "prompt": "Plan a mock interview. Choose the role, pick five questions including one you dread, and set up as if it were real. Run it out loud, then review using the skill checklist. Write the one thing you will fix next.",
-                "placeholder": "Role: ... My five questions: ... After review, the one thing I will fix: ..."
+                "placeholder": "Role: ... My five questions: ... After review, the one thing I will fix: ...",
+                "interaction": {
+                  "mechanic": "Interview Lab",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Pick the interview move you would use in the room, then rehearse it mentally.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to playbook",
+                  "choices": [
+                    "Clarify the question",
+                    "Lead with headline",
+                    "Shape a proof story",
+                    "Recover and reset"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3553,7 +4097,14 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Interview Lab",
+        "short": "Build answers under realistic pressure.",
+        "artifact": "interview playbook",
+        "interaction": "decode, select, rehearse, mock",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
     },
     "hr-foundations": {
       "courseId": "hr-foundations",
@@ -3607,7 +4158,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Find your role balance",
                 "prompt": "Think about your last full work week. Guess what percent of your time went to each of the four roles. Which role got the most time, and which got almost none? Write one sentence on the role you most need to grow next, and why.",
-                "placeholder": "Last week I spent about ... percent on admin and almost none on ... The role I need to grow next is ... because ..."
+                "placeholder": "Last week I spent about ... percent on admin and almost none on ... The role I need to grow next is ... because ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3686,7 +4251,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build your business bridge",
                 "prompt": "Pick one people problem in your team right now, such as high turnover or slow hiring. Write it as a bridge: the people issue, the rough business cost, and one action you would propose. Use real numbers if you can, even rough ones.",
-                "placeholder": "People issue: ... Business cost: about ... Proposed action: ..."
+                "placeholder": "People issue: ... Business cost: about ... Proposed action: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3765,7 +4344,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Draw your line of sight",
                 "prompt": "Write down one main goal of your company this year. Then complete the line: the people capability that goal needs, and one HR action that would build it. If the line is hard to draw, note why.",
-                "placeholder": "Business goal: ... Capability needed: ... HR action: ..."
+                "placeholder": "Business goal: ... Capability needed: ... HR action: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3828,7 +4421,7 @@ window.ESTRELLA_ACADEMY = {
                   "heading": "Structured interviews beat gut feeling",
                   "body": [
                     "Most interviews are a friendly chat, and friendly chats favour people who are like us. That is bias, and it leads to weak and unfair hiring. The fix is the structured interview. You ask every candidate the same planned questions and score answers against a simple guide.",
-                    "A strong method is the STAR question. You ask about a real past situation: the Situation, the Task, the Action they took, and the Result. Past behaviour predicts future behaviour better than promises. Scoring each answer the same way makes your choice fairer and easier to defend."
+                    "A strong method is the evidence question. You ask about a real past situation, what the person was responsible for, what they did, and what changed. Past behaviour predicts future behaviour better than promises. Scoring each answer the same way makes your choice fairer and easier to defend."
                   ]
                 },
                 {
@@ -3842,14 +4435,28 @@ window.ESTRELLA_ACADEMY = {
               "takeaways": [
                 "Define must-have outcomes before you write the job profile.",
                 "Use structured interviews and the same questions for everyone.",
-                "STAR questions ask about real past behaviour.",
+                "Evidence questions ask about real past behaviour.",
                 "Onboarding is about belonging and clarity, not just equipment.",
                 "Plan the first 90 days, because new hires decide early."
               ],
               "exercise": {
                 "title": "Design a sticky start",
-                "prompt": "Pick a role you hire for. Write the one outcome that role must achieve in a year. Then write one STAR question you would ask all candidates, and one thing you would do in week one to help the new hire feel welcome.",
-                "placeholder": "Role and key outcome: ... STAR question: ... Week one welcome action: ..."
+                "prompt": "Pick a role you hire for. Write the one outcome that role must achieve in a year. Then write one evidence question you would ask all candidates, and one thing you would do in week one to help the new hire feel welcome.",
+                "placeholder": "Role and key outcome: ... Evidence question: ... Week one welcome action: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -3879,7 +4486,7 @@ window.ESTRELLA_ACADEMY = {
               "tutorSeed": {
                 "opening": "Let us make your hiring stick. Tell me a role you are filling and we will sharpen the profile, the questions, and the first month.",
                 "suggested": [
-                  "How do I write a STAR question for a sales role?",
+                  "How do I write an evidence question for a sales role?",
                   "What should week one of onboarding include?",
                   "How do I reduce bias when I interview alone?"
                 ]
@@ -3928,7 +4535,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Plan one person's growth",
                 "prompt": "Choose one strong person on your team. Using 70-20-10, write one stretch task (the 70), one person who could coach them (the 20), and one short course or resource (the 10). Add one question you would ask in a stay conversation.",
-                "placeholder": "Person: ... Stretch task: ... Coach: ... Course: ... Stay question: ..."
+                "placeholder": "Person: ... Stretch task: ... Coach: ... Course: ... Stay question: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4007,7 +4628,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Plan a respectful exit",
                 "prompt": "Think of an exit you may face soon, or one you handled before. Write two open exit-interview questions you would ask. Then list two things you would do to make sure the person leaves with dignity.",
-                "placeholder": "Exit-interview questions: ... and ... Dignity actions: ... and ..."
+                "placeholder": "Exit-interview questions: ... and ... Dignity actions: ... and ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4091,7 +4726,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Rewrite a goal and plan a check-in",
                 "prompt": "Take one fuzzy goal from your team and rewrite it as a SMART goal. Then describe how often you would hold a check-in for it, and the two questions you would ask each time.",
-                "placeholder": "Fuzzy goal: ... SMART goal: ... Check-in rhythm: ... My two questions: ..."
+                "placeholder": "Fuzzy goal: ... SMART goal: ... Check-in rhythm: ... My two questions: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4170,7 +4819,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Map your total rewards",
                 "prompt": "List the financial rewards your company offers, then the non-financial ones. Which non-financial reward could you strengthen cheaply to keep people? Write one idea you could try this quarter.",
-                "placeholder": "Financial: ... Non-financial: ... One cheap reward to strengthen: ..."
+                "placeholder": "Financial: ... Non-financial: ... One cheap reward to strengthen: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4249,7 +4912,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Script a hard conversation",
                 "prompt": "Think of a difficult conversation you need to have. Write your opening using SBI: the situation, the specific behaviour, and the impact. Then write one calm line you would use if the person reacts strongly.",
-                "placeholder": "Situation: ... Behaviour: ... Impact: ... Calm line if they react: ..."
+                "placeholder": "Situation: ... Behaviour: ... Impact: ... Calm line if they react: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -4333,7 +5005,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Find your culture gap",
                 "prompt": "Pick one value your company states. Write one recent real moment that shows whether the value is true in practice. If there is a gap, name one lever (promotion, reward, or leader behaviour) you would change to close it.",
-                "placeholder": "Stated value: ... Real moment: ... Gap and the lever I would change: ..."
+                "placeholder": "Stated value: ... Real moment: ... Gap and the lever I would change: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4412,7 +5098,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Check your compliance basics",
                 "prompt": "List the five core areas from this lesson. For each, mark whether your team is solid, unsure, or weak. Pick the weakest one and write one action to fix it this month.",
-                "placeholder": "Contracts: ... Pay/hours: ... Benefits: ... Fair treatment: ... Safety: ... Weakest area and my fix: ..."
+                "placeholder": "Contracts: ... Pay/hours: ... Benefits: ... Fair treatment: ... Safety: ... Weakest area and my fix: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4491,7 +5191,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Pick your three metrics",
                 "prompt": "Choose three HR metrics that link to your company's goals. For each, note whether it is leading or lagging, and what action you would take if it moved the wrong way. Drop any metric you cannot act on.",
-                "placeholder": "Metric 1 (leading/lagging) and action: ... Metric 2 ...: ... Metric 3 ...: ..."
+                "placeholder": "Metric 1 (leading/lagging) and action: ... Metric 2 ...: ... Metric 3 ...: ...",
+                "interaction": {
+                  "mechanic": "Operating Map",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the operating move that would make the HR decision clearer.",
+                  "actionLabel": "Check the operating move",
+                  "artifactLabel": "Add to operating sheet",
+                  "choices": [
+                    "People process",
+                    "Business link",
+                    "Risk check",
+                    "Manager action"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4529,7 +5243,14 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Operating Map",
+        "short": "Map the HR decision before applying the rule.",
+        "artifact": "HR operating sheet",
+        "interaction": "map, choose, check, apply",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
     },
     "speaking": {
       "courseId": "speaking",
@@ -4581,7 +5302,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Name your fear thought",
                 "prompt": "Think about the last time you felt nervous before speaking. Write down the exact thought in your head. Then label it: was it catastrophe, mind-reading, or perfection? Now write one calmer, true version of that thought.",
-                "placeholder": "My fear thought was... This is mostly [catastrophe / mind-reading / perfection]... A calmer, true version is..."
+                "placeholder": "My fear thought was... This is mostly [catastrophe / mind-reading / perfection]... A calmer, true version is...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4660,7 +5395,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Design your SETUP ritual",
                 "prompt": "Write your own five-step pre-talk ritual using SETUP: Settle, Earth, Talk small, Use your line, Purpose. Make each step specific to you. For 'Use your line', write the exact first sentence you will say in your next talk.",
-                "placeholder": "Settle: ... Earth: ... Talk small: ... Use your line (my first sentence): ... Purpose: ..."
+                "placeholder": "Settle: ... Earth: ... Talk small: ... Use your line (my first sentence): ... Purpose: ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4739,7 +5488,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Write your excitement script",
                 "prompt": "For your next talk, write three short 'I am excited' lines. Each one should name a real reason: something you will share, something the audience will gain, or a moment you look forward to. Keep them simple and true.",
-                "placeholder": "I am excited to... I am excited that the audience will... I am excited for the part where..."
+                "placeholder": "I am excited to... I am excited that the audience will... I am excited for the part where...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -4823,7 +5581,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build your message map",
                 "prompt": "Choose a talk you need to give soon. Write your one core message in a single sentence. Then list three supporting points. Under each point, write one proof: a story, a number, or an example.",
-                "placeholder": "Core message: ... Point 1: ... (proof: ...) Point 2: ... (proof: ...) Point 3: ... (proof: ...)"
+                "placeholder": "Core message: ... Point 1: ... (proof: ...) Point 2: ... (proof: ...) Point 3: ... (proof: ...)",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4902,7 +5674,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build a CTRL story",
                 "prompt": "Take one point from your message map. Build a short story for it using CTRL. Write one or two lines for each part: Context, Trouble, Resolution, Lesson. Make sure the Lesson links to your core message.",
-                "placeholder": "Context: ... Trouble: ... Resolution: ... Lesson (links to my message): ..."
+                "placeholder": "Context: ... Trouble: ... Resolution: ... Lesson (links to my message): ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -4981,7 +5767,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Write your open and close",
                 "prompt": "For your next talk, write one strong opening using a fact, story, question, or bold statement. Then write a closing that returns to that same idea and ends with one clear ask. Make the open and close echo each other.",
-                "placeholder": "Opening hook: ... Closing (returns to the hook) + clear ask: ..."
+                "placeholder": "Opening hook: ... Closing (returns to the hook) + clear ask: ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -5065,7 +5860,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Record and listen",
                 "prompt": "Record yourself saying one minute of your talk on your phone. Listen back. Note one place to slow down, one place to add a pause, and one place to change your pitch or volume. Then record it again with those changes.",
-                "placeholder": "Where I will slow down: ... Where I will add a pause: ... Where I will change pitch or volume: ..."
+                "placeholder": "Where I will slow down: ... Where I will add a pause: ... Where I will change pitch or volume: ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5144,7 +5953,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Audit your body language",
                 "prompt": "Record one minute of yourself speaking on video, or ask a colleague to watch you. Note three things: do you rock or stay still, where do your eyes go, and what do your hands do? Write one fix for each.",
-                "placeholder": "My stance: ... (fix: ...) My eye contact: ... (fix: ...) My hands: ... (fix: ...)"
+                "placeholder": "My stance: ... (fix: ...) My eye contact: ... (fix: ...) My hands: ... (fix: ...)",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5223,7 +6046,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Rebuild one slide",
                 "prompt": "Take one busy slide from a past talk. Rewrite it to follow one idea per slide. Give it a headline of about six words. Choose one image, one chart, or one number to support it. Describe the new, simpler slide.",
-                "placeholder": "Old slide had: ... New headline (about six words): ... One supporting visual: ..."
+                "placeholder": "Old slide had: ... New headline (about six words): ... One supporting visual: ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5307,7 +6144,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Prepare for the hard question",
                 "prompt": "Think of the hardest or most hostile question you might get after your next talk. Write it down. Then draft an answer using ACE: one line to Acknowledge, one to Clarify if needed, and a calm, honest Engage.",
-                "placeholder": "The hard question: ... Acknowledge: ... Clarify: ... Engage: ..."
+                "placeholder": "The hard question: ... Acknowledge: ... Clarify: ... Engage: ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -5386,7 +6232,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Adapt one message to three rooms",
                 "prompt": "Take one recommendation you need to make. Write how you would say it in three settings: a 60-second panel answer (headline first), a boardroom (BLUF, decision first), and a keynote (one big idea with feeling).",
-                "placeholder": "Panel (headline first): ... Board (BLUF): ... Keynote (big idea + emotion): ..."
+                "placeholder": "Panel (headline first): ... Board (BLUF): ... Keynote (big idea + emotion): ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5465,7 +6325,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Plan and reflect on your signature talk",
                 "prompt": "Outline your signature talk on one page: core message, three points with proof, one story, opening hook, and closing ask. Note where you will pause. After you deliver or rehearse it, write what worked and one thing to improve next time.",
-                "placeholder": "Core message: ... Three points + proof: ... Story: ... Hook: ... Closing ask: ... After delivery, what worked: ... One thing to improve: ..."
+                "placeholder": "Core message: ... Three points + proof: ... Story: ... Hook: ... Closing ask: ... After delivery, what worked: ... One thing to improve: ...",
+                "interaction": {
+                  "mechanic": "Rehearsal Room",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the rehearsal move that changes the delivery, not the decoration.",
+                  "actionLabel": "Rehearse this move",
+                  "artifactLabel": "Add to talk kit",
+                  "choices": [
+                    "Open stronger",
+                    "Cut the extra",
+                    "Pause here",
+                    "Handle the question"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5503,7 +6377,14 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Rehearsal Room",
+        "short": "Practice the move before the real room.",
+        "artifact": "signature talk kit",
+        "interaction": "map, rehearse, compare, refine",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
     },
     "confidence": {
       "courseId": "confidence",
@@ -5560,7 +6441,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Find your collapse moment",
                 "prompt": "Think of one recent moment when your confidence dropped at work. Write what happened in two or three sentences. Then name which of the three triggers were present: threat, comparison, or high stakes. If more than one was present, list them all.",
-                "placeholder": "The moment was... The triggers I notice are..."
+                "placeholder": "The moment was... The triggers I notice are...",
+                "interaction": {
+                  "mechanic": "Mirror Journal",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Notice the pattern and choose the next reset move.",
+                  "actionLabel": "Choose the reset move",
+                  "artifactLabel": "Add to reset plan",
+                  "choices": [
+                    "Name the trigger",
+                    "Answer the critic",
+                    "Collect proof",
+                    "Use the ritual"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5644,7 +6539,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Run one thought through the method",
                 "prompt": "Catch one inner-critic thought you had this week and write it word for word. Then check it: what is the proof for and against it? Finally, write a fair replacement thought you could actually believe.",
-                "placeholder": "Catch: The thought was... Check: Proof against it is... Change: A fairer thought is..."
+                "placeholder": "Catch: The thought was... Check: Proof against it is... Change: A fairer thought is...",
+                "interaction": {
+                  "mechanic": "Mirror Journal",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Notice the pattern and choose the next reset move.",
+                  "actionLabel": "Choose the reset move",
+                  "artifactLabel": "Add to reset plan",
+                  "choices": [
+                    "Name the trigger",
+                    "Answer the critic",
+                    "Collect proof",
+                    "Use the ritual"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5737,7 +6646,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Start your Evidence File",
                 "prompt": "Write five real wins from your career. Make each one specific, with a fact or number if you can. Use the four areas as a guide: results you delivered, hard moments you handled, skills others rely on you for, and growth over time. Then note one strength that shows up in more than one of them.",
-                "placeholder": "Win 1... Win 2... A strength I see repeating is..."
+                "placeholder": "Win 1... Win 2... A strength I see repeating is...",
+                "interaction": {
+                  "mechanic": "Mirror Journal",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Notice the pattern and choose the next reset move.",
+                  "actionLabel": "Choose the reset move",
+                  "artifactLabel": "Add to reset plan",
+                  "choices": [
+                    "Name the trigger",
+                    "Answer the critic",
+                    "Collect proof",
+                    "Use the ritual"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5826,7 +6749,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Reframe one rejection",
                 "prompt": "Think of one rejection that still stings. Run it through the 3R method. Receive: what did you feel? Read: what was actually in your control, and what was not? Respond: what is one useful action you could take now, with a clear head?",
-                "placeholder": "Receive: I felt... Read: In my control was... Not in my control was... Respond: One action I can take is..."
+                "placeholder": "Receive: I felt... Read: In my control was... Not in my control was... Respond: One action I can take is...",
+                "interaction": {
+                  "mechanic": "Mirror Journal",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Notice the pattern and choose the next reset move.",
+                  "actionLabel": "Choose the reset move",
+                  "artifactLabel": "Add to reset plan",
+                  "choices": [
+                    "Name the trigger",
+                    "Answer the critic",
+                    "Collect proof",
+                    "Use the ritual"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -5921,7 +6858,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Design your ritual",
                 "prompt": "Write your own daily confidence ritual using Notice-Name-Note. Decide the exact time you will do each part and where you will record it. Then write your three-step pre-event routine for high-pressure moments, including one anchor line from your Evidence File.",
-                "placeholder": "Daily ritual: Notice... Name... Note... Pre-event routine: Breathe... Posture... Anchor line..."
+                "placeholder": "Daily ritual: Notice... Name... Note... Pre-event routine: Breathe... Posture... Anchor line...",
+                "interaction": {
+                  "mechanic": "Mirror Journal",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Notice the pattern and choose the next reset move.",
+                  "actionLabel": "Choose the reset move",
+                  "artifactLabel": "Add to reset plan",
+                  "choices": [
+                    "Name the trigger",
+                    "Answer the critic",
+                    "Collect proof",
+                    "Use the ritual"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6009,7 +6960,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Commit to your 7-day plan",
                 "prompt": "Write your start date for day one. Then choose your day-six stretch action now: one small brave thing you have been avoiding. Finally, name the two tools from this course you think will help you most after the week ends.",
-                "placeholder": "I start on... My day-six stretch action is... The two tools I will keep are..."
+                "placeholder": "I start on... My day-six stretch action is... The two tools I will keep are...",
+                "interaction": {
+                  "mechanic": "Mirror Journal",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Notice the pattern and choose the next reset move.",
+                  "actionLabel": "Choose the reset move",
+                  "artifactLabel": "Add to reset plan",
+                  "choices": [
+                    "Name the trigger",
+                    "Answer the critic",
+                    "Collect proof",
+                    "Use the ritual"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6058,7 +7023,14 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Mirror Journal",
+        "short": "Notice the pattern and choose the next reset move.",
+        "artifact": "confidence reset plan",
+        "interaction": "notice, choose, collect, reset",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
     },
     "leadership": {
       "courseId": "leadership",
@@ -6111,7 +7083,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Your three-signal check",
                 "prompt": "Run the three questions on yourself for the past two weeks. For each one (exhaustion, distance, doubt), write yes or no and one line of proof from real life. Then write the single smallest change you could make this week.",
-                "placeholder": "Exhaustion: yes/no — proof... Distance: yes/no — proof... Doubt: yes/no — proof... Smallest change this week..."
+                "placeholder": "Exhaustion: yes/no — proof... Distance: yes/no — proof... Doubt: yes/no — proof... Smallest change this week...",
+                "interaction": {
+                  "mechanic": "Energy Board",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the leadership move that protects energy and responsibility.",
+                  "actionLabel": "Check the rhythm move",
+                  "artifactLabel": "Add to rhythm plan",
+                  "choices": [
+                    "Keep",
+                    "Delegate",
+                    "Decline",
+                    "Recover"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6190,7 +7176,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Your one-week energy map",
                 "prompt": "List five tasks you did this week. Put each in one of the four boxes (gives or takes energy; important or not). Then name one task in box four you will cut or hand off, and one task in box one you will protect.",
-                "placeholder": "Task 1 — box... Task 2 — box... (five tasks). Box four task to cut/hand off... Box one task to protect..."
+                "placeholder": "Task 1 — box... Task 2 — box... (five tasks). Box four task to cut/hand off... Box one task to protect...",
+                "interaction": {
+                  "mechanic": "Energy Board",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the leadership move that protects energy and responsibility.",
+                  "actionLabel": "Check the rhythm move",
+                  "artifactLabel": "Add to rhythm plan",
+                  "choices": [
+                    "Keep",
+                    "Delegate",
+                    "Decline",
+                    "Recover"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6269,7 +7269,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Write your three-part no",
                 "prompt": "Think of one request you keep saying yes to but should decline. Write a short no using the three parts: acknowledge, decline (with a short reason), and offer one smaller thing you can do.",
-                "placeholder": "Acknowledge... Decline (reason)... Offer..."
+                "placeholder": "Acknowledge... Decline (reason)... Offer...",
+                "interaction": {
+                  "mechanic": "Energy Board",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to rhythm plan",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -6353,7 +7362,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Plan one real handoff",
                 "prompt": "Pick one task you should delegate. Name the person and rate their readiness for this exact task (new, growing, skilled but unsure, or fully ready). Then write two or three checkpoints you will agree on, so you keep sight of the outcome without checking every step.",
-                "placeholder": "Task... Person and readiness level... Checkpoint 1... Checkpoint 2... Checkpoint 3..."
+                "placeholder": "Task... Person and readiness level... Checkpoint 1... Checkpoint 2... Checkpoint 3...",
+                "interaction": {
+                  "mechanic": "Energy Board",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the leadership move that protects energy and responsibility.",
+                  "actionLabel": "Check the rhythm move",
+                  "artifactLabel": "Add to rhythm plan",
+                  "choices": [
+                    "Keep",
+                    "Delegate",
+                    "Decline",
+                    "Recover"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6432,7 +7455,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Design your focus block",
                 "prompt": "Plan one deep-work block for this week: the day, the time, and how long. Write what you will turn off, and the exact message you will send your team about when you are offline and when you will reply. Then suggest one rule for a team response charter.",
-                "placeholder": "Block: day, time, length... What I turn off... Message to team... One response charter rule..."
+                "placeholder": "Block: day, time, length... What I turn off... Message to team... One response charter rule...",
+                "interaction": {
+                  "mechanic": "Energy Board",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the leadership move that protects energy and responsibility.",
+                  "actionLabel": "Check the rhythm move",
+                  "artifactLabel": "Add to rhythm plan",
+                  "choices": [
+                    "Keep",
+                    "Delegate",
+                    "Decline",
+                    "Recover"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6511,7 +7548,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build your weekly rhythm",
                 "prompt": "Sketch one week. Mark two blocks of deep effort and three recovery moments (at least one daily, one weekly). Then write your three weekly-review questions and choose the day you will ask them.",
-                "placeholder": "Deep effort blocks... Daily recovery... Weekly recovery... Weekly-review questions and day..."
+                "placeholder": "Deep effort blocks... Daily recovery... Weekly recovery... Weekly-review questions and day...",
+                "interaction": {
+                  "mechanic": "Energy Board",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the leadership move that protects energy and responsibility.",
+                  "actionLabel": "Check the rhythm move",
+                  "artifactLabel": "Add to rhythm plan",
+                  "choices": [
+                    "Keep",
+                    "Delegate",
+                    "Decline",
+                    "Recover"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6549,7 +7600,14 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Energy Board",
+        "short": "Move work, boundaries, and recovery into a sustainable rhythm.",
+        "artifact": "leadership rhythm plan",
+        "interaction": "sort, choose, delegate, rhythm-build",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
     },
     "offer": {
       "courseId": "offer",
@@ -6577,32 +7635,41 @@ window.ESTRELLA_ACADEMY = {
                   ]
                 },
                 {
-                  "heading": "The STAR framework",
+                  "heading": "The proof story spine",
                   "body": [
-                    "STAR is a simple way to put a story in the right order. It stands for Situation, Task, Action, Result. You give a little background (Situation), say what you had to do (Task), explain the steps you took (Action), and end with the outcome (Result).",
-                    "Spend most of your time on Action, because that is the part that is about you. A common mistake is to spend two minutes on background and ten seconds on what you did. Flip that. Keep Situation and Task short. Make Action the heart of the story. End the Result with a number when you can, because numbers feel true.",
-                    "Worked example. A recruitment officer in Dubai is asked, \"Tell me about a time you handled a difficult hiring deadline.\" Weak answer: \"We were very busy and somehow we made it work.\" STAR answer: \"Our retail client needed forty sales staff before the Dubai Shopping Festival, in three weeks (Situation). I owned the full pipeline (Task). I split the roles into three batches, ran two open assessment days at the mall, and moved interviews to WhatsApp video to save travel time (Action). We filled thirty-eight of the forty roles before opening day, and the client renewed for the next season (Result).\" Same person, same job. The second answer wins because you can see the thinking and the impact."
+                    "A proof story is a simple way to put a work moment in the right order. You give a little background, say what you were responsible for, explain the steps you took, and end with the outcome.",
+                    "Spend most of your time on action, because that is the part that is about you. A common mistake is to spend two minutes on background and ten seconds on what you did. Flip that. Keep context and responsibility short. Make action the heart of the story. End the result with a number when you can, because numbers feel true.",
+                    "Worked example. A recruitment officer in Dubai is asked, \"Tell me about a time you handled a difficult hiring deadline.\" Weak answer: \"We were very busy and somehow we made it work.\" Strong answer: \"Our retail client needed forty sales staff before the Dubai Shopping Festival, in three weeks. I owned the full pipeline. I split the roles into three batches, ran two open assessment days at the mall, and moved interviews to WhatsApp video to save travel time. We filled thirty-eight of the forty roles before opening day, and the client renewed for the next season.\" Same person, same job. The second answer wins because you can see the thinking and the impact."
                   ]
                 },
                 {
                   "heading": "Build a story bank before you walk in",
                   "body": [
                     "Do not invent stories live in the room. Under pressure your memory gets worse, not better. Instead, prepare a small story bank. Pick six to eight real moments from your work. Good ones to include: a conflict you solved, a goal you hit, a mistake you fixed, a time you led without a title, and a time you worked across a team.",
-                    "Write each story once in STAR form. Then notice that one strong story can answer many questions. Your \"difficult deadline\" story can also answer questions about pressure, planning, and teamwork. With eight good stories, you are ready for most of what an interviewer can ask."
+                    "Write each story once in proof-story form. Then notice that one strong story can answer many questions. Your \"difficult deadline\" story can also answer questions about pressure, planning, and teamwork. With eight good stories, you are ready for most of what an interviewer can ask."
                   ]
                 }
               ],
               "takeaways": [
                 "The behavioral round tests how you acted before, because it predicts how you will act next.",
-                "Use STAR: Situation, Task, Action, Result, in that order.",
-                "Spend most of your answer on Action, because that part is about you.",
+                "Shape a proof story: context, responsibility, action, and result, in that order.",
+                "Spend most of your answer on action, because that part is about you.",
                 "End with a number when you can; numbers make impact feel real.",
                 "Prepare a bank of six to eight stories before the interview, not during it."
               ],
               "exercise": {
-                "title": "Write your first STAR story",
-                "prompt": "Pick one real moment from your work where you solved a problem. Write it out in four short parts: Situation, Task, Action, Result. Keep Situation and Task to one line each. Give Action at least three sentences. End the Result with a number or a clear outcome.",
-                "placeholder": "Situation: ...\nTask: ...\nAction: I ... then I ... and I ...\nResult: ..."
+                "title": "Write your first proof story",
+                "prompt": "Pick one real moment from your work where you solved a problem. Write it out in four short parts: context, responsibility, action, result. Keep context and responsibility to one line each. Give action at least three sentences. End the result with a number or a clear outcome.",
+                "placeholder": "Context: ...\nResponsibility: ...\nAction: I ... then I ... and I ...\nResult: ...",
+                "interaction": {
+                  "mechanic": "Offer Desk",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to offer kit",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -6617,7 +7684,7 @@ window.ESTRELLA_ACADEMY = {
                   "explain": "Behavioral questions test self-awareness and action. Owning the miss and focusing on your Action and Result shows growth. Denying it or blaming others is a red flag."
                 },
                 {
-                  "q": "In a STAR answer, which part should usually take the most time?",
+                  "q": "In a proof story, which part should usually take the most time?",
                   "options": [
                     "Situation, so they fully understand the background.",
                     "Task, so they know exactly what was asked of you.",
@@ -6630,9 +7697,9 @@ window.ESTRELLA_ACADEMY = {
               ],
               "xp": 50,
               "tutorSeed": {
-                "opening": "Welcome in. I am here to help you master the behavioral round. We just covered STAR. Tell me a real work moment and I will help you shape it into a strong, short story.",
+                "opening": "Welcome in. I am here to help you master the behavioral round. Tell me a real work moment and I will help you shape it into a strong, short proof story.",
                 "suggested": [
-                  "Help me turn my last project into a STAR story.",
+                  "Help me turn my last project into a proof story.",
                   "How do I show impact without sounding like I am bragging?",
                   "What if I do not have a number for my Result?"
                 ]
@@ -6681,7 +7748,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "The headline-first answer",
                 "prompt": "Take this question: \"Why should we hire you?\" Write an answer that follows the headline-first rule. First sentence is your main point. Then give one or two reasons. Then stop. Keep the whole thing under sixty words. Read it out loud slowly and notice where you want to pause.",
-                "placeholder": "Main point: ...\nReason 1: ...\nReason 2: ..."
+                "placeholder": "Main point: ...\nReason 1: ...\nReason 2: ...",
+                "interaction": {
+                  "mechanic": "Offer Desk",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the offer move that makes the conversation cleaner.",
+                  "actionLabel": "Check the offer move",
+                  "artifactLabel": "Add to offer kit",
+                  "choices": [
+                    "Set floor",
+                    "Set target",
+                    "Ask clearly",
+                    "Pause after ask"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6760,7 +7841,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Prepare three closing questions",
                 "prompt": "Imagine you are interviewing for a role you want. Write three questions you would ask at the end. Make one about the role, one about the team, and one about the biggest challenge they face. Avoid anything about pay or holidays. For each one, write a short note on what a good answer would tell you.",
-                "placeholder": "Role question: ...\nTeam question: ...\nChallenge question: ..."
+                "placeholder": "Role question: ...\nTeam question: ...\nChallenge question: ...",
+                "interaction": {
+                  "mechanic": "Offer Desk",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the offer move that makes the conversation cleaner.",
+                  "actionLabel": "Check the offer move",
+                  "artifactLabel": "Add to offer kit",
+                  "choices": [
+                    "Set floor",
+                    "Set target",
+                    "Ask clearly",
+                    "Pause after ask"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6844,7 +7939,21 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Build your number sheet",
                 "prompt": "For a role you want, write your three numbers: floor, target, and reach. Under each, note the research that supports it. Then write one sentence you could say if the employer asks for your expectations, passing the question back politely. Finally, write your three-step counter for an offer that comes in below target.",
-                "placeholder": "Floor: ...\nTarget: ...\nReach: ...\nPass-back line: ...\nCounter (warmth / ask + reason / silence): ..."
+                "placeholder": "Floor: ...\nTarget: ...\nReach: ...\nPass-back line: ...\nCounter (warmth / ask + reason / silence): ...",
+                "interaction": {
+                  "mechanic": "Offer Desk",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the offer move that makes the conversation cleaner.",
+                  "actionLabel": "Check the offer move",
+                  "artifactLabel": "Add to offer kit",
+                  "choices": [
+                    "Set floor",
+                    "Set target",
+                    "Ask clearly",
+                    "Pause after ask"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -6934,7 +8043,16 @@ window.ESTRELLA_ACADEMY = {
               "exercise": {
                 "title": "Draft your three messages",
                 "prompt": "Imagine you have Offer A with a Thursday deadline and a preferred Offer B still in process. Write three short messages: one asking Company B to speed up, one asking Company A for a few more days, and one polite message turning down whichever offer you do not take. Keep each message warm, honest, and under five sentences.",
-                "placeholder": "To B (speed up): ...\nTo A (more time): ...\nDecline message: ..."
+                "placeholder": "To B (speed up): ...\nTo A (more time): ...\nDecline message: ...",
+                "interaction": {
+                  "mechanic": "Offer Desk",
+                  "mode": "artifact-words",
+                  "requiresWriting": true,
+                  "intro": "Only write the words you would actually keep in the final artifact.",
+                  "actionLabel": "Save the useful words",
+                  "artifactLabel": "Add to offer kit",
+                  "choices": []
+                }
               },
               "quiz": [
                 {
@@ -6991,14 +8109,14 @@ window.ESTRELLA_ACADEMY = {
                 {
                   "heading": "How to run a strong mock session",
                   "body": [
-                    "Treat the mock like the real thing. Sit up, dress as you would, and answer out loud, not in your head. Use everything from this course. Put your stories in STAR form. Lead with your headline, then stop. Read the signals in the feedback and adjust.",
+                    "Treat the mock like the real thing. Sit up, dress as you would, and answer out loud, not in your head. Use everything from this course. Put your stories in proof-story form. Lead with your headline, then stop. Read the signals in the feedback and adjust.",
                     "Use a simple loop called Answer, Review, Redo. First, answer the question fully. Second, review the feedback and pick the one biggest weakness, not ten small ones. Third, redo the same answer with that one fix. Then move on. Worked example: a candidate in Kuwait answers \"Tell me about a conflict you handled.\" The AI notes the answer was ninety seconds of background and ten seconds of action. She redoes it, cutting the background to one line and growing the action. The second answer is half as long and twice as strong. One question, one fix, real progress."
                   ]
                 },
                 {
                   "heading": "Your pre-interview routine",
                   "body": [
-                    "Build a short routine you repeat before every real interview. Three days before, run a full mock and fix your three weakest answers. The day before, run your best six stories once, out loud, in STAR form. One hour before, do not cram. Instead, do two things: read your closing questions, and say your headline answer to \"Why you?\" once, slowly, to set your voice and pace.",
+                    "Build a short routine you repeat before every real interview. Three days before, run a full mock and fix your three weakest answers. The day before, run your best six stories once, out loud, in clean proof-story form. One hour before, do not cram. Instead, do two things: read your closing questions, and say your headline answer to \"Why you?\" once, slowly, to set your voice and pace.",
                     "Keep practising in short bursts over several days rather than one long session the night before. Spacing your practice out helps it stick. The goal is not to memorise scripts word for word. Scripts sound stiff and break under a surprise question. The goal is to make the structure automatic, so that under pressure your answers fall into shape on their own. That is when the real room starts to feel easy."
                   ]
                 }
@@ -7012,8 +8130,22 @@ window.ESTRELLA_ACADEMY = {
               ],
               "exercise": {
                 "title": "Run your first mock loop",
-                "prompt": "Pick one likely question for your next interview. Answer it out loud and write down what you actually said. Then review it: was it in STAR form, did it have a clear ending, were there filler words? Choose the single biggest weakness. Redo the answer with that one fix and write the improved version.",
-                "placeholder": "Question: ...\nFirst answer (what I said): ...\nBiggest weakness: ...\nRedone answer: ..."
+                "prompt": "Pick one likely question for your next interview. Answer it out loud and write down what you actually said. Then review it: did it have a clear structure, did it have a clear ending, were there filler words? Choose the single biggest weakness. Redo the answer with that one fix and write the improved version.",
+                "placeholder": "Question: ...\nFirst answer (what I said): ...\nBiggest weakness: ...\nRedone answer: ...",
+                "interaction": {
+                  "mechanic": "Offer Desk",
+                  "mode": "choice-board",
+                  "requiresWriting": false,
+                  "intro": "Choose the offer move that makes the conversation cleaner.",
+                  "actionLabel": "Check the offer move",
+                  "artifactLabel": "Add to offer kit",
+                  "choices": [
+                    "Set floor",
+                    "Set target",
+                    "Ask clearly",
+                    "Pause after ask"
+                  ]
+                }
               },
               "quiz": [
                 {
@@ -7043,7 +8175,7 @@ window.ESTRELLA_ACADEMY = {
               "tutorSeed": {
                 "opening": "Here we go, this is the practice room. I can play your interviewer and ask real questions, then give you honest feedback. Pick a question to start, or tell me the role you are preparing for.",
                 "suggested": [
-                  "Ask me a behavioral question and judge my STAR structure.",
+                  "Ask me a behavioral question and judge my story structure.",
                   "Give me a hard pressure question and push back on my answer.",
                   "Help me build my pre-interview routine for next week."
                 ]
@@ -7051,7 +8183,151 @@ window.ESTRELLA_ACADEMY = {
             }
           ]
         }
-      ]
+      ],
+      "mechanic": {
+        "name": "Offer Desk",
+        "short": "Prepare the numbers and words before the pressure arrives.",
+        "artifact": "offer close kit",
+        "interaction": "compare, choose, script, mock",
+        "writingPolicy": "Avoid asking learners to type unless the typed words are the actual artifact, such as a bio, script, negotiation message, story, or final plan. Prefer choosing, sorting, rehearsing, checking, ranking, and saving structured decisions."
+      }
+    }
+  },
+  "experience": {
+    "version": "course-mechanics/v2",
+    "principle": "Every course teaches through the shape of its own work. The interaction should match the career task, not force every lesson into the same read-write-quiz rhythm.",
+    "writingPolicy": "Avoid asking learners to type unless the typed words are the artifact itself. Most lessons use course-specific choices, sorting, rehearsal, or review moves; writing is reserved for final brand copy, scripts, messages, and story lines.",
+    "sharedLanguage": {
+      "course": "Course",
+      "lesson": "Lesson",
+      "artifact": "Artifact",
+      "exercise": "Practice move",
+      "quiz": "Quick check",
+      "progress": "Progress",
+      "badge": "Badge",
+      "streak": "Streak"
+    },
+    "courseMechanics": {
+      "ai-hr": {
+        "name": "Decision Map",
+        "short": "Sort the decision before choosing the tool.",
+        "artifact": "AI adoption map",
+        "interaction": "sort, audit, choose, stress-test",
+        "defaultMode": "sort",
+        "actionLabel": "Place this decision",
+        "artifactLabel": "Add to AI map",
+        "choices": [
+          "Automate",
+          "Augment",
+          "Keep human",
+          "Not ready"
+        ]
+      },
+      "branding": {
+        "name": "Reputation Studio",
+        "short": "Shape how the market reads you.",
+        "artifact": "brand statement and visibility plan",
+        "interaction": "audit, choose, sharpen, draft only when words are the artifact",
+        "defaultMode": "review",
+        "actionLabel": "Choose the sharper move",
+        "artifactLabel": "Add to brand plan",
+        "choices": [
+          "Clear",
+          "Too broad",
+          "Needs proof",
+          "More specific"
+        ]
+      },
+      "interview": {
+        "name": "Interview Lab",
+        "short": "Build answers under realistic pressure.",
+        "artifact": "interview playbook",
+        "interaction": "decode, select, rehearse, mock",
+        "defaultMode": "rehearse",
+        "actionLabel": "Choose the answer strategy",
+        "artifactLabel": "Add to playbook",
+        "choices": [
+          "Clarify the question",
+          "Lead with headline",
+          "Shape a proof story",
+          "Recover and reset"
+        ]
+      },
+      "hr-foundations": {
+        "name": "Operating Map",
+        "short": "Map the HR decision before applying the rule.",
+        "artifact": "HR operating sheet",
+        "interaction": "map, choose, check, apply",
+        "defaultMode": "map",
+        "actionLabel": "Place this on the map",
+        "artifactLabel": "Add to operating sheet",
+        "choices": [
+          "People process",
+          "Business link",
+          "Risk check",
+          "Manager action"
+        ]
+      },
+      "speaking": {
+        "name": "Rehearsal Room",
+        "short": "Practice the move before the real room.",
+        "artifact": "signature talk kit",
+        "interaction": "map, rehearse, compare, refine",
+        "defaultMode": "rehearse",
+        "actionLabel": "Choose the rehearsal move",
+        "artifactLabel": "Add to talk kit",
+        "choices": [
+          "Open stronger",
+          "Cut the extra",
+          "Pause here",
+          "Handle the question"
+        ]
+      },
+      "confidence": {
+        "name": "Mirror Journal",
+        "short": "Notice the pattern and choose the next reset move.",
+        "artifact": "confidence reset plan",
+        "interaction": "notice, choose, collect, reset",
+        "defaultMode": "choice",
+        "actionLabel": "Choose the reset move",
+        "artifactLabel": "Add to reset plan",
+        "choices": [
+          "Name the trigger",
+          "Answer the critic",
+          "Collect proof",
+          "Use the ritual"
+        ]
+      },
+      "leadership": {
+        "name": "Energy Board",
+        "short": "Move work, boundaries, and recovery into a sustainable rhythm.",
+        "artifact": "leadership rhythm plan",
+        "interaction": "sort, choose, delegate, rhythm-build",
+        "defaultMode": "sort",
+        "actionLabel": "Choose the leadership move",
+        "artifactLabel": "Add to rhythm plan",
+        "choices": [
+          "Keep",
+          "Delegate",
+          "Decline",
+          "Recover"
+        ]
+      },
+      "offer": {
+        "name": "Offer Desk",
+        "short": "Prepare the numbers and words before the pressure arrives.",
+        "artifact": "offer close kit",
+        "interaction": "compare, choose, script, mock",
+        "defaultMode": "choose",
+        "actionLabel": "Choose the offer move",
+        "artifactLabel": "Add to offer kit",
+        "choices": [
+          "Set floor",
+          "Set target",
+          "Ask clearly",
+          "Pause after ask"
+        ]
+      }
     }
   }
 };

@@ -332,7 +332,7 @@ fake assessment as real is the one thing that detonates a premium coaching brand
 - **Reflection prompts** between method and work ("Before you try — what would you have
   said last year?"). One line, optional, builds the personal stake.
 - **Inline definition peeks** for named frameworks — hover/tap a credited term
-  (Ulrich's roles, STAR) for a 1-sentence gloss, so the lesson body stays uncluttered
+  (Ulrich's roles, proof-story structure) for a 1-sentence gloss, so the lesson body stays uncluttered
   (content brief: name once, then use).
 - **Bank moment.** When the learner's work meets the rubric, it visibly *drops into the
   artifact* (a small, single motion — see §8). That's the dopamine, and it's earned by

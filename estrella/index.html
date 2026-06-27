@@ -28,6 +28,24 @@
   --gold-soft: #DCC589;
   --gold-bg: #F1E6C7;
 
+  /* Dossier desk — deep green leather + terracotta (Academy redesign) */
+  --leather: #2E3A30;
+  --leather-deep: #222C25;
+  --leather-edge: #3D4D40;
+  --leather-ink: #EDE7D6;   /* warm ivory text on leather */
+  --rust: #A8553C;
+  --rust-soft: #C47A5E;
+  --rust-deep: #8A4530;
+  --rust-bg: #F3DFD5;
+  --tan: #C2A24E;
+  --tan-bg: #EFE4C5;
+  --paper: #FBF6E9;         /* book page */
+  --paper-edge: #EAE0C9;    /* page edge / fore-edge */
+  /* per-track accent (fixed meaning) */
+  --track-foundation: #2E3A30;
+  --track-signature: #A8553C;
+  --track-interview: #C2A24E;
+
   --lavender: #B8A8E0;
   --lavender-bg: #EDE7F8;
   --sage: #9BC2B5;
@@ -1394,6 +1412,116 @@ body{
 .book-price{font-size:0.85rem;color:var(--ink);font-weight:600;font-family:'Cormorant Garamond',serif}
 .book-format{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mute);font-weight:500}
 
+/* Library vault redesign — premium, contained, and aligned with Academy */
+#view-library.dash-body{padding:0;overflow:hidden}
+#view-library .lib-container{
+  width:min(1460px,calc(100vw - clamp(32px,5vw,92px)));
+  height:100dvh;
+  margin:0 auto;
+  padding:calc(var(--nav-h) + clamp(14px,2vh,22px)) 0 clamp(14px,2vh,22px);
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto auto;
+  gap:clamp(10px,1.45vh,16px);
+  overflow:hidden;
+}
+#view-library .lib-top{display:flex;align-items:end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:0}
+#view-library .lib-top h1{font-size:clamp(2rem,3vw,2.8rem);font-weight:400;letter-spacing:-.02em;line-height:1}
+#view-library .lib-top .hero-eyebrow{margin:0}
+#view-library .lib-top::after{content:"Choose one book for the moment you're in.";font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,1.25vw,1.16rem);color:var(--text-dim)}
+#view-library .lib-featured{
+  min-height:0;
+  display:grid;
+  grid-template-columns:minmax(230px,.58fr) minmax(0,1fr) minmax(250px,.56fr);
+  gap:clamp(18px,2.2vw,30px);
+  align-items:stretch;
+  background:linear-gradient(90deg,rgba(46,58,48,.06),transparent 42%),linear-gradient(135deg,rgba(251,247,236,.95),rgba(241,230,199,.5));
+  border:1px solid rgba(184,152,92,.22);
+  border-radius:26px;
+  padding:clamp(18px,2.3vw,30px);
+  margin:0;
+  box-shadow:var(--shadow-lg);
+  position:relative;
+  overflow:hidden;
+}
+#view-library .lib-featured::before{inset:16px;width:auto;height:auto;top:16px;right:16px;background:none;border:1px solid rgba(151,121,63,.12);border-radius:19px}
+#view-library .lib-featured::after{content:"";position:absolute;left:clamp(250px,24%,330px);top:24px;bottom:24px;width:1px;background:linear-gradient(transparent,rgba(46,58,48,.18),transparent);pointer-events:none}
+#view-library .featured-cover{
+  width:min(100%,242px);
+  max-height:100%;
+  justify-self:center;
+  align-self:center;
+  border-radius:12px;
+  margin:0;
+  transform:rotate(-2.2deg);
+  box-shadow:0 26px 54px rgba(20,18,14,.22),0 10px 20px rgba(20,18,14,.08);
+}
+#view-library .featured-cover:hover{transform:rotate(-.8deg) scale(1.015)}
+#view-library .featured-cover .book-title{font-size:1.75rem}
+#view-library .lib-featured-info{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
+#view-library .featured-tag{font-size:.68rem;letter-spacing:.22em;margin-bottom:.85rem}
+#view-library .lib-featured h2{font-size:clamp(2rem,3vw,2.8rem);line-height:1.04;margin-bottom:.65rem}
+#view-library .lib-featured-desc{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;font-style:normal;font-size:clamp(.98rem,1.15vw,1.08rem);line-height:1.55;margin-bottom:1.1rem;max-width:52ch}
+#view-library .featured-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 1.15rem;padding:0;border:0}
+#view-library .featured-stat{background:rgba(255,253,248,.72);border:1px solid rgba(202,191,169,.62);border-radius:14px;padding:11px 12px;font-size:.72rem;color:var(--text-dim)}
+#view-library .featured-stat strong{font-size:1.45rem}
+#view-library .featured-actions{gap:.75rem}
+#view-library .audio-sample{padding:.55rem .9rem .55rem .55rem}
+#view-library .audio-play-btn{width:34px;height:34px}
+.lib-vault-note{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;gap:16px;background:rgba(255,253,248,.78);border:1px solid rgba(202,191,169,.72);border-radius:20px;padding:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.62)}
+.lib-vault-note h3{font-size:1.45rem;line-height:1.05;font-weight:500}
+.lib-vault-note p{font-size:.9rem;line-height:1.5;color:var(--text-dim)}
+.lib-vault-line{display:grid;gap:8px}
+.lib-vault-line span{display:flex;justify-content:space-between;gap:10px;font-size:.78rem;color:var(--text-dim);border-top:1px solid var(--line);padding-top:8px}
+.lib-vault-line b{color:var(--ink);font-weight:600}
+#view-library .lib-rail-head{margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
+#view-library .lib-rail-head h3{font-size:1.38rem}
+#view-library .lib-rail-head span{font-size:.78rem}
+#view-library .books-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;min-height:0}
+#view-library .book-card{display:grid;grid-template-columns:58px minmax(0,1fr);align-items:center;gap:12px;min-height:112px;background:rgba(255,253,248,.76);border:1px solid rgba(202,191,169,.72);border-radius:16px;padding:12px;cursor:pointer;transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease)}
+#view-library .book-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+#view-library .book-card.is-featured{background:linear-gradient(135deg,rgba(241,230,199,.58),rgba(255,253,248,.92));border-color:var(--gold-soft)}
+#view-library .book-cover{width:58px;aspect-ratio:2/3;border-radius:8px;margin:0;padding:.6rem;box-shadow:0 8px 18px rgba(20,18,14,.14)}
+#view-library .book-cover .book-title{font-size:.78rem;margin-bottom:.2rem}
+#view-library .book-cover .book-author{font-size:.36rem;letter-spacing:.16em}
+#view-library .book-info{min-width:0}
+#view-library .book-info h4{font-size:1.05rem;line-height:1.05;font-weight:600;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#view-library .book-info p{font-size:.76rem;line-height:1.32;margin-bottom:.55rem;min-height:0}
+#view-library .book-meta{gap:.5rem}
+#view-library .book-price{font-size:.82rem;font-weight:700}
+#view-library .book-format{font-size:.62rem;font-weight:600}
+@media(max-height:760px) and (min-width:921px){
+  #view-library .lib-container{gap:10px;padding-top:calc(var(--nav-h) + 10px);padding-bottom:10px}
+  #view-library .lib-top h1{font-size:2rem}
+  #view-library .lib-top::after{font-size:1rem}
+  #view-library .lib-featured{padding:18px;grid-template-columns:minmax(190px,.5fr) minmax(0,1fr) minmax(220px,.46fr)}
+  #view-library .featured-cover{width:min(100%,202px)}
+  #view-library .lib-featured h2{font-size:2rem}
+  #view-library .lib-featured-desc{font-size:.95rem;line-height:1.42;margin-bottom:.8rem}
+  #view-library .featured-stat{padding:8px 10px}
+  #view-library .lib-vault-note{padding:16px;gap:10px}
+  #view-library .book-card{min-height:94px;padding:10px}
+  #view-library .book-cover{width:48px}
+}
+@media(max-width:1120px){
+  #view-library .lib-featured{grid-template-columns:minmax(190px,.42fr) minmax(0,1fr)}
+  #view-library .lib-vault-note{display:none}
+  #view-library .books-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  #view-library.dash-body{overflow-y:auto}
+  #view-library .lib-container{width:calc(100vw - 28px);height:auto;min-height:100dvh;padding:calc(var(--nav-h) + 14px) 0 24px;display:flex;flex-direction:column;overflow:visible}
+  #view-library .lib-top{align-items:flex-start}
+  #view-library .lib-top::after{width:100%;font-size:1rem}
+  #view-library .lib-featured{grid-template-columns:1fr;padding:18px;border-radius:22px}
+  #view-library .lib-featured::after{display:none}
+  #view-library .featured-cover{width:min(210px,70vw)}
+  #view-library .featured-stats{grid-template-columns:1fr 1fr 1fr}
+  #view-library .featured-actions{align-items:stretch}
+  #view-library .featured-actions .btn{flex:1;min-width:130px}
+  #view-library .audio-sample{width:100%}
+  #view-library .books-grid{grid-template-columns:1fr}
+}
+
 /* ============================== ACADEMY ============================== */
 .academy-container{max-width:1400px;margin:0 auto;padding:6rem clamp(2rem,5vw,5rem)}
 .academy-header{position:relative;margin-bottom:2.75rem;padding:1.5rem 0 2.5rem;min-height:210px;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
@@ -1673,9 +1801,293 @@ body{
 
 /* ============================== THE SKY (home) ============================== */
 /* Sky keeps the global top nav + bottom bar; it fits the remaining viewport. */
-.sky-wrap{height:100dvh;display:flex;flex-direction:column;padding-top:var(--nav-h);padding-bottom:86px;overflow:hidden}
-.ac-sky{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.32fr) 372px;grid-template-rows:auto minmax(0,1fr);
-  gap:18px;padding:22px 26px}
+.sky-wrap{height:100dvh;box-sizing:border-box;padding-top:var(--nav-h);padding-bottom:clamp(10px,1.8vh,18px);overflow:hidden}
+.ac-sky{display:block}
+
+/* ---- Dossier home: open book + rail + folders ---- */
+.dossier-home{width:min(1500px,calc(100vw - clamp(36px,5vw,96px)));height:calc(100dvh - var(--nav-h) - clamp(12px,2vh,20px));margin:0 auto;padding:clamp(12px,1.7vh,18px) 0 clamp(8px,1.2vh,14px);display:grid;grid-template-rows:auto minmax(0,1fr);gap:clamp(12px,1.8vh,18px)}
+.dh-intro{text-align:center;max-width:760px;margin:0 auto}
+.dh-intro h1{font-size:clamp(1.9rem,2.7vw,2.65rem);font-weight:500;line-height:1.03;letter-spacing:-.01em;color:var(--ink)}
+.dh-intro p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.98rem,1.25vw,1.12rem);color:var(--text-dim);margin-top:5px}
+.dh-main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.68fr) minmax(268px,.5fr);gap:18px;align-items:stretch;align-self:start;min-height:0;height:100%;max-height:clamp(560px,72vh,660px);overflow:hidden}
+
+/* the leather book */
+.book{position:relative;min-height:0;height:100%;padding:14px;border-radius:16px;
+  background:linear-gradient(135deg,var(--leather-edge) 0%,var(--leather) 42%,var(--leather-deep) 100%);
+  box-shadow:var(--shadow-xl),inset 0 1px 0 rgba(255,255,255,.06),inset 0 0 0 1px rgba(0,0,0,.18)}
+.book-pages{height:100%;display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:6px;overflow:hidden;background:var(--leather-deep)}
+.book-page{position:relative;background:var(--paper);padding:clamp(20px,2.1vh,24px) clamp(22px,2vw,28px);min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.book-left{box-shadow:inset -22px 0 28px -24px rgba(34,44,37,.5)}
+.book-right{box-shadow:inset 22px 0 28px -24px rgba(34,44,37,.5)}
+.book-page .ac-eyebrow{margin-bottom:12px;color:var(--gold-deep)}
+
+/* brass corners + ribbon */
+.book-corner{position:absolute;width:22px;height:22px;pointer-events:none;z-index:2}
+.book-corner--tl{top:7px;left:7px;border-top:2px solid var(--gold-soft);border-left:2px solid var(--gold-soft);border-radius:8px 0 0 0}
+.book-corner--tr{top:7px;right:7px;border-top:2px solid var(--gold-soft);border-right:2px solid var(--gold-soft);border-radius:0 8px 0 0}
+.book-corner--bl{bottom:7px;left:7px;border-bottom:2px solid var(--gold-soft);border-left:2px solid var(--gold-soft);border-radius:0 0 0 8px}
+.book-corner--br{bottom:7px;right:7px;border-bottom:2px solid var(--gold-soft);border-right:2px solid var(--gold-soft);border-radius:0 0 8px 0}
+.book-ribbon{position:absolute;top:16px;left:50%;width:12px;height:84px;margin-left:-6px;background:linear-gradient(var(--rust),var(--rust-deep));z-index:3;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);box-shadow:0 6px 10px rgba(0,0,0,.25)}
+
+/* left page — recommended course */
+.bp-title{font-size:clamp(1.85rem,2.35vw,2.45rem);line-height:1.04;margin-bottom:8px}
+.bp-promise{font-size:13.5px;line-height:1.48;color:var(--text-dim);margin-bottom:12px;max-width:42ch}
+.bp-sub{font-size:12.5px;color:var(--gold-deep);font-weight:600;margin-bottom:12px}
+.bp-meta{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 0;margin-bottom:16px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute)}
+.bp-cta{align-self:flex-start;margin-top:auto}
+
+/* artifact slip */
+.artifact-slip{position:relative;background:var(--surface-2);border:1px dashed var(--gold-soft);border-radius:12px;padding:16px 18px;margin-bottom:18px;overflow:hidden}
+.artifact-slip::before{content:"";position:absolute;top:-7px;left:22px;width:34px;height:14px;border:2px solid var(--gold-deep);border-bottom:none;border-radius:8px 8px 0 0;opacity:.55}
+.artifact-copy{position:relative;z-index:2}
+.as-label{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
+.as-name{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--ink);font-weight:600;margin:2px 0 4px}
+.as-desc{font-size:12.5px;line-height:1.5;color:var(--text-dim);max-width:40ch}
+.artifact-asset{position:absolute;right:-12px;bottom:-18px;width:106px;height:142px;border-radius:10px;transform:rotate(4deg);box-shadow:0 14px 22px rgba(43,35,22,.18);z-index:1;background:var(--paper-edge);overflow:hidden;opacity:.95}
+.artifact-asset img{width:100%;height:100%;object-fit:cover;display:block}
+.artifact-asset.is-wide{right:-18px;bottom:12px;width:146px;height:88px;border-radius:12px;transform:rotate(-3deg)}
+.artifact-slip::after{display:none}
+.as-stamp{position:absolute;top:14px;right:14px;font-size:8px;font-weight:700;letter-spacing:.08em;color:var(--rust);
+  border:1.5px solid var(--rust);border-radius:50%;width:56px;height:56px;display:grid;place-items:center;text-align:center;line-height:1.35;opacity:.72;transform:rotate(-9deg);z-index:3;background:rgba(251,246,233,.74)}
+.artifact-slip.is-complete{border-color:var(--track-foundation)}
+.artifact-slip.is-complete .as-stamp{color:var(--track-foundation);border-color:var(--track-foundation)}
+.mobile-artifact-hero{display:none}
+
+/* selected course artifact hero */
+.artifact-hero-page{overflow:hidden}
+.artifact-hero-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.artifact-hero-save{font-size:11px;font-weight:700;color:var(--gold-deep);background:var(--gold-bg);border:1px solid var(--gold-soft);border-radius:999px;padding:6px 10px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.artifact-hero-frame{position:relative;flex:1;min-height:0;display:grid;place-items:center;border-radius:18px;background:radial-gradient(circle at 50% 35%,rgba(220,197,137,.34),rgba(251,246,233,.18) 44%,rgba(234,224,201,.5));border:1px solid rgba(220,197,137,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.55);overflow:hidden}
+.artifact-hero-frame::before{content:"";position:absolute;inset:14px;border:1px solid rgba(151,121,63,.18);border-radius:14px;pointer-events:none}
+.artifact-hero-frame img{position:relative;z-index:1;max-width:82%;max-height:90%;object-fit:contain;border-radius:14px;filter:drop-shadow(0 18px 22px rgba(43,35,22,.22))}
+.artifact-hero-frame.is-page{flex:1 1 auto;max-height:clamp(330px,50vh,470px)}
+.artifact-hero-frame.is-page img{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;border-radius:16px;filter:none}
+.artifact-hero-frame.is-wide{flex:0 0 auto;width:100%;aspect-ratio:16/9;min-height:0}
+.artifact-hero-frame.is-wide::before{inset:10px;border-radius:13px}
+.artifact-hero-frame.is-wide img{width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:16/9;object-fit:cover;border-radius:16px}
+.artifact-hero-foot{margin-top:12px}
+.artifact-hero-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;line-height:1.05;color:var(--ink)}
+.artifact-hero-desc{font-size:12.5px;line-height:1.45;color:var(--text-dim);margin-top:4px}
+
+/* right page — progress */
+.pring{display:flex;justify-content:center;margin:6px 0 18px}
+.pring-wrap{position:relative;width:150px;height:150px}
+.pring-svg{width:100%;height:100%}
+.pring-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.pring-c b{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.pring-c span{font-size:10.5px;color:var(--text-mute);letter-spacing:.06em;margin-top:2px;line-height:1.3}
+.bp-block{margin-top:14px}
+.bp-block-h{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mute);margin-bottom:7px}
+.bp-block p{font-size:13px;line-height:1.55;color:var(--text-dim)}
+.cdots{display:flex;gap:8px;flex-wrap:wrap}
+.cdot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line-strong);background:transparent}
+.cdot.done{background:var(--gold);border-color:var(--gold)}
+
+/* right rail — your academy */
+.dh-rail{min-height:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:12px;position:sticky;top:calc(var(--nav-h) + 16px);overflow:hidden}
+.rail-standing{display:flex;align-items:center;gap:12px}
+.rail-seal{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold-deep));box-shadow:0 4px 14px rgba(151,121,63,.3)}
+.rail-seal svg{width:20px;height:20px;color:#fff}
+.rail-id{display:flex;flex-direction:column;min-width:0}
+.rail-tier{font-size:19px;color:var(--ink);font-weight:600;line-height:1.1}
+.rail-sub{font-size:11.5px;color:var(--text-dim);margin-top:1px}
+.rail-bar{height:5px;border-radius:99px;background:var(--bg-soft);overflow:hidden}
+.rail-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-soft),var(--gold))}
+.rail-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.rail-stats div{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 6px}
+.rail-stats b{display:block;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.rail-stats span{font-size:9.5px;color:var(--text-mute);letter-spacing:.04em;text-transform:uppercase;margin-top:2px;display:block}
+.rail-seals-h{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute)}
+.rail-seals{display:flex;gap:8px;flex-wrap:wrap}
+.seal{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line);color:var(--text-mute)}
+.seal svg{width:14px;height:14px}
+.seal.earned{background:var(--gold-bg);border-color:var(--gold-soft);color:var(--gold-deep)}
+.rail-vault{width:100%;margin-top:4px}
+.rail-sky{font-size:12px;font-weight:600;color:var(--gold-deep);padding:6px;min-height:36px;align-self:center}
+.rail-sky:hover{color:var(--ink)}
+.rail-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;line-height:1.45;color:var(--text-dim);text-align:center;border-top:1px solid var(--line);padding-top:12px}
+
+/* book edge tabs */
+.book-tabs{position:absolute;top:48px;right:-24px;display:flex;flex-direction:column;gap:10px;z-index:1}
+.book-tab{writing-mode:vertical-rl;text-orientation:mixed;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--leather-ink);background:linear-gradient(90deg,var(--leather),var(--leather-deep));padding:14px 6px;border-radius:0 8px 8px 0;
+  min-height:88px;box-shadow:2px 3px 8px rgba(0,0,0,.22);transition:transform .16s var(--ease)}
+.book-tab:hover{transform:translateX(3px)}
+.book-tab--signature{background:linear-gradient(90deg,var(--rust),var(--rust-deep))}
+.book-tab--interview{background:linear-gradient(90deg,var(--tan),#9c7f33);color:#2A2620}
+.book-tab.on{transform:translateX(3px);box-shadow:3px 4px 10px rgba(0,0,0,.3)}
+
+/* folder row */
+.dh-folders{position:relative;min-height:0;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:18px;background:rgba(255,253,248,.82);box-shadow:var(--shadow-sm);padding:14px;overflow:hidden}
+.dh-folders-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px;flex:none}
+.dh-folders-head h3{font-size:1.28rem;font-weight:500;color:var(--ink)}
+.dh-folders-head p{font-size:12px;color:var(--text-dim);margin-top:1px;line-height:1.25}
+.dh-ftabs{display:flex;gap:6px;flex-wrap:wrap}
+.dh-ftab{font-size:12px;font-weight:600;color:var(--text-dim);background:var(--surface-2);border:1px solid var(--line);border-radius:99px;padding:.5rem 1rem;min-height:44px;transition:color .16s,background .16s,border-color .16s}
+.dh-ftab:hover{border-color:var(--gold-soft)}
+.dh-ftab.on{background:var(--ink);color:var(--gold-soft);border-color:var(--ink)}
+.folder-row{position:relative;flex:1;min-height:0;display:grid;grid-template-columns:1fr;gap:7px;align-content:stretch}
+.folder-row::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;width:1px;background:linear-gradient(180deg,transparent,var(--gold-soft) 10%,var(--gold-soft) 90%,transparent);opacity:.7}
+.folder{position:relative;padding-top:0;cursor:pointer;text-align:left;transition:transform .18s var(--ease);min-height:0}
+.folder:hover{transform:translateX(2px)}
+.folder-tab{position:absolute;left:0;top:8px;width:4px;height:calc(100% - 16px);border-radius:99px;background:var(--track-foundation);z-index:1}
+.folder--signature .folder-tab{background:var(--track-signature)}
+.folder--interview .folder-tab{background:var(--track-interview)}
+.folder-card{height:100%;min-height:50px;display:grid;grid-template-columns:50px minmax(0,1fr) 32px;grid-template-rows:1fr auto;align-items:center;column-gap:9px;row-gap:2px;background:rgba(255,253,248,.92);border:1px solid rgba(202,191,169,.78);border-radius:13px;padding:7px 9px 7px 12px;box-shadow:0 1px 0 rgba(255,255,255,.75),0 4px 12px rgba(43,35,22,.05);transition:box-shadow .18s,border-color .18s,background .18s}
+.folder:hover .folder-card{box-shadow:0 8px 20px rgba(43,35,22,.1);border-color:var(--gold-soft);background:var(--surface)}
+.folder.is-selected .folder-card{border-color:var(--gold);background:linear-gradient(90deg,rgba(241,230,199,.55),rgba(255,253,248,.98));box-shadow:0 8px 22px rgba(151,121,63,.13)}
+.folder.is-selected .folder-tab{width:5px;background:var(--gold)}
+.folder-clip{grid-row:1/3;display:block;width:50px;height:34px;border-radius:8px;overflow:hidden;background:var(--bg-soft)}
+.folder-clip img{width:100%;height:100%;object-fit:cover;display:block}
+.folder-title{font-family:'Cormorant Garamond',serif;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.05;max-height:2.1em;overflow:hidden}
+.folder-meta{font-size:10px;color:var(--text-mute);letter-spacing:.02em;text-align:right}
+.folder-foot{grid-column:2/4;display:flex;align-items:center;gap:6px;margin-top:0}
+.folder-bar{flex:1;height:4px;border-radius:99px;background:var(--bg-soft);overflow:hidden}
+.folder-bar i{display:block;height:100%;background:var(--gold);transition:width .4s var(--ease-out)}
+.folder-pct{font-size:10px;font-weight:600;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.folder.is-done .folder-bar i{background:var(--track-foundation)}
+.folder.is-done .folder-pct{color:var(--track-foundation)}
+
+.dossier-home *:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(max-height:820px) and (min-width:921px){
+  .sky-wrap{padding-bottom:12px}
+  .dossier-home{height:calc(100dvh - var(--nav-h) - 12px);padding:14px clamp(20px,3vw,40px) 8px;display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px}
+  .dh-intro h1{font-size:clamp(1.9rem,3vw,2.45rem)}
+  .dh-intro p{font-size:1.05rem;margin-top:3px}
+  .dh-main{min-height:0;align-items:stretch;gap:18px}
+  .book,.dh-rail{min-height:0}
+  .book{padding:12px}
+  .book-pages{height:100%}
+  .book-page{min-height:0;padding:20px 24px}
+  .book-page .ac-eyebrow{margin-bottom:8px}
+  .bp-title{font-size:clamp(1.8rem,2.5vw,2.25rem);margin-bottom:6px}
+  .bp-promise{font-size:13px;line-height:1.42;margin-bottom:8px}
+  .bp-meta{padding:9px 0;margin-bottom:12px}
+  .artifact-slip{padding:13px 15px;margin-bottom:12px}
+  .artifact-hero-head{margin-bottom:8px}
+  .artifact-hero-frame{border-radius:15px}
+  .artifact-hero-frame img{max-width:72%;max-height:84%}
+  .artifact-hero-frame.is-wide img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
+  .artifact-hero-foot{margin-top:9px}
+  .artifact-hero-name{font-size:19px}
+  .artifact-hero-desc{font-size:12px;line-height:1.35}
+  .as-stamp{width:48px;height:48px;font-size:7px;top:12px;right:12px}
+  .pring{margin:0 0 10px}.pring-wrap{width:118px;height:118px}.pring-c b{font-size:25px}
+  .bp-block{margin-top:9px}.bp-block p{font-size:12.5px;line-height:1.4}
+  .dh-rail{position:static;padding:18px;gap:10px}.rail-stats div{padding:8px 5px}.rail-note{padding-top:9px}
+  .dh-folders-head{margin-bottom:8px}.dh-folders-head h3{font-size:1.3rem}.dh-folders-head p{display:none}
+  .folder-row{grid-template-columns:1fr;gap:6px;justify-content:stretch}
+  .folder{padding-top:0}.folder-tab{left:0;top:7px;width:4px;height:calc(100% - 14px)}
+  .folder-card{min-height:46px;grid-template-columns:44px minmax(0,1fr) 28px;gap:4px 8px;padding:6px 8px 6px 11px;overflow:hidden}
+  .folder-clip{width:44px;height:31px;border-radius:7px}
+  .folder-title{font-size:12.8px;line-height:1.04;max-height:2.08em;overflow:hidden}
+  .folder-meta{font-size:9px}.folder-foot{gap:5px;margin:0}.folder-pct{font-size:9px}
+}
+@media(max-width:1120px) and (min-width:921px){
+  .sky-wrap{height:100dvh;padding-bottom:10px;overflow:hidden}
+  .dossier-home{height:calc(100dvh - var(--nav-h) - 10px);padding:14px 40px 8px;display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px}
+  .dh-intro h1{font-size:clamp(1.75rem,3.2vw,2.15rem);line-height:1}
+  .dh-intro p{font-size:1rem;margin-top:4px}
+  .dh-main{min-height:0;align-items:stretch;grid-template-columns:minmax(0,1fr) minmax(228px,252px);gap:18px}
+  .book,.dh-folders{min-height:0}
+  .dh-rail{display:none}
+  .book{padding:12px}
+  .book-pages{height:100%}
+  .book-page{min-height:0;padding:20px 26px}
+  .book-page .ac-eyebrow{margin-bottom:8px}
+  .bp-title{font-size:clamp(1.65rem,2.8vw,2rem);margin-bottom:6px}
+  .bp-promise{font-size:13px;line-height:1.42;margin-bottom:8px}
+  .bp-meta{padding:9px 0;margin-bottom:12px}
+  .artifact-slip{padding:13px 15px;margin-bottom:12px}
+  .artifact-hero-head{margin-bottom:8px}
+  .artifact-hero-frame{border-radius:15px}
+  .artifact-hero-frame img{max-width:72%;max-height:84%}
+  .artifact-hero-frame.is-wide img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
+  .artifact-hero-foot{margin-top:9px}
+  .artifact-hero-name{font-size:19px}
+  .artifact-hero-desc{font-size:12px;line-height:1.35}
+  .artifact-slip::before{width:30px;height:12px}
+  .as-name{font-size:17px}
+  .as-desc{font-size:12px;line-height:1.35;max-width:28ch}
+  .as-stamp{width:46px;height:46px;font-size:6.8px;top:12px;right:12px}
+  .bp-cta{min-height:44px;padding:.7rem 1.05rem;font-size:13px}
+  .pring{margin:0 0 10px}
+  .pring-wrap{width:118px;height:118px}
+  .pring-c b{font-size:25px}
+  .bp-block{margin-top:9px}
+  .bp-block-h{margin-bottom:5px}
+  .bp-block p{font-size:12.5px;line-height:1.35}
+  .dh-folders-head{margin-bottom:7px;align-items:center}
+  .dh-folders{padding:12px}
+  .dh-folders-head h3{font-size:1.18rem}
+  .dh-folders-head p{display:none}
+  .dh-ftabs{display:none}
+  .folder-row{display:grid;grid-template-columns:1fr;gap:6px;justify-content:stretch}
+  .folder{padding-top:0}
+  .folder-tab{left:0;top:7px;width:4px;height:calc(100% - 14px)}
+  .folder-card{min-height:43px;gap:3px;padding:6px 7px 6px 11px;border-radius:11px;overflow:hidden}
+  .folder-clip{width:40px;height:30px;aspect-ratio:auto;border-radius:6px}
+  .folder-title{font-size:12px;line-height:1.04;max-height:2.08em;overflow:hidden}
+  .folder-meta{font-size:9px}
+  .folder-foot{gap:5px;margin:0}
+  .folder-pct{font-size:9.5px}
+}
+@media(max-width:920px){
+  .dh-main{grid-template-columns:1fr}
+  .dh-rail{position:static}
+  .book-tabs{display:none}
+  .book-pages{grid-template-columns:1fr}
+  .book-left,.book-right{box-shadow:none}
+  .book-right{border-top:2px solid var(--paper-edge)}
+}
+@media(max-width:560px){
+  .dossier-home{padding:20px 14px 32px;gap:24px}
+  .book-page{padding:20px 18px;min-height:0}
+  .folder-row{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+}
+@media(max-width:920px){
+  .sky-wrap{height:100dvh;box-sizing:border-box;padding-bottom:8px;overflow:hidden}
+  .dossier-home{height:calc(100dvh - var(--nav-h) - 8px);padding:10px 14px 8px;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px}
+  .dh-intro h1{font-size:clamp(1.55rem,7vw,2rem);line-height:1.02}
+  .dh-intro p{font-size:.94rem;line-height:1.2;margin-top:4px}
+  .dh-main{display:grid;grid-template-columns:1fr;grid-template-rows:176px minmax(0,1fr);gap:8px;min-height:0}
+  .dh-rail,.book-right,.book-tabs{display:none}
+  .book{height:100%;padding:8px;border-radius:14px}
+  .book-pages{height:100%;display:block;border-radius:6px}
+  .book-page{height:100%;min-height:0;padding:16px 116px 16px 18px;overflow:hidden}
+  .book-left{box-shadow:none}
+  .book-page .ac-eyebrow{font-size:10px;margin-bottom:6px}
+  .bp-title{font-size:clamp(1.55rem,7vw,2rem);line-height:1;margin-bottom:6px;max-width:176px}
+  .bp-promise{display:none}
+  .bp-sub,.bp-meta{display:none}
+  .book-page > *:not(.artifact-slip):not(.mobile-artifact-hero){position:relative;z-index:2}
+  .artifact-slip{display:none}
+  .mobile-artifact-hero,.mobile-artifact-hero.is-wide{display:grid;place-items:center;position:absolute;left:auto;right:13px;top:58px;bottom:auto;width:95px;height:104px;border-radius:14px;background:radial-gradient(circle at 50% 35%,rgba(220,197,137,.28),rgba(251,246,233,.06));z-index:1;pointer-events:none;transform:none;opacity:1;box-shadow:none}
+  .mobile-artifact-hero img{max-width:82%;max-height:90%;object-fit:contain;border-radius:10px;filter:drop-shadow(0 10px 14px rgba(43,35,22,.16));opacity:.82}
+  .mobile-artifact-hero.is-wide{top:70px;width:104px;height:76px}
+  .mobile-artifact-hero.is-wide img{max-width:100%;max-height:78%;border-radius:11px}
+  .bp-cta{min-height:40px;padding:.62rem .7rem;font-size:11.5px;margin-top:auto;max-width:176px;white-space:nowrap}
+  .book-ribbon{display:none}
+  .dh-folders{padding:9px}
+  .dh-folders-head{margin-bottom:6px;align-items:center}
+  .dh-folders-head h3{font-size:1.18rem}
+  .dh-folders-head p,.dh-ftabs{display:none}
+  .folder-row{display:grid;grid-template-columns:1fr;gap:5px;justify-content:stretch}
+  .folder{padding-top:0}
+  .folder-tab{left:0;top:6px;width:4px;height:calc(100% - 12px);border-radius:99px}
+  .folder-card{height:42px;display:grid;grid-template-columns:42px minmax(0,1fr) 18px;grid-template-rows:1fr auto;align-items:center;column-gap:7px;row-gap:1px;padding:5px 7px 5px 10px;border-radius:10px;overflow:hidden}
+  .folder-clip{grid-row:1/3;width:42px;height:32px;aspect-ratio:auto;border-radius:6px}
+  .folder-title{font-size:11px;line-height:1.02;max-height:2.04em;overflow:hidden}
+  .folder-meta{display:none}
+  .folder-foot{grid-column:2/4;gap:5px;margin:0}
+  .folder-bar{height:3px}
+  .folder-pct{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  .dossier-home *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
 
 /* continue band */
 .sky-continue{grid-column:1;grid-row:1;background:linear-gradient(110deg,var(--ink) 0%,#241F18 58%,#2E281D 100%);
@@ -1846,6 +2258,39 @@ body{
 .atl-cta{flex:none;margin-top:12px}
 .atl-cta .ac-btn{width:100%}
 
+/* ---- Dossier course: open book on cream ---- */
+.atl-desk{flex:1;min-height:0;overflow:hidden;display:flex;align-items:stretch;justify-content:center;padding:20px clamp(16px,3vw,28px);background:var(--bg)}
+.book--course{flex:1;max-width:1160px;display:flex;flex-direction:column;min-height:0}
+.book--course .book-pages{flex:1;min-height:0;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr)}
+.book--course .book-page{min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 28px}
+.atl-cover-img{width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:var(--bg-soft);margin-bottom:14px;flex:none}
+.atl-cover-img img{width:100%;height:100%;object-fit:cover;display:block}
+.atl-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.atl-chips .chip{font-size:10px;font-weight:600;letter-spacing:.04em;border-radius:99px;padding:.28rem .65rem;border:1px solid var(--line-strong)}
+.atl-chips .chip--track{color:var(--gold-deep);background:var(--gold-bg);border-color:var(--gold-soft)}
+.atl-chips .chip--mech{color:var(--text-dim);background:var(--surface-2)}
+.atl-identity h1{font-size:clamp(1.8rem,2.4vw,2.4rem);line-height:1.05;color:var(--ink);margin-bottom:6px}
+.atl-promise{font-size:13.5px;line-height:1.55;color:var(--text-dim);margin-bottom:12px;max-width:44ch}
+.atl-identity .bp-meta{margin-bottom:16px}
+.atl-identity .artifact-slip{margin-bottom:16px}
+.atl-cta{align-self:flex-start;margin-top:auto}
+.atl-instrument .atl-inst-head{margin-bottom:14px;flex:none}
+.atl-inst-head .ac-eyebrow{color:var(--gold-deep)}
+.atl-inst-head h3{font-size:1.5rem;font-weight:500;color:var(--ink);margin-top:3px;line-height:1.12}
+.atl-inst-prog{display:inline-block;margin-top:6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.atl-sections{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.atl-pathwrap{border-top:1px solid var(--line);padding-top:14px}
+.atl-pathwrap .atl-path-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.atl-pathwrap h4{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--ink);font-weight:500}
+.atl-pathwrap .atl-path-head span{font-size:11px;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.book--course.book--signature{background:linear-gradient(135deg,#5a4034 0%,var(--rust-deep) 60%,#3a2118 100%)}
+.book--course.book--interview{background:linear-gradient(135deg,#5a4f2c 0%,#7a6326 60%,#43350f 100%)}
+@media(max-width:920px){
+  .atl-desk{overflow-y:auto;padding:14px}
+  .book--course .book-pages{grid-template-columns:1fr}
+  .book--course .book-page{overflow:visible}
+}
+
 /* ============================== THE STUDIO (lesson) ============================== */
 .std{flex:1;min-height:0;display:grid;grid-template-columns:206px minmax(0,1fr) 336px;gap:0}
 .std-col{min-height:0;display:flex;flex-direction:column}
@@ -1893,14 +2338,23 @@ body{
 
 /* the work box */
 .std-work{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:16px 18px;box-shadow:var(--shadow-sm);max-width:62ch;flex:none}
-.std-work .wlabel{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.std-work .wlabel{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
 .std-work .wlabel span{font-size:13px;font-weight:600;color:var(--ink)}
-.std-work .wlabel em{font-size:11.5px;color:var(--text-mute);font-style:normal}
+.std-work .wlabel em{font-size:11.5px;color:var(--text-mute);font-style:normal;text-align:right;max-width:34ch}
 .std-work textarea{width:100%;height:70px;resize:none;border:1px solid var(--line-strong);border-radius:14px;
   background:var(--surface-2);padding:11px 13px;font-family:inherit;font-size:14px;color:var(--ink);line-height:1.55;transition:border-color .18s,box-shadow .18s,background .18s}
 .std-work textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,152,92,.14);background:#fff}
 .std-work textarea::placeholder{color:var(--text-mute)}
 .std-work .wact{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:12px}
+.std-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.std-choice{
+  min-height:44px;text-align:left;border:1px solid var(--line-strong);border-radius:12px;
+  background:var(--surface-2);padding:.7rem .85rem;font-size:13px;font-weight:600;color:var(--ink);
+  transition:border-color .16s var(--ease),background .16s var(--ease),box-shadow .16s var(--ease)
+}
+.std-choice:hover{border-color:var(--gold-soft);background:#fff}
+.std-choice.sel{border-color:var(--gold);background:var(--gold-bg);box-shadow:inset 0 0 0 1px var(--gold)}
+.std-work-note{font-size:12.5px;line-height:1.5;color:var(--text-dim);margin-top:8px}
 
 /* quiz (low-Bloom check) */
 .std-quiz{margin-top:18px;max-width:62ch;flex:none}
@@ -1965,6 +2419,289 @@ body{
 /* mobile studio toggle */
 .std-mtoggle{display:none}
 
+/* ---- Dossier studio: cream page on leather desk ---- */
+#view-lesson{background:linear-gradient(135deg,var(--leather-edge) 0%,var(--leather) 45%,var(--leather-deep) 100%)}
+#view-lesson .ac-app{height:calc(100dvh - 24px);margin:12px;border-radius:18px;overflow:hidden;box-shadow:var(--shadow-xl);border:1px solid rgba(0,0,0,.28)}
+.spine-head{margin-bottom:14px}
+.spine-head .ac-eyebrow{color:var(--gold-deep);margin-bottom:6px}
+.spine-lesson{font-size:13px;font-weight:600;color:var(--ink)}
+.spine-dots{display:flex;gap:5px;margin:9px 0 8px;flex-wrap:wrap}
+.spine-dots .sd{width:8px;height:8px;border-radius:50%;background:var(--line-strong)}
+.spine-dots .sd.done{background:var(--gold-soft)}
+.spine-dots .sd.on{background:var(--leather);box-shadow:0 0 0 3px rgba(46,58,48,.16)}
+.spine-pieces{font-size:11px;color:var(--text-mute);letter-spacing:.02em}
+.std-spine .arch{margin-top:2px}
+.std-spine .ctitle{margin-bottom:18px}
+.std-step .lbl{display:flex;flex-direction:column;gap:1px;text-align:left}
+.std-step .lbl-t{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);line-height:1.25}
+.std-step .lbl-s{font-size:10.5px;color:var(--text-mute);font-weight:400;letter-spacing:0;text-transform:none;line-height:1.3}
+.std-step.active .lbl-t{color:var(--ink)}
+.std-step.active .dot{background:var(--leather);border-color:var(--leather);color:var(--leather-ink);box-shadow:0 0 0 5px rgba(46,58,48,.14)}
+.std-step.done .dot{background:var(--gold);border-color:var(--gold);color:#fff}
+.std-choice-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.std-choice{min-height:58px;position:relative;display:flex;align-items:center;line-height:1.3;padding-right:1.6rem}
+.std-choice.sel{border-color:var(--leather);background:#EAEEE7;box-shadow:inset 0 0 0 1px var(--leather);color:var(--ink)}
+.std-choice.sel::after{content:"";position:absolute;top:9px;right:9px;width:15px;height:15px;border-radius:50%;background:var(--leather)}
+.std-saved{border-color:var(--gold-soft);background:var(--gold-bg)}
+.std-saved.is-saved{border-color:var(--leather);background:#EAEEE7}
+.std-saved-note{font-size:13px;color:var(--gold-deep);margin:2px 0 12px}
+.std-saved.is-saved .std-saved-note{color:var(--leather)}
+
+/* ---- Lesson studio: idea | instrument | Estrella, on the leather desk ---- */
+.ls{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.18fr) 312px;gap:0;--ls-accent:var(--leather)}
+.ls--rust{--ls-accent:var(--rust)} .ls--green{--ls-accent:var(--leather)} .ls--tan{--ls-accent:var(--tan)}
+.ls-book{display:contents}
+.ls-page{min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 28px;display:flex;flex-direction:column}
+.ls-idea{background:var(--surface);border-right:1px solid var(--line)}
+.ls-instrument{background:var(--surface-2);border-right:1px solid var(--line)}
+.ls *:focus-visible{outline:2px solid var(--ls-accent);outline-offset:2px}
+
+/* left page — paged idea */
+.ls-idea-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.ls-idea-head .ac-eyebrow{color:var(--text-mute)}
+.ls-ptag{flex:none;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ls-accent);background:var(--bg-soft);border-radius:99px;padding:.28rem .65rem;white-space:nowrap}
+.ls-idea h1{font-size:clamp(1.45rem,1.9vw,1.95rem);line-height:1.12;color:var(--ink);margin-bottom:14px;flex:none}
+.ls-idea-body{flex:1;min-height:0;font-size:14.5px;line-height:1.62;color:var(--text);max-width:60ch}
+.ls-idea-body p{margin-bottom:12px}
+.ls-hook{font-size:15.5px;color:var(--ink)}
+.ls-obj{background:var(--bg-soft);border-left:3px solid var(--ls-accent);padding:10px 13px;border-radius:0 8px 8px 0;font-size:13.5px;color:var(--ink)}
+.ls-pager{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;margin-top:14px;border-top:1px solid var(--line)}
+.ls-parrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;color:var(--ink);transition:background .16s,border-color .16s}
+.ls-parrow:hover:not(:disabled){background:var(--surface);border-color:var(--ink)}
+.ls-parrow:disabled{opacity:.32;cursor:default}
+.ls-parrow svg{width:16px;height:16px}
+.ls-pdots{display:flex;gap:5px}
+.ls-pdots span{width:7px;height:7px;border-radius:50%;background:var(--line-strong);transition:width .25s,background .25s}
+.ls-pdots span.on{background:var(--ls-accent);width:18px;border-radius:3px}
+.ls-pdots span.done{background:var(--ls-accent);opacity:.4}
+.ls-done{margin-top:16px;background:#EAEEE7;border:1px solid var(--leather);border-radius:12px;padding:14px 16px}
+.ls-done-h{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--leather)}
+.ls-done-h svg{width:16px;height:16px}
+.ls-done p{font-size:13px;color:var(--text-dim);margin:4px 0 12px}
+.ls-done .wact{display:flex;gap:10px;flex-wrap:wrap}
+
+/* right page — the instrument */
+.lsi-head{flex:none;margin-bottom:8px}
+.lsi-head .ac-eyebrow{color:var(--ls-accent)}
+.lsi-target{font-size:12px;color:var(--text-dim);font-weight:600;margin-top:2px}
+.lsi-prompt{flex:none;font-size:13.5px;line-height:1.5;color:var(--text);margin-bottom:16px;max-width:46ch}
+.lsi-body{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:2px}
+.lsi-sheet{width:100%;min-height:170px;height:100%;resize:vertical;border:1px solid var(--line-strong);border-radius:12px;background:var(--paper);padding:14px;font-family:inherit;font-size:14.5px;line-height:1.6;color:var(--ink)}
+.lsi-sheet:focus{outline:none;border-color:var(--ls-accent);box-shadow:0 0 0 3px rgba(168,85,60,.12)}
+.lsi-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;margin-top:14px;border-top:1px solid var(--line);flex-wrap:wrap}
+.lsi-saved{font-size:12px;color:var(--text-dim)}
+
+/* shared move primitive */
+.ls-move{cursor:pointer;text-align:left;border:1px solid var(--line-strong);background:var(--surface);border-radius:12px;position:relative;transition:border-color .16s,background .16s,box-shadow .16s,transform .16s;color:var(--ink)}
+.ls-move:hover{border-color:var(--ls-accent);transform:translateY(-1px)}
+.ls-move.sel{border-color:var(--ls-accent);background:#fff;box-shadow:inset 0 0 0 1.5px var(--ls-accent)}
+.ls-move.sel::after{content:"";position:absolute;top:7px;right:7px;width:13px;height:13px;border-radius:50%;background:var(--ls-accent)}
+.ls-move .m-label{font-size:12.5px;font-weight:600;color:var(--ink);line-height:1.25}
+
+/* Decision Map — 2×2 quadrant */
+.inst-grid.iq{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative}
+.iq-cell{min-height:92px;padding:12px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.iq-corner{width:18px;height:18px;border-radius:6px;background:var(--ls-accent);opacity:.16}
+.iq-0 .iq-corner{align-self:flex-start} .iq-1 .iq-corner{align-self:flex-end} .iq-2{align-items:flex-start} .iq-3{align-items:flex-end} .iq-3 .iq-corner,.iq-2 .iq-corner{order:2}
+.iq-cross{position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--line-strong);opacity:.7;pointer-events:none}
+.inst-grid.iq::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:1.5px;background:var(--line-strong);opacity:.7;pointer-events:none}
+
+/* Operating Map — placement bands */
+.inst-zones{display:flex;flex-direction:column;gap:8px}
+.iz-band{display:flex;align-items:center;gap:12px;padding:13px 14px}
+.iz-n{width:24px;height:24px;border-radius:6px;background:var(--bg-soft);border:1px solid var(--line-strong);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--text-dim);flex:none}
+.iz-place{margin-left:auto;font-size:9.5px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.1em;flex:none}
+.iz-band.sel .iz-n{background:var(--ls-accent);color:#fff;border-color:var(--ls-accent)}
+
+/* Energy Board — drop lanes */
+.inst-board{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ib-col{display:flex;flex-direction:column;gap:8px;padding:10px 8px;min-height:130px}
+.ib-head{font-size:11px;font-weight:700;color:var(--ink);text-align:center;line-height:1.2}
+.ib-slot{flex:1;border:1.5px dashed var(--line-strong);border-radius:8px;min-height:64px;transition:background .16s,border-color .16s}
+.ib-col.sel .ib-slot{border-style:solid;border-color:var(--ls-accent);background:rgba(168,85,60,.08)}
+
+/* Mirror Journal — pinned slips on lined paper */
+.inst-journal{display:flex;flex-direction:column;gap:10px;padding:10px;border-radius:10px;background:repeating-linear-gradient(var(--paper) 0 30px,rgba(20,18,14,.05) 30px 31px)}
+.ij-slip{display:flex;align-items:center;gap:12px;padding:13px 15px;box-shadow:var(--shadow-sm)}
+.ij-pin{width:10px;height:10px;border-radius:50%;background:var(--ls-accent);flex:none;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+
+/* Interview Lab — numbered stations */
+.inst-bench{display:flex;flex-direction:column;gap:8px}
+.ibn-station{display:flex;align-items:center;gap:13px;padding:13px 15px}
+.ibn-num{width:28px;height:28px;border-radius:50%;background:var(--bg-soft);border:1px solid var(--line-strong);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ls-accent);flex:none}
+.ibn-station.sel .ibn-num{background:var(--ls-accent);color:#fff;border-color:var(--ls-accent)}
+
+/* Reputation Studio — lens + verdicts */
+.inst-lens{display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:6px}
+.il-eye{width:56px;height:56px;border-radius:50%;border:2px solid var(--ls-accent);display:grid;place-items:center;color:var(--ls-accent);box-shadow:0 0 0 6px rgba(46,58,48,.06)}
+.il-eye svg{width:24px;height:24px}
+.il-verdicts{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+.il-v{padding:14px 12px;text-align:center}
+.il-v .m-label{display:block;text-align:center}
+
+/* Rehearsal Room — cue cards */
+.inst-stage{display:flex;flex-direction:column;gap:8px}
+.ist-card{padding:14px 16px;border-left:3px solid var(--ls-accent)}
+.ist-cue{font-size:13px;font-weight:600;color:var(--ink)}
+
+/* Offer Desk — number strip + move cards */
+.inst-desk{display:flex;flex-direction:column;gap:14px}
+.id-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.id-anchor{background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:10px 8px;text-align:center}
+.id-anchor b{display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-mute)}
+.id-anchor i{display:block;height:3px;background:var(--line-strong);margin-top:9px;border-radius:2px}
+.id-moves{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.id-card{padding:14px 12px;text-align:center}
+
+/* fallback */
+.inst-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ic-card{padding:14px}
+
+/* course dossier — static instrument legend */
+.atl-ip{margin-bottom:18px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;--ls-accent:var(--leather)}
+.atl-ip.ls--rust{--ls-accent:var(--rust)} .atl-ip.ls--green{--ls-accent:var(--leather)} .atl-ip.ls--tan{--ls-accent:var(--tan)}
+.atl-ip-cap{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-mute);margin-bottom:10px}
+.atl-ip .ls-move{pointer-events:none}
+
+/* rail — artifact progress */
+.ls-rail{display:flex;flex-direction:column}
+.ls-artifact{flex:none;padding:14px 18px;border-bottom:1px solid var(--line)}
+.ls-art-h{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ls-accent);margin-bottom:8px}
+.ls-art-prog{display:flex;align-items:baseline;justify-content:space-between;font-size:12px;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.ls-art-pct{font-weight:700;color:var(--ink)}
+.ls-art-bar{height:5px;border-radius:99px;background:var(--bg-soft);overflow:hidden;margin:7px 0 10px}
+.ls-art-bar i{display:block;height:100%;background:var(--ls-accent);width:0;transition:width .4s var(--ease-out)}
+.ls-piece{font-size:13px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-left:3px solid var(--ls-accent);border-radius:0 8px 8px 0;padding:8px 11px;line-height:1.4}
+.ls-piece.empty{color:var(--text-mute);font-style:italic;border-left-style:dashed;border-left-color:var(--line-strong);background:none}
+
+/* mobile — one pane at a time */
+@media(max-width:920px){
+  .ls{display:block;height:100%;position:relative;--mtoggle-h:54px}
+  .ls-page,.ls-rail{display:none;height:calc(100% - var(--mtoggle-h));border-right:none}
+  .ls[data-m="idea"] .ls-idea{display:flex}
+  .ls[data-m="instrument"] .ls-instrument{display:flex}
+  .ls[data-m="estrella"] .ls-rail{display:flex}
+  .ls-mtoggle{display:flex;position:absolute;left:0;right:0;bottom:0;height:var(--mtoggle-h);background:var(--surface);border-top:1px solid var(--line);padding:8px;gap:6px}
+  .ls-mtoggle button{flex:1;font-size:12.5px;font-weight:600;color:var(--text-dim);padding:.6rem .3rem;border-radius:99px;min-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ls-mtoggle button.on{background:var(--ink);color:var(--gold-soft)}
+  .inst-board{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ============================== SIMPLE MODE (lesson) ============================== */
+#view-lesson.active{overflow:hidden;transform:none!important}
+#view-lesson .ac-app.sm-app{height:100dvh;margin:0;border:0;border-radius:0;box-shadow:none}
+.sm-app{
+  --smg:#C49A3F;--smg-soft:#E6CD86;--smg-deep:#8F6A22;--smg-bg:#F4EAD5;--sm-accent:#2E3A30;
+  --sm-ok:#3B9677;--sm-paper:#FFFDF8;--sm-cream:#F4ECDE;--sm-line:rgba(141,116,76,.22);
+  height:100dvh;display:flex;flex-direction:column;overflow:hidden;color:#14120E;
+  background:
+    radial-gradient(circle at 18% 8%,rgba(196,155,61,.12),transparent 27%),
+    linear-gradient(180deg,#FFFDF8 0%,#F4EEE3 100%);
+}
+.sm-bar{height:58px;flex:none;display:flex;align-items:center;gap:16px;padding:0 clamp(18px,3vw,34px);border-bottom:1px solid rgba(141,116,76,.18);background:rgba(255,253,248,.78);backdrop-filter:blur(16px)}
+.sm-back{font-size:14px;font-weight:750;color:#665E52;background:none;border:0;cursor:pointer;padding:8px 4px;border-radius:12px}
+.sm-back:hover{color:#14120E}
+.sm-course{font-size:14px;font-weight:800;color:#14120E}.sm-module{font-size:13px;color:#756E62;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sm-sp{flex:1}
+.sm-brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#14120E;white-space:nowrap}
+.sm-brand svg{width:18px;height:18px;vertical-align:-3px}
+.sm-screen{flex:1;min-height:0;overflow:hidden;display:grid;place-items:center;padding:14px clamp(18px,3vw,42px) 18px}
+.sm-shell{position:relative;width:min(1320px,calc(100vw - 48px));height:min(806px,calc(100dvh - 90px));min-height:0;border:1px solid rgba(145,120,79,.22);border-radius:34px;background:rgba(255,253,248,.72);box-shadow:0 26px 76px rgba(50,43,28,.13);overflow:hidden}
+.sm-shell::before{content:"";position:absolute;inset:18px 30px 24px;border:1px solid rgba(145,120,79,.18);border-radius:30px;background:linear-gradient(90deg,rgba(255,253,248,.92),rgba(250,244,232,.58))}
+.sm-tab{position:absolute;left:64px;top:16px;width:220px;height:38px;border-radius:18px 18px 0 0;background:color-mix(in srgb,var(--sm-accent) 78%,#fff 22%);box-shadow:0 10px 28px rgba(47,42,30,.12)}
+.sm-grid{position:relative;z-index:1;height:100%;min-height:0;overflow:hidden;display:grid;grid-template-columns:minmax(0,620px) minmax(380px,1fr);grid-template-rows:minmax(0,1fr);gap:44px;padding:38px 52px 36px}
+.sm-card{height:auto;min-height:0;min-width:0;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(139,116,76,.18);border-radius:30px;background:rgba(255,253,248,.96);box-shadow:0 28px 80px rgba(44,38,27,.13);padding:34px clamp(26px,3vw,40px) 28px}
+.sm-step{font-size:12px;font-weight:850;letter-spacing:.08em;color:var(--sm-accent);margin-bottom:12px}
+.sm-idea{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(34px,3.7vw,48px);line-height:.98;color:#14120E;max-width:13ch;margin-bottom:12px}
+.sm-say{font-size:17px;line-height:1.4;color:#756E62;max-width:38ch;margin-bottom:22px}
+.sm-sit{display:flex;align-items:center;gap:14px;background:#F3ECDE;border:1px solid rgba(141,116,76,.14);border-radius:21px;padding:15px 17px;margin-bottom:20px}
+.sm-sit-ic{width:40px;height:40px;flex:none;border-radius:14px;background:#FFF9EE;display:grid;place-items:center;color:var(--sm-accent);font-size:13px;font-weight:900}
+.sm-sit-ic svg{width:20px;height:20px}.sm-sit p{font-size:16px;line-height:1.35;font-weight:800;color:#14120E}
+.sm-question{margin:0 0 10px;font-size:15px;font-weight:850;color:#14120E}
+.sm-choices{display:grid;gap:10px}
+.sm-choice{min-height:57px;display:flex;align-items:center;gap:14px;background:#FFFDF8;border:1.5px solid rgba(141,116,76,.22);border-radius:18px;padding:11px 15px;cursor:pointer;font-family:inherit;text-align:left;box-shadow:0 6px 16px rgba(63,52,30,.05);transition:transform .18s var(--ease),border-color .18s var(--ease),background .18s var(--ease),box-shadow .18s var(--ease)}
+.sm-choice:hover{border-color:var(--smg);transform:translateY(-1px)}
+.sm-ci{width:36px;height:36px;flex:none;border-radius:13px;background:#F2E7D2;display:grid;place-items:center;color:var(--sm-accent);font-weight:900}
+.sm-ci svg{width:18px;height:18px}.sm-cl{flex:1;font-size:16px;font-weight:800;color:#14120E}
+.sm-ck{width:28px;height:28px;flex:none;border-radius:50%;border:2px solid #DED4C3;display:grid;place-items:center;color:transparent;font-size:14px;font-weight:900}
+.sm-choice.sel{border-color:var(--sm-accent);background:#F8EED8;box-shadow:0 0 0 4px rgba(196,155,61,.14)}
+.sm-choice.sel .sm-ci{background:var(--smg);color:#fff}.sm-choice.sel .sm-ck{background:var(--smg);border-color:var(--smg);color:#fff}
+.sm-est{display:flex;align-items:center;gap:11px;margin-top:16px;padding:13px 15px;background:#F4ECDE;border-radius:17px;font-size:14px;font-weight:700;line-height:1.35;color:#756E62}
+.sm-ed{width:27px;height:27px;flex:none;border-radius:50%;background:var(--smg);display:grid;place-items:center;color:#fff;font-weight:900}
+.sm-est.win{background:#E8F4EE;color:#22614C}.sm-est.win .sm-ed{background:var(--sm-ok)}
+.sm-save-row{margin-top:auto;padding-top:18px;display:flex;align-items:end;justify-content:space-between;gap:16px}
+.sm-saved-to{min-width:0;color:#756E62;font-size:13px;line-height:1.25}.sm-saved-to b{display:block;color:#14120E;font-size:14px}
+.sm-cta{font-family:inherit;font-size:15px;font-weight:850;color:#fff;background:#23382F;border:0;border-radius:999px;padding:15px 22px;min-width:188px;cursor:pointer;box-shadow:0 12px 28px rgba(35,56,47,.18);transition:transform .18s var(--ease),opacity .18s var(--ease)}
+.sm-cta:hover:not(:disabled){transform:translateY(-1px)}.sm-cta:disabled{opacity:.34;cursor:default;box-shadow:none}
+.sm-side{height:auto;min-height:0;min-width:0;overflow:hidden;display:flex;flex-direction:column;gap:18px;padding:20px 4px 20px}
+.sm-asset{position:relative;align-self:flex-end;width:min(92%,520px);height:clamp(132px,21vh,205px);border-radius:25px;overflow:hidden;background:#EEE2CD;box-shadow:0 18px 48px rgba(38,29,14,.15);border:1px solid rgba(255,255,255,.52);transform:perspective(900px) rotateY(-5deg) rotateZ(-1deg);transform-origin:center}
+.sm-asset img{width:100%;height:100%;object-fit:cover;display:block}.sm-asset::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,253,248,.06),rgba(255,253,248,.26));pointer-events:none}
+.sm-asset-tab{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:46px;height:104px;border-radius:13px;background:var(--sm-accent);color:#fff;display:grid;place-items:center;writing-mode:vertical-rl;text-orientation:mixed;font-size:11px;font-weight:900;letter-spacing:.04em;box-shadow:0 12px 24px rgba(38,29,14,.18)}
+.sm-widget{border:1px solid rgba(160,128,66,.22);border-radius:27px;background:rgba(255,253,248,.91);box-shadow:0 18px 48px rgba(43,34,16,.11);padding:18px}
+.sm-widget h2{font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1;font-weight:600;color:#14120E;margin-bottom:7px}
+.sm-widget-help{font-size:12px;line-height:1.28;color:#756E62;margin-bottom:10px;max-width:28ch}
+.sm-widget-note{text-align:center;color:#6F675A;font-size:13px;font-weight:750;margin-top:10px}
+.sm-dots{display:flex;gap:8px;justify-content:center;margin-top:11px}.sm-dot{width:10px;height:10px;border-radius:50%;background:#E1D7C4}.sm-dot.on{background:var(--smg);box-shadow:0 0 0 5px rgba(196,155,61,.16)}
+.sm-artifact{margin-top:0;border:1px solid rgba(160,128,66,.18);border-radius:24px;background:rgba(255,253,248,.88);box-shadow:0 14px 38px rgba(43,34,16,.1);padding:16px}
+.sm-artifact h3{font-size:15px;font-weight:850;color:#14120E;margin-bottom:6px}.sm-artifact p{font-size:13px;color:#756E62;line-height:1.35;margin-bottom:12px}
+.sm-token-row{display:grid;grid-template-columns:repeat(var(--token-count,6),minmax(0,1fr));gap:8px}.sm-token{height:34px;border-radius:13px;background:#EEE3D0;display:grid;place-items:center;color:#817157;font-size:12px;font-weight:900}.sm-token.on{background:var(--smg);color:#fff;box-shadow:0 0 0 4px rgba(196,155,61,.14)}
+.sm-ring{width:122px;height:122px;margin:0 auto 8px;border-radius:50%;background:conic-gradient(var(--smg) calc(var(--sm-pct)*1%),#EEE4CC 0);display:grid;place-items:center;box-shadow:inset 0 0 0 13px #FFF6E7}
+.sm-ring-in{width:78px;height:78px;border-radius:50%;background:#FFFDF8;display:grid;place-items:center;color:#8F6A22;font-weight:900;box-shadow:0 0 0 1px rgba(196,155,61,.18)}
+.sm-bars{display:grid;grid-template-columns:repeat(var(--token-count,6),1fr);gap:7px;align-items:end;height:106px}.sm-barcell{border-radius:11px 11px 5px 5px;background:#EEE3D0;min-height:24px}.sm-barcell.on{background:linear-gradient(180deg,#E6CD86,#C49A3F);box-shadow:0 8px 18px rgba(196,155,61,.2)}
+.sm-battery{height:74px;border:2px solid rgba(35,56,47,.28);border-radius:21px;padding:8px;display:grid;grid-template-columns:repeat(var(--token-count,6),1fr);gap:6px;position:relative}.sm-battery::after{content:"";position:absolute;right:-10px;top:25px;width:8px;height:24px;border-radius:0 8px 8px 0;background:rgba(35,56,47,.28)}.sm-cell{border-radius:12px;background:#EEE3D0}.sm-cell.on{background:linear-gradient(180deg,#E6CD86,#C49A3F)}
+.sm-map{display:grid;grid-template-columns:1fr 1fr;gap:9px}.sm-zone{min-height:58px;border-radius:17px;border:1px solid rgba(196,155,61,.24);background:#FFF9EE;display:grid;place-items:center;text-align:center;color:#756744;font-size:12px;font-weight:850;line-height:1.05;padding:6px}.sm-zone.on{background:var(--smg);color:#fff}
+.sm-stage{height:122px;border-radius:24px;background:linear-gradient(180deg,#2B2822,#5A4135);position:relative;overflow:hidden}.sm-stage::before{content:"";position:absolute;left:18%;right:18%;bottom:24px;height:28px;border-radius:50% 50% 0 0;background:#F3E7CD;box-shadow:0 0 32px rgba(230,205,134,.28)}.sm-footlights{position:absolute;left:20px;right:20px;bottom:12px;display:grid;grid-template-columns:repeat(12,1fr);gap:5px}.sm-foot{height:9px;border-radius:99px;background:rgba(255,255,255,.25)}.sm-foot.on{background:#E6CD86;box-shadow:0 0 10px #E6CD86}
+.sm-profile{display:grid;gap:8px}.sm-profile-row{height:28px;border-radius:999px;background:#EEE3D0;overflow:hidden}.sm-profile-row span{display:block;height:100%;width:var(--w,0%);background:linear-gradient(90deg,#B8985C,#E6CD86)}
+.sm-fly{position:fixed;width:32px;height:32px;border-radius:50%;background:linear-gradient(145deg,var(--smg-soft),var(--smg));display:grid;place-items:center;color:#fff;z-index:9000;box-shadow:0 12px 30px rgba(196,154,63,.3);pointer-events:none;transition:all .6s cubic-bezier(.34,1.56,.64,1)}.sm-fly svg{width:16px;height:16px}
+.sm-app *:focus-visible{outline:2px solid var(--smg);outline-offset:2px}
+.smc-grid{position:relative;z-index:1;height:100%;min-height:0;overflow:hidden;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:34px;padding:42px 56px 40px}
+.smc-cover,.smc-panel{min-height:0;overflow:hidden;border:1px solid rgba(139,116,76,.18);border-radius:30px;background:rgba(255,253,248,.96);box-shadow:0 28px 80px rgba(44,38,27,.13)}
+.smc-cover{display:flex;flex-direction:column;padding:28px 30px 26px}
+.smc-image{height:clamp(190px,30vh,300px);border-radius:26px;overflow:hidden;background:#EEE2CD;box-shadow:0 20px 54px rgba(38,29,14,.18);transform:perspective(900px) rotateY(-7deg) rotateZ(-1.5deg);transform-origin:center}
+.smc-image img{width:100%;height:100%;object-fit:cover;display:block}
+.smc-kicker{margin-top:22px;font-size:12px;font-weight:850;letter-spacing:.08em;color:var(--sm-accent)}
+.smc-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,4vw,56px);line-height:.96;color:#14120E;margin-top:8px;max-width:12ch}
+.smc-promise{font-size:16px;line-height:1.36;color:#756E62;margin-top:12px;max-width:42ch}
+.smc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.smc-meta span{border:1px solid rgba(141,116,76,.18);border-radius:999px;background:#F8F0E1;padding:7px 11px;font-size:12px;font-weight:800;color:#6F675A}
+.smc-actions{margin-top:auto;display:flex;align-items:center;gap:12px;justify-content:space-between}.smc-note{font-size:13px;color:#756E62;line-height:1.3}.smc-note b{display:block;color:#14120E;font-size:14px}
+.smc-cta{font-family:inherit;font-size:15px;font-weight:850;color:#fff;background:#23382F;border:0;border-radius:999px;padding:14px 21px;min-width:178px;box-shadow:0 12px 28px rgba(35,56,47,.18);cursor:pointer}
+.smc-panel{display:grid;grid-template-rows:auto minmax(0,1fr);gap:18px;padding:24px}
+.smc-top{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start}.smc-top .sm-widget{box-shadow:none}.smc-top .sm-artifact{margin:0;box-shadow:none}
+.smc-path{min-height:0;overflow:hidden;border:1px solid rgba(160,128,66,.18);border-radius:24px;background:rgba(255,253,248,.78);padding:16px;display:grid;grid-template-rows:auto auto auto;align-content:start;gap:12px}
+.smc-path-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px}.smc-path-head h3{font-size:15px;font-weight:850;color:#14120E}.smc-path-head span{font-size:12px;font-weight:800;color:#756E62}
+.smc-route{position:relative;display:grid;grid-template-columns:repeat(var(--path-count,8),minmax(0,1fr));gap:4px;align-items:center;border:1px solid rgba(141,116,76,.14);border-radius:18px;background:#FFFDF8;padding:10px 12px}
+.smc-route::before{content:"";position:absolute;left:24px;right:24px;top:50%;height:2px;background:#ECE1CB;transform:translateY(-50%);pointer-events:none}
+.smc-node{position:relative;z-index:1;justify-self:center;width:28px;height:28px;border-radius:50%;border:1px solid rgba(141,116,76,.2);background:#EEE3D0;color:#756744;display:grid;place-items:center;font-size:11px;font-weight:900;cursor:pointer;box-shadow:0 0 0 4px #FFFDF8}
+.smc-node.done{background:var(--smg);border-color:var(--smg);color:#fff}
+.smc-node.next{background:#14120E;color:#fff;border-color:#14120E;box-shadow:0 0 0 4px rgba(196,155,61,.18)}
+.smc-next{font-family:inherit;text-align:left;cursor:pointer;min-height:92px;border:1px solid rgba(141,116,76,.18);border-radius:20px;background:#FFFDF8;padding:14px 16px;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:start;transition:border-color .16s,box-shadow .16s,transform .16s}
+.smc-next:hover{border-color:var(--sm-accent);box-shadow:0 8px 22px rgba(43,34,16,.08);transform:translateY(-1px)}
+.smc-next-num{width:42px;height:42px;border-radius:15px;background:var(--smg);color:#fff;display:grid;place-items:center;font-size:15px;font-weight:900}
+.smc-next-copy{min-width:0;display:flex;flex-direction:column;gap:4px}
+.smc-next-k{display:block;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--sm-accent)}
+.smc-next-title{display:block;font-size:18px;font-weight:900;line-height:1.1;color:#14120E}
+.smc-next-text{font-size:13px;line-height:1.3;color:#756E62;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-height:980px){.sm-say,.sm-est{display:none}}
+@media(max-height:820px) and (min-width:901px){
+  .sm-bar{height:48px}.sm-screen{padding:10px 22px 14px}.sm-shell{height:calc(100dvh - 76px);min-height:0;border-radius:28px}.sm-shell::before{inset:16px 34px 20px}.sm-tab{top:12px;height:30px}
+  .sm-grid{grid-template-columns:minmax(0,590px) minmax(360px,1fr);gap:38px;padding:28px 46px 26px}.sm-card{padding:24px 32px 22px;border-radius:26px}.sm-step{margin-bottom:8px;font-size:11px}.sm-idea{font-size:clamp(30px,3.1vw,39px);max-width:18ch}.sm-say{font-size:15px;line-height:1.32;margin-bottom:16px}.sm-sit{margin-bottom:14px;padding:12px 14px}.sm-sit p,.sm-cl{font-size:15px}.sm-question{font-size:14px;margin-bottom:8px}.sm-choices{gap:8px}.sm-choice{min-height:49px;padding:9px 13px}.sm-ci{width:34px;height:34px}.sm-ck{width:26px;height:26px}.sm-est{margin-top:11px;padding:10px 13px}.sm-save-row{padding-top:10px}.sm-cta{padding:12px 18px;min-width:176px}
+  .sm-side{gap:15px;padding:16px 4px}.sm-asset{width:min(90%,480px);height:clamp(118px,20vh,170px)}.sm-widget{padding:15px;border-radius:23px}.sm-widget h2{font-size:21px}.sm-ring{width:104px;height:104px}.sm-ring-in{width:66px;height:66px}.sm-artifact{padding:13px;border-radius:21px}.sm-token{height:29px;font-size:11px}.sm-stage{height:96px}.sm-footlights{bottom:10px}
+  .smc-grid{gap:28px;padding:28px 50px 26px}.smc-cover{padding:22px 26px 20px}.smc-image{height:clamp(150px,28vh,220px)}.smc-title{font-size:clamp(32px,3.3vw,44px)}.smc-promise{font-size:14px}.smc-panel{padding:18px;gap:13px}.smc-top{gap:13px}.smc-path{padding:14px;gap:10px}.smc-route{padding:8px 10px}.smc-node{width:25px;height:25px;font-size:10px}.smc-next{min-height:80px;padding:12px 14px}.smc-next-title{font-size:16px}.smc-next-text{font-size:12px}
+}
+@media(max-height:720px) and (min-width:901px){
+  .sm-screen{padding:8px 22px 10px}.sm-shell{height:calc(100dvh - 66px)}.sm-grid{grid-template-columns:minmax(0,575px) minmax(340px,1fr);gap:34px;padding:22px 44px 20px}.sm-card{padding:18px 30px 16px}.sm-step{margin-bottom:6px}.sm-idea{font-size:clamp(27px,2.8vw,34px);line-height:1;margin-bottom:8px}.sm-say,.sm-est{display:none}.sm-sit{padding:9px 12px;margin-bottom:10px}.sm-sit-ic{width:32px;height:32px;border-radius:11px}.sm-sit p,.sm-cl{font-size:14px}.sm-question{margin-bottom:6px}.sm-choice{min-height:43px;padding:8px 12px}.sm-ci{width:30px;height:30px;border-radius:11px}.sm-ck{width:24px;height:24px}.sm-save-row{padding-top:8px}.sm-cta{padding:10px 16px;min-width:158px}.sm-side{gap:12px;padding:12px 4px}.sm-asset{height:112px}.sm-artifact{display:none}
+  .smc-grid{padding:22px 48px 20px}.smc-image{height:128px}.smc-promise{display:none}.smc-meta{margin-top:10px}.smc-top .sm-artifact{display:none}.smc-path{padding:12px;gap:8px}.smc-route{padding:7px 9px}.smc-node{width:23px;height:23px;font-size:9px}.smc-next{min-height:72px;padding:10px 12px}.smc-next-num{width:34px;height:34px;border-radius:12px}.smc-next-title{font-size:15px}.smc-next-text{display:none}
+}
+@media(max-width:900px){
+  .sm-bar{height:54px}.sm-module,.sm-brand{display:none}.sm-screen{padding:10px}.sm-shell{height:calc(100dvh - 74px);min-height:0;border-radius:24px}.sm-shell::before{inset:12px}.sm-tab{display:none}.sm-grid{height:100%;grid-template-columns:1fr;gap:0;padding:18px}.sm-side{display:none}.sm-card{width:100%;height:100%;padding:22px 20px;border-radius:24px}.sm-step{font-size:11px;margin-bottom:8px}.sm-idea{font-size:clamp(31px,9vw,40px);max-width:14ch}.sm-say{font-size:15px;line-height:1.34;margin-bottom:16px}.sm-sit{margin-bottom:14px;padding:12px}.sm-sit p,.sm-cl{font-size:15px}.sm-choices{gap:8px}.sm-choice{min-height:50px;padding:9px 12px}.sm-ci{width:32px;height:32px}.sm-est{margin-top:10px;padding:10px 12px}.sm-save-row{padding-top:10px}.sm-saved-to{font-size:12px}.sm-cta{min-width:145px;padding:12px 14px;font-size:14px}
+  .smc-grid{height:100%;grid-template-columns:1fr;gap:0;padding:18px}.smc-panel{display:none}.smc-cover{height:100%;padding:22px 20px;border-radius:24px}.smc-image{height:clamp(170px,30vh,240px)}.smc-title{font-size:clamp(34px,9vw,46px);max-width:14ch}.smc-promise{font-size:15px}.smc-actions{gap:10px}.smc-cta{min-width:145px;padding:12px 14px;font-size:14px}
+}
+@media(max-width:600px){
+  .sm-screen{padding:8px}.sm-shell{height:calc(100dvh - 70px)}.sm-grid{padding:14px}.sm-card{padding:18px 16px 16px}.sm-step{margin-bottom:6px}.sm-idea{font-size:clamp(28px,7.8vw,34px);line-height:1;max-width:18ch;margin-bottom:10px}.sm-say,.sm-est{display:none}.sm-sit{margin-bottom:10px;padding:9px 10px}.sm-sit-ic{width:30px;height:30px;border-radius:11px}.sm-sit p,.sm-cl{font-size:14px}.sm-question{margin-bottom:6px;font-size:14px}.sm-choices{gap:7px}.sm-choice{min-height:43px;padding:7px 10px}.sm-ci{width:29px;height:29px;border-radius:10px}.sm-ck{width:23px;height:23px}.sm-save-row{padding-top:8px}.sm-cta{min-width:132px;padding:10px 13px}
+  .smc-grid{padding:14px}.smc-cover{padding:18px 16px 16px}.smc-image{height:145px}.smc-title{font-size:clamp(30px,8vw,38px);max-width:16ch}.smc-promise{font-size:14px}.smc-meta span{font-size:11px;padding:6px 9px}.smc-cta{min-width:132px;padding:10px 13px}
+}
+@media(max-width:430px){.sm-say,.sm-est{display:none}.sm-card{padding:18px 16px 16px}.sm-sit{margin-top:12px;padding:9px 10px}.sm-idea{font-size:30px}.sm-choice{min-height:44px}.sm-ci{width:30px;height:30px}.sm-ck{width:24px;height:24px}.sm-save-row{padding-top:8px}.sm-cta{min-width:130px}}
+@media(prefers-reduced-motion:reduce){.sm-app *{animation:none!important;transition:none!important}}
+
 /* ============================== CONSTELLATION OVERLAY ============================== */
 .ac-overlay{position:fixed;inset:0;z-index:9500;background:rgba(20,18,14,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;animation:acFade .25s var(--ease-out)}
 .ac-cst-card{position:relative;width:min(980px,96vw);height:min(680px,92vh);background:#16130E;border:1px solid rgba(184,152,92,.3);border-radius:26px;
@@ -1996,6 +2733,18 @@ body{
 .ac-vault-item .vstate{font-size:12px;color:var(--text-dim)}
 .ac-vault-item.done .vstate{color:var(--success);font-weight:600}
 .ac-vault-close{position:absolute;top:16px;right:18px;font-size:26px;line-height:1;color:var(--text-mute)}
+.ac-vault-card .ac-eyebrow{color:var(--gold-deep);margin-bottom:4px}
+.ac-vault-item{display:flex;flex-direction:column;gap:6px;border-left:3px solid var(--gold-soft)}
+.ac-vault-item.v--foundation{border-left-color:var(--track-foundation)}
+.ac-vault-item.v--signature{border-left-color:var(--track-signature)}
+.ac-vault-item.v--interview{border-left-color:var(--track-interview)}
+.ac-vault-item .vtop{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ac-vault-item .vopen{font-size:11px;font-weight:600;color:var(--gold-deep);min-height:32px;padding:0 4px}
+.ac-vault-item .vopen:hover{color:var(--ink)}
+.ac-vault-item .vprev{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13.5px;color:var(--text);line-height:1.4;background:var(--surface-2);border-radius:8px;padding:7px 10px;border:1px solid var(--line)}
+.ac-vault-item .vprev.vempty{font-style:normal;font-family:'Inter',sans-serif;font-size:12px;color:var(--text-mute);background:none;border:1px dashed var(--line-strong)}
+.ac-vault-item.empty{opacity:1}
+.ac-vault-item.empty .vname{color:var(--text-dim)}
 
 /* ============================== RESPONSIVE (mobile) ============================== */
 @media(max-width:900px){
@@ -4815,7 +5564,9 @@ body{
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="gsap-estrella.js"></script>
-<script src="academy-content.js"></script>
+<script src="academy-content.js?v=course-mechanics-v2"></script>
+<script src="academy-simple-icons.js?v=1"></script>
+<script src="academy-simple-content.js?v=1"></script>
 <style id="academy-game-css">
 .lp-objectives{background:transparent;border:0;border-radius:0;padding:0;margin:0}
 .lp-objectives .lp-obj-label{font-size:0.64rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:700;color:var(--gold-deep);margin-bottom:0.45rem}
@@ -5495,6 +6246,7 @@ function afterViewSwitch(viewId, current){
   if(viewId === 'start' && typeof startReset === 'function') startReset();
 
   // Trigger view-specific init
+  if(viewId === 'academy' && typeof renderSky === 'function') renderSky();
   if(viewId === 'readiness') animateRings();
   if(viewId === 'coach' && typeof renderCoachBriefs === 'function') renderCoachBriefs();
   if(viewId === 'dashboard') {/* maybe animate dash */}
@@ -6365,6 +7117,25 @@ function renderLibFeatured(){
     </div>`;
 }
 
+function renderLibNote(){
+  const b = libBooks[libActive];
+  const el = document.getElementById('lib-featured');
+  if(!el || el.querySelector('.lib-vault-note')) return;
+  el.insertAdjacentHTML('beforeend', `
+    <aside class="lib-vault-note">
+      <div>
+        <div class="featured-tag">Reading desk</div>
+        <h3>Best for: ${b.sub}.</h3>
+      </div>
+      <p>${b.desc}</p>
+      <div class="lib-vault-line">
+        <span><b>Length</b>${b.pages} pages</span>
+        <span><b>Sample</b>${b.audio}</span>
+        <span><b>Format</b>Digital book</span>
+      </div>
+    </aside>`);
+}
+
 function renderLibRail(){
   const rail = document.getElementById('lib-rail');
   if(!rail) return;
@@ -6384,10 +7155,11 @@ function promoteLibBook(i){
   libActive = i;
   const el = document.getElementById('lib-featured');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce){ renderLibFeatured(); renderLibRail(); return; }
+  if(reduce){ renderLibFeatured(); renderLibNote(); renderLibRail(); return; }
   el.classList.add('swapping');
   setTimeout(()=>{
     renderLibFeatured();
+    renderLibNote();
     renderLibRail();
     requestAnimationFrame(()=>el.classList.remove('swapping'));
   }, 180);
@@ -6402,7 +7174,7 @@ document.getElementById('lib-rail')?.addEventListener('click', (e)=>{
   document.getElementById('lib-featured')?.scrollIntoView({behavior:'smooth', block:'nearest'});
 });
 
-function renderLibrary(){ renderLibFeatured(); renderLibRail(); }
+function renderLibrary(){ renderLibFeatured(); renderLibNote(); renderLibRail(); }
 renderLibrary();
 
 /* ==================================================================
@@ -6476,9 +7248,10 @@ function coverImg(cid){ return COURSE_COVER_FILES[cid] || courseById(cid).img ||
    ================================================================== */
 const ACAD = (window.ESTRELLA_ACADEMY) || { courses:{}, gamification:{} };
 const GAM  = ACAD.gamification || {};
+const COURSE_MECHANICS = (ACAD.experience && ACAD.experience.courseMechanics) || {};
 const XPR  = (GAM.xp && GAM.xp.rules) || { lessonCompleted:50, quizCorrectAnswer:10, quizMasteryBonus:40, courseCompletionBonus:200, dailyStreakBonus:15, trackCompletionBonus:500 };
 const PASS = (GAM.scoring && GAM.scoring.passThreshold) || 0.7;
-const LADDER = (GAM.levels && GAM.levels.ladder) || [{name:'First Light',minXP:0}];
+const LADDER = (GAM.levels && GAM.levels.ladder) || [{name:'Started',minXP:0}];
 const BADGES = (GAM.badges && GAM.badges.catalog) || [];
 const TRACKS = (GAM.tracks && GAM.tracks.list) || [];
 
@@ -6498,6 +7271,7 @@ for(const cid in ACAD.courses){
   ids.forEach(x => { LIDX[x].total = n; });
 }
 
+const TOTAL_LESSONS = Object.keys(LIDX).length || 82;
 const AKEY = 'estrella.academy.v1';
 function aLoad(){ try{ return JSON.parse(localStorage.getItem(AKEY)) || {}; }catch(e){ return {}; } }
 let AST = Object.assign({ xp:0, lessons:{}, courses:{}, tracks:{}, badges:[], streak:{count:0,last:null,tokens:1}, day:{d:null,n:0}, lastLesson:null }, aLoad());
@@ -6544,10 +7318,14 @@ function aComplete(id, grade){
 }
 function aClip(s, n=145){ s=String(s||'').replace(/\s+/g,' ').trim(); return s.length>n ? s.slice(0,n-1).trim()+'…' : s; }
 
+function pointUnit(){ return (GAM.xp && GAM.xp.unit) || 'points'; }
+function pointLabel(n){ return `${(n||0).toLocaleString()} ${pointUnit()}`; }
+function courseMechanic(cid){ return COURSE_MECHANICS[cid] || (ACAD.courses && ACAD.courses[cid] && ACAD.courses[cid].mechanic) || {}; }
+
 function aCelebrate(aw){
   if(!aw || (!aw.xp && !(aw.badges||[]).length)) return;
-  if(aw.xp) showToast('+' + aw.xp + ' Light' + (aw.level ? ' · You reached ' + aw.level.name : ''));
-  (aw.badges||[]).forEach((b,i)=> setTimeout(()=> showToast('Badge earned · ' + b.name), 650*(i+1)));
+  if(aw.level) showToast('You reached ' + aw.level.name);
+  (aw.badges||[]).forEach((b,i)=> setTimeout(()=> showToast('Win saved - ' + b.name), 650*(i+1)));
   if(aw.courseComplete) setTimeout(()=> aShowCertificate(aw.courseComplete), 900);
 }
 function aShowCertificate(cid){
@@ -6581,23 +7359,39 @@ function currentLearnerName(){
    ARCHETYPE MODEL (CONTENT_DESIGN.md) — beats, artifact, voice
    ================================================================== */
 const COURSE_ARCH = { 'ai-hr':'knowledge','hr-foundations':'knowledge','interview':'performance','speaking':'performance','offer':'performance','branding':'identity','leadership':'identity','confidence':'identity' };
-const ARCH_LABEL = { knowledge:'Knowledge · Judgment', performance:'Performance · Rehearsable', identity:'Identity · Positioning' };
+const ARCH_LABEL = { knowledge:'Decision practice', performance:'Rehearsal practice', identity:'Identity practice' };
 const ARCH_BEATS = {
-  knowledge:['The situation','How Nesreen reads it','Your move','Pressure-test with Estrella','What you can now do'],
-  performance:['The moment','How Nesreen does it','Your turn','Estrella coaches','Banked'],
-  identity:['The mirror',"Nesreen's lens",'Draft','Sharpen with Estrella',"It's yours"]
+  knowledge:['Context','Method','Practice move','Quick check','Saved'],
+  performance:['Set up','Method','Practice move','Quick check','Saved'],
+  identity:['Notice','Method','Practice move','Quick check','Saved']
 };
 const ARCH_WORK = {
-  knowledge:{label:'Your move',hint:'Apply it to your own org — a sentence or two',cta:'Pressure-test my answer',ph:'In my organisation, this looks like…'},
-  performance:{label:'Your turn — rehearse it',hint:'Type what you would actually say',cta:'Run this by Estrella',ph:'Out loud, I would say…'},
-  identity:{label:'Your draft',hint:'Write it in your own words',cta:'Sharpen this with Estrella',ph:'In my own words…'}
+  knowledge:{label:'Your move',hint:'Choose first; write only when the artifact needs words',cta:'Check this move',ph:'Only write what you would actually use'},
+  performance:{label:'Your move',hint:'Rehearse first; draft only when the words matter',cta:'Check this move',ph:'Only write the line you would say'},
+  identity:{label:'Your move',hint:'Choose the useful move; draft only when needed',cta:'Check this move',ph:'Only write the words you would keep'}
 };
 const COURSE_ARTIFACT = {
-  'ai-hr':'Your AI-in-HR map','hr-foundations':'Your HR operating-principles sheet','branding':'Your brand statement','interview':'Your interview playbook','speaking':'Your signature opening + delivery plan','confidence':'Your confidence-reset plan','leadership':'Your leadership stance','offer':'Your pay-negotiation script'
+  'ai-hr':'Your AI decision map','hr-foundations':'Your HR action map','branding':'Your brand statement','interview':'Your interview playbook','speaking':'Your signature opening + delivery plan','confidence':'Your confidence-reset plan','leadership':'Your leadership stance','offer':'Your pay-negotiation script'
 };
 const COURSE_ARTIFACT_DESC = {
-  'ai-hr':'Each AI initiative placed by role, with its leverage and risk named.','hr-foundations':'The principles you actually run people decisions by.','branding':'One sentence the market repeats about you, with the evidence behind it.','interview':'Your stories and calibrated answers, ready for the room.','speaking':'An opening and a delivery plan you can give from memory.','confidence':'Named reframes for the triggers that cap you.','leadership':'A stance, and one hard decision worked all the way through.','offer':'A number, a justification, and the words to ask for it.'
+  'ai-hr':'AI use cases sorted into Automate, Help, Keep human, or Not ready.','hr-foundations':'People problems sorted into People, Business, Risk, or Manager moves.','branding':'One sentence the market repeats about you, with the evidence behind it.','interview':'Your stories and calibrated answers, ready for the room.','speaking':'An opening and a delivery plan you can give from memory.','confidence':'Named reframes for the triggers that cap you.','leadership':'A stance, and one hard decision worked all the way through.','offer':'A number, a justification, and the words to ask for it.'
 };
+const COURSE_ARTIFACT_IMAGE = {
+  'ai-hr':'Assets/Course_Covers/ai-hr-bookpage-v1.png',
+  branding:'Assets/Course_Covers/branding-bookpage-v1.png',
+  confidence:'Assets/Course_Covers/confidence-bookpage-v1.png',
+  'hr-foundations':'Assets/Course_Covers/hr-foundations-bookpage-v1.png',
+  interview:'Assets/Course_Covers/interview-bookpage-v1.png',
+  leadership:'Assets/Course_Covers/leadership-bookpage-v1.png',
+  offer:'Assets/Course_Covers/offer-bookpage-v1.png',
+  speaking:'Assets/Course_Covers/speaking-bookpage-v1.png'
+};
+function artifactImg(cid){ return COURSE_ARTIFACT_IMAGE[cid] || coverImg(cid); }
+function artifactImgClass(cid){
+  const img = artifactImg(cid);
+  if(/bookpage|portrait|page-plate/i.test(img)) return ' is-page';
+  return /Course_Covers|Leadership_Burnout|Offer_machine|Confidence_Reset/i.test(img) ? ' is-wide' : '';
+}
 const TRACK_TITLE = { foundation:'Grounded', signature:'Named', interview:'Interview Ready' };
 function courseArch(cid){ return COURSE_ARCH[cid] || 'knowledge'; }
 function courseBadgeName(cid){ const b = BADGES.find(x=>x.id===cid+'-graduate'); return b ? b.name : (courseById(cid).title + ' Graduate'); }
@@ -6633,137 +7427,205 @@ function currentLessonId(){
 }
 function isFreshLearner(){ const doneLessons = Object.values(AST.lessons).filter(l=>l.completed).length; return (AST.xp||0)===0 && doneLessons===0 && !(AST.streak && AST.streak.count); }
 
+// LEFT PAGE of the book — the course to start or continue
 function skyContinueHTML(){
   const fresh = isFreshLearner();
-  if(fresh){
-    const rec = courseById('confidence');
-    return `<div class="sky-continue">
-      <div class="sky-cont-txt">
-        <div class="ac-eyebrow">Begin</div>
-        <h2>Pick one course. Start clearly.</h2>
-        <p>You don't need a plan for everything — just the next clear step. ${esc(rec.title)} is a gentle, high-leverage place to begin.</p>
-        <button class="ac-btn ac-btn-gold" data-open-course="${rec.id}">Start ${esc(rec.title)} →</button>
-      </div>
-    </div>`;
-  }
   const id = currentLessonId();
-  if(!id){
-    return `<div class="sky-continue">
-      <div class="sky-cont-txt">
-        <div class="ac-eyebrow">Your sky is full</div>
-        <h2>Every star is lit.</h2>
-        <p>You've finished every course in the Academy. Revisit a lesson, or export the artifacts you built.</p>
-        <button class="ac-btn ac-btn-gold" data-open-vault="1">Open your artifact vault →</button>
+  if(!fresh && !id && !skySelectedCourseId){
+    return `<div class="ac-eyebrow">Your library</div>
+      <h2 class="ac-serif bp-title">Every artifact built.</h2>
+      <p class="bp-promise">You've finished every course. Revisit a lesson, or open the vault to use what you made.</p>
+      <div class="artifact-slip is-complete">
+        <span class="as-stamp">COMPLETE</span>
+        <div class="artifact-copy">
+          <div class="as-label">In your vault</div>
+          <div class="as-name">Eight finished artifacts</div>
+          <p class="as-desc">One real deliverable from every course, ready to use.</p>
+        </div>
       </div>
-      <div class="sky-streak"><div class="n">${AST.streak.count}</div><div class="lbl">days. Your sky's been lit — keep the habit.</div></div>
-    </div>`;
+      <button class="ac-btn ac-btn-primary bp-cta" data-open-vault="1">Open your artifact vault →</button>`;
   }
-  const info = LIDX[id]; const c = courseById(info.courseId); const cp = aCourseProgress(info.courseId);
-  const left = cp.total - cp.done;
-  return `<div class="sky-continue">
-    <div class="sky-cont-txt">
-      <div class="ac-eyebrow">Continue</div>
-      <h2>${esc(info.lesson.title)}</h2>
-      <p>${esc(c.title)} · Lesson ${info.order+1} of ${info.total} — ${left>0?(left+' lesson'+(left>1?'s':'')+' from '+ (COURSE_ARTIFACT[c.id]||'your artifact').replace(/^Your /,'your ')):'the finish line'}.</p>
-      <div class="sky-meter"><i style="width:${Math.max(6,cp.pct)}%"></i></div>
-      <button class="ac-btn ac-btn-gold" data-open-lesson="${id}">Continue the lesson →</button>
+  const recId = skySelectedCourseId || ((!fresh && id) ? LIDX[id].courseId : 'confidence');
+  const c = courseById(recId);
+  const cp = aCourseProgress(recId);
+  const resuming = !fresh && !!id && LIDX[id].courseId === recId;
+  const an = (COURSE_ARTIFACT[recId] || 'a useful artifact').replace(/^Your\s+/i,'');
+  const anCap = an.charAt(0).toUpperCase() + an.slice(1);
+  const img = artifactImg(recId);
+  const imgCls = artifactImgClass(recId);
+  const sub = (resuming && id) ? `<p class="bp-sub">Next: ${esc(aClip(LIDX[id].lesson.title,52))} · Lesson ${LIDX[id].order+1} of ${LIDX[id].total}</p>` : '';
+  const ctaAttr = (resuming && id) ? `data-open-lesson="${id}"` : `data-open-course="${recId}"`;
+  return `<div class="ac-eyebrow">${resuming ? 'Continue' : (skySelectedCourseId ? 'Selected course' : 'Recommended next')}</div>
+    <div class="mobile-artifact-hero${imgCls}"><img src="${esc(img)}" alt="" loading="lazy" onerror="this.closest('.mobile-artifact-hero').style.display='none'"></div>
+    <h2 class="ac-serif bp-title">${esc(c.title)}</h2>
+    <p class="bp-promise">${esc(aClip(c.tagline,116))}</p>
+    ${sub}
+    <div class="bp-meta"><span>${cp.total} lessons</span><span>${esc(c.hours||'')}</span><span>Artifact</span></div>
+    <div class="artifact-slip">
+      <span class="as-stamp">PRACTICAL · USEFUL</span>
+      <div class="artifact-copy">
+        <div class="as-label">You'll build</div>
+        <div class="as-name">${esc(anCap)}</div>
+        <p class="as-desc">${esc(COURSE_ARTIFACT_DESC[recId]||'')}</p>
+      </div>
     </div>
-    <div class="sky-streak"><div class="n">${AST.streak.count||1}</div><div class="lbl">day${(AST.streak.count||1)>1?'s':''}. Your sky's been lit — come back tomorrow to keep it.</div></div>
-  </div>`;
+    <button class="ac-btn ac-btn-primary bp-cta" ${ctaAttr}>${resuming ? 'Continue '+esc(c.title) : 'Start '+esc(c.title)} →</button>`;
 }
-function skyMapHTML(){
-  const cells = courses.map((c,i)=>{
-    const cp = aCourseProgress(c.id); const done = cp.total>0 && cp.done===cp.total;
-    const cur = !isFreshLearner() && currentLessonId() && LIDX[currentLessonId()].courseId===c.id;
-    const prog = done ? cp.total+'/'+cp.total+' · done' : (cp.done>0 ? cp.done+'/'+cp.total+' in progress' : 'Not started');
-    return `<button class="sky-cell${done?' done':''}${cur?' cur':''}" data-open-course="${c.id}">${cstSvg(i+3, cp.total||6, cp.done, {h:70})}<div><div class="cname">${esc(c.title)}</div><div class="cprog">${esc(prog)}</div></div></button>`;
-  }).join('');
-  return `<div class="sky-map">
-    <div class="sky-map-head"><h3>Your sky</h3><button data-open-constellation="1">View full constellation →</button></div>
-    <div class="sky-cells">${cells}</div>
-  </div>`;
+function skyFocusCourseId(){
+  const fresh = isFreshLearner();
+  const id = currentLessonId();
+  return skySelectedCourseId || ((!fresh && id) ? LIDX[id].courseId : 'confidence');
 }
-function skyTracksHTML(){
-  return TRACKS.map(tr=>{
-    const total = tr.courses.length;
-    const done = tr.courses.filter(c=>AST.courses[c] && AST.courses[c].done).length;
-    const pct = total?Math.round(done/total*100):0;
-    const pips = tr.courses.map(cid=>{ const d = AST.courses[cid] && AST.courses[cid].done; return `<span class="sky-pip${d?' done':''}">${esc(courseById(cid).title)}</span>`; }).join('');
-    return `<button class="sky-track" data-open-track="${tr.id}">
-      <div class="trow"><span class="tname">${esc(tr.name)}</span><span class="ttitle">${esc((tr.reward&&tr.reward.title)||'')}</span></div>
-      <p>${esc(tr.blurb)}</p>
-      <div class="sky-pips">${pips}</div>
-      <div class="sky-ring"><div class="rbar"><i style="width:${pct}%"></i></div><span class="rn">${done}/${total}</span></div>
-    </button>`;
-  }).join('');
+function bookArtifactHeroHTML(cid){
+  const c = courseById(cid);
+  const cp = aCourseProgress(cid);
+  const an = (COURSE_ARTIFACT[cid] || 'a useful artifact').replace(/^Your\s+/i,'');
+  const anCap = an.charAt(0).toUpperCase() + an.slice(1);
+  const img = artifactImg(cid);
+  return `<div class="artifact-hero-head">
+      <div class="ac-eyebrow">Your artifact</div>
+      <span class="artifact-hero-save">${cp.done}/${cp.total} saved</span>
+    </div>
+    <div class="artifact-hero-frame${artifactImgClass(cid)}">
+      <img src="${esc(img)}" alt="" loading="eager" onerror="this.closest('.artifact-hero-frame').style.display='none'">
+    </div>
+    <div class="artifact-hero-foot">
+      <div class="artifact-hero-name">${esc(anCap)}</div>
+      <p class="artifact-hero-desc">${esc(COURSE_ARTIFACT_DESC[cid]||c.tagline||'')}</p>
+    </div>`;
+}
+// RIGHT PAGE of the book — quiet progress, never a dashboard
+function ringSVG(done,total){
+  const pct = total ? Math.max(0,Math.min(1,done/total)) : 0;
+  const r=50, circ=2*Math.PI*r, off=circ*(1-pct);
+  return `<svg viewBox="0 0 120 120" class="pring-svg" aria-hidden="true">
+    <circle cx="60" cy="60" r="${r}" fill="none" stroke="var(--paper-edge)" stroke-width="9"/>
+    <circle cx="60" cy="60" r="${r}" fill="none" stroke="var(--gold)" stroke-width="9" stroke-linecap="round" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}" transform="rotate(-90 60 60)"/>
+  </svg>`;
+}
+function bookProgressHTML(){
+  const doneLessons = Object.values(AST.lessons).filter(l=>l.completed).length;
+  const total = TOTAL_LESSONS;
+  const fresh = isFreshLearner();
+  const id = currentLessonId();
+  let recent;
+  if(fresh) recent = `You haven't started yet. Pick a course and take the first step.`;
+  else if(id) recent = `In progress: ${esc(courseById(LIDX[id].courseId).title)}. ${total-doneLessons} lesson${total-doneLessons===1?'':'s'} to go.`;
+  else recent = `Every course finished. Revisit anything, or open your vault.`;
+  const dots = courses.map(c=>{ const cp=aCourseProgress(c.id); const d=cp.total>0&&cp.done===cp.total; return `<span class="cdot${d?' done':''}" title="${esc(c.title)}"></span>`; }).join('');
+  return `<div class="ac-eyebrow">Your progress</div>
+    <div class="pring"><span class="pring-wrap">${ringSVG(doneLessons,total)}<span class="pring-c"><b>${doneLessons}/${total}</b><span>lessons<br>completed</span></span></span></div>
+    <div class="bp-block"><div class="bp-block-h">Recent activity</div><p>${recent}</p></div>
+    <div class="bp-block"><div class="bp-block-h">Courses completed</div><div class="cdots">${dots}</div></div>`;
 }
 let skyBrowseFilter = 'all';
-function skyBrowseHTML(){
-  const filters = ['all','Foundation','Signature','Interview'];
-  const chips = filters.map(f=>`<button class="${f===skyBrowseFilter?'on':''}" data-bfilter="${f}">${f==='all'?'All':f}</button>`).join('');
-  const list = courses.filter(c=> skyBrowseFilter==='all' || c.track===skyBrowseFilter).map(c=>{
-    const cp = aCourseProgress(c.id); const done = cp.total>0&&cp.done===cp.total;
-    const sub = done ? 'Completed' : (cp.done>0? cp.done+'/'+cp.total+' lessons' : c.hours+' · '+(cp.total||0)+' lessons');
-    return `<button class="sky-bcard" data-open-course="${c.id}">
-      <span class="bedge"></span>
-      <span class="bsig"><img src="${coverImg(c.id)}" alt="" loading="lazy" onerror="this.remove()"></span>
-      <span class="bmeta"><span class="btitle">${esc(c.title)}</span><span class="bsub">${esc(c.track)} · ${esc(sub)}</span></span>
-      ${done?'<span class="bdone">✓</span>':''}
+let skySelectedCourseId = null;
+// FOLDER ROW — all 8 courses as tabbed dossier folders, track-filterable
+function folderRowHTML(){
+  const selected = skyFocusCourseId();
+  const list = courses.map(c=>{
+    const cp = aCourseProgress(c.id); const done = cp.total>0&&cp.done===cp.total; const tk = String(c.track||'').toLowerCase();
+    const on = c.id === selected;
+    return `<button class="folder folder--${tk}${done?' is-done':''}${on?' is-selected':''}" data-select-course="${c.id}" aria-current="${on?'true':'false'}">
+      <span class="folder-tab"></span>
+      <span class="folder-card">
+        <span class="folder-clip"><img src="${coverImg(c.id)}" alt="" loading="lazy" onerror="this.style.display='none'"></span>
+        <span class="folder-title">${esc(c.title)}</span>
+        <span class="folder-meta">${cp.total} lessons</span>
+        <span class="folder-foot"><span class="folder-bar"><i style="width:${cp.pct}%"></i></span><span class="folder-pct">${done?'Done':cp.pct+'%'}</span></span>
+      </span>
     </button>`;
   }).join('');
-  return `<div class="sky-bfilters">${chips}</div><div class="sky-blist">${list}</div>`;
+  return `<div class="dh-folders-head"><div><h3 class="ac-serif">Course corridor</h3><p>Pick the skill you want now.</p></div></div><div class="folder-row">${list}</div>`;
 }
-function skyYouHTML(){
-  const lv = aLevel();
+// RIGHT-SIDE RAIL — quiet "your academy" panel (progress is secondary)
+function academyRailHTML(){
   const doneLessons = Object.values(AST.lessons).filter(l=>l.completed).length;
   const doneCourses = Object.values(AST.courses).filter(c=>c.done).length;
-  const earned = AST.badges.map(id=>BADGES.find(b=>b.id===id)).filter(Boolean);
   const earnedIds = new Set(AST.badges);
-  const badgeHTML = BADGES.slice(0,9).map(b=>{ const has = earnedIds.has(b.id); return `<span class="sky-badge${has?'':' locked'}" title="${esc(b.description||'')}">${STAR_SVG}${esc(has?b.name:'Locked')}</span>`; }).join('');
-  return `<div class="sky-you-stats">
-      <div class="sky-stat"><div class="sn">${(AST.xp||0).toLocaleString()}</div><div class="sl">Light gathered</div></div>
-      <div class="sky-stat"><div class="sn">${doneLessons}</div><div class="sl">of 82 lessons</div></div>
-      <div class="sky-stat"><div class="sn">${doneCourses}</div><div class="sl">courses finished</div></div>
-      <div class="sky-stat"><div class="sn">${AST.streak.count||0}</div><div class="sl">day streak</div></div>
+  const wins = BADGES.slice(0,6).map(b=>{
+    const has = earnedIds.has(b.id);
+    return `<span class="seal${has?' earned':''}" title="${esc(has?b.name:'Keep going')}">${has ? CHECK_SVG : '+'}</span>`;
+  }).join('');
+  return `<div class="rail-head"><span class="ac-eyebrow">Your academy</span></div>
+    <div class="rail-standing">
+      <span class="rail-seal">${CHECK_SVG}</span>
+      <span class="rail-id"><span class="rail-tier ac-serif">${doneLessons ? 'In motion' : 'Ready'}</span><span class="rail-sub">${doneLessons} of ${TOTAL_LESSONS} lessons saved</span></span>
     </div>
-    <div class="sky-you-h">Badges · ${earned.length} earned</div>
-    <div class="sky-badges">${badgeHTML}</div>
-    <button class="ac-btn ac-btn-ghost sky-vault-btn" data-open-vault="1">Open your artifact vault</button>`;
+    <div class="rail-bar"><i style="width:${Math.round(doneLessons/TOTAL_LESSONS*100)}%"></i></div>
+    <div class="rail-stats">
+      <div><b>${doneLessons}</b><span>Lessons</span></div>
+      <div><b>${doneCourses}</b><span>Courses</span></div>
+      <div><b>${AST.streak.count||0}</b><span>Day streak</span></div>
+    </div>
+    <div class="rail-seals-h">Wins saved · ${earnedIds.size}</div>
+    <div class="rail-seals">${wins}</div>
+    <button class="ac-btn ac-btn-ghost rail-vault" data-open-vault="1">Open your artifact vault</button>
+    <div class="rail-note">Pick one lesson. Save one choice. Build the artifact.</div>`;
 }
-let skyTab = 'Tracks';
 function renderSky(){
   const root = document.getElementById('sky-root'); if(!root) return;
-  const lv = aLevel();
   root.innerHTML = `
-    ${skyContinueHTML()}
-    ${skyMapHTML()}
-    <aside class="sky-rail">
-      <div class="sky-level">
-        <div class="row">
-          <div class="orb">${STAR_SVG}</div>
-          <div><div class="lname">${esc(lv.tier.name)}</div><div class="lxp">${(AST.xp||0).toLocaleString()} Light${lv.next?' · '+(lv.next.minXP-AST.xp).toLocaleString()+' to '+esc(lv.next.name):' · highest tier'}</div></div>
+    <div class="dossier-home">
+      <header class="dh-intro">
+        <h1 class="ac-serif">Build one career skill at a time.</h1>
+        <p>Short lessons. Real practice. Useful artifacts you can use right away.</p>
+      </header>
+      <div class="dh-main">
+        <div class="book" role="group" aria-label="Your Academy book">
+          <span class="book-corner book-corner--tl"></span><span class="book-corner book-corner--tr"></span>
+          <span class="book-corner book-corner--bl"></span><span class="book-corner book-corner--br"></span>
+          <span class="book-ribbon"></span>
+          <div class="book-pages">
+            <section class="book-page book-left">${skyContinueHTML()}</section>
+            <section class="book-page book-right artifact-hero-page">${bookArtifactHeroHTML(skyFocusCourseId())}</section>
+          </div>
+          <div class="book-tabs">
+            <span class="book-tab book-tab--foundation">Foundation</span>
+            <span class="book-tab book-tab--signature">Signature</span>
+            <span class="book-tab book-tab--interview">Interview</span>
+          </div>
         </div>
-        <div class="lbar"><i style="width:${lv.pct}%"></i></div>
+        <aside class="dh-rail">${academyRailHTML()}</aside>
+        <section class="dh-folders" id="dh-folders">${folderRowHTML()}</section>
       </div>
-      <div class="sky-tabs">
-        <button class="${skyTab==='Tracks'?'on':''}" data-tab="Tracks">Tracks</button>
-        <button class="${skyTab==='Browse'?'on':''}" data-tab="Browse">Browse</button>
-        <button class="${skyTab==='You'?'on':''}" data-tab="You">You</button>
-      </div>
-      <div class="sky-panel${skyTab==='Tracks'?' on':''}" data-panel="Tracks">${skyTracksHTML()}</div>
-      <div class="sky-panel sky-browse${skyTab==='Browse'?' on':''}" data-panel="Browse">${skyBrowseHTML()}</div>
-      <div class="sky-panel sky-you scrolly${skyTab==='You'?' on':''}" data-panel="You">${skyYouHTML()}</div>
-    </aside>`;
+    </div>`;
   bindSky(root);
 }
+function setFolderFilter(root, f){
+  skyBrowseFilter = f;
+  const fol = root.querySelector('#dh-folders'); if(!fol) return;
+  fol.innerHTML = folderRowHTML();
+  root.querySelectorAll('.book-tab').forEach(x=>x.classList.toggle('on', x.dataset.bfilter===skyBrowseFilter));
+  fol.querySelectorAll('[data-select-course]').forEach(b=>b.onclick=()=>selectSkyCourse(b.dataset.selectCourse));
+  fol.querySelectorAll('[data-bfilter]').forEach(b=>b.onclick=()=>setFolderFilter(root, b.dataset.bfilter));
+  fol.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth', block:'start'});
+}
+function selectSkyCourse(cid){
+  if(!courses.some(c=>c.id===cid)) return;
+  skySelectedCourseId = cid;
+  renderSky();
+}
 function bindSky(root){
-  root.querySelectorAll('[data-open-course]').forEach(b=>b.addEventListener('click',()=>openCourse(b.dataset.openCourse)));
-  root.querySelectorAll('[data-open-lesson]').forEach(b=>b.addEventListener('click',()=>openLesson(LIDX[b.dataset.openLesson].courseId, b.dataset.openLesson)));
-  root.querySelectorAll('[data-open-constellation]').forEach(b=>b.addEventListener('click',openConstellation));
-  root.querySelectorAll('[data-open-vault]').forEach(b=>b.addEventListener('click',openVault));
-  root.querySelectorAll('[data-open-track]').forEach(b=>b.addEventListener('click',()=>{ const tr=TRACKS.find(t=>t.id===b.dataset.openTrack); if(!tr) return; const next = tr.courses.find(c=>!(AST.courses[c]&&AST.courses[c].done)) || tr.courses[0]; openCourse(next); }));
-  root.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{ skyTab=b.dataset.tab; root.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('on',x.dataset.tab===skyTab)); root.querySelectorAll('[data-panel]').forEach(p=>p.classList.toggle('on',p.dataset.panel===skyTab)); }));
-  root.querySelectorAll('[data-bfilter]').forEach(b=>b.addEventListener('click',()=>{ skyBrowseFilter=b.dataset.bfilter; const p=root.querySelector('[data-panel="Browse"]'); p.innerHTML=skyBrowseHTML(); bindSky(root); }));
+  root.onclick = (ev)=>{
+    const el = ev.target.closest('[data-select-course],[data-open-course],[data-open-lesson],[data-open-constellation],[data-open-vault],[data-bfilter]');
+    if(!el || !root.contains(el)) return;
+    const selectId = el.dataset.selectCourse;
+    if(selectId){ selectSkyCourse(selectId); return; }
+    const courseId = el.dataset.openCourse;
+    if(courseId){ openCourse(courseId); return; }
+    const lessonId = el.dataset.openLesson;
+    if(lessonId && LIDX[lessonId]){ openLesson(LIDX[lessonId].courseId, lessonId); return; }
+    if(el.dataset.openConstellation){ openConstellation(); return; }
+    if(el.dataset.openVault){ openVault(); return; }
+    if(el.dataset.bfilter){ setFolderFilter(root, el.dataset.bfilter); }
+  };
+  root.querySelectorAll('[data-select-course]').forEach(b=>b.onclick=()=>selectSkyCourse(b.dataset.selectCourse));
+  root.querySelectorAll('[data-open-course]').forEach(b=>b.onclick=()=>openCourse(b.dataset.openCourse));
+  root.querySelectorAll('[data-open-lesson]').forEach(b=>b.onclick=()=>openLesson(LIDX[b.dataset.openLesson].courseId, b.dataset.openLesson));
+  root.querySelectorAll('[data-open-constellation]').forEach(b=>b.onclick=openConstellation);
+  root.querySelectorAll('[data-open-vault]').forEach(b=>b.onclick=openVault);
+  root.querySelectorAll('[data-bfilter]').forEach(b=>b.onclick=()=>setFolderFilter(root, b.dataset.bfilter));
 }
 // switchView('academy') calls aRenderHeader — keep the name, render the Sky.
 function aRenderHeader(){ renderSky(); }
@@ -6785,8 +7647,8 @@ function artifactSlotsHTML(cid){
     const ids = (m.lessons||[]).map(l=>l.lessonId);
     const all = ids.length && ids.every(aIsDone);
     const any = ids.some(aIsDone);
-    // surface the learner's own words if they drafted any
-    let draft=''; for(const id of ids){ if(AST.lessons[id] && AST.lessons[id].draft){ draft = AST.lessons[id].draft; break; } }
+    // surface the learner's saved move; most lessons should not require typing
+    let draft=''; for(const id of ids){ if(AST.lessons[id] && (AST.lessons[id].draft || AST.lessons[id].choice)){ draft = AST.lessons[id].draft || AST.lessons[id].choice; break; } }
     const val = all ? (draft ? esc(aClip(draft,140)) : 'Complete — this piece is locked in.') : (any ? (draft?esc(aClip(draft,140)):'In progress…') : 'Not yet — this fills as you finish the module.');
     return `<div class="atl-art-slot${all?' filled':''}">
       <div class="stitle">${all?CHECK_SVG:''}${esc(m.title)}</div>
@@ -6808,45 +7670,249 @@ function atelierPathHTML(cid){
     return `<div class="atl-mod"><div class="atl-mod-title">${esc(m.title)}</div><div class="atl-lessons">${rows}</div></div>`;
   }).join('');
 }
+/* ==================================================================
+   SIMPLE MODE — one calm gold ring per course, the approved V2 loop.
+   Keeps the open-book home; replaces the rejected lesson UI. Reads
+   window.ESTRELLA_SIMPLE; reuses the state engine (aComplete/aSave/AST).
+   ================================================================== */
+function smIcon(k){ var I=window.SIMPLE_ICONS||{}; return I[k]?('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+I[k]+'</svg>'):''; }
+function smCourse(cid){ return (window.ESTRELLA_SIMPLE&&window.ESTRELLA_SIMPLE.courses&&window.ESTRELLA_SIMPLE.courses[cid])||null; }
+function smTokens(c){ return c.lessons.map(function(x){ var s=AST.lessons[x.lessonId]; if(s&&s.choice){ var ci=x.choices.indexOf(s.choice); return x.choiceIcons[ci>=0?ci:0]; } return null; }); }
+function smRingHTML(cid, doneCount, curIdx){
+  var c=smCourse(cid); var total=c.lessons.length; var toks=smTokens(c);
+  var cx=110,cy=110,r=92, sz= total>10?18:26; var nodes='';
+  for(var i=0;i<total;i++){ var t=(-90+i*360/total)*Math.PI/180; var x=cx+r*Math.cos(t), y=cy+r*Math.sin(t);
+    var lit=i<doneCount||!!(AST.lessons[c.lessons[i].lessonId]&&AST.lessons[c.lessons[i].lessonId].completed); var act=i===curIdx;
+    nodes+='<div class="smnode'+(lit?' lit':'')+(act?' act':'')+'" style="left:'+x.toFixed(1)+'px;top:'+y.toFixed(1)+'px;width:'+sz+'px;height:'+sz+'px;margin:'+(-sz/2)+'px 0 0 '+(-sz/2)+'px">'+(lit&&toks[i]?smIcon(toks[i]):'')+'</div>';
+  }
+  var done=c.lessons.filter(function(x){return aIsDone(x.lessonId);}).length;
+  return '<div class="smring"><svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="92" fill="none" stroke="var(--smg-bg)" stroke-width="3"/></svg>'+nodes
+    +'<div class="smcore"><span class="smstar">'+STAR_SVG+'</span><span class="smcount"><b>'+done+'</b>/'+total+'</span><span class="smlabel">'+esc(c.artifact.name)+'</span></div></div>';
+}
+function smFly(fromEl,toEl,tok,after){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ after&&after(); return; }
+  var f=document.createElement('div'); f.className='sm-fly'; f.innerHTML=smIcon(tok);
+  var fr=fromEl.getBoundingClientRect(); f.style.left=(fr.left+fr.width/2-16)+'px'; f.style.top=(fr.top+fr.height/2-16)+'px';
+  document.body.appendChild(f); f.offsetWidth;
+  var tr=toEl.getBoundingClientRect(); f.style.left=(tr.left+tr.width/2-16)+'px'; f.style.top=(tr.top+tr.height/2-16)+'px'; f.style.transform='scale(.7)';
+  setTimeout(function(){ f.remove(); after&&after(); },640);
+}
+function openLessonSimple(cid, lessonId){
+  var root=document.getElementById('std-root'); if(!root) return false;
+  var c=smCourse(cid); if(!c) return openLesson(cid, lessonId);
+  var idx = lessonId ? c.lessons.findIndex(function(L){return L.lessonId===lessonId;}) : -1;
+  if(idx<0) idx = c.lessons.findIndex(function(L){return !aIsDone(L.lessonId);});
+  if(idx<0) idx = 0;
+  AST.lastLesson = c.lessons[idx].lessonId; aSave();
+  renderSmLesson(root, cid, idx);
+  switchView('lesson'); return true;
+}
+function renderSmLesson(root, cid, idx){
+  var c=smCourse(cid), lessons=c.lessons, L=lessons[idx], co=courseById(cid);
+  var done=lessons.filter(function(x){return aIsDone(x.lessonId);}).length;
+  var saved=AST.lessons[L.lessonId]||{}; var doneThis=aIsDone(L.lessonId);
+  root.className='ac-app sm-app';
+  root.innerHTML=''
+   +'<header class="sm-bar"><button class="sm-back" data-sm-back>‹ Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-sp"></span><span class="sm-brand">'+STAR_SVG+' Estrella</span></header>'
+   +'<div class="sm-screen"><div class="sm-hero" id="sm-hero">'+smRingHTML(cid,done,idx)+'</div>'
+   +'<div class="sm-card"><div class="sm-step">Lesson '+(idx+1)+' of '+lessons.length+'</div>'
+   +'<h1 class="sm-idea">'+esc(L.idea)+'</h1><p class="sm-say">'+esc(L.sentence)+'</p>'
+   +'<div class="sm-sit"><span class="sm-sit-ic">'+smIcon(L.choiceIcons[0])+'</span><p>'+esc(L.situation)+'</p></div>'
+   +'<div class="sm-choices" id="sm-ch">'+L.choices.map(function(ch,i){return '<button class="sm-choice'+(saved.choice===ch?' sel':'')+'" data-i="'+i+'"><span class="sm-ci">'+smIcon(L.choiceIcons[i])+'</span><span class="sm-cl">'+esc(ch)+'</span><span class="sm-ck"></span></button>';}).join('')+'</div>'
+   +'<div class="sm-est" id="sm-est"><span class="sm-ed">'+STAR_SVG+'</span><span id="sm-estl">'+esc(doneThis?L.feedback:L.estrella)+'</span></div>'
+   +'<button class="sm-cta'+(doneThis?' go':'')+'" id="sm-cta"'+(saved.choice||doneThis?'':' disabled')+'>'+(doneThis?(idx+1<lessons.length?'Next →':'Done →'):'Save')+'</button>'
+   +'</div></div>';
+  if(doneThis) root.querySelector('#sm-est').classList.add('win');
+  var picked = saved.choice ? L.choices.indexOf(saved.choice) : -1;
+  var ch=root.querySelector('#sm-ch'), cta=root.querySelector('#sm-cta'), est=root.querySelector('#sm-est'), estl=root.querySelector('#sm-estl');
+  root.querySelector('[data-sm-back]').onclick=function(){ switchView('academy'); if(typeof renderSky==='function') renderSky(); };
+  function nextOrHome(){ if(idx+1<lessons.length) renderSmLesson(root,cid,idx+1); else { switchView('academy'); if(typeof renderSky==='function') renderSky(); } }
+  ch.onclick=function(e){ var b=e.target.closest('.sm-choice'); if(!b||doneThis) return; picked=+b.dataset.i;
+    [].forEach.call(ch.children,function(x){x.classList.toggle('sel',x===b);}); cta.disabled=false; estl.textContent='Nice. Save it and light your ring.';
+    (AST.lessons[L.lessonId]||(AST.lessons[L.lessonId]={})).choice=L.choices[picked]; aSave();
+  };
+  cta.onclick=function(){
+    if(doneThis){ nextOrHome(); return; }
+    if(picked<0){ showToast('Pick one first'); return; }
+    (AST.lessons[L.lessonId]||(AST.lessons[L.lessonId]={})).choice=L.choices[picked]; aSave();
+    var wasDone=aIsDone(L.lessonId); var aw=aComplete(L.lessonId, null); doneThis=true;
+    var tok=L.choiceIcons[picked]; var node=root.querySelectorAll('.smnode')[idx]; var fromIc=ch.children[picked].querySelector('.sm-ci');
+    smFly(fromIc, node, tok, function(){ root.querySelector('#sm-hero').innerHTML=smRingHTML(cid, lessons.filter(function(x){return aIsDone(x.lessonId);}).length, idx); });
+    est.classList.add('win'); estl.textContent=L.feedback; cta.textContent=(idx+1<lessons.length?'Next →':'Done →'); cta.classList.add('go');
+    if(!wasDone && aw) aCelebrate(aw);
+  };
+}
+
+const SM_COURSE_META = {
+  confidence:{accent:'#2E3A30',asset:'Assets/Course_Covers/confidence-cover.png',tab:'Reset',noun:'reset plan',widget:'ring'},
+  branding:{accent:'#9A6D2D',asset:'Assets/Course_Covers/branding-cover.png',tab:'Brand',noun:'profile glow',widget:'profile'},
+  interview:{accent:'#243642',asset:'Assets/Course_Covers/interview-cover.png',tab:'Answer',noun:'answer deck',widget:'ring'},
+  'ai-hr':{accent:'#A8553C',asset:'Assets/Course_Covers/ai-hr-cover.png',tab:'AI map',noun:'decision map',widget:'map',mapHelp:'Each lesson places an AI use case where it belongs.',mapZones:['Automate','Help','Keep human','Not ready'],mapUnit:'AI decisions placed'},
+  leadership:{accent:'#2E3A30',asset:'Assets/Course_Covers/leadership-cover.png',tab:'Energy',noun:'energy battery',widget:'battery'},
+  speaking:{accent:'#A8553C',asset:'Assets/Course_Covers/speaking-cover.png',tab:'Speak',noun:'talk stage',widget:'stage'},
+  'hr-foundations':{accent:'#4C7462',asset:'Assets/Course_Covers/hr-foundations-cover.png',tab:'HR map',noun:'action map',widget:'map',mapHelp:'Each lesson pins the people problem to the right HR move.',mapZones:['People','Business','Risk','Manager'],mapUnit:'HR moves pinned'},
+  offer:{accent:'#3B2847',asset:'Assets/Course_Covers/offer-cover.png',tab:'Offer',noun:'offer stack',widget:'bars'}
+};
+function smMeta(cid){ return SM_COURSE_META[cid] || {accent:'#2E3A30',asset:coverImg(cid),tab:'Build',noun:'plan',widget:'ring'}; }
+function smDone(cid){ var c=smCourse(cid); return c ? c.lessons.filter(function(x){return aIsDone(x.lessonId);}).length : 0; }
+function smClipWords(s,max){ var a=String(s||'').trim().split(/\s+/).filter(Boolean); if(a.length<=max) return a.join(' '); return a.slice(0,max).join(' ').replace(/[,.!?;:]+$/,'')+'.'; }
+function smChoiceIcon(L,i){ return (L.choiceIcons&&L.choiceIcons[i]) || (L.choiceIcons&&L.choiceIcons[0]) || 'check'; }
+function smTokenHTML(cid, done, total){
+  var count=Math.min(total, 12);
+  var out='';
+  for(var i=0;i<count;i++) out+='<span class="sm-token'+(i<done?' on':'')+'">'+(i+1)+'</span>';
+  return '<div class="sm-token-row" style="--token-count:'+count+'">'+out+'</div>';
+}
+function smDotsHTML(done,total){
+  var count=Math.min(total, 12), out='';
+  for(var i=0;i<count;i++) out+='<span class="sm-dot'+(i<done?' on':'')+'"></span>';
+  return '<div class="sm-dots">'+out+'</div>';
+}
+function smProgressWidget(cid){
+  var c=smCourse(cid), meta=smMeta(cid), done=smDone(cid), total=c.lessons.length, pct=total?Math.round(done/total*100):0, body='';
+  if(meta.widget==='stage'){
+    var feet=''; for(var i=0;i<Math.min(total,12);i++) feet+='<span class="sm-foot'+(i<done?' on':'')+'"></span>';
+    body='<div class="sm-stage"><div class="sm-footlights">'+feet+'</div></div><div class="sm-widget-note">'+done+'/'+total+' stage moves ready.</div>';
+  } else if(meta.widget==='battery'){
+    var cells=''; for(var j=0;j<Math.min(total,8);j++) cells+='<span class="sm-cell'+(j<done?' on':'')+'"></span>';
+    body='<div class="sm-battery" style="--token-count:'+Math.min(total,8)+'">'+cells+'</div><div class="sm-widget-note">'+done+'/'+total+' energy cells filled.</div>';
+  } else if(meta.widget==='map'){
+    var labels = meta.mapZones || ['Choose','Check','People','Next'];
+    var help = meta.mapHelp || 'Each lesson places one useful move on the map.';
+    var unit = meta.mapUnit || 'map points placed';
+    body='<p class="sm-widget-help">'+esc(help)+'</p><div class="sm-map">'+labels.map(function(x,i){return '<span class="sm-zone'+(done>i?' on':'')+'">'+esc(x)+'</span>';}).join('')+'</div><div class="sm-widget-note">'+done+'/'+total+' '+esc(unit)+'.</div>';
+  } else if(meta.widget==='profile'){
+    body='<div class="sm-profile"><div class="sm-profile-row"><span style="--w:'+Math.min(100,pct)+'%"></span></div><div class="sm-profile-row"><span style="--w:'+Math.min(100,Math.max(0,pct-18))+'%"></span></div><div class="sm-profile-row"><span style="--w:'+Math.min(100,Math.max(0,pct-36))+'%"></span></div></div><div class="sm-widget-note">'+done+'/'+total+' reputation signals lit.</div>';
+  } else if(meta.widget==='bars'){
+    var bars=''; for(var k=0;k<Math.min(total,8);k++) bars+='<span class="sm-barcell'+(k<done?' on':'')+'" style="height:'+(28+k*9)+'px"></span>';
+    body='<div class="sm-bars" style="--token-count:'+Math.min(total,8)+'">'+bars+'</div><div class="sm-widget-note">'+done+'/'+total+' offer steps stacked.</div>';
+  } else {
+    body='<div class="sm-ring" style="--sm-pct:'+pct+'"><div class="sm-ring-in">'+done+'/'+total+'</div></div><div class="sm-widget-note">'+(done?done+' saved.':'Start with one pick.')+'</div>'+smDotsHTML(done,total);
+  }
+  return '<div class="sm-widget"><h2>'+esc(c.artifact.name)+'</h2>'+body+'</div>';
+}
+function smArtifactHTML(cid){
+  var c=smCourse(cid), meta=smMeta(cid), done=smDone(cid), total=c.lessons.length;
+  return '<div class="sm-artifact"><h3>Your '+esc(meta.noun)+'</h3><p>'+esc(smClipWords(c.bigPromise,14))+'</p>'+smTokenHTML(cid,done,total)+'</div>';
+}
+
+function renderSmLesson(root, cid, idx){
+  var c=smCourse(cid), lessons=c.lessons, L=lessons[idx], co=courseById(cid), meta=smMeta(cid);
+  var saved=AST.lessons[L.lessonId]||{}, doneThis=aIsDone(L.lessonId);
+  var choices=(L.choices||[]).slice(0,3), picked=saved.choice ? choices.indexOf(saved.choice) : -1;
+  var asset=meta.asset || coverImg(cid);
+  var topnav=document.getElementById('topnav'); if(topnav) topnav.classList.add('hidden');
+  root.className='ac-app sm-app sm-course-'+String(cid).replace(/[^a-z0-9]/g,'-');
+  root.style.setProperty('--sm-accent', meta.accent);
+  root.innerHTML=''
+   +'<header class="sm-bar"><button class="sm-back" data-sm-back>&lsaquo; Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-module">'+esc(smClipWords(c.bigPromise,9))+'</span><span class="sm-sp"></span><span class="sm-brand">Estrella Academy</span></header>'
+   +'<main class="sm-screen"><section class="sm-shell"><span class="sm-tab"></span><div class="sm-grid">'
+   +'<article class="sm-card"><div class="sm-step">Lesson '+(idx+1)+' of '+lessons.length+'</div>'
+   +'<h1 class="sm-idea">'+esc(smClipWords(L.idea,8))+'</h1><p class="sm-say">'+esc(smClipWords(L.sentence,16))+'</p>'
+   +'<div class="sm-sit"><span class="sm-sit-ic">'+smIcon(smChoiceIcon(L,0))+'</span><p>'+esc(smClipWords(L.situation,12))+'</p></div>'
+   +'<p class="sm-question">Pick what fits.</p><div class="sm-choices" id="sm-ch">'+choices.map(function(ch,i){return '<button type="button" class="sm-choice'+(picked===i?' sel':'')+'" data-i="'+i+'"><span class="sm-ci">'+smIcon(smChoiceIcon(L,i))+'</span><span class="sm-cl">'+esc(smClipWords(ch,8))+'</span><span class="sm-ck">'+(picked===i?'&#10003;':'')+'</span></button>';}).join('')+'</div>'
+   +'<div class="sm-est'+(doneThis?' win':'')+'" id="sm-est"><span class="sm-ed">'+(doneThis?'&#10003;':'+')+'</span><span id="sm-estl">'+esc(smClipWords(doneThis?L.feedback:L.estrella,12))+'</span></div>'
+   +'<div class="sm-save-row"><div class="sm-saved-to" id="sm-saved-label"><b>Your '+esc(meta.noun)+'</b>'+(doneThis?'Saved':(picked>=0?'Ready to save':'Choose one'))+'</div><button class="sm-cta" id="sm-cta"'+((picked>=0||doneThis)?'':' disabled')+'>'+(doneThis?(idx+1<lessons.length?'Next lesson':'Finish course'):'Save this pick')+'</button></div>'
+   +'</article><aside class="sm-side"><div class="sm-asset"><img src="'+esc(asset)+'" alt="" loading="eager" onerror="this.closest(\'.sm-asset\').style.display=\'none\'"><span class="sm-asset-tab">'+esc(meta.tab)+'</span></div><div id="sm-progress">'+smProgressWidget(cid)+'</div><div id="sm-artifact">'+smArtifactHTML(cid)+'</div></aside>'
+   +'</div></section></main>';
+  var chWrap=root.querySelector('#sm-ch'), cta=root.querySelector('#sm-cta'), est=root.querySelector('#sm-est'), estl=root.querySelector('#sm-estl'), savedLabel=root.querySelector('#sm-saved-label');
+  root.querySelector('[data-sm-back]').onclick=function(){ switchView('academy'); if(typeof renderSky==='function') renderSky(); };
+  function nextOrHome(){ if(idx+1<lessons.length) renderSmLesson(root,cid,idx+1); else { switchView('academy'); if(typeof renderSky==='function') renderSky(); } }
+  chWrap.onclick=function(e){
+    var b=e.target.closest('.sm-choice'); if(!b||doneThis) return;
+    picked=+b.dataset.i;
+    [].forEach.call(chWrap.children,function(x){ x.classList.toggle('sel', x===b); var ck=x.querySelector('.sm-ck'); if(ck) ck.innerHTML=(x===b?'&#10003;':''); });
+    cta.disabled=false; est.classList.remove('win'); est.querySelector('.sm-ed').textContent='+'; estl.textContent='Ready. Save this one.'; savedLabel.innerHTML='<b>Your '+esc(meta.noun)+'</b>Ready to save';
+    (AST.lessons[L.lessonId]||(AST.lessons[L.lessonId]={})).choice=choices[picked]; aSave();
+  };
+  cta.onclick=function(){
+    if(doneThis){ nextOrHome(); return; }
+    if(picked<0){ showToast('Pick one first'); return; }
+    (AST.lessons[L.lessonId]||(AST.lessons[L.lessonId]={})).choice=choices[picked]; aSave();
+    var wasDone=aIsDone(L.lessonId), aw=aComplete(L.lessonId, null); doneThis=true; cta.disabled=false;
+    var fromIc=chWrap.children[picked].querySelector('.sm-ci'), target=root.querySelector('#sm-progress'), tok=smChoiceIcon(L,picked);
+    smFly(fromIc,target,tok,function(){ root.querySelector('#sm-progress').innerHTML=smProgressWidget(cid); root.querySelector('#sm-artifact').innerHTML=smArtifactHTML(cid); });
+    est.classList.add('win'); est.querySelector('.sm-ed').innerHTML='&#10003;'; estl.textContent=smClipWords(L.feedback,12);
+    savedLabel.innerHTML='<b>Your '+esc(meta.noun)+'</b>Saved'; cta.textContent=(idx+1<lessons.length?'Next lesson':'Finish course');
+    if(!wasDone && aw) aCelebrate(aw);
+  };
+}
+function openCourseSimple(cid){
+  var root=document.getElementById('atl-root'); if(!root) return false;
+  var c=smCourse(cid), co=courseById(cid), meta=smMeta(cid); if(!c||!co) return false;
+  var topnav=document.getElementById('topnav'); if(topnav) topnav.classList.add('hidden');
+  var lessons=c.lessons, total=lessons.length, done=smDone(cid);
+  var nextIdx=lessons.findIndex(function(L){return !aIsDone(L.lessonId);}); if(nextIdx<0) nextIdx=0;
+  var nextLesson=lessons[nextIdx];
+  var doneCourse=done===total && total>0;
+  var route=lessons.map(function(L,i){
+    var isDone=aIsDone(L.lessonId), isNext=i===nextIdx;
+    return '<button type="button" class="smc-node'+(isDone?' done':'')+(isNext?' next':'')+'" data-sm-lesson="'+esc(L.lessonId)+'" title="'+esc(L.idea)+'" aria-label="Lesson '+(i+1)+': '+esc(L.idea)+'">'+(isDone?'&#10003;':(i+1))+'</button>';
+  }).join('');
+  var nextCard='<button type="button" class="smc-next" data-sm-lesson="'+esc(nextLesson.lessonId)+'"><span class="smc-next-num">'+(nextIdx+1)+'</span><span class="smc-next-copy"><span class="smc-next-k">'+(doneCourse?'Review lesson':'Next lesson')+'</span><span class="smc-next-title">'+esc(nextLesson.idea)+'</span><span class="smc-next-text">'+esc(nextLesson.situation||nextLesson.sentence||'Pick one simple move and save it to the artifact.')+'</span></span></button>';
+  root.className='ac-app sm-app sm-course-app sm-course-'+String(cid).replace(/[^a-z0-9]/g,'-');
+  root.style.setProperty('--sm-accent', meta.accent);
+  root.innerHTML=''
+    +'<header class="sm-bar"><button class="sm-back" data-sm-back>&lsaquo; Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-module">'+esc(smClipWords(c.bigPromise,9))+'</span><span class="sm-sp"></span><span class="sm-brand">Estrella Academy</span></header>'
+    +'<main class="sm-screen"><section class="sm-shell"><span class="sm-tab"></span><div class="smc-grid">'
+    +'<article class="smc-cover"><div class="smc-image"><img src="'+esc(meta.asset||coverImg(cid))+'" alt="" loading="eager" onerror="this.closest(\'.smc-image\').style.display=\'none\'"></div><div class="smc-kicker">'+esc(co.track||'Academy')+' course</div><h1 class="smc-title">'+esc(co.title)+'</h1><p class="smc-promise">'+esc(smClipWords(c.bigPromise,18))+'</p><div class="smc-meta"><span>'+total+' lessons</span><span>'+done+'/'+total+' done</span><span>'+esc(c.artifact.name)+'</span></div><div class="smc-actions"><div class="smc-note"><b>Your '+esc(meta.noun)+'</b>'+(doneCourse?'Complete':(done?'Continue where you left off':'Start with one pick'))+'</div><button type="button" class="smc-cta" data-sm-start="'+esc(nextLesson.lessonId)+'">'+(doneCourse?'Review lesson':'Start / continue')+'</button></div></article>'
+    +'<aside class="smc-panel"><div class="smc-top"><div id="smc-progress">'+smProgressWidget(cid)+'</div><div id="smc-artifact">'+smArtifactHTML(cid)+'</div></div><div class="smc-path"><div class="smc-path-head"><h3>Course path</h3><span>'+done+' of '+total+'</span></div><div class="smc-route" style="--path-count:'+total+'">'+route+'</div>'+nextCard+'</div></aside>'
+    +'</div></section></main>';
+  root.querySelector('[data-sm-back]').onclick=function(){ switchView('academy'); if(typeof renderSky==='function') renderSky(); };
+  root.querySelectorAll('[data-sm-lesson]').forEach(function(b){ b.onclick=function(){ openLessonSimple(cid,b.dataset.smLesson); }; });
+  root.querySelector('[data-sm-start]').onclick=function(){ openLessonSimple(cid,nextLesson.lessonId); };
+  switchView('course');
+  return true;
+}
 function openCourse(cid){
+  if(window.ESTRELLA_SIMPLE && window.ESTRELLA_SIMPLE.courses[cid]){ return openCourseSimple(cid); }
   const root = document.getElementById('atl-root'); if(!root) return;
   const c = courseById(cid); const co = ACAD.courses[cid];
-  const cp = aCourseProgress(cid); const arch = courseArch(cid);
+  const cp = aCourseProgress(cid); const arch = courseArch(cid); const mech = courseMechanic(cid);
   // next lesson to resume within this course
   let next = aCourseLessons(cid).find(id=>!aIsDone(id)) || aCourseLessons(cid)[0];
   const started = cp.done>0; const doneCourse = cp.total>0 && cp.done===cp.total;
   const totalMins = (co&&co.modules||[]).reduce((s,m)=>s+(m.lessons||[]).reduce((a,l)=>a+(l.mins||10),0),0);
   const hrs = Math.floor(totalMins/60), mins = totalMins%60;
+  const artName = (COURSE_ARTIFACT[cid]||'a useful artifact').replace(/^Your\s+/i,'');
+  const artNameCap = artName.charAt(0).toUpperCase()+artName.slice(1);
+  const tk = String(c.track||'').toLowerCase();
   root.innerHTML = `
-    ${appbar(`<b>The Sky</b> · ${esc(c.title)}`, 'The Sky')}
-    <div class="atl">
-      <div class="atl-left">
-        <div class="atl-cover">
-          <div class="cimg"><img src="${coverImg(cid)}" alt="" onerror="this.parentNode.style.background='var(--gold-bg)'"></div>
-          <div class="ctxt">
-            <div class="ctrack"><span class="chip">${esc(c.track)} track</span><span class="chip" style="background:var(--surface-2);color:var(--text-dim);border-color:var(--line)">${esc(ARCH_LABEL[arch])}</span></div>
-            <h1>${esc(c.title)}</h1>
-            <div class="cmeta">≈ ${hrs?hrs+'h ':''}${mins}m · ${cp.total} lessons · earn the ${esc(courseBadgeName(cid))} badge</div>
-          </div>
-        </div>
-        <div class="atl-artifact">
-          <div class="atl-art-head">
-            <div><div class="alabel">What you're building</div><div class="aname">${esc(COURSE_ARTIFACT[cid]||'Your artifact')}</div></div>
-            <div class="aprog">${cp.done}/${cp.total}<br>pieces</div>
-          </div>
-          <div class="atl-art-body">${artifactSlotsHTML(cid)}</div>
-          <div class="atl-art-foot"><span class="anote">${esc(COURSE_ARTIFACT_DESC[cid]||'')}</span>${doneCourse?'<button class="ac-btn ac-btn-ghost" data-open-vault="1">Export</button>':''}</div>
-        </div>
-        <div class="atl-outcomes">
-          <div class="olabel">What you'll be able to do</div>
-          <ul>${(c.outcomes||[]).slice(0,6).map(o=>`<li>${CHECK_SVG}<span>${esc(o)}</span></li>`).join('')}</ul>
+    ${appbar(`<b>Academy</b> · ${esc(c.title)}`, 'Academy')}
+    <div class="atl-desk">
+      <div class="book book--course book--${tk}">
+        <span class="book-corner book-corner--tl"></span><span class="book-corner book-corner--tr"></span>
+        <span class="book-corner book-corner--bl"></span><span class="book-corner book-corner--br"></span>
+        <div class="book-pages">
+          <section class="book-page book-left atl-identity">
+            <div class="atl-cover-img"><img src="${coverImg(cid)}" alt="" loading="lazy" onerror="this.closest('.atl-cover-img').style.display='none'"></div>
+            <div class="atl-chips"><span class="chip chip--track">${esc(c.track)} track</span><span class="chip chip--mech">${esc(mech.name || ARCH_LABEL[arch])}</span></div>
+            <h1 class="ac-serif">${esc(c.title)}</h1>
+            <p class="atl-promise">${esc(aClip(c.tagline,120))}</p>
+            <div class="bp-meta"><span>${cp.total} lessons</span><span>≈ ${hrs?hrs+'h ':''}${mins}m</span><span>Artifact</span></div>
+            <div class="artifact-slip">
+              <span class="as-stamp">PRACTICAL · USEFUL</span>
+              <div class="as-label">You'll build</div>
+              <div class="as-name">${esc(artNameCap)}</div>
+              <p class="as-desc">${esc(COURSE_ARTIFACT_DESC[cid]||'')}</p>
+            </div>
+            <button class="ac-btn ac-btn-primary atl-cta" data-open-lesson="${next}">${doneCourse?'Revisit a lesson':(started?'Continue '+esc(c.title):'Start '+esc(c.title))} →</button>
+          </section>
+          <section class="book-page book-right atl-instrument">
+            <div class="atl-inst-head">
+              <div class="ac-eyebrow">Your ${esc(mech.name || 'workspace')}</div>
+              <h3 class="ac-serif">Build your ${esc(artName.toLowerCase())}</h3>
+              <span class="atl-inst-prog">${cp.done}/${cp.total} pieces</span>
+            </div>
+            ${instrumentPreviewHTML(cid)}
+            <div class="atl-sections">${artifactSlotsHTML(cid)}</div>
+            <div class="atl-pathwrap">
+              <div class="atl-path-head"><h4>The path</h4><span>${cp.done} of ${cp.total} done</span></div>
+              <div class="atl-modules">${atelierPathHTML(cid)}</div>
+            </div>
+          </section>
         </div>
       </div>
-      <aside class="atl-path">
-        <div class="atl-path-head"><h3>The path</h3><span style="font-size:11px;color:var(--text-mute)">${cp.done} of ${cp.total} lit</span></div>
-        <div class="atl-modules">${atelierPathHTML(cid)}</div>
-        <div class="atl-cta"><button class="ac-btn ac-btn-primary" data-open-lesson="${next}">${doneCourse?'Revisit a lesson →':(started?'Resume — '+esc(aClip(LIDX[next].lesson.title,28)):'Start the first lesson →')}</button></div>
-      </aside>
     </div>`;
   root.querySelector('[data-ac-back]').addEventListener('click', ()=>switchView('academy'));
   root.querySelectorAll('[data-open-lesson]').forEach(b=>b.addEventListener('click',()=>openLesson(cid, b.dataset.openLesson)));
@@ -6857,21 +7923,78 @@ function openCourse(cid){
 /* ==================================================================
    THE STUDIO — lesson player (paged deck + archetype spine + tutor)
    ================================================================== */
-function buildBeats(L, arch){
-  const beats = [];
-  const sections = L.sections || [];
-  // Beat 0 — the situation/moment/mirror
-  beats.push({ eyebrow:ARCH_BEATS[arch][0], title: aClip(L.title,70), body:`<p>${esc(L.hook||'')}</p>${(L.objectives&&L.objectives[0])?`<p style="color:var(--text-dim)"><strong>By the end:</strong> ${esc(L.objectives[0].replace(/^By the end you can /i,'you can '))}</p>`:''}` });
-  // Beat 1 — method (Nesreen's reasoning) — all sections rendered, body scrolls
-  let methodBody = sections.map(s=>`<h4>${esc(s.heading)}</h4>${(s.body||[]).map(p=>`<p>${esc(p)}</p>`).join('')}`).join('');
-  beats.push({ eyebrow:ARCH_BEATS[arch][1], title: sections[0]?aClip(sections[0].heading,60):'How she reasons it', body: methodBody, tool: true });
-  // Beat 2 — the work
-  beats.push({ eyebrow:ARCH_BEATS[arch][2], title: (L.exercise&&L.exercise.title)?aClip(L.exercise.title,60):'Now you', body:`<p>${esc((L.exercise&&L.exercise.prompt)||'Apply this to your own situation, then sharpen it with Estrella.')}</p>`, work:true });
-  // Beat 3 — the check (Estrella + quiz gate)
-  beats.push({ eyebrow:ARCH_BEATS[arch][3], title:'The check', body:`<p>Real progress is earned, not clicked. Answer the quick check below to bank this lesson — and use Estrella on the right to pressure-test your thinking first.</p>`, quiz:true });
-  // Beat 4 — banked / it's yours
-  beats.push({ eyebrow:ARCH_BEATS[arch][4], title: arch==='identity'?"It's yours":(arch==='performance'?'Banked':'What you can now do'), body:`<ul class="std-takeaways">${(L.takeaways||[]).slice(0,4).map(t=>`<li>${CHECK_SVG}<span>${esc(t)}</span></li>`).join('')}</ul>`, finish:true });
-  return beats;
+function lessonInteraction(L){ return (L.exercise && L.exercise.interaction) || {}; }
+function lessonWorkCopy(L, arch){
+  const ex = L.exercise || {};
+  const ix = lessonInteraction(L);
+  const w = ARCH_WORK[arch] || ARCH_WORK.knowledge;
+  return {
+    label: ix.mechanic || w.label,
+    hint: ix.requiresWriting ? 'Only write the words you would actually use.' : 'Choose the closest move. You can refine it later.',
+    cta: ix.actionLabel || w.cta,
+    ph: ix.placeholder || ex.placeholder || w.ph,
+    choices: (ix.choices && ix.choices.length) ? ix.choices : ['Use this move', 'Needs more proof', 'Ask Estrella', 'Come back later'],
+    requiresWriting: !!ix.requiresWriting,
+    artifactLabel: ix.artifactLabel || 'Save to artifact',
+    intro: ix.intro || ex.prompt || 'Choose the next useful move.'
+  };
+}
+/* ==================================================================
+   COURSE INSTRUMENTS — each course renders its canonical moves
+   (exercise.interaction.choices) through its own working surface.
+   The 4 moves are the instrument's permanent furniture; each lesson
+   asks which move fits this scenario. NOT a relabelled button grid.
+   ================================================================== */
+const INSTRUMENTS = {
+  'ai-hr':          {kind:'quadrant', accent:'rust'},   // Decision Map — 2×2 quadrant
+  'hr-foundations': {kind:'zones',    accent:'green'},   // Operating Map — placement bands
+  'leadership':     {kind:'board',    accent:'rust'},    // Energy Board — drop lanes
+  'confidence':     {kind:'journal',  accent:'green'},   // Mirror Journal — pinned slips
+  'interview':      {kind:'bench',    accent:'rust'},    // Interview Lab — numbered stations
+  'branding':       {kind:'lens',     accent:'green'},   // Reputation Studio — lens verdicts
+  'speaking':       {kind:'stage',    accent:'rust'},    // Rehearsal Room — cue cards
+  'offer':          {kind:'desk',     accent:'tan'}      // Offer Desk — number strip + moves
+};
+function moveBtn(cls, choice, saved, inner){
+  return `<button type="button" class="ls-move ${cls}${choice===saved?' sel':''}" data-choice="${esc(choice)}">${inner}</button>`;
+}
+function instrumentHTML(courseId, ix, saved){
+  const ch = (ix.choices||[]).slice(0,6);
+  if(!ch.length) return `<div class="ls-piece empty">No move for this lesson — read the idea and pass the check.</div>`;
+  const kind = (INSTRUMENTS[courseId]||{}).kind || 'cards';
+  if(kind==='quadrant')
+    return `<div class="inst-grid iq">${ch.slice(0,4).map((c,i)=>moveBtn('iq-cell iq-'+i, c, saved, `<span class="iq-corner"></span><span class="m-label">${esc(c)}</span>`)).join('')}<span class="iq-cross"></span></div>`;
+  if(kind==='zones')
+    return `<div class="inst-zones">${ch.map((c,i)=>moveBtn('iz-band', c, saved, `<span class="iz-n">${i+1}</span><span class="m-label">${esc(c)}</span><span class="iz-place">Place</span>`)).join('')}</div>`;
+  if(kind==='board')
+    return `<div class="inst-board">${ch.map(c=>moveBtn('ib-col', c, saved, `<span class="ib-head">${esc(c)}</span><span class="ib-slot"></span>`)).join('')}</div>`;
+  if(kind==='journal')
+    return `<div class="inst-journal">${ch.map(c=>moveBtn('ij-slip', c, saved, `<span class="ij-pin"></span><span class="m-label">${esc(c)}</span>`)).join('')}</div>`;
+  if(kind==='bench')
+    return `<div class="inst-bench">${ch.map((c,i)=>moveBtn('ibn-station', c, saved, `<span class="ibn-num">${i+1}</span><span class="m-label">${esc(c)}</span>`)).join('')}</div>`;
+  if(kind==='lens')
+    return `<div class="inst-lens"><span class="il-eye">${STAR_SVG}</span><div class="il-verdicts">${ch.map(c=>moveBtn('il-v', c, saved, `<span class="m-label">${esc(c)}</span>`)).join('')}</div></div>`;
+  if(kind==='stage')
+    return `<div class="inst-stage">${ch.map(c=>moveBtn('ist-card', c, saved, `<span class="ist-cue">${esc(c)}</span>`)).join('')}</div>`;
+  if(kind==='desk')
+    return `<div class="inst-desk"><div class="id-strip"><span class="id-anchor"><b>Floor</b><i></i></span><span class="id-anchor"><b>Target</b><i></i></span><span class="id-anchor"><b>Reach</b><i></i></span></div><div class="id-moves">${ch.map(c=>moveBtn('id-card', c, saved, `<span class="m-label">${esc(c)}</span>`)).join('')}</div></div>`;
+  return `<div class="inst-cards">${ch.map(c=>moveBtn('ic-card', c, saved, `<span class="m-label">${esc(c)}</span>`)).join('')}</div>`;
+}
+// Left page: one idea per page (overview → each section → quick check). Never one wall.
+function lessonPages(L){
+  const pages = [];
+  pages.push({ tag:'Overview', heading: aClip(L.title,70), html:`<p class="ls-hook">${esc(L.hook||'')}</p>${(L.objectives&&L.objectives[0])?`<p class="ls-obj"><strong>What you'll build:</strong> ${esc((L.objectives[0]||'').replace(/^By the end you can /i,'You can '))}</p>`:''}` });
+  (L.sections||[]).forEach(s=>{ pages.push({ tag:'Method', heading: aClip(s.heading,64), html: (s.body||[]).map(p=>`<p>${esc(p)}</p>`).join('') }); });
+  pages.push({ tag:'Quick check', heading:'Quick check', html: quizHTML(L), isCheck:true });
+  return pages;
+}
+// Static instrument legend for the course dossier (non-interactive preview)
+function instrumentPreviewHTML(cid){
+  let ix=null;
+  for(const lid of aCourseLessons(cid)){ const x=lessonInteraction(LIDX[lid].lesson); if(x.choices&&x.choices.length){ ix=x; break; } }
+  if(!ix) return '';
+  const inst=INSTRUMENTS[cid]||{accent:'green'};
+  return `<div class="atl-ip ls--${inst.accent}"><div class="atl-ip-cap">The moves you'll use in each lesson</div>${instrumentHTML(cid, ix, '')}</div>`;
 }
 // Estrella — honest preview coach (rubric-aware, Socratic; never fakes a grade)
 function tutorReplyFor(L, arch, userText){
@@ -6885,135 +8008,149 @@ function tutorReplyFor(L, arch, userText){
       identity:`There's something true in that. Let's sharpen it: <em>${esc(aClip(focus,90))}</em> `
     };
     const asks = {
-      knowledge:`Where exactly does <strong>your</strong> organisation make this harder than the clean version? Name the friction.`,
-      performance:`Say it again, but cut it in half. What's the one line you'd keep if you only had ten seconds?`,
-      identity:`Whose words are these — yours, or the ones you think you're supposed to use? Rewrite the part that isn't yours.`
+      knowledge:`Where exactly does <strong>your</strong> organisation make this harder than the clean version? Pick the friction first.`,
+      performance:`If you only had ten seconds, which line would you keep? Keep that line and drop the extra.`,
+      identity:`Does this match the real trigger, or the version you think you are supposed to have? Pick the more honest move.`
     };
     return (openers[arch]||openers.knowledge) + (asks[arch]||asks.knowledge);
   }
-  return `For this lesson, the thing to hold onto is: <em>${esc(aClip(tks[0]||L.title,110))}</em> Read the method, then try your own version in the work box — I'll push on it, not pat it.`;
+  return `For this lesson, hold onto this: <em>${esc(aClip(tks[0]||L.title,110))}</em> Choose a practice move first. If the words matter, write only the line you would actually use.`;
 }
 function tutorChipReply(L, q){
   // ground the answer in the lesson's own takeaways (preview behaviour)
   const tks = L.takeaways || [];
   const pool = tks.slice(0,3).map(t=>esc(t)).join(' ');
-  return `${pool ? pool+' ' : ''}<br><br>That's the short version in Nesreen's terms. Want to test it against your own situation? Write it in the work box and I'll pressure-test it.`;
+  return `${pool ? pool+' ' : ''}<br><br>That's the short version in Nesreen's terms. Want to test it against your own situation? Pick a practice move and I'll pressure-test it.`;
 }
 
 function openLesson(courseId, lessonId){
+  if(window.ESTRELLA_SIMPLE && window.ESTRELLA_SIMPLE.courses[courseId]){ return openLessonSimple(courseId, lessonId); }
   const root = document.getElementById('std-root'); if(!root) return false;
   const id = (lessonId && LIDX[lessonId]) ? lessonId : (LIDX[courseId+'-1'] ? courseId+'-1' : null);
   const info = id ? LIDX[id] : null; if(!info) return false;
   const L = info.lesson; const c = courseById(info.courseId); const arch = courseArch(info.courseId);
+  const mech = courseMechanic(info.courseId);
+  const ix = lessonInteraction(L);
+  const writing = !!ix.requiresWriting;
   const seed = L.tutorSeed || {opening:'Ask me anything about this lesson.', suggested:[]};
-  const beats = buildBeats(L, arch);
-  let done = aIsDone(id);
+  const pages = lessonPages(L);
+  let done = aIsDone(id); let completedThis = done, retried = false;
   AST.lastLesson = id; aSave();
-  // spine reflects archetype beats
-  const spineSteps = ARCH_BEATS[arch];
+  const inst = INSTRUMENTS[info.courseId] || {kind:'cards', accent:'green'};
+  const artifactName = (COURSE_ARTIFACT[info.courseId]||'your artifact');
+  const artClean = artifactName.replace(/^Your\s+/i,'');
 
   root.innerHTML = `
     ${appbar(`<b>${esc(c.title)}</b> · ${esc(info.moduleTitle)}`, 'Course')}
-    <div class="std" data-m="stage">
-      <aside class="std-col std-spine">
-        <div class="arch">${esc(ARCH_LABEL[arch])}</div>
-        <div class="ctitle">${esc(aClip(L.title,42))}</div>
-        <div class="std-steps" id="std-steps">
-          ${spineSteps.map((s,i)=>`<button class="std-step${i===4?' gold':''}" data-goto="${i}"><span class="dot">${i+1}</span><span class="lbl">${esc(s)}</span></button>`).join('')}
-        </div>
-        <div class="foot">Stay in the lesson. Ask Estrella when a point needs pressure.</div>
-      </aside>
-
-      <main class="std-col std-stage">
-        <div class="std-stage-head">
-          <span class="std-lmeta">${esc(c.title)} · Lesson ${info.order+1} of ${info.total}</span>
-          <div class="std-dots" id="std-dots">${beats.map((b,i)=>`<i class="${i===0?'on':''}"></i>`).join('')}</div>
-        </div>
-        <div class="std-beat" id="std-beat"></div>
-        <div class="std-stage-foot">
-          <div class="std-beatnav"><button id="std-prev" title="Previous">${BACK_SVG}</button><button id="std-next" title="Next">${NEXT_SVG}</button></div>
-          <span class="std-lmeta" id="std-beatmeta"></span>
-        </div>
-      </main>
-
-      <aside class="std-col std-tutor">
-        <div class="std-tutor-head">
-          <div class="row">
-            <div class="std-orb">${STAR_SVG}</div>
-            <div><div class="who">Estrella</div><div class="stat">Preview · in Nesreen's voice</div></div>
+    <div class="ls ls--${inst.accent}" data-m="idea">
+      <div class="ls-book">
+        <section class="ls-page ls-idea">
+          <div class="ls-idea-head"><span class="ac-eyebrow">${esc(c.title)} · Lesson ${info.order+1} of ${info.total}</span><span class="ls-ptag" id="ls-ptag"></span></div>
+          <h1 class="ac-serif" id="ls-head"></h1>
+          <div class="ls-idea-body" id="ls-idea-body"></div>
+          <div class="ls-pager">
+            <button class="ls-parrow" id="ls-prev" aria-label="Previous page">${BACK_SVG}</button>
+            <div class="ls-pdots" id="ls-pdots">${pages.map((p,i)=>`<span class="${i===0?'on':''}"></span>`).join('')}</div>
+            <button class="ls-parrow" id="ls-next" aria-label="Next page">${NEXT_SVG}</button>
           </div>
-          <div class="std-preview-tag">A preview of how Estrella coaches. Live AI tutoring on your own answers is coming — this won't fake a grade.</div>
+        </section>
+        <section class="ls-page ls-instrument">
+          <div class="lsi-head"><div class="ac-eyebrow">${esc(mech.name||'Your instrument')}</div><div class="lsi-target">Building: ${esc(artClean)}</div></div>
+          <p class="lsi-prompt">${esc(writing ? (ix.intro||'Write only the words you would keep.') : (ix.intro||'Pick the move that fits this lesson.'))}</p>
+          <div class="lsi-body" id="lsi-body"></div>
+          <div class="lsi-foot"><span class="lsi-saved" id="lsi-saved"></span><button class="ac-btn ac-btn-primary" id="lsi-action">${esc(writing?'Save the useful words':(ix.artifactLabel||'Add to your plan'))} →</button></div>
+        </section>
+      </div>
+      <aside class="ls-rail std-tutor">
+        <div class="std-tutor-head"><div class="row"><div class="std-orb">${STAR_SVG}</div><div><div class="who">Estrella notes</div><div class="stat">Quiet coaching in the margin</div></div></div></div>
+        <div class="ls-artifact">
+          <div class="ls-art-h">${esc(mech.name||'Artifact')} · progress</div>
+          <div class="ls-art-prog"><span id="ls-art-count"></span><span class="ls-art-pct" id="ls-art-pct"></span></div>
+          <div class="ls-art-bar"><i id="ls-art-fill"></i></div>
+          <div class="ls-art-saved" id="ls-art-saved"></div>
         </div>
         <div class="std-msgs" id="std-msgs"><div class="std-msg ai">${esc(seed.opening)}</div></div>
         <div class="std-chips" id="std-chips">${(seed.suggested||[]).slice(0,3).map(q=>`<button class="std-chip">${esc(q)}</button>`).join('')}</div>
         <div class="std-tutor-input"><input type="text" id="std-field" placeholder="Answer Estrella…" autocomplete="off"/><button class="send" id="std-send" aria-label="Send">${SEND_SVG}</button></div>
       </aside>
-
-      <div class="std-mtoggle"><button class="on" data-m="stage">Lesson</button><button data-m="tutor">Estrella</button></div>
+      <div class="std-mtoggle ls-mtoggle"><button class="on" data-m="idea">Lesson</button><button data-m="instrument">${esc(mech.name||'Instrument')}</button><button data-m="estrella">Estrella</button></div>
     </div>`;
 
   const back = ()=>openCourse(info.courseId);
   root.querySelector('[data-ac-back]').addEventListener('click', back);
 
-  // ---- deck paging ----
-  let bi = done ? beats.length-1 : 0;
-  const beatEl = root.querySelector('#std-beat');
-  const dotsEl = root.querySelectorAll('#std-dots i');
-  const stepEls = root.querySelectorAll('.std-step');
-  const prevBtn = root.querySelector('#std-prev'), nextBtn = root.querySelector('#std-next');
-  const metaEl = root.querySelector('#std-beatmeta');
-  let retried = false, completedThis = done;
+  const instBody = root.querySelector('#lsi-body');
+  const savedEl = root.querySelector('#lsi-saved');
+  const actBtn = root.querySelector('#lsi-action');
+  const artSaved = root.querySelector('#ls-art-saved');
 
-  function paintBeat(){
-    const b = beats[bi];
-    let html = `<div class="ac-eyebrow">${esc(b.eyebrow)}</div><h1>${b.title}</h1><div class="std-body">${b.body}`;
-    if(b.tool && firstTool(L)) html += `<div class="std-tool">${TOOL_SVG} Tool: ${esc(firstTool(L))}</div>`;
-    html += `</div>`;
-    if(b.work){
-      const draft = (AST.lessons[id]&&AST.lessons[id].draft)||'';
-      const w = ARCH_WORK[arch];
-      html += `<div class="std-work">
-        <div class="wlabel"><span>${esc(w.label)}</span><em>we'll sharpen it together</em></div>
-        <textarea id="std-work-text" placeholder="${esc(w.ph)}">${esc(draft)}</textarea>
-        <div class="wact"><button class="ac-btn ac-btn-ghost" id="std-save">Save draft</button><button class="ac-btn ac-btn-primary" id="std-pressure">${esc(w.cta)} →</button></div>
-      </div>`;
-    }
-    if(b.quiz){
-      html += quizHTML(L);
-    }
-    if(b.finish){
-      html += `<div class="std-work" style="border-color:var(--gold-soft);background:var(--gold-bg)">
-        <div class="wlabel"><span>${completedThis?'Banked into '+esc(COURSE_ARTIFACT[info.courseId]||'your artifact'):'One step left'}</span></div>
-        <p style="font-size:13px;color:var(--gold-deep);margin:2px 0 12px">${completedThis?'This piece is locked into your artifact. Carry it into the next lesson.':'Pass the quick check on the previous beat to bank this lesson.'}</p>
-        <div class="wact">${nextLessonBtn(info, completedThis)}<button class="ac-btn ac-btn-ghost" id="std-tocourse">Back to course</button></div>
-      </div>`;
-    }
-    beatEl.innerHTML = html;
-    dotsEl.forEach((d,i)=>{ d.classList.toggle('on',i===bi); d.classList.toggle('done',i<bi); });
-    stepEls.forEach((s,i)=>{ s.classList.toggle('active',i===bi); s.classList.toggle('done', i<bi || (completedThis && i===beats.length-1)); });
-    prevBtn.disabled = bi===0;
-    metaEl.textContent = `Beat ${bi+1} of ${beats.length} · ≈ ${L.mins||10} min`;
-    nextBtn.style.visibility = bi>=beats.length-1 ? 'hidden':'visible';
-    wireBeat();
+  function updateArtifact(){
+    const acp = aCourseProgress(info.courseId);
+    const pct = acp.total?Math.round(acp.done/acp.total*100):0;
+    root.querySelector('#ls-art-count').textContent = acp.done+'/'+acp.total+' pieces';
+    root.querySelector('#ls-art-pct').textContent = pct+'%';
+    root.querySelector('#ls-art-fill').style.width = pct+'%';
   }
-  function wireBeat(){
-    const wt = beatEl.querySelector('#std-work-text');
-    if(wt){
-      const save = ()=>{ (AST.lessons[id]||(AST.lessons[id]={})).draft = wt.value; aSave(); };
-      wt.addEventListener('input', ()=>{ clearTimeout(wt._t); wt._t=setTimeout(save,400); });
-      beatEl.querySelector('#std-save').addEventListener('click', ()=>{ save(); showToast('Draft saved'); });
-      beatEl.querySelector('#std-pressure').addEventListener('click', ()=>{ save(); setMobile('tutor'); ask(wt.value.trim() || '(my draft)'); });
+  function updateSaved(){
+    const s = AST.lessons[id]||{};
+    if(writing){
+      const has=(s.draft||'').trim().length>0;
+      savedEl.textContent = has?'Words saved':'Write the words you would keep';
+      artSaved.innerHTML = has?`<div class="ls-piece">“${esc(aClip(s.draft,90))}”</div>`:`<div class="ls-piece empty">This fills when you save your words.</div>`;
+    } else {
+      const ch=s.choice||'';
+      savedEl.textContent = ch?('Chosen: '+ch):'Pick the move that fits this lesson';
+      actBtn.disabled=!ch;
+      artSaved.innerHTML = ch?`<div class="ls-piece">${esc(ch)}</div>`:`<div class="ls-piece empty">This fills when you choose a move.</div>`;
     }
-    const qEl = beatEl.querySelector('#std-quiz'); if(qEl) wireQuiz(qEl);
-    const nb = beatEl.querySelector('#std-nextlesson'); if(nb) nb.addEventListener('click', ()=>{ const nid=nb.dataset.next; if(nid) openLesson(LIDX[nid].courseId, nid); else back(); });
-    const tc = beatEl.querySelector('#std-tocourse'); if(tc) tc.addEventListener('click', back);
   }
-  function go(n){ bi=Math.max(0,Math.min(beats.length-1,n)); paintBeat(); }
-  prevBtn.addEventListener('click', ()=>go(bi-1));
-  nextBtn.addEventListener('click', ()=>go(bi+1));
-  stepEls.forEach(s=>s.addEventListener('click', ()=>go(parseInt(s.dataset.goto))));
+  function renderInst(){
+    const s=AST.lessons[id]||{};
+    if(writing){
+      instBody.innerHTML = `<textarea class="lsi-sheet" id="lsi-text" placeholder="${esc(ix.placeholder||(L.exercise&&L.exercise.placeholder)||'Write only the words you would keep.')}">${esc(s.draft||'')}</textarea>`;
+      const ta=instBody.querySelector('#lsi-text');
+      const save=()=>{ (AST.lessons[id]||(AST.lessons[id]={})).draft=ta.value; aSave(); };
+      ta.addEventListener('input', ()=>{ clearTimeout(ta._t); ta._t=setTimeout(()=>{save();updateSaved();},400); });
+    } else {
+      instBody.innerHTML = instrumentHTML(info.courseId, ix, s.choice||'');
+      instBody.querySelectorAll('.ls-move').forEach(m=>m.addEventListener('click', ()=>{
+        const v=m.dataset.choice; (AST.lessons[id]||(AST.lessons[id]={})).choice=v; aSave();
+        instBody.querySelectorAll('.ls-move').forEach(x=>x.classList.toggle('sel', x.dataset.choice===v));
+        updateSaved(); addMsg(tutorReplyFor(L,arch,v),'ai');
+      }));
+    }
+    updateSaved();
+  }
+  actBtn.addEventListener('click', ()=>{
+    const s=AST.lessons[id]||{};
+    if(writing){ const ta=instBody.querySelector('#lsi-text'); if(ta){ (AST.lessons[id]||(AST.lessons[id]={})).draft=ta.value; aSave(); } updateSaved(); showToast(ix.artifactLabel||'Added to your plan'); }
+    else { if(!s.choice){ showToast('Pick a move first'); return; } showToast(ix.artifactLabel||'Added to your plan'); addMsg(tutorReplyFor(L,arch,s.choice),'ai'); }
+    setMobile('idea'); goPage(pages.length-1);
+  });
 
-  // ---- quiz ----
+  // ---- left page paging (one idea at a time, never a wall) ----
+  let pi = 0;
+  const ptag=root.querySelector('#ls-ptag'), headEl=root.querySelector('#ls-head'), bodyEl=root.querySelector('#ls-idea-body'), pdots=root.querySelectorAll('#ls-pdots span');
+  function goPage(n){
+    pi=Math.max(0,Math.min(pages.length-1,n));
+    const p=pages[pi];
+    ptag.textContent=p.tag; headEl.textContent=p.heading; bodyEl.innerHTML=p.html;
+    pdots.forEach((d,i)=>{d.classList.toggle('on',i===pi);d.classList.toggle('done',i<pi);});
+    root.querySelector('#ls-prev').disabled=pi===0;
+    root.querySelector('#ls-next').disabled=pi===pages.length-1;
+    if(p.isCheck){ const qEl=bodyEl.querySelector('#std-quiz'); if(qEl) wireQuiz(qEl); if(completedThis) markChecked(); }
+  }
+  root.querySelector('#ls-prev').addEventListener('click',()=>goPage(pi-1));
+  root.querySelector('#ls-next').addEventListener('click',()=>goPage(pi+1));
+
+  function markChecked(){
+    if(bodyEl.querySelector('.ls-done')) return;
+    bodyEl.insertAdjacentHTML('beforeend', `<div class="ls-done"><div class="ls-done-h">${CHECK_SVG} Saved to ${esc(artifactName)}</div><p>This piece is in your artifact.</p><div class="wact">${nextLessonBtn(info,true)}<button class="ac-btn ac-btn-ghost" id="ls-tocourse">Back to course</button></div></div>`);
+    const nb=bodyEl.querySelector('#std-nextlesson'); if(nb) nb.addEventListener('click',()=>{ const nid=nb.dataset.next; if(nid) openLesson(LIDX[nid].courseId,nid); else back(); });
+    const tc=bodyEl.querySelector('#ls-tocourse'); if(tc) tc.addEventListener('click', back);
+  }
+
+  // ---- quiz (completion gate, unchanged logic) ----
   function wireQuiz(qEl){
     qEl.querySelectorAll('.std-opt').forEach(b=> b.addEventListener('click', ()=>{ if(b.disabled) return; qEl.querySelectorAll('.std-opt[data-q="'+b.dataset.q+'"]').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); }));
     const checkBtn = qEl.querySelector('#std-quiz-check'); if(!checkBtn) return;
@@ -7027,19 +8164,18 @@ function openLesson(courseId, lessonId){
       if(grade.passed){
         const wasDone = aIsDone(id);
         const aw = aComplete(id, grade); completedThis = true; done=true;
-        res.className='std-quiz-result pass'; res.textContent = (grade.mastered?'Full marks — mastery! ':grade.correct+'/'+grade.total+' — passed. ') + (aw.xp?('+'+aw.xp+' Light'):'Already banked');
+        res.className='std-quiz-result pass'; res.textContent = grade.mastered?'Full marks — saved to your artifact.':grade.correct+'/'+grade.total+' — passed. Saved to your artifact.';
         if(!wasDone) bankAnimation();
-        aCelebrate(aw);
-        setTimeout(()=>go(beats.length-1), 700);
+        aCelebrate(aw); updateArtifact(); updateSaved(); markChecked();
       } else {
-        retried=true; res.className='std-quiz-result fail'; res.textContent = grade.correct+'/'+grade.total+' — not yet. Review the method and try again.';
+        retried=true; res.className='std-quiz-result fail'; res.textContent = grade.correct+'/'+grade.total+' — not yet. Revisit the method and try again.';
         qEl.querySelectorAll('.std-opt').forEach(o=>{o.disabled=false;o.classList.remove('correct','wrong');});
         qEl.querySelectorAll('.std-q-explain').forEach(e=>e.style.display='none');
       }
     });
   }
 
-  // ---- tutor ----
+  // ---- Estrella margin ----
   const msgs = root.querySelector('#std-msgs'); const field = root.querySelector('#std-field');
   function addMsg(t,who){ const d=document.createElement('div'); d.className='std-msg '+who; d.innerHTML=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
   function ask(q, isChip){ if(!q) return; addMsg(esc(q),'user'); field.value=''; const ty=document.createElement('div'); ty.className='std-typing'; ty.innerHTML='<span></span><span></span><span></span>'; msgs.appendChild(ty); msgs.scrollTop=msgs.scrollHeight; setTimeout(()=>{ ty.remove(); addMsg(isChip?tutorChipReply(L,q):tutorReplyFor(L,arch,q),'ai'); }, 750); }
@@ -7047,23 +8183,23 @@ function openLesson(courseId, lessonId){
   root.querySelector('#std-send').addEventListener('click', ()=>ask(field.value.trim()));
   field.addEventListener('keypress', e=>{ if(e.key==='Enter') ask(field.value.trim()); });
 
-  // ---- mobile toggle ----
-  const studioEl = root.querySelector('.std');
-  function setMobile(m){ studioEl.dataset.m=m; root.querySelectorAll('.std-mtoggle button').forEach(x=>x.classList.toggle('on',x.dataset.m===m)); }
-  root.querySelectorAll('.std-mtoggle button').forEach(b=>b.addEventListener('click',()=>setMobile(b.dataset.m)));
+  // ---- mobile (Lesson / Instrument / Estrella) ----
+  const lsEl = root.querySelector('.ls');
+  function setMobile(m){ lsEl.dataset.m=m; root.querySelectorAll('.ls-mtoggle button').forEach(x=>x.classList.toggle('on',x.dataset.m===m)); }
+  root.querySelectorAll('.ls-mtoggle button').forEach(b=>b.addEventListener('click',()=>setMobile(b.dataset.m)));
 
-  // ---- bank animation (signature moment) ----
+  // ---- bank animation ----
   function bankAnimation(){
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const fly = document.createElement('div'); fly.className='std-fly'; fly.textContent='Added to '+(COURSE_ARTIFACT[info.courseId]||'your artifact');
-    const sb = beatEl.getBoundingClientRect();
-    fly.style.left = (sb.left+30)+'px'; fly.style.top = (sb.top+sb.height/2)+'px'; fly.style.opacity='1';
+    const fly = document.createElement('div'); fly.className='std-fly'; fly.textContent='Added to '+artifactName;
+    const sb = instBody.getBoundingClientRect();
+    fly.style.left = (sb.left+30)+'px'; fly.style.top = (sb.top+40)+'px'; fly.style.opacity='1';
     document.body.appendChild(fly);
     requestAnimationFrame(()=>{ fly.style.left = (window.innerWidth-260)+'px'; fly.style.top = '70px'; fly.style.opacity='0'; fly.style.transform='scale(.9)'; });
     setTimeout(()=>fly.remove(), 650);
   }
 
-  paintBeat();
+  renderInst(); updateArtifact(); goPage(0);
   switchView('lesson');
   return true;
 }
@@ -7090,11 +8226,11 @@ function nextLessonBtn(info, completed){
 }
 
 /* ==================================================================
-   OVERLAYS — full constellation + artifact vault
+   OVERLAYS - progress map + artifact vault
    ================================================================== */
 function openConstellation(){
   const regions = { foundation:{x:18,courses:TRACKS.find(t=>t.id==='foundation').courses}, signature:{x:50,courses:TRACKS.find(t=>t.id==='signature').courses}, interview:{x:82,courses:TRACKS.find(t=>t.id==='interview').courses} };
-  // build one big SVG: 8 course clusters placed in 3 columns
+  // Build one compact progress map: 8 course clusters placed in 3 columns.
   const W=100,H=100; let svg='';
   let seed=4;
   const placed = {};
@@ -7115,27 +8251,33 @@ function openConstellation(){
   const titles = TRACKS.map(tr=>{ const earned = AST.tracks[tr.id]&&AST.tracks[tr.id].done; return `<span class="ac-cst-title${earned?' earned':''}">${esc((tr.reward&&tr.reward.title)||tr.name)}</span>`; }).join('');
   const ov=document.createElement('div'); ov.className='ac-overlay';
   ov.innerHTML=`<div class="ac-cst-card">
-    <div class="ac-cst-head"><div><h2>Your sky</h2><p>Every lit star is a lesson you finished. Finish a track to draw its title.</p></div><button class="ac-cst-close" aria-label="Close">${BACK_SVG}</button></div>
+    <div class="ac-cst-head"><div><h2>Your progress map</h2><p>Every filled light is one lesson saved. Finish a track to unlock its title.</p></div><button class="ac-cst-close" aria-label="Close">${BACK_SVG}</button></div>
     <div class="ac-cst-stage"><svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">${svg}</svg></div>
     <div class="ac-cst-foot"><div class="ac-cst-titles">${titles}</div><button class="ac-btn ac-btn-ghost ac-cst-listbtn">List view</button></div>
   </div>`;
   ov.addEventListener('click',e=>{ if(e.target===ov||e.target.closest('.ac-cst-close')) ov.remove(); });
-  ov.querySelector('.ac-cst-listbtn').addEventListener('click',()=>{ ov.remove(); skyTab='Browse'; renderSky(); });
+  ov.querySelector('.ac-cst-listbtn').addEventListener('click',()=>{ ov.remove(); renderSky(); });
   document.body.appendChild(ov);
 }
 function openVault(){
-  const items = courses.map(c=>{ const cp=aCourseProgress(c.id); const done=cp.total>0&&cp.done===cp.total;
-    return `<div class="ac-vault-item${done?' done':(cp.done>0?'':' empty')}">
-      <div class="vlabel">${esc(c.track)}</div>
+  const items = courses.map(c=>{
+    const cp=aCourseProgress(c.id); const done=cp.total>0&&cp.done===cp.total; const tk=String(c.track||'').toLowerCase();
+    let preview=''; for(const id of aCourseLessons(c.id)){ const ls=AST.lessons[id]; if(ls&&(ls.draft||ls.choice)){ preview=ls.draft||ls.choice; break; } }
+    const state = done?'Complete — yours to keep':(cp.done>0?cp.done+' of '+cp.total+' pieces built':'Not started yet');
+    const prev = preview ? `<div class="vprev">“${esc(aClip(preview,90))}”</div>` : (cp.done>0?'':`<div class="vprev vempty">Finish one lesson to add the first piece.</div>`);
+    return `<div class="ac-vault-item v--${tk}${done?' done':(cp.done>0?'':' empty')}">
+      <div class="vtop"><span class="vlabel">${esc(c.track)}</span>${cp.done>0?`<button class="vopen" data-open-course="${c.id}">Open →</button>`:''}</div>
       <div class="vname">${esc(COURSE_ARTIFACT[c.id]||c.title)}</div>
-      <div class="vstate">${done?'Complete — yours to keep':(cp.done>0?cp.done+'/'+cp.total+' pieces built':'Not started')}</div>
+      ${prev}
+      <div class="vstate">${state}</div>
     </div>`;
   }).join('');
   const ov=document.createElement('div'); ov.className='ac-overlay';
   ov.innerHTML=`<div class="ac-vault-card"><button class="ac-vault-close" aria-label="Close">&times;</button>
+    <div class="ac-eyebrow">Archive</div>
     <h2>Your artifact vault</h2><div class="vsub">Everything you build in the Academy lives here — one real deliverable per course.</div>
     <div class="ac-vault-grid">${items}</div></div>`;
-  ov.addEventListener('click',e=>{ if(e.target===ov||e.target.closest('.ac-vault-close')) ov.remove(); });
+  ov.addEventListener('click',e=>{ if(e.target===ov||e.target.closest('.ac-vault-close')){ ov.remove(); return; } const o=e.target.closest('[data-open-course]'); if(o){ ov.remove(); openCourse(o.dataset.openCourse); } });
   document.body.appendChild(ov);
 }
 
