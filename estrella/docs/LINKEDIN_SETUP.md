@@ -78,12 +78,38 @@ Redeploy after setting them (env changes need a fresh deploy).
 
 ## 4. Deploy
 
+> **Root Directory must be `estrella`.** This repo keeps the app in the
+> `estrella/` subdirectory, so files are at `estrella/index.html`,
+> `estrella/api/...`. In Vercel → Settings → General → Root Directory, set it
+> to `estrella`, or the build serves from the repo root and every route 404s.
+
 ```bash
 vercel        # preview
 vercel --prod # production
 ```
 
 Then open the production URL and click **Continue with LinkedIn**.
+
+> **Sign-in only works on the registered production domain.** Vercel preview
+> deployments get random hostnames that won't match the redirect URI you
+> registered at LinkedIn, so the button will fail there — expected, not a bug.
+> If you add a custom domain later, register its
+> `https://<domain>/api/linkedin/callback` in the LinkedIn Auth tab too.
+
+---
+
+## Live deployment (as of 2026-06-27)
+
+Deployed and verified at **estrella-platform.vercel.app**. A real sign-in writes
+a row to `public.users` (confirmed: name, email, photo_url, last_seen_at). The
+LinkedIn app is currently bound to the "Hercules" Page for verification —
+invisible to end users; rename if you want it tidy.
+
+Gotchas hit during first setup (all fixed): the code must be pushed before
+import (Vercel builds `main`); `LINKEDIN_CLIENT_SECRET` can silently save empty;
+and it's easy to paste the service_role JWT into `SUPABASE_URL` instead of
+`SUPABASE_SERVICE_ROLE_KEY` — sign-in still works but no row writes, so if the
+session succeeds but the table stays empty, check those two fields first.
 
 ---
 
