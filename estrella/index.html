@@ -46,9 +46,9 @@
   --track-signature: #A8553C;
   --track-interview: #C2A24E;
 
-  --lavender: #B8A8E0;
+  --lavender: #B8985C;
   --lavender-bg: #EDE7F8;
-  --sage: #9BC2B5;
+  --sage: #97793F;
   --sage-bg: #E4F0EC;
   --peach: #F4C2A1;
   --peach-bg: #FBEADC;
@@ -75,6 +75,12 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;scroll-behavior:auto !important;
+  }
+}
 html,body{height:100%;overscroll-behavior:none}
 body{
   font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
@@ -435,16 +441,34 @@ body{
 .hero-portrait{
   position:absolute;inset:0;
 }
+.hero-portrait::before{
+  content:"";position:absolute;
+  top:clamp(118px,18vh,188px);
+  right:clamp(84px,7vw,150px);
+  width:clamp(150px,12vw,220px);
+  height:clamp(188px,17vw,270px);
+  z-index:1;pointer-events:none;
+  border-radius:50%;
+  background:rgba(244,237,223,0.045);
+  -webkit-backdrop-filter:blur(1.45px) saturate(0.72) contrast(0.9);
+  backdrop-filter:blur(1.45px) saturate(0.72) contrast(0.9);
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 42%,rgba(0,0,0,.72) 58%,transparent 76%);
+  mask-image:radial-gradient(ellipse at center,#000 42%,rgba(0,0,0,.72) 58%,transparent 76%);
+}
 .hero-portrait img{
   width:100%;height:100%;
-  object-fit:cover;
+  object-fit:contain;
   object-position:right center;
   display:block;
+  transform:translateX(8vw) scale(0.68);
+  transform-origin:right center;
+  filter:saturate(0.86) contrast(0.92) brightness(1.03) blur(0.28px);
+  opacity:.93;
 }
 .hero-visual::before{
   content:"";position:absolute;
   inset:0;
-  background:linear-gradient(90deg, rgba(244,237,223,0.99) 0%, rgba(244,237,223,0.95) 30%, rgba(244,237,223,0.7) 52%, rgba(244,237,223,0.18) 71%, transparent 88%);
+  background:linear-gradient(90deg, rgba(244,237,223,0.99) 0%, rgba(244,237,223,0.96) 30%, rgba(244,237,223,0.78) 52%, rgba(244,237,223,0.34) 70%, rgba(244,237,223,0.1) 88%);
   pointer-events:none;z-index:2;
 }
 .hero-portrait::after{
@@ -478,13 +502,13 @@ body{
 }
 .hero-dot.d1{
   top:32%;left:18%;
-  background:#B8A8E0;
-  box-shadow:0 0 16px rgba(184,168,224,0.5);
+  background:#B8985C;
+  box-shadow:0 0 16px rgba(184,152,92,0.45);
 }
 .hero-dot.d2{
   top:60%;right:8%;
-  background:#A8C8E0;
-  box-shadow:0 0 16px rgba(168,200,224,0.5);
+  background:var(--rust-soft);
+  box-shadow:0 0 16px rgba(196,122,94,0.4);
   animation-delay:2s;
 }
 .hero-dot.d3{
@@ -568,9 +592,9 @@ body{
   background:var(--gold);
   opacity:0.6;
 }
-.orb-particle.p1{top:20%;left:15%;background:var(--lavender)}
+.orb-particle.p1{top:20%;left:15%;background:var(--gold)}
 .orb-particle.p2{top:75%;right:20%;background:var(--gold)}
-.orb-particle.p3{top:45%;right:8%;background:var(--sage)}
+.orb-particle.p3{top:45%;right:8%;background:var(--gold-deep)}
 .orb-particle.p4{bottom:15%;left:40%;background:var(--peach)}
 
 /* Landing — How it works */
@@ -787,7 +811,7 @@ body{
 .cal-day{
   aspect-ratio:1;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
-  font-size:0.9rem;font-weight:500;
+  font-size:0.9rem;font-weight:500;font-variant-numeric:tabular-nums;
   cursor:pointer;transition:all 0.2s var(--ease);
   background:transparent;border:none;color:var(--text);
   position:relative;
@@ -808,7 +832,7 @@ body{
 .slot{
   padding:0.875rem 0;border-radius:12px;
   background:var(--surface);border:1.5px solid var(--line);
-  text-align:center;font-size:0.875rem;font-weight:500;
+  text-align:center;font-size:0.875rem;font-weight:500;font-variant-numeric:tabular-nums;
   cursor:pointer;transition:all 0.2s var(--ease);
   color:var(--ink);
 }
@@ -843,16 +867,16 @@ body{
   margin-top:1rem;
 }
 .summary-total .lbl{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ink);font-weight:500}
-.summary-total .val{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--ink);font-weight:600}
+.summary-total .val{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 .guarantee{
   margin-top:1.5rem;padding:1.125rem;
-  background:var(--sage-bg);
+  background:var(--gold-bg);
   border-radius:14px;
   display:flex;gap:0.875rem;align-items:flex-start;
 }
 .guarantee-icon{
   width:32px;height:32px;border-radius:50%;
-  background:var(--sage);color:#fff;
+  background:var(--gold-deep);color:#fff;
   display:flex;align-items:center;justify-content:center;font-weight:600;
   flex-shrink:0;font-size:0.85rem;
 }
@@ -932,7 +956,7 @@ body{
 }
 .readiness-fill{
   height:100%;border-radius:99px;
-  background:linear-gradient(90deg,var(--lavender),var(--gold),var(--sage));
+  background:linear-gradient(90deg,var(--gold),var(--gold),var(--gold-deep));
   width:36%;transition:width 0.8s var(--ease-out);
 }
 .readiness-pct{font-size:0.9rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
@@ -3725,6 +3749,111 @@ body{
   color:var(--gold-deep);line-height:1;
 }
 
+/* ============================== COACH DESK ============================== */
+#view-coach{overflow-y:auto}
+.coach-console{max-width:1080px;margin:0 auto;padding:3rem 2rem 4rem}
+.coach-head{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.5rem;
+  border-bottom:1px solid var(--line-strong);
+}
+.coach-h1{
+  font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:500;
+  line-height:1.05;color:var(--ink);margin:0.25rem 0 0.5rem;letter-spacing:-0.01em;
+}
+.coach-sub{font-size:0.95rem;line-height:1.5;color:var(--text-dim);margin:0;max-width:52ch}
+.coach-head-meta{display:flex;gap:1rem;flex-shrink:0}
+.coach-stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:0.75rem 1.25rem;text-align:center;min-width:88px;
+}
+.coach-stat strong{
+  display:block;font-family:'Cormorant Garamond',serif;font-size:1.75rem;
+  font-weight:600;color:var(--gold-deep);line-height:1;font-variant-numeric:tabular-nums;
+}
+.coach-stat span{
+  font-size:0.6875rem;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text-mute);margin-top:0.25rem;display:block;
+}
+.coach-briefs{display:grid;grid-template-columns:1fr;gap:1.5rem}
+.coach-brief{
+  background:linear-gradient(165deg,#FDF9F0 0%,#F6EEDA 100%);
+  border:1px solid rgba(151,121,63,0.22);border-radius:16px;padding:1.75rem;
+  box-shadow:0 18px 44px -28px rgba(20,18,14,0.28);
+  transition:box-shadow .2s var(--ease),border-color .2s var(--ease);
+}
+.coach-brief.is-new{border-color:rgba(151,121,63,0.5)}
+.coach-brief-top{
+  display:flex;align-items:flex-start;gap:1rem;
+  padding-bottom:1.25rem;margin-bottom:1.25rem;
+  border-bottom:1px solid rgba(151,121,63,0.14);
+}
+.coach-brief-avatar{
+  width:48px;height:48px;flex-shrink:0;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bg);color:var(--gold-deep);border:1.5px solid var(--gold-soft);
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;
+}
+.coach-brief-id{flex:1;min-width:0}
+.coach-brief-name{
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;
+  color:var(--ink);line-height:1.1;margin-bottom:0.15rem;
+}
+.coach-brief-role{font-size:0.85rem;color:var(--text-dim);line-height:1.4;margin-bottom:0.5rem}
+.coach-brief .coach-tag{
+  display:inline-block;font-size:0.6875rem;font-weight:600;letter-spacing:0.06em;
+  text-transform:uppercase;padding:0.25rem 0.625rem;border-radius:99px;
+}
+.coach-brief .coach-tag.new{background:var(--gold-deep);color:#FBF7EC}
+.coach-brief .coach-tag.done{background:var(--surface);color:var(--text-mute);border:1px solid var(--line)}
+.coach-brief-when{
+  flex-shrink:0;text-align:right;font-size:0.7rem;color:var(--text-mute);
+  letter-spacing:0.06em;text-transform:uppercase;line-height:1.5;
+}
+.coach-brief-when strong{
+  display:block;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;
+  color:var(--ink);text-transform:none;letter-spacing:0;font-variant-numeric:tabular-nums;
+}
+.coach-brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.coach-col-h{
+  font-size:0.6875rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:0.75rem;
+}
+.coach-field{margin-bottom:1rem}
+.coach-field-lbl{
+  font-size:0.6875rem;letter-spacing:0.04em;text-transform:uppercase;
+  color:var(--text-mute);margin-bottom:0.25rem;
+}
+.coach-field-val{font-size:0.9rem;line-height:1.55;color:var(--text)}
+.coach-field-val.quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;
+  line-height:1.45;color:var(--ink);
+}
+.coach-strengths{list-style:none;padding:0;margin:0;font-size:0.9rem;line-height:1.6;color:var(--text)}
+.coach-strengths li{padding-left:1rem;position:relative}
+.coach-strengths li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+.coach-brief-foot{
+  display:flex;justify-content:flex-end;margin-top:1.25rem;padding-top:1.25rem;
+  border-top:1px solid rgba(151,121,63,0.14);
+}
+.coach-review-btn{
+  font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:500;
+  min-height:44px;padding:0.625rem 1.5rem;border-radius:99px;cursor:pointer;
+  background:var(--ink);color:var(--bg);border:none;transition:opacity .2s var(--ease);
+}
+.coach-review-btn:hover{opacity:0.88}
+.coach-review-btn.done{background:transparent;color:var(--text-mute);border:1px solid var(--line-strong)}
+.coach-empty{text-align:center;padding:4rem 2rem;color:var(--text-dim)}
+.coach-empty svg{margin:0 auto 1rem;display:block}
+.coach-empty p{font-size:0.95rem;line-height:1.5;max-width:36ch;margin:0 auto}
+@media(max-width:768px){
+  .coach-console{padding:2rem 1.25rem 3rem}
+  .coach-h1{font-size:2rem}
+  .coach-brief-grid{grid-template-columns:1fr;gap:1.25rem}
+  .coach-brief-top{flex-wrap:wrap}
+  .coach-brief-when{text-align:left;width:100%}
+}
+
 .practice-footnav{display:none}
 .practice-hero{
   display:grid;
@@ -3873,10 +4002,10 @@ body{
   background:linear-gradient(160deg, var(--gold-bg) 0%, #FBF7EC 70%);
 }
 .practice-tile--program .practice-tile-hero{
-  background:linear-gradient(160deg, var(--lavender-bg) 0%, #FBF7EC 70%);
+  background:linear-gradient(160deg, var(--gold-bg) 0%, #FBF7EC 70%);
 }
 .practice-tile--partnership .practice-tile-hero{
-  background:linear-gradient(160deg, var(--sage-bg) 0%, #FBF7EC 70%);
+  background:linear-gradient(160deg, var(--surface-2) 0%, #FBF7EC 70%);
 }
 .practice-tile:hover.practice-tile--single{border-color:rgba(184,152,92,0.5)}
 .practice-tile:hover.practice-tile--program{border-color:rgba(184,168,224,0.5)}
@@ -4071,9 +4200,22 @@ body{
   position:relative;margin:0;overflow:hidden;
   background:linear-gradient(180deg,#F5E8D2 0%,#E0B982 100%);
 }
-.door-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 24%;display:block}
+.door-portrait img{
+  width:100%;height:100%;
+  object-fit:contain;
+  object-position:center bottom;
+  display:block;
+  transform:scale(0.82);
+  transform-origin:center center;
+  filter:saturate(0.9) contrast(0.95) brightness(1.02) blur(0.18px);
+}
+.door-portrait::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(255,253,248,0.1),rgba(244,237,223,0.18) 58%,rgba(244,237,223,0.08));
+  mix-blend-mode:soft-light;
+}
 .door-portrait::after{
-  content:"";position:absolute;inset:auto 0 0;height:42%;
+  content:"";position:absolute;inset:auto 0 0;height:42%;z-index:1;
   background:linear-gradient(180deg,transparent,rgba(20,18,14,0.55));pointer-events:none;
 }
 .door-portrait-card{
@@ -4109,7 +4251,7 @@ body{
   padding-bottom:2rem;margin-bottom:2rem;border-bottom:1px solid var(--line);
 }
 .door-price strong{
-  font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:500;line-height:1;color:var(--ink);
+  font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:500;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;
 }
 .door-price span{font-size:0.85rem;color:var(--text-dim)}
 .door-cta{align-self:flex-start}
@@ -4202,15 +4344,15 @@ body{
 }
 #start-input::placeholder{color:var(--text-mute)}
 .start-mic,.start-send{
-  width:36px;height:36px;
+  width:44px;height:44px;
   display:flex;align-items:center;justify-content:center;
   border-radius:50%;border:none;cursor:pointer;
-  transition:transform 0.2s,background 0.2s;
+  transition:opacity 0.2s,background 0.2s;
 }
 .start-mic{background:transparent;color:var(--text-dim)}
 .start-mic:hover{color:var(--ink);background:var(--bg-soft)}
 .start-send{background:var(--ink);color:#FBF7EC}
-.start-send:hover{transform:scale(1.05)}
+.start-send:hover{opacity:0.88}
 .start-send:disabled{opacity:0.3;cursor:not-allowed;transform:none}
 .start-tertiary{
   margin-top:0.875rem;font-size:0.8125rem;
@@ -4284,7 +4426,7 @@ body{
 .start-profile-quote::before{
   content:"“";color:var(--gold);font-size:1.25em;line-height:0;
 }
-.start-profile-quote-goal::before{color:var(--lavender)}
+.start-profile-quote-goal::before{color:var(--gold)}
 .start-profile-strengths li::before{
   content:"";
   width:8px;height:8px;border-radius:50%;
@@ -4493,7 +4635,7 @@ body{
   font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:500;
   border-radius:999px;cursor:pointer;text-transform:lowercase;
 }
-#start-email-save.saved{background:var(--sage);pointer-events:none}
+#start-email-save.saved{background:var(--gold-deep);pointer-events:none}
 @media (max-width:720px){
   .start-question{font-size:2rem}
   .start-msg-ai{font-size:1.15rem;padding-right:1rem}
@@ -4540,7 +4682,7 @@ body{
   .hero-options{width:100%;max-width:580px}
   .hero-visual{position:relative;min-height:560px;order:-1;background:#E7C189}
   .hero-visual::before{display:block;background:linear-gradient(180deg, transparent 0%, rgba(244,237,223,0.05) 58%, rgba(244,237,223,0.88) 100%)}
-  .hero-portrait img{object-fit:cover;object-position:72% center}
+  .hero-portrait img{object-fit:contain;object-position:right center}
   .hero-portrait::after{display:none}
   .hero-rings{width:380px;height:380px;left:50%}
   .orb-stage{width:340px;height:340px}
@@ -4602,7 +4744,7 @@ body{
   .hero-option-grid{grid-template-columns:1fr}
   .hero-mini-option{min-height:auto;gap:0.5rem}
   .hero-visual{min-height:430px}
-  .hero-portrait img{object-position:68% center}
+  .hero-portrait img{object-position:right center}
   .final-cta{padding:2.5rem 1.5rem}
   .dash-container,.book-container,.lib-container,.academy-container{padding-left:1.25rem;padding-right:1.25rem}
 }
@@ -5091,9 +5233,9 @@ body{
                   <circle r="46" fill="none" stroke="#FAE5EA" stroke-width="9"/>
                   <circle r="46" fill="none" stroke="#E8A5B8" stroke-width="9" stroke-dasharray="245 289" transform="rotate(-90)" stroke-linecap="round"/>
                   <circle r="34" fill="none" stroke="#EDE7F8" stroke-width="9"/>
-                  <circle r="34" fill="none" stroke="#B8A8E0" stroke-width="9" stroke-dasharray="190 214" transform="rotate(-90)" stroke-linecap="round"/>
+                  <circle r="34" fill="none" stroke="#B8985C" stroke-width="9" stroke-dasharray="190 214" transform="rotate(-90)" stroke-linecap="round"/>
                   <circle r="22" fill="none" stroke="#E4F0EC" stroke-width="9"/>
-                  <circle r="22" fill="none" stroke="#9BC2B5" stroke-width="9" stroke-dasharray="126 138" transform="rotate(-90)" stroke-linecap="round"/>
+                  <circle r="22" fill="none" stroke="#97793F" stroke-width="9" stroke-dasharray="126 138" transform="rotate(-90)" stroke-linecap="round"/>
                 </g>
                 <!-- Legend -->
                 <g font-family="Inter" font-size="8" fill="#3D3933">
@@ -5103,13 +5245,13 @@ body{
                   <text x="258" y="53" font-size="6" fill="#A39B91">/10</text>
                   <text x="290" y="53" font-size="7" fill="#4FA381" font-weight="600">↑ +2.1</text>
 
-                  <circle cx="148" cy="70" r="4" fill="#B8A8E0"/>
+                  <circle cx="148" cy="70" r="4" fill="#B8985C"/>
                   <text x="158" y="73">Emotional Clarity</text>
                   <text x="240" y="73" font-family="Cormorant Garamond" font-size="11" fill="#14120E" font-weight="600">8.5</text>
                   <text x="258" y="73" font-size="6" fill="#A39B91">/10</text>
                   <text x="290" y="73" font-size="7" fill="#4FA381" font-weight="600">↑ +1.4</text>
 
-                  <circle cx="148" cy="90" r="4" fill="#9BC2B5"/>
+                  <circle cx="148" cy="90" r="4" fill="#97793F"/>
                   <text x="158" y="93">Goal Alignment</text>
                   <text x="240" y="93" font-family="Cormorant Garamond" font-size="11" fill="#14120E" font-weight="600">9.0</text>
                   <text x="258" y="93" font-size="6" fill="#A39B91">/10</text>
@@ -5250,23 +5392,23 @@ body{
 
           <div class="field">
             <label>Card number</label>
-            <input type="text" value="4242 4242 4242 4242" />
+            <input type="text" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" />
           </div>
           <div class="fields-row">
-            <div class="field"><label>Expiry</label><input type="text" value="12 / 28"/></div>
-            <div class="field"><label>CVC</label><input type="text" value="•••"/></div>
+            <div class="field"><label>Expiry</label><input type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY"/></div>
+            <div class="field"><label>CVC</label><input type="password" inputmode="numeric" autocomplete="cc-csc" placeholder="123"/></div>
           </div>
           <div class="field">
             <label>Email for receipt</label>
-            <input type="email" value="sarah.j@example.com" id="ck-email"/>
+            <input type="email" autocomplete="email" placeholder="you@example.com" id="ck-email"/>
           </div>
 
           <button class="btn btn-primary btn-lg btn-block" onclick="simulatePay()" style="margin-top:1.5rem">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Pay <span id="ck-pay-total">AED 1,260</span>
+            Pay <span id="ck-pay-total">AED 500</span>
           </button>
 
-          <div class="payment-trust">256-bit SSL · 3D Secure · Stripe · Tap · PayTabs</div>
+          <div class="payment-trust">100% refundable up to 48 hours before your session.</div>
         </div>
       </div>
     </div>
@@ -5377,12 +5519,12 @@ body{
           <!-- Middle ring -->
           <circle class="ring-track" cx="100" cy="100" r="68"/>
           <circle class="ring-fill" id="ring-middle" cx="100" cy="100" r="68"
-                  stroke="#B8A8E0"
+                  stroke="#B8985C"
                   stroke-dasharray="0 427"/>
           <!-- Inner ring -->
           <circle class="ring-track" cx="100" cy="100" r="50"/>
           <circle class="ring-fill" id="ring-inner" cx="100" cy="100" r="50"
-                  stroke="#9BC2B5"
+                  stroke="#97793F"
                   stroke-dasharray="0 314"/>
           <defs>
             <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -5406,12 +5548,12 @@ body{
         <div class="breakdown-item">
           <div class="breakdown-name">Emotional Clarity</div>
           <div class="breakdown-val">88<small>/100</small></div>
-          <div class="breakdown-bar"><div style="background:var(--lavender);width:0%" data-w="88"></div></div>
+          <div class="breakdown-bar"><div style="background:var(--gold);width:0%" data-w="88"></div></div>
         </div>
         <div class="breakdown-item">
           <div class="breakdown-name">Goal Alignment</div>
           <div class="breakdown-val">89<small>/100</small></div>
-          <div class="breakdown-bar"><div style="background:var(--sage);width:0%" data-w="89"></div></div>
+          <div class="breakdown-bar"><div style="background:var(--gold-deep);width:0%" data-w="89"></div></div>
         </div>
       </div>
 
@@ -6103,8 +6245,8 @@ let state = {
   selectedService: null,
   selectedDate: null,
   selectedTime: null,
-  currentMonth: 5, // June (0-indexed)
-  currentYear: 2026,
+  currentMonth: new Date().getMonth(), // open on the real current month
+  currentYear: new Date().getFullYear(),
   chatStep: 0,
   linkedInUser: null
 };
@@ -6397,8 +6539,9 @@ function renderCalendar(){
     const isPast = (state.currentYear < todayY) ||
                    (state.currentYear === todayY && state.currentMonth < todayM) ||
                    (state.currentYear === todayY && state.currentMonth === todayM && d < todayD);
-    const isWeekend = new Date(state.currentYear, state.currentMonth, d).getDay() === 5;
-    const hasSlots = !isPast && !isWeekend && d % 3 !== 0; // mock availability
+    const dow = new Date(state.currentYear, state.currentMonth, d).getDay();
+    const isWeekend = dow === 0 || dow === 6; // UAE weekend: Sat + Sun
+    const hasSlots = !isPast && !isWeekend && d % 3 !== 0; // mock availability (real source in Phase 3)
     const selected = state.selectedDate &&
                      state.selectedDate.day === d &&
                      state.selectedDate.month === state.currentMonth &&
