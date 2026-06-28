@@ -59,11 +59,13 @@ module.exports = async (req, res) => {
 
     // 4) Issue a signed session and return to the app. Shape matches the frontend's
     //    existing getLinkedInUser() contract: { name, headline, photoUrl, email }.
+    const photoUrl = profilePhotoUrl(profile);
     const session = {
       sub: profile.sub,
       name: profile.name || [profile.given_name, profile.family_name].filter(Boolean).join(' ') || 'LinkedIn member',
       email: profile.email || null,
-      photoUrl: profile.picture || null,
+      photoUrl,
+      picture: photoUrl,
       headline: '', // LinkedIn basic OIDC does not expose headline; app falls back to screening role
     };
     L.setCookie(res, L.COOKIE, L.makeSession(session), 60 * 60 * 24 * 30); // 30 days
@@ -76,3 +78,16 @@ module.exports = async (req, res) => {
     return fail(res, 'server_error');
   }
 };
+
+function profilePhotoUrl(profile) {
+  if (!profile || typeof profile !== 'object') return null;
+  const direct = profile.picture || profile.photoUrl || profile.photo_url || profile.avatar_url || profile.avatar || profile.image;
+  if (direct) return direct;
+  const legacy = profile.profilePicture && profile.profilePicture['displayImage~'] && profile.profilePicture['displayImage~'].elements;
+  if (Array.isArray(legacy) && legacy.length) {
+    const best = legacy[legacy.length - 1];
+    const id = best && best.identifiers && best.identifiers[0] && best.identifiers[0].identifier;
+    if (id) return id;
+  }
+  return null;
+}

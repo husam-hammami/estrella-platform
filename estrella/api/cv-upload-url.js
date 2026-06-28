@@ -73,11 +73,19 @@ module.exports = async (req, res) => {
   try {
     let b = '';
     for await (const c of req) b += c;
-    const { brief_id, ext } = JSON.parse(b || '{}');
+    const { brief_id, ext, profile } = JSON.parse(b || '{}');
 
-    if (!brief_id) return L.sendJson(res, 400, { error: 'missing_brief_id' });
     const cleanExt = String(ext || '').toLowerCase();
     if (!ALLOWED_EXT.includes(cleanExt)) return L.sendJson(res, 400, { error: 'bad_ext' });
+
+    if (profile === true) {
+      const objectPath = `${s.sub}/profile-cv-${Date.now()}.${cleanExt}`;
+      const signed = await signedUploadUrl(objectPath);
+      if (!signed.ok) return L.sendJson(res, signed.status, { error: signed.error });
+      return L.sendJson(res, 200, { path: objectPath, uploadUrl: signed.uploadUrl, profile: true });
+    }
+
+    if (!brief_id) return L.sendJson(res, 400, { error: 'missing_brief_id' });
 
     // Verify the brief belongs to the caller before issuing any signed url.
     const ownPath = `briefs?id=eq.${encodeURIComponent(brief_id)}&client_sub=eq.${encodeURIComponent(s.sub)}&select=id`;
@@ -92,29 +100,35 @@ module.exports = async (req, res) => {
     // Supabase Storage REST: create a signed upload url (token-based PUT).
     // POST /storage/v1/object/upload/sign/<bucket>/<objectPath>
     //  -> { url: "/object/upload/sign/cvs/<objectPath>?token=..." }
-    const base = process.env.SUPABASE_URL.replace(/\/$/, '');
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    const signResp = await fetch(
-      `${base}/storage/v1/object/upload/sign/cvs/${objectPath}`,
-      {
-        method: 'POST',
-        headers: { apikey: key, Authorization: `Bearer ${key}` },
-      }
-    );
-    if (!signResp.ok) {
-      const text = await signResp.text().catch(() => '');
-      console.error('cv-upload-url sign failed', signResp.status, text);
-      return L.sendJson(res, 502, { error: 'storage_error' });
-    }
-    const signed = await signResp.json();
-    // The returned `url` is relative to /storage/v1 (e.g.
-    // "/object/upload/sign/cvs/<path>?token=..."). Build the absolute PUT url.
-    const relative = signed.url || signed.signedURL || '';
-    const uploadUrl = `${base}/storage/v1${relative.startsWith('/') ? '' : '/'}${relative}`;
+    const signed = await signedUploadUrl(objectPath);
+    if (!signed.ok) return L.sendJson(res, signed.status, { error: signed.error });
 
-    return L.sendJson(res, 200, { path: objectPath, uploadUrl });
+    return L.sendJson(res, 200, { path: objectPath, uploadUrl: signed.uploadUrl });
   } catch (e) {
     console.error('cv-upload-url error', e);
     return L.sendJson(res, 500, { error: 'server_error' });
   }
 };
+
+async function signedUploadUrl(objectPath) {
+  const base = process.env.SUPABASE_URL.replace(/\/$/, '');
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const signResp = await fetch(
+    `${base}/storage/v1/object/upload/sign/cvs/${objectPath}`,
+    {
+      method: 'POST',
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+    }
+  );
+  if (!signResp.ok) {
+    const text = await signResp.text().catch(() => '');
+    console.error('cv-upload-url sign failed', signResp.status, text);
+    return { ok: false, status: 502, error: 'storage_error' };
+  }
+  const signed = await signResp.json();
+  // The returned `url` is relative to /storage/v1 (e.g.
+  // "/object/upload/sign/cvs/<path>?token=..."). Build the absolute PUT url.
+  const relative = signed.url || signed.signedURL || '';
+  const uploadUrl = `${base}/storage/v1${relative.startsWith('/') ? '' : '/'}${relative}`;
+  return { ok: true, uploadUrl };
+}

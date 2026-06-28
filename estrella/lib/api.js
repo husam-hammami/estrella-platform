@@ -95,11 +95,12 @@ async function upsertUser(profile) {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) return; // registry optional — sign-in still works without it
   const now = new Date().toISOString();
+  const photoUrl = profilePhotoUrl(profile);
   const row = {
     linkedin_sub: profile.sub,
     name: profile.name || null,
     email: profile.email || null,
-    photo_url: profile.picture || null,
+    photo_url: photoUrl,
     locale: typeof profile.locale === 'string' ? profile.locale : (profile.locale?.language || null),
     last_seen_at: now,
   };
@@ -118,6 +119,19 @@ async function upsertUser(profile) {
     const text = await resp.text().catch(() => '');
     console.error('Supabase upsert failed', resp.status, text);
   }
+}
+
+function profilePhotoUrl(profile) {
+  if (!profile || typeof profile !== 'object') return null;
+  const direct = profile.picture || profile.photoUrl || profile.photo_url || profile.avatar_url || profile.avatar || profile.image;
+  if (direct) return direct;
+  const legacy = profile.profilePicture && profile.profilePicture['displayImage~'] && profile.profilePicture['displayImage~'].elements;
+  if (Array.isArray(legacy) && legacy.length) {
+    const best = legacy[legacy.length - 1];
+    const id = best && best.identifiers && best.identifiers[0] && best.identifiers[0].identifier;
+    if (id) return id;
+  }
+  return null;
 }
 
 // ---- JSON response helper (consistent shape, no caching) ----
