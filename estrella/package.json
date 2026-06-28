@@ -2,8 +2,11 @@
   "name": "estrella",
   "version": "1.0.0",
   "private": true,
-  "description": "Estrella — premium AI-assisted career coaching prototype with real LinkedIn sign-in.",
+  "description": "Estrella — premium AI-assisted career coaching platform (LinkedIn sign-in, AI screening, Stripe booking).",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "stripe": "^16.12.0"
   }
 }

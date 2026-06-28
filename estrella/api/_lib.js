@@ -120,9 +120,67 @@ async function upsertUser(profile) {
   }
 }
 
+// ---- JSON response helper (consistent shape, no caching) ----
+function sendJson(res, status, obj) {
+  res.statusCode = status;
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Cache-Control', 'no-store');
+  res.end(JSON.stringify(obj));
+}
+
+// ---- Auth helpers (reuse the LinkedIn signed-cookie session) ----
+// readSession takes the TOKEN STRING (not req). These wrap parseCookies→readSession
+// and send 401/403 on failure. Return the session object, or null if it responded.
+function requireUser(req, res) {
+  const session = readSession(parseCookies(req)[COOKIE]);
+  if (!session || !session.sub) { sendJson(res, 401, { error: 'not_signed_in' }); return null; }
+  return session;
+}
+
+function requireCoach(req, res) {
+  const session = requireUser(req, res);
+  if (!session) return null;
+  const coach = process.env.COACH_LINKEDIN_SUB;
+  // Fails closed if COACH_LINKEDIN_SUB is unset (nobody matches undefined).
+  if (!coach || session.sub !== coach) { sendJson(res, 403, { error: 'not_authorized' }); return null; }
+  return session;
+}
+
+// ---- Supabase PostgREST helper (service_role; server-only) ----
+function sbConfigured() {
+  return !!(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY);
+}
+// Returns the raw fetch Response for `${SUPABASE_URL}/rest/v1/${path}`.
+// Throws 'supabase_not_configured' so callers can convert to a clean 503.
+async function sb(path, opts = {}) {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new Error('supabase_not_configured');
+  const headers = {
+    apikey: key,
+    Authorization: `Bearer ${key}`,
+    'Content-Type': 'application/json',
+    ...(opts.headers || {}),
+  };
+  return fetch(`${url.replace(/\/$/, '')}/rest/v1/${path}`, { ...opts, headers });
+}
+
+// ---- Raw request body (for the Stripe webhook signature check) ----
+// This project's other routes never read a body; the webhook needs the exact
+// raw bytes, so read the stream manually (no req.rawBody guarantee on Vercel).
+function readRawBody(req) {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', (c) => { data += c; });
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
+}
+
 module.exports = {
   LINKEDIN, env, originOf, redirectUri, b64url,
   COOKIE, STATE_COOKIE,
   makeSession, readSession, parseCookies, setCookie, clearCookie,
   upsertUser, crypto,
+  sendJson, requireUser, requireCoach, sbConfigured, sb, readRawBody,
 };
