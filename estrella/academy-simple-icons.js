@@ -1,4 +1,4 @@
-/* Estrella Academy — Simple Mode icon library.
+/* Nuria Academy — Simple Mode icon library.
    Small line icons (24x24, stroke=currentColor). Each choice gets one; the chosen
    icon flies into the course artifact as that lesson's gold token. */
 window.SIMPLE_ICONS = {

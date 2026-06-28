@@ -1,4 +1,4 @@
-/* Estrella Academy — Simple Mode content registry (icons + helpful). Generated from docs/academy-simple-design.json. */
+/* Nuria Academy — Simple Mode content registry (icons + helpful). Generated from docs/academy-simple-design.json. */
 window.ESTRELLA_SIMPLE = {
  "courses": {
   "confidence": {
@@ -6,7 +6,7 @@ window.ESTRELLA_SIMPLE = {
    "artifact": {
     "name": "Reset Ring",
     "totalUnits": 6,
-    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a single calm success tint var(--ok) #4C9C7A used only for the Estrella 'win' chip",
+    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a single calm success tint var(--ok) #4C9C7A used only for the Nuria 'win' chip",
     "fillUnit": "One node lights gold and receives the icon of the reset move chosen in that lesson.",
     "concept": "A gold ring of six small lights — one lights per lesson. It is the hero of every screen and shows your confidence reset filling up, one tiny win at a time."
    },
@@ -144,7 +144,7 @@ window.ESTRELLA_SIMPLE = {
    "artifact": {
     "name": "The Profile Glow",
     "totalUnits": 12,
-    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a single warm amber tint (#D8A94A) reserved for the USEFUL band, kept inside the Estrella palette",
+    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a single warm amber tint (#D8A94A) reserved for the USEFUL band, kept inside the Nuria palette",
     "fillUnit": "One saved lesson lights exactly one segment-cell (the next one up), tinted by that lesson's quality: clear-gold, proof-gold-deep, or useful-warm. Completing all 4 cells in a band snaps that band's side-label to lit gold and brightens the name disc one stage.",
     "concept": "A vertical reputation meter that fills with light as your name becomes Clear, Proof-backed, and Useful — 12 lessons turn a faint profile into one that glows."
    },
@@ -408,7 +408,7 @@ window.ESTRELLA_SIMPLE = {
    "artifact": {
     "name": "Interview Readiness Ring",
     "totalUnits": 12,
-    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a single calm green (--ok #4C9C7A) used only for the Estrella 'win' line",
+    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a single calm green (--ok #4C9C7A) used only for the Nuria 'win' line",
     "fillUnit": "One lesson lights one arc-segment of the ring and docks its move-token inside that arc.",
     "concept": "A gold ring that fills as you decode questions and bank ready answers — when it is full, you walk in ready."
    },
@@ -672,7 +672,7 @@ window.ESTRELLA_SIMPLE = {
    "artifact": {
     "name": "The AI Decision Map",
     "totalUnits": 16,
-    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) plus a soft sage-green (#4C9C7A / #ECF6F0) used only for the KEEP HUMAN zone tint and the win-state Estrella note",
+    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) plus a soft sage-green (#4C9C7A / #ECF6F0) used only for the KEEP HUMAN zone tint and the win-state Nuria note",
     "fillUnit": "One gold dot lands inside one of the four zones — the zone that lesson's real teaching points to (Automate, Help, Keep human, or Not ready).",
     "concept": "A four-zone map of where AI belongs in people work. Each saved lesson drops one gold dot into the right zone, so the learner literally watches their judgment take shape across the four quadrants."
    },
@@ -1020,7 +1020,7 @@ window.ESTRELLA_SIMPLE = {
    "artifact": {
     "name": "The Energy Battery",
     "totalUnits": 6,
-    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) as the charge color, with a single calm sage-green tint (--ok #4C9C7A) reserved only for the Estrella 'win' line and the recover/leaf cell accent — kept inside the Estrella palette",
+    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) as the charge color, with a single calm sage-green tint (--ok #4C9C7A) reserved only for the Nuria 'win' line and the recover/leaf cell accent — kept inside the Nuria palette",
     "fillUnit": "One saved lesson charges exactly one cell — it fills left-to-right with the gold gradient, gains the gold glow, and stamps the chosen move's small white icon inside it. The big charge number ticks up by one.",
     "concept": "A premium gold battery that charges cell by cell as you make one load-protecting choice per lesson — the visual proof that a leader's energy is refillable, not endless."
    },
@@ -1158,7 +1158,7 @@ window.ESTRELLA_SIMPLE = {
    "artifact": {
     "name": "Talk Stage",
     "totalUnits": 12,
-    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a warm stage-light amber wash (--gold-bg #FBF3DC) as the only secondary tint; win state borrows the V2 calm green --ok #4C9C7A for Estrella only",
+    "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) with a warm stage-light amber wash (--gold-bg #FBF3DC) as the only secondary tint; win state borrows the V2 calm green --ok #4C9C7A for Nuria only",
     "fillUnit": "One saved lesson lights the next footlight along the front edge, nudges the side meter up one of 12 steps, and lifts the curtain a little — and the move you picked (a small icon: open / scissors / pause / question) drops into that footlight as its glow.",
     "concept": "A small warm-lit stage whose footlights turn on and whose curtain rises one step per saved lesson — by lesson 12 the speaker stands fully ready in a fully-lit, fully-open stage. It is a stage, not a ring of dots: a wide shape with a row of lights along the front and a rising meter on the side."
    },

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Nesreen — Interactive Prototype</title>
+<title>Nuria - Grow Beyond Limits</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Estrella brand palette — cream, ink, gold */
+  /* Nuria brand palette — cream, ink, gold */
   --bg: #F2EBDC;
   --bg-soft: #ECE3D0;
   --surface: #FBF7EC;
@@ -71,7 +71,7 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --nav-h: 72px;
+  --nav-h: 118px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
@@ -126,10 +126,10 @@ body{
 .topnav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:grid;
-  grid-template-columns:minmax(9rem, auto) 1fr auto;
+  grid-template-columns:minmax(clamp(15rem, 21vw, 22rem), auto) 1fr auto;
   align-items:center;
-  gap:1rem 1.5rem;
-  padding:0.5rem clamp(1.25rem, 3vw, 2.5rem);
+  gap:1rem 1.75rem;
+  padding:0.26rem clamp(1.25rem, 3vw, 2.5rem);
   background:#F2EBDC;
   border-bottom:1px solid var(--line);
   transition:all 0.3s var(--ease);
@@ -139,13 +139,53 @@ body{
 .brand{
   display:flex;align-items:center;
   cursor:pointer;line-height:1;
-  min-width:0;
+  min-width:clamp(15rem, 21vw, 22rem);
+  position:relative;
+  isolation:isolate;
+}
+.brand::before{
+  content:"";
+  position:absolute;
+  left:49%;
+  top:10%;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,.95) 0%, rgba(232,198,111,.95) 27%, rgba(184,152,92,.34) 54%, transparent 72%);
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.62);
+  filter:blur(.2px);
+  mix-blend-mode:screen;
+  pointer-events:none;
+  z-index:2;
+  animation:nuriaStarPulse 5.6s ease-in-out infinite;
+}
+.brand::after{
+  content:"";
+  position:absolute;
+  inset:15% 4% 8% 0;
+  background:linear-gradient(105deg, transparent 34%, rgba(255,255,255,.58) 49%, rgba(220,197,137,.26) 54%, transparent 66%);
+  transform:translateX(-130%) skewX(-16deg);
+  opacity:0;
+  pointer-events:none;
+  z-index:2;
+  animation:nuriaLogoSweep 8.5s ease-in-out infinite;
 }
 .brand-logo-img{
   display:block;
-  height:clamp(2.9rem, 3.4vw, 3.35rem);
+  height:clamp(6.85rem, 7.35vw, 7.85rem);
+  max-width:clamp(16.25rem, 22vw, 23rem);
   width:auto;
   object-fit:contain;
+  filter:drop-shadow(0 6px 12px rgba(20,18,14,.08));
+  transform-origin:48% 48%;
+  animation:nuriaLogoBreathe 8s ease-in-out infinite;
+  transition:transform .32s var(--ease), filter .32s var(--ease);
+  will-change:transform,filter;
+}
+.brand:hover .brand-logo-img{
+  transform:translateY(-1px) scale(1.025);
+  filter:drop-shadow(0 10px 18px rgba(20,18,14,.13));
 }
 .brand-wordmark{
   display:flex;flex-direction:column;gap:0.125rem;
@@ -185,7 +225,24 @@ body{
   90%  { transform:translate(48px, 20px) scale(1);    opacity:1 }
   100% { transform:translate(48px, 20px) scale(1.05); opacity:0 }
 }
-/* Estrella sparkle motif — reusable */
+@keyframes nuriaLogoBreathe{
+  0%,100%{transform:translateY(0) scale(1)}
+  45%{transform:translateY(-1px) scale(1.012)}
+}
+@keyframes nuriaStarPulse{
+  0%,62%,100%{opacity:0;transform:translate(-50%,-50%) scale(.58)}
+  68%{opacity:.95;transform:translate(-50%,-50%) scale(1)}
+  74%{opacity:.28;transform:translate(-50%,-50%) scale(1.45)}
+}
+@keyframes nuriaLogoSweep{
+  0%,58%,100%{opacity:0;transform:translateX(-130%) skewX(-16deg)}
+  68%{opacity:.38}
+  82%{opacity:0;transform:translateX(120%) skewX(-16deg)}
+}
+@media (prefers-reduced-motion: reduce){
+  .brand::before,.brand::after,.brand-logo-img{animation:none!important}
+}
+/* Nuria sparkle motif — reusable */
 .sparkle{
   display:inline-block;color:var(--gold-deep);
   vertical-align:middle;
@@ -441,34 +498,20 @@ body{
 .hero-portrait{
   position:absolute;inset:0;
 }
-.hero-portrait::before{
-  content:"";position:absolute;
-  top:clamp(118px,18vh,188px);
-  right:clamp(84px,7vw,150px);
-  width:clamp(150px,12vw,220px);
-  height:clamp(188px,17vw,270px);
-  z-index:1;pointer-events:none;
-  border-radius:50%;
-  background:rgba(244,237,223,0.045);
-  -webkit-backdrop-filter:blur(1.45px) saturate(0.72) contrast(0.9);
-  backdrop-filter:blur(1.45px) saturate(0.72) contrast(0.9);
-  -webkit-mask-image:radial-gradient(ellipse at center,#000 42%,rgba(0,0,0,.72) 58%,transparent 76%);
-  mask-image:radial-gradient(ellipse at center,#000 42%,rgba(0,0,0,.72) 58%,transparent 76%);
-}
 .hero-portrait img{
+  position:absolute;inset:0;
   width:100%;height:100%;
-  object-fit:contain;
-  object-position:right center;
+  object-fit:cover;
+  object-position:center center;
   display:block;
-  transform:translateX(8vw) scale(0.68);
-  transform-origin:right center;
-  filter:saturate(0.86) contrast(0.92) brightness(1.03) blur(0.28px);
-  opacity:.93;
+  transform:none;
+  opacity:1;
+  filter:saturate(0.9) contrast(0.96) brightness(1.02) blur(0.08px);
 }
 .hero-visual::before{
   content:"";position:absolute;
   inset:0;
-  background:linear-gradient(90deg, rgba(244,237,223,0.99) 0%, rgba(244,237,223,0.96) 30%, rgba(244,237,223,0.78) 52%, rgba(244,237,223,0.34) 70%, rgba(244,237,223,0.1) 88%);
+  background:linear-gradient(90deg, rgba(244,237,223,0.99) 0%, rgba(244,237,223,0.95) 34%, rgba(244,237,223,0.72) 56%, rgba(244,237,223,0.24) 78%, rgba(244,237,223,0.04) 100%);
   pointer-events:none;z-index:2;
 }
 .hero-portrait::after{
@@ -1551,7 +1594,7 @@ body{
 .academy-header{position:relative;margin-bottom:2.75rem;padding:1.5rem 0 2.5rem;min-height:210px;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
 .academy-header h1{font-size:clamp(2.5rem,4vw,3.5rem);font-weight:400;margin-bottom:0.5rem;letter-spacing:-0.02em}
 .academy-header p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--text-dim);max-width:660px}
-/* Generative constellation backdrop — Estrella = star ("born to shine") */
+/* Generative constellation backdrop — Nuria = light ("born to shine") */
 .acad-constellation{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .academy-header > *:not(.acad-constellation){position:relative;z-index:1}
 
@@ -2404,7 +2447,7 @@ body{
 .std-beatnav button:disabled{opacity:.35;cursor:default}
 .std-beatnav button svg{width:16px;height:16px}
 
-/* estrella tutor */
+/* nuria tutor */
 .std-tutor{border-left:1px solid var(--line);background:var(--surface);position:relative}
 .std-tutor-head{padding:18px 20px 14px;border-bottom:1px solid var(--line);flex:none}
 .std-tutor-head .row{display:flex;align-items:center;gap:10px}
@@ -2471,7 +2514,7 @@ body{
 .std-saved-note{font-size:13px;color:var(--gold-deep);margin:2px 0 12px}
 .std-saved.is-saved .std-saved-note{color:var(--leather)}
 
-/* ---- Lesson studio: idea | instrument | Estrella, on the leather desk ---- */
+/* ---- Lesson studio: idea | instrument | Nuria, on the leather desk ---- */
 .ls{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.18fr) 312px;gap:0;--ls-accent:var(--leather)}
 .ls--rust{--ls-accent:var(--rust)} .ls--green{--ls-accent:var(--leather)} .ls--tan{--ls-accent:var(--tan)}
 .ls-book{display:contents}
@@ -4194,32 +4237,27 @@ body{
 }
 .coaching-door{
   height:100dvh;max-height:100dvh;box-sizing:border-box;
-  display:grid;grid-template-columns:1fr 1fr;
+  display:grid;grid-template-columns:clamp(430px,38vw,680px) minmax(0,1fr);
 }
 .door-portrait{
   position:relative;margin:0;overflow:hidden;
-  background:linear-gradient(180deg,#F5E8D2 0%,#E0B982 100%);
+  background:#EAD6B7;
 }
 .door-portrait img{
+  position:relative;z-index:1;
   width:100%;height:100%;
-  object-fit:contain;
-  object-position:center bottom;
+  object-fit:cover;
+  object-position:50% 43%;
   display:block;
-  transform:scale(0.82);
-  transform-origin:center center;
-  filter:saturate(0.9) contrast(0.95) brightness(1.02) blur(0.18px);
-}
-.door-portrait::before{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(90deg,rgba(255,253,248,0.1),rgba(244,237,223,0.18) 58%,rgba(244,237,223,0.08));
-  mix-blend-mode:soft-light;
+  filter:saturate(0.92) contrast(0.97) brightness(1.02) blur(0.04px);
 }
 .door-portrait::after{
-  content:"";position:absolute;inset:auto 0 0;height:42%;z-index:1;
-  background:linear-gradient(180deg,transparent,rgba(20,18,14,0.55));pointer-events:none;
+  content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg, transparent 68%, rgba(20,18,14,0.18) 100%);
+  pointer-events:none;
 }
 .door-portrait-card{
-  position:absolute;left:1.5rem;bottom:1.5rem;z-index:1;
+  position:absolute;left:1.5rem;bottom:1.5rem;z-index:3;
   padding:0.85rem 1.1rem;border-radius:10px;
   background:rgba(255,250,240,0.92);border:1px solid rgba(255,255,255,0.5);
   backdrop-filter:blur(14px);
@@ -4275,7 +4313,7 @@ body{
   .door-price{padding-bottom:1.5rem;margin-bottom:1.5rem}
 }
 
-/* ============================== VIEW: START (Estrella diagnostic) ============================== */
+/* ============================== VIEW: START (Nuria diagnostic) ============================== */
 .start-page{
   min-height:100%;width:100%;
   display:flex;flex-direction:column;
@@ -4525,7 +4563,7 @@ body{
 .start-close-tertiary a{color:inherit;cursor:pointer;text-decoration:none}
 .start-close-tertiary a:hover{color:var(--gold-deep)}
 
-/* ---------- PROFILE REVEAL — what Estrella shows after the diagnostic ---------- */
+/* ---------- PROFILE REVEAL — what Nuria shows after the diagnostic ---------- */
 .start-profile-eyebrow{
   font-size:0.6875rem;font-weight:500;
   letter-spacing:0.18em;text-transform:uppercase;
@@ -4667,8 +4705,9 @@ body{
 /* The fixed nav shortens the hero, so switch before the viewport itself reaches 3:2. */
 @media(min-width:1025px) and (min-aspect-ratio:7/5){
   .hero-portrait img{
-    object-fit:contain;
-    object-position:right center;
+    object-fit:cover;
+    object-position:center center;
+    transform:none;
   }
 }
 
@@ -4682,7 +4721,7 @@ body{
   .hero-options{width:100%;max-width:580px}
   .hero-visual{position:relative;min-height:560px;order:-1;background:#E7C189}
   .hero-visual::before{display:block;background:linear-gradient(180deg, transparent 0%, rgba(244,237,223,0.05) 58%, rgba(244,237,223,0.88) 100%)}
-  .hero-portrait img{object-fit:contain;object-position:right center}
+  .hero-portrait img{object-fit:cover;object-position:center center;transform:none}
   .hero-portrait::after{display:none}
   .hero-rings{width:380px;height:380px;left:50%}
   .orb-stage{width:340px;height:340px}
@@ -4710,7 +4749,9 @@ body{
     row-gap:0.5rem;
     padding:0.7rem 1.25rem 0.55rem;
   }
-  .brand{grid-area:brand}
+  .brand{grid-area:brand;min-width:10.5rem}
+  .brand-logo-img{height:4.8rem;max-width:11rem}
+  .brand::before{width:15px;height:15px}
   .topnav-actions{grid-area:actions;justify-self:end}
   .topnav-links{
     grid-area:links;
@@ -4734,6 +4775,9 @@ body{
   :root{--nav-h:118px}
   .steps-grid,.services-grid,.testimonials,.dash-grid,.recos-grid,.books-grid,.courses-grid,.book-services{grid-template-columns:1fr}
   .topnav{grid-template-columns:auto auto;grid-template-areas:"brand actions" "links links";justify-content:stretch;gap:0.5rem 0.75rem;padding:0.65rem 1rem 0.5rem}
+  .brand{min-width:8.5rem}
+  .brand-logo-img{height:4.05rem;max-width:8.8rem}
+  .brand::before{width:12px;height:12px}
   .topnav-actions{gap:0.375rem;min-width:0}
   .btn-linkedin{width:40px;height:40px;padding:0;gap:0}
   .btn-linkedin-label{display:none}
@@ -4744,7 +4788,7 @@ body{
   .hero-option-grid{grid-template-columns:1fr}
   .hero-mini-option{min-height:auto;gap:0.5rem}
   .hero-visual{min-height:430px}
-  .hero-portrait img{object-position:right center}
+  .hero-portrait img{object-position:center center;transform:none}
   .final-cta{padding:2.5rem 1.5rem}
   .dash-container,.book-container,.lib-container,.academy-container{padding-left:1.25rem;padding-right:1.25rem}
 }
@@ -4760,8 +4804,8 @@ body{
 
 <!-- ============================== TOP NAV ============================== -->
 <nav class="topnav" id="topnav">
-  <div class="brand" data-view="landing" aria-label="Estrella home">
-    <img class="brand-logo-img" src="estrella-logo-original.png" alt="Estrella - Born to Shine"/>
+  <div class="brand" data-view="landing" aria-label="Nuria home">
+    <img class="brand-logo-img" src="nuria-logo-grow-beyond.png" alt="Nuria - Grow Beyond Limits"/>
   </div>
   <div class="topnav-links" id="topnav-links">
     <a data-view="landing" class="active">Home</a>
@@ -4829,7 +4873,7 @@ body{
 
       <div class="hero-visual">
         <div class="hero-portrait">
-          <img src="nesreen-hero-face-refined.png" alt="Nesreen — Founder of Estrella" onerror="this.style.display='none';this.parentElement.nextElementSibling.style.display='flex'"/>
+          <img src="nesreen-home-wide-v2.jpg" alt="Nesreen — Founder of Nuria" onerror="this.style.display='none';this.parentElement.nextElementSibling.style.display='flex'"/>
         </div>
         <div class="hero-placeholder">
           <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
@@ -4851,7 +4895,7 @@ body{
       <div class="about-content">
         <div class="hero-eyebrow">About Nesreen</div>
         <h1 class="about-h1">She listens.<br/> <em>Then she tells the truth.</em></h1>
-        <p class="about-lead">Nesreen coaches leaders, founders, and professionals through career decisions, leadership pressure, and confidence work. Estrella gives her the context before the call.</p>
+        <p class="about-lead">Nesreen coaches leaders, founders, and professionals through career decisions, leadership pressure, and confidence work. Nuria gives her the context before the call.</p>
 
         <div class="credential-card">
           <div class="credential-icon">
@@ -4922,9 +4966,9 @@ body{
     <div class="coach-console">
       <header class="coach-head">
         <div>
-          <div class="hero-eyebrow">Estrella · Coach desk</div>
+          <div class="hero-eyebrow">Nuria · Coach desk</div>
           <h1 class="coach-h1">Your client briefs.</h1>
-          <p class="coach-sub">Prepared by Estrella before each session — who they are, and what they need from the hour.</p>
+          <p class="coach-sub">Prepared by Nuria before each session — who they are, and what they need from the hour.</p>
         </div>
         <div class="coach-head-meta">
           <div class="coach-stat"><strong id="coach-count-new">0</strong><span>To review</span></div>
@@ -4934,7 +4978,7 @@ body{
       <div class="coach-briefs" id="coach-briefs"></div>
       <div class="coach-empty" id="coach-empty" hidden>
         <svg width="28" height="28" viewBox="0 0 32 32" fill="var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
-        <p>No briefs yet. They appear here the moment a client finishes with Estrella.</p>
+        <p>No briefs yet. They appear here the moment a client finishes with Nuria.</p>
       </div>
     </div>
   </div>
@@ -4953,7 +4997,7 @@ body{
       <div class="door-panel">
         <div class="hero-eyebrow">Private coaching with Nesreen</div>
         <h1 class="door-h1">One hour.<em> A clear next step.</em></h1>
-        <p class="door-sub">Tell Estrella what's going on. She'll brief Nesreen on who you are and what you need — so your hour together starts where it matters.</p>
+        <p class="door-sub">Tell Nuria what's going on. She'll brief Nesreen on who you are and what you need — so your hour together starts where it matters.</p>
         <div class="door-price">
           <strong>AED 500</strong>
           <span>60 minutes · 1-on-1 video · Brief included</span>
@@ -4964,7 +5008,7 @@ body{
     </div>
   </div>
 
-  <!-- ============================== VIEW: START (Estrella diagnostic) ============================== -->
+  <!-- ============================== VIEW: START (Nuria diagnostic) ============================== -->
   <div class="view" id="view-start">
     <div class="start-page">
       <div class="start-stage">
@@ -5045,7 +5089,7 @@ body{
         <div class="cn-hero-text">
           <div class="hero-eyebrow">— Coaching with Nesreen</div>
           <h1>Seven paths.<em>One transformation.</em></h1>
-          <p class="hero-sub">Each session is a deliberate moment of clarity. Estrella prepares your profile in advance — Nesreen meets you where you actually are, and walks with you to where you want to be.</p>
+          <p class="hero-sub">Each session is a deliberate moment of clarity. Nuria prepares your profile in advance — Nesreen meets you where you actually are, and walks with you to where you want to be.</p>
           <div class="cn-hero-stats">
             <div class="cn-hero-stat"><strong>12+</strong>Years coaching</div>
             <div class="cn-hero-stat"><strong>800+</strong>Leaders served</div>
@@ -5054,7 +5098,7 @@ body{
         </div>
         <div class="cn-hero-visual">
           <div class="cn-hero-rings"></div>
-          <img src="nesreen-hero.jpg" alt="Nesreen — Founder of Estrella" onerror="this.style.display='none'"/>
+          <img src="nesreen-hero.jpg" alt="Nesreen — Founder of Nuria" onerror="this.style.display='none'"/>
         </div>
       </section>
 
@@ -5087,7 +5131,7 @@ body{
           </div>
           <div class="cn-founder-info">
             <div class="cn-founder-name">Nesreen</div>
-            <div class="cn-founder-role">Founder · Estrella</div>
+            <div class="cn-founder-role">Founder · Nuria</div>
           </div>
         </div>
       </section>
@@ -5107,7 +5151,7 @@ body{
           <div class="cn-journey-step">
             <div class="cn-journey-number">02</div>
             <h4>Prepare</h4>
-            <p>10 minutes with Estrella — your story, your goals, your focus points.</p>
+            <p>10 minutes with Nuria — your story, your goals, your focus points.</p>
           </div>
           <div class="cn-journey-step">
             <div class="cn-journey-number">03</div>
@@ -5127,7 +5171,7 @@ body{
         <div class="exp-header">
           <div class="hero-eyebrow">— Inside the Experience</div>
           <h2>What it actually looks like.</h2>
-          <p>Three moments that make Estrella unlike any coaching you've experienced before.</p>
+          <p>Three moments that make Nuria unlike any coaching you've experienced before.</p>
         </div>
         <div class="exp-grid">
 
@@ -5137,7 +5181,7 @@ body{
                 <rect width="400" height="240" fill="#FBF7EC"/>
                 <!-- Top header -->
                 <rect width="400" height="32" fill="#fff" stroke="#E5DCC4"/>
-                <text x="20" y="20" font-family="Cormorant Garamond" font-style="italic" font-size="13" fill="#14120E">Estrella</text>
+                <text x="20" y="20" font-family="Cormorant Garamond" font-style="italic" font-size="13" fill="#14120E">Nuria</text>
                 <rect x="280" y="10" width="100" height="12" rx="6" fill="#ECE3D0"/>
                 <rect x="280" y="10" width="36" height="12" rx="6" fill="#B8985C"/>
                 <text x="375" y="20" text-anchor="end" font-family="Inter" font-size="9" fill="#14120E" font-weight="600">36%</text>
@@ -5151,7 +5195,7 @@ body{
 
                 <!-- Chat right -->
                 <rect x="140" y="60" width="240" height="44" rx="14" fill="#fff" stroke="#E5DCC4"/>
-                <text x="155" y="74" font-family="Inter" font-size="6" fill="#97793F" letter-spacing="1">ESTRELLA</text>
+                <text x="155" y="74" font-family="Inter" font-size="6" fill="#97793F" letter-spacing="1">NURIA</text>
                 <text x="155" y="87" font-family="Inter" font-size="9" fill="#3D3933">Tell me about a moment recently when</text>
                 <text x="155" y="97" font-family="Inter" font-size="9" fill="#3D3933">your next step felt unclear.</text>
 
@@ -5174,7 +5218,7 @@ body{
             <div class="exp-card-body">
               <div class="exp-tag">— Before · AI Preparation</div>
               <h3>10 minutes that change the next 60.</h3>
-              <p>Estrella has a conversation with you — your story, your goals, and what you want from coaching. Voice or text.</p>
+              <p>Nuria has a conversation with you — your story, your goals, and what you want from coaching. Voice or text.</p>
             </div>
           </div>
 
@@ -5186,7 +5230,7 @@ body{
                 <rect width="400" height="28" fill="#1A1814"/>
                 <circle cx="14" cy="14" r="4" fill="#3D3933"/>
                 <circle cx="28" cy="14" r="4" fill="#3D3933"/>
-                <text x="200" y="18" text-anchor="middle" font-family="Inter" font-size="8" fill="#A39B91">Career Coaching · Estrella Session</text>
+                <text x="200" y="18" text-anchor="middle" font-family="Inter" font-size="8" fill="#A39B91">Career Coaching · Nuria Session</text>
                 <text x="382" y="18" text-anchor="end" font-family="Inter" font-size="8" fill="#DCC589" font-weight="600">42:18</text>
 
                 <!-- Main video — Nesreen -->
@@ -5275,7 +5319,7 @@ body{
             <div class="exp-card-body">
               <div class="exp-tag">— After · Your Roadmap</div>
               <h3>Your personal coaching companion.</h3>
-              <p>A dashboard you actually log into. Activity rings track your growth. The action plan is checkable, doable, and yours. Estrella stays with you between sessions.</p>
+              <p>A dashboard you actually log into. Activity rings track your growth. The action plan is checkable, doable, and yours. Nuria stays with you between sessions.</p>
             </div>
           </div>
 
@@ -5420,7 +5464,7 @@ body{
       <div class="onboard-header">
         <div class="brand compact">
           <div class="logo-wrap">
-            <img class="brand-logo-img" src="estrella-logo-original.png" alt="Estrella - Born to Shine"/>
+            <img class="brand-logo-img" src="nuria-logo-grow-beyond.png" alt="Nuria - Grow Beyond Limits"/>
             <svg class="logo-sparkles" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
               <g class="rising-star">
                 <path d="M0 -4.5 L0.7 -0.7 L4.5 0 L0.7 0.7 L0 4.5 L-0.7 0.7 L-4.5 0 L-0.7 -0.7 Z"/>
@@ -5450,7 +5494,7 @@ body{
             <span id="orb-status-text">Listening</span>
           </div>
 
-          <h3>Estrella</h3>
+          <h3>Nuria</h3>
           <p>I'll turn your answers into a concise brief for Nesreen.</p>
 
           <div class="constellation">
@@ -5477,11 +5521,11 @@ body{
 
         <div class="chat-panel" id="chat-panel">
           <div class="msg msg-ai">
-            <div class="msg-label">Estrella</div>
+            <div class="msg-label">Nuria</div>
             Hi Sarah. A few questions will help Nesreen start with the right context.
           </div>
           <div class="msg msg-ai">
-            <div class="msg-label">Estrella</div>
+            <div class="msg-label">Nuria</div>
             Tell me about a moment recently when your next step felt unclear. What was happening?
           </div>
         </div>
@@ -5670,7 +5714,7 @@ body{
         <div class="waveform active">
           <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
-        <p style="margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-2);font-size:1.1rem;text-align:center;max-width:300px;position:relative;z-index:1">Estrella · Premium tier — available between sessions, trained on Nesreen's method, reviewed by her weekly.</p>
+        <p style="margin-top:1.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-2);font-size:1.1rem;text-align:center;max-width:300px;position:relative;z-index:1">Nuria · Premium tier — available between sessions, trained on Nesreen's method, reviewed by her weekly.</p>
       </div>
 
       <div class="twin-transcript">
@@ -5680,7 +5724,7 @@ body{
           Nesreen, I keep replaying the meeting in my head. I think I sounded too uncertain.
         </div>
         <div class="msg msg-ai" style="max-width:95%">
-          <div class="msg-label">Estrella</div>
+          <div class="msg-label">Nuria</div>
           Sarah, what you're calling "uncertain" might be what we discussed last week — your tendency to question yourself out loud when you're actually thinking carefully.
           <br/><br/>
           That isn't weakness. That's the leadership style we named: <em>deliberate, not loud.</em>
@@ -6232,9 +6276,9 @@ const services = [
   {id:'cv', name:'CV & LinkedIn', tagline:'Make your value easy to read.', forWhom:'Active job seekers rebuilding their story', price:900, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
   {id:'burnout', name:'Burnout & Confidence', tagline:'Recover energy and self-trust.', forWhom:'Exhausted high-achievers needing reset', price:1200, duration:60, color:'var(--rose-bg)', accent:'#B8537B'},
   {id:'executive', name:'Executive Coaching', tagline:'Sharper decisions under pressure.', forWhom:'C-suite, VP-level, founders', price:3500, duration:90, color:'var(--sage-bg)', accent:'#3F7E6F'},
-  {id:'quiz', name:'Not sure?', tagline:'Take the 60-second clarity quiz.', forWhom:'Estrella will recommend your path', price:0, duration:0, color:'var(--lavender-bg)', accent:'#5B4B8A', isQuiz:true},
-  // Prescribed default offered after the Estrella diagnostic — not shown in the (legacy) services grid
-  {id:'program', name:'3-Month Coaching Program', tagline:'Six sessions for a real inflection point.', forWhom:'Recommended after your conversation with Estrella', price:6000, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
+  {id:'quiz', name:'Not sure?', tagline:'Take the 60-second clarity quiz.', forWhom:'Nuria will recommend your path', price:0, duration:0, color:'var(--lavender-bg)', accent:'#5B4B8A', isQuiz:true},
+  // Prescribed default offered after the Nuria diagnostic — not shown in the (legacy) services grid
+  {id:'program', name:'3-Month Coaching Program', tagline:'Six sessions for a real inflection point.', forWhom:'Recommended after your conversation with Nuria', price:6000, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
   // CANONICAL — the one coaching product. A single private session with Nesreen, AED 500.
   {id:'session', name:'Private Coaching Session', tagline:'One focused hour with Nesreen.', forWhom:'Anyone ready to move on a real decision', price:500, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
 ];
@@ -6493,7 +6537,7 @@ document.getElementById('book-services').addEventListener('click', (e)=>{
   const id = card.dataset.svc;
   const svc = services.find(s=>s.id===id);
   if(svc.isQuiz){
-    showToast('Estrella clarity quiz — selecting Career Coaching for demo');
+    showToast('Nuria clarity quiz — selecting Career Coaching for demo');
     state.selectedService = services[0];
     card = document.querySelector('.cn-track[data-svc="career"]') || card;
   } else {
@@ -6846,7 +6890,7 @@ function advanceChat(){
     // AI response
     const aiMsg = document.createElement('div');
     aiMsg.className = 'msg msg-ai';
-    aiMsg.innerHTML = `<div class="msg-label">Estrella</div>${step.ai}`;
+    aiMsg.innerHTML = `<div class="msg-label">Nuria</div>${step.ai}`;
     panel.appendChild(aiMsg);
 
     // Quick reply chips
@@ -6915,7 +6959,7 @@ function animateRings(){
   }, 100);
 }
 
-/* ============================== START — ESTRELLA DIAGNOSTIC ============================== */
+/* ============================== START — NURIA DIAGNOSTIC ============================== */
 /* Diagnostic flow — 7 questions, professional coaching arc:
    identity → trigger → strengths → pattern → goal → history → depth → synthesis */
 
@@ -7329,7 +7373,7 @@ renderLibrary();
    ================================================================== */
 const NESREEN = {
   name: 'Nesreen',
-  role: 'Founder & Lead Coach, Estrella',
+  role: 'Founder & Lead Coach, Nuria',
   img: 'nesreen-hero.jpg'
 };
 
@@ -7480,14 +7524,14 @@ function aShowCertificate(cid){
   m.innerHTML = `<div class="cert-card">
     <button class="cert-close" aria-label="Close">&times;</button>
     <div class="cert-emblem">${STAR_SVG}</div>
-    <div class="cert-kicker">Estrella Academy</div>
+    <div class="cert-kicker">Nuria Academy</div>
     <div class="cert-pre">This certifies that</div>
     <div class="cert-name">${esc(currentLearnerName())}</div>
     <div class="cert-pre">has completed</div>
     <div class="cert-course">${esc(co.title)}</div>
     ${mastered?'<div class="cert-seal">★ Finished with Full Marks</div>':''}
     <p class="cert-copy">${esc(copy.congratulatory||'You did the real work, and it shows.')}</p>
-    <div class="cert-sign"><div class="cert-sign-name">Nesreen</div><div class="cert-sign-role">Lead Trainer, Estrella Academy</div></div>
+    <div class="cert-sign"><div class="cert-sign-name">Nesreen</div><div class="cert-sign-role">Lead Trainer, Nuria Academy</div></div>
     <div class="cert-id">${id}</div>
   </div>`;
   m.addEventListener('click', e=>{ if(e.target===m || e.target.closest('.cert-close')) m.remove(); });
@@ -7781,7 +7825,7 @@ function appbar(crumbHTML, backLabel, backFn){
     <button class="ac-back" data-ac-back>${BACK_SVG} ${esc(backLabel)}</button>
     <span class="ac-crumb">${crumbHTML}</span>
     <div class="ac-spacer"></div>
-    <div class="ac-brand">${STAR_SVG} Estrella · Academy</div>
+    <div class="ac-brand">${STAR_SVG} Nuria · Academy</div>
   </header>`;
 }
 function artifactSlotsHTML(cid){
@@ -7856,7 +7900,7 @@ function renderSmLesson(root, cid, idx){
   var saved=AST.lessons[L.lessonId]||{}; var doneThis=aIsDone(L.lessonId);
   root.className='ac-app sm-app';
   root.innerHTML=''
-   +'<header class="sm-bar"><button class="sm-back" data-sm-back>‹ Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-sp"></span><span class="sm-brand">'+STAR_SVG+' Estrella</span></header>'
+   +'<header class="sm-bar"><button class="sm-back" data-sm-back>‹ Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-sp"></span><span class="sm-brand">'+STAR_SVG+' Nuria</span></header>'
    +'<div class="sm-screen"><div class="sm-hero" id="sm-hero">'+smRingHTML(cid,done,idx)+'</div>'
    +'<div class="sm-card"><div class="sm-step">Lesson '+(idx+1)+' of '+lessons.length+'</div>'
    +'<h1 class="sm-idea">'+esc(L.idea)+'</h1><p class="sm-say">'+esc(L.sentence)+'</p>'
@@ -7948,7 +7992,7 @@ function renderSmLesson(root, cid, idx){
   root.className='ac-app sm-app sm-course-'+String(cid).replace(/[^a-z0-9]/g,'-');
   root.style.setProperty('--sm-accent', meta.accent);
   root.innerHTML=''
-   +'<header class="sm-bar"><button class="sm-back" data-sm-back>&lsaquo; Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-module">'+esc(smClipWords(c.bigPromise,9))+'</span><span class="sm-sp"></span><span class="sm-brand">Estrella Academy</span></header>'
+   +'<header class="sm-bar"><button class="sm-back" data-sm-back>&lsaquo; Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-module">'+esc(smClipWords(c.bigPromise,9))+'</span><span class="sm-sp"></span><span class="sm-brand">Nuria Academy</span></header>'
    +'<main class="sm-screen"><section class="sm-shell"><span class="sm-tab"></span><div class="sm-grid">'
    +'<article class="sm-card"><div class="sm-step">Lesson '+(idx+1)+' of '+lessons.length+'</div>'
    +'<h1 class="sm-idea">'+esc(smClipWords(L.idea,8))+'</h1><p class="sm-say">'+esc(smClipWords(L.sentence,16))+'</p>'
@@ -7996,7 +8040,7 @@ function openCourseSimple(cid){
   root.className='ac-app sm-app sm-course-app sm-course-'+String(cid).replace(/[^a-z0-9]/g,'-');
   root.style.setProperty('--sm-accent', meta.accent);
   root.innerHTML=''
-    +'<header class="sm-bar"><button class="sm-back" data-sm-back>&lsaquo; Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-module">'+esc(smClipWords(c.bigPromise,9))+'</span><span class="sm-sp"></span><span class="sm-brand">Estrella Academy</span></header>'
+    +'<header class="sm-bar"><button class="sm-back" data-sm-back>&lsaquo; Academy</button><span class="sm-course">'+esc(co.title)+'</span><span class="sm-module">'+esc(smClipWords(c.bigPromise,9))+'</span><span class="sm-sp"></span><span class="sm-brand">Nuria Academy</span></header>'
     +'<main class="sm-screen"><section class="sm-shell"><span class="sm-tab"></span><div class="smc-grid">'
     +'<article class="smc-cover"><div class="smc-image"><img src="'+esc(meta.asset||coverImg(cid))+'" alt="" loading="eager" onerror="this.closest(\'.smc-image\').style.display=\'none\'"></div><div class="smc-kicker">'+esc(co.track||'Academy')+' course</div><h1 class="smc-title">'+esc(co.title)+'</h1><p class="smc-promise">'+esc(smClipWords(c.bigPromise,18))+'</p><div class="smc-meta"><span>'+total+' lessons</span><span>'+done+'/'+total+' done</span><span>'+esc(c.artifact.name)+'</span></div><div class="smc-actions"><div class="smc-note"><b>Your '+esc(meta.noun)+'</b>'+(doneCourse?'Complete':(done?'Continue where you left off':'Start with one pick'))+'</div><button type="button" class="smc-cta" data-sm-start="'+esc(nextLesson.lessonId)+'">'+(doneCourse?'Review lesson':'Start / continue')+'</button></div></article>'
     +'<aside class="smc-panel"><div class="smc-top"><div id="smc-progress">'+smProgressWidget(cid)+'</div><div id="smc-artifact">'+smArtifactHTML(cid)+'</div></div><div class="smc-path"><div class="smc-path-head"><h3>Course path</h3><span>'+done+' of '+total+'</span></div><div class="smc-route" style="--path-count:'+total+'">'+route+'</div>'+nextCard+'</div></aside>'
@@ -8076,7 +8120,7 @@ function lessonWorkCopy(L, arch){
     hint: ix.requiresWriting ? 'Only write the words you would actually use.' : 'Choose the closest move. You can refine it later.',
     cta: ix.actionLabel || w.cta,
     ph: ix.placeholder || ex.placeholder || w.ph,
-    choices: (ix.choices && ix.choices.length) ? ix.choices : ['Use this move', 'Needs more proof', 'Ask Estrella', 'Come back later'],
+    choices: (ix.choices && ix.choices.length) ? ix.choices : ['Use this move', 'Needs more proof', 'Ask Nuria', 'Come back later'],
     requiresWriting: !!ix.requiresWriting,
     artifactLabel: ix.artifactLabel || 'Save to artifact',
     intro: ix.intro || ex.prompt || 'Choose the next useful move.'
@@ -8139,7 +8183,7 @@ function instrumentPreviewHTML(cid){
   const inst=INSTRUMENTS[cid]||{accent:'green'};
   return `<div class="atl-ip ls--${inst.accent}"><div class="atl-ip-cap">The moves you'll use in each lesson</div>${instrumentHTML(cid, ix, '')}</div>`;
 }
-// Estrella — honest preview coach (rubric-aware, Socratic; never fakes a grade)
+// Nuria — honest preview coach (rubric-aware, Socratic; never fakes a grade)
 function tutorReplyFor(L, arch, userText){
   const tks = L.takeaways || []; const obj = L.objectives || [];
   if(userText && userText.length>0){
@@ -8205,7 +8249,7 @@ function openLesson(courseId, lessonId){
         </section>
       </div>
       <aside class="ls-rail std-tutor">
-        <div class="std-tutor-head"><div class="row"><div class="std-orb">${STAR_SVG}</div><div><div class="who">Estrella notes</div><div class="stat">Quiet coaching in the margin</div></div></div></div>
+        <div class="std-tutor-head"><div class="row"><div class="std-orb">${STAR_SVG}</div><div><div class="who">Nuria notes</div><div class="stat">Quiet coaching in the margin</div></div></div></div>
         <div class="ls-artifact">
           <div class="ls-art-h">${esc(mech.name||'Artifact')} · progress</div>
           <div class="ls-art-prog"><span id="ls-art-count"></span><span class="ls-art-pct" id="ls-art-pct"></span></div>
@@ -8214,9 +8258,9 @@ function openLesson(courseId, lessonId){
         </div>
         <div class="std-msgs" id="std-msgs"><div class="std-msg ai">${esc(seed.opening)}</div></div>
         <div class="std-chips" id="std-chips">${(seed.suggested||[]).slice(0,3).map(q=>`<button class="std-chip">${esc(q)}</button>`).join('')}</div>
-        <div class="std-tutor-input"><input type="text" id="std-field" placeholder="Answer Estrella…" autocomplete="off"/><button class="send" id="std-send" aria-label="Send">${SEND_SVG}</button></div>
+        <div class="std-tutor-input"><input type="text" id="std-field" placeholder="Answer Nuria…" autocomplete="off"/><button class="send" id="std-send" aria-label="Send">${SEND_SVG}</button></div>
       </aside>
-      <div class="std-mtoggle ls-mtoggle"><button class="on" data-m="idea">Lesson</button><button data-m="instrument">${esc(mech.name||'Instrument')}</button><button data-m="estrella">Estrella</button></div>
+      <div class="std-mtoggle ls-mtoggle"><button class="on" data-m="idea">Lesson</button><button data-m="instrument">${esc(mech.name||'Instrument')}</button><button data-m="estrella">Nuria</button></div>
     </div>`;
 
   const back = ()=>openCourse(info.courseId);
@@ -8318,7 +8362,7 @@ function openLesson(courseId, lessonId){
     });
   }
 
-  // ---- Estrella margin ----
+  // ---- Nuria margin ----
   const msgs = root.querySelector('#std-msgs'); const field = root.querySelector('#std-field');
   function addMsg(t,who){ const d=document.createElement('div'); d.className='std-msg '+who; d.innerHTML=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
   function ask(q, isChip){ if(!q) return; addMsg(esc(q),'user'); field.value=''; const ty=document.createElement('div'); ty.className='std-typing'; ty.innerHTML='<span></span><span></span><span></span>'; msgs.appendChild(ty); msgs.scrollTop=msgs.scrollHeight; setTimeout(()=>{ ty.remove(); addMsg(isChip?tutorChipReply(L,q):tutorReplyFor(L,arch,q),'ai'); }, 750); }
@@ -8326,7 +8370,7 @@ function openLesson(courseId, lessonId){
   root.querySelector('#std-send').addEventListener('click', ()=>ask(field.value.trim()));
   field.addEventListener('keypress', e=>{ if(e.key==='Enter') ask(field.value.trim()); });
 
-  // ---- mobile (Lesson / Instrument / Estrella) ----
+  // ---- mobile (Lesson / Instrument / Nuria) ----
   const lsEl = root.querySelector('.ls');
   function setMobile(m){ lsEl.dataset.m=m; root.querySelectorAll('.ls-mtoggle button').forEach(x=>x.classList.toggle('on',x.dataset.m===m)); }
   root.querySelectorAll('.ls-mtoggle button').forEach(b=>b.addEventListener('click',()=>setMobile(b.dataset.m)));

@@ -2,7 +2,7 @@ window.ESTRELLA_ACADEMY = {
   "gamification": {
     "$schema": "estrella.academy.gamification/v1",
     "brand": {
-      "name": "Estrella Academy",
+      "name": "Nuria Academy",
       "palette": {
         "cream": "#F2EBDC",
         "gold": "#B8985C",
@@ -66,9 +66,9 @@ window.ESTRELLA_ACADEMY = {
         },
         {
           "tier": 6,
-          "name": "Estrella",
+          "name": "Nuria",
           "minXP": 10000,
-          "blurb": "The name of the academy. Kept for those who finished the work and carry it well. 'Estrella' means 'star'."
+          "blurb": "The name of the academy. Kept for those who finished the work and carry it well. 'Nuria' means light."
         }
       ]
     },
@@ -346,13 +346,13 @@ window.ESTRELLA_ACADEMY = {
         "finalScore": "number (0-100)",
         "certificateId": "string (for example ESTR-AIHR-2026-0001)",
         "verificationUrl": "string",
-        "issuingAcademy": "Estrella Academy",
+        "issuingAcademy": "Nuria Academy",
         "signatory": "Nesreen",
-        "signatoryTitle": "Lead Trainer, Estrella Academy"
+        "signatoryTitle": "Lead Trainer, Nuria Academy"
       },
       "copy": {
         "congratulatory": "You did the real work, and it shows. This is more than a finished course. It is a new skill that is now yours to keep.",
-        "signature": "With pride in your progress,\nNesreen, Lead Trainer, Estrella Academy"
+        "signature": "With pride in your progress,\nNesreen, Lead Trainer, Nuria Academy"
       },
       "masteryVariant": {
         "condition": "masteryAttained == true",
