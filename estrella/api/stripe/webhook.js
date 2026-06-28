@@ -4,7 +4,7 @@
 // signature over the EXACT raw body, are idempotent on event.id, and only then
 // flip the brief to paid + lock the slot. Wrong/missing secret → 400 + loud log
 // (surfaces as failed deliveries in Stripe, never a silent free session).
-const L = require('../_lib.js');
+const L = require('../../lib/api.js');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {

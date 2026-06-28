@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/logout",
+      "destination": "/api/me?action=logout"
+    }
+  ]
+}

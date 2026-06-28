@@ -45,7 +45,7 @@
  * Env: ANTHROPIC_API_KEY (required), ESTRELLA_MODEL (optional; default sonnet-4-6).
  */
 
-const L = require('./_lib.js');
+const L = require('../lib/api.js');
 
 const ANTHROPIC_URL = 'https://api.anthropic.com/v1/messages';
 const MODEL = process.env.ESTRELLA_MODEL || 'claude-sonnet-4-6';

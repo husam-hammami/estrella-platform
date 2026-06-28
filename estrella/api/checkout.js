@@ -3,7 +3,7 @@
 // booking time (NOT during anonymous screening), atomically holds the chosen slot
 // via the claim_slot RPC, and hands back the Stripe Payment Link URL. This route
 // NEVER marks anything paid — that is exclusively api/stripe/webhook.js's job.
-const L = require('./_lib.js');
+const L = require('../lib/api.js');
 
 const COACH = process.env.COACH_LINKEDIN_SUB;
 

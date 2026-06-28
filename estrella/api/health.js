@@ -3,7 +3,7 @@
 // of every required env var — catches the classic paste-into-wrong-field bugs
 // (e.g. the service_role JWT pasted into SUPABASE_URL). NEVER prints secret
 // values. Coach-gated.
-const L = require('./_lib.js');
+const L = require('../lib/api.js');
 
 module.exports = async (req, res) => {
   const s = L.requireCoach(req, res);

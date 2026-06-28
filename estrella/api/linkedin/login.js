@@ -1,6 +1,6 @@
 'use strict';
 // Starts the LinkedIn OpenID Connect flow: mint CSRF state, redirect to LinkedIn.
-const L = require('../_lib.js');
+const L = require('../../lib/api.js');
 
 module.exports = async (req, res) => {
   try {

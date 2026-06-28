@@ -10,7 +10,7 @@
 // file. POST { brief_id, path } -> { parsed, cv_extract? }.
 //
 // Heaviest call in the system — needs maxDuration above the 10s default.
-const L = require('./_lib.js');
+const L = require('../lib/api.js');
 
 module.exports = async (req, res) => {
   const s = L.requireUser(req, res);

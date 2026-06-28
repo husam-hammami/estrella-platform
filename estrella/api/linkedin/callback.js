@@ -2,7 +2,7 @@
 // LinkedIn redirects here with ?code&state. Verify state, exchange code for a
 // token server-side (uses the client secret), fetch the real profile, register
 // the user in Supabase, set a signed session cookie, and bounce back to the app.
-const L = require('../_lib.js');
+const L = require('../../lib/api.js');
 
 function fail(res, msg) {
   res.statusCode = 302;

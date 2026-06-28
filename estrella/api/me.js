@@ -1,9 +1,18 @@
 'use strict';
 // Returns the signed-in user from the session cookie, or 401. The frontend calls
 // this on load to restore the session after a LinkedIn round-trip.
-const L = require('./_lib.js');
+const L = require('../lib/api.js');
 
 module.exports = async (req, res) => {
+  const params = new URL(req.url, 'http://x').searchParams;
+  if (params.get('action') === 'logout') {
+    L.clearCookie(res, L.COOKIE);
+    res.statusCode = 302;
+    res.setHeader('Location', '/');
+    res.end();
+    return;
+  }
+
   const cookies = L.parseCookies(req);
   const user = L.readSession(cookies[L.COOKIE]);
   res.setHeader('Content-Type', 'application/json');
