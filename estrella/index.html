@@ -71,7 +71,7 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --nav-h: 118px;
+  --nav-h: 146px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
@@ -126,10 +126,10 @@ body{
 .topnav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:grid;
-  grid-template-columns:minmax(clamp(15rem, 21vw, 22rem), auto) 1fr auto;
+  grid-template-columns:minmax(clamp(19rem, 25vw, 29rem), auto) 1fr auto;
   align-items:center;
   gap:1rem 1.75rem;
-  padding:0.26rem clamp(1.25rem, 3vw, 2.5rem);
+  padding:0.2rem clamp(1.25rem, 3vw, 2.5rem);
   background:#F2EBDC;
   border-bottom:1px solid var(--line);
   transition:all 0.3s var(--ease);
@@ -139,7 +139,7 @@ body{
 .brand{
   display:flex;align-items:center;
   cursor:pointer;line-height:1;
-  min-width:clamp(15rem, 21vw, 22rem);
+  min-width:clamp(19rem, 25vw, 29rem);
   position:relative;
   isolation:isolate;
 }
@@ -173,8 +173,8 @@ body{
 }
 .brand-logo-img{
   display:block;
-  height:clamp(6.85rem, 7.35vw, 7.85rem);
-  max-width:clamp(16.25rem, 22vw, 23rem);
+  height:clamp(8.75rem, 9.2vw, 9.85rem);
+  max-width:clamp(21rem, 28vw, 30rem);
   width:auto;
   object-fit:contain;
   filter:drop-shadow(0 6px 12px rgba(20,18,14,.08));
@@ -492,7 +492,7 @@ body{
   inset:0;
   min-height:0;
   overflow:hidden;
-  background:linear-gradient(90deg,#F4EDDF 0%,#F5E8D2 43%,#D6AA72 100%);
+  background:linear-gradient(90deg,#F2EBDC 0%,#F4EDDF 52%,#E3C08B 100%);
   z-index:1;
 }
 .hero-portrait{
@@ -506,12 +506,14 @@ body{
   display:block;
   transform:none;
   opacity:1;
-  filter:saturate(0.9) contrast(0.96) brightness(1.02) blur(0.08px);
+  filter:saturate(0.96) contrast(0.99) brightness(1.01);
 }
 .hero-visual::before{
   content:"";position:absolute;
   inset:0;
-  background:linear-gradient(90deg, rgba(244,237,223,0.99) 0%, rgba(244,237,223,0.95) 34%, rgba(244,237,223,0.72) 56%, rgba(244,237,223,0.24) 78%, rgba(244,237,223,0.04) 100%);
+  background:
+    linear-gradient(90deg, #F2EBDC 0%, rgba(242,235,220,0.98) 28%, rgba(242,235,220,0.42) 39%, rgba(242,235,220,0.05) 50%, transparent 58%),
+    linear-gradient(180deg, transparent 0%, transparent 78%, rgba(242,235,220,0.3) 100%);
   pointer-events:none;z-index:2;
 }
 .hero-portrait::after{
@@ -1594,7 +1596,7 @@ body{
 .academy-header{position:relative;margin-bottom:2.75rem;padding:1.5rem 0 2.5rem;min-height:210px;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
 .academy-header h1{font-size:clamp(2.5rem,4vw,3.5rem);font-weight:400;margin-bottom:0.5rem;letter-spacing:-0.02em}
 .academy-header p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--text-dim);max-width:660px}
-/* Generative constellation backdrop — Nuria = light ("born to shine") */
+/* Generative constellation backdrop — Nuria = growth beyond limits */
 .acad-constellation{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .academy-header > *:not(.acad-constellation){position:relative;z-index:1}
 
@@ -4237,23 +4239,25 @@ body{
 }
 .coaching-door{
   height:100dvh;max-height:100dvh;box-sizing:border-box;
-  display:grid;grid-template-columns:clamp(430px,38vw,680px) minmax(0,1fr);
+  display:grid;grid-template-columns:clamp(360px,31vw,500px) minmax(0,1fr);
 }
 .door-portrait{
   position:relative;margin:0;overflow:hidden;
-  background:#EAD6B7;
+  background:linear-gradient(90deg,#E8D3B1 0%,#F2EBDC 100%);
 }
 .door-portrait img{
   position:relative;z-index:1;
   width:100%;height:100%;
   object-fit:cover;
-  object-position:50% 43%;
+  object-position:50% 47%;
   display:block;
-  filter:saturate(0.92) contrast(0.97) brightness(1.02) blur(0.04px);
+  filter:saturate(0.96) contrast(0.99) brightness(1.01);
 }
 .door-portrait::after{
   content:"";position:absolute;inset:0;z-index:2;
-  background:linear-gradient(180deg, transparent 68%, rgba(20,18,14,0.18) 100%);
+  background:
+    linear-gradient(90deg, rgba(242,235,220,0.48) 0%, transparent 18%, transparent 78%, rgba(242,235,220,0.62) 100%),
+    linear-gradient(180deg, rgba(242,235,220,0.12) 0%, transparent 22%, transparent 74%, rgba(20,18,14,0.14) 100%);
   pointer-events:none;
 }
 .door-portrait-card{
@@ -4712,7 +4716,7 @@ body{
 }
 
 @media(max-width:1024px){
-  :root{--nav-h:112px}
+  :root{--nav-h:126px}
   .hero{display:flex;flex-direction:column;text-align:left;padding:0;gap:0}
   .hero-content{padding:3rem 2rem;max-width:none;width:100%;min-height:auto;text-align:left;align-items:flex-start}
   .hero-eyebrow{justify-content:center}
@@ -4720,7 +4724,7 @@ body{
   .hero-ctas{justify-content:center}
   .hero-options{width:100%;max-width:580px}
   .hero-visual{position:relative;min-height:560px;order:-1;background:#E7C189}
-  .hero-visual::before{display:block;background:linear-gradient(180deg, transparent 0%, rgba(244,237,223,0.05) 58%, rgba(244,237,223,0.88) 100%)}
+  .hero-visual::before{display:block;background:linear-gradient(180deg, rgba(242,235,220,0.08) 0%, transparent 18%, transparent 70%, rgba(242,235,220,0.68) 100%)}
   .hero-portrait img{object-fit:cover;object-position:center center;transform:none}
   .hero-portrait::after{display:none}
   .hero-rings{width:380px;height:380px;left:50%}
@@ -4749,8 +4753,8 @@ body{
     row-gap:0.5rem;
     padding:0.7rem 1.25rem 0.55rem;
   }
-  .brand{grid-area:brand;min-width:10.5rem}
-  .brand-logo-img{height:4.8rem;max-width:11rem}
+  .brand{grid-area:brand;min-width:13rem}
+  .brand-logo-img{height:5.8rem;max-width:13.75rem}
   .brand::before{width:15px;height:15px}
   .topnav-actions{grid-area:actions;justify-self:end}
   .topnav-links{
@@ -4772,11 +4776,11 @@ body{
   .activity-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  :root{--nav-h:118px}
+  :root{--nav-h:126px}
   .steps-grid,.services-grid,.testimonials,.dash-grid,.recos-grid,.books-grid,.courses-grid,.book-services{grid-template-columns:1fr}
   .topnav{grid-template-columns:auto auto;grid-template-areas:"brand actions" "links links";justify-content:stretch;gap:0.5rem 0.75rem;padding:0.65rem 1rem 0.5rem}
-  .brand{min-width:8.5rem}
-  .brand-logo-img{height:4.05rem;max-width:8.8rem}
+  .brand{min-width:10.25rem}
+  .brand-logo-img{height:4.8rem;max-width:10.75rem}
   .brand::before{width:12px;height:12px}
   .topnav-actions{gap:0.375rem;min-width:0}
   .btn-linkedin{width:40px;height:40px;padding:0;gap:0}
@@ -4839,12 +4843,12 @@ body{
     <section class="hero">
       <div class="hero-content">
         <div class="hero-kicker">Career coaching with Nesreen</div>
-        <h1>Let your career shine.</h1>
+        <h1>Grow beyond limits.</h1>
         <div class="hero-divider" aria-hidden="true">
           <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
           <span class="hero-divider-line"></span>
         </div>
-        <p class="hero-sub">Career coaching, books, and courses by Nesreen.</p>
+        <p class="hero-sub">Career coaching, books, and courses that turn ambition into clear next steps.</p>
         <div class="hero-options" aria-label="Choose where to start">
           <button class="hero-option hero-option-primary" type="button" data-view="start">
             <span class="hero-option-label">First step</span>
