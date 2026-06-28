@@ -5052,8 +5052,6 @@ body{
         </button>
 
         <div class="start-close-tertiary">
-          <a id="start-send-me">Email me this profile</a>
-          <span> · </span>
           <a data-view="landing">Come back later</a>
         </div>
       </div>
@@ -5615,11 +5613,11 @@ body{
           <svg width="10" height="10" viewBox="0 0 32 32" fill="#97793F"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
           Your dashboard
         </div>
-        <h1>Good evening, Sarah.</h1>
-        <p>Your next session with Nesreen is in 18 hours.</p>
+        <h1 id="dash-greeting-h1">Good evening, Sarah.</h1>
+        <p id="dash-greeting-sub">Your next session with Nesreen is in 18 hours.</p>
       </div>
 
-      <div class="session-hero">
+      <div class="session-hero" id="dash-session-hero">
         <div class="session-hero-content">
           <div class="session-info">
             <div class="session-info-lbl">Your next session</div>
@@ -5633,16 +5631,27 @@ body{
               </div>
             </div>
             <h2>Career Coaching Session</h2>
-            <div class="meta">Tuesday, 9 June · 14:00 GST · 60 minutes · Zoom</div>
+            <div class="meta" id="dash-session-meta">Tuesday, 9 June · 14:00 GST · 60 minutes · Zoom</div>
             <div class="session-readiness-line">
               <span>Your brief is ready for Nesreen</span>
               <div class="session-mini-bar"><div></div></div>
               <strong style="color:var(--success)">Sent</strong>
             </div>
           </div>
-          <button class="btn btn-primary btn-lg" onclick="showToast('Opening session link')">Join session →</button>
+          <button class="btn btn-primary btn-lg" id="dash-join-btn" onclick="showToast('Opening session link')">Join session →</button>
         </div>
       </div>
+      <div class="session-hero" id="dash-session-empty" hidden>
+        <div class="session-hero-content">
+          <div class="session-info">
+            <div class="session-info-lbl">No session booked yet</div>
+            <h2 id="dash-empty-h2">Book your first session</h2>
+            <div class="meta" id="dash-empty-meta">One focused hour with Nesreen, AED 500.</div>
+          </div>
+          <button class="btn btn-primary btn-lg" id="dash-book-cta">Book a session →</button>
+        </div>
+      </div>
+      <div class="cv-upload" id="dash-cv-upload" hidden style="margin-top:1rem"></div>
 
       <nav class="dash-links" aria-label="More">
         <button class="dash-link" data-view="coach">
@@ -6289,10 +6298,14 @@ let state = {
   selectedService: null,
   selectedDate: null,
   selectedTime: null,
+  selectedSlotId: null,       // real availability slot uuid (null = offline mock)
   currentMonth: new Date().getMonth(), // open on the real current month
   currentYear: new Date().getFullYear(),
   chatStep: 0,
-  linkedInUser: null
+  linkedInUser: null,
+  brief: null,                // mirror of window.estrellaBrief
+  monthSlots: null,           // real open slots for the displayed month (or null)
+  monthSlotsLoaded: false     // true once a real availability fetch succeeded
 };
 
 // Offline fallback only — used when the prototype is opened from disk (file://)
@@ -6391,12 +6404,107 @@ function initLinkedInSession(){
         if(d && d.user){
           setLinkedInUser(d.user);
           if(justSignedIn) showToast('Signed in with LinkedIn');
+          // Resume a booking the user was sent to sign-in to complete.
+          resumeStashedBooking();
         }
+        // Stripe return (works whether or not this was a fresh sign-in).
+        handlePaymentReturn();
       })
-      .catch(()=>{});
+      .catch(()=>{ handlePaymentReturn(); });
   }
   updateTopNavAuth();
 }
+
+// After sign-in, if a booking was stashed before the gate, restore it and land
+// the user back on checkout so they can pay.
+function resumeStashedBooking(){
+  let stashed = null;
+  try{ stashed = JSON.parse(sessionStorage.getItem('estrella_booking') || 'null'); }catch(e){}
+  if(!stashed || stashed.resume !== 'checkout') return;
+  try{ sessionStorage.removeItem('estrella_booking'); }catch(e){}
+
+  if(stashed.brief){ window.estrellaBrief = stashed.brief; state.brief = stashed.brief; }
+  if(stashed.slot_id) state.selectedSlotId = stashed.slot_id;
+  if(stashed.selectedDate) state.selectedDate = stashed.selectedDate;
+  if(stashed.selectedTime) state.selectedTime = stashed.selectedTime;
+  if(!state.selectedService) state.selectedService = (typeof COACHING_SESSION !== 'undefined' && COACHING_SESSION) || services[0];
+
+  // Populate the checkout summary from the restored selection.
+  try{
+    const s = state.selectedService;
+    document.getElementById('ck-svc-name').textContent = s.name;
+    document.getElementById('ck-svc-tagline').textContent = `with Nesreen · ${s.duration} minutes · 1-on-1 video session`;
+    if(state.selectedDate){
+      const sd = state.selectedDate;
+      const dateObj = new Date(sd.year, sd.month, sd.day);
+      document.getElementById('ck-date').textContent = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+    }
+    if(state.selectedTime) document.getElementById('ck-time').textContent = state.selectedTime + ' · Dubai (GST)';
+    const total = s.price;
+    document.getElementById('ck-total').textContent = `AED ${total.toLocaleString()}`;
+    document.getElementById('ck-pay-total').textContent = `AED ${total.toLocaleString()}`;
+  }catch(e){}
+  switchView('checkout');
+}
+
+// Handle the Stripe redirect back: ?paid=1 polls the brief until the webhook has
+// flipped it to session_scheduled, then lands on the dashboard; ?cancelled=1
+// returns the user to checkout.
+function handlePaymentReturn(){
+  const params = new URLSearchParams(location.search);
+  if(params.has('cancelled')){
+    cleanQueryParam('cancelled');
+    showToast('Checkout cancelled — your time is still held briefly');
+    switchView('checkout');
+    return;
+  }
+  if(!params.has('paid')) return;
+  cleanQueryParam('paid');
+
+  let briefId = '';
+  try{ briefId = sessionStorage.getItem('estrella_brief_id') || ''; }catch(e){}
+  showToast('Confirming your payment…');
+
+  let tries = 0;
+  const poll = () => {
+    tries++;
+    if(!briefId){
+      // No id to poll — still take the user to their dashboard.
+      switchView('dashboard');
+      if(typeof loadDashboard === 'function') loadDashboard();
+      return;
+    }
+    fetch('/api/briefs?id=' + encodeURIComponent(briefId), { credentials:'same-origin' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        const b = d && d.brief;
+        if(b && b.status === 'session_scheduled'){
+          try{ sessionStorage.removeItem('estrella_brief_id'); }catch(e){}
+          switchView('dashboard');
+          if(typeof loadDashboard === 'function') loadDashboard();
+          showToast("Payment confirmed — you're booked.");
+          return;
+        }
+        if(tries < 15){ setTimeout(poll, 2000); }
+        else{
+          // Webhook hasn't landed yet; show the dashboard with what we have.
+          switchView('dashboard');
+          if(typeof loadDashboard === 'function') loadDashboard();
+          showToast('Payment received — confirming your session shortly.');
+        }
+      })
+      .catch(()=>{ if(tries < 15) setTimeout(poll, 2000); else switchView('dashboard'); });
+  };
+  poll();
+}
+
+function cleanQueryParam(name){
+  const params = new URLSearchParams(location.search);
+  params.delete(name);
+  const qs = params.toString();
+  history.replaceState({}, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+}
+
 initLinkedInSession();
 
 const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -6435,7 +6543,7 @@ function afterViewSwitch(viewId, current){
   if(viewId === 'academy' && typeof renderSky === 'function') renderSky();
   if(viewId === 'readiness') animateRings();
   if(viewId === 'coach' && typeof renderCoachBriefs === 'function') renderCoachBriefs();
-  if(viewId === 'dashboard') {/* maybe animate dash */}
+  if(viewId === 'dashboard' && typeof loadDashboard === 'function') loadDashboard();
 
   if(window.EstrellaGsap){
     window.EstrellaGsap.staggerViewContent(viewId);
@@ -6558,10 +6666,62 @@ document.getElementById('book-services').addEventListener('click', (e)=>{
 document.getElementById('to-calendar').addEventListener('click', ()=>{
   if(!state.selectedService) return;
   switchView('calendar');
-  renderCalendar();
+  loadCalendar();
 });
 
 /* ============================== CALENDAR ============================== */
+// Format an ISO timestamp as a Dubai (GST) wall-clock time, e.g. "14:00".
+function formatGST(iso){
+  try{
+    return new Date(iso).toLocaleTimeString('en-GB', {
+      timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', hour12: false
+    });
+  }catch(e){
+    return new Date(iso).toISOString().slice(11,16);
+  }
+}
+
+// Group the month's open slots by their Dubai calendar day → { '<y>-<m>-<d>': [slots] }.
+function gstDayKey(iso){
+  // en-CA yields YYYY-MM-DD; we want the Dubai-local calendar day.
+  try{
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Dubai', year:'numeric', month:'2-digit', day:'2-digit'
+    }).formatToParts(new Date(iso));
+    const y = parts.find(p=>p.type==='year').value;
+    const m = parts.find(p=>p.type==='month').value;
+    const d = parts.find(p=>p.type==='day').value;
+    return `${y}-${parseInt(m,10)-1}-${parseInt(d,10)}`; // 0-indexed month to match state
+  }catch(e){ return null; }
+}
+
+function slotsForDay(year, month, day){
+  if(!state.monthSlotsLoaded || !Array.isArray(state.monthSlots)) return null;
+  const key = `${year}-${month}-${day}`;
+  return state.monthSlots.filter(s => gstDayKey(s.slot_start) === key);
+}
+
+// Fetch the displayed month's open slots, then re-render. Falls back to the mock
+// (state.monthSlotsLoaded=false) if the backend is unavailable / 503 / throws.
+async function loadCalendar(){
+  state.monthSlots = null;
+  state.monthSlotsLoaded = false;
+  if(BACKEND_AVAILABLE){
+    try{
+      const r = await fetch(`/api/availability?year=${state.currentYear}&month=${state.currentMonth}`, { credentials:'same-origin' });
+      if(r.ok){
+        const d = await r.json();
+        if(d && Array.isArray(d.slots)){
+          state.monthSlots = d.slots;
+          state.monthSlotsLoaded = true;
+        }
+      }
+    }catch(e){ /* fall back to mock */ }
+  }
+  renderCalendar();
+  if(state.selectedDate) renderSlots();
+}
+
 function renderCalendar(){
   const monthLabel = document.getElementById('cal-month-label');
   monthLabel.textContent = `${monthNames[state.currentMonth]} ${state.currentYear}`;
@@ -6585,7 +6745,11 @@ function renderCalendar(){
                    (state.currentYear === todayY && state.currentMonth === todayM && d < todayD);
     const dow = new Date(state.currentYear, state.currentMonth, d).getDay();
     const isWeekend = dow === 0 || dow === 6; // UAE weekend: Sat + Sun
-    const hasSlots = !isPast && !isWeekend && d % 3 !== 0; // mock availability (real source in Phase 3)
+    // Real availability when loaded; otherwise the offline mock (d%3).
+    const real = slotsForDay(state.currentYear, state.currentMonth, d);
+    const hasSlots = real
+      ? real.length > 0
+      : (!isPast && !isWeekend && d % 3 !== 0);
     const selected = state.selectedDate &&
                      state.selectedDate.day === d &&
                      state.selectedDate.month === state.currentMonth &&
@@ -6616,23 +6780,50 @@ function renderSlots(){
   const formatted = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
   document.getElementById('slots-date').textContent = formatted;
 
-  const slots = ['09:00','10:30','12:00','14:00','15:30','17:00'];
   const grid = document.getElementById('slots-grid');
+  const real = slotsForDay(sd.year, sd.month, sd.day);
+
+  const select = (label, slotId) => {
+    state.selectedTime = label;
+    state.selectedSlotId = slotId; // null in the mock path
+    grid.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
+    const summary = `Selected: <strong>${formatted} at ${label} GST</strong>`;
+    document.getElementById('cal-summary').innerHTML = summary;
+    const btn = document.getElementById('to-checkout');
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+  };
+
+  if(real){
+    // Real availability: each button carries its slot uuid + GST time.
+    if(!real.length){
+      grid.innerHTML = '<div class="slots-empty" style="color:var(--text-dim);font-size:0.9rem;padding:0.5rem 0">No open times this day. Try another.</div>';
+      return;
+    }
+    grid.innerHTML = real.map(s => {
+      const t = formatGST(s.slot_start);
+      const sel = state.selectedSlotId === s.id ? 'selected' : '';
+      return `<button class="slot ${sel}" data-slot-id="${s.id}" data-time="${t}">${t}</button>`;
+    }).join('');
+    grid.querySelectorAll('.slot').forEach(s => {
+      s.addEventListener('click', ()=>{
+        select(s.dataset.time, s.dataset.slotId);
+        s.classList.add('selected');
+      });
+    });
+    return;
+  }
+
+  // Offline mock — static times, no slot id (checkout uses its own fallback).
+  const slots = ['09:00','10:30','12:00','14:00','15:30','17:00'];
   grid.innerHTML = slots.map(t =>
     `<button class="slot ${state.selectedTime===t?'selected':''}" data-time="${t}">${t}</button>`
   ).join('');
-
   grid.querySelectorAll('.slot').forEach(s => {
     s.addEventListener('click', ()=>{
-      state.selectedTime = s.dataset.time;
-      grid.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
+      select(s.dataset.time, null);
       s.classList.add('selected');
-      const summary = `Selected: <strong>${formatted} at ${state.selectedTime} GST</strong>`;
-      document.getElementById('cal-summary').innerHTML = summary;
-      const btn = document.getElementById('to-checkout');
-      btn.disabled = false;
-      btn.style.opacity = '1';
-      btn.style.pointerEvents = 'auto';
     });
   });
 }
@@ -6640,15 +6831,32 @@ function renderSlots(){
 document.getElementById('cal-prev').addEventListener('click', ()=>{
   state.currentMonth--;
   if(state.currentMonth < 0){state.currentMonth = 11; state.currentYear--;}
-  renderCalendar();
+  loadCalendar();
 });
 document.getElementById('cal-next').addEventListener('click', ()=>{
   state.currentMonth++;
   if(state.currentMonth > 11){state.currentMonth = 0; state.currentYear++;}
-  renderCalendar();
+  loadCalendar();
 });
 
 document.getElementById('to-checkout').addEventListener('click', ()=>{
+  // Sign-in gate: entering checkout requires LinkedIn sign-in (no orphan briefs).
+  // Stash the booking and bounce through sign-in; restored on return (see
+  // initLinkedInSession / resumeStashedBooking).
+  if(BACKEND_AVAILABLE && !getLinkedInUser()){
+    try{
+      sessionStorage.setItem('estrella_booking', JSON.stringify({
+        brief: window.estrellaBrief || state.brief || null,
+        slot_id: state.selectedSlotId || null,
+        selectedDate: state.selectedDate || null,
+        selectedTime: state.selectedTime || null,
+        resume: 'checkout'
+      }));
+    }catch(e){}
+    window.location.href = '/api/linkedin/login';
+    return;
+  }
+
   // Populate checkout
   const s = state.selectedService;
   document.getElementById('ck-svc-name').textContent = s.name;
@@ -6664,8 +6872,85 @@ document.getElementById('to-checkout').addEventListener('click', ()=>{
   switchView('checkout');
 });
 
-/* ============================== PAYMENT SIM ============================== */
+/* ============================== PAYMENT ============================== */
+// Entry point bound to all checkout pay buttons. Real path: POST /api/checkout →
+// redirect to Stripe. Falls back to the offline demo when the backend is absent.
 function simulatePay(){
+  if(BACKEND_AVAILABLE){
+    realCheckout();
+    return;
+  }
+  simulatePayDemo();
+}
+
+// Real booking + payment kickoff. Creates the brief + holds the slot server-side,
+// then redirects to the Stripe Payment Link. Handles the documented error shapes.
+async function realCheckout(){
+  const btns = document.querySelectorAll('#view-checkout button');
+  btns.forEach(b => b.disabled = true);
+  showToast('Redirecting to secure checkout');
+  try{
+    const r = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify({
+        slot_id: state.selectedSlotId,
+        brief: window.estrellaBrief || state.brief || {}
+      })
+    });
+
+    if(r.ok){
+      const d = await r.json();
+      if(d && d.url){
+        try{ sessionStorage.setItem('estrella_brief_id', d.brief_id || ''); }catch(e){}
+        window.location.href = d.url; // → Stripe
+        return;
+      }
+    }
+
+    let body = {};
+    try{ body = await r.json(); }catch(e){}
+
+    if(r.status === 401){
+      // Session expired mid-flow → re-trigger the sign-in gate.
+      try{
+        sessionStorage.setItem('estrella_booking', JSON.stringify({
+          brief: window.estrellaBrief || state.brief || null,
+          slot_id: state.selectedSlotId || null,
+          selectedDate: state.selectedDate || null,
+          selectedTime: state.selectedTime || null,
+          resume: 'checkout'
+        }));
+      }catch(e){}
+      window.location.href = '/api/linkedin/login';
+      return;
+    }
+    if(r.status === 409){
+      showToast('That time was just taken — pick another');
+      btns.forEach(b => b.disabled = false);
+      switchView('calendar');
+      loadCalendar();
+      return;
+    }
+    if(r.status === 503 && body.error === 'payment_unconfigured'){
+      if(body.brief_id){ try{ sessionStorage.setItem('estrella_brief_id', body.brief_id); }catch(e){} }
+      showToast("Payment isn't set up yet — your brief is saved for Nesreen");
+      btns.forEach(b => b.disabled = false);
+      switchView('dashboard');
+      return;
+    }
+    // Any other non-OK (incl. Supabase 503) → graceful offline-style fallback.
+    btns.forEach(b => b.disabled = false);
+    simulatePayDemo();
+  }catch(e){
+    btns.forEach(b => b.disabled = false);
+    simulatePayDemo();
+  }
+}
+
+// Offline demo — saves the brief to localStorage and lands on the dashboard.
+function simulatePayDemo(){
   const btns = document.querySelectorAll('#view-checkout button');
   btns.forEach(b => b.disabled = true);
   showToast('Processing payment');
@@ -6678,6 +6963,181 @@ function simulatePay(){
       btns.forEach(b => b.disabled = false);
     }, 800);
   }, 1500);
+}
+
+/* ============================== DASHBOARD ============================== */
+function dashGreetingWord(){
+  const h = new Date().getHours();
+  if(h < 12) return 'Good morning';
+  if(h < 18) return 'Good afternoon';
+  return 'Good evening';
+}
+
+// Bind the dashboard to the signed-in user + their real next booking. Falls back
+// to the static demo card offline or on any error.
+function loadDashboard(){
+  const h1 = document.getElementById('dash-greeting-h1');
+  const sub = document.getElementById('dash-greeting-sub');
+  const hero = document.getElementById('dash-session-hero');
+  const emptyCard = document.getElementById('dash-session-empty');
+  const cvWrap = document.getElementById('dash-cv-upload');
+  if(cvWrap){ cvWrap.hidden = true; cvWrap.innerHTML = ''; }
+
+  if(!BACKEND_AVAILABLE){
+    // Offline: keep the static card; just personalize the greeting if we can.
+    const u = getLinkedInUser();
+    if(u && u.name && h1) h1.textContent = `${dashGreetingWord()}, ${u.name.split(/\s+/)[0]}.`;
+    return;
+  }
+
+  const user = getLinkedInUser();
+  if(h1) h1.textContent = user && user.name
+    ? `${dashGreetingWord()}, ${user.name.split(/\s+/)[0]}.`
+    : `${dashGreetingWord()}.`;
+
+  if(!user){
+    // Not signed in → prompt sign-in instead of a fake session.
+    if(sub) sub.textContent = 'Sign in to see your sessions and brief.';
+    if(hero) hero.hidden = true;
+    if(emptyCard){
+      emptyCard.hidden = false;
+      const eh = document.getElementById('dash-empty-h2');
+      const em = document.getElementById('dash-empty-meta');
+      const cta = document.getElementById('dash-book-cta');
+      if(eh) eh.textContent = 'Sign in to get started';
+      if(em) em.textContent = 'Your sessions and brief live here once you sign in.';
+      if(cta){ cta.textContent = 'Sign in with LinkedIn →'; cta.onclick = ()=>{ window.location.href = '/api/linkedin/login'; }; }
+    }
+    return;
+  }
+
+  fetch('/api/briefs', { credentials:'same-origin' })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      const briefs = (d && Array.isArray(d.briefs)) ? d.briefs : [];
+      const scheduled = briefs
+        .filter(b => b.status === 'session_scheduled')
+        .sort((a,b) => slotMs(a) - slotMs(b));
+      const next = scheduled[0] || null;
+      renderDashboardBooking(next, scheduled);
+    })
+    .catch(()=>{ /* keep the static card on error */ });
+}
+
+function slotMs(brief){
+  // Briefs carry slot_id but not slot_start; fall back to created_at ordering.
+  const t = brief.slot_start || brief.created_at;
+  const ms = t ? new Date(t).getTime() : 0;
+  return Number.isFinite(ms) ? ms : 0;
+}
+
+function renderDashboardBooking(next, scheduled){
+  const sub = document.getElementById('dash-greeting-sub');
+  const hero = document.getElementById('dash-session-hero');
+  const emptyCard = document.getElementById('dash-session-empty');
+  const meta = document.getElementById('dash-session-meta');
+  const joinBtn = document.getElementById('dash-join-btn');
+
+  if(!next){
+    // Signed in, no upcoming session → empty state + book CTA.
+    if(sub) sub.textContent = 'You have no upcoming session booked.';
+    if(hero) hero.hidden = true;
+    if(emptyCard){
+      emptyCard.hidden = false;
+      const eh = document.getElementById('dash-empty-h2');
+      const em = document.getElementById('dash-empty-meta');
+      const cta = document.getElementById('dash-book-cta');
+      if(eh) eh.textContent = 'Book your first session';
+      if(em) em.textContent = 'One focused hour with Nesreen, AED 500.';
+      if(cta){ cta.textContent = 'Book a session →'; cta.onclick = ()=>{
+        state.selectedService = (typeof COACHING_SESSION !== 'undefined' && COACHING_SESSION) || services[0];
+        switchView('start');
+      }; }
+    }
+    return;
+  }
+
+  // Upcoming/today/past variants from the slot time when available.
+  if(emptyCard) emptyCard.hidden = true;
+  if(hero) hero.hidden = false;
+
+  let whenText = 'Session confirmed';
+  let lead = 'Your next session with Nesreen is confirmed.';
+  if(next.slot_start){
+    const start = new Date(next.slot_start);
+    const dateStr = start.toLocaleDateString('en-US', { timeZone:'Asia/Dubai', weekday:'long', day:'numeric', month:'long' });
+    const timeStr = formatGST(next.slot_start);
+    whenText = `${dateStr} · ${timeStr} GST · 60 minutes · Zoom`;
+    const nowMs = Date.now();
+    const startMs = start.getTime();
+    const dayMs = 24*60*60*1000;
+    if(startMs < nowMs){ lead = 'Your most recent session with Nesreen.'; }
+    else if(startMs - nowMs < dayMs){ lead = 'Your session with Nesreen is today.'; }
+    else{
+      const days = Math.round((startMs - nowMs)/dayMs);
+      lead = `Your next session with Nesreen is in ${days} day${days===1?'':'s'}.`;
+    }
+  }
+  if(sub) sub.textContent = lead;
+  if(meta) meta.textContent = whenText;
+  if(joinBtn){
+    // No real join link in the brief schema yet — keep the gentle placeholder.
+    joinBtn.disabled = false;
+    joinBtn.onclick = ()=> showToast('Your Zoom link is emailed before the session.');
+  }
+
+  // CV upload affordance — attaches to this confirmed brief.
+  renderCvUpload(next.id, !!next.cv_path);
+}
+
+/* ===================== CV UPLOAD (optional, post-booking) ===================== */
+function renderCvUpload(briefId, alreadyHasCv){
+  const wrap = document.getElementById('dash-cv-upload');
+  if(!wrap || !BACKEND_AVAILABLE || !briefId) return;
+  wrap.hidden = false;
+  wrap.innerHTML = `
+    <div class="section-label" style="margin-bottom:0.5rem">${alreadyHasCv ? 'Your CV is attached' : 'Add your CV (optional — helps Nesreen prepare)'}</div>
+    <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap">
+      <input type="file" id="cv-file-input" accept=".pdf,.png,.jpg,.jpeg" />
+      <button class="btn btn-ghost" id="cv-upload-btn">${alreadyHasCv ? 'Replace CV' : 'Add CV'}</button>
+      <span id="cv-upload-status" style="color:var(--text-dim);font-size:0.85rem"></span>
+    </div>`;
+  const btn = document.getElementById('cv-upload-btn');
+  const fileInput = document.getElementById('cv-file-input');
+  const status = document.getElementById('cv-upload-status');
+  btn.addEventListener('click', async ()=>{
+    const file = fileInput.files && fileInput.files[0];
+    if(!file){ if(status) status.textContent = 'Choose a PDF or image first.'; return; }
+    const dot = file.name.lastIndexOf('.');
+    const ext = dot >= 0 ? file.name.slice(dot+1).toLowerCase() : '';
+    if(!['pdf','png','jpg','jpeg'].includes(ext)){ if(status) status.textContent = 'PDF, PNG or JPG only.'; return; }
+    btn.disabled = true;
+    if(status) status.textContent = 'Uploading…';
+    try{
+      const r1 = await fetch('/api/cv-upload-url', {
+        method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+        body: JSON.stringify({ brief_id: briefId, ext })
+      });
+      if(!r1.ok) throw new Error('upload_url_failed');
+      const { path, uploadUrl } = await r1.json();
+      const put = await fetch(uploadUrl, { method:'PUT', body: file });
+      if(!put.ok) throw new Error('put_failed');
+      if(status) status.textContent = 'Reading your CV…';
+      const r2 = await fetch('/api/cv-parse', {
+        method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+        body: JSON.stringify({ brief_id: briefId, path })
+      });
+      let parsed = false;
+      if(r2.ok){ const d = await r2.json(); parsed = !!(d && d.parsed); }
+      showToast(parsed ? 'CV added to your brief' : 'CV uploaded');
+      if(status) status.textContent = parsed ? 'Added — Nesreen will see the highlights.' : 'Uploaded.';
+      btn.textContent = 'Replace CV';
+    }catch(e){
+      if(status) status.textContent = 'Upload failed — you can try again.';
+    }finally{
+      btn.disabled = false;
+    }
+  });
 }
 
 /* ============================== COACH DESK — BRIEFS ============================== */
@@ -6747,69 +7207,187 @@ function seedBriefsIfEmpty(){
   }]);
 }
 
-function renderCoachBriefs(){
-  seedBriefsIfEmpty();
-  const list = loadBriefs();
+const coachEsc = s => (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// Render one brief card from the CANONICAL shape:
+//   { id, name, role, goal, obstacle, synthesis, strengths[], when, reviewed,
+//     cv_path?, cv_extract?, country? }
+function coachBriefCardHTML(b){
+  const esc = coachEsc;
+  const field = (lbl, val, cls) => val ? `<div class="coach-field"><div class="coach-field-lbl">${lbl}</div><div class="coach-field-val ${cls||''}">${esc(val)}</div></div>` : '';
+  const initial = (b.name && b.name[0] || '?').toUpperCase();
+  const strengthsHtml = (b.strengths && b.strengths.length)
+    ? `<div class="coach-field"><div class="coach-field-lbl">Strengths</div><ul class="coach-strengths">${b.strengths.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>` : '';
+  const whenHtml = b.when
+    ? `<div class="coach-brief-when">Session<strong>${esc(b.when.date)}</strong>${esc(b.when.time)}</div>`
+    : `<div class="coach-brief-when">${esc(b.whenFallback || '')}</div>`;
+  const tag = b.reviewed
+    ? '<span class="coach-tag done">Reviewed</span>'
+    : '<span class="coach-tag new">New booking</span>';
+
+  // Optional CV enrichment — render only when present.
+  const cv = b.cv_extract || null;
+  let cvHtml = '';
+  if(cv){
+    cvHtml += field('CV summary', cv.summary, '');
+    if(cv.role) cvHtml += field('CV role', cv.role);
+    if(b.country || cv.country) cvHtml += field('Based in', b.country || cv.country);
+  }else if(b.country){
+    cvHtml += field('Based in', b.country);
+  }
+  const cvBtn = b.cv_path
+    ? `<button class="coach-review-btn" data-cv="${esc(b.id)}" style="margin-right:0.5rem">View CV</button>`
+    : '';
+
+  return `
+  <article class="coach-brief ${b.reviewed?'':'is-new'}" data-id="${esc(b.id)}">
+    <div class="coach-brief-top">
+      <div class="coach-brief-avatar">${initial}</div>
+      <div class="coach-brief-id">
+        <div class="coach-brief-name">${esc(b.name)}</div>
+        <div class="coach-brief-role">${esc(b.role)}</div>
+        ${tag}
+      </div>
+      ${whenHtml}
+    </div>
+    <div class="coach-brief-grid">
+      <div class="coach-brief-col">
+        <div class="coach-col-h">Where they want to get to</div>
+        ${field('Their goal', b.goal, 'quote')}
+        ${cvHtml}
+      </div>
+      <div class="coach-brief-col">
+        <div class="coach-col-h">What's in the way</div>
+        ${field('What’s in the way', b.obstacle, 'quote')}
+        ${field('The deeper read', b.synthesis)}
+        ${strengthsHtml}
+      </div>
+    </div>
+    <div class="coach-brief-foot">
+      ${cvBtn}
+      <button class="coach-review-btn ${b.reviewed?'done':''}" data-review="${esc(b.id)}">${b.reviewed?'Reviewed ✓':'Mark reviewed'}</button>
+    </div>
+  </article>`;
+}
+
+function coachRenderList(list){
   const wrap = document.getElementById('coach-briefs');
   const empty = document.getElementById('coach-empty');
   if(!wrap) return;
-
   const newCount = list.filter(b => !b.reviewed).length;
   document.getElementById('coach-count-new').textContent = newCount;
   document.getElementById('coach-count-total').textContent = list.length;
-
   if(!list.length){ wrap.innerHTML = ''; if(empty) empty.hidden = false; return; }
   if(empty) empty.hidden = true;
+  wrap.innerHTML = list.map(coachBriefCardHTML).join('');
+}
 
-  const esc = s => (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const field = (lbl, val, cls) => val ? `<div class="coach-field"><div class="coach-field-lbl">${lbl}</div><div class="coach-field-val ${cls||''}">${esc(val)}</div></div>` : '';
+// Format a server brief (new field vocabulary) into the canonical card shape.
+function coachMapServerBrief(b){
+  let when = null;
+  if(b.slot_start){
+    const start = new Date(b.slot_start);
+    when = {
+      date: start.toLocaleDateString('en-US', { timeZone:'Asia/Dubai', weekday:'short', day:'numeric', month:'short' }),
+      time: formatGST(b.slot_start) + ' GST'
+    };
+  }
+  return {
+    id: b.id,
+    name: b.client_name || 'New client',
+    role: b.role || '—',
+    goal: b.goal || '',
+    obstacle: b.obstacle || '',
+    synthesis: b.synthesis || '',
+    strengths: Array.isArray(b.strengths) ? b.strengths : [],
+    when,
+    whenFallback: b.status === 'pending_payment' ? 'Awaiting payment' : '',
+    reviewed: !!b.coach_reviewed,
+    cv_path: b.cv_path || null,
+    cv_extract: b.cv_extract || null,
+    country: b.country || null
+  };
+}
 
-  wrap.innerHTML = list.map(b => {
-    const initial = (b.name && b.name[0] || '?').toUpperCase();
-    const strengthsHtml = (b.strengths && b.strengths.length)
-      ? `<div class="coach-field"><div class="coach-field-lbl">Strengths</div><ul class="coach-strengths">${b.strengths.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></div>` : '';
-    const whenHtml = b.when
-      ? `<div class="coach-brief-when">Session<strong>${esc(b.when.date)}</strong>${esc(b.when.time)}</div>`
-      : `<div class="coach-brief-when">${b.status==='lead'?'Not booked yet':''}</div>`;
-    const tag = b.reviewed
-      ? '<span class="coach-tag done">Reviewed</span>'
-      : (b.status === 'new' ? '<span class="coach-tag new">New booking</span>' : '<span class="coach-tag new">Lead</span>');
-    return `
-    <article class="coach-brief ${b.reviewed?'':'is-new'}" data-id="${b.id}">
-      <div class="coach-brief-top">
-        <div class="coach-brief-avatar">${initial}</div>
-        <div class="coach-brief-id">
-          <div class="coach-brief-name">${esc(b.name)}</div>
-          <div class="coach-brief-role">${esc(b.role)}</div>
-          ${tag}
-        </div>
-        ${whenHtml}
-      </div>
-      <div class="coach-brief-grid">
-        <div class="coach-brief-col">
-          <div class="coach-col-h">Where they want to get to</div>
-          ${field('Their goal', b.goal, 'quote')}
-          ${field('What they’ve already tried', b.history)}
-        </div>
-        <div class="coach-brief-col">
-          <div class="coach-col-h">What's in the way</div>
-          ${field('The obstacle', b.pattern, 'quote')}
-          ${field('What brought them here', b.trigger)}
-          ${strengthsHtml}
-          ${field('What they don’t usually say', b.depth)}
-        </div>
-      </div>
-      <div class="coach-brief-foot">
-        <button class="coach-review-btn ${b.reviewed?'done':''}" data-review="${b.id}">${b.reviewed?'Reviewed ✓':'Mark reviewed'}</button>
-      </div>
-    </article>`;
-  }).join('');
+// Dispatcher: real coach desk when online, localStorage demo offline.
+function renderCoachBriefs(){
+  if(BACKEND_AVAILABLE){ renderCoachBriefsRemote(); return; }
+  renderCoachBriefsLocal();
+}
+
+function renderCoachBriefsRemote(){
+  const wrap = document.getElementById('coach-briefs');
+  const empty = document.getElementById('coach-empty');
+  if(!wrap) return;
+  fetch('/api/coach/briefs', { credentials:'same-origin' })
+    .then(async r => {
+      if(r.status === 403){
+        if(empty) empty.hidden = true;
+        document.getElementById('coach-count-new').textContent = '0';
+        document.getElementById('coach-count-total').textContent = '0';
+        wrap.innerHTML = `<div class="coach-empty" style="padding:3rem 1rem;text-align:center;color:var(--text-dim)">
+          <p>This desk is for Nesreen. Sign in with her account to see client briefs.</p></div>`;
+        return null;
+      }
+      if(!r.ok) throw new Error('coach_briefs_failed');
+      return r.json();
+    })
+    .then(d => {
+      if(d === null) return; // 403 handled above
+      const list = (d && Array.isArray(d.briefs) ? d.briefs : []).map(coachMapServerBrief);
+      coachRenderList(list);
+    })
+    .catch(()=>{ renderCoachBriefsLocal(); }); // graceful fallback
+}
+
+function renderCoachBriefsLocal(){
+  if(!BACKEND_AVAILABLE) seedBriefsIfEmpty(); // demo seed only offline
+  const raw = loadBriefs();
+  // Map the legacy localStorage shape into the canonical card shape.
+  const list = raw.map(b => ({
+    id: b.id,
+    name: b.name,
+    role: b.role,
+    goal: b.goal,
+    obstacle: b.pattern,
+    synthesis: b.depth,
+    strengths: b.strengths,
+    when: b.when,
+    whenFallback: b.status === 'lead' ? 'Not booked yet' : '',
+    reviewed: !!b.reviewed
+  }));
+  coachRenderList(list);
 }
 
 document.getElementById('coach-briefs')?.addEventListener('click', (e)=>{
+  const cvBtn = e.target.closest('[data-cv]');
+  if(cvBtn){
+    // Coach-only signed CV download.
+    const id = cvBtn.dataset.cv;
+    fetch('/api/coach/cv-url?brief_id=' + encodeURIComponent(id), { credentials:'same-origin' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if(d && d.url){ window.open(d.url, '_blank', 'noopener'); } else { showToast('CV unavailable'); } })
+      .catch(()=> showToast('CV unavailable'));
+    return;
+  }
   const btn = e.target.closest('[data-review]');
   if(!btn) return;
   const id = btn.dataset.review;
+
+  if(BACKEND_AVAILABLE){
+    // Persist server-side, then re-render from the source of truth.
+    btn.disabled = true;
+    fetch('/api/coach/briefs', {
+      method:'PATCH', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ id, coach_reviewed: true })
+    })
+      .then(r => { if(!r.ok) throw new Error('patch_failed'); return r.json(); })
+      .then(()=> renderCoachBriefs())
+      .catch(()=>{ btn.disabled = false; showToast('Could not save — try again'); });
+    return;
+  }
+
+  // Offline demo path.
   const list = loadBriefs();
   const item = list.find(b => b.id === id);
   if(item && !item.reviewed){ item.reviewed = true; storeBriefs(list); renderCoachBriefs(); }
@@ -6985,6 +7563,111 @@ const startScript = [
 
 let startTurn = 0;
 
+/* --- Real Estrella (LLM) — running transcript + streaming wiring --- */
+// The whole conversation, resent each turn (server holds no state). When the real
+// AI path is active this is the source of truth; the scripted path below is the
+// graceful fallback used offline / when the endpoint is unconfigured or errors.
+let startMessages = [];      // [{role:'user'|'assistant', content}]
+let startUsingAI = false;    // true once a real /api/estrella turn has begun
+let startAIBubble = null;    // the single growing assistant bubble for the active turn
+let startAIText = '';        // accumulated assistant text for the active turn
+
+// Stream one turn against /api/estrella. Resolves true if the real path handled
+// the turn (text streamed and/or a brief arrived); rejects/returns false so the
+// caller can fall back to the scripted flow. Never shows an error to the user.
+async function startStreamTurn(){
+  const resp = await fetch('/api/estrella', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    credentials: 'same-origin',
+    body: JSON.stringify({ messages: startMessages })
+  });
+  // Pre-stream errors (503 ai_unconfigured / 502 / 400) → fall back silently.
+  if(!resp.ok || !resp.body) throw new Error('estrella_unavailable');
+
+  startAIBubble = null;
+  startAIText = '';
+  let gotBrief = false;
+  let sawText = false;
+
+  const reader = resp.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+
+  const handleLine = (line) => {
+    const trimmed = line.trim();
+    if(!trimmed) return;
+    let chunk;
+    try{ chunk = JSON.parse(trimmed); }catch(e){ return; }
+    if(chunk.type === 'text' && typeof chunk.text === 'string'){
+      if(!startAIBubble){
+        startHideTyping();
+        startAIBubble = startAddMessage('', 'ai');
+      }
+      startAIText += chunk.text;
+      if(startAIBubble){
+        startAIBubble.textContent = startAIText;
+        startAIBubble.scrollIntoView({behavior:'smooth', block:'end'});
+      }
+      sawText = true;
+    }else if(chunk.type === 'brief' && chunk.brief && typeof chunk.brief === 'object'){
+      const brief = chunk.brief;
+      if(!Array.isArray(brief.strengths)) brief.strengths = [];
+      window.estrellaBrief = brief;
+      state.brief = brief;
+      gotBrief = true;
+    }else if(chunk.type === 'error'){
+      // Mid-stream failure. If we already streamed some text, keep what we have;
+      // otherwise signal a fallback to the scripted path.
+      if(!sawText) throw new Error('estrella_stream_error');
+    }
+    // {type:'done'} — terminal, nothing to do.
+  };
+
+  for(;;){
+    const { done, value } = await reader.read();
+    if(done) break;
+    buffer += decoder.decode(value, { stream: true });
+    let nl;
+    while((nl = buffer.indexOf('\n')) >= 0){
+      const line = buffer.slice(0, nl);
+      buffer = buffer.slice(nl + 1);
+      handleLine(line);
+    }
+  }
+  if(buffer.trim()) handleLine(buffer);
+
+  startHideTyping();
+  if(startAIText){
+    startMessages.push({ role: 'assistant', content: startAIText });
+  }
+  // The turn is "handled" if the model said anything or finished the brief.
+  return sawText || gotBrief;
+}
+
+// Real-AI turn driver. Pushes the user's message, streams the reply, and on a
+// completed brief reveals the close/profile from the structured fields. Returns a
+// promise that REJECTS if the real path could not run (→ scripted fallback).
+async function startAdvanceAI(userText, input){
+  startMessages.push({ role: 'user', content: userText });
+  // Show typing synchronously (no deferred timer that could outlive a failure and
+  // orphan an indicator). startStreamTurn / the dispatcher's catch both clear it.
+  startShowTyping();
+  const handled = await startStreamTurn();
+  if(!handled) throw new Error('estrella_no_output');
+
+  startUsingAI = true;
+  input.disabled = false;
+
+  if(window.estrellaBrief){
+    // Brief complete → reveal the profile + booking close from the real fields.
+    input.disabled = true;
+    setTimeout(()=>startBeginClose(), 1400);
+  }else{
+    input.focus();
+  }
+}
+
 /* --- Light extraction helpers --- */
 function startExtractName(text){
   if(!text) return null;
@@ -7076,6 +7759,8 @@ function startAddMessage(html, type){
 function startShowTyping(){
   const conv = document.getElementById('start-conversation');
   if(!conv) return;
+  // Idempotent — never stack two indicators (same id) if called twice.
+  document.getElementById('start-typing-indicator')?.remove();
   const el = document.createElement('div');
   el.className = 'start-msg start-msg-ai';
   el.id = 'start-typing-indicator';
@@ -7087,6 +7772,9 @@ function startHideTyping(){
   document.getElementById('start-typing-indicator')?.remove();
 }
 
+// Entry point. Renders the user's message, then routes to the real LLM path when
+// the backend is available — falling back to the scripted demo on any failure so
+// the page never breaks or shows an error to the user.
 function startAdvance(){
   const input = document.getElementById('start-input');
   if(!input) return;
@@ -7096,7 +7784,8 @@ function startAdvance(){
   const page = document.querySelector('.start-page');
   page.classList.add('in-conversation');
 
-  // Capture into the matching profile slot
+  // Always mirror the answer into the legacy profile slots — they back the
+  // scripted fallback and the offline saveBrief() path.
   if(startTurn < captureOrder.length){
     startProfile[captureOrder[startTurn]] = userText;
   }
@@ -7105,6 +7794,21 @@ function startAdvance(){
   input.value = '';
   input.disabled = true;
 
+  // Real path: stream Estrella. If it can't run (offline / 503 / non-OK / throw /
+  // no output), fall back to the scripted flow with the SAME user text.
+  if(BACKEND_AVAILABLE && !window.__estrellaForceScript){
+    startAdvanceAI(userText, input).catch(()=>{
+      startHideTyping();
+      startAdvanceScripted(userText, input);
+    });
+    return;
+  }
+
+  startAdvanceScripted(userText, input);
+}
+
+// The original scripted demo, unchanged in behavior — now the graceful fallback.
+function startAdvanceScripted(userText, input){
   if(startTurn >= startScript.length){
     input.disabled = false;
     return;
@@ -7138,8 +7842,14 @@ function startAdvance(){
 
 function startPopulateProfile(){
   const p = startProfile;
-  const name = startExtractName(p.identity) || 'you';
-  const role = startExtractRole(p.identity, startExtractName(p.identity)) || 'Your work';
+  // Prefer the real structured brief from Estrella; fall back to the regex
+  // extractors over the typed answers when the scripted path ran.
+  const b = window.estrellaBrief || null;
+  const name = (b && b.identity ? startExtractName(b.identity) : null)
+    || startExtractName(p.identity) || 'you';
+  const role = (b && b.role) || startExtractRole(p.identity, startExtractName(p.identity)) || 'Your work';
+  const goal = (b && b.goal) || (p.goal ? p.goal.trim() : '');
+  const obstacle = (b && b.obstacle) || (p.pattern ? p.pattern.trim() : '');
   const firstName = name.split(/\s+/)[0];
   const initial = (firstName[0] || '?').toUpperCase();
 
@@ -7153,9 +7863,9 @@ function startPopulateProfile(){
   }
   setText('profile-name', liUser?.name || name);
   setText('profile-role', liUser?.headline || role);
-  // profile-trigger now shows the obstacle (pattern); profile-goal shows the goal
-  setText('profile-trigger', p.pattern ? p.pattern.trim() : '—');
-  setText('profile-goal', p.goal ? p.goal.trim() : '—');
+  // profile-trigger shows the obstacle; profile-goal shows the goal.
+  setText('profile-trigger', obstacle || '—');
+  setText('profile-goal', goal || '—');
 }
 
 function startBeginClose(){
@@ -7178,6 +7888,13 @@ function startBeginClose(){
 
 function startReset(){
   startTurn = 0;
+  // Reset the real-AI transcript + cached brief so each visit is a clean slate.
+  startMessages = [];
+  startUsingAI = false;
+  startAIBubble = null;
+  startAIText = '';
+  window.estrellaBrief = null;
+  state.brief = null;
   Object.keys(startProfile).forEach(k => startProfile[k] = '');
   const conv = document.getElementById('start-conversation');
   if(conv) conv.innerHTML = '';
@@ -7236,19 +7953,15 @@ document.getElementById('start-pick-time')?.addEventListener('click', ()=>{
   // One path: the single private session with Nesreen (AED 500)
   state.selectedService = COACHING_SESSION || services[0];
   switchView('calendar');
-  if(typeof renderCalendar === 'function') renderCalendar();
+  if(typeof loadCalendar === 'function') loadCalendar();
 });
 
-document.getElementById('start-send-me')?.addEventListener('click', ()=>{
-  saveBrief({ emailedOnly: true });
-  showToast('Profile saved. Nesreen has it for review.');
-});
 
 // "Skip to choosing a time" — book the single session directly
 document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
   state.selectedService = COACHING_SESSION || services[0];
   switchView('calendar');
-  if(typeof renderCalendar === 'function') renderCalendar();
+  if(typeof loadCalendar === 'function') loadCalendar();
 });
 
 /* ============================== LIBRARY — PROMOTE TO HERO ============================== */
