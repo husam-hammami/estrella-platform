@@ -6812,54 +6812,41 @@ function resumeStashedBooking(){
   try{ sessionStorage.removeItem('estrella_booking'); }catch(e){}
 
   if(stashed.brief){ window.estrellaBrief = stashed.brief; state.brief = stashed.brief; }
-  if(stashed.slot_id) state.selectedSlotId = stashed.slot_id;
-  if(stashed.selectedDate) state.selectedDate = stashed.selectedDate;
-  if(stashed.selectedTime) state.selectedTime = stashed.selectedTime;
   if(!state.selectedService) state.selectedService = (typeof COACHING_SESSION !== 'undefined' && COACHING_SESSION) || services[0];
 
-  // Populate the checkout summary from the restored selection.
-  try{
-    const s = state.selectedService;
-    document.getElementById('ck-svc-name').textContent = s.name;
-    document.getElementById('ck-svc-tagline').textContent = `with Nesreen · ${s.duration} minutes · 1-on-1 video session`;
-    if(state.selectedDate){
-      const sd = state.selectedDate;
-      const dateObj = new Date(sd.year, sd.month, sd.day);
-      document.getElementById('ck-date').textContent = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
-    }
-    if(state.selectedTime) document.getElementById('ck-time').textContent = state.selectedTime + ' · Dubai (GST)';
-    const total = s.price;
-    document.getElementById('ck-total').textContent = `AED ${total.toLocaleString()}`;
-    document.getElementById('ck-pay-total').textContent = `AED ${total.toLocaleString()}`;
-  }catch(e){}
+  // Pay-first: no slot to restore — land back on checkout to pay.
+  populateCheckoutSummary();
   switchView('checkout');
 }
 
 // Handle the Stripe redirect back: ?paid=1 polls the brief until the webhook has
-// flipped it to session_scheduled, then lands on the dashboard; ?cancelled=1
-// returns the user to checkout.
+// marked it PAID (status awaiting_schedule), then opens the Calendly scheduler so
+// the client can pick their time. If it's somehow already scheduled, go to the
+// dashboard. ?cancelled=1 returns the user to checkout.
 function handlePaymentReturn(){
   const params = new URLSearchParams(location.search);
   if(params.has('cancelled')){
     cleanQueryParam('cancelled');
-    showToast('Checkout cancelled — your time is still held briefly');
+    showToast('Checkout cancelled — you can pay whenever you’re ready.');
+    populateCheckoutSummary();
     switchView('checkout');
     return;
   }
   if(!params.has('paid')) return;
+  const briefFromUrl = params.get('brief') || '';
   cleanQueryParam('paid');
+  if(params.has('brief')) cleanQueryParam('brief');
 
-  let briefId = '';
-  try{ briefId = sessionStorage.getItem('estrella_brief_id') || ''; }catch(e){}
+  let briefId = briefFromUrl;
+  try{ briefId = briefId || sessionStorage.getItem('estrella_brief_id') || ''; }catch(e){}
   showToast('Confirming your payment…');
 
   let tries = 0;
   const poll = () => {
     tries++;
     if(!briefId){
-      // No id to poll — still take the user to their dashboard.
-      switchView('dashboard');
-      if(typeof loadDashboard === 'function') loadDashboard();
+      // No id to poll — open the scheduler with whatever the coach has set up.
+      openCalendlyScheduler('');
       return;
     }
     fetch('/api/briefs?id=' + encodeURIComponent(briefId), { credentials:'same-origin' })
@@ -6870,12 +6857,19 @@ function handlePaymentReturn(){
           try{ sessionStorage.removeItem('estrella_brief_id'); }catch(e){}
           switchView('dashboard');
           if(typeof loadDashboard === 'function') loadDashboard();
-          showToast("Payment confirmed — you're booked.");
+          showToast("You're booked.");
+          return;
+        }
+        if(b && b.payment_status === 'paid'){
+          // Paid + awaiting scheduling → let them pick a time on Calendly now.
+          showToast('Payment confirmed — pick your time.');
+          openCalendlyScheduler(briefId);
           return;
         }
         if(tries < 15){ setTimeout(poll, 2000); }
         else{
-          // Webhook hasn't landed yet; show the dashboard with what we have.
+          // Webhook hasn't landed yet; show the dashboard (the paid session will
+          // surface there with a "schedule" prompt once confirmed).
           switchView('dashboard');
           if(typeof loadDashboard === 'function') loadDashboard();
           showToast('Payment received — confirming your session shortly.');
@@ -6894,6 +6888,7 @@ function cleanQueryParam(name){
 }
 
 initLinkedInSession();
+handleConnectReturn();
 
 const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -7070,8 +7065,8 @@ document.getElementById('book-services').addEventListener('click', (e)=>{
 
 document.getElementById('to-calendar').addEventListener('click', ()=>{
   if(!state.selectedService) return;
-  switchView('calendar');
-  loadCalendar();
+  // Pay-first: scheduling moved to Calendly after payment (calendar retired).
+  goToCheckout();
 });
 
 /* ============================== CALENDAR ============================== */
@@ -7277,6 +7272,131 @@ document.getElementById('to-checkout').addEventListener('click', ()=>{
   switchView('checkout');
 });
 
+/* ===================== PAY-FIRST FUNNEL + CALENDLY SCHEDULER ===================== */
+// Pay-first flow: screening → checkout → Stripe → (on return) schedule on Calendly.
+// There is no slot to pick before payment; scheduling happens after, on Calendly.
+function populateCheckoutSummary(){
+  const s = state.selectedService || COACHING_SESSION || services[0];
+  try{
+    document.getElementById('ck-svc-name').textContent = s.name;
+    document.getElementById('ck-svc-tagline').textContent = `with Nesreen · ${s.duration} minutes · 1-on-1 video session`;
+    const dEl = document.getElementById('ck-date'); if(dEl) dEl.textContent = 'Scheduled after payment';
+    const tEl = document.getElementById('ck-time'); if(tEl) tEl.textContent = "Pick your time on Nesreen's calendar next";
+    const total = s.price;
+    document.getElementById('ck-total').textContent = `AED ${total.toLocaleString()}`;
+    document.getElementById('ck-pay-total').textContent = `AED ${total.toLocaleString()}`;
+  }catch(e){}
+}
+
+function goToCheckout(){
+  if(!state.selectedService) state.selectedService = (typeof COACHING_SESSION !== 'undefined' && COACHING_SESSION) || services[0];
+  // Sign-in gate: checkout requires LinkedIn (no orphan briefs). Stash + resume.
+  if(BACKEND_AVAILABLE && !getLinkedInUser()){
+    try{
+      sessionStorage.setItem('estrella_booking', JSON.stringify({
+        brief: window.estrellaBrief || state.brief || null,
+        resume: 'checkout'
+      }));
+    }catch(e){}
+    window.location.href = '/api/linkedin/login';
+    return;
+  }
+  populateCheckoutSummary();
+  switchView('checkout');
+}
+
+// After payment, the client schedules their paid session on Nesreen's real
+// Calendly (inline widget overlay). utm_content carries the brief id so the
+// Calendly webhook can confirm exactly this booking.
+let calendlyListenerBound = false;
+function ensureCalendlyWidget(cb){
+  if(window.Calendly){ cb(); return; }
+  let s = document.getElementById('calendly-widget-js');
+  if(!s){
+    s = document.createElement('script');
+    s.id = 'calendly-widget-js';
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    s.addEventListener('load', cb);
+    document.head.appendChild(s);
+  }else{
+    s.addEventListener('load', cb);
+  }
+}
+function openCalendlyScheduler(briefId){
+  if(!BACKEND_AVAILABLE){ switchView('dashboard'); if(typeof loadDashboard==='function') loadDashboard(); return; }
+  fetch('/api/availability', { credentials:'same-origin' })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      const url = d && d.calendly_url;
+      if(!url){
+        showToast('Payment received — scheduling opens shortly.');
+        switchView('dashboard'); if(typeof loadDashboard==='function') loadDashboard();
+        return;
+      }
+      showCalendlyOverlay(url, briefId);
+    })
+    .catch(()=>{ switchView('dashboard'); if(typeof loadDashboard==='function') loadDashboard(); });
+}
+function closeCalendlyOverlay(){ const o = document.getElementById('calendly-overlay'); if(o) o.remove(); }
+function onCalendlyMessage(e){
+  if(!e || !e.data || typeof e.data !== 'object') return;
+  if(e.data.event === 'calendly.event_scheduled'){
+    closeCalendlyOverlay();
+    try{ sessionStorage.removeItem('estrella_brief_id'); }catch(_){}
+    showToast("You're booked — confirmation on its way.");
+    switchView('dashboard'); if(typeof loadDashboard==='function') loadDashboard();
+  }
+}
+function showCalendlyOverlay(schedulingUrl, briefId){
+  const user = getLinkedInUser() || {};
+  closeCalendlyOverlay();
+  const overlay = document.createElement('div');
+  overlay.id = 'calendly-overlay';
+  overlay.setAttribute('style', 'position:fixed;inset:0;z-index:9999;background:rgba(12,10,20,0.92);backdrop-filter:blur(6px);display:flex;flex-direction:column;padding:16px');
+  overlay.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;max-width:920px;margin:0 auto 10px;width:100%;color:#fff">
+      <div style="font-weight:600">Pick your time with Nesreen</div>
+      <button id="calendly-close" style="background:transparent;border:1px solid rgba(255,255,255,0.4);color:#fff;border-radius:999px;padding:6px 14px;cursor:pointer">Schedule later</button>
+    </div>
+    <div id="calendly-embed" style="flex:1;max-width:920px;margin:0 auto;width:100%;background:#fff;border-radius:14px;overflow:hidden"></div>`;
+  document.body.appendChild(overlay);
+  document.getElementById('calendly-close').addEventListener('click', ()=>{
+    closeCalendlyOverlay();
+    showToast('Your paid session is saved — schedule it anytime from your dashboard.');
+    switchView('dashboard'); if(typeof loadDashboard==='function') loadDashboard();
+  });
+  const sep = schedulingUrl.indexOf('?') >= 0 ? '&' : '?';
+  const fullUrl = `${schedulingUrl}${sep}utm_content=${encodeURIComponent(briefId||'')}&hide_gdpr_banner=1`;
+  const mount = () => {
+    if(!window.Calendly){ setTimeout(mount, 150); return; }
+    try{
+      window.Calendly.initInlineWidget({
+        url: fullUrl,
+        parentElement: document.getElementById('calendly-embed'),
+        prefill: { name: user.name || '', email: user.email || '' },
+        utm: { utmContent: briefId || '' }
+      });
+    }catch(e){}
+  };
+  ensureCalendlyWidget(mount);
+  if(!calendlyListenerBound){ window.addEventListener('message', onCalendlyMessage); calendlyListenerBound = true; }
+}
+
+// Surface the Connect (OAuth) round-trip result for the coach.
+function handleConnectReturn(){
+  const params = new URLSearchParams(location.search);
+  if(params.has('connect')){
+    const p = params.get('connect'); cleanQueryParam('connect');
+    showToast(`${p === 'stripe' ? 'Stripe' : 'Calendly'} connected.`);
+    if(typeof renderCoachToolsRemote === 'function') setTimeout(renderCoachToolsRemote, 300);
+  }
+  if(params.has('connect_error')){
+    const e = params.get('connect_error'); cleanQueryParam('connect_error');
+    showToast(`Connection failed: ${e}`);
+  }
+}
+
 /* ============================== PAYMENT ============================== */
 // Entry point bound to all checkout pay buttons. Real path: POST /api/checkout →
 // redirect to Stripe. Falls back to the offline demo when the backend is absent.
@@ -7288,8 +7408,9 @@ function simulatePay(){
   simulatePayDemo();
 }
 
-// Real booking + payment kickoff. Creates the brief + holds the slot server-side,
-// then redirects to the Stripe Payment Link. Handles the documented error shapes.
+// Real payment kickoff. Creates the brief and opens a Stripe Checkout Session
+// (destination charge on Nesreen's connected account); scheduling happens after
+// on Calendly. Handles the documented error shapes.
 async function realCheckout(){
   const btns = document.querySelectorAll('#view-checkout button');
   btns.forEach(b => b.disabled = true);
@@ -7300,7 +7421,6 @@ async function realCheckout(){
       headers: { 'content-type': 'application/json' },
       credentials: 'same-origin',
       body: JSON.stringify({
-        slot_id: state.selectedSlotId,
         brief: window.estrellaBrief || state.brief || {}
       })
     });
@@ -7309,7 +7429,7 @@ async function realCheckout(){
       const d = await r.json();
       if(d && d.url){
         try{ sessionStorage.setItem('estrella_brief_id', d.brief_id || ''); }catch(e){}
-        window.location.href = d.url; // → Stripe
+        window.location.href = d.url; // → Stripe Checkout
         return;
       }
     }
@@ -7322,25 +7442,14 @@ async function realCheckout(){
       try{
         sessionStorage.setItem('estrella_booking', JSON.stringify({
           brief: window.estrellaBrief || state.brief || null,
-          slot_id: state.selectedSlotId || null,
-          selectedDate: state.selectedDate || null,
-          selectedTime: state.selectedTime || null,
           resume: 'checkout'
         }));
       }catch(e){}
       window.location.href = '/api/linkedin/login';
       return;
     }
-    if(r.status === 409){
-      showToast('That time was just taken — pick another');
-      btns.forEach(b => b.disabled = false);
-      switchView('calendar');
-      loadCalendar();
-      return;
-    }
     if(r.status === 503 && body.error === 'payment_unconfigured'){
-      if(body.brief_id){ try{ sessionStorage.setItem('estrella_brief_id', body.brief_id); }catch(e){} }
-      showToast("Payment isn't set up yet — your brief is saved for Nesreen");
+      showToast('Booking opens soon — Nesreen is finishing payment setup.');
       btns.forEach(b => b.disabled = false);
       switchView('dashboard');
       return;
@@ -7569,23 +7678,25 @@ function loadDashboard(){
         .filter(b => b.status === 'session_scheduled')
         .sort((a,b) => slotMs(a) - slotMs(b));
       const next = scheduled[0] || null;
+      // Paid but not yet scheduled → persistent "pick your time" prompt.
+      const awaiting = briefs.find(b => b.payment_status === 'paid' && b.status === 'awaiting_schedule') || null;
       renderDashboardProfile(user, briefs);
-      renderDashboardBooking(next, scheduled);
+      renderDashboardBooking(next, scheduled, awaiting);
     })
     .catch(()=>{
       renderDashboardProfile(user, []);
-      renderDashboardBooking(null, []);
+      renderDashboardBooking(null, [], null);
     });
 }
 
 function slotMs(brief){
-  // Briefs carry slot_id but not slot_start; fall back to created_at ordering.
-  const t = brief.slot_start || brief.created_at;
+  // Prefer the confirmed Calendly start; fall back to created_at ordering.
+  const t = brief.scheduled_start || brief.slot_start || brief.created_at;
   const ms = t ? new Date(t).getTime() : 0;
   return Number.isFinite(ms) ? ms : 0;
 }
 
-function renderDashboardBooking(next, scheduled){
+function renderDashboardBooking(next, scheduled, awaiting){
   const sub = document.getElementById('dash-greeting-sub');
   const hero = document.getElementById('dash-session-hero');
   const emptyCard = document.getElementById('dash-session-empty');
@@ -7593,21 +7704,26 @@ function renderDashboardBooking(next, scheduled){
   const joinBtn = document.getElementById('dash-join-btn');
 
   if(!next){
-    // Signed in, no upcoming session → empty state + book CTA.
-    if(sub) sub.textContent = 'Your profile is ready. Add your CV or continue learning.';
     if(hero) hero.hidden = true;
     if(emptyCard){
       emptyCard.hidden = false;
       const eh = document.getElementById('dash-empty-h2');
       const em = document.getElementById('dash-empty-meta');
       const cta = document.getElementById('dash-book-cta');
-      if(cta) cta.hidden = true;
-      if(eh) eh.textContent = 'No session yet';
-      if(em) em.textContent = 'Your profile, CV, courses, and library progress live here.';
-      if(cta){ cta.textContent = 'Book a session →'; cta.onclick = ()=>{
-        state.selectedService = (typeof COACHING_SESSION !== 'undefined' && COACHING_SESSION) || services[0];
-        switchView('start');
-      }; }
+      if(awaiting){
+        // Paid, no time yet → prominent "schedule now" prompt that reopens Calendly.
+        if(sub) sub.textContent = "You're paid up — pick your time with Nesreen.";
+        if(eh) eh.textContent = 'Schedule your session';
+        if(em) em.textContent = "Your payment is confirmed. Choose a time that works and you're set.";
+        if(cta){ cta.hidden = false; cta.textContent = 'Pick your time →'; cta.onclick = ()=> openCalendlyScheduler(awaiting.id); }
+        renderCvUpload(awaiting.id, !!awaiting.cv_path);
+      }else{
+        // Signed in, nothing paid → quiet empty state (book from /start).
+        if(sub) sub.textContent = 'Your profile is ready. Add your CV or continue learning.';
+        if(eh) eh.textContent = 'No session yet';
+        if(em) em.textContent = 'Your profile, CV, courses, and library progress live here.';
+        if(cta) cta.hidden = true;
+      }
     }
     return;
   }
@@ -7616,13 +7732,14 @@ function renderDashboardBooking(next, scheduled){
   if(emptyCard) emptyCard.hidden = true;
   if(hero) hero.hidden = false;
 
+  const startIso = next.scheduled_start || next.slot_start || null;
   let whenText = 'Session confirmed';
   let lead = 'Your next session with Nesreen is confirmed.';
-  if(next.slot_start){
-    const start = new Date(next.slot_start);
+  if(startIso){
+    const start = new Date(startIso);
     const dateStr = start.toLocaleDateString('en-US', { timeZone:'Asia/Dubai', weekday:'long', day:'numeric', month:'long' });
-    const timeStr = formatGST(next.slot_start);
-    whenText = `${dateStr} · ${timeStr} GST · 60 minutes · Zoom`;
+    const timeStr = formatGST(startIso);
+    whenText = `${dateStr} · ${timeStr} GST · 60 minutes · Video`;
     const nowMs = Date.now();
     const startMs = start.getTime();
     const dayMs = 24*60*60*1000;
@@ -7636,9 +7753,11 @@ function renderDashboardBooking(next, scheduled){
   if(sub) sub.textContent = lead;
   if(meta) meta.textContent = whenText;
   if(joinBtn){
-    // No real join link in the brief schema yet — keep the gentle placeholder.
+    // Real Calendly join link when present; otherwise a gentle placeholder.
+    const joinUrl = next.calendly_join_url || '';
     joinBtn.disabled = false;
-    joinBtn.onclick = ()=> showToast('Your Zoom link is emailed before the session.');
+    if(joinUrl){ joinBtn.onclick = ()=> window.open(joinUrl, '_blank', 'noopener'); }
+    else { joinBtn.onclick = ()=> showToast('Your meeting link will appear here before the session.'); }
   }
 
   // CV upload affordance — attaches to this confirmed brief.
@@ -7935,18 +8054,30 @@ function coachRenderRemoteMessage(message){
 function coachToolCardHTML(id, tool){
   const esc = coachEsc;
   const mark = id === 'stripe' ? '$' : 'C';
-  const href = tool.connectUrl || tool.dashboardUrl || '#';
   const connected = !!tool.connected;
+  const canConnect = tool.canConnect !== false; // default true unless told otherwise
+  let action;
+  if(connected){
+    // Open the provider dashboard (new tab).
+    action = `<a class="coach-tool-action secondary" href="${esc(tool.dashboardUrl || '#')}" target="_blank" rel="noopener">Open</a>`;
+  }else if(canConnect && tool.connectUrl){
+    // Same-tab nav: OAuth needs the state cookie + redirect back to #admin.
+    action = `<a class="coach-tool-action" href="${esc(tool.connectUrl)}">Connect</a>`;
+  }else{
+    action = `<span class="coach-tool-action secondary" style="opacity:.55;cursor:default">Set up</span>`;
+  }
+  const acct = tool.account ? `<div class="coach-tool-note">${esc(tool.account)}</div>` : '';
   return `<article class="coach-tool-card">
     <div class="coach-tool-main">
       <div class="coach-tool-mark">${esc(mark)}</div>
       <div>
         <div class="coach-tool-name">${esc(tool.label || id)}</div>
         <div class="coach-tool-note">${esc(tool.note || '')}</div>
+        ${acct}
         <div class="coach-tool-status ${connected?'connected':''}">${esc(tool.status || (connected ? 'Connected' : 'Needs setup'))}</div>
       </div>
     </div>
-    <a class="coach-tool-action ${connected?'secondary':''}" href="${esc(href)}" target="_blank" rel="noopener">${connected?'Open':'Sign in'}</a>
+    ${action}
   </article>`;
 }
 
@@ -7958,20 +8089,21 @@ function coachRenderTools(tools){
 }
 
 function coachLocalTools(){
+  // Local/offline preview: OAuth needs https, so show non-actionable cards.
   return {
     calendly: {
       label: 'Calendly',
       connected: false,
+      canConnect: false,
       status: 'Dev preview',
-      note: 'Open Calendly to sign in and confirm the scheduling account.',
-      connectUrl: 'https://calendly.com/login',
+      note: 'Connect from the deployed site (OAuth needs https).',
     },
     stripe: {
       label: 'Stripe',
       connected: false,
+      canConnect: false,
       status: 'Dev preview',
-      note: 'Open Stripe to sign in and confirm payment link/webhook setup.',
-      connectUrl: 'https://dashboard.stripe.com/login',
+      note: 'Connect from the deployed site (OAuth needs https).',
     },
   };
 }
@@ -8778,18 +8910,17 @@ document.getElementById('start-email')?.addEventListener('keypress', (e)=>{
 });
 
 document.getElementById('start-pick-time')?.addEventListener('click', ()=>{
-  // One path: the single private session with Nesreen (AED 500)
+  // One path: the single private session with Nesreen (AED 500). Pay first,
+  // then schedule on Calendly.
   state.selectedService = COACHING_SESSION || services[0];
-  switchView('calendar');
-  if(typeof loadCalendar === 'function') loadCalendar();
+  goToCheckout();
 });
 
 
-// "Skip to choosing a time" — book the single session directly
+// "Skip to booking" — go straight to payment for the single session.
 document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
   state.selectedService = COACHING_SESSION || services[0];
-  switchView('calendar');
-  if(typeof loadCalendar === 'function') loadCalendar();
+  goToCheckout();
 });
 
 /* ============================== LIBRARY — PROMOTE TO HERO ============================== */

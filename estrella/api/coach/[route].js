@@ -156,10 +156,14 @@ function coachUserRow(user, briefs, slotsById) {
 
 function coachBooking(brief, slot) {
   if (!brief) return { status: 'none', label: 'No booking yet', provider: null, when: null };
-  const when = brief.slot_start || (slot && slot.slot_start) || brief.paid_at || brief.created_at || null;
-  const provider = brief.calendly_event_url || brief.calendly_event_id ? 'Calendly' : 'Nuria booking';
+  const when = brief.scheduled_start || brief.slot_start || (slot && slot.slot_start) || brief.paid_at || brief.created_at || null;
+  const provider = (brief.calendly_event_uri || brief.calendly_join_url) ? 'Calendly' : 'Nuria booking';
   if (brief.status === 'completed') return { status: 'completed', label: 'Completed', provider, when };
-  if (brief.status === 'session_scheduled' || brief.payment_status === 'paid') return { status: 'booked', label: 'Booked', provider, when };
+  if (brief.status === 'session_scheduled') return { status: 'booked', label: 'Booked', provider, when };
+  if (brief.status === 'needs_review') return { status: 'review', label: 'Booking needs review', provider, when };
+  if (brief.status === 'awaiting_schedule' || (brief.payment_status === 'paid' && brief.status !== 'session_scheduled')) {
+    return { status: 'paid', label: 'Paid \u00b7 awaiting scheduling', provider, when };
+  }
   if (brief.payment_status === 'pending' || brief.status === 'pending_payment') return { status: 'pending', label: 'Pending payment', provider, when };
   return { status: brief.status || 'lead', label: brief.status || 'Brief started', provider, when };
 }
@@ -190,35 +194,45 @@ async function coachIntegrations(req, res) {
     return L.sendJson(res, 405, { error: 'method_not_allowed' });
   }
 
-  const stripeKey = process.env.STRIPE_SECRET_KEY || '';
-  const stripeReady = !!(
-    stripeKey.startsWith('sk_')
-    && process.env.STRIPE_WEBHOOK_SECRET
-    && process.env.STRIPE_WEBHOOK_SECRET.startsWith('whsec_')
-    && process.env.STRIPE_PAYMENT_LINK_URL
-    && process.env.STRIPE_PAYMENT_LINK_URL.startsWith('https://')
-  );
-  const calendlyToken = process.env.CALENDLY_ACCESS_TOKEN
-    || process.env.CALENDLY_API_KEY
-    || process.env.CALENDLY_PAT
-    || '';
-  const calendlyReady = !!calendlyToken;
+  const coachSub = process.env.COACH_LINKEDIN_SUB;
+  const [calendly, stripe] = await Promise.all([
+    L.getIntegration(coachSub, 'calendly'),
+    L.getIntegration(coachSub, 'stripe'),
+  ]);
+
+  // "Configured" = the OAuth app credentials exist so the Connect button can work.
+  // "Connected" = the coach has actually authorized (a row with the key fields).
+  const calendlyConfigured = !!(process.env.CALENDLY_CLIENT_ID && process.env.CALENDLY_CLIENT_SECRET);
+  const stripeConfigured = !!(process.env.STRIPE_CONNECT_CLIENT_ID && (process.env.STRIPE_SECRET_KEY || '').startsWith('sk_'));
+  const calendlyConnected = !!(calendly && calendly.scheduling_url);
+  const stripeConnected = !!(stripe && stripe.account_id);
+  const maskAcct = (id) => (id ? `${String(id).slice(0, 8)}\u2026` : null);
 
   return L.sendJson(res, 200, {
     tools: {
       calendly: {
         label: 'Calendly',
-        connected: calendlyReady,
-        status: calendlyReady ? 'Connected' : 'Needs setup',
-        note: calendlyReady ? 'Scheduling token is present.' : 'Sign in and add a Calendly token/env when ready.',
+        connected: calendlyConnected,
+        status: calendlyConnected ? 'Connected' : (calendlyConfigured ? 'Not connected' : 'Needs setup'),
+        note: calendlyConnected
+          ? 'Scheduling is live on your Calendly.'
+          : (calendlyConfigured ? 'Click Connect to authorize Calendly.' : 'Add CALENDLY_CLIENT_ID/SECRET in Vercel, then connect.'),
+        account: calendlyConnected ? calendly.scheduling_url : null,
+        canConnect: calendlyConfigured,
         connectUrl: '/api/coach/connect?tool=calendly',
-        dashboardUrl: 'https://calendly.com/app/scheduled_events/user/me',
+        dashboardUrl: 'https://calendly.com/event_types/user/me',
       },
       stripe: {
         label: 'Stripe',
-        connected: stripeReady,
-        status: stripeReady ? (stripeKey.startsWith('sk_live_') ? 'Live' : 'Test mode') : 'Needs setup',
-        note: stripeReady ? 'Payment link and webhook are configured.' : 'Sign in and finish payment link/webhook setup.',
+        connected: stripeConnected,
+        status: stripeConnected
+          ? (stripe.status === 'onboarding' ? 'Finish onboarding' : 'Connected')
+          : (stripeConfigured ? 'Not connected' : 'Needs setup'),
+        note: stripeConnected
+          ? `Payouts to ${maskAcct(stripe.account_id)}`
+          : (stripeConfigured ? 'Click Connect to link your Stripe account.' : 'Add STRIPE_CONNECT_CLIENT_ID + STRIPE_SECRET_KEY in Vercel, then connect.'),
+        account: maskAcct(stripe && stripe.account_id),
+        canConnect: stripeConfigured,
         connectUrl: '/api/coach/connect?tool=stripe',
         dashboardUrl: 'https://dashboard.stripe.com/dashboard',
       },
@@ -226,23 +240,179 @@ async function coachIntegrations(req, res) {
   });
 }
 
+// Coach-only OAuth connect for Calendly + Stripe. Handles BOTH legs on the one
+// registered redirect URI (/api/coach/connect): the start (?tool=…) and the
+// provider callback (?code&state). Auth/CSRF failures REDIRECT to an error page
+// (this is a top-level browser navigation — never emit JSON 403 here).
 async function coachConnect(req, res) {
-  const session = L.requireCoach(req, res);
-  if (!session) return;
+  const redirectErr = (msg) => { res.statusCode = 302; res.setHeader('Location', `/?connect_error=${encodeURIComponent(msg)}#admin`); res.end(); };
+  const redirectOk = (provider) => { res.statusCode = 302; res.setHeader('Location', `/?connect=${encodeURIComponent(provider)}#admin`); res.end(); };
+
+  const sess = L.readSession(L.parseCookies(req)[L.COOKIE]);
+  const coachSub = process.env.COACH_LINKEDIN_SUB;
+  if (!sess || !sess.sub || !coachSub || sess.sub !== coachSub) return redirectErr('not_authorized');
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
     return L.sendJson(res, 405, { error: 'method_not_allowed' });
   }
 
   const params = new URL(req.url, 'http://x').searchParams;
+  const code = params.get('code');
+  const stateParam = params.get('state');
+  const oauthError = params.get('error');
+  if (oauthError) return redirectErr(params.get('error_description') || oauthError);
+
+  // ---- Callback leg: provider redirected back with ?code & ?state ----
+  if (code || stateParam) {
+    const cookieState = L.parseCookies(req)[L.CONNECT_STATE_COOKIE];
+    if (!stateParam || !cookieState || stateParam !== cookieState) return redirectErr('state_mismatch');
+    const st = L.readConnectState(stateParam);
+    if (!st || !st.p) return redirectErr('bad_state');
+    L.clearCookie(res, L.CONNECT_STATE_COOKIE);
+    if (!code) return redirectErr('missing_code');
+    try {
+      if (st.p === 'calendly') return await finishCalendly(req, res, code, coachSub, redirectOk, redirectErr);
+      if (st.p === 'stripe') return await finishStripe(req, res, code, coachSub, redirectOk, redirectErr);
+      return redirectErr('unknown_tool');
+    } catch (e) {
+      console.error('connect callback error', e);
+      return redirectErr('server_error');
+    }
+  }
+
+  // ---- Start leg: ?tool=calendly|stripe → set CSRF state + redirect to provider ----
   const tool = params.get('tool');
-  const targets = {
-    calendly: 'https://calendly.com/login',
-    stripe: 'https://dashboard.stripe.com/login',
-  };
-  const target = targets[tool];
-  if (!target) return L.sendJson(res, 400, { error: 'unknown_tool' });
-  res.statusCode = 302;
-  res.setHeader('Location', target);
-  res.end();
+  if (tool !== 'calendly' && tool !== 'stripe') return redirectErr('unknown_tool');
+  try {
+    const state = L.makeConnectState(tool);
+    L.setCookie(res, L.CONNECT_STATE_COOKIE, state, 600); // 10 min to complete
+    const redirectUri = L.connectRedirectUri(req);
+    let authorizeUrl;
+    if (tool === 'calendly') {
+      authorizeUrl = `${L.CALENDLY.authorize}?` + new URLSearchParams({
+        client_id: L.env('CALENDLY_CLIENT_ID'),
+        response_type: 'code',
+        redirect_uri: redirectUri,
+        state,
+      }).toString();
+    } else {
+      authorizeUrl = `${L.STRIPE_CONNECT.authorize}?` + new URLSearchParams({
+        client_id: L.env('STRIPE_CONNECT_CLIENT_ID'),
+        response_type: 'code',
+        scope: 'read_write',
+        redirect_uri: redirectUri,
+        state,
+      }).toString();
+    }
+    res.statusCode = 302;
+    res.setHeader('Location', authorizeUrl);
+    res.end();
+  } catch (e) {
+    console.error('connect start error', e && e.message);
+    return redirectErr('not_configured');
+  }
+}
+
+// Calendly: exchange code → store tokens + scheduling URL, subscribe to booking
+// webhooks signed with our own key (stored encrypted).
+async function finishCalendly(req, res, code, coachSub, redirectOk, redirectErr) {
+  const tokResp = await fetch(L.CALENDLY.token, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      grant_type: 'authorization_code',
+      code,
+      redirect_uri: L.connectRedirectUri(req),
+      client_id: L.env('CALENDLY_CLIENT_ID'),
+      client_secret: L.env('CALENDLY_CLIENT_SECRET'),
+    }).toString(),
+  });
+  if (!tokResp.ok) {
+    console.error('calendly token exchange failed', tokResp.status, await tokResp.text().catch(() => ''));
+    return redirectErr('calendly_token_failed');
+  }
+  const t = await tokResp.json();
+  const accessToken = t.access_token;
+  if (!accessToken) return redirectErr('calendly_no_token');
+
+  const meResp = await fetch(`${L.CALENDLY.api}/users/me`, { headers: { Authorization: `Bearer ${accessToken}` } });
+  if (!meResp.ok) {
+    console.error('calendly users/me failed', meResp.status, await meResp.text().catch(() => ''));
+    return redirectErr('calendly_user_failed');
+  }
+  const meRes = (await meResp.json()).resource || {};
+  const userUri = meRes.uri || t.owner || null;
+  const orgUri = meRes.current_organization || t.organization || null;
+  const schedulingUrl = meRes.scheduling_url || null;
+
+  // Subscribe to booking events. We supply the signing key so Calendly signs
+  // payloads we can verify; 409 means a subscription already exists (re-connect).
+  const signingKey = L.crypto.randomBytes(32).toString('hex');
+  let webhookOk = false;
+  try {
+    const sub = await fetch(`${L.CALENDLY.api}/webhook_subscriptions`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        url: `${L.originOf(req)}/api/calendly/webhook`,
+        events: ['invitee.created', 'invitee.canceled'],
+        organization: orgUri,
+        user: userUri,
+        scope: 'user',
+        signing_key: signingKey,
+      }),
+    });
+    webhookOk = sub.ok || sub.status === 409;
+    if (!sub.ok && sub.status !== 409) console.error('calendly webhook subscribe failed', sub.status, await sub.text().catch(() => ''));
+  } catch (e) { console.error('calendly webhook subscribe error', e && e.message); }
+
+  const saved = await L.saveIntegration(coachSub, 'calendly', {
+    access_token_enc: L.encryptSecret(accessToken),
+    refresh_token_enc: L.encryptSecret(t.refresh_token || null),
+    token_expires_at: t.expires_in ? new Date(Date.now() + t.expires_in * 1000).toISOString() : null,
+    account_id: userUri,
+    organization_uri: orgUri,
+    scheduling_url: schedulingUrl,
+    webhook_signing_key_enc: webhookOk ? L.encryptSecret(signingKey) : null,
+    status: 'connected',
+    connected_at: new Date().toISOString(),
+  });
+  if (!saved.ok) {
+    console.error('calendly save failed', saved.status, await saved.text().catch(() => ''));
+    return redirectErr('calendly_save_failed');
+  }
+  return redirectOk('calendly');
+}
+
+// Stripe Connect (Standard): exchange code → store stripe_user_id. Ongoing calls
+// use the platform key + { stripeAccount }, so the access token is stored but not
+// required. charges_enabled drives the onboarding hint.
+async function finishStripe(req, res, code, coachSub, redirectOk, redirectErr) {
+  const Stripe = require('stripe');
+  const stripe = new Stripe(L.env('STRIPE_SECRET_KEY'));
+  let token;
+  try {
+    token = await stripe.oauth.token({ grant_type: 'authorization_code', code });
+  } catch (e) {
+    console.error('stripe oauth token failed', e && e.message);
+    return redirectErr('stripe_token_failed');
+  }
+  const acct = token.stripe_user_id;
+  if (!acct) return redirectErr('stripe_no_account');
+
+  let chargesEnabled = null;
+  try { chargesEnabled = !!(await stripe.accounts.retrieve(acct)).charges_enabled; } catch (e) { /* onboarding may still be finishing */ }
+
+  const saved = await L.saveIntegration(coachSub, 'stripe', {
+    access_token_enc: L.encryptSecret(token.access_token || null),
+    refresh_token_enc: L.encryptSecret(token.refresh_token || null),
+    account_id: acct,
+    status: chargesEnabled === false ? 'onboarding' : 'connected',
+    connected_at: new Date().toISOString(),
+  });
+  if (!saved.ok) {
+    console.error('stripe save failed', saved.status, await saved.text().catch(() => ''));
+    return redirectErr('stripe_save_failed');
+  }
+  return redirectOk('stripe');
 }

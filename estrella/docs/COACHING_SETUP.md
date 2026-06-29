@@ -24,9 +24,17 @@ Add these:
 | `COACH_LINKEDIN_SUB` | Nesreen's LinkedIn `sub` (see §5) | coach-desk gate |
 | `ANTHROPIC_API_KEY` | from console.anthropic.com | AI screening + CV parse |
 | `ESTRELLA_MODEL` | `claude-sonnet-4-6` (optional; default in code) | AI screening |
-| `STRIPE_SECRET_KEY` | `sk_live_…` (or `sk_test_…`) | webhook verify |
+| `STRIPE_SECRET_KEY` | platform `sk_live_…` (or `sk_test_…`) | Checkout + webhook verify |
 | `STRIPE_WEBHOOK_SECRET` | `whsec_…` from the webhook (see §4) | webhook verify |
-| `STRIPE_PAYMENT_LINK_URL` | your AED 500 Payment Link URL (see §4) | checkout |
+| `STRIPE_CONNECT_CLIENT_ID` | `ca_…` from Stripe → Connect → Settings | coach "Connect Stripe" OAuth |
+| `CALENDLY_CLIENT_ID` | from a Calendly OAuth app (see §4) | coach "Connect Calendly" OAuth |
+| `CALENDLY_CLIENT_SECRET` | from the Calendly OAuth app | Calendly token exchange |
+| `INTEGRATION_ENC_KEY` | 32-byte key, base64 or 64-hex (`openssl rand -base64 32`) | encrypts stored Stripe/Calendly tokens |
+
+Retired (no longer read; safe to delete): `STRIPE_PAYMENT_LINK_URL` — replaced by dynamic
+Stripe Checkout Sessions on the coach's connected account. `CALENDLY_ACCESS_TOKEN` /
+`CALENDLY_API_KEY` / `CALENDLY_PAT` — Calendly is now connected per-coach via OAuth and
+stored (encrypted) in `coach_integrations`.
 
 After adding/changing env vars, **redeploy** (env changes need a fresh build), then
 open `/api/health` while signed in as the coach — it reports any missing/misshaped var.
@@ -108,13 +116,59 @@ alter table public.users add column if not exists cv_name text;
 alter table public.users add column if not exists cv_uploaded_at timestamptz;
 ```
 
-To add some slots for Nesreen (example — adjust dates; times are UTC, GST = +4):
+### Real Calendly + Stripe (end-to-end) — additive migration
+
+Run this once on top of the tables above:
+
 ```sql
-insert into public.availability_slots (coach_sub, slot_start, slot_end) values
-  ('<COACH_LINKEDIN_SUB>', '2026-07-01 10:00+04', '2026-07-01 11:00+04'),
-  ('<COACH_LINKEDIN_SUB>', '2026-07-01 14:00+04', '2026-07-01 15:00+04');
+-- Per-coach integration tokens (encrypted at rest by the app; service_role only).
+create table if not exists public.coach_integrations (
+  id uuid primary key default gen_random_uuid(),
+  coach_sub        text not null,
+  provider         text not null,                  -- 'calendly' | 'stripe'
+  access_token_enc text,                            -- AES-256-GCM (INTEGRATION_ENC_KEY)
+  refresh_token_enc text,
+  token_expires_at timestamptz,
+  account_id       text,                            -- Stripe stripe_user_id / Calendly user URI
+  organization_uri text,                            -- Calendly org (webhook scope)
+  scheduling_url   text,                            -- Calendly public scheduling link
+  webhook_signing_key_enc text,                     -- Calendly webhook signing key (encrypted)
+  status           text not null default 'connected',
+  connected_at     timestamptz not null default now(),
+  updated_at       timestamptz not null default now(),
+  unique (coach_sub, provider)
+);
+
+-- Paid access records. One active row = the right to book one coaching session.
+create table if not exists public.entitlements (
+  id uuid primary key default gen_random_uuid(),
+  user_sub   text not null,
+  product    text not null default 'coaching_session',
+  brief_id   uuid references public.briefs(id) on delete set null,
+  status     text not null default 'active',        -- active | consumed | refunded
+  stripe_checkout_session_id text unique,            -- idempotency: one entitlement per paid session
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+-- Booking now happens on Calendly; record the confirmed event on the brief.
+alter table public.briefs add column if not exists stripe_checkout_session_id text;
+alter table public.briefs add column if not exists calendly_event_uri text;
+alter table public.briefs add column if not exists calendly_invitee_uri text;
+alter table public.briefs add column if not exists calendly_join_url text;
+alter table public.briefs add column if not exists scheduled_start timestamptz;
+alter table public.briefs add column if not exists scheduled_end timestamptz;
+-- briefs.status gains 'awaiting_schedule' (paid, not yet booked) and 'needs_review'
+-- (a Calendly booking we could not match to a paid brief). status is free text — no enum change.
+-- briefs.slot_id is already nullable; the custom calendar (availability_slots + claim_slot)
+-- is RETIRED — kept for historical rows but no longer written by the app.
+
+alter table public.coach_integrations enable row level security;
+alter table public.entitlements enable row level security;
 ```
-(A coach slot-management UI exists at `/api/coach/slots`; you can also insert directly.)
+
+(The legacy `availability_slots` insert/`/api/coach/slots` UI is retired — Calendly owns
+scheduling now. No manual slot inserts needed.)
 
 ---
 
@@ -128,26 +182,54 @@ Storage → Create bucket:
 
 This bucket config is the real ceiling on uploads (the app also re-validates server-side).
 
+Also create a **public** bucket for profile pictures:
+- Name: **`avatars`**
+- **Public (Public = ON)** — non-sensitive LinkedIn profile photos shown in the UI
+- File size limit: 2 MB; Allowed MIME types: `image/jpeg, image/png`
+
+LinkedIn `media.licdn.com` photo URLs are signed and expire, so at sign-in the app copies
+the picture once into `avatars/{sub}.jpg` and stores that durable public URL — that's why
+every member keeps a visible avatar between logins (it falls back to initials only if they
+have no LinkedIn photo).
+
 ---
 
-## 4. Stripe (real AED 500 payment)
+## 4. Stripe (Connect) + Calendly — connected by the coach in-app
 
-1. Stripe Dashboard → **Payment Links** → create a link for a one-off **AED 500**
-   product ("Coaching session with Nesreen"). Set the **success URL** to
-   `https://<your-domain>/?paid=1` and cancel URL to `https://<your-domain>/?cancelled=1`.
-   Copy the link URL → `STRIPE_PAYMENT_LINK_URL`.
-2. Developers → **API keys** → copy the **Secret key** → `STRIPE_SECRET_KEY`.
-3. Developers → **Webhooks** → Add endpoint:
-   `https://<your-domain>/api/stripe/webhook`, event
-   **`checkout.session.completed`**. Copy the **Signing secret** (`whsec_…`) →
-   `STRIPE_WEBHOOK_SECRET`.
+Payments and scheduling are no longer static env links. Nesreen connects her own Stripe and
+Calendly from the **Admin → Integrations** desk (only she can; the buttons hit
+`/api/coach/connect?tool=…`, gated by `COACH_LINKEDIN_SUB`). You only register the two OAuth
+apps and set their client credentials.
 
-Run in **test mode** first (`sk_test_`, test link, a test webhook), verify end-to-end,
+### Stripe (Standard Connect, destination charges)
+1. Stripe Dashboard → **Connect** → enable it. In **Connect → Settings**, copy the
+   **client id** (`ca_…`) → `STRIPE_CONNECT_CLIENT_ID`, and add the OAuth **redirect URI**
+   `https://<your-domain>/api/coach/connect`.
+2. Developers → **API keys** → platform **Secret key** → `STRIPE_SECRET_KEY`.
+3. Developers → **Webhooks** → Add endpoint `https://<your-domain>/api/stripe/webhook`,
+   event **`checkout.session.completed`**. Signing secret (`whsec_…`) → `STRIPE_WEBHOOK_SECRET`.
+   (Destination charges fire this event on the **platform** account, so this one endpoint +
+   secret covers it — no separate Connect webhook needed.)
+4. Nesreen clicks **Connect Stripe** and finishes Standard onboarding. Checkout is created on
+   the platform with `on_behalf_of` + `transfer_data.destination` = her account and inline
+   price **AED 500** (no Payment Link, no pre-made Price). Her account must support AED with
+   charges enabled, or checkout returns `503 payment_unconfigured`.
+
+### Calendly (OAuth app + webhook)
+1. Calendly → **Integrations → API & webhooks → OAuth applications** → create an app with
+   redirect URI `https://<your-domain>/api/coach/connect`. Copy client id/secret →
+   `CALENDLY_CLIENT_ID` / `CALENDLY_CLIENT_SECRET`.
+2. Nesreen clicks **Connect Calendly**. The callback stores her tokens (encrypted) + scheduling
+   URL and creates a **user-scoped webhook subscription** for `invitee.created` /
+   `invitee.canceled` (signing key captured from the create response, stored encrypted). Clients
+   book on her real Calendly (embedded after payment); the webhook confirms the session.
+
+Run in **test mode** first (`sk_test_`, Stripe test Connect, a test webhook), verify end-to-end,
 then switch to live keys.
 
-> The booking is marked **paid only by the verified webhook** — never by the browser
-> redirect. Until the webhook fires, the brief stays `pending_payment` and the slot
-> hold lapses on its own after 15 min.
+> Flow: pay first (Stripe Checkout) → `awaiting_schedule` + entitlement → schedule on the
+> Calendly embed (`utm_content=<brief_id>`) → `invitee.created` webhook → `session_scheduled`.
+> Paid state is still written **only** by the verified Stripe webhook — never the browser redirect.
 
 ---
 
@@ -168,14 +250,17 @@ sees `/api/coach/*` (everyone else gets 403).
 1. Push to `main` (Vercel builds it; Root Directory = `estrella`).
 2. Set all env vars (§1), create tables (§2), bucket (§3), Stripe (§4), coach sub (§5).
 3. Redeploy. Open `/api/health` signed in as the coach → all green.
-4. End-to-end test: sign in → talk to Estrella → pick a real slot → pay (test card
-   `4242…` in Stripe test mode) → confirm the dashboard shows the booked session and
-   the brief appears on Nesreen's desk with `paid`. Optionally upload a CV and confirm
-   the parsed fields show on the desk.
+4. As Nesreen: Admin → Integrations → **Connect Stripe** and **Connect Calendly**.
+   Then as a client: sign in → talk to Estrella → **pay** (test card `4242…` in Stripe
+   test mode) → land on the **Calendly embed** → pick a time → confirm the dashboard
+   flips to a booked session and the brief shows `paid` + `session_scheduled` on
+   Nesreen's desk. Optionally upload a CV and confirm the parsed fields show on the desk.
 
 ## What the code does without keys (graceful degradation)
 - No `ANTHROPIC_API_KEY` → screening returns a clean "AI unavailable" and the flow
   still lets the user proceed with a typed brief; CV parse is skipped.
-- No `STRIPE_*` → checkout shows "payment not yet configured" instead of redirecting.
+- Coach hasn't connected Stripe → checkout returns 503 ("booking opens soon").
+- Coach hasn't connected Calendly → no scheduling URL; the post-payment step says scheduling opens soon.
+- No `INTEGRATION_ENC_KEY` → Connect callbacks refuse to store tokens (loud error), never plaintext.
 - No `COACH_LINKEDIN_SUB` → coach desk returns 403 for everyone (fails closed).
-- No Supabase config → briefs/slots endpoints return 503; the page still renders.
+- No Supabase config → briefs/entitlements endpoints return 503; the page still renders.

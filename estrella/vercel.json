@@ -3,6 +3,10 @@
     {
       "source": "/api/logout",
       "destination": "/api/me?action=logout"
+    },
+    {
+      "source": "/api/calendly/webhook",
+      "destination": "/api/stripe/webhook?provider=calendly"
     }
   ]
 }

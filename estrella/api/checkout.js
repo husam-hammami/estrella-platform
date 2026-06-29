@@ -1,11 +1,14 @@
 'use strict';
 // Booking + payment kickoff for the signed-in user. POST creates the brief at
-// booking time (NOT during anonymous screening), atomically holds the chosen slot
-// via the claim_slot RPC, and hands back the Stripe Payment Link URL. This route
-// NEVER marks anything paid — that is exclusively api/stripe/webhook.js's job.
+// booking time (NOT during anonymous screening) and opens a Stripe Checkout
+// Session as a DESTINATION CHARGE on the coach's connected account. Scheduling
+// happens AFTER payment on Calendly — there is no slot to hold here. This route
+// NEVER marks anything paid; that is exclusively api/stripe/webhook.js's job.
 const L = require('../lib/api.js');
 
 const COACH = process.env.COACH_LINKEDIN_SUB;
+const PRICE_AMOUNT = 50000; // AED 500.00, in the smallest currency unit (fils)
+const PRICE_CURRENCY = 'aed';
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -16,33 +19,26 @@ module.exports = async (req, res) => {
   if (!s) return;
   if (!L.sbConfigured()) return L.sendJson(res, 503, { error: 'supabase_unconfigured' });
   if (!COACH) return L.sendJson(res, 503, { error: 'coach_unconfigured' });
+  if (!process.env.STRIPE_SECRET_KEY) return L.sendJson(res, 503, { error: 'payment_unconfigured' });
 
   try {
-    // Body: { slot_id, brief:{identity,role,goal,obstacle,synthesis,strengths} }.
-    // The screening output is held in the browser until booking; we accept ONLY
-    // the screening fields here — identity columns come from the session below.
+    // Body: { brief:{identity,role,goal,obstacle,synthesis,strengths} }. The
+    // screening output is held in the browser until booking; we accept ONLY the
+    // screening fields here — identity columns come from the session below.
     const body = req.body && typeof req.body === 'object' ? req.body : await readJson(req);
-    const slotId = body && body.slot_id;
     const brief = (body && body.brief && typeof body.brief === 'object') ? body.brief : {};
-    if (!slotId) return L.sendJson(res, 400, { error: 'slot_id_required' });
 
-    // Atomic slot hold. claim_slot succeeds only if the slot is free or its hold
-    // lapsed and it isn't paid — a single UPDATE, so concurrent bookers race
-    // safely (exactly one true). If it's taken, ask the client to repick.
-    const claimResp = await L.sb('rpc/claim_slot', {
-      method: 'POST',
-      body: JSON.stringify({ p_slot: slotId, p_client_sub: s.sub }),
-    });
-    if (!claimResp.ok) {
-      console.error('claim_slot failed', claimResp.status, await claimResp.text().catch(() => ''));
-      return L.sendJson(res, 502, { error: 'supabase_error' });
+    // The coach must have connected Stripe (and finished onboarding) before anyone
+    // can pay — charges land on her account via the connected-account transfer.
+    const integ = await L.getIntegration(COACH, 'stripe');
+    const acct = integ && integ.account_id;
+    if (!acct || integ.status === 'onboarding') {
+      return L.sendJson(res, 503, { error: 'payment_unconfigured' });
     }
-    const ok = await claimResp.json();
-    if (ok !== true) return L.sendJson(res, 409, { error: 'slot_taken' });
 
     // Create the brief for the signed-in user. Identity (client_sub/name/email)
     // comes from the SESSION, never the request body — trust boundary. Screening
-    // fields come from the browser-held brief.
+    // fields come from the browser-held brief. No slot_id: Calendly schedules later.
     const row = {
       client_sub: s.sub,
       client_name: s.name || null,
@@ -50,7 +46,6 @@ module.exports = async (req, res) => {
       coach_sub: COACH,
       status: 'pending_payment',
       payment_status: 'pending',
-      slot_id: slotId,
       identity: brief.identity || null,
       role: brief.role || null,
       goal: brief.goal || null,
@@ -64,8 +59,6 @@ module.exports = async (req, res) => {
       body: JSON.stringify(row),
     });
     if (!insResp.ok) {
-      // The hold succeeded but the brief insert failed. Best-effort: leave the
-      // hold to lapse via lazy expiry (no slot is permanently locked) and 500.
       console.error('brief insert failed', insResp.status, await insResp.text().catch(() => ''));
       return L.sendJson(res, 500, { error: 'brief_insert_failed' });
     }
@@ -77,19 +70,51 @@ module.exports = async (req, res) => {
       return L.sendJson(res, 500, { error: 'brief_insert_failed' });
     }
 
-    // Payment Link not configured yet: the brief exists, but there's nowhere to
-    // pay. Tell the frontend so it can show "payment not configured yet".
-    const link = process.env.STRIPE_PAYMENT_LINK_URL;
-    if (!link) return L.sendJson(res, 503, { error: 'payment_unconfigured', brief_id: briefId });
+    // Destination charge: the session is created on the PLATFORM account so
+    // checkout.session.completed lands on our existing webhook/secret, while funds
+    // settle to the coach's connected account. client_reference_id carries the
+    // brief id the webhook flips. Price is set inline (no pre-made Price needed).
+    const origin = L.originOf(req);
+    const Stripe = require('stripe');
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    let session;
+    try {
+      session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        line_items: [{
+          quantity: 1,
+          price_data: {
+            currency: PRICE_CURRENCY,
+            unit_amount: PRICE_AMOUNT,
+            product_data: { name: 'Coaching session with Nesreen' },
+          },
+        }],
+        payment_intent_data: {
+          on_behalf_of: acct,
+          transfer_data: { destination: acct },
+        },
+        client_reference_id: briefId,
+        customer_email: s.email || undefined,
+        metadata: { brief_id: briefId, client_sub: s.sub },
+        success_url: `${origin}/?paid=1&brief=${encodeURIComponent(briefId)}`,
+        cancel_url: `${origin}/?cancelled=1&brief=${encodeURIComponent(briefId)}`,
+      });
+    } catch (e) {
+      console.error('stripe checkout session create failed', e && e.message);
+      return L.sendJson(res, 502, { error: 'stripe_error', brief_id: briefId });
+    }
 
-    // Carry the brief id as client_reference_id (the webhook reads it back to flip
-    // exactly this brief) and prefill the email for a smoother Stripe checkout.
-    const sep = link.indexOf('?') >= 0 ? '&' : '?';
-    const url = link + sep
-      + 'client_reference_id=' + encodeURIComponent(briefId)
-      + '&prefilled_email=' + encodeURIComponent(s.email || '');
+    // Record the session id on the brief (matching + diagnostics). Best-effort.
+    if (session && session.id) {
+      const patch = await L.sb(`briefs?id=eq.${encodeURIComponent(briefId)}`, {
+        method: 'PATCH',
+        headers: { Prefer: 'return=minimal' },
+        body: JSON.stringify({ stripe_checkout_session_id: session.id }),
+      });
+      if (!patch.ok) console.error('checkout: brief session-id patch failed', patch.status, await patch.text().catch(() => ''));
+    }
 
-    return L.sendJson(res, 200, { url, brief_id: briefId });
+    return L.sendJson(res, 200, { url: session.url, brief_id: briefId });
   } catch (e) {
     console.error('checkout error', e);
     return L.sendJson(res, 500, { error: 'server_error' });

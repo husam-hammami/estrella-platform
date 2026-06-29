@@ -54,12 +54,18 @@ module.exports = async (req, res) => {
     }
     const profile = await meResp.json(); // { sub, name, given_name, family_name, picture, email, locale }
 
-    // 3) Register / update the user in the Supabase registry (best-effort).
-    try { await L.upsertUser(profile); } catch (e) { console.error('upsert error', e); }
+    // 3) Resolve a DURABLE avatar: copy LinkedIn's expiring media.licdn.com photo
+    //    once into the public `avatars` bucket so every member keeps a visible
+    //    picture between logins (falls back to the raw url, then to initials).
+    let photoUrl = null;
+    try { photoUrl = await L.resolveAvatar(profile); } catch (e) { console.error('avatar resolve error', e && e.message); }
 
-    // 4) Issue a signed session and return to the app. Shape matches the frontend's
+    // 4) Register / update the user in the Supabase registry (best-effort), storing
+    //    the durable photo url so /api/me serves it without re-fetching LinkedIn.
+    try { await L.upsertUser(profile, photoUrl); } catch (e) { console.error('upsert error', e); }
+
+    // 5) Issue a signed session and return to the app. Shape matches the frontend's
     //    existing getLinkedInUser() contract: { name, headline, photoUrl, email }.
-    const photoUrl = profilePhotoUrl(profile);
     const session = {
       sub: profile.sub,
       name: profile.name || [profile.given_name, profile.family_name].filter(Boolean).join(' ') || 'LinkedIn member',
@@ -78,16 +84,3 @@ module.exports = async (req, res) => {
     return fail(res, 'server_error');
   }
 };
-
-function profilePhotoUrl(profile) {
-  if (!profile || typeof profile !== 'object') return null;
-  const direct = profile.picture || profile.photoUrl || profile.photo_url || profile.avatar_url || profile.avatar || profile.image;
-  if (direct) return direct;
-  const legacy = profile.profilePicture && profile.profilePicture['displayImage~'] && profile.profilePicture['displayImage~'].elements;
-  if (Array.isArray(legacy) && legacy.length) {
-    const best = legacy[legacy.length - 1];
-    const id = best && best.identifiers && best.identifiers[0] && best.identifiers[0].identifier;
-    if (id) return id;
-  }
-  return null;
-}

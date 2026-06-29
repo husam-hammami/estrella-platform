@@ -70,12 +70,30 @@ module.exports = async (req, res) => {
     else checks.push(check('STRIPE_WEBHOOK_SECRET', true));
   }
 
-  // STRIPE_PAYMENT_LINK_URL: present, https.
+  // STRIPE_CONNECT_CLIENT_ID: present, starts ca_ (coach "Connect Stripe" OAuth).
   {
-    const val = v('STRIPE_PAYMENT_LINK_URL');
-    if (!val) checks.push(check('STRIPE_PAYMENT_LINK_URL', false, 'missing'));
-    else if (!val.startsWith('https://')) checks.push(check('STRIPE_PAYMENT_LINK_URL', false, 'wrong shape: must start with https://'));
-    else checks.push(check('STRIPE_PAYMENT_LINK_URL', true));
+    const val = v('STRIPE_CONNECT_CLIENT_ID');
+    if (!val) checks.push(check('STRIPE_CONNECT_CLIENT_ID', false, 'missing'));
+    else if (!val.startsWith('ca_')) checks.push(check('STRIPE_CONNECT_CLIENT_ID', false, 'wrong shape: must start with ca_'));
+    else checks.push(check('STRIPE_CONNECT_CLIENT_ID', true));
+  }
+
+  // Calendly OAuth app credentials: presence only (never print values).
+  checks.push(check('CALENDLY_CLIENT_ID', !!v('CALENDLY_CLIENT_ID'), 'missing'));
+  checks.push(check('CALENDLY_CLIENT_SECRET', !!v('CALENDLY_CLIENT_SECRET'), 'missing'));
+
+  // INTEGRATION_ENC_KEY: must decode to exactly 32 bytes (base64/base64url or 64-hex).
+  {
+    const val = v('INTEGRATION_ENC_KEY');
+    if (!val) checks.push(check('INTEGRATION_ENC_KEY', false, 'missing'));
+    else {
+      const raw = val.trim();
+      const buf = /^[0-9a-fA-F]{64}$/.test(raw)
+        ? Buffer.from(raw, 'hex')
+        : Buffer.from(raw.replace(/-/g, '+').replace(/_/g, '/'), 'base64');
+      if (buf.length !== 32) checks.push(check('INTEGRATION_ENC_KEY', false, 'wrong shape: must decode to 32 bytes (base64 or 64-hex)'));
+      else checks.push(check('INTEGRATION_ENC_KEY', true));
+    }
   }
 
   return L.sendJson(res, 200, { allOk: checks.every((c) => c.ok), checks });
