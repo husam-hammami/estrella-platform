@@ -148,6 +148,8 @@ async function resolveAvatar(profile) {
     if (!resp.ok) return src;
     const ct = (resp.headers.get('content-type') || 'image/jpeg').split(';')[0].trim();
     if (!/^image\//i.test(ct)) return src;
+    const declared = Number(resp.headers.get('content-length') || 0);
+    if (declared && declared > 4 * 1024 * 1024) return src; // don't buffer oversized
     const buf = Buffer.from(await resp.arrayBuffer());
     if (!buf.length || buf.length > 4 * 1024 * 1024) return src;
     const ext = ct.includes('png') ? 'png' : 'jpg';
@@ -317,9 +319,11 @@ async function sb(path, opts = {}) {
 // raw bytes, so read the stream manually (no req.rawBody guarantee on Vercel).
 function readRawBody(req) {
   return new Promise((resolve, reject) => {
-    let data = '';
-    req.on('data', (c) => { data += c; });
-    req.on('end', () => resolve(data));
+    // Collect Buffers and concat so a multibyte UTF-8 char split across TCP chunks
+    // (e.g. an Arabic invitee name) can't corrupt the body and fail signature checks.
+    const chunks = [];
+    req.on('data', (c) => { chunks.push(Buffer.isBuffer(c) ? c : Buffer.from(c)); });
+    req.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
     req.on('error', reject);
   });
 }

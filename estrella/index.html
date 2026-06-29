@@ -7636,12 +7636,16 @@ async function realCheckout(){
       switchView('dashboard');
       return;
     }
-    // Any other non-OK (incl. Supabase 503) → graceful offline-style fallback.
+    // Real backend error (e.g. 500/502 from Stripe or Supabase): surface it and let
+    // them retry — NEVER fake a success. simulatePayDemo is only for the offline
+    // (file://) prototype, which never reaches realCheckout.
     btns.forEach(b => b.disabled = false);
-    simulatePayDemo();
+    if(!BACKEND_AVAILABLE){ simulatePayDemo(); return; }
+    showToast('Payment could not be started — please try again in a moment.');
   }catch(e){
     btns.forEach(b => b.disabled = false);
-    simulatePayDemo();
+    if(!BACKEND_AVAILABLE){ simulatePayDemo(); return; }
+    showToast('Payment could not be started — check your connection and retry.');
   }
 }
 
@@ -7936,7 +7940,7 @@ function renderDashboardBooking(next, scheduled, awaiting){
   if(meta) meta.textContent = whenText;
   if(joinBtn){
     // Real Calendly join link when present; otherwise a gentle placeholder.
-    const joinUrl = next.calendly_join_url || '';
+    const joinUrl = safeHttpUrl(next.calendly_join_url);
     joinBtn.disabled = false;
     if(joinUrl){ joinBtn.onclick = ()=> window.open(joinUrl, '_blank', 'noopener'); }
     else { joinBtn.onclick = ()=> showToast('Your meeting link will appear here before the session.'); }
@@ -8146,7 +8150,10 @@ function coachPercent(done, total){
 
 function coachInitials(name){
   const parts = String(name || '').trim().split(/\s+/).filter(Boolean);
-  return (parts[0] && parts[1] ? parts[0][0] + parts[1][0] : (parts[0] || '?')[0]).toUpperCase();
+  const raw = (parts[0] && parts[1] ? parts[0][0] + parts[1][0] : (parts[0] || '?')[0]).toUpperCase();
+  // Strip to letters/digits so the result is always safe to inline in HTML and in
+  // inline event handlers (a name starting with ' " < \ can't corrupt markup/string).
+  return raw.replace(/[^A-Z0-9]/gi, '') || '?';
 }
 
 function coachDateLabel(iso){
@@ -8338,8 +8345,18 @@ function coachRosterLoadMore(){
 
 // CSV export of the currently-loaded roster (current filter). Zero new functions —
 // built client-side from the fetched rows. Lifetime value is the list-price figure.
+function safeHttpUrl(u){
+  // Allowlist http(s) only — blocks javascript:/data: etc. from invitee-supplied
+  // Calendly location fields rendering as clickable links in the coach's session.
+  if(!u) return '';
+  const s = String(u).trim();
+  return /^https?:\/\//i.test(s) ? s : '';
+}
 function coachCsvCell(v){
   v = v == null ? '' : String(v);
+  // Neutralize spreadsheet formula injection: a leading = + - @ (or tab/CR) makes
+  // Excel/Sheets evaluate the cell. Prefix an apostrophe so it stays literal text.
+  if(/^[=+\-@\t\r]/.test(v)) v = "'" + v;
   return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
 }
 function coachExportCsv(){
@@ -8538,11 +8555,12 @@ function coachRenderList(list){
 // Format a server brief (new field vocabulary) into the canonical card shape.
 function coachMapServerBrief(b){
   let when = null;
-  if(b.slot_start){
-    const start = new Date(b.slot_start);
+  const startIso = b.scheduled_start || b.slot_start || null;
+  if(startIso){
+    const start = new Date(startIso);
     when = {
       date: start.toLocaleDateString('en-US', { timeZone:'Asia/Dubai', weekday:'short', day:'numeric', month:'short' }),
-      time: formatGST(b.slot_start) + ' GST'
+      time: formatGST(startIso) + ' GST'
     };
   }
   return {
@@ -8795,7 +8813,8 @@ function coachSpineEntryHTML(ev, hidden){
     detailText = `${wd} ${formatGST(ev.at)} GST` + (ev.detail ? ` \u00b7 ${ev.detail}` : '');
   }
   const detail = detailText ? `<span class="cfo-ev-detail">\u00b7 ${esc(detailText)}</span>` : '';
-  const join = ev.joinUrl ? ` \u00b7 <a href="${esc(ev.joinUrl)}" target="_blank" rel="noopener">join</a>` : '';
+  const safeJoin = safeHttpUrl(ev.joinUrl);
+  const join = safeJoin ? ` \u00b7 <a href="${esc(safeJoin)}" target="_blank" rel="noopener">join</a>` : '';
   return `<li class="cfo-spine-entry st-${stKey}${isRefund?' is-refund':''}${hidden?' cfo-hidden':''}">
     <span class="cfo-ev-edge" aria-hidden="true"></span>
     <div class="cfo-ev-date">${esc(coachSpineDate(ev.at))}</div>

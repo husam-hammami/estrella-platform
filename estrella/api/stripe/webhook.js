@@ -110,7 +110,7 @@ async function handleStripe(req, res, raw) {
 
     // Create the entitlement (the right to book one session). Idempotent via the
     // unique stripe_checkout_session_id — a duplicate paid event won't double-grant.
-    const entResp = await L.sb('entitlements', {
+    const entResp = await L.sb('entitlements?on_conflict=stripe_checkout_session_id', {
       method: 'POST',
       headers: { Prefer: 'return=minimal,resolution=ignore-duplicates' },
       body: JSON.stringify({

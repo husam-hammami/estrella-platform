@@ -703,24 +703,35 @@ async function finishCalendly(req, res, code, coachSub, redirectOk, redirectErr)
   const schedulingUrl = meRes.scheduling_url || null;
 
   // Subscribe to booking events. We supply the signing key so Calendly signs
-  // payloads we can verify; 409 means a subscription already exists (re-connect).
+  // payloads we can verify. A 409 means a subscription for this URL already exists
+  // (re-connect) and KEEPS its original signing key — which we don't have — so we
+  // delete the stale one(s) and recreate. Without this, every booking webhook would
+  // fail signature verification against the fresh key we store, and paid sessions
+  // would silently never confirm.
   const signingKey = L.crypto.randomBytes(32).toString('hex');
+  const hookUrl = `${L.originOf(req)}/api/calendly/webhook`;
+  const subscribeBody = JSON.stringify({
+    url: hookUrl,
+    events: ['invitee.created', 'invitee.canceled'],
+    organization: orgUri,
+    user: userUri,
+    scope: 'user',
+    signing_key: signingKey,
+  });
+  const createSub = () => fetch(`${L.CALENDLY.api}/webhook_subscriptions`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
+    body: subscribeBody,
+  });
   let webhookOk = false;
   try {
-    const sub = await fetch(`${L.CALENDLY.api}/webhook_subscriptions`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        url: `${L.originOf(req)}/api/calendly/webhook`,
-        events: ['invitee.created', 'invitee.canceled'],
-        organization: orgUri,
-        user: userUri,
-        scope: 'user',
-        signing_key: signingKey,
-      }),
-    });
-    webhookOk = sub.ok || sub.status === 409;
-    if (!sub.ok && sub.status !== 409) console.error('calendly webhook subscribe failed', sub.status, await sub.text().catch(() => ''));
+    let sub = await createSub();
+    if (sub.status === 409) {
+      await deleteCalendlyWebhooks(accessToken, orgUri, userUri, hookUrl);
+      sub = await createSub();
+    }
+    webhookOk = sub.ok;
+    if (!sub.ok) console.error('calendly webhook subscribe failed', sub.status, await sub.text().catch(() => ''));
   } catch (e) { console.error('calendly webhook subscribe error', e && e.message); }
 
   const saved = await L.saveIntegration(coachSub, 'calendly', {
@@ -739,6 +750,28 @@ async function finishCalendly(req, res, code, coachSub, redirectOk, redirectErr)
     return redirectErr('calendly_save_failed');
   }
   return redirectOk('calendly');
+}
+
+// Delete any existing Calendly webhook subscription pointing at our callback URL, so
+// a re-connect can recreate it with a signing key we actually store. Best-effort.
+async function deleteCalendlyWebhooks(accessToken, orgUri, userUri, hookUrl) {
+  try {
+    const params = new URLSearchParams({ scope: 'user', count: '100' });
+    if (orgUri) params.set('organization', orgUri);
+    if (userUri) params.set('user', userUri);
+    const listResp = await fetch(`${L.CALENDLY.api}/webhook_subscriptions?${params.toString()}`, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    if (!listResp.ok) { console.error('calendly webhook list failed', listResp.status); return; }
+    const list = await listResp.json();
+    const rows = Array.isArray(list.collection) ? list.collection : [];
+    for (const row of rows) {
+      if (row && row.callback_url === hookUrl && row.uri) {
+        const delResp = await fetch(row.uri, { method: 'DELETE', headers: { Authorization: `Bearer ${accessToken}` } });
+        if (!delResp.ok && delResp.status !== 204) console.error('calendly webhook delete failed', delResp.status);
+      }
+    }
+  } catch (e) { console.error('calendly webhook cleanup error', e && e.message); }
 }
 
 // Stripe Connect (Standard): exchange code → store stripe_user_id. Ongoing calls
