@@ -4253,6 +4253,13 @@ body{
 .cfo-note{margin-top:0.5rem}
 .cfo-note-h{font-size:0.6875rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:0.45rem}
 .cfo-note-body{font-size:0.84rem;color:var(--text);line-height:1.5;white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0.7rem 0.8rem;min-height:3rem}
+.coach-export-btn{font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;min-height:44px;padding:0 0.95rem;border-radius:12px;cursor:pointer;background:transparent;color:var(--gold-deep);border:1px solid rgba(151,121,63,0.28);transition:background .2s var(--ease)}
+.coach-export-btn:hover{background:var(--gold-bg)}
+.cfo-note-status{font-size:0.62rem;font-weight:500;letter-spacing:0.03em;text-transform:none;color:var(--text-mute);margin-left:0.4rem}
+.cfo-note-input{width:100%;font-family:'Inter',sans-serif;font-size:0.84rem;line-height:1.5;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0.7rem 0.8rem;resize:vertical;min-height:5rem}
+.cfo-note-input:focus{outline:2px solid var(--gold-deep);outline-offset:1px;border-color:transparent}
+.cfo-hidden{display:none}
+.cfo-spine-morewrap{list-style:none;padding:0.1rem 0 0.7rem 1.45rem}
 
 @media(max-width:768px){
   .coach-file-panel{width:100vw}
@@ -5391,6 +5398,7 @@ body{
               <option value="oldest">Oldest</option>
             </select>
           </label>
+          <button type="button" class="coach-export-btn" id="coach-roster-export">Export CSV</button>
         </div>
         <div class="coach-needs" id="coach-needs" hidden>
           <div class="coach-needs-head">Needs you now</div>
@@ -8233,7 +8241,7 @@ function coachRosterSummary(totals){
   return `AED ${Number(aed).toLocaleString()} lifetime (list price) \u00b7 ${totals.scheduled || 0} scheduled \u00b7 ${members} member${members===1?'':'s'}`;
 }
 
-const coachRosterState = { q:'', sort:'recent', page:0, pageSize:24, total:0, loading:false };
+const coachRosterState = { q:'', sort:'recent', page:0, pageSize:24, total:0, loading:false, loaded:[], needs:[] };
 
 function coachRenderRoster(data, opts){
   opts = opts || {};
@@ -8252,17 +8260,32 @@ function coachRenderRoster(data, opts){
   if(summary) summary.textContent = coachRosterSummary(totals);
 
   if(!opts.append){
+    coachRosterState.needs = needs;
+    coachRosterState.loaded = members.slice();
     if(needs.length && needsWrap){ needsWrap.hidden = false; needsList.innerHTML = needs.map(coachFileRowHTML).join(''); }
     else if(needsWrap){ needsWrap.hidden = true; needsList.innerHTML = ''; }
+  } else {
+    coachRosterState.loaded = coachRosterState.loaded.concat(members);
   }
 
   if(opts.append) dir.insertAdjacentHTML('beforeend', members.map(coachFileRowHTML).join(''));
   else dir.innerHTML = members.map(coachFileRowHTML).join('');
 
-  const shown = dir.children.length;
+  const shown = dir.querySelectorAll('.coach-file-row').length;
   const total = data.total != null ? data.total : (totals.members || shown);
   coachRosterState.total = total;
-  if(empty) empty.hidden = (shown > 0 || needs.length > 0);
+
+  if(shown === 0 && !opts.append){
+    if(coachRosterState.q){
+      dir.innerHTML = '<div class="coach-roster-msg">No members match “' + coachEsc(coachRosterState.q) + '”.</div>';
+      if(empty) empty.hidden = true;
+    } else if(empty){
+      empty.hidden = (needs.length > 0); // show "no members" only when nothing needs you either
+    }
+  } else if(empty){
+    empty.hidden = true;
+  }
+
   if(more) more.hidden = !(shown < total);
 }
 
@@ -8311,6 +8334,47 @@ function coachRosterFetch(opts){
 function coachRosterLoadMore(){
   coachRosterState.page += 1;
   coachRosterFetch({ append:true });
+}
+
+// CSV export of the currently-loaded roster (current filter). Zero new functions —
+// built client-side from the fetched rows. Lifetime value is the list-price figure.
+function coachCsvCell(v){
+  v = v == null ? '' : String(v);
+  return /[",\n\r]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+}
+function coachExportCsv(){
+  const bySub = new Map();
+  (coachRosterState.needs || []).concat(coachRosterState.loaded || []).forEach((r)=>{
+    const k = r.linkedinSub || r.email || r.name;
+    if(k && !bySub.has(k)) bySub.set(k, r);
+  });
+  const rows = Array.from(bySub.values());
+  if(!rows.length){ showToast('Nothing to export yet'); return; }
+  const header = ['Name','Email','Role','Lifetime value (AED, list price)','Payment status','Academy done','Academy total','Library done','Library total','Sessions','Next session','Last seen'];
+  const lines = [header.map(coachCsvCell).join(',')];
+  rows.forEach((r)=>{
+    const pay = r.payment || {};
+    const a = r.academy || {};
+    const l = r.library || {};
+    const aed = pay.lifetimeValueAed != null ? pay.lifetimeValueAed : (r.lifetimeValue ? Math.round(r.lifetimeValue/100) : 0);
+    const next = r.nextSession && r.nextSession.when ? coachDateLabel(r.nextSession.when) : '';
+    const lastSeen = r.lastSeenAt ? coachDateLabel(r.lastSeenAt) : '';
+    lines.push([
+      r.name, r.email, r.role, aed, pay.status || '',
+      a.done || 0, a.total || 82, l.done || 0, l.total || 4,
+      r.sessionsCount != null ? r.sessionsCount : '', next, lastSeen,
+    ].map(coachCsvCell).join(','));
+  });
+  const csv = '\ufeff' + lines.join('\r\n'); // BOM so Excel reads UTF-8
+  const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'nuria-members-' + new Date().toISOString().slice(0, 10) + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=> URL.revokeObjectURL(url), 1000);
 }
 
 function coachRenderRemoteMessage(message){
@@ -8676,6 +8740,8 @@ document.getElementById('coach-briefs')?.addEventListener('click', (e)=>{
     if(isDevAdminPreview() || !BACKEND_AVAILABLE) return;
     coachRosterLoadMore();
   });
+  const exportBtn = document.getElementById('coach-roster-export');
+  if(exportBtn) exportBtn.addEventListener('click', coachExportCsv);
 
   const openFromEvent = (e)=>{
     const row = e.target.closest('.coach-file-row');
@@ -8718,7 +8784,7 @@ function coachSpineDate(iso){
 }
 
 const SPINE_STATE_KEYS = { needs:'needs', scheduled:'scheduled', completed:'completed', refund:'refund', dim:'dim', lead:'lead' };
-function coachSpineEntryHTML(ev){
+function coachSpineEntryHTML(ev, hidden){
   const esc = coachEsc;
   const stKey = SPINE_STATE_KEYS[ev.state] || 'neutral';
   const isRefund = ev.state === 'refund';
@@ -8730,7 +8796,7 @@ function coachSpineEntryHTML(ev){
   }
   const detail = detailText ? `<span class="cfo-ev-detail">\u00b7 ${esc(detailText)}</span>` : '';
   const join = ev.joinUrl ? ` \u00b7 <a href="${esc(ev.joinUrl)}" target="_blank" rel="noopener">join</a>` : '';
-  return `<li class="cfo-spine-entry st-${stKey}${isRefund?' is-refund':''}">
+  return `<li class="cfo-spine-entry st-${stKey}${isRefund?' is-refund':''}${hidden?' cfo-hidden':''}">
     <span class="cfo-ev-edge" aria-hidden="true"></span>
     <div class="cfo-ev-date">${esc(coachSpineDate(ev.at))}</div>
     <div class="cfo-ev-body"><span class="cfo-ev-title">${esc(ev.title)}</span> ${money} ${detail}${join}</div>
@@ -8748,7 +8814,17 @@ function coachFileHTML(member, opts){
     ? `<img src="${esc(member.photoUrl)}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.textContent='${coachInitials(member.name)}'">`
     : coachInitials(member.name);
   const spine = Array.isArray(member.spine) ? member.spine : [];
-  const spineHTML = spine.length ? spine.map(coachSpineEntryHTML).join('') : '<li class="cfo-spine-empty">Joined — no brief, session, or payment yet.</li>';
+  const SPINE_CAP = 12;
+  let spineHTML;
+  if(!spine.length){
+    spineHTML = '<li class="cfo-spine-empty">Joined — no brief, session, or payment yet.</li>';
+  } else if(spine.length > SPINE_CAP){
+    const head = spine.slice(0, SPINE_CAP).map(ev => coachSpineEntryHTML(ev, false)).join('');
+    const tail = spine.slice(SPINE_CAP).map(ev => coachSpineEntryHTML(ev, true)).join('');
+    spineHTML = head + `<li class="cfo-spine-morewrap"><button type="button" class="coach-link-btn" data-spine-more>Show earlier (${spine.length - SPINE_CAP})</button></li>` + tail;
+  } else {
+    spineHTML = spine.map(ev => coachSpineEntryHTML(ev, false)).join('');
+  }
 
   let cvDd;
   if(member.cv && member.cv.hasCv && member.cv.briefId && !opts.devPreview){
@@ -8796,8 +8872,8 @@ function coachFileHTML(member, opts){
           <div><dt>CV</dt><dd>${cvDd}</dd></div>
         </dl>
         <div class="cfo-note">
-          <div class="cfo-note-h">Private note</div>
-          <div class="cfo-note-body" id="cfo-note-display">${notes ? esc(notes) : 'No note yet.'}</div>
+          <div class="cfo-note-h">Private note <span class="cfo-note-status" id="cfo-note-status"></span></div>
+          <textarea class="cfo-note-input" id="cfo-note-input" rows="4" placeholder="A private note about this member — only you can see it.">${esc(notes)}</textarea>
         </div>
       </aside>
     </div>
@@ -8805,6 +8881,8 @@ function coachFileHTML(member, opts){
 }
 
 let coachFileEscHandler = null;
+let coachOpenFileSub = null;
+let coachOpenFileDevPreview = false;
 function coachFileShell(){
   coachCloseFile(true); // drop any existing overlay (no animation) before opening a new one
   const ov = document.createElement('div');
@@ -8819,19 +8897,78 @@ function coachFileShell(){
 }
 
 function coachFillFile(ov, member, opts){
+  opts = opts || {};
   const panel = ov.querySelector('.coach-file-panel');
   if(!panel) return;
-  panel.innerHTML = coachFileHTML(member, opts || {});
+  coachOpenFileSub = member.linkedinSub || null;
+  coachOpenFileDevPreview = !!opts.devPreview;
+  panel.innerHTML = coachFileHTML(member, opts);
   // Triggered motion — guarded so reduced-motion gets the file fully present at once.
   if(!coachReduceMotion()){
     const head = panel.querySelector('.cfo-head');
     if(head) head.animate([{ transform:'translateY(8px)', opacity:0 }, { transform:'translateY(0)', opacity:1 }], { duration:260, easing:'cubic-bezier(0.16,1,0.3,1)', fill:'backwards' });
-    const entries = panel.querySelectorAll('.cfo-spine-entry');
+    const entries = panel.querySelectorAll('.cfo-spine-entry:not(.cfo-hidden)');
     entries.forEach((el, i)=>{
       if(i >= 12) return; // cap the stagger; dense files don't ripple for seconds
       el.animate([{ transform:'translateY(6px)', opacity:0 }, { transform:'translateY(0)', opacity:1 }], { duration:180, delay:i*28, easing:'cubic-bezier(0.16,1,0.3,1)', fill:'backwards' });
     });
   }
+  coachWireNoteEditor(panel);
+  const moreBtn = panel.querySelector('[data-spine-more]');
+  if(moreBtn) moreBtn.addEventListener('click', ()=>{
+    const hiddenEls = panel.querySelectorAll('.cfo-spine-entry.cfo-hidden');
+    hiddenEls.forEach((el, i)=>{
+      el.classList.remove('cfo-hidden');
+      if(!coachReduceMotion() && i < 12) el.animate([{ opacity:0, transform:'translateY(6px)' }, { opacity:1, transform:'translateY(0)' }], { duration:160, delay:i*20, easing:'cubic-bezier(0.16,1,0.3,1)', fill:'backwards' });
+    });
+    const wrap = moreBtn.closest('.cfo-spine-morewrap');
+    if(wrap) wrap.remove();
+  });
+}
+
+// Per-member coach note — debounced save with optimistic status + rollback marker.
+function coachWireNoteEditor(panel){
+  const ta = panel.querySelector('#cfo-note-input');
+  const status = panel.querySelector('#cfo-note-status');
+  if(!ta) return;
+  let timer = null;
+  let lastSaved = ta.value;
+  const setStatus = (s)=>{ if(status) status.textContent = s; };
+  ta.addEventListener('input', ()=>{
+    setStatus('Editing…');
+    clearTimeout(timer);
+    timer = setTimeout(()=> coachSaveNote(ta.value, status, () => { lastSaved = ta.value; }, () => lastSaved), 600);
+  });
+  ta.addEventListener('blur', ()=>{
+    if(ta.value !== lastSaved){ clearTimeout(timer); coachSaveNote(ta.value, status, () => { lastSaved = ta.value; }, () => lastSaved); }
+  });
+}
+
+function coachSaveNote(val, status, onSaved, getPrev){
+  const setStatus = (s)=>{ if(status) status.textContent = s; };
+  const sub = coachOpenFileSub;
+  if(!sub){ setStatus(''); return; }
+  setStatus('Saving…');
+  // Optimistic: reflect the note on the cached roster row immediately.
+  const cached = (coachRosterLocalCache || []).find(x => x.linkedinSub === sub);
+  if(cached) cached.coachNotes = val;
+  if(coachOpenFileDevPreview || !BACKEND_AVAILABLE){
+    setStatus('Saved · dev preview');
+    onSaved();
+    return;
+  }
+  fetch('/api/coach/member?sub=' + encodeURIComponent(sub), {
+    method:'PATCH', headers:{ 'content-type':'application/json' }, credentials:'same-origin',
+    body: JSON.stringify({ coach_notes: val }),
+  })
+    .then(r => { if(!r.ok) throw new Error('save_failed'); return r.json(); })
+    .then(()=>{ setStatus('Saved'); onSaved(); setTimeout(()=>{ if(status && status.textContent === 'Saved') status.textContent = ''; }, 1600); })
+    .catch(()=>{
+      // Rollback the optimistic cache write; keep the user's text in the field.
+      if(cached && typeof getPrev === 'function') cached.coachNotes = getPrev();
+      setStatus('Save failed — retry');
+      showToast('Couldn’t save the note');
+    });
 }
 
 function coachFileMessage(ov, msg){
