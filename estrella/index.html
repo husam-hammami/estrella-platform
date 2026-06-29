@@ -5019,6 +5019,7 @@ body{
       <span class="btn-linkedin-label">LinkedIn</span>
     </button>
     <button class="btn btn-gold btn-sm" data-view="start">Book Session</button>
+    <button type="button" class="topnav-admin" id="topnav-dev-admin-btn" data-view="coach">Dev Admin</button>
   </div>
   <div class="topnav-actions topnav-auth-signed-in" id="topnav-auth-signed-in">
     <button type="button" class="topnav-user" id="topnav-user-btn" data-view="dashboard">
@@ -6590,6 +6591,12 @@ const LINKEDIN_MOCK = {
 };
 // Real OAuth needs the serverless /api routes, which only exist over http(s).
 const BACKEND_AVAILABLE = location.protocol === 'http:' || location.protocol === 'https:';
+function isLocalDevHost(){
+  return ['localhost','127.0.0.1','::1'].includes(location.hostname);
+}
+function isDevAdminPreview(){
+  return isLocalDevHost();
+}
 
 function escapeAttr(v){
   return String(v == null ? '' : v).replace(/[&<>"']/g, ch => ({
@@ -6645,11 +6652,18 @@ function setLinkedInUser(user){
 
 function updateCoachAccessUI(){
   const show = !!state.isCoach;
+  const devShow = isDevAdminPreview();
   document.getElementById('topnav-admin-btn')?.classList.toggle('visible', show);
   document.getElementById('dash-admin-btn')?.classList.toggle('visible', show);
+  document.getElementById('topnav-dev-admin-btn')?.classList.toggle('visible', devShow);
 }
 
 function refreshCoachAccess(){
+  if(isDevAdminPreview()){
+    state.isCoach = true;
+    updateCoachAccessUI();
+    return;
+  }
   state.isCoach = false;
   updateCoachAccessUI();
   if(!BACKEND_AVAILABLE || !getLinkedInUser()) return;
@@ -7981,6 +7995,11 @@ function coachMapServerBrief(b){
 
 // Dispatcher: real coach desk when online, localStorage demo offline.
 function renderCoachBriefs(){
+  if(isDevAdminPreview()){
+    renderCoachUsersLocal();
+    renderCoachBriefsLocal();
+    return;
+  }
   if(BACKEND_AVAILABLE){
     renderCoachUsersRemote();
     renderCoachBriefsRemote();
@@ -8041,7 +8060,7 @@ function renderCoachBriefsRemote(){
 }
 
 function renderCoachUsersLocal(){
-  if(!BACKEND_AVAILABLE) seedBriefsIfEmpty();
+  if(!BACKEND_AVAILABLE || isDevAdminPreview()) seedBriefsIfEmpty();
   const raw = loadBriefs();
   const demo = raw.slice(0, 2).map((b, i) => ({
     name: b.name,
@@ -8057,7 +8076,7 @@ function renderCoachUsersLocal(){
 }
 
 function renderCoachBriefsLocal(){
-  if(!BACKEND_AVAILABLE) seedBriefsIfEmpty(); // demo seed only offline
+  if(!BACKEND_AVAILABLE || isDevAdminPreview()) seedBriefsIfEmpty(); // demo seed only offline/local dev
   const raw = loadBriefs();
   // Map the legacy localStorage shape into the canonical card shape.
   const list = raw.map(b => ({
