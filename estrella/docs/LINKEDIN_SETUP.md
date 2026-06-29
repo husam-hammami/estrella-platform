@@ -46,9 +46,21 @@ create table if not exists public.users (
   email         text,
   photo_url     text,
   locale        text,
+  academy_progress jsonb,
+  library_progress jsonb,
+  cv_path       text,
+  cv_name       text,
+  cv_uploaded_at timestamptz,
   created_at    timestamptz not null default now(),
   last_seen_at  timestamptz not null default now()
 );
+
+-- Safe to run on an existing table created before the member dashboard/admin desk.
+alter table public.users add column if not exists academy_progress jsonb;
+alter table public.users add column if not exists library_progress jsonb;
+alter table public.users add column if not exists cv_path text;
+alter table public.users add column if not exists cv_name text;
+alter table public.users add column if not exists cv_uploaded_at timestamptz;
 
 -- The service-role key bypasses RLS; keep RLS on so the anon key can't read it.
 alter table public.users enable row level security;

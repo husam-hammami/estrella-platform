@@ -98,6 +98,14 @@ end $$;
 alter table public.availability_slots enable row level security;
 alter table public.briefs enable row level security;
 alter table public.webhook_events enable row level security;
+
+-- Member profile fields used by the dashboard and Nesreen admin desk.
+-- Safe to run even if the users table already exists.
+alter table public.users add column if not exists academy_progress jsonb;
+alter table public.users add column if not exists library_progress jsonb;
+alter table public.users add column if not exists cv_path text;
+alter table public.users add column if not exists cv_name text;
+alter table public.users add column if not exists cv_uploaded_at timestamptz;
 ```
 
 To add some slots for Nesreen (example — adjust dates; times are UTC, GST = +4):

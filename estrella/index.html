@@ -272,6 +272,12 @@ body{
 .topnav-auth-guest.hidden{display:none!important}
 .topnav-auth-signed-in{display:none;gap:0.625rem;align-items:center}
 .topnav-auth-signed-in.visible{display:flex}
+.topnav-admin{
+  display:none;min-height:36px;padding:0 0.95rem;border-radius:999px;
+  border:1px solid rgba(151,121,63,0.24);background:rgba(255,253,247,0.75);
+  color:var(--gold-deep);font-size:0.84rem;font-weight:700;cursor:pointer;
+}
+.topnav-admin.visible{display:inline-flex;align-items:center}
 .btn-linkedin{
   background:var(--surface);color:var(--ink);
   border:1px solid rgba(151,121,63,0.42);
@@ -1350,6 +1356,13 @@ body{
   color:var(--ink);line-height:0.95;margin-bottom:0.22rem;
 }
 .dash-profile-line{font-size:0.95rem;color:var(--text-dim);line-height:1.35}
+.dash-admin-btn{
+  display:none;align-items:center;justify-content:center;min-height:44px;
+  border:1px solid rgba(151,121,63,0.24);border-radius:999px;
+  background:rgba(255,253,247,0.78);color:var(--gold-deep);
+  font-weight:800;cursor:pointer;margin-top:0.1rem;
+}
+.dash-admin-btn.visible{display:flex}
 .dash-data-grid{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.65rem;
 }
@@ -3946,6 +3959,58 @@ body{
   font-size:0.6875rem;letter-spacing:0.08em;text-transform:uppercase;
   color:var(--text-mute);margin-top:0.25rem;display:block;
 }
+.coach-admin-section{margin-bottom:1.75rem}
+.coach-section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;
+  margin-bottom:0.85rem;
+}
+.coach-section-head h2{
+  margin:0.15rem 0 0;
+  font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:500;
+  color:var(--ink);line-height:1;
+}
+.coach-section-note{font-size:0.78rem;color:var(--text-mute)}
+.coach-users{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.coach-user-card{
+  display:grid;grid-template-columns:auto 1fr;gap:1rem;
+  background:rgba(253,249,240,0.78);border:1px solid rgba(151,121,63,0.18);
+  border-radius:16px;padding:1rem;box-shadow:0 18px 44px -32px rgba(20,18,14,0.24);
+}
+.coach-user-avatar{
+  width:50px;height:50px;border-radius:50%;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bg);color:var(--gold-deep);border:1px solid rgba(151,121,63,0.3);
+  font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;
+}
+.coach-user-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.coach-user-main{min-width:0}
+.coach-user-top{display:flex;justify-content:space-between;gap:0.75rem;align-items:flex-start}
+.coach-user-name{
+  font-family:'Cormorant Garamond',serif;font-size:1.25rem;line-height:1.05;
+  color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.coach-user-email{font-size:0.78rem;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:0.2rem}
+.coach-user-booking{
+  flex-shrink:0;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  border-radius:99px;padding:0.3rem 0.55rem;border:1px solid var(--line);
+  color:var(--text-mute);background:var(--surface);
+}
+.coach-user-booking.booked{background:rgba(71,122,96,0.12);color:#2d6b54;border-color:rgba(71,122,96,0.22)}
+.coach-user-booking.pending{background:rgba(201,169,97,0.14);color:var(--gold-deep);border-color:rgba(201,169,97,0.28)}
+.coach-user-booking.completed{background:rgba(20,18,14,0.08);color:var(--ink)}
+.coach-user-meta{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.5rem;margin-top:0.8rem;
+}
+.coach-user-meter{
+  border:1px solid rgba(151,121,63,0.15);border-radius:12px;padding:0.55rem;background:rgba(255,255,255,0.42);
+}
+.coach-user-meter strong{display:block;font-size:0.9rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.coach-user-meter span{display:block;margin-top:0.1rem;font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mute)}
+.coach-user-line{
+  grid-column:1/-1;margin-top:0.55rem;padding-top:0.55rem;border-top:1px solid rgba(151,121,63,0.12);
+  display:flex;justify-content:space-between;gap:0.75rem;align-items:center;font-size:0.78rem;color:var(--text-dim);
+}
+.coach-user-line b{color:var(--ink);font-weight:600}
 .coach-briefs{display:grid;grid-template-columns:1fr;gap:1.5rem}
 .coach-brief{
   background:linear-gradient(165deg,#FDF9F0 0%,#F6EEDA 100%);
@@ -4020,6 +4085,10 @@ body{
 @media(max-width:768px){
   .coach-console{padding:2rem 1.25rem 3rem}
   .coach-h1{font-size:2rem}
+  .coach-users{grid-template-columns:1fr}
+  .coach-user-card{grid-template-columns:1fr}
+  .coach-user-top{flex-direction:column}
+  .coach-user-meta{grid-template-columns:1fr}
   .coach-brief-grid{grid-template-columns:1fr;gap:1.25rem}
   .coach-brief-top{flex-wrap:wrap}
   .coach-brief-when{text-align:left;width:100%}
@@ -4956,6 +5025,7 @@ body{
       <span class="topnav-user-avatar topnav-user-avatar--initial" id="topnav-user-avatar">?</span>
       <span id="topnav-user-name">Account</span>
     </button>
+    <button type="button" class="topnav-admin" id="topnav-admin-btn" data-view="coach">Admin</button>
     <button type="button" class="topnav-signout" id="topnav-signout" title="Sign out">Sign out</button>
     <button class="btn btn-gold btn-sm" data-view="start">Book Session</button>
   </div>
@@ -5097,14 +5167,37 @@ body{
       <header class="coach-head">
         <div>
           <div class="hero-eyebrow">Nuria · Coach desk</div>
-          <h1 class="coach-h1">Your client briefs.</h1>
+          <h1 class="coach-h1">Your clients, progress, and bookings.</h1>
           <p class="coach-sub">Prepared by Nuria before each session — who they are, and what they need from the hour.</p>
         </div>
         <div class="coach-head-meta">
           <div class="coach-stat"><strong id="coach-count-new">0</strong><span>To review</span></div>
-          <div class="coach-stat"><strong id="coach-count-total">0</strong><span>Total</span></div>
+          <div class="coach-stat"><strong id="coach-count-total">0</strong><span>Briefs</span></div>
+          <div class="coach-stat"><strong id="coach-count-users">0</strong><span>Users</span></div>
+          <div class="coach-stat"><strong id="coach-count-booked">0</strong><span>Booked</span></div>
         </div>
       </header>
+      <section class="coach-admin-section">
+        <div class="coach-section-head">
+          <div>
+            <div class="coach-col-h">Members</div>
+            <h2>All signed-in users</h2>
+          </div>
+          <span class="coach-section-note">LinkedIn + Academy + Library + Booking</span>
+        </div>
+        <div class="coach-users" id="coach-users"></div>
+        <div class="coach-empty" id="coach-users-empty" hidden>
+          <p>No signed-in users yet. They appear here after LinkedIn sign-in.</p>
+        </div>
+      </section>
+      <section class="coach-admin-section">
+        <div class="coach-section-head">
+          <div>
+            <div class="coach-col-h">Briefs</div>
+            <h2>Session prep queue</h2>
+          </div>
+        </div>
+      </section>
       <div class="coach-briefs" id="coach-briefs"></div>
       <div class="coach-empty" id="coach-empty" hidden>
         <svg width="28" height="28" viewBox="0 0 32 32" fill="var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
@@ -5757,6 +5850,7 @@ body{
               <div class="dash-profile-line" id="dash-profile-line">LinkedIn profile and learning progress will appear here.</div>
             </div>
           </div>
+          <button type="button" class="dash-admin-btn" id="dash-admin-btn" data-view="coach">Open Nesreen admin desk -></button>
           <div class="dash-data-grid" id="dash-profile-data">
             <div class="dash-data-card"><div class="dash-data-label">Name</div><div class="dash-data-value" id="dash-data-name">-</div></div>
             <div class="dash-data-card"><div class="dash-data-label">Email</div><div class="dash-data-value" id="dash-data-email">-</div></div>
@@ -6481,6 +6575,7 @@ let state = {
   currentYear: new Date().getFullYear(),
   chatStep: 0,
   linkedInUser: null,
+  isCoach: false,
   brief: null,                // mirror of window.estrellaBrief
   monthSlots: null,           // real open slots for the displayed month (or null)
   monthSlotsLoaded: false     // true once a real availability fetch succeeded
@@ -6545,6 +6640,27 @@ function setLinkedInUser(user){
   state.linkedInUser = normalizeLinkedInUser(user);
   try{ sessionStorage.setItem('estrella_linkedin_user', JSON.stringify(state.linkedInUser)); }catch(e){}
   updateTopNavAuth();
+  refreshCoachAccess();
+}
+
+function updateCoachAccessUI(){
+  const show = !!state.isCoach;
+  document.getElementById('topnav-admin-btn')?.classList.toggle('visible', show);
+  document.getElementById('dash-admin-btn')?.classList.toggle('visible', show);
+}
+
+function refreshCoachAccess(){
+  state.isCoach = false;
+  updateCoachAccessUI();
+  if(!BACKEND_AVAILABLE || !getLinkedInUser()) return;
+  fetch('/api/coach/users', { credentials:'same-origin' })
+    .then(r => {
+      // Non-coach sessions fail before any Supabase work. Server-side setup
+      // errors after that still mean the LinkedIn session passed the coach gate.
+      state.isCoach = r.ok || r.status === 500 || r.status === 502 || r.status === 503;
+      updateCoachAccessUI();
+    })
+    .catch(()=>{ state.isCoach = false; updateCoachAccessUI(); });
 }
 
 function updateTopNavAuth(){
@@ -6569,6 +6685,8 @@ function updateTopNavAuth(){
       }
     }
   }else{
+    state.isCoach = false;
+    updateCoachAccessUI();
     guest.classList.remove('hidden');
     signed.classList.remove('visible');
   }
@@ -6576,6 +6694,7 @@ function updateTopNavAuth(){
 
 function signOut(){
   state.linkedInUser = null;
+  state.isCoach = false;
   try{ sessionStorage.removeItem('estrella_linkedin_user'); }catch(e){}
   if(BACKEND_AVAILABLE){ window.location.href = '/api/logout'; return; }
   updateTopNavAuth();
@@ -6618,6 +6737,7 @@ function initLinkedInSession(){
       .then(d => {
         if(d && d.user){
           setLinkedInUser(d.user);
+          syncMemberProfileState();
           if(justSignedIn) showToast('Signed in with LinkedIn');
           // Resume a booking the user was sent to sign-in to complete.
           resumeStashedBooking();
@@ -7239,7 +7359,37 @@ function dashLibraryProgress(){
   let opened = [];
   try{ opened = JSON.parse(localStorage.getItem('nuria.library.opened') || '[]'); }catch(e){}
   const done = Array.isArray(opened) ? opened.length : 0;
-  return { done, total, note: done ? `${done} book${done===1?'':'s'} opened.` : `${total} books ready when you are.` };
+  return { done, total, opened: Array.isArray(opened) ? opened : [], note: done ? `${done} book${done===1?'':'s'} opened.` : `${total} books ready when you are.` };
+}
+
+function syncMemberProfileState(){
+  if(!BACKEND_AVAILABLE || !getLinkedInUser()) return;
+  clearTimeout(syncMemberProfileState._t);
+  syncMemberProfileState._t = setTimeout(()=>{
+    let academy = { done:0, total:82 };
+    let library = { done:0, total:4, opened:[] };
+    try{ academy = dashAcademyProgress(); }catch(e){}
+    try{ library = dashLibraryProgress(); }catch(e){}
+    fetch('/api/me', {
+      method:'PATCH',
+      headers:{'content-type':'application/json'},
+      credentials:'same-origin',
+      body: JSON.stringify({
+        academyProgress: {
+          done: academy.done,
+          total: academy.total,
+          lastLesson: (AST && AST.lastLesson) || null,
+          updatedAt: new Date().toISOString()
+        },
+        libraryProgress: {
+          done: library.done,
+          total: library.total,
+          opened: library.opened || [],
+          updatedAt: new Date().toISOString()
+        }
+      })
+    }).catch(()=>{});
+  }, 900);
 }
 
 function renderDashAvatar(user){
@@ -7256,8 +7406,25 @@ function renderDashAvatar(user){
 function renderDashboardProfile(user, briefs){
   const u = normalizeLinkedInUser(user);
   const latest = dashLatestBrief(briefs);
-  const academy = dashAcademyProgress();
-  const library = dashLibraryProgress();
+  let academy = dashAcademyProgress();
+  let library = dashLibraryProgress();
+  const serverAcademy = u && (u.academyProgress || u.academy_progress);
+  const serverLibrary = u && (u.libraryProgress || u.library_progress);
+  if(serverAcademy && Number(serverAcademy.done) > academy.done){
+    academy = {
+      done: Number(serverAcademy.done) || 0,
+      total: Number(serverAcademy.total) || academy.total,
+      note: `${Number(serverAcademy.done) || 0} lesson${Number(serverAcademy.done)===1?'':'s'} saved in your artifacts.`
+    };
+  }
+  if(serverLibrary && Number(serverLibrary.done) > library.done){
+    library = {
+      done: Number(serverLibrary.done) || 0,
+      total: Number(serverLibrary.total) || library.total,
+      opened: Array.isArray(serverLibrary.opened) ? serverLibrary.opened : [],
+      note: `${Number(serverLibrary.done) || 0} book${Number(serverLibrary.done)===1?'':'s'} opened.`
+    };
+  }
   const scheduled = (briefs || []).filter(b => b.status === 'session_scheduled');
   const cvName = (u && (u.cvName || u.cv_name)) || (latest && latest.cv_path ? 'CV attached' : '');
 
@@ -7321,6 +7488,7 @@ function loadDashboard(){
   if(h1) h1.textContent = user && user.name
     ? `${dashGreetingWord()}, ${user.name.split(/\s+/)[0]}.`
     : `${dashGreetingWord()}.`;
+  if(user) syncMemberProfileState();
 
   if(!user){
     // Not signed in → prompt sign-in instead of a fake session.
@@ -7609,7 +7777,107 @@ function seedBriefsIfEmpty(){
   }]);
 }
 
-const coachEsc = s => (s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const coachEsc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function coachSetCount(id, value){
+  const el = document.getElementById(id);
+  if(el) el.textContent = value == null ? '0' : String(value);
+}
+
+function coachPercent(done, total){
+  const d = Number(done) || 0;
+  const t = Number(total) || 0;
+  return t > 0 ? Math.round(Math.min(100, Math.max(0, d / t * 100))) : 0;
+}
+
+function coachInitials(name){
+  const parts = String(name || '').trim().split(/\s+/).filter(Boolean);
+  return (parts[0] && parts[1] ? parts[0][0] + parts[1][0] : (parts[0] || '?')[0]).toUpperCase();
+}
+
+function coachDateLabel(iso){
+  if(!iso) return 'No date yet';
+  const d = new Date(iso);
+  if(!Number.isFinite(d.getTime())) return 'No date yet';
+  return d.toLocaleString('en-US', {
+    timeZone:'Asia/Dubai',
+    day:'numeric',
+    month:'short',
+    hour:'2-digit',
+    minute:'2-digit'
+  }) + ' GST';
+}
+
+function coachUserCardHTML(user){
+  const esc = coachEsc;
+  const academy = user.academy || {};
+  const library = user.library || {};
+  const briefs = user.briefs || {};
+  const booking = user.booking || { status:'none', label:'No booking yet' };
+  const bookingClass = ['booked','pending','completed'].includes(booking.status) ? booking.status : '';
+  const avatar = user.photoUrl
+    ? `<img src="${esc(user.photoUrl)}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.textContent='${coachInitials(user.name)}'">`
+    : coachInitials(user.name);
+  const cv = user.cv && user.cv.hasCv ? (user.cv.name || 'CV uploaded') : 'No CV yet';
+  const latest = briefs.latestGoal ? esc(aClip(briefs.latestGoal, 88)) : 'No brief yet';
+  const provider = booking.provider ? ` · ${esc(booking.provider)}` : '';
+  return `<article class="coach-user-card">
+    <div class="coach-user-avatar">${avatar}</div>
+    <div class="coach-user-main">
+      <div class="coach-user-top">
+        <div>
+          <div class="coach-user-name">${esc(user.name || 'Unnamed member')}</div>
+          <div class="coach-user-email">${esc(user.email || 'LinkedIn email unavailable')}</div>
+        </div>
+        <span class="coach-user-booking ${bookingClass}">${esc(booking.label || 'No booking')}</span>
+      </div>
+      <div class="coach-user-meta">
+        <div class="coach-user-meter"><strong>${esc(academy.done || 0)}/${esc(academy.total || 82)}</strong><span>Academy</span></div>
+        <div class="coach-user-meter"><strong>${esc(library.done || 0)}/${esc(library.total || 4)}</strong><span>Library</span></div>
+        <div class="coach-user-meter"><strong>${esc(briefs.total || 0)}</strong><span>Briefs</span></div>
+      </div>
+      <div class="coach-user-line">
+        <span><b>${esc(cv)}</b> · ${esc(coachPercent(academy.done, academy.total))}% academy</span>
+        <span>${esc(coachDateLabel(booking.when))}${provider}</span>
+      </div>
+      <div class="coach-user-line">
+        <span><b>Latest need</b> · ${latest}</span>
+        <span>${esc(briefs.toReview || 0)} to review</span>
+      </div>
+    </div>
+  </article>`;
+}
+
+function coachRenderUsers(list, totals){
+  const wrap = document.getElementById('coach-users');
+  const empty = document.getElementById('coach-users-empty');
+  if(!wrap) return;
+  const users = Array.isArray(list) ? list : [];
+  coachSetCount('coach-count-users', totals && totals.users != null ? totals.users : users.length);
+  coachSetCount('coach-count-booked', totals && totals.booked != null ? totals.booked : users.filter(u => u.booking && u.booking.status !== 'none').length);
+  if(!users.length){
+    wrap.innerHTML = '';
+    if(empty) empty.hidden = false;
+    return;
+  }
+  if(empty) empty.hidden = true;
+  wrap.innerHTML = users.map(coachUserCardHTML).join('');
+}
+
+function coachRenderRemoteMessage(message){
+  const wrap = document.getElementById('coach-briefs');
+  const users = document.getElementById('coach-users');
+  const empty = document.getElementById('coach-empty');
+  const usersEmpty = document.getElementById('coach-users-empty');
+  coachSetCount('coach-count-new', '0');
+  coachSetCount('coach-count-total', '0');
+  coachSetCount('coach-count-users', '0');
+  coachSetCount('coach-count-booked', '0');
+  if(empty) empty.hidden = true;
+  if(usersEmpty) usersEmpty.hidden = true;
+  if(users) users.innerHTML = '';
+  if(wrap) wrap.innerHTML = `<div class="coach-empty" style="padding:3rem 1rem;text-align:center;color:var(--text-dim)"><p>${coachEsc(message)}</p></div>`;
+}
 
 // Render one brief card from the CANONICAL shape:
 //   { id, name, role, goal, obstacle, synthesis, strengths[], when, reviewed,
@@ -7713,8 +7981,38 @@ function coachMapServerBrief(b){
 
 // Dispatcher: real coach desk when online, localStorage demo offline.
 function renderCoachBriefs(){
-  if(BACKEND_AVAILABLE){ renderCoachBriefsRemote(); return; }
+  if(BACKEND_AVAILABLE){
+    renderCoachUsersRemote();
+    renderCoachBriefsRemote();
+    return;
+  }
+  renderCoachUsersLocal();
   renderCoachBriefsLocal();
+}
+
+function renderCoachUsersRemote(){
+  fetch('/api/coach/users', { credentials:'same-origin' })
+    .then(async r => {
+      if(r.status === 403){
+        coachRenderRemoteMessage('This desk is for Nesreen. Sign in with her LinkedIn account to see users, progress, and bookings.');
+        return null;
+      }
+      if(r.status === 401){
+        coachRenderRemoteMessage('Sign in with Nesreen LinkedIn account to open the admin desk.');
+        return null;
+      }
+      if(!r.ok) throw new Error('coach_users_failed');
+      return r.json();
+    })
+    .then(d => {
+      if(d === null) return;
+      coachRenderUsers((d && d.users) || [], d && d.totals);
+      if(d && d.totals){
+        coachSetCount('coach-count-users', d.totals.users);
+        coachSetCount('coach-count-booked', d.totals.booked);
+      }
+    })
+    .catch(()=> coachRenderRemoteMessage('Admin data is not available yet. Check Supabase setup and the user progress migration.'));
 }
 
 function renderCoachBriefsRemote(){
@@ -7724,11 +8022,11 @@ function renderCoachBriefsRemote(){
   fetch('/api/coach/briefs', { credentials:'same-origin' })
     .then(async r => {
       if(r.status === 403){
-        if(empty) empty.hidden = true;
-        document.getElementById('coach-count-new').textContent = '0';
-        document.getElementById('coach-count-total').textContent = '0';
-        wrap.innerHTML = `<div class="coach-empty" style="padding:3rem 1rem;text-align:center;color:var(--text-dim)">
-          <p>This desk is for Nesreen. Sign in with her account to see client briefs.</p></div>`;
+        coachRenderRemoteMessage('This desk is for Nesreen. Sign in with her LinkedIn account to see client briefs.');
+        return null;
+      }
+      if(r.status === 401){
+        coachRenderRemoteMessage('Sign in with Nesreen LinkedIn account to open the admin desk.');
         return null;
       }
       if(!r.ok) throw new Error('coach_briefs_failed');
@@ -7739,7 +8037,23 @@ function renderCoachBriefsRemote(){
       const list = (d && Array.isArray(d.briefs) ? d.briefs : []).map(coachMapServerBrief);
       coachRenderList(list);
     })
-    .catch(()=>{ renderCoachBriefsLocal(); }); // graceful fallback
+    .catch(()=> coachRenderRemoteMessage('Briefs are not available yet. Check Supabase and coach access.'));
+}
+
+function renderCoachUsersLocal(){
+  if(!BACKEND_AVAILABLE) seedBriefsIfEmpty();
+  const raw = loadBriefs();
+  const demo = raw.slice(0, 2).map((b, i) => ({
+    name: b.name,
+    email: i === 0 ? 'demo.client@nuria.local' : '',
+    photoUrl: null,
+    academy: { done: i ? 3 : 0, total: 82 },
+    library: { done: i ? 1 : 0, total: 4 },
+    cv: { hasCv: false },
+    booking: b.when ? { status:'booked', label:'Booked', provider:'Demo booking', when:new Date().toISOString() } : { status:'none', label:'No booking yet' },
+    briefs: { total: 1, toReview: b.reviewed ? 0 : 1, latestGoal: b.goal }
+  }));
+  coachRenderUsers(demo, { users: demo.length, booked: demo.filter(u=>u.booking.status !== 'none').length });
 }
 
 function renderCoachBriefsLocal(){
@@ -8393,6 +8707,7 @@ function markLibraryOpened(id){
     const list = JSON.parse(localStorage.getItem(key) || '[]');
     if(id && !list.includes(id)) list.push(id);
     localStorage.setItem(key, JSON.stringify(list));
+    syncMemberProfileState();
   }catch(e){}
 }
 
@@ -8586,7 +8901,7 @@ const TOTAL_LESSONS = Object.keys(LIDX).length || 82;
 const AKEY = 'estrella.academy.v1';
 function aLoad(){ try{ return JSON.parse(localStorage.getItem(AKEY)) || {}; }catch(e){ return {}; } }
 let AST = Object.assign({ xp:0, lessons:{}, courses:{}, tracks:{}, badges:[], streak:{count:0,last:null,tokens:1}, day:{d:null,n:0}, lastLesson:null }, aLoad());
-function aSave(){ try{ localStorage.setItem(AKEY, JSON.stringify(AST)); }catch(e){} }
+function aSave(){ try{ localStorage.setItem(AKEY, JSON.stringify(AST)); }catch(e){} syncMemberProfileState(); }
 function aToday(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function aYesterday(){ const d=new Date(); d.setDate(d.getDate()-1); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function aIsDone(id){ return !!(AST.lessons[id] && AST.lessons[id].completed); }
