@@ -4109,6 +4109,91 @@ body{
 .coach-empty{text-align:center;padding:4rem 2rem;color:var(--text-dim)}
 .coach-empty svg{margin:0 auto 1rem;display:block}
 .coach-empty p{font-size:0.95rem;line-height:1.5;max-width:36ch;margin:0 auto}
+
+/* ===== The Standing File — roster (master shelf of file-tab rows) ===== */
+.coach-roster-toolbar{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;margin-bottom:1rem}
+.coach-search{position:relative;flex:1;min-width:200px}
+.coach-search svg{position:absolute;left:0.85rem;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--text-mute);pointer-events:none}
+.coach-search input{
+  width:100%;min-height:44px;padding:0.6rem 0.9rem 0.6rem 2.4rem;
+  border:1px solid rgba(151,121,63,0.22);border-radius:12px;background:var(--surface);
+  font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--ink);
+}
+.coach-search input:focus{outline:2px solid var(--gold-deep);outline-offset:1px;border-color:transparent}
+.coach-sort{display:flex;align-items:center;gap:0.45rem;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-mute)}
+.coach-sort select{
+  min-height:44px;border:1px solid rgba(151,121,63,0.22);border-radius:12px;background:var(--surface);
+  padding:0 0.7rem;font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--ink);cursor:pointer;
+}
+.coach-needs{margin-bottom:1.25rem}
+.coach-needs-head{
+  font-size:0.6875rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.45rem;
+}
+.coach-needs-head::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold-deep);animation:needsPulse 3.2s cubic-bezier(0.4,0,0.2,1) infinite}
+.coach-needs-list{display:flex;flex-direction:column;gap:0.6rem}
+.coach-roster{display:flex;flex-direction:column;gap:0.6rem}
+.coach-file-row{
+  position:relative;display:grid;grid-template-columns:auto 1fr;gap:0.9rem;align-items:center;
+  background:rgba(253,249,240,0.82);border:1px solid rgba(151,121,63,0.18);
+  border-radius:14px;padding:0.85rem 1rem 0.85rem 1.15rem;overflow:hidden;cursor:pointer;
+  box-shadow:0 14px 36px -32px rgba(20,18,14,0.3);
+  transition:border-color .18s var(--ease),box-shadow .18s var(--ease),transform .12s var(--ease);
+}
+.coach-file-row:hover{border-color:rgba(151,121,63,0.4);box-shadow:0 18px 40px -28px rgba(20,18,14,0.36)}
+.coach-file-row:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+.coach-file-row:active{transform:translateY(1px)}
+.coach-file-row.is-open{border-color:var(--gold-deep);box-shadow:0 18px 44px -26px rgba(151,121,63,0.5)}
+.coach-file-edge{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--text-mute)}
+.coach-file-row.st-needs .coach-file-edge{background:var(--gold-deep)}
+.coach-file-row.st-scheduled .coach-file-edge{background:var(--success)}
+.coach-file-row.st-completed .coach-file-edge{background:var(--ink)}
+.coach-file-row.st-paid .coach-file-edge{background:var(--gold)}
+.coach-file-row.st-lead .coach-file-edge{background:var(--text-mute)}
+.coach-file-row.st-refund .coach-file-edge{background:var(--rust)}
+.coach-file-avatar{
+  width:44px;height:44px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bg);color:var(--gold-deep);border:1px solid rgba(151,121,63,0.3);
+  font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;flex-shrink:0;
+}
+.coach-file-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.coach-file-main{min-width:0}
+.coach-file-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem}
+.coach-file-id{min-width:0}
+.coach-file-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;line-height:1.1;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.coach-file-who{font-size:0.76rem;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:0.1rem}
+.coach-file-state{display:flex;align-items:center;gap:0.35rem;flex-shrink:0;font-size:0.66rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-mute)}
+.coach-file-glyph{font-weight:800}
+.coach-file-pip{width:7px;height:7px;border-radius:50%;background:var(--text-mute);flex-shrink:0}
+.st-needs .coach-file-pip{background:var(--gold-deep)} .st-needs .coach-file-state{color:var(--gold-deep)}
+.st-scheduled .coach-file-pip{background:var(--success)} .st-scheduled .coach-file-state{color:#2d6b54}
+.st-completed .coach-file-pip{background:var(--ink)} .st-completed .coach-file-state{color:var(--ink)}
+.st-paid .coach-file-pip{background:var(--gold)} .st-paid .coach-file-state{color:var(--gold-deep)}
+.st-refund .coach-file-pip{background:var(--rust)} .st-refund .coach-file-state{color:var(--rust-deep)}
+.coach-file-trio{display:grid;grid-template-columns:1.1fr 1.2fr 1.3fr;gap:0.75rem;margin-top:0.6rem}
+.coach-file-cell{min-width:0}
+.coach-file-cell .cfk{display:block;font-size:0.6rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--text-mute);margin-bottom:0.18rem}
+.coach-file-cell strong{font-size:0.84rem;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.coach-file-money.struck strong{text-decoration:line-through;color:var(--rust-deep)}
+.coach-file-meters{display:flex;gap:0.3rem;margin:0.1rem 0 0.2rem}
+.cfm{flex:1;height:3px;border-radius:99px;background:var(--gold-bg);overflow:hidden}
+.cfm i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-deep));border-radius:99px}
+.coach-file-prog small{font-size:0.66rem;color:var(--text-dim);font-variant-numeric:tabular-nums}
+.coach-file-flag{position:absolute;top:0.7rem;right:0.7rem;width:8px;height:8px;border-radius:50%;background:var(--gold-deep);box-shadow:0 0 0 4px rgba(151,121,63,0.14);animation:needsPulse 3.2s cubic-bezier(0.4,0,0.2,1) infinite}
+.coach-roster-foot{display:flex;justify-content:center;margin-top:1rem}
+.coach-more-btn{
+  font-family:'Inter',sans-serif;font-size:0.8125rem;font-weight:600;min-height:44px;padding:0.5rem 1.6rem;
+  border-radius:99px;cursor:pointer;background:transparent;color:var(--gold-deep);border:1px solid rgba(151,121,63,0.32);
+  transition:background .2s var(--ease),color .2s var(--ease);
+}
+.coach-more-btn:hover{background:var(--gold-deep);color:var(--bg)}
+.coach-roster-msg{padding:2.5rem 1rem;text-align:center;color:var(--text-dim);font-size:0.9rem}
+.coach-link-btn{background:none;border:none;color:var(--gold-deep);font-weight:700;cursor:pointer;text-decoration:underline;font-size:inherit;padding:0;min-height:0}
+@keyframes needsPulse{0%,100%{opacity:.55}50%{opacity:1}}
+@media (prefers-reduced-motion: reduce){
+  .coach-needs-head::before,.coach-file-flag{animation:none!important;opacity:1!important}
+}
+
 @media(max-width:768px){
   .coach-console{padding:calc(var(--nav-h) + 1rem) 1.25rem 3rem}
   .coach-h1{font-size:2rem}
@@ -4118,6 +4203,9 @@ body{
   .coach-user-card{grid-template-columns:1fr}
   .coach-user-top{flex-direction:column}
   .coach-user-meta{grid-template-columns:1fr}
+  .coach-roster-toolbar{flex-direction:column;align-items:stretch}
+  .coach-sort{justify-content:space-between}
+  .coach-file-trio{grid-template-columns:1fr;gap:0.4rem}
   .coach-brief-grid{grid-template-columns:1fr;gap:1.25rem}
   .coach-brief-top{flex-wrap:wrap}
   .coach-brief-when{text-align:left;width:100%}
@@ -5217,17 +5305,39 @@ body{
         </div>
         <div class="coach-tools" id="coach-tools"></div>
       </section>
-      <section class="coach-admin-section">
+      <section class="coach-admin-section coach-roster-section">
         <div class="coach-section-head">
           <div>
             <div class="coach-col-h">Members</div>
-            <h2>All signed-in users</h2>
+            <h2>The standing file</h2>
           </div>
-          <span class="coach-section-note">LinkedIn + Academy + Library + Booking</span>
+          <span class="coach-section-note" id="coach-roster-summary">Read-only over payments · value shown is list price</span>
         </div>
-        <div class="coach-users" id="coach-users"></div>
+        <div class="coach-roster-toolbar">
+          <div class="coach-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" id="coach-roster-q" placeholder="Search members by name or email" autocomplete="off" aria-label="Search members">
+          </div>
+          <label class="coach-sort">
+            <span>Sort</span>
+            <select id="coach-roster-sort" aria-label="Sort members">
+              <option value="recent">Recently active</option>
+              <option value="name">Name (A–Z)</option>
+              <option value="joined">Newest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </label>
+        </div>
+        <div class="coach-needs" id="coach-needs" hidden>
+          <div class="coach-needs-head">Needs you now</div>
+          <div class="coach-needs-list" id="coach-needs-list"></div>
+        </div>
+        <div class="coach-roster" id="coach-users"></div>
         <div class="coach-empty" id="coach-users-empty" hidden>
-          <p>No signed-in users yet. They appear here after LinkedIn sign-in.</p>
+          <p>No members yet — they appear after LinkedIn sign-in.</p>
+        </div>
+        <div class="coach-roster-foot">
+          <button type="button" class="coach-more-btn" id="coach-roster-more" hidden>Load more</button>
         </div>
       </section>
       <section class="coach-admin-section">
@@ -7980,60 +8090,163 @@ function coachDateLabel(iso){
   }) + ' GST';
 }
 
-function coachUserCardHTML(user){
+// ===== The Standing File — roster (two-band: Needs-you + paginated directory) =====
+// Fixed, grayscale-safe state semantics (fore-edge color + pip + glyph + label).
+function coachRowState(row){
+  if(row && row.need) return { key:'needs', label: row.need.reason || 'Needs you', glyph:'!' };
+  const b = (row && row.booking) || {};
+  const pay = (row && row.payment) || {};
+  if(b.status === 'completed') return { key:'completed', label:'Completed', glyph:'\u2713' };
+  if(b.status === 'booked') return { key:'scheduled', label:'Scheduled', glyph:'\u2192' };
+  if(b.status === 'review') return { key:'refund', label:'Needs review', glyph:'!' };
+  if(b.status === 'paid' || pay.status === 'paid') return { key:'paid', label:'Paid', glyph:'\u00b7' };
+  if(b.status === 'pending') return { key:'lead', label:'Pending payment', glyph:'\u00b7' };
+  return { key:'lead', label:'Lead', glyph:'\u00b7' };
+}
+
+// Lifetime value is DERIVED (entitlements active+consumed × AED 500 list price);
+// refunds excluded and shown struck. Never presented as a stored/settled amount.
+function coachMoneyLabel(row){
+  const pay = (row && row.payment) || {};
+  const aed = pay.lifetimeValueAed != null ? pay.lifetimeValueAed : (row && row.lifetimeValue ? Math.round(row.lifetimeValue/100) : 0);
+  const refunded = (pay.entitlements && pay.entitlements.refunded) || 0;
+  if(!aed) return refunded ? 'Refunded' : 'No payments';
+  return 'AED ' + Number(aed).toLocaleString();
+}
+
+function coachSessionLabel(row){
+  if(row && row.nextSession && row.nextSession.when) return coachDateLabel(row.nextSession.when);
+  if(row && row.lastSession && row.lastSession.when) return 'Last \u00b7 ' + coachDateLabel(row.lastSession.when);
+  const b = (row && row.booking) || {};
+  if(b.when && b.status && b.status !== 'none') return coachDateLabel(b.when);
+  return 'No session yet';
+}
+
+function coachFileRowHTML(row){
   const esc = coachEsc;
-  const academy = user.academy || {};
-  const library = user.library || {};
-  const briefs = user.briefs || {};
-  const booking = user.booking || { status:'none', label:'No booking yet' };
-  const bookingClass = ['booked','pending','completed'].includes(booking.status) ? booking.status : '';
-  const avatar = user.photoUrl
-    ? `<img src="${esc(user.photoUrl)}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.textContent='${coachInitials(user.name)}'">`
-    : coachInitials(user.name);
-  const cv = user.cv && user.cv.hasCv ? (user.cv.name || 'CV uploaded') : 'No CV yet';
-  const latest = briefs.latestGoal ? esc(aClip(briefs.latestGoal, 88)) : 'No brief yet';
-  const provider = booking.provider ? ` · ${esc(booking.provider)}` : '';
-  return `<article class="coach-user-card">
-    <div class="coach-user-avatar">${avatar}</div>
-    <div class="coach-user-main">
-      <div class="coach-user-top">
-        <div>
-          <div class="coach-user-name">${esc(user.name || 'Unnamed member')}</div>
-          <div class="coach-user-email">${esc(user.email || 'LinkedIn email unavailable')}</div>
+  const st = coachRowState(row);
+  const avatar = row.photoUrl
+    ? `<img src="${esc(row.photoUrl)}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.textContent='${coachInitials(row.name)}'">`
+    : coachInitials(row.name);
+  const who = row.role || row.email || 'Member';
+  const money = coachMoneyLabel(row);
+  const pay = row.payment || {};
+  const struck = (pay.entitlements && pay.entitlements.refunded && !pay.entitlements.paid) ? ' struck' : '';
+  const academy = row.academy || {};
+  const library = row.library || {};
+  const aPct = coachPercent(academy.done, academy.total);
+  const lPct = coachPercent(library.done, library.total);
+  const flag = row.need ? '<span class="coach-file-flag" aria-hidden="true"></span>' : '';
+  return `<article class="coach-file-row st-${st.key}${row.need?' is-needs':''}" data-sub="${esc(row.linkedinSub || '')}" tabindex="0" role="button" aria-label="Open file for ${esc(row.name || 'member')}">
+    <span class="coach-file-edge" aria-hidden="true"></span>
+    <div class="coach-file-avatar">${avatar}</div>
+    <div class="coach-file-main">
+      <div class="coach-file-top">
+        <div class="coach-file-id">
+          <div class="coach-file-name">${esc(row.name || 'Unnamed member')}</div>
+          <div class="coach-file-who">${esc(who)}</div>
         </div>
-        <span class="coach-user-booking ${bookingClass}">${esc(booking.label || 'No booking')}</span>
+        <div class="coach-file-state"><span class="coach-file-pip"></span><span class="coach-file-glyph" aria-hidden="true">${esc(st.glyph)}</span><span>${esc(st.label)}</span></div>
       </div>
-      <div class="coach-user-meta">
-        <div class="coach-user-meter"><strong>${esc(academy.done || 0)}/${esc(academy.total || 82)}</strong><span>Academy</span></div>
-        <div class="coach-user-meter"><strong>${esc(library.done || 0)}/${esc(library.total || 4)}</strong><span>Library</span></div>
-        <div class="coach-user-meter"><strong>${esc(briefs.total || 0)}</strong><span>Briefs</span></div>
-      </div>
-      <div class="coach-user-line">
-        <span><b>${esc(cv)}</b> · ${esc(coachPercent(academy.done, academy.total))}% academy</span>
-        <span>${esc(coachDateLabel(booking.when))}${provider}</span>
-      </div>
-      <div class="coach-user-line">
-        <span><b>Latest need</b> · ${latest}</span>
-        <span>${esc(briefs.toReview || 0)} to review</span>
+      <div class="coach-file-trio">
+        <div class="coach-file-cell coach-file-money${struck}" title="Derived from entitlements \u00d7 AED 500 list price (refunds excluded)"><span class="cfk">Lifetime</span><strong>${esc(money)}</strong></div>
+        <div class="coach-file-cell coach-file-prog">
+          <span class="cfk">Program</span>
+          <div class="coach-file-meters"><span class="cfm"><i style="width:${aPct}%"></i></span><span class="cfm"><i style="width:${lPct}%"></i></span></div>
+          <small>A ${esc(academy.done||0)}/${esc(academy.total||82)} \u00b7 L ${esc(library.done||0)}/${esc(library.total||4)}</small>
+        </div>
+        <div class="coach-file-cell coach-file-sess"><span class="cfk">Session</span><strong>${esc(coachSessionLabel(row))}</strong></div>
       </div>
     </div>
+    ${flag}
   </article>`;
 }
 
-function coachRenderUsers(list, totals){
-  const wrap = document.getElementById('coach-users');
+function coachRosterSummary(totals){
+  if(!totals) return 'Read-only over payments · value shown is list price';
+  const aed = totals.lifetimeValueAed != null ? totals.lifetimeValueAed : (totals.lifetimeValue ? Math.round(totals.lifetimeValue/100) : 0);
+  const members = totals.members != null ? totals.members : (totals.users || 0);
+  return `AED ${Number(aed).toLocaleString()} lifetime (list price) \u00b7 ${totals.scheduled || 0} scheduled \u00b7 ${members} member${members===1?'':'s'}`;
+}
+
+const coachRosterState = { q:'', sort:'recent', page:0, pageSize:24, total:0, loading:false };
+
+function coachRenderRoster(data, opts){
+  opts = opts || {};
+  const needsWrap = document.getElementById('coach-needs');
+  const needsList = document.getElementById('coach-needs-list');
+  const dir = document.getElementById('coach-users');
   const empty = document.getElementById('coach-users-empty');
-  if(!wrap) return;
-  const users = Array.isArray(list) ? list : [];
-  coachSetCount('coach-count-users', totals && totals.users != null ? totals.users : users.length);
-  coachSetCount('coach-count-booked', totals && totals.booked != null ? totals.booked : users.filter(u => u.booking && u.booking.status !== 'none').length);
-  if(!users.length){
-    wrap.innerHTML = '';
-    if(empty) empty.hidden = false;
-    return;
+  const more = document.getElementById('coach-roster-more');
+  const summary = document.getElementById('coach-roster-summary');
+  if(!dir) return;
+  const needs = Array.isArray(data.needs) ? data.needs : [];
+  const members = Array.isArray(data.members) ? data.members : (Array.isArray(data.users) ? data.users : []);
+  const totals = data.totals || {};
+  coachSetCount('coach-count-users', totals.members != null ? totals.members : members.length);
+  coachSetCount('coach-count-booked', totals.booked != null ? totals.booked : 0);
+  if(summary) summary.textContent = coachRosterSummary(totals);
+
+  if(!opts.append){
+    if(needs.length && needsWrap){ needsWrap.hidden = false; needsList.innerHTML = needs.map(coachFileRowHTML).join(''); }
+    else if(needsWrap){ needsWrap.hidden = true; needsList.innerHTML = ''; }
   }
+
+  if(opts.append) dir.insertAdjacentHTML('beforeend', members.map(coachFileRowHTML).join(''));
+  else dir.innerHTML = members.map(coachFileRowHTML).join('');
+
+  const shown = dir.children.length;
+  const total = data.total != null ? data.total : (totals.members || shown);
+  coachRosterState.total = total;
+  if(empty) empty.hidden = (shown > 0 || needs.length > 0);
+  if(more) more.hidden = !(shown < total);
+}
+
+function coachRosterError(append){
+  if(append){ showToast('Could not load more — try again'); return; }
+  const dir = document.getElementById('coach-users');
+  const empty = document.getElementById('coach-users-empty');
+  const more = document.getElementById('coach-roster-more');
+  if(more) more.hidden = true;
   if(empty) empty.hidden = true;
-  wrap.innerHTML = users.map(coachUserCardHTML).join('');
+  if(dir && !dir.children.length){
+    dir.innerHTML = '<div class="coach-roster-msg">Couldn’t load the roster. <button type="button" class="coach-link-btn" id="coach-roster-retry">Retry</button></div>';
+    const rb = document.getElementById('coach-roster-retry');
+    if(rb) rb.addEventListener('click', ()=> coachRosterFetch({ append:false }));
+  } else {
+    showToast('Couldn’t refresh the roster');
+  }
+}
+
+function coachRosterFetch(opts){
+  opts = opts || {};
+  if(coachRosterState.loading) return;
+  const append = !!opts.append;
+  if(!append) coachRosterState.page = 0;
+  coachRosterState.loading = true;
+  const more = document.getElementById('coach-roster-more');
+  if(append && more) more.disabled = true;
+  const qs = new URLSearchParams({
+    q: coachRosterState.q,
+    sort: coachRosterState.sort,
+    page: String(coachRosterState.page),
+    limit: String(coachRosterState.pageSize),
+  });
+  fetch('/api/coach/users?' + qs.toString(), { credentials:'same-origin' })
+    .then(async r => {
+      if(r.status === 403){ coachRenderRemoteMessage('This desk is for Nesreen. Sign in with her LinkedIn account to see members, progress, and payments.'); return null; }
+      if(r.status === 401){ coachRenderRemoteMessage('Sign in with Nesreen’s LinkedIn account to open the admin desk.'); return null; }
+      if(!r.ok) throw new Error('coach_users_failed');
+      return r.json();
+    })
+    .then(d => { if(d === null) return; coachRenderRoster(d, { append }); })
+    .catch(()=> coachRosterError(append))
+    .finally(()=>{ coachRosterState.loading = false; if(more) more.disabled = false; });
+}
+
+function coachRosterLoadMore(){
+  coachRosterState.page += 1;
+  coachRosterFetch({ append:true });
 }
 
 function coachRenderRemoteMessage(message){
@@ -8041,6 +8254,9 @@ function coachRenderRemoteMessage(message){
   const users = document.getElementById('coach-users');
   const empty = document.getElementById('coach-empty');
   const usersEmpty = document.getElementById('coach-users-empty');
+  const needs = document.getElementById('coach-needs');
+  const needsList = document.getElementById('coach-needs-list');
+  const more = document.getElementById('coach-roster-more');
   coachSetCount('coach-count-new', '0');
   coachSetCount('coach-count-total', '0');
   coachSetCount('coach-count-users', '0');
@@ -8048,6 +8264,9 @@ function coachRenderRemoteMessage(message){
   if(empty) empty.hidden = true;
   if(usersEmpty) usersEmpty.hidden = true;
   if(users) users.innerHTML = '';
+  if(needs) needs.hidden = true;
+  if(needsList) needsList.innerHTML = '';
+  if(more) more.hidden = true;
   if(wrap) wrap.innerHTML = `<div class="coach-empty" style="padding:3rem 1rem;text-align:center;color:var(--text-dim)"><p>${coachEsc(message)}</p></div>`;
 }
 
@@ -8235,28 +8454,11 @@ function renderCoachBriefs(){
 }
 
 function renderCoachUsersRemote(){
-  fetch('/api/coach/users', { credentials:'same-origin' })
-    .then(async r => {
-      if(r.status === 403){
-        coachRenderRemoteMessage('This desk is for Nesreen. Sign in with her LinkedIn account to see users, progress, and bookings.');
-        return null;
-      }
-      if(r.status === 401){
-        coachRenderRemoteMessage('Sign in with Nesreen LinkedIn account to open the admin desk.');
-        return null;
-      }
-      if(!r.ok) throw new Error('coach_users_failed');
-      return r.json();
-    })
-    .then(d => {
-      if(d === null) return;
-      coachRenderUsers((d && d.users) || [], d && d.totals);
-      if(d && d.totals){
-        coachSetCount('coach-count-users', d.totals.users);
-        coachSetCount('coach-count-booked', d.totals.booked);
-      }
-    })
-    .catch(()=> coachRenderRemoteMessage('Admin data is not available yet. Check Supabase setup and the user progress migration.'));
+  const qEl = document.getElementById('coach-roster-q');
+  const sEl = document.getElementById('coach-roster-sort');
+  coachRosterState.q = qEl ? qEl.value.trim() : '';
+  coachRosterState.sort = sEl ? sEl.value : 'recent';
+  coachRosterFetch({ append:false });
 }
 
 function renderCoachBriefsRemote(){
@@ -8284,21 +8486,54 @@ function renderCoachBriefsRemote(){
     .catch(()=> coachRenderRemoteMessage('Briefs are not available yet. Check Supabase and coach access.'));
 }
 
-function renderCoachUsersLocal(){
-  if(!BACKEND_AVAILABLE || isDevAdminPreview()) seedBriefsIfEmpty();
-  const raw = loadBriefs();
-  const demo = raw.slice(0, 2).map((b, i) => ({
+// Dev-preview / offline seed → the two-band Standing File roster (mirrors the
+// remote shape so the roster + open file work without a backend).
+function coachLocalRow(b, i){
+  const booked = !!b.when;
+  const paid = booked || i === 0;
+  const lifetimeAed = paid ? 500 * (i === 0 ? 2 : 1) : 0;
+  const academy = { done: i ? 6 : 0, total: 82 };
+  const library = { done: i ? 1 : 0, total: 4 };
+  const nextWhen = booked ? new Date(Date.now() + 86400000 * (i + 1)).toISOString() : null;
+  const row = {
+    linkedinSub: b.id || ('local-' + i),
     name: b.name,
     email: i === 0 ? 'demo.client@nuria.local' : '',
     photoUrl: null,
-    academy: { done: i ? 3 : 0, total: 82 },
-    library: { done: i ? 1 : 0, total: 4 },
-    cv: { hasCv: false },
-    booking: b.when ? { status:'booked', label:'Booked', provider:'Demo booking', when:new Date().toISOString() } : { status:'none', label:'No booking yet' },
-    briefs: { total: 1, toReview: b.reviewed ? 0 : 1, latestGoal: b.goal }
-  }));
-  coachRenderUsers(demo, { users: demo.length, booked: demo.filter(u=>u.booking.status !== 'none').length });
+    role: b.role || null,
+    academy, library,
+    cv: { hasCv:false },
+    booking: booked ? { status:'booked', label:'Booked', provider:'Demo booking', when: nextWhen } : { status:'none', label:'No booking yet' },
+    nextSession: booked ? { when: nextWhen, status:'session_scheduled' } : null,
+    lastSession: null,
+    sessionsCount: booked ? 1 : 0,
+    payment: { status: paid ? 'paid' : 'none', lifetimeValue: lifetimeAed * 100, lifetimeValueAed: lifetimeAed, entitlements: { active: paid ? 1 : 0, consumed: 0, refunded: 0, paid: paid ? 1 : 0 } },
+    lifetimeValue: lifetimeAed * 100,
+    briefs: { total: 1, toReview: b.reviewed ? 0 : 1, latestGoal: b.goal },
+    _localBrief: b,
+  };
+  if(!b.reviewed) row.need = { reason:'Brief to review', priority:2, when: b.when || null };
+  return row;
 }
+
+function renderCoachUsersLocal(){
+  if(!BACKEND_AVAILABLE || isDevAdminPreview()) seedBriefsIfEmpty();
+  const raw = loadBriefs();
+  const members = raw.slice(0, 6).map((b, i) => coachLocalRow(b, i));
+  coachRosterLocalCache = members;
+  const needs = members.filter(r => r.need);
+  const lifetimeFils = members.reduce((s, r) => s + (r.lifetimeValue || 0), 0);
+  const totals = {
+    members: members.length,
+    users: members.length,
+    booked: members.filter(r => r.booking && ['booked','completed'].includes(r.booking.status)).length,
+    scheduled: members.filter(r => r.nextSession).length,
+    lifetimeValue: lifetimeFils,
+    lifetimeValueAed: Math.round(lifetimeFils / 100),
+  };
+  coachRenderRoster({ needs, members, totals, total: members.length }, { append:false });
+}
+let coachRosterLocalCache = [];
 
 function renderCoachBriefsLocal(){
   if(!BACKEND_AVAILABLE || isDevAdminPreview()) seedBriefsIfEmpty(); // demo seed only offline/local dev
@@ -8352,6 +8587,51 @@ document.getElementById('coach-briefs')?.addEventListener('click', (e)=>{
   const item = list.find(b => b.id === id);
   if(item && !item.reviewed){ item.reviewed = true; storeBriefs(list); renderCoachBriefs(); }
 });
+
+// ===== Standing File roster — controls + open-file delegation =====
+(function wireCoachRoster(){
+  const q = document.getElementById('coach-roster-q');
+  const sortSel = document.getElementById('coach-roster-sort');
+  const more = document.getElementById('coach-roster-more');
+  const dir = document.getElementById('coach-users');
+  const needsList = document.getElementById('coach-needs-list');
+
+  // Server-side search/sort only run online; dev-preview seeds are tiny.
+  let debounce = null;
+  if(q) q.addEventListener('input', ()=>{
+    if(isDevAdminPreview() || !BACKEND_AVAILABLE) return;
+    clearTimeout(debounce);
+    debounce = setTimeout(()=>{ coachRosterState.q = q.value.trim(); coachRosterFetch({ append:false }); }, 280);
+  });
+  if(sortSel) sortSel.addEventListener('change', ()=>{
+    if(isDevAdminPreview() || !BACKEND_AVAILABLE) return;
+    coachRosterState.sort = sortSel.value;
+    coachRosterFetch({ append:false });
+  });
+  if(more) more.addEventListener('click', ()=>{
+    if(isDevAdminPreview() || !BACKEND_AVAILABLE) return;
+    coachRosterLoadMore();
+  });
+
+  const openFromEvent = (e)=>{
+    const row = e.target.closest('.coach-file-row');
+    if(!row) return false;
+    const sub = row.dataset.sub;
+    if(sub && typeof openMemberFile === 'function'){ openMemberFile(sub, row); return true; }
+    return false;
+  };
+  [dir, needsList].forEach((el)=>{
+    if(!el) return;
+    el.addEventListener('click', openFromEvent);
+    el.addEventListener('keydown', (e)=>{
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      const row = e.target.closest('.coach-file-row');
+      if(!row) return;
+      e.preventDefault();
+      openFromEvent(e);
+    });
+  });
+})();
 
 /* ============================== CHAT ============================== */
 const chatScript = [
