@@ -4194,7 +4194,71 @@ body{
   .coach-needs-head::before,.coach-file-flag{animation:none!important;opacity:1!important}
 }
 
+/* ===== The open file — master–detail panel + the Spine ===== */
+.coach-file-overlay{position:fixed;inset:0;z-index:9500;display:flex;justify-content:flex-end;background:rgba(20,18,14,.5);backdrop-filter:blur(3px);animation:acFade .25s var(--ease-out)}
+.cfo-backdrop{position:absolute;inset:0}
+.coach-file-panel{position:relative;z-index:1;width:min(680px,62vw);height:100%;background:var(--paper);border-left:1px solid var(--gold);box-shadow:-30px 0 80px -40px rgba(20,18,14,.45);display:flex;flex-direction:column;overflow:hidden}
+.cfo-loading,.cfo-message{margin:auto;padding:2rem;text-align:center;color:var(--text-dim);font-size:0.92rem;max-width:32ch}
+.cfo-message .coach-link-btn{margin-left:0.25rem}
+.cfo-head{position:relative;padding:1.4rem 1.5rem 1.2rem 1.65rem;background:linear-gradient(180deg,#FDF9F0,var(--paper));border-bottom:1px solid var(--paper-edge);flex-shrink:0}
+.cfo-edge{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--text-mute)}
+.cfo-head.st-needs .cfo-edge{background:var(--gold-deep)}
+.cfo-head.st-scheduled .cfo-edge{background:var(--success)}
+.cfo-head.st-completed .cfo-edge{background:var(--ink)}
+.cfo-head.st-paid .cfo-edge{background:var(--gold)}
+.cfo-head.st-refund .cfo-edge{background:var(--rust)}
+.cfo-head.st-lead .cfo-edge{background:var(--text-mute)}
+.cfo-close{position:absolute;top:0.9rem;right:1rem;width:36px;height:36px;border:none;background:transparent;color:var(--text-dim);font-size:1.6rem;line-height:1;cursor:pointer;border-radius:8px}
+.cfo-close:hover{background:rgba(20,18,14,0.06);color:var(--ink)}
+.cfo-head-main{display:flex;align-items:center;gap:1rem}
+.cfo-avatar{width:56px;height:56px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--gold-bg);color:var(--gold-deep);border:1px solid rgba(151,121,63,0.3);font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;flex-shrink:0}
+.cfo-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.cfo-head-id{flex:1;min-width:0}
+.cfo-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;line-height:1.05;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cfo-role{font-size:0.82rem;color:var(--text-dim);margin-top:0.15rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cfo-state{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.4rem;font-size:0.66rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-mute)}
+.cfo-head.st-needs .cfo-state{color:var(--gold-deep)} .cfo-head.st-scheduled .cfo-state{color:#2d6b54} .cfo-head.st-paid .cfo-state{color:var(--gold-deep)} .cfo-head.st-completed .cfo-state{color:var(--ink)}
+.cfo-value{text-align:right;flex-shrink:0}
+.cfo-value-num{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--gold-deep);font-variant-numeric:tabular-nums;line-height:1}
+.cfo-value-lbl{font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-mute);margin-top:0.25rem}
+.cfo-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.cfo-zones{display:grid;grid-template-columns:1fr 0.62fr;align-items:start}
+.cfo-spine{padding:1.3rem 1.5rem 2rem 1.65rem;min-width:0}
+.cfo-glance{position:sticky;top:0;padding:1.3rem 1.4rem 2rem;border-left:1px solid var(--paper-edge);background:rgba(255,255,255,0.35)}
+.cfo-spine-title,.cfo-glance-title{font-size:0.6875rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:1rem}
+.cfo-spine-list{list-style:none;margin:0;padding:0;position:relative}
+.cfo-spine-list::before{content:"";position:absolute;left:6px;top:4px;bottom:8px;width:1px;background:var(--paper-edge)}
+.cfo-spine-entry{position:relative;display:grid;grid-template-columns:auto 1fr;gap:0.85rem;padding:0 0 1.05rem 1.45rem;align-items:baseline}
+.cfo-ev-edge{position:absolute;left:2px;top:0.32rem;width:9px;height:9px;border-radius:50%;background:var(--text-mute);border:2px solid var(--paper)}
+.cfo-spine-entry.st-needs .cfo-ev-edge{background:var(--gold-deep)}
+.cfo-spine-entry.st-scheduled .cfo-ev-edge{background:var(--success)}
+.cfo-spine-entry.st-completed .cfo-ev-edge{background:var(--ink)}
+.cfo-spine-entry.st-refund .cfo-ev-edge{background:var(--rust)}
+.cfo-spine-entry.st-dim .cfo-ev-edge{background:var(--text-mute);opacity:0.6}
+.cfo-ev-date{font-size:0.72rem;color:var(--text-mute);font-variant-numeric:tabular-nums;white-space:nowrap;min-width:50px}
+.cfo-ev-body{font-size:0.86rem;color:var(--text);line-height:1.45;min-width:0}
+.cfo-ev-title{color:var(--ink);font-weight:600}
+.cfo-ev-detail{color:var(--text-dim)}
+.cfo-money{color:var(--gold-deep);font-weight:700;font-variant-numeric:tabular-nums}
+.cfo-spine-entry.is-refund .cfo-ev-title,.cfo-spine-entry.is-refund .cfo-money{text-decoration:line-through;color:var(--rust-deep)}
+.cfo-spine-entry a{color:var(--gold-deep);font-weight:600}
+.cfo-spine-empty{color:var(--text-mute);font-size:0.86rem;padding-left:1.45rem}
+.cfo-stats{margin:0 0 1.25rem}
+.cfo-stats>div{display:flex;justify-content:space-between;gap:0.75rem;padding:0.5rem 0;border-bottom:1px solid var(--paper-edge)}
+.cfo-stats dt{font-size:0.74rem;color:var(--text-dim)}
+.cfo-stats dd{font-size:0.82rem;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;text-align:right;margin:0}
+.cfo-note-sm{font-size:0.62rem;color:var(--text-mute);font-weight:500}
+.cfo-cv-btn{font-family:'Inter',sans-serif;font-size:0.78rem;font-weight:600;color:var(--gold-deep);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;min-height:0}
+.cfo-cv-btn[disabled]{color:var(--text-mute);text-decoration:none;cursor:default}
+.cfo-note{margin-top:0.5rem}
+.cfo-note-h{font-size:0.6875rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:0.45rem}
+.cfo-note-body{font-size:0.84rem;color:var(--text);line-height:1.5;white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:0.7rem 0.8rem;min-height:3rem}
+
 @media(max-width:768px){
+  .coach-file-panel{width:100vw}
+  .cfo-zones{grid-template-columns:1fr}
+  .cfo-glance{position:static;order:-1;border-left:none;border-bottom:1px solid var(--paper-edge)}
+  .cfo-spine{padding-top:1rem}
   .coach-console{padding:calc(var(--nav-h) + 1rem) 1.25rem 3rem}
   .coach-h1{font-size:2rem}
   .coach-tools{grid-template-columns:1fr}
@@ -8632,6 +8696,223 @@ document.getElementById('coach-briefs')?.addEventListener('click', (e)=>{
     });
   });
 })();
+
+// ===== The open file: openMemberFile → master–detail panel + the Spine =====
+function coachReduceMotion(){ return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+
+function coachMemberState(member){
+  const sessions = (member && member.sessions) || [];
+  if(member && member.nextSession) return { key:'scheduled', label:'Scheduled', glyph:'\u2192' };
+  if(sessions.some(s => s.status === 'completed')) return { key:'completed', label:'Completed', glyph:'\u2713' };
+  if(member && member.payment && member.payment.status === 'paid') return { key:'paid', label:'Paid', glyph:'\u00b7' };
+  if(member && member.briefs && member.briefs.toReview > 0) return { key:'needs', label:'Brief to review', glyph:'!' };
+  return { key:'lead', label:'Lead', glyph:'\u00b7' };
+}
+
+function coachSpineDate(iso){
+  const d = new Date(iso);
+  if(!Number.isFinite(d.getTime())) return '';
+  const opts = { timeZone:'Asia/Dubai', day:'numeric', month:'short' };
+  if(d.getFullYear() !== new Date().getFullYear()) opts.year = 'numeric';
+  return d.toLocaleDateString('en-US', opts);
+}
+
+const SPINE_STATE_KEYS = { needs:'needs', scheduled:'scheduled', completed:'completed', refund:'refund', dim:'dim', lead:'lead' };
+function coachSpineEntryHTML(ev){
+  const esc = coachEsc;
+  const stKey = SPINE_STATE_KEYS[ev.state] || 'neutral';
+  const isRefund = ev.state === 'refund';
+  const money = ev.money ? `<span class="cfo-money">AED ${Number(Math.round(ev.money/100)).toLocaleString()}</span>` : '';
+  let detailText = ev.detail || '';
+  if(ev.type === 'session' && ev.at){
+    const wd = new Date(ev.at).toLocaleDateString('en-US', { timeZone:'Asia/Dubai', weekday:'short' });
+    detailText = `${wd} ${formatGST(ev.at)} GST` + (ev.detail ? ` \u00b7 ${ev.detail}` : '');
+  }
+  const detail = detailText ? `<span class="cfo-ev-detail">\u00b7 ${esc(detailText)}</span>` : '';
+  const join = ev.joinUrl ? ` \u00b7 <a href="${esc(ev.joinUrl)}" target="_blank" rel="noopener">join</a>` : '';
+  return `<li class="cfo-spine-entry st-${stKey}${isRefund?' is-refund':''}">
+    <span class="cfo-ev-edge" aria-hidden="true"></span>
+    <div class="cfo-ev-date">${esc(coachSpineDate(ev.at))}</div>
+    <div class="cfo-ev-body"><span class="cfo-ev-title">${esc(ev.title)}</span> ${money} ${detail}${join}</div>
+  </li>`;
+}
+
+function coachFileHTML(member, opts){
+  opts = opts || {};
+  const esc = coachEsc;
+  const st = coachMemberState(member);
+  const aed = (member.payment && member.payment.lifetimeValueAed != null) ? member.payment.lifetimeValueAed : 0;
+  const academy = member.academy || { done:0, total:82 };
+  const library = member.library || { done:0, total:4 };
+  const avatar = member.photoUrl
+    ? `<img src="${esc(member.photoUrl)}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.textContent='${coachInitials(member.name)}'">`
+    : coachInitials(member.name);
+  const spine = Array.isArray(member.spine) ? member.spine : [];
+  const spineHTML = spine.length ? spine.map(coachSpineEntryHTML).join('') : '<li class="cfo-spine-empty">Joined — no brief, session, or payment yet.</li>';
+
+  let cvDd;
+  if(member.cv && member.cv.hasCv && member.cv.briefId && !opts.devPreview){
+    cvDd = `<button class="cfo-cv-btn" data-cv-brief="${esc(member.cv.briefId)}">View CV${member.cv.name?` (${esc(member.cv.name)})`:''}</button>`;
+  } else if(member.cv && member.cv.hasCv && opts.devPreview){
+    cvDd = '<span class="cfo-note-sm">CV link opens on the live site</span>';
+  } else {
+    cvDd = '<span class="cfo-note-sm">No CV</span>';
+  }
+  const nextLabel = member.nextSession && member.nextSession.when
+    ? coachDateLabel(member.nextSession.when)
+    : (member.lastSession && member.lastSession.when ? 'Last \u00b7 ' + coachDateLabel(member.lastSession.when) : 'None');
+  const notes = member.coachNotes || '';
+
+  return `<div class="cfo-head st-${st.key}">
+    <span class="cfo-edge" aria-hidden="true"></span>
+    <button class="cfo-close" aria-label="Close file" data-cfo-close>&times;</button>
+    <div class="cfo-head-main">
+      <div class="cfo-avatar">${avatar}</div>
+      <div class="cfo-head-id">
+        <div class="cfo-name">${esc(member.name || 'Unnamed member')}</div>
+        <div class="cfo-role">${esc(member.role || member.email || 'Member')}</div>
+        <div class="cfo-state"><span class="coach-file-pip"></span><span aria-hidden="true">${esc(st.glyph)}</span> ${esc(st.label)}</div>
+      </div>
+      <div class="cfo-value">
+        <div class="cfo-value-num">AED ${Number(aed).toLocaleString()}</div>
+        <div class="cfo-value-lbl">Lifetime \u00b7 list price</div>
+      </div>
+    </div>
+  </div>
+  <div class="cfo-scroll">
+    <div class="cfo-zones">
+      <section class="cfo-spine">
+        <div class="cfo-spine-title">The record</div>
+        <ol class="cfo-spine-list">${spineHTML}</ol>
+      </section>
+      <aside class="cfo-glance">
+        <div class="cfo-glance-title">At a glance</div>
+        <dl class="cfo-stats">
+          <div><dt>Lifetime value</dt><dd>AED ${Number(aed).toLocaleString()} <span class="cfo-note-sm">list price</span></dd></div>
+          <div><dt>Sessions</dt><dd>${esc((member.sessions||[]).length)}</dd></div>
+          <div><dt>Academy</dt><dd>${esc(academy.done||0)}/${esc(academy.total||82)} \u00b7 ${coachPercent(academy.done,academy.total)}%</dd></div>
+          <div><dt>Library</dt><dd>${esc(library.done||0)}/${esc(library.total||4)} \u00b7 ${coachPercent(library.done,library.total)}%</dd></div>
+          <div><dt>Next session</dt><dd>${esc(nextLabel)}</dd></div>
+          <div><dt>CV</dt><dd>${cvDd}</dd></div>
+        </dl>
+        <div class="cfo-note">
+          <div class="cfo-note-h">Private note</div>
+          <div class="cfo-note-body" id="cfo-note-display">${notes ? esc(notes) : 'No note yet.'}</div>
+        </div>
+      </aside>
+    </div>
+  </div>`;
+}
+
+let coachFileEscHandler = null;
+function coachFileShell(){
+  coachCloseFile(true); // drop any existing overlay (no animation) before opening a new one
+  const ov = document.createElement('div');
+  ov.className = 'coach-file-overlay';
+  ov.id = 'coach-file-overlay';
+  ov.innerHTML = '<div class="cfo-backdrop" data-cfo-close></div><div class="coach-file-panel" role="dialog" aria-modal="true" aria-label="Member file"><button class="cfo-close" aria-label="Close" data-cfo-close>&times;</button><div class="cfo-loading">Opening file…</div></div>';
+  ov.addEventListener('click', (e)=>{ if(e.target.closest('[data-cfo-close]')) coachCloseFile(); });
+  document.body.appendChild(ov);
+  coachFileEscHandler = (e)=>{ if(e.key === 'Escape') coachCloseFile(); };
+  document.addEventListener('keydown', coachFileEscHandler);
+  return ov;
+}
+
+function coachFillFile(ov, member, opts){
+  const panel = ov.querySelector('.coach-file-panel');
+  if(!panel) return;
+  panel.innerHTML = coachFileHTML(member, opts || {});
+  // Triggered motion — guarded so reduced-motion gets the file fully present at once.
+  if(!coachReduceMotion()){
+    const head = panel.querySelector('.cfo-head');
+    if(head) head.animate([{ transform:'translateY(8px)', opacity:0 }, { transform:'translateY(0)', opacity:1 }], { duration:260, easing:'cubic-bezier(0.16,1,0.3,1)', fill:'backwards' });
+    const entries = panel.querySelectorAll('.cfo-spine-entry');
+    entries.forEach((el, i)=>{
+      if(i >= 12) return; // cap the stagger; dense files don't ripple for seconds
+      el.animate([{ transform:'translateY(6px)', opacity:0 }, { transform:'translateY(0)', opacity:1 }], { duration:180, delay:i*28, easing:'cubic-bezier(0.16,1,0.3,1)', fill:'backwards' });
+    });
+  }
+}
+
+function coachFileMessage(ov, msg){
+  const panel = ov.querySelector('.coach-file-panel');
+  if(!panel) return;
+  panel.innerHTML = `<button class="cfo-close" aria-label="Close" data-cfo-close>&times;</button><div class="cfo-message">${coachEsc(msg)}</div>`;
+}
+
+function coachCloseFile(instant){
+  const ov = document.getElementById('coach-file-overlay');
+  document.querySelectorAll('.coach-file-row.is-open').forEach(r=>r.classList.remove('is-open'));
+  if(coachFileEscHandler){ document.removeEventListener('keydown', coachFileEscHandler); coachFileEscHandler = null; }
+  if(!ov) return;
+  const panel = ov.querySelector('.coach-file-panel');
+  if(instant === true || coachReduceMotion() || !panel){ ov.remove(); return; }
+  const a = panel.animate([{ transform:'translateY(0)', opacity:1 }, { transform:'translateY(8px)', opacity:0 }], { duration:160, easing:'cubic-bezier(0.4,0,0.2,1)' });
+  a.onfinish = ()=> ov.remove();
+  a.oncancel = ()=> ov.remove();
+}
+
+function openMemberFile(sub, rowEl){
+  if(!sub) return;
+  const ov = coachFileShell(); // clears any prior overlay + its open-row highlight
+  if(rowEl) rowEl.classList.add('is-open');
+
+  if(isDevAdminPreview() || !BACKEND_AVAILABLE){
+    const m = coachLocalMember(sub);
+    if(m) coachFillFile(ov, m, { devPreview:true });
+    else coachFileMessage(ov, 'This member isn’t in the local preview seed.');
+    return;
+  }
+
+  fetch('/api/coach/member?sub=' + encodeURIComponent(sub), { credentials:'same-origin' })
+    .then(async r => {
+      if(r.status === 403){ coachFileMessage(ov, 'This desk is for Nesreen.'); return null; }
+      if(r.status === 401){ coachFileMessage(ov, 'Sign in with Nesreen’s LinkedIn account.'); return null; }
+      if(r.status === 404){ coachFileMessage(ov, 'No file for this member yet.'); return null; }
+      if(!r.ok) throw new Error('member_failed');
+      return r.json();
+    })
+    .then(d => { if(d === null) return; if(d && d.member) coachFillFile(ov, d.member, {}); else coachFileMessage(ov, 'Couldn’t load this file.'); })
+    .catch(()=> coachFileMessage(ov, 'Couldn’t load this file. Please try again.'));
+}
+
+// Signed CV link from inside the open file (coach-only, short-lived URL).
+document.addEventListener('click', (e)=>{
+  const cv = e.target.closest('[data-cv-brief]');
+  if(!cv) return;
+  const id = cv.dataset.cvBrief;
+  if(!id) return;
+  cv.disabled = true;
+  fetch('/api/coach/cv-url?brief_id=' + encodeURIComponent(id), { credentials:'same-origin' })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => { if(d && d.url) window.open(d.url, '_blank', 'noopener'); else showToast('CV unavailable'); })
+    .catch(()=> showToast('CV unavailable'))
+    .finally(()=>{ cv.disabled = false; });
+});
+
+// Dev-preview / offline: build an open-file payload from the seeded roster row.
+function coachLocalMember(sub){
+  const r = (coachRosterLocalCache || []).find(x => x.linkedinSub === sub);
+  if(!r) return null;
+  const now = Date.now();
+  const spine = [];
+  const joinedAt = new Date(now - 86400000*30).toISOString();
+  spine.push({ at: joinedAt, type:'joined', title:'Joined', detail:'Signed in with LinkedIn', money:null, state:'lead' });
+  if(r._localBrief){ spine.push({ at:new Date(now - 86400000*20).toISOString(), type:'brief', title:'Brief created', detail: r._localBrief.goal ? aClip(r._localBrief.goal, 80) : null, money:null, state: r._localBrief.reviewed ? 'completed' : 'needs' }); }
+  if(r.payment && r.payment.status === 'paid'){ spine.push({ at:new Date(now - 86400000*15).toISOString(), type:'paid', title:'Paid', detail:'Coaching session', money:50000, state:'completed' }); }
+  if(r.nextSession && r.nextSession.when){ spine.push({ at:r.nextSession.when, type:'session', title:'Session scheduled', detail:null, money:null, state:'scheduled' }); }
+  spine.push({ at:new Date(now - 3600000).toISOString(), type:'seen', title:'Last active', detail:null, money:null, state:'dim' });
+  spine.sort((a,b)=> new Date(b.at) - new Date(a.at));
+  return {
+    linkedinSub: r.linkedinSub, name: r.name, email: r.email, photoUrl: r.photoUrl, role: r.role, country: null,
+    joinedAt, lastSeenAt: new Date(now - 3600000).toISOString(),
+    payment: r.payment, academy: r.academy, library: r.library,
+    sessions: r.nextSession ? [{ briefId:r.linkedinSub, when:r.nextSession.when, status:'session_scheduled', joinUrl:null, paidAt:null }] : [],
+    nextSession: r.nextSession, lastSession: null,
+    cv: { hasCv:false, name:null, uploadedAt:null, briefId:null },
+    coachNotes: '', briefs: r.briefs, spine,
+  };
+}
 
 /* ============================== CHAT ============================== */
 const chatScript = [
