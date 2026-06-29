@@ -11,6 +11,8 @@ const ROUTES = {
   briefs: { handler: briefs, marker: ['coach', 'briefs'] },
   'cv-url': { handler: cvUploadUrl, marker: ['coach', 'cv-url'] },
   users: { handler: coachUsers },
+  integrations: { handler: coachIntegrations },
+  connect: { handler: coachConnect },
 };
 
 module.exports = async (req, res) => {
@@ -178,4 +180,69 @@ function normalizeProgress(value, fallbackTotal) {
 function toInt(value, fallback) {
   const n = Number(value);
   return Number.isFinite(n) ? Math.round(n) : fallback;
+}
+
+async function coachIntegrations(req, res) {
+  const session = L.requireCoach(req, res);
+  if (!session) return;
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return L.sendJson(res, 405, { error: 'method_not_allowed' });
+  }
+
+  const stripeKey = process.env.STRIPE_SECRET_KEY || '';
+  const stripeReady = !!(
+    stripeKey.startsWith('sk_')
+    && process.env.STRIPE_WEBHOOK_SECRET
+    && process.env.STRIPE_WEBHOOK_SECRET.startsWith('whsec_')
+    && process.env.STRIPE_PAYMENT_LINK_URL
+    && process.env.STRIPE_PAYMENT_LINK_URL.startsWith('https://')
+  );
+  const calendlyToken = process.env.CALENDLY_ACCESS_TOKEN
+    || process.env.CALENDLY_API_KEY
+    || process.env.CALENDLY_PAT
+    || '';
+  const calendlyReady = !!calendlyToken;
+
+  return L.sendJson(res, 200, {
+    tools: {
+      calendly: {
+        label: 'Calendly',
+        connected: calendlyReady,
+        status: calendlyReady ? 'Connected' : 'Needs setup',
+        note: calendlyReady ? 'Scheduling token is present.' : 'Sign in and add a Calendly token/env when ready.',
+        connectUrl: '/api/coach/connect?tool=calendly',
+        dashboardUrl: 'https://calendly.com/app/scheduled_events/user/me',
+      },
+      stripe: {
+        label: 'Stripe',
+        connected: stripeReady,
+        status: stripeReady ? (stripeKey.startsWith('sk_live_') ? 'Live' : 'Test mode') : 'Needs setup',
+        note: stripeReady ? 'Payment link and webhook are configured.' : 'Sign in and finish payment link/webhook setup.',
+        connectUrl: '/api/coach/connect?tool=stripe',
+        dashboardUrl: 'https://dashboard.stripe.com/dashboard',
+      },
+    },
+  });
+}
+
+async function coachConnect(req, res) {
+  const session = L.requireCoach(req, res);
+  if (!session) return;
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return L.sendJson(res, 405, { error: 'method_not_allowed' });
+  }
+
+  const params = new URL(req.url, 'http://x').searchParams;
+  const tool = params.get('tool');
+  const targets = {
+    calendly: 'https://calendly.com/login',
+    stripe: 'https://dashboard.stripe.com/login',
+  };
+  const target = targets[tool];
+  if (!target) return L.sendJson(res, 400, { error: 'unknown_tool' });
+  res.statusCode = 302;
+  res.setHeader('Location', target);
+  res.end();
 }

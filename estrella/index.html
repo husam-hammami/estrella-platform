@@ -3935,7 +3935,7 @@ body{
 
 /* ============================== COACH DESK ============================== */
 #view-coach{overflow-y:auto}
-.coach-console{max-width:1080px;margin:0 auto;padding:3rem 2rem 4rem}
+.coach-console{max-width:1080px;margin:0 auto;padding:calc(var(--nav-h) + 1.6rem) 2rem 4rem}
 .coach-head{
   display:flex;align-items:flex-end;justify-content:space-between;
   gap:2rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1.5rem;
@@ -3970,6 +3970,33 @@ body{
   color:var(--ink);line-height:1;
 }
 .coach-section-note{font-size:0.78rem;color:var(--text-mute)}
+.coach-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.coach-tool-card{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  background:rgba(255,253,247,0.82);border:1px solid rgba(151,121,63,0.2);
+  border-radius:16px;padding:1rem 1.1rem;
+  box-shadow:0 18px 44px -34px rgba(20,18,14,0.22);
+}
+.coach-tool-main{display:flex;align-items:center;gap:0.85rem;min-width:0}
+.coach-tool-mark{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+  background:var(--gold-bg);border:1px solid rgba(151,121,63,0.2);
+  color:var(--gold-deep);font-weight:900;
+}
+.coach-tool-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;line-height:1;color:var(--ink)}
+.coach-tool-note{font-size:0.78rem;color:var(--text-dim);margin-top:0.18rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:32ch}
+.coach-tool-action{
+  border:none;border-radius:999px;background:var(--ink);color:var(--bg);
+  min-height:40px;padding:0 1rem;font-weight:800;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;white-space:nowrap;
+}
+.coach-tool-action.secondary{background:transparent;color:var(--gold-deep);border:1px solid rgba(151,121,63,0.28)}
+.coach-tool-status{
+  display:inline-flex;align-items:center;margin-top:0.42rem;
+  font-size:0.66rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text-mute);
+}
+.coach-tool-status.connected{color:#2d6b54}
 .coach-users{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
 .coach-user-card{
   display:grid;grid-template-columns:auto 1fr;gap:1rem;
@@ -4083,8 +4110,10 @@ body{
 .coach-empty svg{margin:0 auto 1rem;display:block}
 .coach-empty p{font-size:0.95rem;line-height:1.5;max-width:36ch;margin:0 auto}
 @media(max-width:768px){
-  .coach-console{padding:2rem 1.25rem 3rem}
+  .coach-console{padding:calc(var(--nav-h) + 1rem) 1.25rem 3rem}
   .coach-h1{font-size:2rem}
+  .coach-tools{grid-template-columns:1fr}
+  .coach-tool-card{align-items:flex-start;flex-direction:column}
   .coach-users{grid-template-columns:1fr}
   .coach-user-card{grid-template-columns:1fr}
   .coach-user-top{flex-direction:column}
@@ -5178,6 +5207,16 @@ body{
           <div class="coach-stat"><strong id="coach-count-booked">0</strong><span>Booked</span></div>
         </div>
       </header>
+      <section class="coach-admin-section">
+        <div class="coach-section-head">
+          <div>
+            <div class="coach-col-h">Tools</div>
+            <h2>Connect scheduling and payments</h2>
+          </div>
+          <span class="coach-section-note">Calendly + Stripe</span>
+        </div>
+        <div class="coach-tools" id="coach-tools"></div>
+      </section>
       <section class="coach-admin-section">
         <div class="coach-section-head">
           <div>
@@ -7893,6 +7932,57 @@ function coachRenderRemoteMessage(message){
   if(wrap) wrap.innerHTML = `<div class="coach-empty" style="padding:3rem 1rem;text-align:center;color:var(--text-dim)"><p>${coachEsc(message)}</p></div>`;
 }
 
+function coachToolCardHTML(id, tool){
+  const esc = coachEsc;
+  const mark = id === 'stripe' ? '$' : 'C';
+  const href = tool.connectUrl || tool.dashboardUrl || '#';
+  const connected = !!tool.connected;
+  return `<article class="coach-tool-card">
+    <div class="coach-tool-main">
+      <div class="coach-tool-mark">${esc(mark)}</div>
+      <div>
+        <div class="coach-tool-name">${esc(tool.label || id)}</div>
+        <div class="coach-tool-note">${esc(tool.note || '')}</div>
+        <div class="coach-tool-status ${connected?'connected':''}">${esc(tool.status || (connected ? 'Connected' : 'Needs setup'))}</div>
+      </div>
+    </div>
+    <a class="coach-tool-action ${connected?'secondary':''}" href="${esc(href)}" target="_blank" rel="noopener">${connected?'Open':'Sign in'}</a>
+  </article>`;
+}
+
+function coachRenderTools(tools){
+  const wrap = document.getElementById('coach-tools');
+  if(!wrap) return;
+  const source = tools || coachLocalTools();
+  wrap.innerHTML = ['calendly','stripe'].map(id => coachToolCardHTML(id, source[id] || {})).join('');
+}
+
+function coachLocalTools(){
+  return {
+    calendly: {
+      label: 'Calendly',
+      connected: false,
+      status: 'Dev preview',
+      note: 'Open Calendly to sign in and confirm the scheduling account.',
+      connectUrl: 'https://calendly.com/login',
+    },
+    stripe: {
+      label: 'Stripe',
+      connected: false,
+      status: 'Dev preview',
+      note: 'Open Stripe to sign in and confirm payment link/webhook setup.',
+      connectUrl: 'https://dashboard.stripe.com/login',
+    },
+  };
+}
+
+function renderCoachToolsRemote(){
+  fetch('/api/coach/integrations', { credentials:'same-origin' })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => coachRenderTools(d && d.tools ? d.tools : coachLocalTools()))
+    .catch(()=> coachRenderTools(coachLocalTools()));
+}
+
 // Render one brief card from the CANONICAL shape:
 //   { id, name, role, goal, obstacle, synthesis, strengths[], when, reviewed,
 //     cv_path?, cv_extract?, country? }
@@ -7996,15 +8086,18 @@ function coachMapServerBrief(b){
 // Dispatcher: real coach desk when online, localStorage demo offline.
 function renderCoachBriefs(){
   if(isDevAdminPreview()){
+    coachRenderTools(coachLocalTools());
     renderCoachUsersLocal();
     renderCoachBriefsLocal();
     return;
   }
   if(BACKEND_AVAILABLE){
+    renderCoachToolsRemote();
     renderCoachUsersRemote();
     renderCoachBriefsRemote();
     return;
   }
+  coachRenderTools(coachLocalTools());
   renderCoachUsersLocal();
   renderCoachBriefsLocal();
 }
