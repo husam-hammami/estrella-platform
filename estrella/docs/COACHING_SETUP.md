@@ -116,6 +116,38 @@ alter table public.users add column if not exists cv_name text;
 alter table public.users add column if not exists cv_uploaded_at timestamptz;
 ```
 
+### Member Management Desk ("The Standing File") — additive
+
+The coach member desk (roster + per-member "open file") adds ONE writable field — a
+per-member coach note on the person — and a few indexes so the server-side
+search/sort/pagination (PostgREST `limit`/`offset`/`order`/`ilike`) stays fast as the
+roster grows. All additive; RLS unchanged; no destructive migration.
+
+```sql
+-- The ONE new writable field: a per-member coach note (CRM note on the person, not the brief).
+alter table public.users add column if not exists coach_notes text;
+
+-- Pagination + sort: the directory pages users by recency / name / join date.
+create index if not exists idx_users_last_seen_at on public.users (last_seen_at desc nulls last);
+create index if not exists idx_users_created_at  on public.users (created_at  desc nulls last);
+
+-- Search: case-insensitive name/email `ilike` matching (trigram index makes leading-wildcard fast).
+create extension if not exists pg_trgm;
+create index if not exists idx_users_name_trgm  on public.users using gin (name  gin_trgm_ops);
+create index if not exists idx_users_email_trgm on public.users using gin (email gin_trgm_ops);
+
+-- Per-member lifetime value / payment truth is DERIVED (read-only) from existing rows:
+--   entitlements.status in ('active','consumed')  ×  list price AED 500  (refunded excluded, shown struck)
+-- Speeds the desk's per-member entitlement lookups:
+create index if not exists idx_entitlements_user_sub on public.entitlements (user_sub);
+
+-- The activity "Spine" is DERIVED server-side from existing timestamps — no new table:
+--   users.created_at (joined) · users.last_seen_at (last active) · briefs.created_at (brief) ·
+--   briefs.paid_at (paid AED 500) · briefs.scheduled_start (session) · briefs.status='completed' ·
+--   users.cv_uploaded_at · academy/library_progress.updatedAt.
+-- The desk is READ-ONLY over money: the Stripe webhook stays the sole writer of paid/entitlement state.
+```
+
 ### Real Calendly + Stripe (end-to-end) — additive migration
 
 Run this once on top of the tables above:
