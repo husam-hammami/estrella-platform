@@ -66,6 +66,20 @@ async function handleStripe(req, res, raw) {
       return res.end('already_processed');
     }
 
+    // The idempotency marker is now committed (its own PostgREST transaction). If
+    // a TRANSIENT error stops us before the brief is flipped to paid, roll the
+    // marker back so Stripe's retry re-processes — otherwise the retry short-
+    // circuits as 'already_processed' above and an already-charged customer's
+    // paid state is dropped forever. Terminal non-retryable outcomes (no_brief)
+    // keep the marker so Stripe stops retrying.
+    const rollbackMarker = async () => {
+      try {
+        await L.sb(`webhook_events?stripe_event_id=eq.${encodeURIComponent(event.id)}`, {
+          method: 'DELETE', headers: { Prefer: 'return=minimal' },
+        });
+      } catch (e) { console.error('webhook: marker rollback failed', e && e.message); }
+    };
+
     const obj = (event.data && event.data.object) || {};
     const briefId = obj.client_reference_id;
     const sessionId = obj.id || null;
@@ -79,6 +93,7 @@ async function handleStripe(req, res, raw) {
     const lookup = await L.sb(`briefs?id=eq.${encodeURIComponent(briefId)}&select=id,client_sub`);
     if (!lookup.ok) {
       console.error('webhook: brief lookup failed', lookup.status, await lookup.text().catch(() => ''));
+      await rollbackMarker();
       return L.sendJson(res, 502, { error: 'supabase_error' });
     }
     const briefRows = await lookup.json();
@@ -105,6 +120,7 @@ async function handleStripe(req, res, raw) {
     });
     if (!patchBrief.ok) {
       console.error('webhook: brief patch failed', patchBrief.status, await patchBrief.text().catch(() => ''));
+      await rollbackMarker();
       return L.sendJson(res, 502, { error: 'supabase_error' });
     }
 
@@ -196,6 +212,18 @@ async function handleCalendly(req, res, raw) {
     }
   } catch (e) { /* non-fatal */ }
 
+  // Same retry-safety as the Stripe path: if a transient error stops us before
+  // the booking is recorded, drop the idempotency marker so Calendly's retry
+  // re-processes instead of short-circuiting as 'already_processed'. Safe even if
+  // the marker was never committed (the delete simply no-ops).
+  const rollbackMarker = async () => {
+    try {
+      await L.sb(`webhook_events?stripe_event_id=eq.${encodeURIComponent(idemKey)}`, {
+        method: 'DELETE', headers: { Prefer: 'return=minimal' },
+      });
+    } catch (e) { console.error('calendly: marker rollback failed', e && e.message); }
+  };
+
   try {
     if (eventType === 'invitee.created') {
       const brief = await matchPaidBrief(coachSub, briefIdFromUtm, email);
@@ -220,6 +248,7 @@ async function handleCalendly(req, res, raw) {
       });
       if (!patch.ok) {
         console.error('calendly: brief patch failed', patch.status, await patch.text().catch(() => ''));
+        await rollbackMarker();
         return L.sendJson(res, 502, { error: 'supabase_error' });
       }
       // Consume the entitlement (only flips active rows → idempotent).

@@ -93,11 +93,37 @@ async function persistUserPatch(user, body) {
   if (body && body.cvPath) patch.cv_path = cleanString(body.cvPath, 300);
   if (body && body.cvName) patch.cv_name = cleanString(body.cvName, 160);
   if (body && body.cvUploadedAt) patch.cv_uploaded_at = cleanString(body.cvUploadedAt, 80);
-  if (body && body.academyProgress && typeof body.academyProgress === 'object') {
-    patch.academy_progress = cleanProgress(body.academyProgress, 82);
-  }
-  if (body && body.libraryProgress && typeof body.libraryProgress === 'object') {
-    patch.library_progress = cleanProgress(body.libraryProgress, 4);
+
+  // Progress is MONOTONIC. The dashboard syncs from browser-local state, so a
+  // second device (or a browser with cleared localStorage) reports done:0 on load
+  // and would otherwise overwrite the member's real, higher count — silent
+  // cross-device data loss. Read the stored value first and only advance it:
+  // never lower academy `done`, and union the library `opened` set so a book
+  // opened on either device is never dropped. If we can't read the current row,
+  // skip the progress write entirely rather than risk regressing it.
+  const hasAcademy = body && body.academyProgress && typeof body.academyProgress === 'object';
+  const hasLibrary = body && body.libraryProgress && typeof body.libraryProgress === 'object';
+  if (hasAcademy || hasLibrary) {
+    let current = null, readOk = false;
+    try {
+      const cur = await L.sb(`users?linkedin_sub=eq.${encodeURIComponent(user.sub)}&select=academy_progress,library_progress&limit=1`);
+      if (cur.ok) { const rows = await cur.json(); current = (Array.isArray(rows) && rows[0]) || null; readOk = true; }
+    } catch (e) { /* readOk stays false → skip the risky write below */ }
+
+    if (hasAcademy && readOk) {
+      const incoming = cleanProgress(body.academyProgress, 82);
+      const curDone = Number(current && current.academy_progress && current.academy_progress.done) || 0;
+      if (incoming.done >= curDone) patch.academy_progress = incoming; // advance only
+    }
+    if (hasLibrary && readOk) {
+      const incoming = cleanProgress(body.libraryProgress, 4);
+      const curLib = (current && current.library_progress) || {};
+      const curOpened = Array.isArray(curLib.opened) ? curLib.opened : [];
+      const opened = Array.from(new Set([...curOpened, ...(incoming.opened || [])])).slice(0, 50);
+      incoming.opened = opened;
+      incoming.done = Math.max(incoming.done, Number(curLib.done) || 0, opened.length);
+      patch.library_progress = incoming;
+    }
   }
   try {
     const resp = await L.sb(`users?linkedin_sub=eq.${encodeURIComponent(user.sub)}`, {
