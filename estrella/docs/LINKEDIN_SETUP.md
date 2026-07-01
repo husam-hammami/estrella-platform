@@ -36,7 +36,10 @@ The granted scopes are `openid`, `profile`, `email`.
 
 ## 2. Create the Supabase table (2 min)
 
-In your Supabase project → **SQL Editor**, run:
+In your Supabase project → **SQL Editor**, run the canonical
+[`supabase/schema.sql`](../supabase/schema.sql) (it includes this `users` table and
+everything else, idempotently). The block below is the `users`-only excerpt for
+reference:
 
 ```sql
 create table if not exists public.users (

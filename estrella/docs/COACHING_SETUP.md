@@ -43,6 +43,11 @@ open `/api/health` while signed in as the coach — it reports any missing/missh
 
 ## 2. Supabase tables + RPC (SQL Editor → run once)
 
+> **Canonical script:** run [`supabase/schema.sql`](../supabase/schema.sql) — one
+> idempotent, non-destructive file that creates every table, index, RLS toggle, and
+> both storage buckets in the correct order. The blocks below are kept for
+> reference/explanation; `supabase/schema.sql` is what you actually run.
+
 ```sql
 -- Nesreen's bookable slots (she/admin manages these)
 create table if not exists public.availability_slots (
