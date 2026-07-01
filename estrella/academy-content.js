@@ -152,8 +152,8 @@ window.ESTRELLA_ACADEMY = {
         },
         {
           "id": "ai-hr-graduate",
-          "name": "AI for HR",
-          "description": "You finished the AI for HR course. You can now use AI as a tool to help your work, while you stay in charge of the decisions.",
+          "name": "AI for HR, Simply",
+          "description": "You finished AI for HR, Simply. You can now use AI as a tool to help your work, while you stay in charge of the decisions.",
           "criteria": {
             "type": "course",
             "courseId": "ai-hr",
@@ -163,7 +163,7 @@ window.ESTRELLA_ACADEMY = {
         {
           "id": "branding-graduate",
           "name": "Your Brand",
-          "description": "You finished the Personal Branding course. You can say clearly what you stand for, and others can see it too.",
+          "description": "You finished Be Known for Your Value. You can say clearly what you stand for, and others can see it too.",
           "criteria": {
             "type": "course",
             "courseId": "branding",
@@ -173,7 +173,7 @@ window.ESTRELLA_ACADEMY = {
         {
           "id": "interview-graduate",
           "name": "Interview Ready",
-          "description": "You finished the Interview course. You stay calm and clear when people ask you hard questions.",
+          "description": "You finished Interview Ready. You stay calm and clear when people ask you hard questions.",
           "criteria": {
             "type": "course",
             "courseId": "interview",
@@ -183,7 +183,7 @@ window.ESTRELLA_ACADEMY = {
         {
           "id": "foundations-graduate",
           "name": "Strong Base",
-          "description": "You finished the HR Foundations course. You now know the main rules that all HR work is built on.",
+          "description": "You finished HR That Helps the Business. You now know how people work connects to business results.",
           "criteria": {
             "type": "course",
             "courseId": "hr-foundations",
@@ -193,7 +193,7 @@ window.ESTRELLA_ACADEMY = {
         {
           "id": "speaking-graduate",
           "name": "Clear Voice",
-          "description": "You finished the Public Speaking course. You can hold a room with a calm and clear voice.",
+          "description": "You finished Speak Clearly in Meetings. You can hold a room with a calm and clear voice.",
           "criteria": {
             "type": "course",
             "courseId": "speaking",
@@ -203,7 +203,7 @@ window.ESTRELLA_ACADEMY = {
         {
           "id": "confidence-graduate",
           "name": "Quiet Confidence",
-          "description": "You finished the Confidence course. You feel sure of yourself in a calm, steady way.",
+          "description": "You finished Confidence at Work. You feel sure of yourself in a calm, steady way.",
           "criteria": {
             "type": "course",
             "courseId": "confidence",
@@ -213,7 +213,7 @@ window.ESTRELLA_ACADEMY = {
         {
           "id": "leadership-graduate",
           "name": "Ready to Lead",
-          "description": "You finished the Leadership course. People can follow how you make and stand by your decisions.",
+          "description": "You finished Lead Without Draining Yourself. People can follow how you make and stand by your decisions.",
           "criteria": {
             "type": "course",
             "courseId": "leadership",
@@ -223,7 +223,7 @@ window.ESTRELLA_ACADEMY = {
         {
           "id": "offer-graduate",
           "name": "Offer in Hand",
-          "description": "You finished the Offer and Pay course. You can ask for fair pay for your work, and get it.",
+          "description": "You finished Get the Offer. You can ask for fair pay for your work, and get it.",
           "criteria": {
             "type": "course",
             "courseId": "offer",
@@ -362,13 +362,13 @@ window.ESTRELLA_ACADEMY = {
     },
     "pedagogy": {
       "framework": "Course-specific practice mechanics.",
-      "note": "Each course has its own learning mechanic: a decision map, reputation studio, interview lab, operating map, rehearsal room, mirror journal, energy board, or offer desk. Lessons add decisions, selections, rehearsals, checks, and only occasional writing to the course artifact. The learner should feel progress through a useful artifact taking shape, not through a repeated school worksheet."
+      "note": "Each course has its own learning mechanic: an answer sheet, reputation studio, interview lab, operating sheet, rehearsal room, mirror journal, energy board, or offer desk. Lessons add decisions, selections, rehearsals, checks, and only occasional writing to the course artifact. The learner should feel progress through a useful artifact taking shape, not through a repeated school worksheet."
     }
   },
   "courses": {
     "ai-hr": {
       "courseId": "ai-hr",
-      "title": "AI for HR Leaders",
+      "title": "AI for HR, Simply",
       "modules": [
         {
           "title": "Where AI Belongs in HR",
@@ -412,12 +412,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Think of one AI idea someone has proposed in your organisation, or one you have considered. Which of the four roles does it serve? Write one sentence on the benefit it offers, and one sentence on the risk it brings. If you cannot name the risk, you are not ready to buy.",
                 "placeholder": "Initiative: ...\nRole it serves: ...\nBenefit (one sentence): ...\nRisk (one sentence): ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -498,12 +498,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Pick one of the four roles where your team uses or plans to use AI. Write one task in that role that AI can take fully, and one task that must stay human. Then write the rule in one sentence, like \"AI drafts, a person decides for X.\"",
                 "placeholder": "Role: ...\nAI can take: ...\nMust stay human: ...\nMy one-sentence rule: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -584,12 +584,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "List five HR tasks your team does. Sort each into Automate, Augment, or Never. For each \"Never\", write one sentence on why a mistake would be too costly. Keep this sheet; it is your defence under pressure.",
                 "placeholder": "1. Task — bucket — reason\n2. ...\n3. ...\n4. ...\n5. ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -670,12 +670,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Write a draft AI-in-HR thesis using the four parts: Focus, Outcome, Guardrails, Proof. Keep it to one page. Use real numbers where you can, even rough ones.",
                 "placeholder": "Focus: ...\nOutcome (with a number): ...\nGuardrails: ...\nProof (1-2 measures): ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -761,12 +761,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Pick an AI hiring tool you use or might buy. List three features it uses to score candidates. For each, ask: could this quietly track gender, age, nationality, or family status? Mark any feature that could be a proxy.",
                 "placeholder": "Feature 1: ... possible proxy for: ...\nFeature 2: ... possible proxy for: ...\nFeature 3: ... possible proxy for: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -847,12 +847,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Take a screening tool you are considering. Answer the five audit questions as best you can from what the vendor has told you. Mark each green, amber, or red. Write your go or no-go decision and the reason.",
                 "placeholder": "1. Training data: ... (G/A/R)\n2. Labels: ... (G/A/R)\n3. Adverse-impact testing: ... (G/A/R)\n4. Top features: ... (G/A/R)\n5. Appeals path: ... (G/A/R)\nDecision: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -933,12 +933,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Pick one role. Write three job-related interview questions. For one of them, write a simple three-level rubric: what a weak, fair, and strong answer looks like. Note one task you would let AI help with and one you would not.",
                 "placeholder": "Role: ...\nQ1: ...\nQ2: ...\nQ3: ...\nRubric for Q1 — Weak: ... Fair: ... Strong: ...\nAI may help with: ...\nAI must not: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1019,12 +1019,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Using real or sample numbers, calculate the selection rate for two groups at one hiring stage. Find the highest rate, take 80% of it, and check whether the other group falls below. Write whether the rule passes or fails and what you would do next.",
                 "placeholder": "Group A: passed / applied = ...%\nGroup B: passed / applied = ...%\nHighest rate: ...% → 80% of it: ...%\nResult: pass / fail\nNext step: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1110,12 +1110,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Pick one people question your leadership keeps asking. Which rung does answering it well require? Which rung is your data actually on today? Write one honest sentence you could say to leadership about the gap.",
                 "placeholder": "Question: ...\nRung needed: ...\nRung we're on: ...\nHonest sentence to leadership: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1196,12 +1196,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Take a vague feedback line like \"not a team player\" or \"lacks confidence.\" Rewrite it to name one specific behaviour, its impact, and a next step. Note one rule you would set so AI helps without hiding the truth.",
                 "placeholder": "Vague line: ...\nBehaviour: ...\nImpact: ...\nNext step: ...\nMy fairness rule: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1282,12 +1282,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Pick one role. List three or four skills it needs. For one skill, describe what beginner, capable, and expert look like. Note how AI could use this map to suggest a learning path.",
                 "placeholder": "Role: ...\nSkills: ...\nSkill X — Beginner: ... Capable: ... Expert: ...\nHow AI would route learning: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1368,12 +1368,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Choose one HR metric leadership should care about. Write its recent trend, translate it into money or risk, and add one recommended action. Then write the cost of doing nothing.",
                 "placeholder": "Metric: ...\nTrend: ...\nIn money/risk terms: ...\nRecommended action: ...\nCost of doing nothing: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1459,12 +1459,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Take one AI-in-HR project. Write what data it collects, the single clear purpose, and the least data needed. Then note who should be consulted before you build, and one sentence you would tell staff in plain words.",
                 "placeholder": "Project: ...\nData collected: ...\nClear purpose: ...\nLeast data needed: ...\nWho to consult first: ...\nPlain-words message to staff: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1545,12 +1545,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Write a simple two-column table for your team. List three things staff MAY do with AI and three they MUST NOT. Add a one-line real example to each row. Note who owns the policy and how staff raise concerns.",
                 "placeholder": "MAY: 1. ... 2. ... 3. ...\nMUST NOT: 1. ... 2. ... 3. ...\nPolicy owner: ...\nHow to raise a concern: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1631,12 +1631,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Write a simple 90-day plan in three phases. For each phase, list one or two key actions. Name your safe first pilot and the one measure you will track. Add a checkpoint question for the end of each phase.",
                 "placeholder": "Days 1-30 (Foundations): ...\nDays 31-60 (Pilot): ... | First pilot: ... | Measure: ...\nDays 61-90 (Review & scale): ...\nCheckpoint questions: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1717,12 +1717,12 @@ window.ESTRELLA_ACADEMY = {
                 "prompt": "Pick one AI-assisted decision in your work. Check it against the three features: does the reviewer have time and information, can they really override, and is one named person accountable? Note any feature that is missing and how you would fix it.",
                 "placeholder": "Decision: ...\nTime & information? ...\nReal power to override? ...\nNamed accountable person? ...\nWhat's missing and my fix: ...",
                 "interaction": {
-                  "mechanic": "Decision Map",
+                  "mechanic": "Answer Sheet",
                   "mode": "choice-board",
                   "requiresWriting": false,
                   "intro": "Place the scenario on the map first. The decision matters more than a paragraph.",
                   "actionLabel": "Check the AI decision",
-                  "artifactLabel": "Add to AI map",
+                  "artifactLabel": "Submit answer",
                   "choices": [
                     "Automate",
                     "Augment",
@@ -1769,7 +1769,7 @@ window.ESTRELLA_ACADEMY = {
         }
       ],
       "mechanic": {
-        "name": "Decision Map",
+        "name": "Answer Sheet",
         "short": "Sort the decision before choosing the tool.",
         "artifact": "AI adoption map",
         "interaction": "sort, audit, choose, stress-test",
@@ -1778,7 +1778,7 @@ window.ESTRELLA_ACADEMY = {
     },
     "branding": {
       "courseId": "branding",
-      "title": "Personal Branding",
+      "title": "Be Known for Your Value",
       "modules": [
         {
           "title": "Your Foundation",
@@ -1926,7 +1926,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to brand plan",
                   "choices": []
                 }
@@ -2300,7 +2300,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to brand plan",
                   "choices": []
                 }
@@ -2487,7 +2487,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to brand plan",
                   "choices": []
                 }
@@ -2916,7 +2916,7 @@ window.ESTRELLA_ACADEMY = {
     },
     "interview": {
       "courseId": "interview",
-      "title": "Interview Mastery",
+      "title": "Interview Ready",
       "modules": [
         {
           "title": "Before the Room",
@@ -3267,7 +3267,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to playbook",
                   "choices": []
                 }
@@ -3757,7 +3757,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to playbook",
                   "choices": []
                 }
@@ -3949,7 +3949,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to playbook",
                   "choices": []
                 }
@@ -4108,7 +4108,7 @@ window.ESTRELLA_ACADEMY = {
     },
     "hr-foundations": {
       "courseId": "hr-foundations",
-      "title": "Modern HR Foundations",
+      "title": "HR That Helps the Business",
       "modules": [
         {
           "title": "The HR Operating Model",
@@ -4918,7 +4918,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to operating sheet",
                   "choices": []
                 }
@@ -5254,7 +5254,7 @@ window.ESTRELLA_ACADEMY = {
     },
     "speaking": {
       "courseId": "speaking",
-      "title": "Public Speaking & Executive Presence",
+      "title": "Speak Clearly in Meetings",
       "modules": [
         {
           "title": "The Inner Game",
@@ -5494,7 +5494,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to talk kit",
                   "choices": []
                 }
@@ -5773,7 +5773,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to talk kit",
                   "choices": []
                 }
@@ -6150,7 +6150,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to talk kit",
                   "choices": []
                 }
@@ -6388,7 +6388,7 @@ window.ESTRELLA_ACADEMY = {
     },
     "confidence": {
       "courseId": "confidence",
-      "title": "Confidence Reset",
+      "title": "Confidence at Work",
       "modules": [
         {
           "title": "Understanding the Pattern",
@@ -7034,7 +7034,7 @@ window.ESTRELLA_ACADEMY = {
     },
     "leadership": {
       "courseId": "leadership",
-      "title": "Leadership Without Burnout",
+      "title": "Lead Without Draining Yourself",
       "modules": [
         {
           "title": "The Energy Audit",
@@ -7275,7 +7275,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to rhythm plan",
                   "choices": []
                 }
@@ -7611,7 +7611,7 @@ window.ESTRELLA_ACADEMY = {
     },
     "offer": {
       "courseId": "offer",
-      "title": "The Offer Machine",
+      "title": "Get the Offer",
       "modules": [
         {
           "title": "Winning the Interview",
@@ -7666,7 +7666,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to offer kit",
                   "choices": []
                 }
@@ -8049,7 +8049,7 @@ window.ESTRELLA_ACADEMY = {
                   "mode": "artifact-words",
                   "requiresWriting": true,
                   "intro": "Only write the words you would actually keep in the final artifact.",
-                  "actionLabel": "Save the useful words",
+                  "actionLabel": "Submit",
                   "artifactLabel": "Add to offer kit",
                   "choices": []
                 }
@@ -8209,13 +8209,13 @@ window.ESTRELLA_ACADEMY = {
     },
     "courseMechanics": {
       "ai-hr": {
-        "name": "Decision Map",
+        "name": "Answer Sheet",
         "short": "Sort the decision before choosing the tool.",
         "artifact": "AI adoption map",
         "interaction": "sort, audit, choose, stress-test",
         "defaultMode": "sort",
         "actionLabel": "Place this decision",
-        "artifactLabel": "Add to AI map",
+        "artifactLabel": "Submit answer",
         "choices": [
           "Automate",
           "Augment",

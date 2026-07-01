@@ -39,17 +39,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "The voice that says you are not good enough is trying to protect you, but it is not telling the truth. You can answer it back.",
      "situation": "A voice says: they will see you are not ready for this.",
      "choices": [
-      "Push it away",
-      "Believe it",
-      "Answer it with a fair line"
+      "Try to ignore it and keep working",
+      "List one fair fact that answers it",
+      "Ask someone else to reassure me"
      ],
      "choiceIcons": [
       "check",
       "compass",
       "chat"
      ],
-     "helpful": "Answer it with a fair line",
-     "feedback": "Yes. You don't delete the voice, you answer it with something fair and true.",
+     "helpful": "List one fair fact that answers it",
+     "feedback": "Good. You kept it fair and specific.",
      "estrella": "Would you say that thought to a friend? Be that fair.",
      "fills": "Second node lights with a small reply token — the answer you gave the critic."
     },
@@ -60,9 +60,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Your brain holds onto failures and forgets wins. Write the real ones down so doubt can't quietly erase them.",
      "situation": "Doubt says: you have never really done anything big.",
      "choices": [
-      "I am a hard worker",
+      "I usually work hard",
       "I led the move that cut costs 12%",
-      "People probably like me"
+      "My manager seemed happy last week"
      ],
      "choiceIcons": [
       "loop",
@@ -81,9 +81,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A rejection is information about one fit at one time. It is not a final score on your worth.",
      "situation": "You were turned down for the senior role you wanted.",
      "choices": [
-      "I am not good enough",
+      "This proves I am not senior enough yet",
       "They wanted one skill I can build",
-      "I should stop trying"
+      "The process was probably unfair"
      ],
      "choiceIcons": [
       "step",
@@ -102,16 +102,16 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Confidence built on mood fails on hard days. A small daily habit keeps you steady whether you feel like it or not.",
      "situation": "It's a tired, stressful morning and you don't feel brave.",
      "choices": [
-      "Wait until I feel ready",
-      "Do my small daily habit anyway",
-      "Skip today"
+      "Wait for a better mood",
+      "Do the smallest version today",
+      "Plan to restart next week"
      ],
      "choiceIcons": [
       "pause",
       "loop",
       "eye"
      ],
-     "helpful": "Do my small daily habit anyway",
+     "helpful": "Do the smallest version today",
      "feedback": "Yes. The habit runs even when the mood doesn't. That is the whole point.",
      "estrella": "Confidence is repetition, not motivation. Keep the small habit.",
      "fills": "Fifth node lights with a small loop token — the daily habit you chose to keep."
@@ -123,9 +123,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "You don't think your way to confidence. You do one slightly hard thing, survive it, and your belief updates.",
      "situation": "You've been avoiding asking your boss for a bigger budget.",
      "choices": [
-      "Keep avoiding it",
+      "Keep preparing and delay it again",
       "Ask, even if the answer is maybe",
-      "Wait for the perfect moment"
+      "Mention it only if they bring it up"
      ],
      "choiceIcons": [
       "pause",
@@ -156,9 +156,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Your brand is what people say about you when you are not in the room. It is your reputation, made on purpose.",
      "situation": "Two coworkers talk about you after a meeting. You are not there.",
      "choices": [
-      "\"She posts a lot online.\"",
+      "\"She is active online.\"",
       "\"She always spots the risk early.\"",
-      "\"She has a nice profile photo.\""
+      "\"She is friendly in meetings.\""
      ],
      "choiceIcons": [
       "search",
@@ -177,9 +177,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "One clear sentence beats a job title: who you help, what you fix, and the real result they get.",
      "situation": "Someone asks, \"So, what do you do?\" at an event.",
      "choices": [
-      "\"I am an HR manager.\"",
+      "\"I manage HR work for the team.\"",
       "\"I help retailers keep new hires so they save training money.\"",
-      "\"I do a bit of everything in people stuff.\""
+      "\"I work across hiring, pay, and people issues.\""
      ],
      "choiceIcons": [
       "hand",
@@ -198,9 +198,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Before you build a brand, find out how people see you now. Ask honest colleagues, not just kind friends.",
      "situation": "You want to know your real reputation at work today.",
      "choices": [
-      "Ask close friends who always praise you.",
+      "Ask supportive friends first.",
       "Ask a few honest colleagues what they say about your work.",
-      "Guess, because you know yourself best."
+      "Review only your own notes."
      ],
      "choiceIcons": [
       "step",
@@ -219,9 +219,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A story links your past, your turning point, and where you head now, so your path looks chosen, not random.",
      "situation": "Your career looks like three unrelated jobs.",
      "choices": [
-      "List every job and let them figure it out.",
+      "Walk through every job in order.",
       "Find the one thread that runs through all three.",
-      "Say your career has no real direction yet."
+      "Say you changed paths a few times."
      ],
      "choiceIcons": [
       "target",
@@ -241,8 +241,8 @@ window.ESTRELLA_SIMPLE = {
      "situation": "A friend needs help and is deciding who to call.",
      "choices": [
       "The person known for one clear thing.",
-      "The person who \"does a bit of everything.\"",
-      "Whoever answers the phone first."
+      "The person with the longest list of services.",
+      "The person who seems busiest online."
      ],
      "choiceIcons": [
       "spark",
@@ -263,7 +263,7 @@ window.ESTRELLA_SIMPLE = {
      "choices": [
       "\"I am a Senior Manager at...\"",
       "\"I help family businesses build fair pay people trust.\"",
-      "\"Passionate, results-driven professional.\""
+      "\"I support people and business growth.\""
      ],
      "choiceIcons": [
       "hand",
@@ -284,7 +284,7 @@ window.ESTRELLA_SIMPLE = {
      "choices": [
       "\"Responsible for training programmes.\"",
       "\"Built training that cut new-hire turnover by 30%.\"",
-      "\"Handled various HR duties.\""
+      "\"Supported onboarding and learning projects.\""
      ],
      "choiceIcons": [
       "spark",
@@ -303,9 +303,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Share posts that help the right people. Skip the fake humility and the show-off stories that lose trust.",
      "situation": "You are about to post something on LinkedIn.",
      "choices": [
-      "\"So humbled and blessed to announce my brilliance.\"",
+      "Post the promotion with no takeaway for the reader.",
       "\"Three signs your bonus system is losing your best people.\"",
-      "A long story whose only point is how great you are."
+      "Tell a proud story but skip the lesson."
      ],
      "choiceIcons": [
       "scissors",
@@ -313,7 +313,7 @@ window.ESTRELLA_SIMPLE = {
       "book"
      ],
      "helpful": "\"Three signs your bonus system is losing your best people.\"",
-     "feedback": "That works. It helps the reader, so it never feels like bragging.",
+     "feedback": "This gives the reader a useful check they can use today.",
      "estrella": "Would you say it to a respected colleague over coffee?",
      "fills": "Completes the PROOF band — side-label ignites, name disc brightens to stage two."
     },
@@ -324,9 +324,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Posting is half the game. Real relationships grow when every comment adds one new idea, example, or honest question.",
      "situation": "You want to comment on someone's post in your field.",
      "choices": [
-      "\"Great post!\"",
+      "\"Great post, thanks for sharing.\"",
       "Add a short example from your own work, then ask a real question.",
-      "Drop a link to your own services."
+      "Add your service link because the topic matches."
      ],
      "choiceIcons": [
       "trend",
@@ -345,9 +345,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "You do not need to brag. Be useful in public — share, answer, introduce — and being noticed takes care of itself.",
      "situation": "You hate self-promotion but want to be seen.",
      "choices": [
-      "Announce every win loudly and often.",
+      "Post every win so people notice.",
       "Answer real questions in public and introduce helpful people.",
-      "Wait quietly and hope someone finds your work."
+      "Wait until someone asks for your advice."
      ],
      "choiceIcons": [
       "check",
@@ -366,9 +366,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "When you name a useful idea simply, people remember it, repeat it, and credit you. Your name travels on its own.",
      "situation": "You have a handy routine you teach people.",
      "choices": [
-      "Call it \"a thing I do sometimes.\"",
+      "Explain the routine from scratch every time.",
       "Name it clearly, like \"The 15-Minute Round.\"",
-      "Keep it secret so no one copies it."
+      "Use a clever name only insiders understand."
      ],
      "choiceIcons": [
       "search",
@@ -376,7 +376,7 @@ window.ESTRELLA_SIMPLE = {
       "decline"
      ],
      "helpful": "Name it clearly, like \"The 15-Minute Round.\"",
-     "feedback": "Good. A named idea sticks in memory and gets passed along.",
+     "feedback": "Good. A simple name makes the routine easier to remember and repeat.",
      "estrella": "A named idea is easy to repeat and easy to credit.",
      "fills": "Lights the third USEFUL cell (useful-amber)."
     },
@@ -387,9 +387,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A strong brand brings work to you. After you help someone, plant a seed: say plainly what you are open to next.",
      "situation": "You just finished good work for a contact.",
      "choices": [
-      "Say nothing and hope they remember you.",
+      "Like the message and move on.",
       "\"If your team ever needs help with pay fairness, I'd be glad to talk.\"",
-      "Send a hard pitch for all your services."
+      "Send a full pitch while interest is warm."
      ],
      "choiceIcons": [
       "chat",
@@ -420,17 +420,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "An interviewer has little time, so most questions quietly check one risk. Answer the worry under the words, not just the words.",
      "situation": "They ask, \"Why are you leaving your current job?\"",
      "choices": [
-      "They want your salary history",
-      "They are checking if you'll be a problem here too",
-      "They are testing labour law"
+      "They want the full story of why I left",
+      "They are checking whether I bring the old problem with me",
+      "They mainly need my notice period"
      ],
      "choiceIcons": [
       "book",
       "search",
       "megaphone"
      ],
-     "helpful": "They are checking if you'll be a problem here too",
-     "feedback": "Yes. They watch how you speak about old jobs. Stay calm and forward.",
+     "helpful": "They are checking whether I bring the old problem with me",
+     "feedback": "Yes. Answer with a calm reason, no blame, and what you want next.",
      "estrella": "Pause one second. Ask what risk they are really checking.",
      "fills": "Lights the first arc of the ring and docks an 'ear' move-token inside it."
     },
@@ -441,9 +441,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Anyone can read the website. The candidate who gets the offer knows the problem the team is worried about right now.",
      "situation": "You have one hour to prepare for a fast-growing company.",
      "choices": [
-      "Memorise their mission statement",
+      "Read their About page only",
       "Find a current pain you can help fix",
-      "Learn the year they were founded"
+      "Prepare one answer for every possible question"
      ],
      "choiceIcons": [
       "book",
@@ -462,9 +462,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "You can't make up good stories under pressure. Keep a small bank of real moments and shape one to fit whatever they ask.",
      "situation": "You spent all week memorising answers word for word.",
      "choices": [
-      "Memorise more exact answers",
+      "Memorise exact scripts",
       "Keep a few real stories you can reshape",
-      "Plan to make it up on the day"
+      "Trust I'll remember examples in the room"
      ],
      "choiceIcons": [
       "chat",
@@ -483,9 +483,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A proof story has a quiet shape: short setup, what you did, what happened. Keep the shape hidden so you sound human.",
      "situation": "Your answer comes out as \"the situation was... my task was...\"",
      "choices": [
-      "Announce each label out loud",
+      "Say the labels out loud so I don't lose track",
       "Keep the shape inside, tell it naturally",
-      "Skip the result to save time"
+      "Focus on the ending and skip the steps"
      ],
      "choiceIcons": [
       "chat",
@@ -504,9 +504,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Behavioral questions feel endless but fall into eight groups. One strong story for each, and you are ready for almost any of them.",
      "situation": "You have good wins, but no story about a failure.",
      "choices": [
-      "Hope the failure question never comes",
+      "Hope they don't ask and move on",
       "Find one real failure story now",
-      "Make one up in the room"
+      "Pick a tiny mistake with no real lesson"
      ],
      "choiceIcons": [
       "compass",
@@ -525,9 +525,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "The question you dread tests honesty, not perfection. Own the real thing, say what you learned, end on how you grew.",
      "situation": "\"Tell me about a time you failed.\"",
      "choices": [
-      "Give a fake weakness like \"I work too hard\"",
+      "Call it perfectionism and move on",
       "Own it, then show what you changed",
-      "Blame the team around you"
+      "Explain why it was mostly someone else's fault"
      ],
      "choiceIcons": [
       "megaphone",
@@ -546,9 +546,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Nerves make us rush and fill gaps with \"um.\" A slow pace and a short silent pause make you sound calm and sure.",
      "situation": "You need a moment to think mid-answer.",
      "choices": [
-      "Fill the gap with \"um, you know\"",
+      "Fill the pause with extra words",
       "Pause in silence, then speak",
-      "Talk faster to escape the gap"
+      "Restart the answer from the beginning"
      ],
      "choiceIcons": [
       "book",
@@ -567,9 +567,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Before you say a word, your body has spoken. Sit upright, open shoulders, feet planted, and you look — and feel — calmer.",
      "situation": "A panel of three is interviewing you.",
      "choices": [
-      "Stare hard at one person",
+      "Look only at the person who asked",
       "Answer who asked, then include the others",
-      "Keep your eyes on your notes"
+      "Look down so I don't get distracted"
      ],
      "choiceIcons": [
       "eye",
@@ -588,9 +588,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Everyone stumbles. A calm line buys you a moment and stops the panic, so a slip never turns into a spiral.",
      "situation": "Your mind goes blank halfway through an answer.",
      "choices": [
-      "Apologise many times",
+      "Say sorry and move on fast",
       "Use a calm line, then restate your point",
-      "Sit in long silence and hope"
+      "Keep explaining until it feels fixed"
      ],
      "choiceIcons": [
       "star",
@@ -609,17 +609,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "An offer is more than the base number. Housing, flights, and school fees can make a lower base the stronger deal.",
      "situation": "Offer A has a higher base. Offer B adds housing and school fees.",
      "choices": [
-      "Pick the higher base, it's simpler",
-      "Add up the full package first",
-      "Decide on base salary alone"
+      "Choose the higher base salary",
+      "Add base, allowances, fees, and real costs",
+      "Pick the one with the better title"
      ],
      "choiceIcons": [
       "flag",
       "star",
       "coin"
      ],
-     "helpful": "Add up the full package first",
-     "feedback": "Right. Total the real value before you judge any offer.",
+     "helpful": "Add base, allowances, fees, and real costs",
+     "feedback": "Right. Compare total value, not the headline number.",
      "estrella": "Two offers with the same base can be very different.",
      "fills": "Lights the tenth arc and docks a 'package' move-token."
     },
@@ -630,9 +630,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Asking for more is not a fight. Open with warmth, give a real reason, name a clear range, and start the job loved.",
      "situation": "You want a higher base than they offered.",
      "choices": [
-      "Demand more, firmly",
+      "Ask for more with no reason",
       "Thank them, give a reason, name a range",
-      "Threaten to take another offer"
+      "Say I'll think about it but never name a number"
      ],
      "choiceIcons": [
       "check",
@@ -651,9 +651,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "You learn interviews by doing, not reading. Run a mock, push through stumbles, then honestly review the real skills.",
      "situation": "You finished a practice run and felt nervous.",
      "choices": [
-      "Note only that you felt nervous",
+      "Only note how nervous I felt",
       "Check the real skills, fix one thing",
-      "Try to fix everything at once"
+      "Change every answer before next time"
      ],
      "choiceIcons": [
       "search",
@@ -670,11 +670,11 @@ window.ESTRELLA_SIMPLE = {
   "ai-hr": {
    "bigPromise": "Know when AI should help with people, and when a person must decide.",
    "artifact": {
-    "name": "The AI Decision Map",
+    "name": "AI Answer Sheet",
     "totalUnits": 16,
     "accent": "gold (#C49A3F / #E6CD86 / #A07A2C) plus a soft sage-green (#4C9C7A / #ECF6F0) used only for the KEEP HUMAN zone tint and the win-state Nuria note",
-    "fillUnit": "One gold dot lands inside one of the four zones — the zone that lesson's real teaching points to (Automate, Help, Keep human, or Not ready).",
-    "concept": "A four-zone map of where AI belongs in people work. Each saved lesson drops one gold dot into the right zone, so the learner literally watches their judgment take shape across the four quadrants."
+    "fillUnit": "One submitted answer is added to the final scorecard.",
+    "concept": "A simple answer sheet for AI judgment. Each lesson adds one answer, then the end scorecard shows what was right and what needs review."
    },
    "lessons": [
     {
@@ -705,9 +705,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "When a bot handles lookups, your time moves to the hard cases. Each job keeps one piece that must stay human.",
      "situation": "An AI model shows nurses are leaving fast. It can spot the pattern. Now what?",
      "choices": [
-      "Let AI choose the fix",
+      "Let AI suggest the fix and send it",
       "Use it, then a person decides",
-      "Email the at-risk list to all managers"
+      "Give managers a list of names with no context"
      ],
      "choiceIcons": [
       "bolt",
@@ -728,7 +728,7 @@ window.ESTRELLA_SIMPLE = {
      "choices": [
       "Automate to save time",
       "Keep human",
-      "Let AI help, manager decides"
+      "Let AI make a first shortlist"
      ],
      "choiceIcons": [
       "bolt",
@@ -747,9 +747,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "One page: where AI helps most, what result it serves, what stays human, and how you'll know it worked. Then you can say no fast.",
      "situation": "Leadership asks \"what's our AI plan?\" Two answers are on the table.",
      "choices": [
-      "\"We'll use the most advanced AI everywhere\"",
+      "\"Use AI wherever we can save time\"",
       "\"AI for hiring admin, cut shortlist time, no AI in final hiring\"",
-      "\"We'll explore as things come up\""
+      "\"Start with a few pilots and decide later\""
      ],
      "choiceIcons": [
       "bolt",
@@ -768,17 +768,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Bias slips in through old data, biased labels, and stand-in clues like a postcode or a career gap. Removing names does not remove it.",
      "situation": "A vendor says \"our tool can't be biased — it never sees names, gender, or photos.\"",
      "choices": [
-      "Accept it — no names, no bias",
-      "Ask how it scores by group",
-      "Hide their skills too"
+      "Accept it if names and photos are hidden",
+      "Ask for pass rates by group and the test method",
+      "Use it only where hiring volume is high"
      ],
      "choiceIcons": [
       "decline",
       "step",
       "check"
      ],
-     "helpful": "Ask how it scores by group",
-     "feedback": "Ask how it scores by group. Stand-in clues carry bias even with names gone.",
+     "helpful": "Ask for pass rates by group and the test method",
+     "feedback": "Good. Hidden names help, but the results still need checking by group.",
      "estrella": "A postcode can quietly stand in for a whole group.",
      "fills": "One gold dot lands in the Not ready zone."
     },
@@ -789,17 +789,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Ask five things: the data, the labels, fairness tests, the top features, and the appeal path. A refusal is a red flag, not a discount.",
      "situation": "A cheaper vendor won't share any fairness results — \"our model is proprietary.\"",
      "choices": [
-      "Buy it — price wins",
-      "Mark it red, don't buy until they prove it",
-      "Buy it for senior roles only"
+      "Choose the cheaper vendor and review later",
+      "Pause until they prove fairness",
+      "Use it only for low-risk roles"
      ],
      "choiceIcons": [
       "check",
       "alert",
       "gear"
      ],
-     "helpful": "Mark it red, don't buy until they prove it",
-     "feedback": "Mark it red. A public bias failure costs far more than the savings.",
+     "helpful": "Pause until they prove fairness",
+     "feedback": "Pause it. A public bias failure costs far more than the savings.",
      "estrella": "Keep the scored sheet. It's your proof you checked.",
      "fills": "One gold dot lands in the Not ready zone."
     },
@@ -810,17 +810,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Ask everyone the same job questions on the same scale. Let AI draft questions and write down answers. Never let it score faces or accents.",
      "situation": "Your panel wants AI in interviews. Three ideas are on the table.",
      "choices": [
-      "Score facial expressions for confidence",
-      "Rank people by accent",
-      "Write down answers, flag harsh scoring"
+      "Let AI rate confidence from video",
+      "Use same questions, write answers, flag harsh scoring",
+      "Let each interviewer ask what feels natural"
      ],
      "choiceIcons": [
       "trend",
       "users",
       "chat"
      ],
-     "helpful": "Write down answers, flag harsh scoring",
-     "feedback": "Write down and flag. It supports fairness without judging the person.",
+     "helpful": "Use same questions, write answers, flag harsh scoring",
+     "feedback": "Same questions and written notes support fairness without judging the person.",
      "estrella": "Humans score the answer. AI never scores the face.",
      "fills": "One gold dot lands in the Help zone."
     },
@@ -831,9 +831,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Take the group that passes most. If another group passes below 80% of that rate, stop and look. A healthy total can hide a gap underneath.",
      "situation": "Men pass an AI CV screen at 50%. Women pass at 30%. Eighty percent of 50% is 40%.",
      "choices": [
-      "Fine — both are above zero",
+      "Looks fine if total hires are strong",
       "Failed — 30% is below 40%, investigate",
-      "Can't tell without more data"
+      "Retest later but keep using it for now"
      ],
      "choiceIcons": [
       "bolt",
@@ -852,9 +852,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "What happened, why, what's next, what to do. Most teams can answer the first two. Don't promise a prediction your data can't support.",
      "situation": "Leadership asks \"who will resign next quarter?\" Your data is messy and you've done no real study yet.",
      "choices": [
-      "Promise a prediction by next month",
+      "Promise a forecast once the data is cleaner",
       "Show who left and why first, then build up",
-      "Guess some names to look helpful"
+      "Name likely leavers from manager hunches"
      ],
      "choiceIcons": [
       "user",
@@ -875,7 +875,7 @@ window.ESTRELLA_SIMPLE = {
      "choices": [
       "Soften the wording and send",
       "Ask what he did and the impact, then describe that",
-      "Add \"speak up more\" with no proof"
+      "Add a general tip like \"be more confident\""
      ],
      "choiceIcons": [
       "pause",
@@ -896,7 +896,7 @@ window.ESTRELLA_SIMPLE = {
      "choices": [
       "A bigger budget",
       "A clear list of skills and levels per role",
-      "A longer list of courses"
+      "A long course catalogue"
      ],
      "choiceIcons": [
       "check",
@@ -915,8 +915,8 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Keep only numbers that would change a decision. Show the trend, turn it into money or risk, and add one clear next step.",
      "situation": "You want the CEO to act. Three ways to show the same data.",
      "choices": [
-      "A 20-number dashboard",
-      "\"Attrition up 4 points\" with no context",
+      "A dashboard with every HR metric",
+      "\"Attrition is up\" with no cost or next step",
       "A trend line, the cost in money, one recommendation"
      ],
      "choiceIcons": [
@@ -936,8 +936,8 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Collect the least you need, for one clear reason, told plainly. And talk to staff or their reps before you build, not after.",
      "situation": "An engagement tool would read private staff messages. The works council asks: does it?",
      "choices": [
-      "Proceed — you have legal sign-off",
-      "Hide the message-reading part",
+      "Proceed if legal has approved the tool",
+      "Tell staff it is anonymous, even if messages are read",
       "Switch to anonymous, grouped data only"
      ],
      "choiceIcons": [
@@ -957,17 +957,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A simple two-column rule: what staff may do with AI, and what they must not. Write it so your newest hire can repeat it back.",
      "situation": "You're sorting lines for the \"must not\" column of your AI rules.",
      "choices": [
-      "Draft a job description with approved AI",
-      "Paste staff salary and medical data into a public chatbot",
-      "Summarise your own meeting notes"
+      "Never put staff pay or medical data into public AI",
+      "Use approved AI to draft job descriptions",
+      "Summarise your own meeting notes with approved AI"
      ],
      "choiceIcons": [
       "bolt",
       "check",
       "trend"
      ],
-     "helpful": "Paste staff salary and medical data into a public chatbot",
-     "feedback": "The salary and medical one. Confidential data in a public tool is a breach.",
+     "helpful": "Never put staff pay or medical data into public AI",
+     "feedback": "Clear rule. Private staff data stays out of public tools.",
      "estrella": "If a junior can explain the rules back, they're clear enough.",
      "fills": "One gold dot lands in the Not ready zone."
     },
@@ -978,9 +978,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Ninety days, three steps: set the rules, run one safe pilot, then review and grow. Pick a first win that's safe, useful, and visible.",
      "situation": "You're choosing the first AI project for your 90-day plan.",
      "choices": [
-      "AI that decides promotions on its own",
+      "AI that recommends promotions before managers review",
       "A leave-and-payroll helpdesk bot, human handover for sensitive cases",
-      "AI that scores morale from chat secretly"
+      "AI that reads chat to guess morale"
      ],
      "choiceIcons": [
       "bolt",
@@ -999,9 +999,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A rubber-stamp click is fake safety. Real review needs time, the power to say no, and one named person who owns the call.",
      "situation": "Managers approve every AI budget recommendation in seconds. What does that show?",
      "choices": [
-      "The AI is perfect, no review needed",
+      "The checks are working well",
       "Oversight has become a rubber stamp",
-      "The managers are very skilled"
+      "The tool is easy for managers to use"
      ],
      "choiceIcons": [
       "decline",
@@ -1032,9 +1032,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Burnout leaks in slowly. Three quiet signals show up first: you stay tired after rest, you pull away, you start to doubt the work.",
      "situation": "A full weekend off, and you still feel flat on Monday morning.",
      "choices": [
-      "Just a tired week",
+      "Call it a busy week and move on",
       "An early warning to act on",
-      "Nothing worth noticing"
+      "Book a holiday and change nothing else"
      ],
      "choiceIcons": [
       "shield",
@@ -1053,9 +1053,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Two hours can cost the same time but very different energy. Some work fuels you, some quietly drains you. Guard the work that fuels you.",
      "situation": "A long status meeting leaves you flat. Coaching your team leaves you sharp.",
      "choices": [
-      "Keep the long meeting as-is",
+      "Keep it because everyone is used to it",
       "Shrink the meeting, protect the coaching",
-      "Cut everything and hope"
+      "Cancel the meeting with no new rhythm"
      ],
      "choiceIcons": [
       "loop",
@@ -1074,9 +1074,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A boundary is a clear rule, not a wall. Say no with warmth in three beats: hear them, decline clearly, offer one small thing you can do.",
      "situation": "Your manager pings a non-urgent task at 9pm. Your rule is offline after 8.",
      "choices": [
-      "Reply now so you seem keen",
+      "Reply tonight to keep peace",
       "Answer in the morning, rule said in advance",
-      "Go silent and explain nothing"
+      "Ignore it and explain later"
      ],
      "choiceIcons": [
       "chat",
@@ -1095,9 +1095,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Match your support to how ready the person is for this exact task. Agree a few checkpoints, then step back and let them own it.",
      "situation": "A strong analyst is leading her first client report for you.",
      "choices": [
-      "Hand it over and disappear",
+      "Give the whole task with no checkpoints",
       "Set three checkpoints, then give space",
-      "Check her work every two hours"
+      "Review every draft before she sends it"
      ],
      "choiceIcons": [
       "hand",
@@ -1116,9 +1116,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Every switch from real work to a message costs minutes to recover. Block focused time, mute alerts, and promise people a clear return time.",
      "situation": "Your team feels they must answer every chat within minutes, all day.",
      "choices": [
-      "Stay always available",
+      "Stay available so no one waits",
       "Block focus time, agree reply speeds",
-      "Reply to everything in one minute"
+      "Mute everything without telling the team"
      ],
      "choiceIcons": [
       "loop",
@@ -1137,9 +1137,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Work like a sprinter: strong effort, then real recovery. Plan rest into your week on purpose so your energy gets refilled before it runs out.",
      "situation": "You run flat-out all week, then crash and start Monday already empty.",
      "choices": [
-      "Push harder, rest only when wrecked",
       "Plan recovery between strong efforts",
-      "Stop all hard work entirely"
+      "Push through now and recover after the quarter",
+      "Only rest once the work is finished"
      ],
      "choiceIcons": [
       "battery",
@@ -1147,7 +1147,7 @@ window.ESTRELLA_SIMPLE = {
       "shield"
      ],
      "helpful": "Plan recovery between strong efforts",
-     "feedback": "Planned recovery is what makes the next strong push possible. The rhythm holds.",
+     "feedback": "Good. Recovery belongs in the work rhythm, not after you crash.",
      "estrella": "Recovery is not lazy — it is what makes the next push possible.",
      "fills": "Charges the final cell with the 'recover' move — battery full, week sustainable."
     }
@@ -1170,9 +1170,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A racing heart before you speak is just energy with nowhere to go. It is normal, and you can use it.",
      "situation": "Your heart pounds right before you stand up to present.",
      "choices": [
-      "My body is wrong with me",
+      "This means I am not ready",
       "This is energy I can use",
-      "I should cancel the talk"
+      "I need to remove every nerve first"
      ],
      "choiceIcons": [
       "star",
@@ -1180,7 +1180,7 @@ window.ESTRELLA_SIMPLE = {
       "scissors"
      ],
      "helpful": "This is energy I can use",
-     "feedback": "Yes. That fast heart is fuel, not a warning.",
+     "feedback": "Good. The signal is energy; give it a job.",
      "estrella": "Read the racing heart as ready, not danger.",
      "fills": "Footlight 1 lights gold and the curtain lifts its first notch."
     },
@@ -1191,9 +1191,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Freezing happens most at the start. Knowing your exact first sentence removes the riskiest moment so you begin sure.",
      "situation": "You walk to the front and your mind goes blank.",
      "choices": [
-      "Wing the opening",
+      "Start with whatever comes to mind",
       "Say a planned first line",
-      "Apologise for being nervous"
+      "Begin by explaining why I'm nervous"
      ],
      "choiceIcons": [
       "check",
@@ -1212,9 +1212,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Fear and excitement feel the same in your body. Saying \"I am excited\" with a real reason points that energy forward.",
      "situation": "You feel shaky and tense backstage before you go on.",
      "choices": [
-      "Tell yourself to calm down",
+      "Try to force myself calm",
       "Say \"I am excited\" with a reason",
-      "Stand still and wait"
+      "Wait for nerves to pass"
      ],
      "choiceIcons": [
       "chat",
@@ -1233,9 +1233,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Say too much and people remember none of it. Pick one line you want them to repeat, with three points under it.",
      "situation": "You have eight big points for a short talk.",
      "choices": [
-      "Keep all eight points",
+      "Keep all eight and speak faster",
       "Cut to one message, three points",
-      "Add a few more to be safe"
+      "Cut examples but keep every point"
      ],
      "choiceIcons": [
       "shield",
@@ -1254,9 +1254,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "People forget facts but remember stories. A short story works only when its lesson lands right on your message.",
      "situation": "You have a fun story but it doesn't fit your point.",
      "choices": [
-      "Tell it anyway, it's funny",
+      "Tell it because it gets laughs",
       "Cut it or link it to the point",
-      "Add more detail to the story"
+      "Keep it and explain the point after"
      ],
      "choiceIcons": [
       "step",
@@ -1275,9 +1275,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Never open with an apology. Hook them in thirty seconds, then close by returning to that idea with one clear ask.",
      "situation": "You start with \"Sorry, I didn't have much time.\"",
      "choices": [
-      "Open with a sorry",
+      "Start with a quick apology",
       "Open with a hook, close with an ask",
-      "Open with a long intro"
+      "Spend the first minute explaining context"
      ],
      "choiceIcons": [
       "star",
@@ -1296,17 +1296,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Nerves make you rush. Speaking a little slower and pausing after a key point makes you sound calm and clear.",
      "situation": "People say your talks are hard to follow.",
      "choices": [
-      "Speak faster to fit it in",
-      "Slow down and add pauses",
-      "Use bigger words"
+      "Cut one point and pause between ideas",
+      "Speak faster so everything fits",
+      "Read more text from the slides"
      ],
      "choiceIcons": [
       "compass",
       "star",
       "scissors"
      ],
-     "helpful": "Slow down and add pauses",
-     "feedback": "Yes. Silence beats \"um\" every time.",
+     "helpful": "Cut one point and pause between ideas",
+     "feedback": "Right. Fewer points and pauses make the talk easier to follow.",
      "estrella": "What feels too slow to you sounds clear to them.",
      "fills": "Footlight 7 lights and the meter steps up."
     },
@@ -1317,9 +1317,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Rocking and hidden hands leak nerves. A grounded stance and open hands make you look calm and trustworthy.",
      "situation": "You keep shifting your weight foot to foot.",
      "choices": [
-      "Keep moving to seem natural",
+      "Keep walking so I look relaxed",
       "Stand grounded, hands open",
-      "Grip the lectern tight"
+      "Hold the lectern so my hands don't show"
      ],
      "choiceIcons": [
       "shield",
@@ -1338,9 +1338,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A slide full of text makes you a slide-reader. One short headline and one image keeps eyes on you, not the screen.",
      "situation": "Your slide has full sentences you read aloud.",
      "choices": [
-      "Read the full slide aloud",
+      "Make the slide explain everything",
       "One headline, one visual",
-      "Add more bullet points"
+      "Read the full slide so I don't forget"
      ],
      "choiceIcons": [
       "megaphone",
@@ -1359,9 +1359,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A sharp question raises your heart rate. Pause, breathe, rephrase it, then answer the real concern calmly.",
      "situation": "Someone asks a sharp, challenging question.",
      "choices": [
-      "Answer fast and firm",
+      "Answer quickly to look sure",
       "Pause, breathe, then answer",
-      "Match their tone"
+      "Match their tone so they back down"
      ],
      "choiceIcons": [
       "chat",
@@ -1380,9 +1380,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Each room has its own rules. With a busy board, lead with your answer and ask first, then give detail only if wanted.",
      "situation": "You must give a recommendation to a busy board.",
      "choices": [
-      "Build up, reveal it last",
+      "Build the story and reveal the ask last",
       "Lead with the answer and ask",
-      "Tell a long story first"
+      "Give context first so they see the whole picture"
      ],
      "choiceIcons": [
       "star",
@@ -1401,9 +1401,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Reading in your head is not rehearsal. Saying your talk out loud, standing, three times is what makes you ready.",
      "situation": "You plan to just read your slides once tonight.",
      "choices": [
-      "Read it silently once",
+      "Read through silently and trust memory",
       "Say it out loud, standing, three times",
-      "Just think it through"
+      "Practice sitting down because it's easier"
      ],
      "choiceIcons": [
       "pause",
@@ -1420,11 +1420,11 @@ window.ESTRELLA_SIMPLE = {
   "hr-foundations": {
    "bigPromise": "See one people problem, then pick the right next move for it.",
    "artifact": {
-    "name": "HR Action Map",
+    "name": "HR Answer Sheet",
     "totalUnits": 12,
     "accent": "sage green (--ok #4C9C7A) used only as the quiet wash + pin tint for the RISK district, so risk reads as a distinct calm zone against the three gold-warm districts; everything else stays gold.",
-    "fillUnit": "One lit gold map-pin dropped into one district socket (the district that matches the lesson's real move: People, Business, Risk, or Manager), plus a short gold route-line drawn from the center compass to that new pin.",
-    "concept": "A small four-district city map of your HR work; each lesson drops one glowing action pin into the district it belongs to, and the map slowly lights up as a whole."
+    "fillUnit": "One submitted answer is added to the final scorecard.",
+    "concept": "A simple answer sheet for HR judgment. Each lesson adds one answer, then the end scorecard shows what was right and what needs review."
    },
    "lessons": [
     {
@@ -1434,17 +1434,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "HR is more than payroll and paperwork. It also helps the business plan, guides change, and speaks up for people.",
      "situation": "Your HR team is fast and tidy, but never gets asked to join the big planning meetings.",
      "choices": [
-      "You are great at the daily admin",
-      "You are missing the planning side",
-      "Both are true right now"
+      "Keep proving HR is fast with admin",
+      "Start linking HR work to business planning",
+      "Wait to be invited into planning later"
      ],
      "choiceIcons": [
       "loop",
       "users",
       "bolt"
      ],
-     "helpful": "You are missing the planning side",
-     "feedback": "Right. Strong admin is the base, but planning is the job they are missing.",
+     "helpful": "Start linking HR work to business planning",
+     "feedback": "Right. Admin earns trust; planning shows HR can shape what happens next.",
      "estrella": "Strong admin earns trust. Planning earns a seat at the table.",
      "fills": "Drops the first pin into the MANAGER district and wakes it up."
     },
@@ -1455,9 +1455,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Leaders listen when you show the cost. Say the people problem, what it costs the business, then your simple fix.",
      "situation": "A manager says sales are dropping and asks you to book a training day.",
      "choices": [
-      "Book the training day fast",
+      "Book training because the manager asked",
       "First find out why sales dropped",
-      "Tell him it is not your job"
+      "Send a survey first because it feels safer"
      ],
      "choiceIcons": [
       "gear",
@@ -1476,9 +1476,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Draw a line from the company goal, to the skill it needs, to your HR action. No line means it may not be worth doing.",
      "situation": "The company wants to open three new stores, but HR is planning a values poster campaign.",
      "choices": [
-      "Run the posters, culture helps",
+      "Run the poster campaign because culture matters",
       "Check if it builds what the goal needs",
-      "Cancel everything that is not hiring"
+      "Switch everything to hiring without checking skills"
      ],
      "choiceIcons": [
       "hand",
@@ -1497,9 +1497,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "A great hire who quits in three months is a loss. Ask everyone the same questions, then give a clear, welcoming first month.",
      "situation": "A new hire has a laptop and a desk, but no first task and nobody to ask.",
      "choices": [
-      "Give a longer probation",
+      "Give a longer probation to buy time",
       "Give a clear goal, a buddy, a plan",
-      "Add more forms to sign"
+      "Send the handbook and let them settle in"
      ],
      "choiceIcons": [
       "grid",
@@ -1518,9 +1518,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Most growth comes from real work and coaching, not just courses. Ask your best people what they want next, before they leave.",
      "situation": "Your strongest engineer is quiet and doing well, so his manager leaves him alone.",
      "choices": [
-      "Leave him alone, he is fine",
+      "Leave him alone because he performs well",
       "Ask now what he wants to learn next",
-      "Wait for the exit interview"
+      "Offer a raise only after he complains"
      ],
      "choiceIcons": [
       "users",
@@ -1539,9 +1539,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Everyone who stays watches how you treat people who leave. Be clear, kind, and brief, and follow the law on pay and notice.",
      "situation": "You must let someone go because their role is no longer needed.",
      "choices": [
-      "Send the news by email",
+      "Send a careful email to avoid emotion",
       "Be clear, kind, brief, follow the law",
-      "Avoid the real reason"
+      "Talk around the reason to soften it"
      ],
      "choiceIcons": [
       "gear",
@@ -1560,9 +1560,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "The yearly review comes too late to help. Set one clear goal and have short, regular check-ins so problems get caught early.",
      "situation": "A manager saves all her feedback for one long review in December.",
      "choices": [
-      "Keep the yearly review only",
+      "Keep the review and add notes during the year",
       "Add short monthly check-ins",
-      "Stop giving feedback at all"
+      "Wait until there is a serious issue"
      ],
      "choiceIcons": [
       "loop",
@@ -1581,17 +1581,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "You cannot always win on salary. Growth, flexibility, respect, and recognition keep people, and often cost far less.",
      "situation": "A small firm keeps losing people to bigger companies that pay more.",
      "choices": [
-      "Borrow money to match every offer",
-      "Win on growth, flexibility, recognition",
-      "Tell people pay does not matter"
+      "Match every offer one by one",
+      "Check pay is fair, then improve growth, flexibility, recognition",
+      "Launch recognition perks without checking pay"
      ],
      "choiceIcons": [
       "compass",
       "check",
       "users"
      ],
-     "helpful": "Win on growth, flexibility, recognition",
-     "feedback": "Yes. Small firms win on the rewards big firms forget to give.",
+     "helpful": "Check pay is fair, then improve growth, flexibility, recognition",
+     "feedback": "Yes. Fair pay comes first; growth, flexibility, and recognition add reasons to stay.",
      "estrella": "Once pay is fair, more money rarely keeps people longer.",
      "fills": "Drops a pin into the PEOPLE district."
     },
@@ -1602,9 +1602,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Avoiding a hard talk lets it grow. Name the moment, the exact action, and its effect, and stay calm if they react.",
      "situation": "A team leader's reports are often late and you need to tell him.",
      "choices": [
-      "Say he is lazy and careless",
+      "Say the reports are careless",
       "Name the moment, the action, the effect",
-      "Wait and hope it fixes itself"
+      "Wait for one more late report before talking"
      ],
      "choiceIcons": [
       "chat",
@@ -1623,9 +1623,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Culture is how things really work here, not the poster on the wall. Who you promote teaches people what truly matters.",
      "situation": "A company says it values teamwork but only ever promotes loud solo stars.",
      "choices": [
-      "Print bigger values posters",
+      "Refresh the values posters",
       "Promote people who lift the team",
-      "Send a company-wide email"
+      "Praise teamwork in the next email"
      ],
      "choiceIcons": [
       "trend",
@@ -1644,9 +1644,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Good intentions do not protect you in a dispute. Clear records of warnings, decisions, and reasons do.",
      "situation": "A manager warned someone fairly several times but kept nothing in writing.",
      "choices": [
-      "No risk, he acted fairly",
+      "Trust the manager's memory",
       "Without records, fairness is hard to prove",
-      "He can recall it all from memory"
+      "Ask the employee to confirm later"
      ],
      "choiceIcons": [
       "step",
@@ -1667,7 +1667,7 @@ window.ESTRELLA_SIMPLE = {
      "choices": [
       "Number of sessions delivered",
       "Turnover of your best people",
-      "Number of surveys sent out"
+      "Average course rating"
      ],
      "choiceIcons": [
       "grid",
@@ -1698,16 +1698,16 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "When they ask about a time you did something, give a quick setup, then most of your words on what you actually did, and end with a result.",
      "situation": "They ask: tell me about a time you handled a tight deadline.",
      "choices": [
-      "Two minutes of background, then 'it worked out'",
-      "Quick setup, then mostly what I did, end with a number",
-      "Jump straight to the happy ending"
+      "Explain the context until it feels safe",
+      "Quick setup, then what I did, then the result",
+      "Skip to the ending and hope they infer the work"
      ],
      "choiceIcons": [
       "anchor",
       "target",
       "megaphone"
      ],
-     "helpful": "Quick setup, then mostly what I did, end with a number",
+     "helpful": "Quick setup, then what I did, then the result",
      "feedback": "Yes. They want to see you act, so let your actions carry the story.",
      "estrella": "The middle is the story. Make your actions the longest part.",
      "fills": "First gold bar lays down. Meter lifts off the floor toward Ready. Tag: STORY."
@@ -1719,9 +1719,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Lead with your main point in the first sentence, add one or two reasons, then stop, because long answers leak nerves and lose the room.",
      "situation": "They ask: why should we hire you?",
      "choices": [
-      "Talk fast and keep adding sentences to feel safe",
+      "Keep adding examples so they see the full picture",
       "Main point first, one or two reasons, then stop",
-      "Give every detail so they know I'm thorough"
+      "List every strength before I stop"
      ],
      "choiceIcons": [
       "shield",
@@ -1740,9 +1740,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "When they ask if you have questions, ask about the role, the team, or their biggest challenge, not about pay or holidays yet.",
      "situation": "The interview ends. They ask: any questions for us?",
      "choices": [
-      "How many holiday days do I get?",
+      "Ask about holidays so I know the package",
       "What does success look like in the first six months?",
-      "What's the salary range?"
+      "Ask salary range first because it matters"
      ],
      "choiceIcons": [
       "coin",
@@ -1761,17 +1761,17 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Before any pay talk, set three numbers from real research: your floor you'd still accept, your target you really want, and a reach a little above.",
      "situation": "Early on they ask: what salary are you expecting?",
      "choices": [
-      "Give my lowest number so I seem easy",
-      "Pass it back: what range did you have in mind?",
-      "Say I'm flexible and happy with anything"
+      "Give my floor so I seem flexible",
+      "Ask their range first, with my three numbers ready",
+      "Say I am open to anything for the right role"
      ],
      "choiceIcons": [
       "anchor",
       "hand",
       "chat"
      ],
-     "helpful": "Pass it back: what range did you have in mind?",
-     "feedback": "Yes. Let them name a number first, so it doesn't pull you down.",
+     "helpful": "Ask their range first, with my three numbers ready",
+     "feedback": "Good. Your numbers keep you steady before the pay talk starts.",
      "estrella": "The first number named pulls the talk. Let it be theirs.",
      "fills": "Fourth gold bar stacks up. Meter nears Sure. Tag: NUMBER."
     },
@@ -1782,9 +1782,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "If the offer is below your target, thank them warmly, make one clear ask with a reason, then stay silent and let them answer.",
      "situation": "The offer lands a bit below your target.",
      "choices": [
-      "Say yes fast so you don't seem difficult",
+      "Say yes quickly to keep momentum",
       "Thank them, ask for your number with a reason, then wait",
-      "Tell them the number feels insulting"
+      "Explain all my expenses so they understand"
      ],
      "choiceIcons": [
       "chat",
@@ -1803,9 +1803,9 @@ window.ESTRELLA_SIMPLE = {
      "sentence": "Say your answer out loud, then pick the single biggest weakness and redo it, because the skill lives in your mouth, not your head.",
      "situation": "Your practice answer had lots of small flaws.",
      "choices": [
-      "Try to fix all of them in the next answer",
+      "Fix every weak spot before the next answer",
       "Pick the one biggest weakness and redo it",
-      "Skip the feedback and just answer more questions"
+      "Do more practice questions without changing anything"
      ],
      "choiceIcons": [
       "chat",
