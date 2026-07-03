@@ -3648,12 +3648,12 @@ body[data-night="1"]{background:#131109}
   font-family:'Bodoni Moda',serif;
   font-size:2rem;color:var(--ink);letter-spacing:-0.02em;
 }
-.start-close-cta--gold{
-  background:linear-gradient(135deg, var(--gold-soft), var(--gold-deep));
-  color:#fff;border-radius:4px;
+.start-close-cta.start-close-cta--gold{
+  background:linear-gradient(135deg, #D8B978, #B4914F);
+  color:#14120E;border-radius:4px;
   letter-spacing:0.12em;text-transform:uppercase;
   font-size:0.8125rem;font-weight:600;
-  box-shadow:0 8px 24px -8px rgba(151,121,63,0.45);
+  box-shadow:0 8px 24px -8px rgba(201,169,107,0.5);
 }
 .start-close-cta--gold:hover{box-shadow:0 12px 32px -8px rgba(151,121,63,0.5)}
 .start-close.visible{display:flex;opacity:1}
@@ -4198,7 +4198,7 @@ body[data-night="1"]{background:#131109}
         <h1 class="start-question" id="start-question">What's your name, and what do you do?</h1>
       </div>
 
-      <div class="start-close" id="start-close" aria-hidden="true">
+      <div class="start-close" id="start-close">
         <article class="start-profile-card">
           <header class="start-profile-id">
             <div class="start-profile-avatar" id="profile-avatar-wrap"><span id="profile-avatar-letter">?</span></div>
@@ -6681,7 +6681,8 @@ function coachBriefCardHTML(b){
 // Streams from /api/estrella (coach-gated modes) into the brief card panel.
 async function coachAIRun(briefId, mode, article){
   const panel = article.querySelector(`[data-ai-panel]`);
-  if(!panel) return;
+  if(!panel || panel.dataset.aiBusy === '1') return;
+  panel.dataset.aiBusy = '1';
   const title = mode === 'dossier' ? 'Session-prep dossier' : 'Follow-up draft';
   panel.hidden = false;
   panel.innerHTML = `
@@ -6743,6 +6744,8 @@ async function coachAIRun(briefId, mode, article){
   }catch(e){
     status.textContent = '';
     if(!text) body.textContent = 'Nuria could not prepare this right now — try again in a moment.';
+  }finally{
+    delete panel.dataset.aiBusy;
   }
 }
 
@@ -8551,6 +8554,7 @@ function smWireNuria(root, cid, L){
     fetch('/api/estrella',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',
       body:JSON.stringify({mode:'tutor',course:(co&&co.title)||'',lesson:L.idea||'',lessonContent:content,messages:transcript})})
       .then(function(resp){
+        if(resp.status===503){ dead=true; throw new Error('tutor_unconfigured'); }
         if(!resp.ok || !resp.body) throw new Error('tutor_unavailable');
         var reader=resp.body.getReader(), decoder=new TextDecoder(), buffer='';
         function handleLine(line){ var t=line.trim(); if(!t) return; var ch; try{ ch=JSON.parse(t); }catch(e){ return; }
@@ -8569,8 +8573,13 @@ function smWireNuria(root, cid, L){
       })
       .catch(function(){
         ty.remove();
-        transcript.pop();
-        if(!text){ dead=true; add(rich && rich.takeaways && rich.takeaways[0] ? rich.takeaways[0] : (L.sentence||'Hold the key sentence of this lesson against your own situation.'),'ai'); }
+        if(text){
+          // Partial reply the learner already saw — keep the transcript truthful.
+          transcript.push({role:'assistant',content:text});
+        }else{
+          transcript.pop();
+          add(rich && rich.takeaways && rich.takeaways[0] ? rich.takeaways[0] : (L.sentence||'Hold the key sentence of this lesson against your own situation.'),'ai');
+        }
       })
       .then(function(){ busy=false; input.focus(); });
   };
@@ -8925,7 +8934,7 @@ function openLesson(courseId, lessonId){
     'Key takeaways: ' + (L.takeaways||[]).join(' | '),
     'Objectives: ' + (L.objectives||[]).join(' | ')
   ].join('\n\n').slice(0, 6000);
-  let tutorAIDead = false;
+  let tutorAIDead = false, tutorBusy = false;
   function addMsg(t,who){ const d=document.createElement('div'); d.className='std-msg '+who; d.innerHTML=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
   async function askAI(q){
     tutorMessages.push({ role:'user', content:q });
@@ -8936,6 +8945,7 @@ function openLesson(courseId, lessonId){
         method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
         body: JSON.stringify({ mode:'tutor', course:(c&&c.title)||'', lesson:L.title||'', lessonContent:tutorLessonContent, messages:tutorMessages })
       });
+      if(resp.status === 503){ tutorAIDead = true; throw new Error('tutor_unconfigured'); }
       if(!resp.ok || !resp.body) throw new Error('tutor_unavailable');
       const reader = resp.body.getReader(); const decoder = new TextDecoder(); let buffer='';
       const handleLine = (line)=>{ const t=line.trim(); if(!t) return; let ch; try{ ch=JSON.parse(t); }catch(e){ return; }
@@ -8948,15 +8958,24 @@ function openLesson(courseId, lessonId){
       tutorMessages.push({ role:'assistant', content:text });
     }catch(e){
       ty.remove();
-      tutorMessages.pop();
-      if(!text){ tutorAIDead = true; addMsg(tutorReplyFor(L,arch,q),'ai'); }
+      if(text){
+        // Partial reply the learner already saw — keep the transcript truthful.
+        tutorMessages.push({ role:'assistant', content:text });
+      }else{
+        tutorMessages.pop();
+        addMsg(tutorReplyFor(L,arch,q),'ai');
+      }
+    }finally{
+      tutorBusy = false;
+      field.disabled = false;
+      field.focus();
     }
   }
   function ask(q, isChip){
-    if(!q) return;
+    if(!q || tutorBusy) return;
     addMsg(esc(q),'user'); field.value='';
     const canAI = BACKEND_AVAILABLE && !tutorAIDead && typeof getLinkedInUser==='function' && getLinkedInUser();
-    if(canAI){ askAI(q); return; }
+    if(canAI){ tutorBusy = true; field.disabled = true; askAI(q); return; }
     addMsg(isChip?tutorChipReply(L,q):tutorReplyFor(L,arch,q),'ai');
   }
   root.querySelector('#std-chips').addEventListener('click', e=>{ const ch=e.target.closest('.std-chip'); if(ch) ask(ch.textContent.trim(), true); });
