@@ -1,0 +1,34 @@
+name: Supabase keep-alive
+
+# Free-tier Supabase projects pause after ~7 days with no database activity.
+# This pings the live public endpoints (which each run a Supabase query) every
+# 3 days, which resets the inactivity timer. No secrets required — the endpoints
+# are public and return no private data.
+#
+# NOTE: scheduled workflows only run from the repository's DEFAULT branch (main),
+# so this begins pinging once it is merged into main.
+
+on:
+  schedule:
+    - cron: "17 6 */3 * *" # every 3rd day at 06:17 UTC
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit Supabase-backed endpoints to keep the project active
+        run: |
+          base="https://estrella-platform.vercel.app"
+          fail=1
+          for path in /api/availability /api/me; do
+            code=$(curl -s -m 30 -o /dev/null -w '%{http_code}' "$base$path" || echo "000")
+            echo "$path -> $code"
+            # Any HTTP response (even 401) means the function ran and queried Supabase.
+            case "$code" in 2??|401|403) fail=0 ;; esac
+          done
+          if [ "$fail" -ne 0 ]; then
+            echo "::error::No endpoint responded — Supabase may be paused or the app is down."
+            exit 1
+          fi
+          echo "Supabase activity generated; inactivity timer reset."
