@@ -380,88 +380,48 @@ body[data-night="1"]{background:#131109}
   flex-direction:column;
   gap:0.875rem;
 }
-.hero-option,
-.hero-mini-option{
-  font-family:'Instrument Sans',sans-serif;
-  text-align:left;
-  border:1px solid rgba(151,121,63,0.24);
-  border-radius:8px;
-  background:rgba(255,252,246,0.82);
-  color:var(--ink);
-  cursor:pointer;
-  transition:transform 0.2s var(--ease),box-shadow 0.2s var(--ease),border-color 0.2s var(--ease),background 0.2s var(--ease);
-  backdrop-filter:blur(10px);
+/* One decisive step, then a printed index — no card salad */
+.hero-lockstep{
+  display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
+  margin-bottom:2rem;
 }
-.hero-option{
+.hero-lockstep-note{
+  font-size:0.85rem;color:var(--text-dim);line-height:1.5;max-width:30ch;
+}
+.hero-index{
+  width:min(100%, 560px);
+  border-top:1px solid var(--line-strong);
+}
+.hero-index button{
   display:grid;
-  gap:0.35rem;
-  padding:1.2rem 1.5rem;
-  min-height:112px;
-  box-shadow:0 12px 30px rgba(87,65,28,0.09);
+  grid-template-columns:2.5rem auto minmax(0,1fr) auto;
+  align-items:baseline;gap:1rem;
+  width:100%;min-height:56px;
+  padding:0.875rem 0.25rem;
+  background:none;border:none;border-bottom:1px solid var(--line);
+  font-family:'Instrument Sans',sans-serif;text-align:left;
+  color:var(--ink);cursor:pointer;
+  transition:padding 0.25s var(--ease),background 0.25s var(--ease);
 }
-.hero-option:hover,
-.hero-mini-option:hover{
-  transform:translateY(-2px);
-  border-color:rgba(151,121,63,0.48);
-  box-shadow:0 14px 34px rgba(87,65,28,0.12);
+.hero-index button:hover{background:rgba(184,152,92,0.06);padding-left:0.625rem}
+.hero-index button:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px}
+.hi-num{
+  font-family:'Bodoni Moda',serif;font-style:italic;
+  font-size:0.95rem;color:var(--gold-deep);
+  font-variant-numeric:tabular-nums;
 }
-.hero-option:focus-visible,
-.hero-mini-option:focus-visible{
-  outline:2px solid var(--gold-deep);
-  outline-offset:3px;
+.hi-name{
+  font-family:'Bodoni Moda',serif;font-size:1.35rem;font-weight:500;line-height:1;
 }
-.hero-option-primary{
-  background:linear-gradient(135deg,rgba(27,25,20,0.96),rgba(62,52,36,0.94));
-  border-color:rgba(184,152,92,0.2);
-  color:#fff;
+.hi-copy{
+  font-size:0.85rem;color:var(--text-dim);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.hero-option-label,
-.hero-mini-label{
-  font-size:0.66rem;
-  line-height:1;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  font-weight:700;
-  color:var(--gold-deep);
+.hi-arrow{
+  color:var(--gold-deep);font-size:1rem;
+  transition:transform 0.25s var(--ease);
 }
-.hero-option-primary .hero-option-label{color:rgba(244,218,164,0.95)}
-.hero-option-title{
-  font-family:'Bodoni Moda',serif;
-  font-size:1.55rem;
-  line-height:1.05;
-  font-weight:600;
-}
-.hero-option-copy{
-  font-size:0.88rem;
-  line-height:1.45;
-  color:var(--text-dim);
-  max-width:380px;
-}
-.hero-option-primary .hero-option-copy{color:rgba(255,255,255,0.76)}
-.hero-option-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:0.75rem;
-}
-.hero-mini-option{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  gap:0.75rem;
-  min-height:112px;
-  padding:1rem;
-}
-.hero-mini-title{
-  font-family:'Instrument Sans',sans-serif;
-  font-size:0.96rem;
-  line-height:1.2;
-  font-weight:700;
-}
-.hero-mini-copy{
-  font-size:0.76rem;
-  line-height:1.35;
-  color:var(--text-dim);
-}
+.hero-index button:hover .hi-arrow{transform:translateX(4px)}
 .hero-note{
   margin-top:0.625rem;
   font-size:0.78rem;
@@ -814,62 +774,6 @@ body[data-night="1"]{background:#131109}
 .book-summary{font-size:0.9rem;color:var(--text-dim)}
 .book-summary strong{color:var(--ink);font-weight:500}
 
-/* Calendar */
-.cal-container{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
-.cal-card{
-  background:var(--surface);border-radius:var(--radius-lg);
-  padding:2rem;box-shadow:var(--shadow-sm);border:1px solid var(--line);
-}
-.cal-month{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:1.5rem;
-}
-.cal-month h3{font-size:1.4rem;font-weight:500}
-.cal-nav-btn{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--bg-soft);border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--ink);transition:all 0.2s var(--ease);
-}
-.cal-nav-btn:hover{background:var(--gold-bg)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0.4rem}
-.cal-day-label{
-  text-align:center;font-size:0.7rem;color:var(--text-mute);
-  letter-spacing:0.15em;text-transform:uppercase;
-  padding:0.5rem 0;font-weight:500;
-}
-.cal-day{
-  aspect-ratio:1;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.9rem;font-weight:500;font-variant-numeric:tabular-nums;
-  cursor:pointer;transition:all 0.2s var(--ease);
-  background:transparent;border:none;color:var(--text);
-  position:relative;
-}
-.cal-day:hover:not(:disabled){background:var(--bg-soft)}
-.cal-day.has-slots::after{
-  content:"";position:absolute;bottom:8px;
-  width:4px;height:4px;border-radius:50%;background:var(--gold);
-}
-.cal-day.selected{background:var(--ink);color:#fff}
-.cal-day.selected::after{background:var(--gold-soft)}
-.cal-day:disabled{color:var(--text-mute);opacity:0.4;cursor:not-allowed}
-.cal-day.empty{visibility:hidden}
-
-.slots-container h3{font-size:1.4rem;margin-bottom:0.5rem;font-weight:500}
-.slots-container .slots-date{font-family:'Bodoni Moda',serif;font-style:italic;font-size:1.1rem;color:var(--text-dim);margin-bottom:1.5rem}
-.slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem}
-.slot{
-  padding:0.875rem 0;border-radius:12px;
-  background:var(--surface);border:1.5px solid var(--line);
-  text-align:center;font-size:0.875rem;font-weight:500;font-variant-numeric:tabular-nums;
-  cursor:pointer;transition:all 0.2s var(--ease);
-  color:var(--ink);
-}
-.slot:hover{border-color:var(--gold);background:var(--surface-2)}
-.slot.selected{background:var(--ink);color:#fff;border-color:var(--ink)}
-
-/* Checkout */
 .checkout-container{display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;align-items:start}
 .checkout-summary{
   background:var(--surface);
@@ -917,26 +821,22 @@ body[data-night="1"]{background:#131109}
   font-size:0.65rem;letter-spacing:0.25em;color:var(--text-mute);
   text-transform:uppercase;font-weight:500;margin-bottom:1.25rem;
 }
-.quick-pay{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem}
-.qp-btn{
-  padding:1rem;border-radius:12px;border:none;
-  font-weight:600;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:0.5rem;
-  font-size:0.9rem;
-  transition:all 0.2s var(--ease);
+/* Stripe handoff — one honest door to payment */
+.stripe-handoff{
+  display:flex;gap:0.875rem;align-items:flex-start;
+  padding:1.125rem 1.25rem;
+  border:1px solid var(--line-strong);
+  border-radius:var(--radius);
+  background:var(--surface-2);
 }
-.qp-btn.apple{background:#000;color:#fff}
-.qp-btn.google{background:#fff;color:#000;border:1px solid var(--line-strong)}
-.qp-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
-
-.or-divider{
-  display:flex;align-items:center;gap:1rem;
-  margin:1.5rem 0;
-  font-size:0.7rem;color:var(--text-mute);letter-spacing:0.2em;
+.stripe-handoff-lock{
+  width:22px;height:22px;flex-shrink:0;
+  color:var(--gold-deep);margin-top:2px;
 }
-.or-divider::before,.or-divider::after{
-  content:"";flex:1;height:1px;background:var(--line);
+.stripe-handoff-copy{
+  font-size:0.9rem;line-height:1.55;color:var(--text);
 }
+.stripe-handoff-copy strong{color:var(--ink)}
 
 .field{margin-bottom:1rem}
 .field label{
@@ -2891,7 +2791,7 @@ body[data-night="1"]{background:#131109}
 /* ============================== ABOUT ============================== */
 .about-layout{
   display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1.2fr);
-  height:100vh;height:100dvh;padding-top:96px;
+  height:100vh;height:100dvh;padding-top:var(--nav-h);
   align-items:stretch;
 }
 .about-portrait{
@@ -2922,10 +2822,13 @@ body[data-night="1"]{background:#131109}
   border-radius:50%;border:1px solid rgba(151,121,63,0.15);
 }
 .about-content{
-  padding:3rem clamp(2rem, 5vw, 5rem);
-  display:flex;flex-direction:column;justify-content:center;
-  overflow-y:auto;max-height:calc(100vh - 80px);
+  padding:2.5rem clamp(2rem, 5vw, 5rem) 3rem;
+  display:flex;flex-direction:column;
+  overflow-y:auto;max-height:calc(100dvh - var(--nav-h));
+  scrollbar-width:thin;
 }
+.about-content > :first-child{margin-top:auto}
+.about-content > :last-child{margin-bottom:auto}
 .about-h1{
   font-size:clamp(2.5rem, 4.5vw, 4rem);
   line-height:1.05;font-weight:400;
@@ -2934,10 +2837,10 @@ body[data-night="1"]{background:#131109}
 }
 .about-h1 em{font-style:italic;color:var(--gold-deep);font-weight:500}
 .about-lead{
-  font-family:'Bodoni Moda',serif;
-  font-size:1.2rem;color:var(--text);
-  line-height:1.55;font-style:italic;font-weight:400;
-  margin-bottom:2rem;max-width:600px;
+  font-family:'Instrument Sans',sans-serif;
+  font-size:1.05rem;color:var(--text);
+  line-height:1.6;font-weight:400;
+  margin-bottom:2rem;max-width:56ch;
 }
 /* The method — three numbered movements, hairline-ruled like a printed colophon */
 .about-method{
@@ -3542,7 +3445,23 @@ body[data-night="1"]{background:#131109}
 .start-page{
   min-height:100%;width:100%;
   display:flex;flex-direction:column;
-  position:relative;background:var(--bg);
+  position:relative;
+}
+/* The Ascent — the brand arc as intake progress: three answers, one rising line */
+.start-arc{width:min(300px,58vw);margin:0 auto 2.25rem;transition:width 0.4s var(--ease),margin 0.4s var(--ease)}
+.start-arc svg{width:100%;height:auto;display:block;overflow:visible}
+.start-arc-base{fill:none;stroke:var(--gold);stroke-width:1;opacity:0.2}
+.start-arc-progress{
+  fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:100;stroke-dashoffset:100;
+  transition:stroke-dashoffset 0.9s var(--ease-out);
+  filter:drop-shadow(0 0 4px rgba(201,169,107,0.5));
+}
+.start-arc-star{color:var(--gold);opacity:0.3;transition:opacity 0.6s var(--ease),filter 0.6s var(--ease)}
+.start-arc-star.lit{opacity:1;filter:drop-shadow(0 0 9px rgba(232,207,150,0.85))}
+.start-page.in-conversation .start-arc{width:170px;margin:0 auto 1.25rem}
+@media (prefers-reduced-motion: reduce){
+  .start-arc-progress{transition:none}
 }
 .start-stage{
   flex:1;display:flex;flex-direction:column;
@@ -3550,7 +3469,8 @@ body[data-night="1"]{background:#131109}
   padding:4rem 2rem 2rem;
 }
 .start-page.in-conversation .start-stage{
-  justify-content:flex-start;padding-top:4rem;padding-bottom:2rem;
+  justify-content:flex-end;
+  padding-top:calc(var(--nav-h) + 1.5rem);padding-bottom:1.5rem;
 }
 .start-question{
   font-family:'Bodoni Moda',serif;font-weight:400;
@@ -3621,8 +3541,8 @@ body[data-night="1"]{background:#131109}
 }
 .start-mic{background:transparent;color:var(--text-dim)}
 .start-mic:hover{color:var(--ink);background:var(--bg-soft)}
-.start-send{background:var(--ink);color:#FBF7EC}
-.start-send:hover{opacity:0.88}
+.start-send{background:linear-gradient(135deg,#D8B978,#B4914F);color:#131109}
+.start-send:hover{opacity:0.92;box-shadow:0 0 16px rgba(201,169,107,0.35)}
 .start-send:disabled{opacity:0.3;cursor:not-allowed;transform:none}
 .start-tertiary{
   margin-top:0.875rem;font-size:0.8125rem;
@@ -3945,7 +3865,7 @@ body[data-night="1"]{background:#131109}
   .flow-grid{grid-template-columns:repeat(2,1fr)}
   .exp-grid{grid-template-columns:1fr;gap:1rem}
   .steps-grid,.services-grid,.testimonials,.dash-grid,.recos-grid,.books-grid,.courses-grid,.book-services{grid-template-columns:1fr 1fr}
-  .checkout-container,.cal-container{grid-template-columns:1fr}
+  .checkout-container{grid-template-columns:1fr}
   .section{padding:4rem 2rem}
   .topnav{
     grid-template-columns:minmax(7rem,auto) auto;
@@ -3989,8 +3909,9 @@ body[data-night="1"]{background:#131109}
   .hero-content{padding:2.25rem 1.25rem 2.75rem}
   .hero h1{font-size:clamp(2.75rem, 15vw, 4.35rem)}
   .hero-sub{font-size:1rem;line-height:1.58}
-  .hero-option-grid{grid-template-columns:1fr}
-  .hero-mini-option{min-height:auto;gap:0.5rem}
+  .hero-index button{grid-template-columns:2rem auto minmax(0,1fr) auto;gap:0.625rem}
+  .hi-copy{display:none}
+  .hero-lockstep{gap:0.875rem}
   .hero-visual{min-height:430px}
   .hero-portrait img{object-position:center center;transform:none}
   .final-cta{padding:2.5rem 1.5rem}
@@ -4059,28 +3980,30 @@ body[data-night="1"]{background:#131109}
         </div>
         <p class="hero-sub">Career coaching, books, and courses that turn ambition into clear next steps.</p>
         <div class="hero-options" aria-label="Choose where to start">
-          <button class="hero-option hero-option-primary" type="button" data-view="start">
-            <span class="hero-option-label">First step</span>
-            <span class="hero-option-title">Create your brief</span>
-            <span class="hero-option-copy">A short note for Nesreen before you book.</span>
-          </button>
-          <div class="hero-option-grid">
-            <button class="hero-mini-option" type="button" data-view="services">
-              <span class="hero-mini-label">Coaching</span>
-              <span class="hero-mini-title">Book coaching</span>
-              <span class="hero-mini-copy">Personal guidance.</span>
-            </button>
-            <button class="hero-mini-option" type="button" data-view="library">
-              <span class="hero-mini-label">Library</span>
-              <span class="hero-mini-title">Read books</span>
-              <span class="hero-mini-copy">Ideas that inspire.</span>
-            </button>
-            <button class="hero-mini-option" type="button" data-view="academy">
-              <span class="hero-mini-label">Academy</span>
-              <span class="hero-mini-title">Take courses</span>
-              <span class="hero-mini-copy">Practice that builds.</span>
-            </button>
+          <div class="hero-lockstep">
+            <button class="btn btn-gold btn-lg" type="button" data-view="start">Begin — talk to Nuria</button>
+            <span class="hero-lockstep-note">A short conversation tonight. Nesreen reads it before you meet.</span>
           </div>
+          <nav class="hero-index" aria-label="Explore Nuria">
+            <button type="button" data-view="services">
+              <span class="hi-num">01</span>
+              <span class="hi-name">Coaching</span>
+              <span class="hi-copy">One private hour with Nesreen</span>
+              <span class="hi-arrow" aria-hidden="true">→</span>
+            </button>
+            <button type="button" data-view="library">
+              <span class="hi-num">02</span>
+              <span class="hi-name">Library</span>
+              <span class="hi-copy">Nesreen's books, read in full</span>
+              <span class="hi-arrow" aria-hidden="true">→</span>
+            </button>
+            <button type="button" data-view="academy">
+              <span class="hi-num">03</span>
+              <span class="hi-name">Academy</span>
+              <span class="hi-copy">Courses that practice with you</span>
+              <span class="hi-arrow" aria-hidden="true">→</span>
+            </button>
+          </nav>
         </div>
       </div>
 
@@ -4259,6 +4182,16 @@ body[data-night="1"]{background:#131109}
   <div class="view" id="view-start" data-register="night">
     <div class="start-page">
       <div class="start-stage">
+        <div class="start-arc" aria-hidden="true">
+          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+            <path class="start-arc-base" d="M 10 112 C 110 112 220 84 300 22"/>
+            <path class="start-arc-progress" id="start-arc-progress" d="M 10 112 C 110 112 220 84 300 22" pathLength="100"/>
+            <g class="start-arc-star" id="start-arc-star" fill="currentColor">
+              <path transform="translate(289,11) scale(0.7)" d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/>
+              <path transform="translate(289,11) scale(0.7) rotate(45 16 16)" d="M16 6.5 L16.6 15.4 L25.5 16 L16.6 16.6 L16 25.5 L15.4 16.6 L6.5 16 L15.4 15.4 Z"/>
+            </g>
+          </svg>
+        </div>
         <div class="start-conversation" id="start-conversation"></div>
         <h1 class="start-question" id="start-question">What's your name, and what do you do?</h1>
       </div>
@@ -4321,78 +4254,31 @@ body[data-night="1"]{background:#131109}
     </div>
   </div>
 
-  <!-- ============================== VIEW: CALENDAR ============================== -->
-  <div class="view" id="view-calendar">
-    <div class="book-container">
-      <div class="book-progress">
-        <div class="progress-step complete"><div class="progress-dot">✓</div>Service</div>
-        <div class="progress-line done"></div>
-        <div class="progress-step active"><div class="progress-dot">2</div>Time</div>
-        <div class="progress-line"></div>
-        <div class="progress-step"><div class="progress-dot">3</div>Payment</div>
-      </div>
-
-      <div class="book-header">
-        <h1>Choose a time.</h1>
-        <p>Shown in your timezone.</p>
-      </div>
-
-      <div class="cal-container">
-        <div class="cal-card">
-          <div class="cal-month">
-            <h3 id="cal-month-label">June 2026</h3>
-            <div style="display:flex;gap:0.5rem">
-              <button class="cal-nav-btn" id="cal-prev">‹</button>
-              <button class="cal-nav-btn" id="cal-next">›</button>
-            </div>
-          </div>
-          <div class="cal-grid" id="cal-day-labels"></div>
-          <div class="cal-grid" id="cal-grid" style="margin-top:0.5rem"></div>
-          <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--line);font-size:0.78rem;color:var(--text-mute);display:flex;gap:1.25rem">
-            <span>● <span style="color:var(--text-dim)">Available slots</span></span>
-            <span>● <span style="color:var(--text-mute)">Booked / unavailable</span></span>
-          </div>
-        </div>
-
-        <div class="slots-container">
-          <h3>Available times</h3>
-          <p class="slots-date" id="slots-date">Select a date to see times</p>
-          <div class="slots-grid" id="slots-grid"></div>
-        </div>
-      </div>
-
-      <div class="book-footer">
-        <div class="book-summary" id="cal-summary">Choose a date and time</div>
-        <button class="btn btn-primary btn-lg" id="to-checkout" disabled style="opacity:0.4;pointer-events:none">Continue to payment →</button>
-      </div>
-    </div>
-  </div>
-
   <!-- ============================== VIEW: CHECKOUT ============================== -->
   <div class="view" id="view-checkout">
     <div class="book-container">
       <div class="book-progress">
-        <div class="progress-step complete"><div class="progress-dot">✓</div>Service</div>
+        <div class="progress-step complete"><div class="progress-dot">✓</div>Your brief</div>
         <div class="progress-line done"></div>
-        <div class="progress-step complete"><div class="progress-dot">✓</div>Time</div>
-        <div class="progress-line done"></div>
-        <div class="progress-step active"><div class="progress-dot">3</div>Payment</div>
+        <div class="progress-step active"><div class="progress-dot">2</div>Payment</div>
+        <div class="progress-line"></div>
+        <div class="progress-step"><div class="progress-dot">3</div>Pick your time</div>
       </div>
 
       <div class="book-header">
         <h1>Confirm and pay.</h1>
-        <p>Secure checkout. Your prep opens after booking.</p>
+        <p>Then pick your time on Nesreen's calendar.</p>
       </div>
 
       <div class="checkout-container">
         <div class="checkout-summary">
           <div class="section-label">Your booking</div>
-          <h2 style="font-size:2rem;margin-bottom:0.4rem;font-weight:500" id="ck-svc-name">Career Coaching</h2>
+          <h2 style="font-size:2rem;margin-bottom:0.4rem;font-weight:500" id="ck-svc-name">Coaching Session</h2>
           <p style="color:var(--text-dim);margin-bottom:1.75rem;font-size:0.9rem" id="ck-svc-tagline">with Nesreen · 60 minutes · 1-on-1 video session</p>
 
-          <div class="summary-row"><span class="lbl">Date</span><span class="val" id="ck-date">Tuesday, 9 June 2026</span></div>
-          <div class="summary-row"><span class="lbl">Time</span><span class="val" id="ck-time">14:00 · Dubai (GST)</span></div>
-          <div class="summary-row"><span class="lbl">Format</span><span class="val">Zoom · link emailed after booking</span></div>
+          <div class="summary-row"><span class="lbl">Date</span><span class="val" id="ck-date">Scheduled after payment</span></div>
+          <div class="summary-row"><span class="lbl">Time</span><span class="val" id="ck-time">Pick your time on Nesreen's calendar next</span></div>
+          <div class="summary-row"><span class="lbl">Format</span><span class="val">Video call · link emailed after booking</span></div>
           <div class="summary-row"><span class="lbl">Includes</span><span class="val" style="color:var(--gold-deep)">Your brief, prepared for Nesreen</span></div>
 
           <div class="summary-divider"></div>
@@ -4408,38 +4294,17 @@ body[data-night="1"]{background:#131109}
         </div>
 
         <div class="checkout-payment">
-          <div class="section-label">Express checkout</div>
-          <div class="quick-pay">
-            <button class="qp-btn apple" onclick="simulatePay()">
-              <svg width="16" height="20" viewBox="0 0 384 512" fill="currentColor"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
-              Pay
-            </button>
-            <button class="qp-btn google" onclick="simulatePay()">
-              <span style="font-weight:700;font-size:1rem">G</span> Pay
-            </button>
-          </div>
-
-          <div class="or-divider">OR PAY WITH CARD</div>
-
-          <div class="field">
-            <label>Card number</label>
-            <input type="text" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" />
-          </div>
-          <div class="fields-row">
-            <div class="field"><label>Expiry</label><input type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY"/></div>
-            <div class="field"><label>CVC</label><input type="password" inputmode="numeric" autocomplete="cc-csc" placeholder="123"/></div>
-          </div>
-          <div class="field">
-            <label>Email for receipt</label>
-            <input type="email" autocomplete="email" placeholder="you@example.com" id="ck-email"/>
+          <div class="section-label">Payment</div>
+          <div class="stripe-handoff">
+            <svg class="stripe-handoff-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <p class="stripe-handoff-copy">You'll finish on <strong>Stripe's secure checkout</strong> — card, Apple Pay, and Google Pay are available there. Nuria never sees or stores your card details.</p>
           </div>
 
           <button class="btn btn-primary btn-lg btn-block" onclick="simulatePay()" style="margin-top:1.5rem">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Pay <span id="ck-pay-total">AED 500</span>
+            Continue to secure payment — <span id="ck-pay-total">AED 500</span>
           </button>
 
-          <div class="payment-trust">100% refundable up to 48 hours before your session.</div>
+          <div class="payment-trust">Powered by Stripe · Receipt emailed to you · 100% refundable up to 48 hours before your session.</div>
         </div>
       </div>
     </div>
@@ -5412,8 +5277,6 @@ function cleanQueryParam(name){
 initLinkedInSession();
 handleConnectReturn();
 
-const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-const dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 /* ============================== VIEW SWITCHING ============================== */
 let isViewSwitching = false;
@@ -5433,7 +5296,7 @@ function afterViewSwitch(viewId, current){
 
   // One consistent top nav across all non-immersive views.
   const topLinks = document.querySelectorAll('#topnav-links a');
-  const bookingFlow = ['services','start','calendar','checkout'];
+  const bookingFlow = ['services','start','checkout'];
   const academyFlow = ['academy','course','lesson'];
   topLinks.forEach(a => {
     const linkView = a.dataset.view;
@@ -5542,197 +5405,6 @@ function formatGST(iso){
     return new Date(iso).toISOString().slice(11,16);
   }
 }
-
-// Group the month's open slots by their Dubai calendar day → { '<y>-<m>-<d>': [slots] }.
-function gstDayKey(iso){
-  // en-CA yields YYYY-MM-DD; we want the Dubai-local calendar day.
-  try{
-    const parts = new Intl.DateTimeFormat('en-CA', {
-      timeZone: 'Asia/Dubai', year:'numeric', month:'2-digit', day:'2-digit'
-    }).formatToParts(new Date(iso));
-    const y = parts.find(p=>p.type==='year').value;
-    const m = parts.find(p=>p.type==='month').value;
-    const d = parts.find(p=>p.type==='day').value;
-    return `${y}-${parseInt(m,10)-1}-${parseInt(d,10)}`; // 0-indexed month to match state
-  }catch(e){ return null; }
-}
-
-function slotsForDay(year, month, day){
-  if(!state.monthSlotsLoaded || !Array.isArray(state.monthSlots)) return null;
-  const key = `${year}-${month}-${day}`;
-  return state.monthSlots.filter(s => gstDayKey(s.slot_start) === key);
-}
-
-// Fetch the displayed month's open slots, then re-render. Falls back to the mock
-// (state.monthSlotsLoaded=false) if the backend is unavailable / 503 / throws.
-async function loadCalendar(){
-  state.monthSlots = null;
-  state.monthSlotsLoaded = false;
-  if(BACKEND_AVAILABLE){
-    try{
-      const r = await fetch(`/api/availability?year=${state.currentYear}&month=${state.currentMonth}`, { credentials:'same-origin' });
-      if(r.ok){
-        const d = await r.json();
-        if(d && Array.isArray(d.slots)){
-          state.monthSlots = d.slots;
-          state.monthSlotsLoaded = true;
-        }
-      }
-    }catch(e){ /* fall back to mock */ }
-  }
-  renderCalendar();
-  if(state.selectedDate) renderSlots();
-}
-
-function renderCalendar(){
-  const monthLabel = document.getElementById('cal-month-label');
-  monthLabel.textContent = `${monthNames[state.currentMonth]} ${state.currentYear}`;
-
-  const labelsContainer = document.getElementById('cal-day-labels');
-  labelsContainer.innerHTML = dayLabels.map(l => `<div class="cal-day-label">${l}</div>`).join('');
-
-  const grid = document.getElementById('cal-grid');
-  const firstDay = new Date(state.currentYear, state.currentMonth, 1).getDay();
-  const daysInMonth = new Date(state.currentYear, state.currentMonth + 1, 0).getDate();
-
-  let html = '';
-  for(let i=0;i<firstDay;i++) html += '<button class="cal-day empty"></button>';
-
-  const today = new Date();
-  const todayD = today.getDate(), todayM = today.getMonth(), todayY = today.getFullYear();
-
-  for(let d=1; d<=daysInMonth; d++){
-    const isPast = (state.currentYear < todayY) ||
-                   (state.currentYear === todayY && state.currentMonth < todayM) ||
-                   (state.currentYear === todayY && state.currentMonth === todayM && d < todayD);
-    const dow = new Date(state.currentYear, state.currentMonth, d).getDay();
-    const isWeekend = dow === 0 || dow === 6; // UAE weekend: Sat + Sun
-    // Real availability when loaded; otherwise the offline mock (d%3).
-    const real = slotsForDay(state.currentYear, state.currentMonth, d);
-    const hasSlots = real
-      ? real.length > 0
-      : (!isPast && !isWeekend && d % 3 !== 0);
-    const selected = state.selectedDate &&
-                     state.selectedDate.day === d &&
-                     state.selectedDate.month === state.currentMonth &&
-                     state.selectedDate.year === state.currentYear;
-    html += `<button class="cal-day ${hasSlots ? 'has-slots' : ''} ${selected ? 'selected' : ''}"
-             ${!hasSlots ? 'disabled' : ''} data-day="${d}">${d}</button>`;
-  }
-  grid.innerHTML = html;
-
-  grid.querySelectorAll('.cal-day:not(:disabled):not(.empty)').forEach(btn => {
-    btn.addEventListener('click', ()=>{
-      const day = parseInt(btn.dataset.day);
-      state.selectedDate = {day, month: state.currentMonth, year: state.currentYear};
-      renderCalendar();
-      renderSlots();
-    });
-  });
-}
-
-function renderSlots(){
-  const sd = state.selectedDate;
-  if(!sd){
-    document.getElementById('slots-date').textContent = 'Select a date to see times';
-    document.getElementById('slots-grid').innerHTML = '';
-    return;
-  }
-  const dateObj = new Date(sd.year, sd.month, sd.day);
-  const formatted = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
-  document.getElementById('slots-date').textContent = formatted;
-
-  const grid = document.getElementById('slots-grid');
-  const real = slotsForDay(sd.year, sd.month, sd.day);
-
-  const select = (label, slotId) => {
-    state.selectedTime = label;
-    state.selectedSlotId = slotId; // null in the mock path
-    grid.querySelectorAll('.slot').forEach(x=>x.classList.remove('selected'));
-    const summary = `Selected: <strong>${formatted} at ${label} GST</strong>`;
-    document.getElementById('cal-summary').innerHTML = summary;
-    const btn = document.getElementById('to-checkout');
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    btn.style.pointerEvents = 'auto';
-  };
-
-  if(real){
-    // Real availability: each button carries its slot uuid + GST time.
-    if(!real.length){
-      grid.innerHTML = '<div class="slots-empty" style="color:var(--text-dim);font-size:0.9rem;padding:0.5rem 0">No open times this day. Try another.</div>';
-      return;
-    }
-    grid.innerHTML = real.map(s => {
-      const t = formatGST(s.slot_start);
-      const sel = state.selectedSlotId === s.id ? 'selected' : '';
-      return `<button class="slot ${sel}" data-slot-id="${s.id}" data-time="${t}">${t}</button>`;
-    }).join('');
-    grid.querySelectorAll('.slot').forEach(s => {
-      s.addEventListener('click', ()=>{
-        select(s.dataset.time, s.dataset.slotId);
-        s.classList.add('selected');
-      });
-    });
-    return;
-  }
-
-  // Offline mock — static times, no slot id (checkout uses its own fallback).
-  const slots = ['09:00','10:30','12:00','14:00','15:30','17:00'];
-  grid.innerHTML = slots.map(t =>
-    `<button class="slot ${state.selectedTime===t?'selected':''}" data-time="${t}">${t}</button>`
-  ).join('');
-  grid.querySelectorAll('.slot').forEach(s => {
-    s.addEventListener('click', ()=>{
-      select(s.dataset.time, null);
-      s.classList.add('selected');
-    });
-  });
-}
-
-document.getElementById('cal-prev').addEventListener('click', ()=>{
-  state.currentMonth--;
-  if(state.currentMonth < 0){state.currentMonth = 11; state.currentYear--;}
-  loadCalendar();
-});
-document.getElementById('cal-next').addEventListener('click', ()=>{
-  state.currentMonth++;
-  if(state.currentMonth > 11){state.currentMonth = 0; state.currentYear++;}
-  loadCalendar();
-});
-
-document.getElementById('to-checkout').addEventListener('click', ()=>{
-  // Sign-in gate: entering checkout requires LinkedIn sign-in (no orphan briefs).
-  // Stash the booking and bounce through sign-in; restored on return (see
-  // initLinkedInSession / resumeStashedBooking).
-  if(BACKEND_AVAILABLE && !getLinkedInUser()){
-    try{
-      sessionStorage.setItem('estrella_booking', JSON.stringify({
-        brief: window.estrellaBrief || state.brief || null,
-        slot_id: state.selectedSlotId || null,
-        selectedDate: state.selectedDate || null,
-        selectedTime: state.selectedTime || null,
-        resume: 'checkout'
-      }));
-    }catch(e){}
-    window.location.href = '/api/linkedin/login';
-    return;
-  }
-
-  // Populate checkout
-  const s = state.selectedService;
-  document.getElementById('ck-svc-name').textContent = s.name;
-  document.getElementById('ck-svc-tagline').textContent = `with Nesreen · ${s.duration} minutes · 1-on-1 video session`;
-  const sd = state.selectedDate;
-  const dateObj = new Date(sd.year, sd.month, sd.day);
-  const formatted = dateObj.toLocaleDateString('en-US',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
-  document.getElementById('ck-date').textContent = formatted;
-  document.getElementById('ck-time').textContent = state.selectedTime + ' · Dubai (GST)';
-  const total = s.price; // flat, all-in — no VAT line to confuse
-  document.getElementById('ck-total').textContent = `AED ${total.toLocaleString()}`;
-  document.getElementById('ck-pay-total').textContent = `AED ${total.toLocaleString()}`;
-  switchView('checkout');
-});
 
 /* ===================== PAY-FIRST FUNNEL + CALENDLY SCHEDULER ===================== */
 // Pay-first flow: screening → checkout → Stripe → (on return) schedule on Calendly.
@@ -7783,13 +7455,11 @@ function startExtractName(text){
   if(!text) return null;
   // Common patterns: "I'm X", "I am X", "My name is X", "Hi I'm X", "X, [role]"
   const m1 = text.match(/(?:i'm|i\s*am|my name is|my name's|name is|call me|this is|it's)\s+([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)?)/i);
-  if(m1) return m1[1].split(/\s+/).map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+  if(m1 && !/^(a|an|the|so|not|just|also|very|really)$/i.test(m1[1])) return m1[1].split(/\s+/).map(w => w[0].toUpperCase() + w.slice(1).toLowerCase()).join(' ');
   // "Sarah, head of product..." — capitalized word before comma
   const m2 = text.match(/^([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)?)\s*[,.\-—]/);
   if(m2) return m2[1];
-  // Bare first capitalized word, length > 2
-  const m3 = text.match(/\b([A-Z][a-z]{2,})\b/);
-  if(m3) return m3[1];
+  // No guessing beyond explicit patterns — a wrong name is worse than none.
   return null;
 }
 
@@ -7846,6 +7516,14 @@ function startHideTyping(){
 // Entry point. Renders the user's message, then routes to the real LLM path when
 // the backend is available — falling back to the scripted demo on any failure so
 // the page never breaks or shows an error to the user.
+// The Ascent arc — three answers light the way to the star.
+function startArcSet(step){
+  const p = document.getElementById('start-arc-progress');
+  if(p) p.style.strokeDashoffset = String(Math.max(0, 100 - (Math.min(step,3)/3)*100));
+  const star = document.getElementById('start-arc-star');
+  if(star) star.classList.toggle('lit', step >= 3);
+}
+
 function startAdvance(){
   const input = document.getElementById('start-input');
   if(!input) return;
@@ -7854,6 +7532,7 @@ function startAdvance(){
 
   const page = document.querySelector('.start-page');
   page.classList.add('in-conversation');
+  startArcSet(document.querySelectorAll('#start-conversation .start-msg-user').length + 1);
 
   // Always mirror the answer into the legacy profile slots — they back the
   // scripted fallback and the offline saveBrief() path.
@@ -7939,6 +7618,7 @@ function startPopulateProfile(){
 function startBeginClose(){
   // Populate the profile first so it's ready when the panel reveals
   startPopulateProfile();
+  startArcSet(3);
 
   const inputbar = document.getElementById('start-inputbar');
   if(inputbar){
@@ -7957,6 +7637,7 @@ function startBeginClose(){
 function startReset(){
   startTurn = 0;
   startIntakeNoted = false;
+  startArcSet(0);
   // Reset the real-AI transcript + cached brief so each visit is a clean slate.
   startMessages = [];
   startUsingAI = false;
