@@ -74,7 +74,7 @@
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --nav-h: 76px;
+  --nav-h: 88px;
 }
 
 /* ============ NIGHT REGISTER — where Nuria speaks, the world inverts ============
@@ -196,8 +196,21 @@ body[data-night="1"]{background:#131109}
 .brand{
   display:flex;align-items:center;gap:0.75rem;
   cursor:pointer;line-height:1;
-  padding:0.5rem 0;
+  padding:0.4rem 0;
   position:relative;
+}
+/* The real Nuria emblem. Full gold-and-ink on daylight surfaces; a clean warm
+   silhouette on the night register, where the ink artwork would otherwise vanish. */
+.brand-logo-img{
+  height:clamp(3.15rem, 4.4vw, 3.65rem);
+  width:auto;display:block;flex-shrink:0;
+  transition:transform 0.32s var(--ease), filter 0.32s var(--ease);
+  filter:drop-shadow(0 4px 10px rgba(20,18,14,0.10));
+}
+.brand:hover .brand-logo-img{transform:translateY(-1px) scale(1.02)}
+body[data-night="1"] .brand-logo-img{
+  /* recolor the black-ink artwork to warm cream (#F4EDE0) for the dark nav */
+  filter:brightness(0) saturate(100%) invert(94%) sepia(12%) saturate(360%) hue-rotate(3deg) brightness(101%) drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 .brand-star{
   width:22px;height:22px;flex-shrink:0;
@@ -205,7 +218,7 @@ body[data-night="1"]{background:#131109}
   transition:transform 0.32s var(--ease), color 0.32s var(--ease);
 }
 .brand:hover .brand-star{transform:rotate(22.5deg);color:var(--gold-deep)}
-.brand-lockup{display:flex;flex-direction:column;gap:0.25rem}
+.brand-lockup{flex-direction:column;gap:0.25rem}
 .brand-name{
   font-family:'Bodoni Moda',serif;font-optical-sizing:auto;
   font-size:1.5rem;font-weight:550;line-height:1;
@@ -3898,10 +3911,11 @@ body[data-night="1"]{background:#131109}
   .activity-grid{grid-template-columns:1fr}
 }
 @media(max-width:640px){
-  :root{--nav-h:126px}
+  :root{--nav-h:128px}
   .steps-grid,.services-grid,.testimonials,.dash-grid,.recos-grid,.books-grid,.courses-grid,.book-services{grid-template-columns:1fr}
   .topnav{grid-template-columns:auto auto;grid-template-areas:"brand actions" "links links";justify-content:stretch;gap:0.5rem 0.75rem;padding:0.65rem 1rem 0.5rem}
   .brand{min-width:0}
+  .brand-logo-img{height:3rem}
   .brand-name{font-size:1.25rem}
   .brand-tag{font-size:0.44rem}
   .topnav-actions{gap:0.375rem;min-width:0}
@@ -3931,12 +3945,10 @@ body[data-night="1"]{background:#131109}
 
 <!-- ============================== TOP NAV ============================== -->
 <nav class="topnav" id="topnav">
-  <div class="brand" data-view="landing" role="button" tabindex="0" aria-label="Nuria home">
-    <svg class="brand-star" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
-      <path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/>
-      <path d="M16 6.5 L16.6 15.4 L25.5 16 L16.6 16.6 L16 25.5 L15.4 16.6 L6.5 16 L15.4 15.4 Z" transform="rotate(45 16 16)"/>
-    </svg>
-    <span class="brand-lockup">
+  <div class="brand" data-view="landing" role="button" tabindex="0" aria-label="Nuria — Grow Beyond Limits, home">
+    <img class="brand-logo-img" src="nuria-logo-grow-beyond.png" alt="Nuria — Grow Beyond Limits"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+    <span class="brand-lockup" style="display:none">
       <span class="brand-name">Nuria</span>
       <span class="brand-tag">Grow Beyond Limits</span>
     </span>
