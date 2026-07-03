@@ -35,14 +35,13 @@
     if (!landing || !landing.classList.contains("active") || heroPlayed) return;
 
     const content = landing.querySelectorAll(
-      ".hero-kicker, .hero h1, .hero-divider, .hero-sub, .hero-ctas, .hero-options, .hero-trust"
+      ".hero-kicker, .hero h1, .hero-divider, .hero-sub, .hero-options"
     );
     const visual = landing.querySelector(".hero-visual");
-    const dots = landing.querySelectorAll(".hero-dot");
+    if (!content.length) return;
 
     gsap.set(content, { autoAlpha: 0, y: 28 });
     if (visual) gsap.set(visual, { autoAlpha: 0, scale: 0.94 });
-    if (dots.length) gsap.set(dots, { autoAlpha: 0, scale: 0.6 });
 
     const tl = gsap.timeline({
       defaults: { ease: "power3.out" },
@@ -56,11 +55,6 @@
         visual,
         { autoAlpha: 1, scale: 1, duration: 0.9, ease: "power2.out" },
         "-=0.45"
-      )
-      .to(
-        dots,
-        { autoAlpha: 1, scale: 1, duration: 0.45, stagger: 0.1, ease: "back.out(1.4)" },
-        "-=0.55"
       );
   }
 

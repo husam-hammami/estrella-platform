@@ -1,122 +1,87 @@
-# Estrella · *Born to Shine*
+# Nuria · *Grow Beyond Limits*
 
-> Premium AI-assisted career coaching led by Nesreen.
+> Premium AI-assisted career coaching, led by Nesreen.
 
-A high-end coaching platform that pairs the depth of 1-on-1 work with Nesreen with the intelligence of an AI companion (*Estrella*) that prepares clients, supports them between sessions, and grows the practice's reach.
+Nuria pairs one human coach with one AI that works the whole practice: it interviews each
+client before they book, writes the brief Nesreen reads before the hour, stays with the
+client between sessions, tutors inside every Academy lesson, and drafts Nesreen's
+session-prep dossiers and follow-ups at her desk.
 
-This repository contains the interactive frontend prototype, the full UI/UX master plan, and the strategic UX documentation for the platform.
-
----
-
-## What's in this repo
-
-```
-estrella/
-├── index.html                  # The interactive prototype (open in any browser)
-├── Estrella_Platform_Plan.md   # Master plan — orchestration, gates, audits (canonical)
-├── nesreen-hero.jpg            # Brand portrait (Home + Dashboard)
-├── nesreen-graduation.jpg      # MBA credential photo (About)
-├── Assets/                     # All track icons, book covers, course banners, client headshots, logo
-└── docs/
-    ├── UIUX_Master_Plan.html   # Full visual UI/UX plan with mockups for all 10 core screens
-    ├── coaching_UX.md          # Strategic UX restructure for the coaching module
-    └── Asset_Specifications.md # Complete asset spec — every file, every dimension, every visual concept
-```
+**Live:** the platform runs as a static single-file app (`index.html`) + 12 Vercel
+serverless functions, backed by Supabase, Stripe Connect, Calendly, LinkedIn sign-in, and
+the Anthropic API.
 
 ---
 
-## Quick start
+## The design
 
-Open `index.html` in any modern browser. No build step, no dependencies — the prototype is a single self-contained HTML file.
+Nuria means **light**. The interface speaks two registers:
+
+| | Day — paper | Night — sky |
+|---|---|---|
+| Who | Nesreen: the human, the credential, the transaction | Nuria: the AI between sessions |
+| Where | Home, About, Library, Academy atelier, Checkout, Coach desk | Screening, Member dashboard |
+| Ground | Warm paper `#F2EBDC` | Warm near-black `#131109` |
+
+Type: **Bodoni Moda** (display — matches the didone wordmark) + **Instrument Sans** (UI).
+The recurring motif is the **Ascent** — the logo's gold arc rising to an eight-point star —
+used as the intake progress line and the brand mark. Tokens flip per register via scoped
+CSS custom properties (`data-register="night"`).
+
+## What's real (everything)
+
+- **Screening** — `/api/estrella` streams a real Claude interview; a forced `submit_brief`
+  tool call produces the structured brief. If the AI is unreachable, the UI degrades to a
+  clearly-labeled written intake — no scripted impostor.
+- **Companion** — dashboard chat, server-grounded in the signed-in client's own briefs.
+- **Tutor** — in-lesson coaching in the Academy, grounded in that lesson's content.
+- **Dossier & follow-up** — coach-gated: Nuria drafts Nesreen's session prep and her
+  post-session note; both save into coach notes.
+- **Payments** — Stripe Checkout destination charges on Nesreen's connected account;
+  paid state written only by the signature-verified webhook (idempotent).
+- **Scheduling** — Calendly OAuth + webhooks; entitlements ledger (one payment = one session).
+- **Sign-in** — LinkedIn OpenID Connect; signed HttpOnly session cookie.
+- **CVs** — direct-to-storage signed uploads, parsed by Claude into the brief.
+- **Books** — four complete digital editions by Nesreen, readable in full.
+
+No fake testimonials, no invented stats, no simulated payments, no scripted AI.
+
+## Repo layout
+
+```
+estrella/                 (directory name is historical; the brand is Nuria)
+├── index.html            # The entire app — views, design system, JS
+├── api/                  # 12 Vercel functions (Hobby cap — do not add a 13th)
+│   ├── estrella.js       # AI endpoint: screening / companion / tutor / dossier / followup
+│   ├── checkout.js       # Stripe Checkout session (destination charge)
+│   ├── stripe/webhook.js # Stripe + Calendly webhooks (idempotent, signature-verified)
+│   ├── coach/[route].js  # Coach desk dispatcher (roster/member/briefs/integrations/connect)
+│   └── …                 # me, briefs, availability, cv-*, health, linkedin/*
+├── lib/api.js            # Session cookies, Supabase REST, crypto, OAuth helpers
+├── supabase/schema.sql   # Canonical idempotent schema (tables, RLS, buckets)
+├── academy-*.js          # Course content + simple-mode content
+└── docs/                 # Plans, incident log, setup guides, NURIA_VISION.md
+```
+
+## Running locally
 
 ```bash
-# macOS
-open index.html
-
-# Windows
-start index.html
-
-# or just double-click the file
+python -m http.server 4399    # static preview (AI/auth need the deployed functions)
 ```
 
----
-
-## What the prototype demonstrates
-
-The prototype is a fully interactive walk-through of the platform across 11 screens:
-
-**Public surfaces**
-- Home — hero with Nesreen's portrait, brand pitch, CTAs
-- Coaching — service tracks, journey, "Inside the Experience" mockups
-- Library — featured book, audio sample, full grid with filters
-- Academy — featured course, inline AI tutor mockup, course grid
-- About — full-bleed graduation photo, founder story, MBA credential, testimonials, LinkedIn link
-
-**Booking flow**
-- Service selection → live Calendar → secure Payment (with quick-pay options)
-- Simulated payment success → automatic transition to AI onboarding
-
-**Authenticated portal**
-- AI onboarding chat (scripted conversation with Estrella, animated readiness bar, constellation profile viz)
-- Readiness reveal with animated concentric rings (Apple Health-style)
-- Dashboard — next session card, activity rings, action plan, assessments, curated recommendations
-- AI Twin — premium voice-conversation interface with Nesreen's AI
-
-Click through the full flow: **Home → Book Session → pick a service → choose a date → pay → chat with Estrella → see your readiness reveal → enter dashboard → explore AI Twin / Library / Academy.**
-
----
-
-## Design system
-
-| | |
-|---|---|
-| **Background** | Cream `#F2EBDC` |
-| **Ink** | `#14120E` |
-| **Gold** | `#B8985C` / `#97793F` (deep) |
-| **Aurora** (AI moments) | Lavender `#B8A8E0` |
-| **Sage** (success) | `#9BC2B5` |
-| **Peach** (emotional) | `#F4C2A1` |
-| **Display type** | Cormorant Garamond (italic emphasis) |
-| **UI type** | Inter (300/400/500/600) |
-
-The full design system, component library, and motion principles are documented in `docs/UIUX_Master_Plan.html`.
-
----
-
-## Strategy documents
-
-- **`docs/UIUX_Master_Plan.html`** — visual master plan covering brand positioning, IA, user flows, screen-by-screen mockups, design system, AI architecture, KPIs, and a 4-phase implementation roadmap.
-- **`docs/coaching_UX.md`** — opinionated UX strategy for restructuring the Coaching module from a SaaS-style product catalog into a relationship-led conversational entry point. Includes 6-stage mental model, success metrics, and phased rollout.
-- **`docs/Asset_Specifications.md`** — every image asset the prototype expects: filename, location, dimensions, format, visual direction. Includes Midjourney/DALL-E prompts.
-
----
+Full stack requires the Vercel project (root directory = `estrella/`) with env vars:
+`SESSION_SECRET`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `LINKEDIN_CLIENT_ID/SECRET`,
+`COACH_LINKEDIN_SUB`, `INTEGRATION_ENC_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`,
+`STRIPE_CONNECT_CLIENT_ID`, `CALENDLY_CLIENT_ID/SECRET`, `ANTHROPIC_API_KEY`
+(+ optional `ESTRELLA_MODEL`, default `claude-sonnet-5`). `/api/health` (coach-gated)
+validates the shape of each. Setup guides: `docs/COACHING_SETUP.md`, `docs/LINKEDIN_SETUP.md`.
 
 ## Brand essentials
 
-- **Brand name:** Estrella
-- **Tagline:** Born to Shine
-- **Founder:** Nesreen — MBA in HR and Artificial Intelligence, Plymouth Marjon University, London
-- **Coach LinkedIn:** [linkedin.com/in/nesrinabdelhakim](https://www.linkedin.com/in/nesrinabdelhakim/)
-
----
-
-## Tech stack (current prototype)
-
-- Single-file HTML, vanilla CSS, vanilla JavaScript
-- Google Fonts: Cormorant Garamond + Inter
-- Inline SVG for icons, mockups, and animations
-- No build pipeline, no dependencies — designed for instant preview and rapid iteration
-
-**Recommended production stack** (per the master plan): Next.js 14 + Tailwind + Supabase + Anthropic Claude for AI, Stripe + Tap Payments + PayTabs for UAE-first payments, Cal.com for scheduling, ElevenLabs for AI Twin voice.
-
----
-
-## Status
-
-**Stage:** Interactive design prototype · v1.0
-**Next milestone:** Phase 1 of `coaching_UX.md` — reframing public surface (Coaching → The Practice, new `/start` Estrella diagnostic, new Recommendation screen)
-
----
+- **Brand:** Nuria — *Grow Beyond Limits*
+- **Founder & coach:** Nesreen — MBA in HR and Artificial Intelligence, Plymouth Marjon University
+- **LinkedIn:** [linkedin.com/in/nesrinabdelhakim](https://www.linkedin.com/in/nesrinabdelhakim/)
+- "Estrella" is the retired internal codename; it must never appear anywhere a user can see.
 
 ## License
 
