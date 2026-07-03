@@ -2710,6 +2710,23 @@ body[data-night="1"]{background:#131109}
 .sm-saved-to{min-width:0;color:#756E62;font-size:13px;line-height:1.25}.sm-saved-to b{display:block;color:#14120E;font-size:14px}
 .sm-cta{font-family:inherit;font-size:15px;font-weight:850;color:#fff;background:#23382F;border:0;border-radius:999px;padding:15px 22px;min-width:188px;cursor:pointer;box-shadow:0 12px 28px rgba(35,56,47,.18);transition:transform .18s var(--ease),opacity .18s var(--ease)}
 .sm-cta:hover:not(:disabled){transform:translateY(-1px)}.sm-cta:disabled{opacity:.34;cursor:default;box-shadow:none}
+/* Ask Nuria — quiet tutor drawer under the answer row */
+.sm-nuria{margin-top:14px;border-top:1px solid rgba(141,116,76,.16);padding-top:12px}
+.sm-nuria-toggle{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:8px 14px;border:1px solid rgba(151,121,63,.3);border-radius:999px;background:transparent;color:var(--gold-deep);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .18s var(--ease),border-color .18s var(--ease)}
+.sm-nuria-toggle:hover{background:rgba(184,152,92,.1);border-color:var(--gold-deep)}
+.sm-nuria-body{margin-top:10px}
+.sm-nuria-msgs{display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto;margin-bottom:10px;scrollbar-width:thin}
+.sm-nuria-msg{font-size:13.5px;line-height:1.5;padding:9px 12px;border-radius:14px;max-width:92%;white-space:pre-wrap;overflow-wrap:break-word}
+.sm-nuria-msg.user{align-self:flex-end;background:#23382F;color:#FBF7EC;border-bottom-right-radius:4px}
+.sm-nuria-msg.ai{align-self:flex-start;background:#F4ECDE;color:#3D3933;border-bottom-left-radius:4px}
+.sm-nuria-msg.note{align-self:center;background:none;color:#756E62;font-size:12.5px;text-align:center}
+.sm-nuria-typing{align-self:flex-start;display:inline-flex;gap:4px;padding:10px 12px}
+.sm-nuria-typing span{width:5px;height:5px;border-radius:50%;background:var(--gold-deep);opacity:.4;animation:nuriaDot 1.2s ease-in-out infinite}
+.sm-nuria-typing span:nth-child(2){animation-delay:.15s}.sm-nuria-typing span:nth-child(3){animation-delay:.3s}
+.sm-nuria-row{display:flex;gap:8px}
+.sm-nuria-row input{flex:1;min-height:44px;padding:9px 14px;border:1px solid rgba(141,116,76,.24);border-radius:999px;background:#FFFDF8;font-family:inherit;font-size:13.5px;color:#14120E;outline:none}
+.sm-nuria-row input:focus-visible{border-color:var(--gold-deep)}
+.sm-nuria-send{min-height:44px;padding:9px 18px;border:0;border-radius:999px;background:#23382F;color:#fff;font-family:inherit;font-size:13.5px;font-weight:800;cursor:pointer}
 .sm-score-overlay{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:24px;background:rgba(20,18,14,.38);backdrop-filter:blur(7px)}
 .sm-score-card{width:min(760px,calc(100vw - 36px));max-height:calc(100dvh - 36px);overflow:hidden;border-radius:28px;background:rgba(255,253,248,.98);border:1px solid rgba(196,155,61,.34);box-shadow:0 30px 90px rgba(24,20,12,.28);padding:28px;color:#14120E}
 .sm-score-top{display:flex;align-items:start;justify-content:space-between;gap:18px;margin-bottom:18px}.sm-score-k{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:6px}.sm-score-card h2{font-family:'Bodoni Moda',serif;font-size:36px;line-height:.98;font-weight:500;margin:0}.sm-score-close{border:0;background:#F3ECDE;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:20px;color:#756E62}
@@ -3175,6 +3192,41 @@ body[data-night="1"]{background:#131109}
 }
 .coach-review-btn:hover{opacity:0.88}
 .coach-review-btn.done{background:transparent;color:var(--text-mute);border:1px solid var(--line-strong)}
+
+/* Nuria on the desk — dossier / follow-up */
+.coach-ai-btn{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-family:'Instrument Sans',sans-serif;font-size:0.8125rem;font-weight:500;
+  min-height:44px;padding:0.625rem 1.25rem;border-radius:99px;cursor:pointer;
+  background:transparent;color:var(--gold-deep);
+  border:1px solid rgba(151,121,63,0.35);
+  transition:border-color .2s var(--ease), background .2s var(--ease);
+}
+.coach-ai-btn:hover{border-color:var(--gold-deep);background:var(--gold-bg)}
+.coach-ai-btn:disabled{opacity:0.5;cursor:default}
+.coach-ai-btn svg{flex-shrink:0}
+.coach-ai-panel{
+  margin-top:1rem;
+  border:1px solid rgba(151,121,63,0.25);
+  border-radius:var(--radius);
+  background:var(--surface-2);
+  padding:1.125rem 1.25rem;
+}
+.coach-ai-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin-bottom:0.75rem;
+}
+.coach-ai-title{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:600;
+}
+.coach-ai-status{font-size:0.8rem;color:var(--text-dim);font-style:italic}
+.coach-ai-body{
+  font-size:0.9rem;line-height:1.6;color:var(--ink-2);
+  white-space:pre-wrap;overflow-wrap:break-word;
+  max-height:26rem;overflow-y:auto;
+}
+.coach-ai-actions{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem}
 .coach-empty{text-align:center;padding:4rem 2rem;color:var(--text-dim)}
 .coach-empty svg{margin:0 auto 1rem;display:block}
 .coach-empty p{font-size:0.95rem;line-height:1.5;max-width:36ch;margin:0 auto}
@@ -6935,10 +6987,86 @@ function coachBriefCardHTML(b){
       </div>
     </div>
     <div class="coach-brief-foot">
+      ${BACKEND_AVAILABLE && !isDevAdminPreview() ? `
+      <button class="coach-ai-btn" data-dossier="${esc(b.id)}">
+        <svg width="12" height="12" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
+        Prepare with Nuria
+      </button>
+      <button class="coach-ai-btn" data-followup="${esc(b.id)}">Draft follow-up</button>` : ''}
       ${cvBtn}
       <button class="coach-review-btn ${b.reviewed?'done':''}" data-review="${esc(b.id)}">${b.reviewed?'Reviewed ✓':'Mark reviewed'}</button>
     </div>
+    <div class="coach-ai-panel" data-ai-panel="${esc(b.id)}" hidden></div>
   </article>`;
+}
+
+// ===== Nuria on the desk: session-prep dossier + follow-up drafts =====
+// Streams from /api/estrella (coach-gated modes) into the brief card panel.
+async function coachAIRun(briefId, mode, article){
+  const panel = article.querySelector(`[data-ai-panel]`);
+  if(!panel) return;
+  const title = mode === 'dossier' ? 'Session-prep dossier' : 'Follow-up draft';
+  panel.hidden = false;
+  panel.innerHTML = `
+    <div class="coach-ai-head">
+      <span class="coach-ai-title">${title}</span>
+      <span class="coach-ai-status">Nuria is reading the file…</span>
+    </div>
+    <div class="coach-ai-body" aria-live="polite"></div>
+    <div class="coach-ai-actions" hidden>
+      <button class="coach-ai-btn" data-ai-save="${coachEsc(briefId)}">Save to notes</button>
+      <button class="coach-ai-btn" data-ai-copy>Copy</button>
+      <button class="coach-ai-btn" data-ai-close>Close</button>
+    </div>`;
+  const body = panel.querySelector('.coach-ai-body');
+  const status = panel.querySelector('.coach-ai-status');
+  let text = '';
+  try{
+    const resp = await fetch('/api/estrella', {
+      method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ mode, brief_id: briefId })
+    });
+    if(resp.status === 503){
+      status.textContent = '';
+      body.textContent = 'Nuria is not connected yet — add the AI key in the environment to enable dossiers.';
+      return;
+    }
+    if(!resp.ok || !resp.body) throw new Error('ai_failed');
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    const handleLine = (line)=>{
+      const t = line.trim();
+      if(!t) return;
+      let chunk; try{ chunk = JSON.parse(t); }catch(e){ return; }
+      if(chunk.type === 'text' && typeof chunk.text === 'string'){
+        text += chunk.text;
+        body.textContent = text;
+      }else if(chunk.type === 'error' && !text){
+        throw new Error('ai_stream_error');
+      }
+    };
+    for(;;){
+      const { done, value } = await reader.read();
+      if(done) break;
+      buffer += decoder.decode(value, { stream:true });
+      let nl;
+      while((nl = buffer.indexOf('\n')) >= 0){ handleLine(buffer.slice(0,nl)); buffer = buffer.slice(nl+1); }
+    }
+    if(buffer.trim()) handleLine(buffer);
+    status.textContent = '';
+    if(text){
+      const actions = panel.querySelector('.coach-ai-actions');
+      if(actions) actions.hidden = false;
+      panel.dataset.aiText = text;
+      panel.dataset.aiTitle = title;
+    }else{
+      body.textContent = 'Nuria returned nothing — try again.';
+    }
+  }catch(e){
+    status.textContent = '';
+    if(!text) body.textContent = 'Nuria could not prepare this right now — try again in a moment.';
+  }
 }
 
 function coachRenderList(list){
@@ -7027,11 +7155,15 @@ function renderCoachBriefsRemote(){
     })
     .then(d => {
       if(d === null) return; // 403 handled above
-      const list = (d && Array.isArray(d.briefs) ? d.briefs : []).map(coachMapServerBrief);
-      coachRenderList(list);
+      const rows = (d && Array.isArray(d.briefs)) ? d.briefs : [];
+      coachBriefsRaw = {};
+      rows.forEach(b => { if(b && b.id) coachBriefsRaw[b.id] = b; });
+      coachRenderList(rows.map(coachMapServerBrief));
     })
     .catch(()=> coachRenderRemoteMessage('Briefs are not available yet. Check Supabase and coach access.'));
 }
+// Raw server briefs by id — source for note-appends without an extra roundtrip.
+let coachBriefsRaw = {};
 
 // Dev-preview / offline seed → the two-band Standing File roster (mirrors the
 // remote shape so the roster + open file work without a backend).
@@ -7100,6 +7232,52 @@ function renderCoachBriefsLocal(){
 }
 
 document.getElementById('coach-briefs')?.addEventListener('click', (e)=>{
+  const dossierBtn = e.target.closest('[data-dossier]');
+  if(dossierBtn){
+    coachAIRun(dossierBtn.dataset.dossier, 'dossier', dossierBtn.closest('.coach-brief'));
+    return;
+  }
+  const followupBtn = e.target.closest('[data-followup]');
+  if(followupBtn){
+    coachAIRun(followupBtn.dataset.followup, 'followup', followupBtn.closest('.coach-brief'));
+    return;
+  }
+  const aiSave = e.target.closest('[data-ai-save]');
+  if(aiSave){
+    const panel = aiSave.closest('.coach-ai-panel');
+    const briefId = aiSave.dataset.aiSave;
+    const text = panel?.dataset.aiText || '';
+    if(!text) return;
+    aiSave.disabled = true;
+    const stamp = new Date().toLocaleDateString('en-GB', { timeZone:'Asia/Dubai', day:'numeric', month:'short', year:'numeric' });
+    const note = `— ${panel.dataset.aiTitle || 'Nuria'} · ${stamp} —\n${text}`;
+    const existingNotes = coachBriefsRaw[briefId] && coachBriefsRaw[briefId].coach_notes
+      ? coachBriefsRaw[briefId].coach_notes + '\n\n' : '';
+    fetch('/api/coach/briefs', {
+      method:'PATCH', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ id: briefId, coach_notes: existingNotes + note })
+    })
+      .then(r => { if(!r || !r.ok) throw new Error('save_failed'); return r.json(); })
+      .then(d => {
+        if(d && d.brief && d.brief.id) coachBriefsRaw[d.brief.id] = d.brief;
+        showToast('Saved to notes'); aiSave.textContent = 'Saved ✓';
+      })
+      .catch(()=>{ aiSave.disabled = false; showToast('Could not save — try again'); });
+    return;
+  }
+  const aiCopy = e.target.closest('[data-ai-copy]');
+  if(aiCopy){
+    const panel = aiCopy.closest('.coach-ai-panel');
+    const text = panel?.dataset.aiText || '';
+    if(text) navigator.clipboard?.writeText(text).then(()=>showToast('Copied'), ()=>showToast('Copy failed'));
+    return;
+  }
+  const aiClose = e.target.closest('[data-ai-close]');
+  if(aiClose){
+    const panel = aiClose.closest('.coach-ai-panel');
+    if(panel){ panel.hidden = true; panel.innerHTML = ''; }
+    return;
+  }
   const cvBtn = e.target.closest('[data-cv]');
   if(cvBtn){
     // Coach-only signed CV download.
@@ -8599,8 +8777,12 @@ function renderSmLesson(root, cid, idx){
    +'<p class="sm-question">Choose one answer.</p><div class="sm-choices" id="sm-ch">'+choices.map(function(ch,i){var sel=picked===i; return '<button type="button" class="sm-choice'+(sel?' sel':'')+'" data-i="'+i+'"><span class="sm-ci">'+smIcon(smChoiceIcon(L,i))+'</span><span class="sm-cl">'+esc(smClipWords(ch,8))+'</span><span class="sm-ck">'+(sel?'&#10003;':'')+'</span></button>';}).join('')+'</div>'
    +'<div class="sm-est'+(doneThis?' win':'')+'" id="sm-est"><span class="sm-ed">'+(doneThis?'&#10003;':'+')+'</span><span id="sm-estl">'+esc(smAnswerMessage(doneThis,choices[picked]))+'</span></div>'
    +'<div class="sm-save-row"><div class="sm-saved-to" id="sm-saved-label"><b>Your answer</b>'+(doneThis?'Submitted':(picked>=0?'Ready':'Choose one'))+'</div><button class="sm-cta" id="sm-cta"'+((picked>=0||doneThis)?'':' disabled')+'>'+(doneThis?(idx+1<lessons.length?'Next lesson':'View score'):'Submit')+'</button></div>'
+   +'<div class="sm-nuria"><button type="button" class="sm-nuria-toggle" id="sm-nuria-toggle" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>Ask Nuria about this lesson</button>'
+   +'<div class="sm-nuria-body" id="sm-nuria-body" hidden><div class="sm-nuria-msgs" id="sm-nuria-msgs"></div>'
+   +'<form class="sm-nuria-row" id="sm-nuria-form"><input type="text" id="sm-nuria-input" placeholder="Why does this answer win?" autocomplete="off" maxlength="500"/><button class="sm-nuria-send" type="submit">Ask</button></form></div></div>'
    +'</article><aside class="sm-side"><div class="sm-asset"><img src="'+esc(asset)+'" alt="" loading="eager" onerror="this.closest(\'.sm-asset\').style.display=\'none\'"><span class="sm-asset-tab">'+esc(meta.tab)+'</span></div><div id="sm-progress">'+smProgressWidget(cid)+'</div></aside>'
    +'</div></section></main>';
+  smWireNuria(root, cid, L);
   var chWrap=root.querySelector('#sm-ch'), cta=root.querySelector('#sm-cta'), est=root.querySelector('#sm-est'), estl=root.querySelector('#sm-estl'), savedLabel=root.querySelector('#sm-saved-label');
   root.querySelector('[data-sm-back]').onclick=function(){ switchView('academy'); if(typeof renderSky==='function') renderSky(); };
   function nextOrHome(){ if(idx+1<lessons.length) renderSmLesson(root,cid,idx+1); else smShowCourseScore(cid, null); }
@@ -8636,6 +8818,78 @@ function renderSmLesson(root, cid, idx){
     else if(!wasDone && aw && aw.level) showToast('You reached ' + aw.level.name);
   };
 }
+// Ask-Nuria margin for the simple lesson player. Real tutor (mode:'tutor')
+// grounded in the RICH lesson content (LIDX) when available; content-grounded
+// instant notes otherwise — never fake thinking.
+function smWireNuria(root, cid, L){
+  var toggle=root.querySelector('#sm-nuria-toggle'), body=root.querySelector('#sm-nuria-body');
+  var msgs=root.querySelector('#sm-nuria-msgs'), form=root.querySelector('#sm-nuria-form'), input=root.querySelector('#sm-nuria-input');
+  if(!toggle || !body) return;
+  var richInfo = (typeof LIDX==='object' && LIDX[L.lessonId]) ? LIDX[L.lessonId] : null;
+  var rich = richInfo ? richInfo.lesson : null;
+  var co = courseById(cid);
+  var content = [
+    'Lesson idea: '+(L.idea||''),
+    'Key sentence: '+(L.sentence||''),
+    'Situation: '+(L.situation||''),
+    'Choices: '+(L.choices||[]).join(' | ')+(L.helpful?' (strongest: '+L.helpful+')':''),
+    rich && rich.hook ? 'Hook: '+rich.hook : '',
+    rich ? (rich.sections||[]).map(function(s){ return (s.heading||'')+'\n'+(s.body||[]).join('\n'); }).join('\n\n') : '',
+    rich ? 'Takeaways: '+(rich.takeaways||[]).join(' | ') : ''
+  ].filter(Boolean).join('\n\n').slice(0, 6000);
+  var transcript=[], dead=false, busy=false;
+  function add(t,who){ var d=document.createElement('div'); d.className='sm-nuria-msg '+who; d.textContent=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
+  toggle.onclick=function(){
+    var open=body.hidden;
+    body.hidden=!open;
+    toggle.setAttribute('aria-expanded', String(open));
+    if(open && input) input.focus();
+  };
+  form.onsubmit=function(e){
+    e.preventDefault();
+    var q=(input.value||'').trim();
+    if(!q || busy) return;
+    input.value='';
+    add(q,'user');
+    var canAI = BACKEND_AVAILABLE && !dead && typeof getLinkedInUser==='function' && getLinkedInUser();
+    if(!canAI){
+      if(BACKEND_AVAILABLE && !getLinkedInUser()){ add('Sign in with LinkedIn and Nuria can coach you here.','note'); return; }
+      if(rich){ add((rich.takeaways&&rich.takeaways[0]) ? rich.takeaways[0] : (L.sentence||'Hold the key sentence of this lesson against your own situation.'),'ai'); return; }
+      add(L.sentence||'Hold the key sentence of this lesson against your own situation.','ai');
+      return;
+    }
+    busy=true;
+    transcript.push({role:'user',content:q});
+    var ty=document.createElement('div'); ty.className='sm-nuria-typing'; ty.innerHTML='<span></span><span></span><span></span>'; msgs.appendChild(ty); msgs.scrollTop=msgs.scrollHeight;
+    var el=null, text='';
+    fetch('/api/estrella',{method:'POST',headers:{'content-type':'application/json'},credentials:'same-origin',
+      body:JSON.stringify({mode:'tutor',course:(co&&co.title)||'',lesson:L.idea||'',lessonContent:content,messages:transcript})})
+      .then(function(resp){
+        if(!resp.ok || !resp.body) throw new Error('tutor_unavailable');
+        var reader=resp.body.getReader(), decoder=new TextDecoder(), buffer='';
+        function handleLine(line){ var t=line.trim(); if(!t) return; var ch; try{ ch=JSON.parse(t); }catch(e){ return; }
+          if(ch.type==='text' && typeof ch.text==='string'){ if(!el){ ty.remove(); el=add('','ai'); } text+=ch.text; el.textContent=text; msgs.scrollTop=msgs.scrollHeight; }
+          else if(ch.type==='error' && !text){ throw new Error('tutor_stream_error'); } }
+        function pump(){ return reader.read().then(function(r){
+          if(r.done){ if(buffer.trim()) handleLine(buffer); return; }
+          buffer+=decoder.decode(r.value,{stream:true});
+          var nl; while((nl=buffer.indexOf('\n'))>=0){ handleLine(buffer.slice(0,nl)); buffer=buffer.slice(nl+1); }
+          return pump(); }); }
+        return pump();
+      })
+      .then(function(){
+        if(text){ transcript.push({role:'assistant',content:text}); }
+        else { throw new Error('tutor_empty'); }
+      })
+      .catch(function(){
+        ty.remove();
+        transcript.pop();
+        if(!text){ dead=true; add(rich && rich.takeaways && rich.takeaways[0] ? rich.takeaways[0] : (L.sentence||'Hold the key sentence of this lesson against your own situation.'),'ai'); }
+      })
+      .then(function(){ busy=false; input.focus(); });
+  };
+}
+
 function openCourseSimple(cid){
   var root=document.getElementById('atl-root'); if(!root) return false;
   var c=smCourse(cid), co=courseById(cid), meta=smMeta(cid); if(!c||!co) return false;
@@ -8974,10 +9228,51 @@ function openLesson(courseId, lessonId){
     });
   }
 
-  // ---- Nuria margin ----
+  // ---- Nuria margin — real tutor (streams from /api/estrella mode:'tutor'),
+  // grounded in THIS lesson. Falls back to instant lesson-notes guidance (no
+  // typing theater, no pretending) when the AI isn't reachable.
   const msgs = root.querySelector('#std-msgs'); const field = root.querySelector('#std-field');
+  const tutorMessages = [];
+  const tutorLessonContent = [
+    'Lesson hook: ' + (L.hook || ''),
+    (L.sections||[]).map(s => (s.heading||'') + '\n' + (s.body||[]).join('\n')).join('\n\n'),
+    'Key takeaways: ' + (L.takeaways||[]).join(' | '),
+    'Objectives: ' + (L.objectives||[]).join(' | ')
+  ].join('\n\n').slice(0, 6000);
+  let tutorAIDead = false;
   function addMsg(t,who){ const d=document.createElement('div'); d.className='std-msg '+who; d.innerHTML=t; msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight; return d; }
-  function ask(q, isChip){ if(!q) return; addMsg(esc(q),'user'); field.value=''; const ty=document.createElement('div'); ty.className='std-typing'; ty.innerHTML='<span></span><span></span><span></span>'; msgs.appendChild(ty); msgs.scrollTop=msgs.scrollHeight; setTimeout(()=>{ ty.remove(); addMsg(isChip?tutorChipReply(L,q):tutorReplyFor(L,arch,q),'ai'); }, 750); }
+  async function askAI(q){
+    tutorMessages.push({ role:'user', content:q });
+    const ty=document.createElement('div'); ty.className='std-typing'; ty.innerHTML='<span></span><span></span><span></span>'; msgs.appendChild(ty); msgs.scrollTop=msgs.scrollHeight;
+    let el = null, text = '';
+    try{
+      const resp = await fetch('/api/estrella', {
+        method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+        body: JSON.stringify({ mode:'tutor', course:(c&&c.title)||'', lesson:L.title||'', lessonContent:tutorLessonContent, messages:tutorMessages })
+      });
+      if(!resp.ok || !resp.body) throw new Error('tutor_unavailable');
+      const reader = resp.body.getReader(); const decoder = new TextDecoder(); let buffer='';
+      const handleLine = (line)=>{ const t=line.trim(); if(!t) return; let ch; try{ ch=JSON.parse(t); }catch(e){ return; }
+        if(ch.type==='text' && typeof ch.text==='string'){ if(!el){ ty.remove(); el=addMsg('','ai'); } text+=ch.text; el.textContent=text; msgs.scrollTop=msgs.scrollHeight; }
+        else if(ch.type==='error' && !text){ throw new Error('tutor_stream_error'); } };
+      for(;;){ const {done,value}=await reader.read(); if(done) break; buffer+=decoder.decode(value,{stream:true});
+        let nl; while((nl=buffer.indexOf('\n'))>=0){ handleLine(buffer.slice(0,nl)); buffer=buffer.slice(nl+1); } }
+      if(buffer.trim()) handleLine(buffer);
+      if(!text) throw new Error('tutor_empty');
+      tutorMessages.push({ role:'assistant', content:text });
+    }catch(e){
+      ty.remove();
+      tutorMessages.pop();
+      if(!text){ tutorAIDead = true; addMsg(tutorReplyFor(L,arch,q),'ai'); }
+    }
+  }
+  function ask(q, isChip){
+    if(!q) return;
+    addMsg(esc(q),'user'); field.value='';
+    const canAI = BACKEND_AVAILABLE && !tutorAIDead && typeof getLinkedInUser==='function' && getLinkedInUser();
+    if(canAI){ askAI(q); return; }
+    addMsg(isChip?tutorChipReply(L,q):tutorReplyFor(L,arch,q),'ai');
+  }
   root.querySelector('#std-chips').addEventListener('click', e=>{ const ch=e.target.closest('.std-chip'); if(ch) ask(ch.textContent.trim(), true); });
   root.querySelector('#std-send').addEventListener('click', ()=>ask(field.value.trim()));
   field.addEventListener('keypress', e=>{ if(e.key==='Enter') ask(field.value.trim()); });
