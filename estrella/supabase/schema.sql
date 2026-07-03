@@ -171,6 +171,24 @@ create table if not exists public.webhook_events (
 );
 
 -- ----------------------------------------------------------------------------
+-- book_entitlements — paid access to a digital-edition book. One row per
+-- (buyer, book) purchase. Written idempotently by the Stripe webhook (unique
+-- stripe_session_id makes a duplicate paid event a no-op). Books are a direct
+-- charge on the platform's own Stripe account (not a coach destination charge).
+-- ----------------------------------------------------------------------------
+create table if not exists public.book_entitlements (
+  id                uuid primary key default gen_random_uuid(),
+  user_sub          text not null,
+  book_id           text not null,
+  stripe_session_id text unique,        -- idempotency key (Stripe Checkout Session id)
+  created_at        timestamptz not null default now()
+);
+-- Defensive: on_conflict=stripe_session_id needs this unique index.
+create unique index if not exists book_entitlements_session_id_key
+  on public.book_entitlements (stripe_session_id);
+create index if not exists idx_book_entitlements_user_sub on public.book_entitlements (user_sub);
+
+-- ----------------------------------------------------------------------------
 -- coach_integrations — per-coach Calendly/Stripe connection. Tokens + the
 -- Calendly webhook signing key are AES-256-GCM encrypted by the app before
 -- write (INTEGRATION_ENC_KEY); this table never holds plaintext secrets.
@@ -203,6 +221,7 @@ alter table public.users              enable row level security;
 alter table public.availability_slots enable row level security;
 alter table public.briefs             enable row level security;
 alter table public.entitlements       enable row level security;
+alter table public.book_entitlements  enable row level security;
 alter table public.webhook_events     enable row level security;
 alter table public.coach_integrations enable row level security;
 
@@ -212,6 +231,8 @@ alter table public.coach_integrations enable row level security;
 --             signed + expire). 2 MB, jpeg/png.
 --   cvs     — PRIVATE. Member CV uploads via short-lived signed URLs. 4 MB,
 --             pdf/png/jpeg. This bucket config is the real upload ceiling.
+--   books   — PRIVATE. Paid digital-edition books (Nesreen's own). Served to
+--             owners via short-lived signed URLs. 8 MB, html/pdf.
 -- (Equivalent to Storage → New bucket in the dashboard; on conflict = no-op.)
 -- ----------------------------------------------------------------------------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -220,6 +241,10 @@ on conflict (id) do nothing;
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('cvs', 'cvs', false, 4194304, array['application/pdf','image/png','image/jpeg'])
+on conflict (id) do nothing;
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('books', 'books', false, 8388608, array['text/html','application/pdf'])
 on conflict (id) do nothing;
 
 -- ============================================================================

@@ -13,6 +13,13 @@ module.exports = async (req, res) => {
     return;
   }
 
+  // action=book-access&id=<book_id> — issue a short-lived signed download url for
+  // an OWNED book. requireUser + ownership check, then a 60s signed url into the
+  // PRIVATE `books` bucket (same signed-url mechanism as the CV download).
+  if (params.get('action') === 'book-access') {
+    return handleBookAccess(req, res, params);
+  }
+
   const cookies = L.parseCookies(req);
   const user = L.readSession(cookies[L.COOKIE]);
   res.setHeader('Content-Type', 'application/json');
@@ -64,13 +71,16 @@ function normalizeUser(user) {
 
 async function enrichUser(user) {
   if (!user || !user.sub || !L.sbConfigured()) return user;
+  // De-duplicated list of books the user has paid for. Tolerant of fetch failure
+  // (omit → empty array); never blocks the rest of the enrichment.
+  const booksOwned = await ownedBookIds(user.sub);
   try {
     const path = `users?linkedin_sub=eq.${encodeURIComponent(user.sub)}&select=*&limit=1`;
     const resp = await L.sb(path);
-    if (!resp.ok) return user;
+    if (!resp.ok) return { ...user, booksOwned };
     const rows = await resp.json();
     const row = rows && rows[0];
-    if (!row) return user;
+    if (!row) return { ...user, booksOwned };
     const photo = row.photo_url || user.photoUrl || user.picture;
     return normalizeUser({
       ...user,
@@ -81,9 +91,70 @@ async function enrichUser(user) {
       cvUploadedAt: user.cvUploadedAt || row.cv_uploaded_at || null,
       academyProgress: row.academy_progress || user.academyProgress || null,
       libraryProgress: row.library_progress || user.libraryProgress || null,
+      booksOwned,
     });
   } catch (e) {
-    return user;
+    return { ...user, booksOwned };
+  }
+}
+
+// The de-duplicated book_ids this user has paid for. Returns [] on any failure.
+async function ownedBookIds(sub) {
+  if (!sub || !L.sbConfigured()) return [];
+  try {
+    const resp = await L.sb(`book_entitlements?user_sub=eq.${encodeURIComponent(sub)}&select=book_id`);
+    if (!resp.ok) return [];
+    const rows = await resp.json();
+    if (!Array.isArray(rows)) return [];
+    return Array.from(new Set(rows.map((r) => r && r.book_id).filter(Boolean)));
+  } catch (e) {
+    return [];
+  }
+}
+
+// Signed-download handler for an owned book. Mirrors the CV download signing:
+// POST /storage/v1/object/sign/<bucket>/<path> with the service-role key → a
+// relative signedURL we absolutize. 60s expiry.
+async function handleBookAccess(req, res, params) {
+  const s = L.requireUser(req, res);
+  if (!s) return;
+  if (!L.sbConfigured()) return L.sendJson(res, 503, { error: 'supabase_unconfigured' });
+
+  const bookId = String(params.get('id') || '');
+  const book = L.BOOK_CATALOG[bookId];
+  if (!book) return L.sendJson(res, 400, { error: 'unknown_book' });
+
+  try {
+    // Verify a paid entitlement exists for (this user, this book).
+    const owned = await L.sb(
+      `book_entitlements?user_sub=eq.${encodeURIComponent(s.sub)}&book_id=eq.${encodeURIComponent(bookId)}&select=id&limit=1`
+    );
+    if (!owned.ok) return L.sendJson(res, 502, { error: 'supabase_error' });
+    const rows = await owned.json();
+    if (!Array.isArray(rows) || rows.length === 0) return L.sendJson(res, 403, { error: 'not_owned' });
+
+    // Owned → sign a 60s download url into the PRIVATE `books` bucket.
+    const base = process.env.SUPABASE_URL.replace(/\/$/, '');
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const signResp = await fetch(`${base}/storage/v1/object/sign/books/${book.file}`, {
+      method: 'POST',
+      headers: { apikey: key, Authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+      body: JSON.stringify({ expiresIn: 60 }),
+    });
+    if (!signResp.ok) {
+      const text = await signResp.text().catch(() => '');
+      console.error('book-access sign failed', signResp.status, text);
+      // 404 from Storage means the object isn't uploaded yet; surface honestly.
+      if (signResp.status === 404) return L.sendJson(res, 404, { error: 'file_missing' });
+      return L.sendJson(res, 502, { error: 'storage_error' });
+    }
+    const signed = await signResp.json();
+    const relative = signed.signedURL || signed.url || '';
+    const url = `${base}/storage/v1${relative.startsWith('/') ? '' : '/'}${relative}`;
+    return L.sendJson(res, 200, { url });
+  } catch (e) {
+    console.error('book-access error', e);
+    return L.sendJson(res, 500, { error: 'server_error' });
   }
 }
 

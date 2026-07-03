@@ -34,3 +34,7 @@ yarn-error.log*
 .env.local
 .env.*.local
 .gstack/
+
+# Paid book masters — delivered via private Supabase bucket, never served publicly
+estrella/Assets/Books/*_Digital_Edition.html
+estrella/Assets/Books/*.pdf

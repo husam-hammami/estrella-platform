@@ -49,6 +49,14 @@ async function handleStripe(req, res, raw) {
     return res.end('ok');
   }
 
+  // Branch FIRST on the purchase kind. A book is a direct charge on the platform
+  // account with metadata.kind === 'book'; it grants a book_entitlement and must
+  // NOT touch the coaching briefs/entitlements tables. Everything else is coaching.
+  const sess = (event.data && event.data.object) || {};
+  if (sess.metadata && sess.metadata.kind === 'book') {
+    return handleBookPaid(res, event, sess);
+  }
+
   try {
     // Idempotency: insert the event id, ignoring duplicates. Empty → already done.
     const insResp = await L.sb('webhook_events', {
@@ -156,6 +164,73 @@ async function handleStripe(req, res, raw) {
     return res.end('ok');
   } catch (e) {
     console.error('stripe webhook error', e);
+    return L.sendJson(res, 500, { error: 'server_error' });
+  }
+}
+
+// ---- Book: payment confirmed → book_entitlement for the buyer ----
+// Direct charge on the platform account (no brief, no coach entitlement). Reuses
+// the SAME webhook_events idempotency ledger keyed on the Stripe event id, with
+// the SAME rollback-on-transient-failure guard as the coaching path: if the DB
+// write fails before commit, drop the marker so Stripe's retry re-processes
+// instead of short-circuiting as 'already_processed' and dropping a paid grant.
+async function handleBookPaid(res, event, sess) {
+  try {
+    const insResp = await L.sb('webhook_events', {
+      method: 'POST',
+      headers: { Prefer: 'return=representation,resolution=ignore-duplicates' },
+      body: JSON.stringify({ stripe_event_id: event.id }),
+    });
+    if (!insResp.ok) {
+      console.error('webhook_events insert failed (book)', insResp.status, await insResp.text().catch(() => ''));
+      return L.sendJson(res, 502, { error: 'supabase_error' });
+    }
+    const inserted = await insResp.json();
+    if (!Array.isArray(inserted) || inserted.length === 0) {
+      res.statusCode = 200;
+      return res.end('already_processed');
+    }
+
+    const rollbackMarker = async () => {
+      try {
+        await L.sb(`webhook_events?stripe_event_id=eq.${encodeURIComponent(event.id)}`, {
+          method: 'DELETE', headers: { Prefer: 'return=minimal' },
+        });
+      } catch (e) { console.error('book webhook: marker rollback failed', e && e.message); }
+    };
+
+    const meta = sess.metadata || {};
+    const userSub = meta.user_sub || sess.client_reference_id || null;
+    const bookId = meta.book_id || null;
+    const sessionId = sess.id || null;
+    if (!userSub || !bookId) {
+      // Terminal: nothing to attach the grant to. Keep the marker (Stripe stops).
+      console.error('book webhook: missing user_sub or book_id', event.id, { userSub, bookId });
+      res.statusCode = 200;
+      return res.end('no_reference');
+    }
+
+    // Grant the entitlement. Idempotent via the unique stripe_session_id — a
+    // duplicate paid event won't double-grant.
+    const entResp = await L.sb('book_entitlements?on_conflict=stripe_session_id', {
+      method: 'POST',
+      headers: { Prefer: 'return=minimal,resolution=ignore-duplicates' },
+      body: JSON.stringify({
+        user_sub: userSub,
+        book_id: bookId,
+        stripe_session_id: sessionId,
+      }),
+    });
+    if (!entResp.ok) {
+      console.error('book webhook: entitlement insert failed', entResp.status, await entResp.text().catch(() => ''));
+      await rollbackMarker(); // transient — let Stripe retry re-grant
+      return L.sendJson(res, 502, { error: 'supabase_error' });
+    }
+
+    res.statusCode = 200;
+    return res.end('ok');
+  } catch (e) {
+    console.error('book webhook error', e);
     return L.sendJson(res, 500, { error: 'server_error' });
   }
 }

@@ -269,6 +269,18 @@ async function saveIntegration(coachSub, provider, fields) {
   });
 }
 
+// ---- Book catalog (server-side source of truth; shared by checkout/webhook/me) ----
+// Paid digital editions sold as a DIRECT charge on the platform's own Stripe
+// account (books are Nesreen's own, not a coach destination charge). Flat AED 29.
+// `file` is the exact object name in the PRIVATE `books` bucket (e.g. books/quiet.html).
+const BOOK_CATALOG = {
+  quiet:     { name: 'Quiet Power',           price_fils: 2900, file: 'quiet.html' },
+  compass:   { name: 'Career Compass',        price_fils: 2900, file: 'compass.html' },
+  interview: { name: 'The Interview Playbook', price_fils: 2900, file: 'interview.html' },
+  reset:     { name: 'The Reset Journal',      price_fils: 2900, file: 'reset.html' },
+};
+const BOOK_CURRENCY = 'aed';
+
 // ---- JSON response helper (consistent shape, no caching) ----
 function sendJson(res, status, obj) {
   res.statusCode = status;
@@ -336,5 +348,6 @@ module.exports = {
   encryptSecret, decryptSecret,
   getIntegration, saveIntegration, storageUpload, resolveAvatar,
   upsertUser, crypto,
+  BOOK_CATALOG, BOOK_CURRENCY,
   sendJson, requireUser, requireCoach, sbConfigured, sb, readRawBody,
 };

@@ -1329,6 +1329,63 @@ body[data-night="1"] .brand-logo-img{
 }
 .featured-actions{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap}
 
+/* Book price + owned state */
+.lib-price-row{display:flex;align-items:baseline;gap:0.75rem;flex-wrap:wrap;margin:0.25rem 0 0.25rem}
+.lib-price{font-family:'Bodoni Moda',serif;font-size:1.6rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.lib-price-note{font-size:0.8rem;color:var(--text-dim)}
+.lib-owned{font-size:0.82rem;font-weight:600;letter-spacing:0.02em;color:var(--gold-deep);display:inline-flex;align-items:center;gap:0.4rem}
+
+/* Free-sample preview modal */
+body.modal-open{overflow:hidden}
+.book-preview-overlay{
+  position:fixed;inset:0;z-index:400;display:none;
+  align-items:center;justify-content:center;padding:clamp(1rem,3vw,2.5rem);
+  background:rgba(20,18,14,0.52);backdrop-filter:blur(4px);
+}
+.book-preview-overlay.open{display:flex}
+.bp-panel{
+  position:relative;width:min(760px,100%);max-height:calc(100dvh - 3rem);
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line-strong);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);
+}
+.bp-close{
+  position:absolute;top:0.875rem;right:0.875rem;z-index:2;
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+  background:var(--surface);color:var(--text-dim);cursor:pointer;font-size:0.9rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.bp-close:hover{color:var(--ink);border-color:var(--line-strong)}
+.bp-head{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:1.25rem;
+  padding:1.5rem 1.5rem 1.25rem;border-bottom:1px solid var(--line);
+}
+.bp-cover{width:120px;height:168px;flex-shrink:0;border-radius:8px}
+.bp-head-text h2{font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.05;margin:0.35rem 0 0.2rem}
+.bp-author{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--text-dim);font-size:0.95rem;margin-bottom:0.5rem}
+.bp-desc{font-size:0.88rem;color:var(--text-dim);line-height:1.5}
+.bp-body{padding:1.25rem 1.5rem;overflow-y:auto;display:grid;gap:1.5rem}
+.bp-label{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin-bottom:0.6rem}
+.bp-excerpt{position:relative}
+.bp-excerpt p{font-family:'Bodoni Moda',serif;font-size:1.02rem;line-height:1.6;color:var(--ink-2);margin-bottom:0.75rem}
+.bp-excerpt p:last-of-type{margin-bottom:0}
+.bp-fade{height:2.5rem;margin-top:-2.5rem;position:relative;background:linear-gradient(to bottom,transparent,var(--surface))}
+.bp-chapters ul{list-style:none;display:grid;gap:0.4rem}
+.bp-chapters li{display:flex;align-items:baseline;gap:0.7rem;font-size:0.9rem;color:var(--ink-2);line-height:1.35}
+.bp-ch-n{font-family:'Bodoni Moda',serif;font-style:italic;color:var(--gold-deep);font-variant-numeric:tabular-nums;font-size:0.82rem;flex-shrink:0}
+.bp-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding:1.125rem 1.5rem;border-top:1px solid var(--line);background:var(--surface-2);
+}
+.bp-foot-price{display:flex;flex-direction:column;gap:0.15rem}
+.bp-foot .btn{flex-shrink:0}
+@media (max-width:560px){
+  .bp-head{grid-template-columns:1fr;text-align:left}
+  .bp-cover{width:96px;height:134px}
+  .bp-foot{flex-direction:column;align-items:stretch}
+  .bp-foot .btn{width:100%}
+}
+
 /* Audio sample player */
 .audio-sample{
   display:flex;align-items:center;gap:0.875rem;
@@ -4481,6 +4538,7 @@ body[data-night="1"] .brand-logo-img{
       </div>
       <div class="books-grid" id="lib-rail"></div>
     </div>
+    <div class="book-preview-overlay" id="book-preview" onclick="if(event.target===this)closeBookPreview()"></div>
   </div>
 
     <!-- ============================== VIEW: ACADEMY — THE SKY ============================== -->
@@ -5192,16 +5250,30 @@ function initLinkedInSession(){
         if(d && d.user){
           setLinkedInUser(d.user);
           syncMemberProfileState();
+          if(typeof renderLibrary === 'function') renderLibrary();
           if(justSignedIn) showToast('Signed in with LinkedIn');
           // Resume a booking the user was sent to sign-in to complete.
           resumeStashedBooking();
+          // Resume a book purchase the user was sent to sign-in to complete.
+          resumeBookIntent();
         }
-        // Stripe return (works whether or not this was a fresh sign-in).
+        // Stripe returns (work whether or not this was a fresh sign-in).
         handlePaymentReturn();
+        handleBookReturn();
       })
-      .catch(()=>{ handlePaymentReturn(); });
+      .catch(()=>{ handlePaymentReturn(); handleBookReturn(); });
   }
   updateTopNavAuth();
+}
+
+// After sign-in, if the user was mid-purchase of a book, continue to checkout.
+function resumeBookIntent(){
+  let id = null;
+  try{ id = sessionStorage.getItem('nuria_book_intent'); }catch(e){}
+  if(!id) return;
+  try{ sessionStorage.removeItem('nuria_book_intent'); }catch(e){}
+  if(typeof ownsBook === 'function' && ownsBook(id)) return; // already theirs
+  if(typeof buyBook === 'function') buyBook(id);
 }
 
 // After sign-in, if a booking was stashed before the gate, restore it and land
@@ -7734,25 +7806,45 @@ document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
 });
 
 /* ============================== LIBRARY — PROMOTE TO HERO ============================== */
+// Real books by Nesreen. Free in-app sample (cover + chapters + a genuine
+// excerpt), full digital edition sold at a low price and delivered — after a
+// real Stripe purchase — via a signed URL from a private Supabase bucket.
+const BOOK_PRICE_AED = 29;
 const libBooks = [
   { id:'quiet', title:'Quiet Power', tag:'Leadership', cls:'b1',
     desc:'For leaders who want to lead well without burning out or pretending.',
     sub:'Leadership without burnout',
-    img:'Assets/Quiet_Power.png', url:'Assets/Books/Quiet_Power_Digital_Edition.html' },
+    img:'Assets/Quiet_Power.png',
+    excerpt:"Let's begin with an honest question: when did being a leader start to feel like a race you can never win?\n\nYou wake up early and check emails before your feet touch the floor. You sit in back-to-back meetings until your brain feels like it has been wrung out like a wet cloth. You make forty decisions before lunch — most of them reactive, some of them questionable.",
+    chapters:['The Cost of Loud Leadership','The Quiet Power Mindset','Energy-Based Leadership','Leading People Without Burning Out','High Impact, Low Noise','Emotional Mastery','The Leadership Reset System','Legacy Leadership'] },
   { id:'compass', title:'Career Compass', tag:'Direction', cls:'b2',
     desc:'Find direction when every path looks the same — and the nerve to commit to one.',
     sub:'Direction when you feel lost',
-    img:'Assets/Career_Compass.png', url:'Assets/Books/Career_Compass_Digital_Edition.html' },
+    img:'Assets/Career_Compass.png',
+    excerpt:"Layla was 32, a marketing manager with a decent salary, a good title, and a stable employer. But every Sunday evening, a familiar dread settled in. She had spent six years climbing a ladder she had not consciously chosen. One afternoon she typed into her notes: 'What am I actually doing?'",
+    chapters:['Who Am I Beyond My Job Title?','Defining Success on Your Own Terms','Creating Your Career Vision','Future-Proof Your Career Skills','Personal Branding','Networking With Confidence','Mastering the Job Search','Writing a Winning CV'] },
   { id:'interview', title:'The Interview Playbook', tag:'Interviews', cls:'b3',
     desc:'Walk into the room knowing what they are really asking — and exactly how to answer.',
     sub:'Land the offer with confidence',
-    img:'Assets/Interview_Playbook.jpg', url:'Assets/Books/The_Interview_Playbook_Digital_Edition.html' },
+    img:'Assets/Interview_Playbook.jpg',
+    excerpt:"From CV to offer letter: the secrets recruiters don't tell you.\n\nLet me start with a confession: I have seen thousands of candidates. I have reviewed tens of thousands of CVs. And I have sat across the table from brilliant people who completely fell apart — not because they lacked skills, but because they lacked strategy.",
+    chapters:['The Five Questions Every Recruiter Asks','The 30-Second Rule','What Happens After You Submit Your CV','The Halo Effect','The Likeability Factor','The Power of Storytelling','Body Language — The Signals You Send'] },
   { id:'reset', title:'The Reset Journal', tag:'90-day guide', cls:'b4',
     desc:'A daily structure to recover energy and rebuild trust in your own judgment.',
     sub:'90-day burnout recovery',
-    img:'Assets/Reset_Journal.png', url:'Assets/Books/The_Reset_Journal_Digital_Edition.html' }
+    img:'Assets/Reset_Journal.png',
+    excerpt:"A guided journal for clarity, healing, self-discovery and growth.\n\nYou picked up this journal for a reason. Maybe you are exhausted. Maybe you feel lost, stuck, or disconnected from the person you know you are capable of being. Or maybe — and this takes real courage — you simply decided that enough is enough.",
+    chapters:['Interactive Emotional Wheel','Core Emotion Families','The Reframing Exercise','Empowering Language','Future Self Visualisation'] }
 ];
 let libActive = 0;
+
+// Books the signed-in user has purchased (from /api/me). Drives the owned state.
+function booksOwned(){
+  const u = getLinkedInUser();
+  const list = u && (u.booksOwned || u.books_owned);
+  return Array.isArray(list) ? list : [];
+}
+function ownsBook(id){ return booksOwned().includes(id); }
 
 function markLibraryOpened(id){
   try{
@@ -7765,26 +7857,37 @@ function markLibraryOpened(id){
 }
 
 function libCoverInner(b){
-  return `<img class="bc-img" src="${b.img}" alt="${b.title}" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-    <div class="book-title">${b.title}</div><div class="book-author">— Nesreen</div>`;
+  return `<img class="bc-img" src="${b.img}" alt="${escapeAttr(b.title)}" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
+    <div class="book-title">${escapeAttr(b.title)}</div><div class="book-author">— Nesreen</div>`;
+}
+
+// Primary CTA differs by ownership: buy, or read your copy.
+function libPrimaryAction(b){
+  if(ownsBook(b.id)){
+    return `<button class="btn btn-primary" onclick="openOwnedBook('${b.id}')">Read your copy →</button>`;
+  }
+  return `<button class="btn btn-primary" onclick="buyBook('${b.id}')">Buy — AED ${BOOK_PRICE_AED}</button>`;
 }
 
 function renderLibFeatured(){
   const b = libBooks[libActive];
   const el = document.getElementById('lib-featured');
   if(!el) return;
+  const owned = ownsBook(b.id);
   el.innerHTML = `
     <div class="featured-cover ${b.cls}">${libCoverInner(b)}</div>
     <div class="lib-featured-info">
-      <div class="featured-tag">${b.tag}</div>
-      <h2>${b.title}</h2>
-      <p class="lib-featured-desc">${b.desc}</p>
-      <div class="featured-stats">
-        <div class="featured-stat"><strong>Digital edition</strong>Included with Nuria</div>
-        <div class="featured-stat"><strong>By Nesreen</strong>Written for this practice</div>
+      <div class="featured-tag">${escapeAttr(b.tag)}</div>
+      <h2>${escapeAttr(b.title)}</h2>
+      <p class="lib-featured-desc">${escapeAttr(b.desc)}</p>
+      <div class="lib-price-row">
+        ${owned
+          ? `<span class="lib-owned">✓ In your library</span>`
+          : `<span class="lib-price">AED ${BOOK_PRICE_AED}</span><span class="lib-price-note">Full digital edition · read online, forever</span>`}
       </div>
       <div class="featured-actions">
-        <button class="btn btn-primary" onclick="markLibraryOpened('${b.id}');window.open('${b.url}','_blank','noopener')">Read the book</button>
+        <button class="btn btn-soft" onclick="openBookPreview('${b.id}')">Read a free sample</button>
+        ${libPrimaryAction(b)}
       </div>
     </div>`;
 }
@@ -7797,12 +7900,12 @@ function renderLibNote(){
     <aside class="lib-vault-note">
       <div>
         <div class="featured-tag">Reading desk</div>
-        <h3>Best for: ${b.sub}.</h3>
+        <h3>Best for: ${escapeAttr(b.sub)}.</h3>
       </div>
-      <p>${b.desc}</p>
+      <p>${escapeAttr(b.desc)}</p>
       <div class="lib-vault-line">
         <span><b>Format</b>Digital book</span>
-        <span><b>Access</b>Read in full, free</span>
+        <span><b>Sample</b>Free to read</span>
       </div>
     </aside>`);
 }
@@ -7814,9 +7917,9 @@ function renderLibRail(){
     <div class="book-card ${i===libActive?'is-featured':''}" data-lib="${i}">
       <div class="book-cover ${b.cls}">${libCoverInner(b)}</div>
       <div class="book-info">
-        <h4>${b.title}</h4>
-        <p>${b.sub}</p>
-        <div class="book-meta"><span class="book-price">${b.tag}</span><span class="book-format">${i===libActive?'Featured':'Tap to feature'}</span></div>
+        <h4>${escapeAttr(b.title)}</h4>
+        <p>${escapeAttr(b.sub)}</p>
+        <div class="book-meta"><span class="book-price">${ownsBook(b.id)?'✓ Owned':'AED '+BOOK_PRICE_AED}</span><span class="book-format">${i===libActive?'Featured':'Tap to feature'}</span></div>
       </div>
     </div>`).join('');
 }
@@ -7840,10 +7943,125 @@ document.getElementById('lib-rail')?.addEventListener('click', (e)=>{
   const card = e.target.closest('[data-lib]');
   if(!card) return;
   const i = parseInt(card.dataset.lib);
-  if(i===libActive){ markLibraryOpened(libBooks[i].id); window.open(libBooks[i].url,'_blank','noopener'); return; }
+  if(i===libActive){ openBookPreview(libBooks[i].id); return; }
   promoteLibBook(i);
   document.getElementById('lib-featured')?.scrollIntoView({behavior:'smooth', block:'nearest'});
 });
+
+/* ---- Free sample preview (in-app) ---- */
+function openBookPreview(id){
+  const b = libBooks.find(x=>x.id===id);
+  if(!b) return;
+  const owned = ownsBook(b.id);
+  const paras = String(b.excerpt||'').split('\n\n').map(p=>`<p>${escapeAttr(p)}</p>`).join('');
+  const chapters = (b.chapters||[]).map((c,i)=>`<li><span class="bp-ch-n">${String(i+1).padStart(2,'0')}</span>${escapeAttr(c)}</li>`).join('');
+  const overlay = document.getElementById('book-preview');
+  overlay.innerHTML = `
+    <div class="bp-panel" role="dialog" aria-modal="true" aria-label="${escapeAttr(b.title)} — sample">
+      <button class="bp-close" aria-label="Close" onclick="closeBookPreview()">✕</button>
+      <div class="bp-head">
+        <div class="featured-cover ${b.cls} bp-cover">${libCoverInner(b)}</div>
+        <div class="bp-head-text">
+          <div class="featured-tag">${escapeAttr(b.tag)} · Free sample</div>
+          <h2>${escapeAttr(b.title)}</h2>
+          <div class="bp-author">by Nesreen</div>
+          <p class="bp-desc">${escapeAttr(b.desc)}</p>
+        </div>
+      </div>
+      <div class="bp-body">
+        <div class="bp-excerpt">
+          <div class="bp-label">From the opening</div>
+          ${paras}
+          <div class="bp-fade"></div>
+        </div>
+        ${chapters ? `<div class="bp-chapters"><div class="bp-label">What's inside</div><ul>${chapters}</ul></div>` : ''}
+      </div>
+      <div class="bp-foot">
+        ${owned
+          ? `<button class="btn btn-primary btn-lg" onclick="closeBookPreview();openOwnedBook('${b.id}')">Read your copy →</button>`
+          : `<div class="bp-foot-price"><span class="lib-price">AED ${BOOK_PRICE_AED}</span><span class="lib-price-note">Full edition · read online, forever</span></div>
+             <button class="btn btn-primary btn-lg" onclick="buyBook('${b.id}')">Buy the full book →</button>`}
+      </div>
+    </div>`;
+  overlay.classList.add('open');
+  document.body.classList.add('modal-open');
+}
+function closeBookPreview(){
+  const overlay = document.getElementById('book-preview');
+  if(overlay){ overlay.classList.remove('open'); overlay.innerHTML=''; }
+  document.body.classList.remove('modal-open');
+}
+
+/* ---- Buy (real Stripe Checkout) + read owned copy (signed URL) ---- */
+async function buyBook(id){
+  if(!BACKEND_AVAILABLE){ showToast('The book store is available on the live site.'); return; }
+  if(!getLinkedInUser()){
+    try{ sessionStorage.setItem('nuria_book_intent', id); }catch(e){}
+    window.location.href = '/api/linkedin/login';
+    return;
+  }
+  showToast('Opening secure checkout…');
+  try{
+    const r = await fetch('/api/checkout', {
+      method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ product:'book', book_id:id })
+    });
+    if(r.ok){
+      const d = await r.json();
+      if(d && d.url){ window.location.href = d.url; return; }
+    }
+    if(r.status === 401){ window.location.href = '/api/linkedin/login'; return; }
+    let body={}; try{ body = await r.json(); }catch(e){}
+    if(r.status === 503 && body.error === 'payment_unconfigured'){ showToast('The book store opens soon.'); return; }
+    showToast('Could not open checkout — please try again.');
+  }catch(e){ showToast('Could not open checkout — check your connection.'); }
+}
+
+async function openOwnedBook(id){
+  const b = libBooks.find(x=>x.id===id);
+  if(!BACKEND_AVAILABLE){ showToast('Your books open on the live site.'); return; }
+  showToast('Opening your book…');
+  try{
+    const r = await fetch('/api/me?action=book-access&id=' + encodeURIComponent(id), { credentials:'same-origin' });
+    if(r.ok){
+      const d = await r.json();
+      if(d && d.url){ markLibraryOpened(id); window.open(d.url, '_blank', 'noopener'); return; }
+    }
+    if(r.status === 403){ showToast('Purchase this book to read the full edition.'); renderLibrary(); return; }
+    showToast('Could not open the book — please try again.');
+  }catch(e){ showToast('Could not open the book — check your connection.'); }
+}
+
+// Stripe return: ?book_paid=<id> (confirmed by webhook) / ?book_cancelled=1
+function handleBookReturn(){
+  const params = new URLSearchParams(location.search);
+  if(params.get('book_cancelled')){
+    cleanQueryParam('book_cancelled');
+    showToast('Checkout cancelled — the sample is still free to read.');
+    return;
+  }
+  const paid = params.get('book_paid');
+  if(!paid) return;
+  cleanQueryParam('book_paid');
+  const b = libBooks.find(x=>x.id===paid);
+  showToast(b ? `“${b.title}” is yours — enjoy the read.` : 'Purchase complete.');
+  // Refresh owned state from the server (webhook grants the entitlement), then open it.
+  if(BACKEND_AVAILABLE){
+    let tries = 0;
+    const poll = ()=>{
+      fetch('/api/me', { credentials:'same-origin' })
+        .then(r=> r.ok ? r.json() : null)
+        .then(d=>{
+          if(d && d.user){ setLinkedInUser(d.user); renderLibrary(); }
+          if(ownsBook(paid)){ openOwnedBook(paid); return; }
+          if(++tries < 6) setTimeout(poll, 1500);
+        })
+        .catch(()=>{ if(++tries < 6) setTimeout(poll, 1500); });
+    };
+    poll();
+  }
+  switchView('library');
+}
 
 function renderLibrary(){ renderLibFeatured(); renderLibNote(); renderLibRail(); }
 renderLibrary();

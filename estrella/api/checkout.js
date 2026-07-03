@@ -17,6 +17,19 @@ module.exports = async (req, res) => {
   }
   const s = L.requireUser(req, res);
   if (!s) return;
+
+  // Parse the body ONCE (the stream can only be read once). Vercel MAY populate
+  // req.body for JSON; otherwise read the raw stream. Used by both branches below.
+  const body = req.body && typeof req.body === 'object' ? req.body : await readJson(req);
+
+  // Book branch: a paid digital-edition purchase. Direct charge on the platform's
+  // OWN Stripe account (books are Nesreen's own — no coach connected-account
+  // destination). Diverges here so none of the coaching brief/Connect logic runs.
+  // The coaching path below (no product, or product !== 'book') is unchanged.
+  if (body && body.product === 'book') {
+    return handleBookCheckout(req, res, s, body);
+  }
+
   if (!L.sbConfigured()) return L.sendJson(res, 503, { error: 'supabase_unconfigured' });
   if (!COACH) return L.sendJson(res, 503, { error: 'coach_unconfigured' });
   if (!process.env.STRIPE_SECRET_KEY) return L.sendJson(res, 503, { error: 'payment_unconfigured' });
@@ -25,7 +38,6 @@ module.exports = async (req, res) => {
     // Body: { brief:{identity,role,goal,obstacle,synthesis,strengths} }. The
     // screening output is held in the browser until booking; we accept ONLY the
     // screening fields here — identity columns come from the session below.
-    const body = req.body && typeof req.body === 'object' ? req.body : await readJson(req);
     const brief = (body && body.brief && typeof body.brief === 'object') ? body.brief : {};
 
     // The coach must have connected Stripe (and finished onboarding) before anyone
@@ -120,6 +132,54 @@ module.exports = async (req, res) => {
     return L.sendJson(res, 500, { error: 'server_error' });
   }
 };
+
+// ---- Book purchase: DIRECT charge on the platform's own Stripe account ----
+// No Connect / destination / on_behalf_of — books are Nesreen's own product, so
+// funds settle to the platform account. requireUser already ran (books require
+// sign-in so the entitlement can be attached to the buyer). Paid state is written
+// ONLY by api/stripe/webhook.js; this route just opens the Checkout Session.
+async function handleBookCheckout(req, res, s, body) {
+  if (!process.env.STRIPE_SECRET_KEY) return L.sendJson(res, 503, { error: 'payment_unconfigured' });
+
+  const bookId = String((body && body.book_id) || '');
+  const book = L.BOOK_CATALOG[bookId];
+  if (!book) return L.sendJson(res, 400, { error: 'unknown_book' });
+
+  try {
+    const origin = L.originOf(req);
+    const Stripe = require('stripe');
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    let session;
+    try {
+      session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        line_items: [{
+          quantity: 1,
+          price_data: {
+            currency: L.BOOK_CURRENCY,
+            unit_amount: book.price_fils,
+            product_data: { name: `${book.name} — digital edition` },
+          },
+        }],
+        client_reference_id: s.sub,
+        customer_email: s.email || undefined,
+        metadata: { kind: 'book', book_id: bookId, user_sub: s.sub },
+        payment_intent_data: {
+          metadata: { kind: 'book', book_id: bookId, user_sub: s.sub },
+        },
+        success_url: `${origin}/?book_paid=${encodeURIComponent(bookId)}`,
+        cancel_url: `${origin}/?book_cancelled=1`,
+      });
+    } catch (e) {
+      console.error('stripe book checkout session create failed', e && e.message);
+      return L.sendJson(res, 502, { error: 'stripe_error' });
+    }
+    return L.sendJson(res, 200, { url: session.url });
+  } catch (e) {
+    console.error('book checkout error', e);
+    return L.sendJson(res, 500, { error: 'server_error' });
+  }
+}
 
 // This project's routes have never parsed a body. Vercel MAY populate req.body
 // for JSON; if not, read the stream. Tolerant of empty/garbage bodies.
