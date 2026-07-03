@@ -15,8 +15,7 @@
   let heroPlayed = false;
 
   const viewStaggerSelectors = {
-    about: ".about-stat, .test-card-mini",
-    services: ".practice-tile, .practice-stat",
+    about: ".about-method-item, .credential-card",
     start: ".start-profile-section, .start-prescription",
   };
 
@@ -127,7 +126,7 @@
         document.documentElement.classList.remove("gsap-motion");
         killViewTween();
         setVisible(
-          ".hero-content > *, .hero-visual, .hero-dot, .about-stat, .test-card-mini, .practice-tile, .practice-stat"
+          ".hero-content > *, .hero-visual, .hero-dot, .about-method-item, .credential-card"
         );
         return;
       }
