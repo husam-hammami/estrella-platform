@@ -3,6 +3,14 @@
 // Files in /api prefixed with _ are NOT treated as routes by Vercel — import-only.
 const crypto = require('crypto');
 
+// Compat: the Anthropic key was first saved in Vercel under a misspelled name
+// ('Antrhopic_api'). Backfill the canonical env name so every reader
+// (estrella.js, cv-parse.js, health.js) picks it up. Harmless no-op once the
+// variable is renamed to ANTHROPIC_API_KEY.
+if (!process.env.ANTHROPIC_API_KEY && process.env.Antrhopic_api) {
+  process.env.ANTHROPIC_API_KEY = process.env.Antrhopic_api;
+}
+
 const LINKEDIN = {
   authorize: 'https://www.linkedin.com/oauth/v2/authorization',
   token: 'https://www.linkedin.com/oauth/v2/accessToken',
