@@ -46,7 +46,14 @@ module.exports = async (req, res) => {
     // another user's object.
     if (!path.startsWith(`${s.sub}/`)) return L.sendJson(res, 403, { error: 'bad_path' });
 
-    const objectUrl = `${base}/storage/v1/object/cvs/${path}`;
+    // Path-traversal guard: WHATWG URL parsing collapses dot-segments, so
+    // '<sub>/../victim/file.pdf' would pass the prefix check yet fetch the
+    // victim's object. Reject any empty or dot segment outright.
+    if (path.split('/').some((seg) => seg === '' || seg === '.' || seg === '..')) {
+      return L.sendJson(res, 403, { error: 'bad_path' });
+    }
+
+    const objectUrl = `${base}/storage/v1/object/cvs/${path.split('/').map(encodeURIComponent).join('/')}`;
     const sbHeaders = { apikey: key, Authorization: `Bearer ${key}` };
 
     // Download the object.

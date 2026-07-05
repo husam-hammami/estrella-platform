@@ -91,6 +91,7 @@ async function enrichUser(user) {
       cvUploadedAt: user.cvUploadedAt || row.cv_uploaded_at || null,
       academyProgress: row.academy_progress || user.academyProgress || null,
       libraryProgress: row.library_progress || user.libraryProgress || null,
+      studioResults: row.studio_results || null,
       booksOwned,
     });
   } catch (e) {
@@ -161,7 +162,18 @@ async function handleBookAccess(req, res, params) {
 async function persistUserPatch(user, body) {
   if (!user || !user.sub || !L.sbConfigured()) return;
   const patch = { last_seen_at: new Date().toISOString() };
-  if (body && body.cvPath) patch.cv_path = cleanString(body.cvPath, 300);
+  if (body && body.cvPath) {
+    // Belt-and-braces vs path traversal: only persist a storage path of the
+    // expected '<this user's sub>/<file>' shape with no empty or dot segments.
+    // A stored 'sub/../victim/file.pdf' would later defeat prefix checks in
+    // the CV download endpoints once URL parsing collapses the dot-segments.
+    const cvPath = cleanString(body.cvPath, 300);
+    const segs = cvPath.split('/');
+    const safe = segs.length >= 2
+      && segs[0] === user.sub
+      && !segs.some((seg) => seg === '' || seg === '.' || seg === '..');
+    if (safe) patch.cv_path = cvPath;
+  }
   if (body && body.cvName) patch.cv_name = cleanString(body.cvName, 160);
   if (body && body.cvUploadedAt) patch.cv_uploaded_at = cleanString(body.cvUploadedAt, 80);
 

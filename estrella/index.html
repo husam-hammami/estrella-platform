@@ -338,6 +338,7 @@ body[data-night="1"] .brand-logo-img{
 .door-secondary:focus-visible,.topnav-user:focus-visible,.topnav-signout:focus-visible,
 .topnav-links a:focus-visible,.about-coach-link:focus-visible,.book-card:focus-visible,
 .sm-choice:focus-visible,.sm-nuria-toggle:focus-visible,.coach-ai-btn:focus-visible,
+.studio-again:focus-visible,.studio-run:focus-visible,
 .folder:focus-visible,.brand:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .btn-primary:focus-visible{outline-offset:3px;box-shadow:inset 0 0 0 1.5px rgba(250,247,241,0.85),0 4px 14px rgba(20,18,14,0.15)}
 
@@ -1259,6 +1260,128 @@ body[data-night="1"] .brand-logo-img{
   .nuria-msg{max-width:92%}
   .dash-side-stack{overflow:visible}
   .dash-data-grid,.dash-progress-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ============================== CAREER STUDIO ============================== */
+.studio-container{max-width:1220px;margin:0 auto;padding:calc(var(--nav-h) + 1.75rem) clamp(1.25rem,4vw,4rem) 4rem}
+.studio-head{max-width:680px;margin-bottom:1.75rem}
+.studio-head h1{font-size:clamp(2rem,3.4vw,3rem);font-weight:400;letter-spacing:-0.02em;line-height:1.05;margin:0.4rem 0 0.6rem}
+.studio-sub{color:var(--text-dim);font-size:0.95rem;line-height:1.55}
+.studio-gate{
+  max-width:520px;
+  border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+  background:var(--surface);
+  padding:1.5rem 1.5rem 1.375rem;
+}
+.studio-gate-title{
+  font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:0.45rem;
+}
+.studio-gate p{font-size:0.9rem;color:var(--text-dim);line-height:1.55;margin-bottom:0}
+.studio-gate .btn{margin-top:1rem;min-height:44px}
+.studio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start}
+.studio-card{
+  border:1px solid var(--line);border-radius:var(--radius-lg);
+  background:var(--surface);
+  padding:1.25rem;
+  display:flex;flex-direction:column;gap:0.9rem;
+  min-width:0;
+}
+.studio-card-kicker{
+  font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;
+}
+.studio-card h2{font-size:1.35rem;line-height:1.1;margin-top:0.3rem}
+.studio-card-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
+.studio-form{display:flex;flex-direction:column;gap:0.6rem}
+.studio-field label{
+  display:block;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:600;margin-bottom:0.3rem;
+}
+.studio-field input,.studio-field textarea{
+  width:100%;min-height:44px;
+  padding:0.7rem 0.9rem;
+  border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:rgba(19,17,9,0.5);color:var(--ink);
+  font:inherit;font-size:0.9rem;line-height:1.45;
+  outline:none;resize:vertical;
+  transition:border-color 0.2s var(--ease);
+}
+.studio-field input::placeholder,.studio-field textarea::placeholder{color:var(--text-mute)}
+.studio-field input:focus-visible,.studio-field textarea:focus-visible{border-color:var(--gold)}
+.studio-field textarea{min-height:5.25rem}
+.studio-run{min-height:44px;margin-top:0.2rem}
+.studio-progress{display:flex;align-items:center;gap:0.6rem}
+.studio-progress .nuria-typing{margin:0}
+.studio-progress-label{font-size:0.85rem;color:var(--text-dim)}
+.studio-status{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
+.studio-status:empty{display:none}
+.studio-nocv{
+  border:1px dashed rgba(201,169,107,0.35);border-radius:var(--radius);
+  background:var(--surface-2);
+  padding:0.9rem 1rem;
+}
+.studio-nocv-title{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:0.35rem;
+}
+.studio-nocv p{font-size:0.85rem;color:var(--text-dim);line-height:1.5;margin-bottom:0.6rem}
+.studio-nocv-row{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
+.studio-nocv-row input[type=file]{max-width:100%;font-size:0.82rem;color:var(--text)}
+.studio-nocv-row .btn{min-height:44px}
+.studio-report{
+  border:1px solid rgba(201,169,107,0.35);border-radius:var(--radius);
+  background:var(--surface-2);
+  padding:1rem 1.125rem;
+  display:flex;flex-direction:column;gap:0.9rem;
+}
+.studio-report-head{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap}
+.studio-report-date{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-mute);font-weight:600}
+.studio-again{
+  min-height:44px;padding:0.5rem 1.1rem;
+  border:1px solid rgba(201,169,107,0.4);border-radius:999px;
+  background:transparent;color:var(--gold);
+  font:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;
+  transition:border-color 0.2s var(--ease),background 0.2s var(--ease);
+}
+.studio-again:hover{border-color:var(--gold);background:rgba(201,169,107,0.08)}
+.studio-sec-label{
+  font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:0.4rem;
+}
+.studio-text{font-size:0.88rem;color:var(--ink-2);line-height:1.55;white-space:pre-line}
+.studio-list{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:0.35rem}
+.studio-list li{font-size:0.86rem;color:var(--ink-2);line-height:1.5}
+.studio-list li::marker{color:var(--gold)}
+.studio-pairs{display:flex;flex-direction:column;gap:0.6rem}
+.studio-pair{
+  border-left:2px solid rgba(201,169,107,0.45);
+  padding:0.15rem 0 0.15rem 0.7rem;
+}
+.studio-pair-kicker{
+  font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:600;margin-bottom:0.25rem;
+}
+.studio-pair-row{display:block;margin-bottom:0.3rem}
+.studio-pair-row:last-child{margin-bottom:0}
+.studio-pair-tag{
+  display:inline-block;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:600;margin-right:0.45rem;
+}
+.studio-pair-better .studio-pair-tag{color:var(--gold)}
+.studio-pair-text{font-size:0.86rem;color:var(--ink-2);line-height:1.5}
+.studio-first-move{
+  border:1px solid rgba(201,169,107,0.4);border-radius:var(--radius);
+  background:rgba(201,169,107,0.08);
+  padding:0.75rem 0.9rem;
+  font-size:0.88rem;color:var(--ink);line-height:1.55;
+}
+@media(max-width:1024px){
+  .studio-grid{grid-template-columns:1fr}
+  .studio-card{max-width:640px}
+}
+@media(max-width:640px){
+  .studio-container{padding-left:1.25rem;padding-right:1.25rem}
 }
 
 /* ============================== LIBRARY ============================== */
@@ -4080,6 +4203,10 @@ body.modal-open .dash-body{overflow:hidden}
   .brand-name{font-size:1.25rem}
   .brand-tag{font-size:0.44rem}
   .topnav-actions{gap:0.375rem;min-width:0}
+  /* Six links (Home/Coaching/Library/Academy/Career Studio/About) on a narrow
+     rail: keep one row, no wrap, horizontal scroll, tighter type. */
+  .topnav-links{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:0.25rem}
+  .topnav-links a{white-space:nowrap;padding:0.4rem 0.45rem;font-size:0.78rem}
   .btn-linkedin{width:40px;height:40px;padding:0;gap:0}
   .btn-linkedin-label{display:none}
   .topnav .btn-gold{padding:0.625rem 0.75rem;font-size:0.72rem}
@@ -4122,6 +4249,7 @@ body.modal-open .dash-body{overflow:hidden}
     <a data-view="services">Coaching</a>
     <a data-view="library">Library</a>
     <a data-view="academy">Academy</a>
+    <a data-view="studio">Career Studio</a>
     <a data-view="about">About</a>
   </div>
   <div class="topnav-actions topnav-auth-guest" id="topnav-auth-guest">
@@ -4644,8 +4772,119 @@ body.modal-open .dash-body{overflow:hidden}
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           <span>Library</span>
         </button>
+        <button class="dash-link" data-view="studio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span>Career Studio</span>
+        </button>
       </nav>
         </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== VIEW: CAREER STUDIO ============================== -->
+  <div class="view dash-body" id="view-studio" data-register="night">
+    <div class="studio-container">
+      <header class="studio-head">
+        <div class="dash-eyebrow" style="display:flex;align-items:center;gap:0.5rem">
+          <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+          Career Studio
+        </div>
+        <h1>Your next move, read honestly.</h1>
+        <p class="studio-sub">Three working tools. Nuria reads what you actually wrote — your CV, your LinkedIn, your situation — and answers with specifics, not templates.</p>
+      </header>
+
+      <div class="studio-gate" id="studio-signin" hidden>
+        <div class="studio-gate-title">Sign in to open the studio</div>
+        <p>The studio works on your real CV and profile, so Nuria needs to know who you are first.</p>
+        <button class="btn btn-gold" id="studio-signin-btn" type="button">Sign in with LinkedIn</button>
+      </div>
+
+      <div class="studio-gate" id="studio-offline" hidden>
+        <div class="studio-gate-title">Nuria is offline</div>
+        <p>The Career Studio needs Nuria, and she isn't connected right now. Your account and sessions are unaffected — try again soon.</p>
+      </div>
+
+      <div class="studio-grid" id="studio-grid" hidden>
+        <section class="studio-card" id="studio-card-cvreview" aria-labelledby="studio-h-cvreview">
+          <div>
+            <div class="studio-card-kicker">Tool 01</div>
+            <h2 id="studio-h-cvreview">CV review</h2>
+            <p class="studio-card-desc">Nuria reads the CV on your profile line by line — strengths, gaps, ATS risks, and concrete rewrites for the UAE and KSA market.</p>
+          </div>
+          <form class="studio-form" id="studio-form-cvreview">
+            <button class="btn btn-gold studio-run" id="studio-run-cvreview" type="submit">Review my CV</button>
+          </form>
+          <div class="studio-nocv" id="studio-nocv-cvreview" hidden></div>
+          <div class="studio-progress" id="studio-progress-cvreview" hidden>
+            <div class="nuria-typing" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="studio-progress-label" id="studio-progress-label-cvreview">Nuria is reading your CV…</span>
+          </div>
+          <div class="studio-status" id="studio-status-cvreview" role="status" aria-live="polite"></div>
+          <div class="studio-report" id="studio-report-cvreview" hidden></div>
+        </section>
+
+        <section class="studio-card" id="studio-card-linkedin" aria-labelledby="studio-h-linkedin">
+          <div>
+            <div class="studio-card-kicker">Tool 02</div>
+            <h2 id="studio-h-linkedin">LinkedIn review</h2>
+            <p class="studio-card-desc">Nuria cannot open your LinkedIn page, so paste the sections you want reviewed — headline, About, or experience. She tells you how each one reads to a recruiter and rewrites it in your voice.</p>
+          </div>
+          <form class="studio-form" id="studio-form-linkedin">
+            <div class="studio-field">
+              <label for="studio-li-headline">Headline</label>
+              <input id="studio-li-headline" maxlength="300" autocomplete="off" placeholder="Your current LinkedIn headline"/>
+            </div>
+            <div class="studio-field">
+              <label for="studio-li-about">About</label>
+              <textarea id="studio-li-about" maxlength="3000" rows="4" placeholder="Paste your About section"></textarea>
+            </div>
+            <div class="studio-field">
+              <label for="studio-li-experience">Experience</label>
+              <textarea id="studio-li-experience" maxlength="4000" rows="4" placeholder="Paste one or two experience entries"></textarea>
+            </div>
+            <button class="btn btn-gold studio-run" id="studio-run-linkedin" type="submit">Review my profile</button>
+          </form>
+          <div class="studio-progress" id="studio-progress-linkedin" hidden>
+            <div class="nuria-typing" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="studio-progress-label" id="studio-progress-label-linkedin">Nuria is reading your profile…</span>
+          </div>
+          <div class="studio-status" id="studio-status-linkedin" role="status" aria-live="polite"></div>
+          <div class="studio-report" id="studio-report-linkedin" hidden></div>
+        </section>
+
+        <section class="studio-card" id="studio-card-roadmap" aria-labelledby="studio-h-roadmap">
+          <div>
+            <div class="studio-card-kicker">Tool 03</div>
+            <h2 id="studio-h-roadmap">Career roadmap</h2>
+            <p class="studio-card-desc">Where you are, where you could go, and the first move — 90 days and 12 months, grounded in the GCC market.</p>
+          </div>
+          <form class="studio-form" id="studio-form-roadmap">
+            <div class="studio-field">
+              <label for="studio-rm-role">Current role (required)</label>
+              <input id="studio-rm-role" maxlength="200" autocomplete="off" placeholder="e.g. Senior Accountant"/>
+            </div>
+            <div class="studio-field">
+              <label for="studio-rm-years">Years of experience</label>
+              <input id="studio-rm-years" maxlength="40" autocomplete="off" placeholder="e.g. 8"/>
+            </div>
+            <div class="studio-field">
+              <label for="studio-rm-direction">Where you want to go</label>
+              <textarea id="studio-rm-direction" maxlength="600" rows="3" placeholder="The direction, role, or change you're considering"></textarea>
+            </div>
+            <div class="studio-field">
+              <label for="studio-rm-constraints">Constraints</label>
+              <textarea id="studio-rm-constraints" maxlength="600" rows="3" placeholder="Visa, family, location, salary floor — anything fixed"></textarea>
+            </div>
+            <button class="btn btn-gold studio-run" id="studio-run-roadmap" type="submit">Build my roadmap</button>
+          </form>
+          <div class="studio-progress" id="studio-progress-roadmap" hidden>
+            <div class="nuria-typing" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="studio-progress-label" id="studio-progress-label-roadmap">Nuria is mapping your next move…</span>
+          </div>
+          <div class="studio-status" id="studio-status-roadmap" role="status" aria-live="polite"></div>
+          <div class="studio-report" id="studio-report-roadmap" hidden></div>
+        </section>
       </div>
     </div>
   </div>
@@ -5533,6 +5772,7 @@ function afterViewSwitch(viewId, current){
   if(viewId === 'academy' && typeof renderSky === 'function') renderSky();
   if(viewId === 'coach' && typeof renderCoachBriefs === 'function') renderCoachBriefs();
   if(viewId === 'dashboard' && typeof loadDashboard === 'function') loadDashboard();
+  if(viewId === 'studio' && typeof initStudio === 'function') initStudio();
 
   if(window.EstrellaGsap){
     window.EstrellaGsap.staggerViewContent(viewId);
@@ -5541,7 +5781,7 @@ function afterViewSwitch(viewId, current){
 }
 
 // Night register: the views where Nuria speaks. The world inverts with them.
-const NIGHT_VIEWS = new Set(['start','dashboard']);
+const NIGHT_VIEWS = new Set(['start','dashboard','studio']);
 function syncRegister(viewId){
   document.body.dataset.night = NIGHT_VIEWS.has(viewId) ? '1' : '0';
 }
@@ -6257,6 +6497,366 @@ renderCvUpload = function(briefId, alreadyHasCv, context){
     }
   });
 };
+
+/* ============================== CAREER STUDIO ==============================
+   Three real tools on /api/estrella: {mode:'cvreview'|'linkedin'|'roadmap'}.
+   Each streams NDJSON (same pump as the companion), collects the single
+   {type:'result'} chunk, and renders a structured report with safe DOM
+   builders (textContent only — model output is never injected as HTML).
+   Saved reports come back from /api/me as user.studioResults. Honest states:
+   503 → Nuria offline card, 401 → sign-in, 404 no_cv → upload prompt. */
+const studio = { busy:false, wired:false };
+
+const STUDIO_TOOLS = {
+  cvreview: { title:'CV review',       running:'Nuria is reading your CV…' },
+  linkedin: { title:'LinkedIn review', running:'Nuria is reading your profile…' },
+  roadmap:  { title:'Career roadmap',  running:'Nuria is mapping your next move…' }
+};
+
+function studioEls(mode){
+  return {
+    form: document.getElementById('studio-form-' + mode),
+    run: document.getElementById('studio-run-' + mode),
+    progress: document.getElementById('studio-progress-' + mode),
+    progressLabel: document.getElementById('studio-progress-label-' + mode),
+    status: document.getElementById('studio-status-' + mode),
+    report: document.getElementById('studio-report-' + mode),
+    nocv: document.getElementById('studio-nocv-' + mode)
+  };
+}
+
+/* --- Safe DOM builders: every piece of model text lands via textContent --- */
+function stEl(tag, cls, text){
+  const el = document.createElement(tag);
+  if(cls) el.className = cls;
+  if(text != null) el.textContent = text;
+  return el;
+}
+function stPara(text){
+  return (typeof text === 'string' && text.trim()) ? stEl('p','studio-text', text.trim()) : null;
+}
+function stList(items, ordered){
+  if(!Array.isArray(items) || !items.length) return null;
+  const list = stEl(ordered ? 'ol' : 'ul','studio-list');
+  items.forEach(it => { if(typeof it === 'string' && it.trim()) list.appendChild(stEl('li', null, it.trim())); });
+  return list.childElementCount ? list : null;
+}
+function stSection(root, label, node){
+  if(!node) return;
+  const sec = stEl('div','studio-sec');
+  sec.appendChild(stEl('div','studio-sec-label', label));
+  sec.appendChild(node);
+  root.appendChild(sec);
+}
+function stPairRow(tag, text, better){
+  const row = stEl('div','studio-pair-row' + (better ? ' studio-pair-better' : ''));
+  row.appendChild(stEl('span','studio-pair-tag', tag));
+  row.appendChild(stEl('span','studio-pair-text', text));
+  return row;
+}
+function stPairs(items, build){
+  if(!Array.isArray(items) || !items.length) return null;
+  const wrap = stEl('div','studio-pairs');
+  items.forEach(it => {
+    if(!it || typeof it !== 'object') return;
+    const card = stEl('div','studio-pair');
+    build(card, it);
+    if(card.childElementCount) wrap.appendChild(card);
+  });
+  return wrap.childElementCount ? wrap : null;
+}
+function stStr(v){ return typeof v === 'string' ? v.trim() : ''; }
+
+/* --- Per-mode report renderers --- */
+function studioRenderCvReport(root, r){
+  stSection(root, 'Overall read', stPara(r.verdict));
+  stSection(root, 'Strengths', stList(r.strengths));
+  stSection(root, 'Gaps', stList(r.gaps));
+  stSection(root, 'ATS flags', stList(r.ats_flags));
+  stSection(root, 'Rewrites', stPairs(r.rewrites, (card, rw) => {
+    if(stStr(rw.section)) card.appendChild(stEl('div','studio-pair-kicker', stStr(rw.section)));
+    if(stStr(rw.issue)) card.appendChild(stPairRow('Issue', stStr(rw.issue)));
+    if(stStr(rw.better)) card.appendChild(stPairRow('Better', stStr(rw.better), true));
+  }));
+  stSection(root, 'For the GCC market', stList(r.gcc_notes));
+  stSection(root, 'Next actions', stList(r.next_actions, true));
+}
+function studioRenderLinkedinReport(root, r){
+  stSection(root, 'First impression', stPara(r.first_impression));
+  stSection(root, 'Headline options', stList(r.headline_options, true));
+  stSection(root, 'About — rewritten', stPara(r.about_rewrite));
+  stSection(root, 'Experience upgrades', stPairs(r.experience_upgrades, (card, up) => {
+    if(stStr(up.current)) card.appendChild(stPairRow('Now', stStr(up.current)));
+    if(stStr(up.better)) card.appendChild(stPairRow('Better', stStr(up.better), true));
+  }));
+  stSection(root, 'Skills to add', stList(r.skills_to_add));
+  stSection(root, 'Profile checklist', stPairs(r.profile_checklist, (card, it) => {
+    if(stStr(it.item)) card.appendChild(stEl('div','studio-pair-kicker', stStr(it.item)));
+    if(stStr(it.why)) card.appendChild(stEl('div','studio-pair-text', stStr(it.why)));
+  }));
+  stSection(root, 'Seven-day visibility plan', stList(r.visibility_plan, true));
+  stSection(root, 'For the GCC market', stList(r.gcc_notes));
+}
+function studioRenderRoadmapReport(root, r){
+  stSection(root, 'Where you stand', stPara(r.situation_read));
+  stSection(root, 'Candidate roles', stPairs(r.candidate_roles, (card, role) => {
+    if(stStr(role.title)) card.appendChild(stEl('div','studio-pair-kicker', stStr(role.title)));
+    if(stStr(role.fit_why)) card.appendChild(stPairRow('Fit', stStr(role.fit_why)));
+    if(stStr(role.market_note)) card.appendChild(stPairRow('Market', stStr(role.market_note)));
+  }));
+  if(r.best_pick && typeof r.best_pick === 'object' && (stStr(r.best_pick.title) || stStr(r.best_pick.why))){
+    const pick = stEl('div','studio-pair');
+    if(stStr(r.best_pick.title)) pick.appendChild(stEl('div','studio-pair-kicker', stStr(r.best_pick.title)));
+    if(stStr(r.best_pick.why)) pick.appendChild(stEl('div','studio-pair-text', stStr(r.best_pick.why)));
+    stSection(root, 'Best pick', pick);
+  }
+  stSection(root, 'First 90 days', stList(r.plan_90_days, true));
+  stSection(root, 'Twelve months', stList(r.plan_12_months, true));
+  stSection(root, 'Skills to close', stPairs(r.skills_to_close, (card, sk) => {
+    if(stStr(sk.skill)) card.appendChild(stEl('div','studio-pair-kicker', stStr(sk.skill)));
+    if(stStr(sk.how)) card.appendChild(stEl('div','studio-pair-text', stStr(sk.how)));
+  }));
+  if(stStr(r.first_move)) stSection(root, 'This week', stEl('div','studio-first-move', stStr(r.first_move)));
+}
+
+function studioDate(at){
+  const d = new Date(at);
+  if(!Number.isFinite(d.getTime())) return '';
+  return d.toLocaleDateString('en-GB', { day:'numeric', month:'long' });
+}
+
+function studioRenderReport(mode, result, at){
+  const els = studioEls(mode);
+  if(!els.report || !result || typeof result !== 'object') return;
+  els.report.innerHTML = '';
+  const head = stEl('div','studio-report-head');
+  const when = studioDate(at);
+  if(when) head.appendChild(stEl('div','studio-report-date','Generated ' + when));
+  const again = stEl('button','studio-again','Run again');
+  again.type = 'button';
+  again.addEventListener('click', ()=>{
+    if(mode === 'cvreview'){ studioRun('cvreview', {}); return; }
+    if(els.form){ els.form.hidden = false; els.form.scrollIntoView({behavior:'smooth', block:'center'}); }
+  });
+  head.appendChild(again);
+  els.report.appendChild(head);
+  try{
+    if(mode === 'cvreview') studioRenderCvReport(els.report, result);
+    else if(mode === 'linkedin') studioRenderLinkedinReport(els.report, result);
+    else studioRenderRoadmapReport(els.report, result);
+  }catch(e){
+    els.report.appendChild(stEl('p','studio-text','This report could not be displayed. Run it again.'));
+  }
+  els.report.hidden = false;
+  if(els.form && mode !== 'cvreview') els.form.hidden = true;
+}
+
+/* --- Honest states --- */
+function studioProgress(mode, show){
+  const els = studioEls(mode);
+  if(!els.progress) return;
+  if(show && els.progressLabel) els.progressLabel.textContent = STUDIO_TOOLS[mode].running;
+  els.progress.hidden = !show;
+}
+function studioStatus(mode, msg){
+  const els = studioEls(mode);
+  if(els.status) els.status.textContent = msg || '';
+}
+function studioShowGate(which){
+  const grid = document.getElementById('studio-grid');
+  const signin = document.getElementById('studio-signin');
+  const offline = document.getElementById('studio-offline');
+  if(grid) grid.hidden = which !== 'grid';
+  if(signin) signin.hidden = which !== 'signin';
+  if(offline) offline.hidden = which !== 'offline';
+}
+
+/* 404 no_cv → real upload prompt (profile-mode upload, same flow as the
+   dashboard: signed upload URL → PUT → PATCH /api/me with the new path). */
+function studioNoCvPrompt(){
+  const wrap = studioEls('cvreview').nocv;
+  if(!wrap) return;
+  wrap.hidden = false;
+  wrap.innerHTML = `
+    <div class="studio-nocv-title">No CV on your profile yet</div>
+    <p>Upload your CV and Nuria reads the real document — nothing is invented.</p>
+    <div class="studio-nocv-row">
+      <input type="file" id="studio-cv-file" accept=".pdf,.png,.jpg,.jpeg" aria-label="Choose your CV file"/>
+      <button type="button" class="btn btn-ghost" id="studio-cv-upload-btn">Upload CV</button>
+      <span class="studio-status" id="studio-cv-status" role="status"></span>
+    </div>`;
+  const btn = document.getElementById('studio-cv-upload-btn');
+  const fileInput = document.getElementById('studio-cv-file');
+  const status = document.getElementById('studio-cv-status');
+  btn.addEventListener('click', async ()=>{
+    const file = fileInput.files && fileInput.files[0];
+    if(!file){ if(status) status.textContent = 'Choose a PDF or image first.'; return; }
+    const dot = file.name.lastIndexOf('.');
+    const ext = dot >= 0 ? file.name.slice(dot+1).toLowerCase() : '';
+    if(!['pdf','png','jpg','jpeg'].includes(ext)){ if(status) status.textContent = 'PDF, PNG or JPG only.'; return; }
+    btn.disabled = true;
+    if(status) status.textContent = 'Uploading…';
+    try{
+      const r1 = await fetch('/api/cv-upload-url', {
+        method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+        body: JSON.stringify({ profile:true, ext })
+      });
+      if(!r1.ok) throw new Error('upload_url_failed');
+      const { path, uploadUrl } = await r1.json();
+      const put = await fetch(uploadUrl, { method:'PUT', body:file });
+      if(!put.ok) throw new Error('put_failed');
+      const patched = await fetch('/api/me', {
+        method:'PATCH', headers:{'content-type':'application/json'}, credentials:'same-origin',
+        body: JSON.stringify({ cvPath:path, cvName:file.name, cvUploadedAt:new Date().toISOString() })
+      });
+      if(patched.ok){
+        const d = await patched.json();
+        if(d && d.user) setLinkedInUser(d.user);
+      }
+      wrap.hidden = true;
+      showToast('CV added to your profile');
+      studioStatus('cvreview', 'CV saved — run the review whenever you like.');
+    }catch(e){
+      if(status) status.textContent = 'Upload failed — you can try again.';
+    }finally{
+      btn.disabled = false;
+    }
+  });
+}
+
+/* Keep the session copy of studioResults current so re-entering the studio
+   shows this run without a refetch. */
+function studioRememberResult(mode, result, at){
+  const u = getLinkedInUser();
+  if(!u) return;
+  const merged = Object.assign({}, u.studioResults || {});
+  merged[mode] = { result, at };
+  setLinkedInUser(Object.assign({}, u, { studioResults: merged }));
+}
+
+/* --- The run: POST + NDJSON pump (same pump as companionSend) --- */
+async function studioRun(mode, payload){
+  if(studio.busy) return;
+  const els = studioEls(mode);
+  studio.busy = true;
+  // One tool runs at a time — disable every run button so the others can't
+  // silently no-op while Nuria is working.
+  document.querySelectorAll('#view-studio .studio-run').forEach(b => { b.disabled = true; });
+  if(els.nocv) els.nocv.hidden = true;
+  studioStatus(mode, '');
+  studioProgress(mode, true);
+
+  let result = null;
+  try{
+    const resp = await fetch('/api/estrella', {
+      method:'POST',
+      headers:{ 'content-type':'application/json' },
+      credentials:'same-origin',
+      body: JSON.stringify(Object.assign({ mode }, payload || {}))
+    });
+    if(resp.status === 503){ studioProgress(mode, false); studioShowGate('offline'); return; }
+    if(resp.status === 401){ studioProgress(mode, false); studioShowGate('signin'); return; }
+    if(resp.status === 404 && mode === 'cvreview'){ studioProgress(mode, false); studioNoCvPrompt(); return; }
+    if(!resp.ok || !resp.body) throw new Error('studio_unavailable');
+
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    const handleLine = (line) => {
+      const trimmed = line.trim();
+      if(!trimmed) return;
+      let chunk;
+      try{ chunk = JSON.parse(trimmed); }catch(e){ return; }
+      if(chunk.type === 'result' && chunk.result && typeof chunk.result === 'object'){
+        result = chunk.result;
+      }else if(chunk.type === 'error' && !result){
+        throw new Error('studio_stream_error');
+      }
+    };
+    for(;;){
+      const { done, value } = await reader.read();
+      if(done) break;
+      buffer += decoder.decode(value, { stream:true });
+      let nl;
+      while((nl = buffer.indexOf('\n')) >= 0){
+        const line = buffer.slice(0, nl);
+        buffer = buffer.slice(nl + 1);
+        handleLine(line);
+      }
+    }
+    if(buffer.trim()) handleLine(buffer);
+    if(!result) throw new Error('studio_no_result');
+
+    const at = new Date().toISOString();
+    studioRememberResult(mode, result, at);
+    studioRenderReport(mode, result, at);
+  }catch(e){
+    if(!result) studioStatus(mode, "Nuria couldn't finish this one. Try again in a moment.");
+  }finally{
+    studioProgress(mode, false);
+    studio.busy = false;
+    document.querySelectorAll('#view-studio .studio-run').forEach(b => { b.disabled = false; });
+  }
+}
+
+function initStudio(){
+  const grid = document.getElementById('studio-grid');
+  if(!grid) return;
+
+  if(!BACKEND_AVAILABLE){ studioShowGate('offline'); return; }
+  const user = getLinkedInUser();
+  if(!user){ studioShowGate('signin'); return; }
+  studioShowGate('grid');
+
+  // Saved reports from /api/me (user.studioResults) — rendered with their
+  // generation date and a Run again action.
+  const saved = user.studioResults;
+  ['cvreview','linkedin','roadmap'].forEach(mode => {
+    const entry = saved && saved[mode];
+    const report = studioEls(mode).report;
+    if(entry && entry.result && report && !report.childElementCount){
+      studioRenderReport(mode, entry.result, entry.at);
+    }
+  });
+
+  if(studio.wired) return;
+  studio.wired = true;
+
+  document.getElementById('studio-form-cvreview')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    studioRun('cvreview', {});
+  });
+  document.getElementById('studio-form-linkedin')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const headline = document.getElementById('studio-li-headline').value.trim();
+    const about = document.getElementById('studio-li-about').value.trim();
+    const experience = document.getElementById('studio-li-experience').value.trim();
+    if(!headline && !about && !experience){
+      studioStatus('linkedin', 'Paste at least one section of your profile first.');
+      return;
+    }
+    studioRun('linkedin', { headline, about, experience });
+  });
+  document.getElementById('studio-form-roadmap')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const current_role = document.getElementById('studio-rm-role').value.trim();
+    if(!current_role){
+      studioStatus('roadmap', 'Your current role is the one required field.');
+      return;
+    }
+    studioRun('roadmap', {
+      current_role,
+      years: document.getElementById('studio-rm-years').value.trim(),
+      direction: document.getElementById('studio-rm-direction').value.trim(),
+      constraints: document.getElementById('studio-rm-constraints').value.trim()
+    });
+  });
+}
+
+// Wired once at load (not inside initStudio) so it works for signed-out visitors.
+document.getElementById('studio-signin-btn')?.addEventListener('click', ()=>{
+  if(BACKEND_AVAILABLE){ window.location.href = '/api/linkedin/login'; }
+});
 
 /* ============================== NURIA COMPANION (dashboard) ==============================
    Real between-sessions chat. Streams from /api/estrella {mode:'companion'} — the server

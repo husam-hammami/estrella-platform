@@ -36,6 +36,7 @@ create table if not exists public.users (
   cv_name          text,
   cv_uploaded_at   timestamptz,
   coach_notes      text,               -- CRM note on the person (coach-only writable)
+  studio_results   jsonb,              -- { cvreview:{result,at}, linkedin:{...}, roadmap:{...} } — Career Studio saved reports
   created_at       timestamptz not null default now(),
   last_seen_at     timestamptz not null default now()
 );
@@ -48,6 +49,7 @@ alter table public.users add column if not exists cv_path text;
 alter table public.users add column if not exists cv_name text;
 alter table public.users add column if not exists cv_uploaded_at timestamptz;
 alter table public.users add column if not exists coach_notes text;
+alter table public.users add column if not exists studio_results jsonb;
 
 -- on_conflict=linkedin_sub upserts (sign-in + coach note on a brief-only "ghost")
 -- need a unique index on linkedin_sub. Defensive if an old table lacked `unique`.
