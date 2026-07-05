@@ -133,11 +133,13 @@ module.exports = async (req, res) => {
   }
 };
 
-// ---- Book purchase: DIRECT charge on the platform's own Stripe account ----
-// No Connect / destination / on_behalf_of — books are Nesreen's own product, so
-// funds settle to the platform account. requireUser already ran (books require
-// sign-in so the entitlement can be attached to the buyer). Paid state is written
-// ONLY by api/stripe/webhook.js; this route just opens the Checkout Session.
+// ---- Book purchase ----
+// ALL money goes to Nesreen: when her Stripe account is connected (same Connect
+// integration the coaching flow uses), the book charge is a DESTINATION charge
+// to her account — identical money flow to coaching sessions. Before she has
+// connected, it falls back to a direct platform charge so the store still works.
+// requireUser already ran (books require sign-in so the entitlement can be
+// attached to the buyer). Paid state is written ONLY by api/stripe/webhook.js.
 async function handleBookCheckout(req, res, s, body) {
   if (!process.env.STRIPE_SECRET_KEY) return L.sendJson(res, 503, { error: 'payment_unconfigured' });
 
@@ -149,27 +151,43 @@ async function handleBookCheckout(req, res, s, body) {
     const origin = L.originOf(req);
     const Stripe = require('stripe');
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+    // Route funds to the coach's connected account when available.
+    let destinationAcct = null;
+    try {
+      if (COACH) {
+        const integ = await L.getIntegration(COACH, 'stripe');
+        if (integ && integ.account_id && integ.status === 'connected') destinationAcct = integ.account_id;
+      }
+    } catch (e) { /* fall back to platform charge */ }
+
+    const params = {
+      mode: 'payment',
+      line_items: [{
+        quantity: 1,
+        price_data: {
+          currency: L.BOOK_CURRENCY,
+          unit_amount: book.price_fils,
+          product_data: { name: `${book.name} — digital edition` },
+        },
+      }],
+      client_reference_id: s.sub,
+      customer_email: s.email || undefined,
+      metadata: { kind: 'book', book_id: bookId, user_sub: s.sub },
+      payment_intent_data: {
+        metadata: { kind: 'book', book_id: bookId, user_sub: s.sub },
+      },
+      success_url: `${origin}/?book_paid=${encodeURIComponent(bookId)}`,
+      cancel_url: `${origin}/?book_cancelled=1`,
+    };
+    if (destinationAcct) {
+      params.payment_intent_data.on_behalf_of = destinationAcct;
+      params.payment_intent_data.transfer_data = { destination: destinationAcct };
+    }
+
     let session;
     try {
-      session = await stripe.checkout.sessions.create({
-        mode: 'payment',
-        line_items: [{
-          quantity: 1,
-          price_data: {
-            currency: L.BOOK_CURRENCY,
-            unit_amount: book.price_fils,
-            product_data: { name: `${book.name} — digital edition` },
-          },
-        }],
-        client_reference_id: s.sub,
-        customer_email: s.email || undefined,
-        metadata: { kind: 'book', book_id: bookId, user_sub: s.sub },
-        payment_intent_data: {
-          metadata: { kind: 'book', book_id: bookId, user_sub: s.sub },
-        },
-        success_url: `${origin}/?book_paid=${encodeURIComponent(bookId)}`,
-        cancel_url: `${origin}/?book_cancelled=1`,
-      });
+      session = await stripe.checkout.sessions.create(params);
     } catch (e) {
       console.error('stripe book checkout session create failed', e && e.message);
       return L.sendJson(res, 502, { error: 'stripe_error' });
