@@ -2926,6 +2926,33 @@ body.modal-open .dash-body{overflow:hidden}
   line-height:1.6;font-weight:400;
   margin-bottom:2rem;max-width:56ch;
 }
+/* Certifications — a printed credentials line, abbreviations in didone */
+.about-certs{margin-bottom:2rem}
+.about-certs-label{
+  font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
+  color:var(--gold-deep);margin-bottom:0.5rem;
+}
+.about-certs-list{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:0 2rem;
+  border-top:1px solid var(--line-strong);
+}
+.about-certs-list li{
+  display:flex;align-items:baseline;gap:0.75rem;
+  padding:0.625rem 0;
+  border-bottom:1px solid var(--line);
+  min-width:0;
+}
+.about-certs-list strong{
+  font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;
+  font-size:1.05rem;color:var(--ink);white-space:nowrap;flex-shrink:0;
+}
+.about-certs-list span{
+  font-size:0.8rem;color:var(--text-dim);line-height:1.4;
+  min-width:0;overflow-wrap:break-word;
+}
+
 /* The method — three numbered movements, hairline-ruled like a printed colophon */
 .about-method{
   margin-bottom:2rem;
@@ -4182,7 +4209,7 @@ body.modal-open .dash-body{overflow:hidden}
       <div class="about-content">
         <div class="hero-eyebrow">About Nesreen</div>
         <h1 class="about-h1">She listens.<br/> <em>Then she tells the truth.</em></h1>
-        <p class="about-lead">Nesreen coaches leaders, founders, and professionals through career decisions, leadership pressure, and confidence work. Nuria gives her the context before the call.</p>
+        <p class="about-lead">Nesreen coaches leaders, founders, and professionals through career decisions, leadership pressure, and confidence work — and over 300,000 professionals follow her career guidance on LinkedIn. Nuria gives her the context before the call.</p>
 
         <div class="credential-card">
           <div class="credential-icon">
@@ -4197,6 +4224,17 @@ body.modal-open .dash-body{overflow:hidden}
             <div class="credential-title">MBA in HR and <em>Artificial intelligence</em></div>
             <div class="credential-school"><strong>Plymouth Marjon University</strong></div>
           </div>
+        </div>
+
+        <div class="about-certs" aria-label="Certifications">
+          <div class="about-certs-label">Certified</div>
+          <ul class="about-certs-list">
+            <li><strong>PHRI</strong><span>Professional in Human Resources — International (HRCI)</span></li>
+            <li><strong>ICF</strong><span>Certified Career Coach — International Coaching Federation</span></li>
+            <li><strong>CMI</strong><span>HR Management Professional — Chartered Management Institute</span></li>
+            <li><strong>SCQF 11</strong><span>Strategic Management, Level 11</span></li>
+            <li><strong>CPT</strong><span>Certified Professional Trainer</span></li>
+          </ul>
         </div>
 
         <div class="about-method" aria-label="How the practice works">
