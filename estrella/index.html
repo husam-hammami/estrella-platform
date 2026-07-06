@@ -3207,20 +3207,53 @@ body.modal-open .dash-body{overflow:hidden}
   height:100vh;height:100dvh;padding-top:var(--nav-h);
   align-items:stretch;
 }
-.about-portrait{
-  position:relative;overflow:hidden;
-  background:linear-gradient(135deg, var(--gold-bg) 0%, var(--bg-soft) 100%);
+/* The stage — still-life backdrop, arch-framed portrait, overlapping quote card. */
+.about-stage{
+  position:relative;overflow:hidden;background:var(--bg);
 }
-.about-portrait img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center 30%;
-  display:block;
+.about-stage-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:0% 100%;
+  transform:scaleX(-1); /* vase reads from the left, wall clears space for the arch */
+  display:block;filter:saturate(0.97);
 }
-.about-portrait.no-img::after{
-  content:"Nesreen";position:absolute;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Bodoni Moda',serif;font-size:3rem;font-style:italic;
-  color:var(--gold-deep);opacity:0.5;
+.about-arch{
+  position:absolute;left:52%;top:47%;transform:translate(-50%,-50%);
+  width:min(46%,330px);aspect-ratio:3/4.1;
+  border-radius:999px 999px 14px 14px;overflow:hidden;
+  box-shadow:0 34px 70px -36px rgba(20,18,14,0.45);
+}
+.about-arch img{width:100%;height:100%;object-fit:cover;object-position:74% 18%;display:block}
+/* offset hairline ring; the apex star rides the ring's top center */
+.about-arch-ring{
+  position:absolute;left:52%;top:47%;transform:translate(-50%,-50%);
+  width:calc(min(46%,330px) + 30px);aspect-ratio:3/4.02;
+  border:1px solid var(--gold-soft);border-radius:999px 999px 16px 16px;
+  pointer-events:none;
+}
+.about-arch-ring svg{
+  position:absolute;top:0;left:50%;transform:translate(-50%,-58%);
+  color:var(--gold);display:block;
+}
+.about-quote{
+  position:absolute;left:clamp(0.75rem,4%,2.5rem);bottom:clamp(1rem,5vh,3rem);
+  width:min(300px,56%);margin:0;
+  background:var(--surface);border:1px solid var(--line-strong);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);
+  padding:1.15rem 1.3rem 1rem;
+}
+.about-quote-mark{
+  font-family:'Bodoni Moda',serif;font-size:1.9rem;line-height:0.6;
+  color:var(--gold);margin-bottom:0.5rem;
+}
+.about-quote blockquote{
+  margin:0;font-size:0.92rem;line-height:1.55;color:var(--text);
+}
+.about-quote blockquote em{font-style:italic;color:var(--gold-deep)}
+.about-quote figcaption{
+  margin-top:0.7rem;padding-top:0.55rem;border-top:1px solid var(--line);
+  font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;
+  font-size:1.05rem;color:var(--gold-deep);
 }
 /* Content column — a fixed, viewport-height stack: head / band / foot. No inner scroll. */
 .about-content{
@@ -3241,87 +3274,69 @@ body.modal-open .dash-body{overflow:hidden}
   color:var(--ink);
 }
 .about-h1 em{font-style:italic;color:var(--gold-deep);font-weight:500}
-.about-lead{
-  font-family:'Instrument Sans',sans-serif;
-  font-size:clamp(0.9rem,1.02vw,1rem);color:var(--text);
-  line-height:1.55;font-weight:400;
-  margin:0;max-width:58ch;
-}
 
-/* The band — credentials beside the method, hairline-divided, filling the middle. */
+/* The band — stat strip above the certifications panel, filling the middle. */
 .about-band{
-  flex:1 1 auto;min-height:0;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  gap:clamp(1.5rem,3vw,3rem);
-  /* center only when there is spare room; never overlap when content is tall */
-  align-content:safe center;
-  border-top:1px solid var(--line-strong);
-  border-bottom:1px solid var(--line-strong);
-  padding:clamp(1rem,2.4vh,1.75rem) 0;
+  /* flex-grow but never shrink: when the viewport is short (zoom, small screens)
+     the column overflows into .about-content's internal scroll instead of
+     letting the stats/cert cards compress and overlap the foot. */
+  flex:1 0 auto;min-height:0;
+  display:flex;flex-direction:column;justify-content:safe center;
+  gap:clamp(1.1rem,2.6vh,2rem);
 }
-.about-col-label{
-  font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;
-  color:var(--gold-deep);margin-bottom:0.9rem;
+.about-stats{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  padding:clamp(0.75rem,1.8vh,1.25rem) 0;
+  border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
 }
-
-/* Credentials column — MBA line then the five certifications. */
-.credential-line{margin-bottom:1.1rem}
-.credential-label{
-  font-size:0.6rem;letter-spacing:0.22em;color:var(--gold-deep);
-  text-transform:uppercase;margin-bottom:0.3rem;font-weight:600;
+.about-stat{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  gap:0.55rem;padding:0 0.75rem;min-width:0;
 }
-.credential-title{
-  font-family:'Bodoni Moda',serif;
-  font-size:clamp(1.15rem,1.5vw,1.4rem);color:var(--ink);
-  font-weight:500;line-height:1.2;margin-bottom:0.2rem;
+.about-stat + .about-stat{border-left:1px solid var(--line)}
+.about-stat-icon{
+  width:42px;height:42px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bg);color:var(--gold-deep);border:1px solid var(--gold-soft);
 }
-.credential-title em{font-style:italic;color:var(--gold-deep)}
-.credential-school{
-  font-size:0.85rem;color:var(--ink-2);line-height:1.4;letter-spacing:0.01em;
+.about-stat-icon svg{width:19px;height:19px}
+.about-stat-value{
+  font-size:clamp(0.98rem,1.15vw,1.12rem);font-weight:600;color:var(--ink);line-height:1.1;
 }
-.credential-school strong{color:var(--ink);font-weight:600}
-
-.about-certs{margin:0}
-.about-certs-list{
-  list-style:none;margin:0;padding:0;
-  border-top:1px solid var(--line);
+.about-stat-label{font-size:0.74rem;line-height:1.4;color:var(--text-dim);max-width:16ch}
+/* Certifications panel — six framed, text-only certificate cards (no fabricated seals). */
+.about-certs-panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:clamp(1rem,2.2vh,1.5rem) clamp(1rem,1.6vw,1.5rem);
 }
-.about-certs-list li{
-  display:flex;align-items:baseline;gap:0.75rem;
-  padding:clamp(0.4rem,0.9vh,0.55rem) 0;
-  border-bottom:1px solid var(--line);
+.about-certs-label{
+  font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;
+  color:var(--gold-deep);margin-bottom:clamp(0.75rem,1.6vh,1.1rem);
+}
+.about-certs-grid{
+  display:grid;grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:clamp(0.5rem,0.9vw,0.85rem);
+}
+.cert-card{
+  position:relative;background:var(--surface-2);
+  border:1px solid var(--line-strong);border-radius:8px;
+  padding:clamp(0.8rem,1.7vh,1.15rem) 0.55rem;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:0.35rem;
   min-width:0;
 }
-.about-certs-list strong{
-  font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;
-  font-size:1rem;color:var(--ink);white-space:nowrap;flex-shrink:0;
-  min-width:4.25rem;
+.cert-card::before{
+  content:"";position:absolute;inset:4px;border:1px solid var(--gold-soft);
+  border-radius:5px;pointer-events:none;opacity:0.7;
 }
-.about-certs-list span{
-  font-size:0.76rem;color:var(--text-dim);line-height:1.35;
-  min-width:0;overflow-wrap:break-word;
+.cert-acro{
+  font-family:'Bodoni Moda',serif;font-weight:600;
+  font-size:clamp(0.98rem,1.15vw,1.15rem);color:var(--ink);line-height:1.05;
 }
-
-/* The method — three numbered movements, ruled like a printed colophon. */
-.about-method{margin:0}
-.about-method-item{
-  display:grid;grid-template-columns:2.5rem minmax(0,1fr);
-  gap:0.85rem;align-items:baseline;
-  padding:clamp(0.55rem,1.3vh,0.9rem) 0;
-  border-bottom:1px solid var(--line);
-}
-.about-method-item:last-child{border-bottom:none;padding-bottom:0}
-.method-num{
-  font-family:'Bodoni Moda',serif;font-style:italic;
-  font-size:1.15rem;color:var(--gold-deep);
-  font-variant-numeric:tabular-nums;
-}
-.method-body strong{
-  display:block;font-family:'Bodoni Moda',serif;font-weight:500;
-  font-size:clamp(1.02rem,1.25vw,1.15rem);color:var(--ink);margin-bottom:0.15rem;
-}
-.method-body span{
-  display:block;font-size:0.8rem;color:var(--text-dim);line-height:1.45;max-width:44ch;
+.cert-desc{font-size:0.62rem;line-height:1.35;color:var(--text-dim);overflow-wrap:break-word}
+.cert-issuer{
+  margin-top:auto;padding-top:0.3rem;
+  font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;
+  font-weight:600;color:var(--gold-deep);
 }
 
 /* Foot — CTA + links anchored at the bottom. */
@@ -4357,9 +4372,12 @@ body.modal-open .dash-body{overflow:hidden}
   .orb-stage{width:340px;height:340px}
   #view-about{overflow-y:auto;overflow-x:hidden}
   .about-layout{grid-template-columns:1fr;height:auto}
-  .about-portrait{height:320px}
+  .about-stage{height:440px}
   .about-content{height:auto;overflow:visible;padding:2rem 1.5rem}
-  .about-band{grid-template-columns:1fr;gap:1.5rem;align-content:start;padding:1.5rem 0}
+  .about-band{gap:1.5rem}
+  .about-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 0}
+  .about-stat:nth-child(3){border-left:none}
+  .about-certs-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .about-foot{margin-top:1.5rem}
   .about-coach-link{margin-left:0}
   .landing,.view.landing{height:auto;overflow:auto}
@@ -4533,49 +4551,82 @@ body.modal-open .dash-body{overflow:hidden}
   <!-- ============================== VIEW: ABOUT ============================== -->
   <div class="view" id="view-about">
     <div class="about-layout">
-      <div class="about-portrait">
-        <img src="nesreen-graduation.jpg" alt="Nesreen — MBA graduate, Plymouth Marjon University" onerror="this.style.display='none';this.parentElement.classList.add('no-img')"/>
+      <div class="about-stage">
+        <img class="about-stage-bg" src="services-still.jpg" alt="" aria-hidden="true"/>
+        <span class="about-arch-ring" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+        </span>
+        <div class="about-arch">
+          <img src="portrait_face_enhanced_v1.png" alt="Nesreen — founder and career coach"/>
+        </div>
+        <figure class="about-quote">
+          <div class="about-quote-mark" aria-hidden="true">&ldquo;</div>
+          <blockquote>Empowering professionals to make <em>confident</em> decisions and create careers they love.</blockquote>
+          <figcaption>Nesreen</figcaption>
+        </figure>
       </div>
       <div class="about-content">
         <div class="about-head">
           <div class="hero-eyebrow about-eyebrow">About Nesreen</div>
           <h1 class="about-h1">She listens.<br/> <em>Then she tells the truth.</em></h1>
-          <p class="about-lead">Nesreen coaches leaders, founders, and professionals through career decisions, leadership pressure, and confidence work — and over 300,000 professionals follow her career guidance on LinkedIn. Nuria gives her the context before the call.</p>
         </div>
 
         <div class="about-band">
-          <div class="about-creds">
-            <div class="about-col-label">Credentials</div>
-            <div class="credential-line">
-              <div class="credential-label">Education</div>
-              <div class="credential-title">MBA in HR and <em>Artificial Intelligence</em></div>
-              <div class="credential-school"><strong>Plymouth Marjon University</strong></div>
+          <div class="about-stats" aria-label="At a glance">
+            <div class="about-stat">
+              <span class="about-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.25"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="16.5" cy="9" r="2.5"/><path d="M16.5 14c2.5 0 4.5 1.7 4.5 4.2"/></svg></span>
+              <span class="about-stat-value">300,000+</span>
+              <span class="about-stat-label">Follow her career guidance on LinkedIn</span>
             </div>
-            <div class="about-certs" aria-label="Certifications">
-              <ul class="about-certs-list">
-                <li><strong>PHRI</strong><span>Professional in Human Resources, International (HRCI)</span></li>
-                <li><strong>ICF</strong><span>Certified Career Coach (International Coaching Federation)</span></li>
-                <li><strong>CMI</strong><span>HR Management Professional (Chartered Management Institute)</span></li>
-                <li><strong>SCQF 11</strong><span>Strategic Management, Level 11</span></li>
-                <li><strong>CPT</strong><span>Certified Professional Trainer</span></li>
-              </ul>
+            <div class="about-stat">
+              <span class="about-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 5.2 5.6.7-4.1 3.9 1 5.6-4.9-2.7-4.9 2.7 1-5.6L4 8.9l5.6-.7z"/></svg></span>
+              <span class="about-stat-value">10+ Years</span>
+              <span class="about-stat-label">Coaching leaders &amp; professionals</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.7 2.6 4 5.7 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.7-4-9s1.3-6.4 4-9z"/></svg></span>
+              <span class="about-stat-value">Global</span>
+              <span class="about-stat-label">Clients across the Gulf &amp; beyond</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.8L7.5 21l4.5-2.5L16.5 21l-1.3-7.2"/><circle cx="12" cy="9" r="2.25"/></svg></span>
+              <span class="about-stat-value">Trusted</span>
+              <span class="about-stat-label">By professionals &amp; organizations</span>
             </div>
           </div>
 
-          <div class="about-methodcol">
-            <div class="about-col-label">The method</div>
-            <div class="about-method" aria-label="How the practice works">
-              <div class="about-method-item">
-                <div class="method-num">01</div>
-                <div class="method-body"><strong>Nuria listens first.</strong><span>Before you book, a short conversation turns what's on your mind into a brief your coach reads before the hour.</span></div>
+          <div class="about-certs-panel" aria-label="Certifications and accreditations">
+            <div class="about-certs-label">Certifications &amp; Accreditations</div>
+            <div class="about-certs-grid">
+              <div class="cert-card">
+                <span class="cert-acro">MBA</span>
+                <span class="cert-desc">in HR and Artificial Intelligence</span>
+                <span class="cert-issuer">Plymouth Marjon University</span>
               </div>
-              <div class="about-method-item">
-                <div class="method-num">02</div>
-                <div class="method-body"><strong>Your coach leads the session.</strong><span>One private hour on the thing that actually matters — the hard question, asked kindly.</span></div>
+              <div class="cert-card">
+                <span class="cert-acro">PHRI</span>
+                <span class="cert-desc">Professional in Human Resources, International</span>
+                <span class="cert-issuer">HRCI</span>
               </div>
-              <div class="about-method-item">
-                <div class="method-num">03</div>
-                <div class="method-body"><strong>The work continues.</strong><span>Between sessions, Nuria stays with you — your plan, your rehearsals, your next move.</span></div>
+              <div class="cert-card">
+                <span class="cert-acro">ICF</span>
+                <span class="cert-desc">Certified Career Coach</span>
+                <span class="cert-issuer">International Coaching Federation</span>
+              </div>
+              <div class="cert-card">
+                <span class="cert-acro">CMI</span>
+                <span class="cert-desc">HR Management Professional</span>
+                <span class="cert-issuer">Chartered Management Institute</span>
+              </div>
+              <div class="cert-card">
+                <span class="cert-acro">SCQF 11</span>
+                <span class="cert-desc">Strategic Management, Level 11</span>
+                <span class="cert-issuer">Scottish Credit &amp; Qualifications Framework</span>
+              </div>
+              <div class="cert-card">
+                <span class="cert-acro">CPT</span>
+                <span class="cert-desc">Certified Professional Trainer</span>
+                <span class="cert-issuer">Professional Certification</span>
               </div>
             </div>
           </div>
