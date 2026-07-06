@@ -1098,7 +1098,9 @@ body[data-night="1"] .brand-logo-img{
   scrollbar-width:thin;scrollbar-color:rgba(201,169,107,0.25) transparent;
 }
 .dash-side-stack > *{flex-shrink:0}
-.dash-side-stack .dash-profile-card{flex-shrink:1;min-height:12rem}
+/* The profile card takes its natural height; the stack scrolls as a whole.
+   flex-shrink:1 here crushed the card below its content, overlapping the links. */
+.dash-side-stack .dash-profile-card{flex-shrink:0;min-height:12rem}
 .nuria-thread,.dash-brief-panel{scrollbar-width:thin;scrollbar-color:rgba(201,169,107,0.25) transparent}
 .dash-side-stack .session-hero{order:0}
 .dash-side-stack #dash-session-empty{order:0}
