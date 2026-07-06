@@ -3166,8 +3166,11 @@ body.modal-open .dash-body{overflow:hidden}
 }
 
 /* ============================== ABOUT ============================== */
+/* No-scroll desktop: view owns no scroll; the shell is the viewport box. */
+#view-about{overflow:hidden}
 .about-layout{
-  display:grid;grid-template-columns:minmax(0, 1fr) minmax(0, 1.2fr);
+  box-sizing:border-box;
+  display:grid;grid-template-columns:minmax(0, 0.92fr) minmax(0, 1.08fr);
   height:100vh;height:100dvh;padding-top:var(--nav-h);
   align-items:stretch;
 }
@@ -3186,132 +3189,115 @@ body.modal-open .dash-body{overflow:hidden}
   font-family:'Bodoni Moda',serif;font-size:3rem;font-style:italic;
   color:var(--gold-deep);opacity:0.5;
 }
-.about-rings{
-  position:absolute;
-  top:18%;right:-8%;
-  width:240px;height:240px;
-  border-radius:50%;
-  border:1px solid rgba(151,121,63,0.25);
-  pointer-events:none;
-}
-.about-rings::before{
-  content:"";position:absolute;inset:-40px;
-  border-radius:50%;border:1px solid rgba(151,121,63,0.15);
-}
+/* Content column — a fixed, viewport-height stack: head / band / foot. No inner scroll. */
 .about-content{
-  padding:2.5rem clamp(2rem, 5vw, 5rem) 3rem;
+  box-sizing:border-box;height:100%;
+  padding:clamp(1.75rem,3.2vh,2.75rem) clamp(2rem,4.5vw,4.5rem) clamp(1.75rem,3.2vh,2.75rem);
   display:flex;flex-direction:column;
-  overflow-y:auto;max-height:calc(100dvh - var(--nav-h));
-  scrollbar-width:thin;
+  /* Content fits the viewport at target resolutions, so this box does not scroll.
+     If text scales up (browser zoom / large fonts) the column scrolls INTERNALLY
+     instead of clipping or overlapping — the page/view itself never scrolls. */
+  overflow-y:auto;overflow-x:hidden;min-height:0;
 }
-.about-content > :first-child{margin-top:auto}
-.about-content > :last-child{margin-bottom:auto}
+.about-head{margin-bottom:clamp(1rem,2.4vh,1.75rem)}
+.about-eyebrow{margin-bottom:0.85rem}
 .about-h1{
-  font-size:clamp(2.5rem, 4.5vw, 4rem);
-  line-height:1.05;font-weight:400;
-  margin-bottom:1.75rem;letter-spacing:-0.02em;
+  font-size:clamp(2rem, 3.4vw, 3.1rem);
+  line-height:1.06;font-weight:400;
+  margin-bottom:clamp(0.75rem,1.6vh,1.15rem);letter-spacing:-0.02em;
   color:var(--ink);
 }
 .about-h1 em{font-style:italic;color:var(--gold-deep);font-weight:500}
 .about-lead{
   font-family:'Instrument Sans',sans-serif;
-  font-size:1.05rem;color:var(--text);
-  line-height:1.6;font-weight:400;
-  margin-bottom:2rem;max-width:56ch;
+  font-size:clamp(0.9rem,1.02vw,1rem);color:var(--text);
+  line-height:1.55;font-weight:400;
+  margin:0;max-width:58ch;
 }
-/* Certifications — a printed credentials line, abbreviations in didone */
-.about-certs{margin-bottom:2rem}
-.about-certs-label{
-  font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
-  color:var(--gold-deep);margin-bottom:0.5rem;
+
+/* The band — credentials beside the method, hairline-divided, filling the middle. */
+.about-band{
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(1.5rem,3vw,3rem);
+  /* center only when there is spare room; never overlap when content is tall */
+  align-content:safe center;
+  border-top:1px solid var(--line-strong);
+  border-bottom:1px solid var(--line-strong);
+  padding:clamp(1rem,2.4vh,1.75rem) 0;
 }
+.about-col-label{
+  font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;
+  color:var(--gold-deep);margin-bottom:0.9rem;
+}
+
+/* Credentials column — MBA line then the five certifications. */
+.credential-line{margin-bottom:1.1rem}
+.credential-label{
+  font-size:0.6rem;letter-spacing:0.22em;color:var(--gold-deep);
+  text-transform:uppercase;margin-bottom:0.3rem;font-weight:600;
+}
+.credential-title{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(1.15rem,1.5vw,1.4rem);color:var(--ink);
+  font-weight:500;line-height:1.2;margin-bottom:0.2rem;
+}
+.credential-title em{font-style:italic;color:var(--gold-deep)}
+.credential-school{
+  font-size:0.85rem;color:var(--ink-2);line-height:1.4;letter-spacing:0.01em;
+}
+.credential-school strong{color:var(--ink);font-weight:600}
+
+.about-certs{margin:0}
 .about-certs-list{
   list-style:none;margin:0;padding:0;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:0 2rem;
-  border-top:1px solid var(--line-strong);
+  border-top:1px solid var(--line);
 }
 .about-certs-list li{
   display:flex;align-items:baseline;gap:0.75rem;
-  padding:0.625rem 0;
+  padding:clamp(0.4rem,0.9vh,0.55rem) 0;
   border-bottom:1px solid var(--line);
   min-width:0;
 }
 .about-certs-list strong{
   font-family:'Bodoni Moda',serif;font-style:italic;font-weight:500;
-  font-size:1.05rem;color:var(--ink);white-space:nowrap;flex-shrink:0;
+  font-size:1rem;color:var(--ink);white-space:nowrap;flex-shrink:0;
+  min-width:4.25rem;
 }
 .about-certs-list span{
-  font-size:0.8rem;color:var(--text-dim);line-height:1.4;
+  font-size:0.76rem;color:var(--text-dim);line-height:1.35;
   min-width:0;overflow-wrap:break-word;
 }
 
-/* The method — three numbered movements, hairline-ruled like a printed colophon */
-.about-method{
-  margin-bottom:2rem;
-  border-top:1px solid var(--line-strong);
-}
+/* The method — three numbered movements, ruled like a printed colophon. */
+.about-method{margin:0}
 .about-method-item{
-  display:grid;grid-template-columns:3.5rem minmax(0,1fr);
-  gap:1rem;align-items:baseline;
-  padding:1.125rem 0;
+  display:grid;grid-template-columns:2.5rem minmax(0,1fr);
+  gap:0.85rem;align-items:baseline;
+  padding:clamp(0.55rem,1.3vh,0.9rem) 0;
   border-bottom:1px solid var(--line);
 }
+.about-method-item:last-child{border-bottom:none;padding-bottom:0}
 .method-num{
   font-family:'Bodoni Moda',serif;font-style:italic;
-  font-size:1.25rem;color:var(--gold-deep);
+  font-size:1.15rem;color:var(--gold-deep);
   font-variant-numeric:tabular-nums;
 }
 .method-body strong{
   display:block;font-family:'Bodoni Moda',serif;font-weight:500;
-  font-size:1.2rem;color:var(--ink);margin-bottom:0.25rem;
+  font-size:clamp(1.02rem,1.25vw,1.15rem);color:var(--ink);margin-bottom:0.15rem;
 }
 .method-body span{
-  display:block;font-size:0.9rem;color:var(--text-dim);line-height:1.55;max-width:52ch;
+  display:block;font-size:0.8rem;color:var(--text-dim);line-height:1.45;max-width:44ch;
 }
-/* Credential card — MBA achievement */
-.credential-card{
-  display:flex;align-items:center;gap:1.25rem;
-  padding:1.25rem 1.75rem;
-  background:linear-gradient(135deg, var(--gold-bg) 0%, var(--surface) 70%);
-  border-radius:var(--radius-lg);
-  border:1px solid rgba(184,152,92,0.25);
-  margin-bottom:2rem;
-  position:relative;overflow:hidden;
-}
-.credential-card::before{
-  content:"";position:absolute;
-  top:-50%;right:-10%;width:240px;height:240px;
-  background:radial-gradient(circle,rgba(184,152,92,0.15) 0%,transparent 70%);
-  border-radius:50%;pointer-events:none;
-}
-.credential-icon{
-  width:48px;height:48px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold-deep);
-  background:rgba(151,121,63,0.1);
-  border-radius:14px;
-  position:relative;z-index:1;
-}
-.credential-icon svg{width:26px;height:26px}
-.credential-text{flex:1;min-width:0;position:relative;z-index:1}
-.credential-label{
-  font-size:0.65rem;letter-spacing:0.25em;color:var(--gold-deep);
-  text-transform:uppercase;margin-bottom:0.4rem;font-weight:600;
-}
-.credential-title{
-  font-family:'Bodoni Moda',serif;
-  font-size:1.4rem;color:var(--ink);
-  font-weight:500;line-height:1.2;margin-bottom:0.5rem;
-}
-.credential-title em{font-style:italic;color:var(--gold-deep)}
-.credential-school{
-  font-size:0.95rem;color:var(--ink-2);line-height:1.4;
-  letter-spacing:0.01em;
-}
-.credential-school strong{color:var(--ink);font-weight:600}
 
-.about-cta{display:flex;justify-content:flex-start;align-items:center;gap:1rem;flex-wrap:wrap}
+/* Foot — CTA + links anchored at the bottom. */
+.about-foot{
+  flex:0 0 auto;
+  margin-top:clamp(1rem,2.4vh,1.75rem);
+  display:flex;flex-wrap:wrap;align-items:center;
+  gap:0.85rem 1rem;
+}
 .about-social{
   display:inline-flex;align-items:center;gap:0.5rem;
   padding:0.625rem 1rem;
@@ -3321,10 +3307,13 @@ body.modal-open .dash-body{overflow:hidden}
   transition:color 0.2s var(--ease),background-color 0.2s var(--ease),border-color 0.2s var(--ease);
 }
 .about-coach-link{
-  display:inline-flex;align-items:center;min-height:44px;margin-top:1rem;
+  /* Coach-only: hidden until updateCoachAccessUI() adds .visible, mirroring the admin buttons */
+  display:none;align-items:center;min-height:44px;
+  margin-left:auto;
   font-size:0.8125rem;color:var(--text-mute);cursor:pointer;
   transition:color 0.2s var(--ease);
 }
+.about-coach-link.visible{display:inline-flex}
 .about-coach-link:hover{color:var(--gold-deep)}
 .about-social:hover{
   background:#0A66C2;color:#fff;border-color:#0A66C2;
@@ -4333,13 +4322,13 @@ body.modal-open .dash-body{overflow:hidden}
   .hero-portrait::after{display:none}
   .hero-rings{width:380px;height:380px;left:50%}
   .orb-stage{width:340px;height:340px}
+  #view-about{overflow-y:auto;overflow-x:hidden}
   .about-layout{grid-template-columns:1fr;height:auto}
   .about-portrait{height:320px}
-  .about-content{padding:2rem 1.5rem;max-height:none}
-  .about-testimonials{grid-template-columns:1fr;gap:0.75rem}
-  .credential-card{padding:1rem 1.25rem;gap:0.875rem}
-  .credential-icon{width:42px;height:42px}
-  .credential-title{font-size:1.25rem}
+  .about-content{height:auto;overflow:visible;padding:2rem 1.5rem}
+  .about-band{grid-template-columns:1fr;gap:1.5rem;align-content:start;padding:1.5rem 0}
+  .about-foot{margin-top:1.5rem}
+  .about-coach-link{margin-left:0}
   .landing,.view.landing{height:auto;overflow:auto}
   .tracks-grid{grid-template-columns:repeat(2,1fr)}
   .flow-grid{grid-template-columns:repeat(2,1fr)}
@@ -4513,62 +4502,60 @@ body.modal-open .dash-body{overflow:hidden}
     <div class="about-layout">
       <div class="about-portrait">
         <img src="nesreen-graduation.jpg" alt="Nesreen — MBA graduate, Plymouth Marjon University" onerror="this.style.display='none';this.parentElement.classList.add('no-img')"/>
-        <div class="about-rings"></div>
       </div>
       <div class="about-content">
-        <div class="hero-eyebrow">About Nesreen</div>
-        <h1 class="about-h1">She listens.<br/> <em>Then she tells the truth.</em></h1>
-        <p class="about-lead">Nesreen coaches leaders, founders, and professionals through career decisions, leadership pressure, and confidence work — and over 300,000 professionals follow her career guidance on LinkedIn. Nuria gives her the context before the call.</p>
+        <div class="about-head">
+          <div class="hero-eyebrow about-eyebrow">About Nesreen</div>
+          <h1 class="about-h1">She listens.<br/> <em>Then she tells the truth.</em></h1>
+          <p class="about-lead">Nesreen coaches leaders, founders, and professionals through career decisions, leadership pressure, and confidence work — and over 300,000 professionals follow her career guidance on LinkedIn. Nuria gives her the context before the call.</p>
+        </div>
 
-        <div class="credential-card">
-          <div class="credential-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10 L12 5 L2 10 L12 15 L22 10 Z"/>
-              <path d="M6 12 V17 a2 2 0 0 0 1 1.7 c1.4 0.9 3 1.3 5 1.3 s3.6 -0.4 5 -1.3 a2 2 0 0 0 1 -1.7 V12"/>
-              <line x1="22" y1="10" x2="22" y2="16"/>
-            </svg>
+        <div class="about-band">
+          <div class="about-creds">
+            <div class="about-col-label">Credentials</div>
+            <div class="credential-line">
+              <div class="credential-label">Education</div>
+              <div class="credential-title">MBA in HR and <em>Artificial Intelligence</em></div>
+              <div class="credential-school"><strong>Plymouth Marjon University</strong></div>
+            </div>
+            <div class="about-certs" aria-label="Certifications">
+              <ul class="about-certs-list">
+                <li><strong>PHRI</strong><span>Professional in Human Resources, International (HRCI)</span></li>
+                <li><strong>ICF</strong><span>Certified Career Coach (International Coaching Federation)</span></li>
+                <li><strong>CMI</strong><span>HR Management Professional (Chartered Management Institute)</span></li>
+                <li><strong>SCQF 11</strong><span>Strategic Management, Level 11</span></li>
+                <li><strong>CPT</strong><span>Certified Professional Trainer</span></li>
+              </ul>
+            </div>
           </div>
-          <div class="credential-text">
-            <div class="credential-label">Education</div>
-            <div class="credential-title">MBA in HR and <em>Artificial intelligence</em></div>
-            <div class="credential-school"><strong>Plymouth Marjon University</strong></div>
+
+          <div class="about-methodcol">
+            <div class="about-col-label">The method</div>
+            <div class="about-method" aria-label="How the practice works">
+              <div class="about-method-item">
+                <div class="method-num">01</div>
+                <div class="method-body"><strong>Nuria listens first.</strong><span>Before you book, a short conversation turns what's on your mind into a brief your coach reads before the hour.</span></div>
+              </div>
+              <div class="about-method-item">
+                <div class="method-num">02</div>
+                <div class="method-body"><strong>Your coach leads the session.</strong><span>One private hour on the thing that actually matters — the hard question, asked kindly.</span></div>
+              </div>
+              <div class="about-method-item">
+                <div class="method-num">03</div>
+                <div class="method-body"><strong>The work continues.</strong><span>Between sessions, Nuria stays with you — your plan, your rehearsals, your next move.</span></div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="about-certs" aria-label="Certifications">
-          <div class="about-certs-label">Certified</div>
-          <ul class="about-certs-list">
-            <li><strong>PHRI</strong><span>Professional in Human Resources — International (HRCI)</span></li>
-            <li><strong>ICF</strong><span>Certified Career Coach — International Coaching Federation</span></li>
-            <li><strong>CMI</strong><span>HR Management Professional — Chartered Management Institute</span></li>
-            <li><strong>SCQF 11</strong><span>Strategic Management, Level 11</span></li>
-            <li><strong>CPT</strong><span>Certified Professional Trainer</span></li>
-          </ul>
-        </div>
-
-        <div class="about-method" aria-label="How the practice works">
-          <div class="about-method-item">
-            <div class="method-num">01</div>
-            <div class="method-body"><strong>Nuria listens first.</strong><span>Before you book, a short conversation turns what's on your mind into a brief your coach reads before the hour.</span></div>
-          </div>
-          <div class="about-method-item">
-            <div class="method-num">02</div>
-            <div class="method-body"><strong>Your coach leads the session.</strong><span>One private hour on the thing that actually matters — the hard question, asked kindly.</span></div>
-          </div>
-          <div class="about-method-item">
-            <div class="method-num">03</div>
-            <div class="method-body"><strong>The work continues.</strong><span>Between sessions, Nuria stays with you — your plan, your rehearsals, your next move.</span></div>
-          </div>
-        </div>
-
-        <div class="about-cta">
+        <div class="about-foot">
           <button class="btn btn-primary btn-lg" data-view="start">Create your brief →</button>
           <a class="about-social" href="https://www.linkedin.com/in/nesrinabdelhakim/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37z"/></svg>
             Connect on LinkedIn
           </a>
+          <a class="about-coach-link" id="about-coach-link" data-view="coach">Coach desk →</a>
         </div>
-        <a class="about-coach-link" data-view="coach">Coach desk →</a>
       </div>
     </div>
   </div>
@@ -5895,6 +5882,7 @@ function updateCoachAccessUI(){
   const devShow = isDevAdminPreview();
   document.getElementById('topnav-admin-btn')?.classList.toggle('visible', show);
   document.getElementById('dash-admin-btn')?.classList.toggle('visible', show);
+  document.getElementById('about-coach-link')?.classList.toggle('visible', show || devShow);
   document.getElementById('topnav-dev-admin-btn')?.classList.toggle('visible', devShow);
 }
 
