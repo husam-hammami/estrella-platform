@@ -3770,10 +3770,52 @@ body.modal-open .dash-body{overflow:hidden}
 .start-page{
   min-height:100%;width:100%;
   display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  overflow-y:auto;
+  padding:calc(var(--nav-h) + 1.5rem) 1.5rem 1.5rem;
   position:relative;
 }
+/* The intake card — a bounded, self-sizing surface centred on the dark stage.
+   Content-sized + centred, so no dead band above it at first paint or in-conversation. */
+.start-card{
+  width:100%;max-width:640px;margin:0 auto;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:0 24px 60px -28px rgba(0,0,0,0.55),0 1px 2px rgba(0,0,0,0.3);
+  display:flex;flex-direction:column;
+  padding:2.5rem 2.5rem 1.25rem;
+  position:relative;overflow:hidden;
+}
+.start-card-star{
+  position:absolute;top:-14px;right:-14px;
+  width:48px;height:48px;color:var(--gold);
+  opacity:0.14;pointer-events:none;
+}
+.start-head{
+  width:100%;text-align:center;
+  display:flex;flex-direction:column;gap:0.4rem;
+  margin-bottom:1.25rem;
+}
+.start-intake-eyebrow{
+  font-size:0.66rem;font-weight:600;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold-deep);
+}
+.start-intake-title{
+  font-family:'Bodoni Moda',serif;font-weight:400;
+  font-size:clamp(1.5rem,3.2vw,2rem);line-height:1.2;
+  letter-spacing:-0.01em;color:var(--ink);
+  text-wrap:balance;margin:0;
+}
+.start-intake-sub{
+  font-size:0.875rem;color:var(--text-dim);
+  line-height:1.55;max-width:44ch;margin:0 auto;
+}
+.start-page.in-conversation .start-intake-title{font-size:clamp(1.25rem,2.4vw,1.6rem)}
+.start-page.in-conversation .start-intake-sub{display:none}
 /* The Ascent — the brand arc as intake progress: three answers, one rising line */
-.start-arc{width:min(300px,58vw);margin:0 auto 2.25rem;transition:width 0.4s var(--ease),margin 0.4s var(--ease)}
+.start-arc{width:min(220px,52vw);margin:0 auto 0.75rem}
 .start-arc svg{width:100%;height:auto;display:block;overflow:visible}
 .start-arc-base{fill:none;stroke:var(--gold);stroke-width:1;opacity:0.2}
 .start-arc-progress{
@@ -3784,32 +3826,36 @@ body.modal-open .dash-body{overflow:hidden}
 }
 .start-arc-star{color:var(--gold);opacity:0.3;transition:opacity 0.6s var(--ease),filter 0.6s var(--ease)}
 .start-arc-star.lit{opacity:1;filter:drop-shadow(0 0 9px rgba(232,207,150,0.85))}
-.start-page.in-conversation .start-arc{width:170px;margin:0 auto 1.25rem}
 @media (prefers-reduced-motion: reduce){
   .start-arc-progress{transition:none}
 }
-.start-stage{
-  flex:1;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  padding:4rem 2rem 2rem;
+.start-steps{
+  display:flex;align-items:center;justify-content:center;
+  gap:0.6rem;margin-bottom:0.75rem;
 }
-.start-page.in-conversation .start-stage{
-  justify-content:flex-end;
-  padding-top:calc(var(--nav-h) + 1.5rem);padding-bottom:1.5rem;
+.start-step{
+  font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text-mute);
+}
+.start-step-sep{color:var(--text-mute);opacity:0.5}
+.start-stage{
+  display:flex;flex-direction:column;align-items:center;
+  padding:0;
 }
 .start-question{
   font-family:'Bodoni Moda',serif;font-weight:400;text-wrap:balance;
-  font-size:clamp(2.25rem,5vw,3.5rem);
+  font-size:clamp(1.5rem,2.6vw,1.75rem);
   letter-spacing:-0.01em;color:var(--ink);
-  text-align:center;max-width:640px;line-height:1.15;margin:0;
-  transition:opacity 0.45s var(--ease-out);
+  text-align:center;line-height:1.25;margin:1rem 0 0;
 }
 .start-page.in-conversation .start-question{display:none}
 .start-conversation{
-  width:100%;max-width:640px;
-  display:flex;flex-direction:column;gap:1.5rem;
+  width:100%;max-width:none;
+  display:flex;flex-direction:column;gap:1.25rem;
   padding-bottom:1rem;
 }
+.start-conversation .start-msg-ai{font-size:1.15rem;opacity:0.72}
+.start-conversation .start-msg-ai:last-of-type{font-size:1.4rem;opacity:1}
 .start-msg{
   opacity:0;transform:translateY(8px);
   animation:startMsgIn 0.5s var(--ease-out) forwards;
@@ -3836,15 +3882,15 @@ body.modal-open .dash-body{overflow:hidden}
 }
 .start-inputbar{
   position:sticky;bottom:0;
-  background:linear-gradient(to top,var(--bg) 60%,transparent);
-  padding:1.5rem 2rem 1.75rem;
-  display:flex;flex-direction:column;align-items:center;
+  background:var(--surface);
+  padding:1rem 0 0;margin-top:1.25rem;
+  display:flex;flex-direction:column;align-items:stretch;
 }
 .start-input-wrap{
-  width:100%;max-width:640px;
+  width:100%;max-width:none;
   display:flex;align-items:center;gap:0.5rem;
   padding:0.875rem 0.875rem 0.875rem 1.25rem;
-  background:var(--surface);
+  background:rgba(255,255,255,0.02);
   border:1px solid var(--line-strong);
   border-radius:999px;
   transition:border-color 0.2s,box-shadow 0.2s;
@@ -3900,8 +3946,8 @@ body.modal-open .dash-body{overflow:hidden}
   background:var(--surface);
   border:1px solid var(--line);
   border-radius:20px;
-  box-shadow:0 24px 60px -28px rgba(20,18,14,0.18),
-             0 1px 2px rgba(20,18,14,0.04);
+  box-shadow:0 24px 60px -28px rgba(0,0,0,0.55),
+             0 1px 2px rgba(0,0,0,0.3);
   text-align:left;
   margin-bottom:2rem;
 }
@@ -4128,9 +4174,18 @@ body.modal-open .dash-body{overflow:hidden}
   .start-profile-quote{font-size:1rem;padding-left:0.75rem}
 }
 @media (max-width:720px){
-  .start-question{font-size:2rem}
-  .start-msg-ai{font-size:1.15rem;padding-right:1rem}
+  .start-card{padding:1.75rem 1.5rem 1.25rem}
+  .start-question{font-size:1.375rem}
+  .start-msg-ai{padding-right:1rem}
   .start-msg-user{padding-left:1rem}
+}
+@media (max-width:480px){
+  .start-page{padding:calc(var(--nav-h) + 1rem) 1rem 1rem}
+  .start-card{max-width:100%;padding:1.5rem 1.25rem 1.25rem;border-radius:16px}
+  .start-arc{width:min(180px,60vw)}
+  .start-steps{gap:0.45rem}
+  .start-step{font-size:0.62rem}
+  #start-input{font-size:1rem}
 }
 
 /* Toast notifications */
@@ -4604,19 +4659,53 @@ body.modal-open .dash-body{overflow:hidden}
   <!-- ============================== VIEW: START (Nuria diagnostic) ============================== -->
   <div class="view" id="view-start" data-register="night">
     <div class="start-page">
-      <div class="start-stage">
-        <div class="start-arc" aria-hidden="true">
-          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
-            <path class="start-arc-base" d="M 10 112 C 110 112 220 84 300 22"/>
-            <path class="start-arc-progress" id="start-arc-progress" d="M 10 112 C 110 112 220 84 300 22" pathLength="100"/>
-            <g class="start-arc-star" id="start-arc-star" fill="currentColor">
-              <path transform="translate(289,11) scale(0.7)" d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/>
-              <path transform="translate(289,11) scale(0.7) rotate(45 16 16)" d="M16 6.5 L16.6 15.4 L25.5 16 L16.6 16.6 L16 25.5 L15.4 16.6 L6.5 16 L15.4 15.4 Z"/>
-            </g>
-          </svg>
+      <div class="start-card">
+        <svg class="start-card-star" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/>
+        </svg>
+
+        <div class="start-head">
+          <div class="start-intake-eyebrow">Before your session</div>
+          <h2 class="start-intake-title">A few questions to prepare your brief</h2>
+          <p class="start-intake-sub">Your answers are saved to a short brief and shared with your coach before your session begins.</p>
         </div>
-        <div class="start-conversation" id="start-conversation"></div>
-        <h1 class="start-question" id="start-question">What's your name, and what do you do?</h1>
+
+        <div class="start-stage">
+          <div class="start-arc" aria-hidden="true">
+            <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg">
+              <path class="start-arc-base" d="M 10 112 C 110 112 220 84 300 22"/>
+              <path class="start-arc-progress" id="start-arc-progress" d="M 10 112 C 110 112 220 84 300 22" pathLength="100"/>
+              <g class="start-arc-star" id="start-arc-star" fill="currentColor">
+                <path transform="translate(289,11) scale(0.7)" d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/>
+                <path transform="translate(289,11) scale(0.7) rotate(45 16 16)" d="M16 6.5 L16.6 15.4 L25.5 16 L16.6 16.6 L16 25.5 L15.4 16.6 L6.5 16 L15.4 15.4 Z"/>
+              </g>
+            </svg>
+          </div>
+          <div class="start-steps" aria-hidden="true">
+            <span class="start-step">Role</span>
+            <span class="start-step-sep">·</span>
+            <span class="start-step">Goal</span>
+            <span class="start-step-sep">·</span>
+            <span class="start-step">Obstacle</span>
+          </div>
+          <div class="start-conversation" id="start-conversation"></div>
+          <h1 class="start-question" id="start-question">What is your role, your field, and how long have you been doing it?</h1>
+        </div>
+
+        <div class="start-inputbar" id="start-inputbar">
+          <div class="start-input-wrap">
+            <input type="text" id="start-input" placeholder="Type or speak your answer" autocomplete="off"/>
+            <button class="start-mic" id="start-mic" title="Speak instead" aria-label="Speak instead">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+            </button>
+            <button class="start-send" id="start-send" aria-label="Send">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+          <div class="start-tertiary">
+            <a id="start-already-client" data-view="dashboard">Already a client →</a>
+          </div>
+        </div>
       </div>
 
       <div class="start-close" id="start-close">
@@ -4656,21 +4745,6 @@ body.modal-open .dash-body{overflow:hidden}
 
         <div class="start-close-tertiary">
           <a data-view="landing">Come back later</a>
-        </div>
-      </div>
-
-      <div class="start-inputbar" id="start-inputbar">
-        <div class="start-input-wrap">
-          <input type="text" id="start-input" placeholder="Type or speak your answer" autocomplete="off"/>
-          <button class="start-mic" id="start-mic" title="Speak instead" aria-label="Speak instead">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
-          </button>
-          <button class="start-send" id="start-send" aria-label="Send">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
-        </div>
-        <div class="start-tertiary">
-          <a id="start-already-client" data-view="dashboard">Already a client →</a>
         </div>
       </div>
 
@@ -8552,12 +8626,12 @@ const captureOrder = ['identity', 'goal', 'pattern'];
 
 // AI responses shown after each user turn. Index = turn index (0 = after Q1 answered, etc.)
 const startScript = [
-  // After identity (Q1) → ask goal
-  { ai: "Good to meet you{nameSuffix}. If the next year went the way you want — what's different?" },
+  // After identity/role (Q1) → ask goal
+  { ai: "Thank you{nameSuffix}. What is the specific outcome you want from the next few months in your role?" },
   // After goal (Q2) → ask obstacle
-  { ai: "And honestly — what's getting in the way of that right now?" },
+  { ai: "Understood. What is the main obstacle currently standing between you and that outcome?" },
   // After obstacle (Q3) → synthesis + final
-  { ai: "That's what I needed. I'll have your brief ready for your coach.", final: true }
+  { ai: "That gives me what I need. I will prepare your brief for your coach.", final: true }
 ];
 
 let startTurn = 0;
@@ -8785,7 +8859,7 @@ function startAdvanceScripted(userText, input){
 
   if(!startIntakeNoted){
     startIntakeNoted = true;
-    startAddMessage('Nuria is resting, so this is a short written intake — your answers go to your coach exactly as you write them.', 'note');
+    startAddMessage('This is a written intake. Your answers are saved to a brief and shared with your coach before your session.', 'note');
   }
 
   setTimeout(()=>{
