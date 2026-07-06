@@ -98,7 +98,7 @@ module.exports = async (req, res) => {
           price_data: {
             currency: PRICE_CURRENCY,
             unit_amount: PRICE_AMOUNT,
-            product_data: { name: 'Coaching session with Nesreen' },
+            product_data: { name: 'Private Coaching Session' },
           },
         }],
         payment_intent_data: {
