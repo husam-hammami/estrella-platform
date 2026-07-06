@@ -4289,7 +4289,7 @@ body.modal-open .dash-body{overflow:hidden}
         <p class="hero-sub">Career coaching, books, and courses that turn ambition into clear next steps.</p>
         <div class="hero-options" aria-label="Choose where to start">
           <div class="hero-lockstep">
-            <button class="btn btn-gold btn-lg" type="button" data-view="start">Begin — talk to Nuria</button>
+            <button class="btn btn-gold btn-lg" type="button" data-view="start">Start your screening</button>
             <span class="hero-lockstep-note">A short conversation tonight. Nesreen reads it before you meet.</span>
           </div>
           <nav class="hero-index" aria-label="Explore Nuria">
@@ -4502,7 +4502,7 @@ body.modal-open .dash-body{overflow:hidden}
           <strong>AED 500</strong>
           <span>60 minutes · 1-on-1 video · Brief included</span>
         </div>
-        <button class="btn btn-primary btn-lg door-cta" type="button" data-view="start">Talk to Nesreen →</button>
+        <button class="btn btn-primary btn-lg door-cta" type="button" data-view="start">Book your session →</button>
         <button class="door-secondary" type="button" id="practice-book-direct">I already know — just pick a time</button>
       </div>
     </div>
@@ -6950,7 +6950,7 @@ async function companionSend(text){
     if(resp.status === 503){ companionUnavailable(); return; }
     if(resp.status === 401){
       companionTyping(false);
-      companionAddMsg('Sign in to talk with Nuria.', 'note');
+      companionAddMsg('Sign in to continue.', 'note');
       return;
     }
     if(!resp.ok || !resp.body) throw new Error('companion_unavailable');
@@ -7009,7 +7009,7 @@ function initCompanion(user){
     if(els.starters) els.starters.hidden = true;
     if(els.sub) els.sub.textContent = 'Sign in and Nuria is here — grounded in your own brief.';
     if(els.thread && !els.thread.childElementCount){
-      companionAddMsg(BACKEND_AVAILABLE ? 'Sign in with LinkedIn to talk with Nuria.' : 'Nuria comes online on the live site.', 'note');
+      companionAddMsg(BACKEND_AVAILABLE ? 'Sign in with LinkedIn to continue.' : 'Available on the live site.', 'note');
     }
     return;
   }
