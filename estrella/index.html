@@ -3834,7 +3834,7 @@ body.modal-open .dash-body{overflow:hidden}
   border-radius:22px;overflow:hidden;border:1px solid var(--gold-soft);
   box-shadow:0 30px 60px -40px rgba(20,18,14,0.4);
 }
-.cch-photo img{width:100%;height:100%;object-fit:cover;object-position:64% 22%;display:block;filter:saturate(0.98)}
+.cch-photo img{width:100%;height:100%;object-fit:cover;object-position:80% 18%;display:block;filter:saturate(1)}
 /* ---- DECK ---- */
 .cch-deck{display:grid;grid-template-columns:1.28fr 1.12fr 1fr;gap:clamp(0.8rem,1.3vw,1.3rem);min-height:0}
 .cch-card{
@@ -3881,32 +3881,23 @@ body.modal-open .dash-body{overflow:hidden}
 .cch-time p{font-size:0.74rem;color:var(--text-dim);margin:0;line-height:1.35}
 .cch-time .btn{margin-top:0.15rem;width:100%;min-height:40px}
 /* how it works + coach */
-.cch-steps{display:flex;flex-direction:column;gap:clamp(0.35rem,0.8vh,0.55rem)}
-.cch-step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0.6rem;align-items:start}
-.cch-step-n{width:24px;height:24px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);font-size:0.72rem;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center}
+.cch-steps{display:flex;flex-direction:column;gap:clamp(0.55rem,1.6vh,1.15rem);flex:1;justify-content:space-between;padding:0.35rem 0}
+.cch-step{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0.65rem;align-items:start}
+.cch-step-n{width:26px;height:26px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);font-size:0.74rem;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center}
 .cch-step div{min-width:0}
-.cch-step strong{display:block;font-size:0.8rem;font-weight:600;color:var(--ink);line-height:1.2}
-.cch-step span{display:block;font-size:0.71rem;color:var(--text-dim);line-height:1.3;margin-top:0.1rem}
-.cch-coach{margin-top:auto;padding-top:clamp(0.5rem,1.1vh,0.8rem);border-top:1px solid var(--line)}
-.cch-coach-h{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.55rem}
-.cch-coach-h svg{width:16px;height:16px;color:var(--gold-deep);flex:none}
-.cch-coach-h span{font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--gold-deep)}
-.cch-creds{list-style:none;margin:0;padding:0;display:grid;gap:0.2rem}
-.cch-creds li{display:flex;align-items:flex-start;gap:0.45rem;font-size:0.73rem;color:var(--ink-2);line-height:1.25}
-.cch-creds li svg{width:13px;height:13px;color:var(--gold-deep);flex:none;margin-top:0.15rem}
-.cch-linkedin{margin:0.55rem 0 0;font-size:0.7rem;color:var(--text-dim);line-height:1.4}
-/* ---- STAT STRIP ---- */
-.cch-stats{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;
-  padding:clamp(0.7rem,1.5vh,1.05rem) clamp(1rem,1.6vw,1.6rem);
+.cch-step strong{display:block;font-size:0.84rem;font-weight:600;color:var(--ink);line-height:1.2}
+.cch-step span{display:block;font-size:0.74rem;color:var(--text-dim);line-height:1.3;margin-top:0.1rem}
+/* ---- CREDENTIAL FOOTER — one slim line (replaces the marketing stat strip) ---- */
+.cch-credbar{
+  display:flex;align-items:center;gap:clamp(0.75rem,1.6vw,1.6rem);flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;
+  padding:clamp(0.65rem,1.4vh,0.95rem) clamp(1.1rem,1.8vw,1.75rem);
 }
-.cch-stat{display:flex;align-items:center;gap:0.7rem;padding:0 clamp(0.5rem,1vw,1rem);min-width:0}
-.cch-stat + .cch-stat{border-left:1px solid var(--line)}
-.cch-stat-ic{width:34px;height:34px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);display:flex;align-items:center;justify-content:center}
-.cch-stat-ic svg{width:16px;height:16px}
-.cch-stat-v{font-family:var(--font-display);font-weight:500;font-size:clamp(1.05rem,1.3vw,1.3rem);color:var(--ink);line-height:1}
-.cch-stat-l{font-size:0.71rem;color:var(--text-dim);line-height:1.3;margin-top:0.15rem;display:block}
+.cch-credbar-lead{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--gold-deep);white-space:nowrap}
+.cch-credbar-lead svg{width:17px;height:17px;flex:none}
+.cch-credbar-list{font-size:0.84rem;color:var(--ink-2);font-weight:500;min-width:0}
+.cch-credbar-li{margin-left:auto;font-size:0.78rem;color:var(--text-dim);white-space:nowrap;display:inline-flex;align-items:center;gap:0.45rem}
+.cch-credbar-li svg{width:14px;height:14px;color:var(--gold-deep);flex:none}
 @media (prefers-reduced-motion: no-preference){
   .cch-card.flash{animation:cchFlash 1.1s var(--ease)}
 }
@@ -3918,15 +3909,12 @@ body.modal-open .dash-body{overflow:hidden}
   .cch-hero{grid-template-columns:1fr;gap:1.5rem}
   .cch-photo{order:-1;height:clamp(220px,38vh,320px)}
   .cch-deck{grid-template-columns:1fr}
-  .cch-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:0.9rem 0}
-  .cch-stat:nth-child(3){border-left:none}
+  .cch-credbar-li{margin-left:0}
 }
 @media(max-width:560px){
   .cch-h1{font-size:clamp(2.2rem,10vw,3rem)}
   .cch-strip{grid-template-columns:1fr}
   .cch-focus{grid-template-columns:1fr}
-  .cch-stats{grid-template-columns:1fr}
-  .cch-stat + .cch-stat{border-left:none}
 }
 /* Wide but short (browser zoom, small laptops): unlock scroll so the dense deck
    never clips — the no-scroll target holds at ~900px+ tall viewports. */
@@ -4863,19 +4851,19 @@ body.modal-open .dash-body{overflow:hidden}
           <div class="cch-incl">
             <div class="cch-incl-row">
               <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
-              <div><strong>60-minute private video call</strong><span>One-on-one (1:1) with your coach.</span></div>
+              <div><strong>60-minute private video call</strong><span>One to one with your coach.</span></div>
             </div>
             <div class="cch-incl-row">
               <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/></svg></span>
-              <div><strong>Session brief</strong><span>Your situation, with clear next steps.</span></div>
+              <div><strong>Session brief</strong><span>Clear, written next steps.</span></div>
             </div>
             <div class="cch-incl-row">
               <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
-              <div><strong>Follow-up summary</strong><span>Sent within 24 hours of your call.</span></div>
+              <div><strong>Follow-up summary</strong><span>Within 24 hours.</span></div>
             </div>
             <div class="cch-incl-row">
               <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-              <div><strong>100% private</strong><span>Confidential and handled with care.</span></div>
+              <div><strong>100% private</strong><span>Confidential, always.</span></div>
             </div>
           </div>
           <div class="cch-time">
@@ -4890,47 +4878,26 @@ body.modal-open .dash-body{overflow:hidden}
         <section class="cch-card" id="cch-howcard">
           <h2 class="cch-card-h">How it works</h2>
           <div class="cch-steps">
-            <div class="cch-step"><span class="cch-step-n">1</span><div><strong>Share your focus</strong><span>A few short questions so your coach understands your goal.</span></div></div>
-            <div class="cch-step"><span class="cch-step-n">2</span><div><strong>Secure your booking</strong><span>Easy, secure payment.</span></div></div>
-            <div class="cch-step"><span class="cch-step-n">3</span><div><strong>Pick your time</strong><span>Choose a slot that suits your week.</span></div></div>
-            <div class="cch-step"><span class="cch-step-n">4</span><div><strong>Meet your coach</strong><span>A private video call for 60 minutes.</span></div></div>
-          </div>
-          <div class="cch-coach">
-            <div class="cch-coach-h">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-2.5L17 21l-1.5-8.5"/></svg>
-              <span>Your coach</span>
-            </div>
-            <ul class="cch-creds">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>PHRI — Professional in Human Resources, Intl.</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Certified Career Coach (ICF)</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>HR Management Professional (CMI)</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Strategic Management, SCQF Level 11</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>CPT — Certified Professional Trainer</li>
-            </ul>
-            <p class="cch-linkedin">More than 300,000 professionals follow her career guidance on LinkedIn.</p>
+            <div class="cch-step"><span class="cch-step-n">1</span><div><strong>Share your focus</strong><span>A few short questions before the call.</span></div></div>
+            <div class="cch-step"><span class="cch-step-n">2</span><div><strong>Secure your booking</strong><span>Fast, secure payment.</span></div></div>
+            <div class="cch-step"><span class="cch-step-n">3</span><div><strong>Pick your time</strong><span>A slot that suits your week.</span></div></div>
+            <div class="cch-step"><span class="cch-step-n">4</span><div><strong>Meet your coach</strong><span>60 minutes, one to one.</span></div></div>
           </div>
         </section>
 
       </div>
 
-      <!-- STAT STRIP -->
-      <div class="cch-stats">
-        <div class="cch-stat">
-          <span class="cch-stat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <div><span class="cch-stat-v">10+ Years</span><span class="cch-stat-l">Guiding leaders across the Gulf</span></div>
-        </div>
-        <div class="cch-stat">
-          <span class="cch-stat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.25"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="16.5" cy="9" r="2.5"/><path d="M16.5 14c2.5 0 4.5 1.7 4.5 4.2"/></svg></span>
-          <div><span class="cch-stat-v">300,000+</span><span class="cch-stat-l">Follow her guidance on LinkedIn</span></div>
-        </div>
-        <div class="cch-stat">
-          <span class="cch-stat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.7 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.7-4-9s1.3-6.4 4-9z"/></svg></span>
-          <div><span class="cch-stat-v">Across the Gulf</span><span class="cch-stat-l">Supporting careers wherever you are</span></div>
-        </div>
-        <div class="cch-stat">
-          <span class="cch-stat-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C7 17.5 4 14.5 4 10.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 8 2.5c0 4-3 7-8 10.5z"/></svg></span>
-          <div><span class="cch-stat-v">Loved by clients</span><span class="cch-stat-l">Trusted for clarity, action, and results</span></div>
-        </div>
+      <!-- CREDENTIAL FOOTER -->
+      <div class="cch-credbar">
+        <span class="cch-credbar-lead">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-2.5L17 21l-1.5-8.5"/></svg>
+          Certified
+        </span>
+        <span class="cch-credbar-list">PHRI · ICF · CMI · SCQF Level 11 · CPT</span>
+        <span class="cch-credbar-li">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37z"/></svg>
+          300,000+ follow her on LinkedIn
+        </span>
       </div>
 
     </div>
