@@ -152,6 +152,22 @@ async function handleBookAccess(req, res, params) {
     const signed = await signResp.json();
     const relative = signed.signedURL || signed.url || '';
     const url = `${base}/storage/v1${relative.startsWith('/') ? '' : '/'}${relative}`;
+
+    // The books were uploaded with a text/plain content-type, so opening the raw
+    // signed url shows HTML source (and mojibakes the em-dashes). view=1 streams
+    // the file back through the function with the correct type so it renders.
+    // Books are small HTML — safe to proxy.
+    if (params.get('view') === '1') {
+      const fileResp = await fetch(url);
+      if (!fileResp.ok) return L.sendJson(res, 502, { error: 'storage_error' });
+      const html = await fileResp.text();
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Cache-Control', 'private, no-store');
+      res.setHeader('X-Content-Type-Options', 'nosniff');
+      return res.end(html);
+    }
+
     return L.sendJson(res, 200, { url });
   } catch (e) {
     console.error('book-access error', e);

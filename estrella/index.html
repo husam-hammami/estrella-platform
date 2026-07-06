@@ -8906,7 +8906,7 @@ async function openOwnedBook(id){
     const r = await fetch('/api/me?action=book-access&id=' + encodeURIComponent(id), { credentials:'same-origin' });
     if(r.ok){
       const d = await r.json();
-      if(d && d.url){ markLibraryOpened(id); window.open(d.url, '_blank', 'noopener'); return; }
+      if(d && d.url){ markLibraryOpened(id); window.open('/api/me?action=book-access&id=' + encodeURIComponent(id) + '&view=1', '_blank', 'noopener'); return; }
     }
     if(r.status === 403){ showToast('Purchase this book to read the full edition.'); renderLibrary(); return; }
     showToast('Could not open the book — please try again.');
