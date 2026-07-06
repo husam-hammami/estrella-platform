@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mirror Journal v2 — concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2EBDC; --surface:#FBF7EC; --surface-2:#F7F1E2; --paper:#FBF6E9; --paper-edge:#EAE0C9;
+  --ink:#14120E; --ink-2:#2A2620; --text:#3D3933; --text-dim:#6E6862; --text-mute:#A39B91;
+  --line:rgba(20,18,14,.07); --line-strong:rgba(20,18,14,.12);
+  --gold:#B8985C; --gold-deep:#97793F; --gold-soft:#DCC589; --gold-bg:#F1E6C7;
+  --leather:#2E3A30; --leather-deep:#222C25; --leather-edge:#3D4D40; --leather-ink:#EDE7D6;
+  --rust:#A8553C; --shadow-sm:0 2px 8px rgba(20,18,14,.05); --shadow:0 8px 24px rgba(20,18,14,.08);
+  --shadow-xl:0 40px 120px rgba(20,18,14,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--leather-edge),var(--leather) 45%,var(--leather-deep));min-height:100vh;padding:14px;color:var(--text)}
+.page{height:calc(100vh - 28px);background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-xl);display:flex;flex-direction:column;border:1px solid rgba(0,0,0,.28)}
+.bar{height:54px;flex:none;display:flex;align-items:center;gap:16px;padding:0 22px;border-bottom:1px solid var(--line);background:rgba(251,247,236,.8)}
+.bar .back{font-size:12.5px;font-weight:600;color:var(--text-dim);border:1px solid var(--line-strong);border-radius:99px;padding:.45rem .9rem}
+.bar b{color:var(--ink)} .bar .crumb{font-size:12.5px;color:var(--text-dim)} .bar .sp{flex:1}
+.bar .brand{font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:.5rem}
+.bar .brand .star{width:16px;height:16px;color:var(--gold)}
+.studio{flex:1;min-height:0;display:grid;grid-template-columns:340px minmax(0,1fr) 300px}
+.col{min-height:0;overflow-y:auto;padding:24px 26px}
+.idea{background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-mute)}
+.idea-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.ptag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--leather);background:var(--bg-soft,#ECE3D0);border-radius:99px;padding:.28rem .65rem}
+.idea h1{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.1;color:var(--ink);font-weight:600;margin-bottom:14px}
+.idea p{font-size:14.5px;line-height:1.62;color:var(--text);margin-bottom:12px}
+.idea .pull{background:#ECE3D0;border-left:3px solid var(--leather);padding:11px 13px;border-radius:0 8px 8px 0;font-size:13.5px;color:var(--ink)}
+.pager{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid var(--line)}
+.arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-strong);display:grid;place-items:center;background:none;cursor:pointer;color:var(--ink)}
+.dots{display:flex;gap:5px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--line-strong)}.dots i.on{background:var(--leather);width:18px;border-radius:3px}
+
+/* THE JOURNAL — the instrument */
+.journal{background:var(--surface-2);border-right:1px solid var(--line);display:flex;flex-direction:column}
+.j-head{flex:none;margin-bottom:14px}
+.j-head .eyebrow{color:var(--leather)}
+.j-title{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--ink);font-weight:600;margin-top:2px}
+.j-sub{font-size:12.5px;color:var(--text-dim);margin-top:3px}
+.j-prog{display:flex;align-items:center;gap:8px;margin-top:12px}
+.j-prog .bar2{flex:1;height:5px;border-radius:99px;background:#E6DCC6;overflow:hidden}
+.j-prog .bar2 i{display:block;height:100%;width:50%;background:var(--leather)}
+.j-prog .n{font-size:11px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+
+.j-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.sec{background:var(--paper);border:1px solid var(--line-strong);border-radius:12px;overflow:hidden}
+.sec-head{display:flex;align-items:center;gap:11px;padding:11px 14px}
+.sec-ic{width:30px;height:30px;border-radius:8px;background:#ECE3D0;display:grid;place-items:center;color:var(--leather);flex:none}
+.sec-ic svg{width:16px;height:16px}
+.sec-name{font-size:13.5px;font-weight:700;color:var(--ink);flex:1}
+.sec-state{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mute)}
+.sec.filled .sec-ic{background:var(--leather);color:#fff}
+.sec.filled .sec-state{color:var(--leather)}
+.entry{padding:0 14px 11px 55px;font-size:13px;line-height:1.5;color:var(--ink)}
+.entry .q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--ink-2)}
+.entry .who{font-size:10.5px;color:var(--text-mute);margin-top:3px}
+
+/* the active section — this lesson's capture */
+.sec.active{border-color:var(--leather);box-shadow:0 0 0 1.5px var(--leather)}
+.sec.active .sec-ic{background:var(--leather);color:#fff}
+.sec.active .sec-state{color:var(--leather)}
+.capture{padding:4px 14px 14px 55px}
+.capture .prompt{font-size:13px;color:var(--text-dim);margin-bottom:9px}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opt{font-size:12.5px;font-weight:600;color:var(--ink);background:var(--surface);border:1px solid var(--line-strong);border-radius:99px;padding:.5rem .85rem;cursor:pointer}
+.opt.sel{background:#ECEFE9;border-color:var(--leather);box-shadow:inset 0 0 0 1px var(--leather)}
+.j-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:14px;margin-top:12px;border-top:1px solid var(--line)}
+.j-foot .saved{font-size:12px;color:var(--text-dim)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-size:14px;font-weight:600;border-radius:99px;padding:.7rem 1.2rem;min-height:44px;border:none;cursor:pointer;background:var(--leather);color:#F4EFE6}
+
+/* Estrella margin */
+.estrella{background:var(--surface);display:flex;flex-direction:column}
+.e-head{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.e-row{display:flex;align-items:center;gap:10px}
+.e-orb{width:32px;height:32px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold-deep));display:grid;place-items:center}
+.e-orb svg{width:15px;height:15px;color:#fff}
+.e-who{font-size:13px;font-weight:600;color:var(--ink)}
+.e-stat{font-size:11px;color:#4FA381;display:flex;align-items:center;gap:5px}
+.e-stat::before{content:"";width:6px;height:6px;border-radius:50%;background:#4FA381}
+.e-msgs{flex:1;min-height:0;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:11px;justify-content:flex-end}
+.e-msg{font-size:13px;line-height:1.55;padding:11px 13px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);color:var(--text)}
+.e-msg em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--gold-deep)}
+.e-input{margin:0 14px 14px;display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line-strong);border-radius:99px;padding:6px 6px 6px 15px;font-size:13px;color:var(--text-mute)}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="bar">
+    <span class="back">‹ Course</span>
+    <span class="crumb"><b>Confidence Reset</b> · Understanding the pattern</span>
+    <span class="sp"></span>
+    <span class="brand"><svg class="star" viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17.4 14.6 L31 16 L17.4 17.4 L16 31 L14.6 17.4 L1 16 L14.6 14.6 Z"/></svg> Estrella · Academy</span>
+  </div>
+  <div class="studio">
+    <!-- LEFT: the idea, one page at a time -->
+    <section class="col idea">
+      <div class="idea-head"><span class="eyebrow">Confidence Reset · Lesson 1 of 6</span><span class="ptag">Method</span></div>
+      <h1>Why confidence collapses</h1>
+      <p>Confidence is a state, not a trait. It rises and falls with the room, the stakes, and how safe you feel. The same person can be strong in one meeting and small in the next.</p>
+      <p>That matters because a state can be changed. When you see a low-confidence moment as a state, you stop asking "am I a confident person?" and start asking "what made it drop right there?"</p>
+      <div class="pull">A skilled engineer can give a perfect demo, then go quiet when a senior director walks in. The skill didn't change in those ten seconds. The state did.</div>
+      <div class="pager"><button class="arrow">‹</button><div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div><button class="arrow">›</button></div>
+    </section>
+
+    <!-- CENTER: the Mirror Journal — the artifact being built -->
+    <section class="col journal">
+      <div class="j-head">
+        <span class="eyebrow">Mirror Journal</span>
+        <div class="j-title">Your confidence-reset plan</div>
+        <div class="j-sub">Four parts. You add to one each lesson. It becomes a plan you keep.</div>
+        <div class="j-prog"><div class="bar2"><i></i></div><span class="n">2 / 4 parts started</span></div>
+      </div>
+      <div class="j-body">
+
+        <!-- filled section (from an earlier lesson) -->
+        <div class="sec filled">
+          <div class="sec-head"><span class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><span class="sec-name">The trigger I notice</span><span class="sec-state">Saved</span></div>
+          <div class="entry"><span class="q">"When a senior leader joins late and I'm mid-sentence."</span><div class="who">named in Lesson 1 · a comparison + stakes trigger</div></div>
+        </div>
+
+        <!-- ACTIVE section — this lesson's work -->
+        <div class="sec active">
+          <div class="sec-head"><span class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="sec-name">My answer to the critic</span><span class="sec-state">This lesson</span></div>
+          <div class="capture">
+            <div class="prompt">Which reset move answers the critic in that moment? Pick the one you'd actually use, and it goes into your plan.</div>
+            <div class="opts">
+              <span class="opt">Name it out loud</span>
+              <span class="opt sel">Answer with one fact</span>
+              <span class="opt">Shrink the stakes</span>
+              <span class="opt">Borrow past proof</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- empty sections (fill later) -->
+        <div class="sec">
+          <div class="sec-head"><span class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span><span class="sec-name">Evidence I've collected</span><span class="sec-state">Lesson 4</span></div>
+          <div class="entry" style="color:var(--text-mute);font-style:italic;padding-bottom:11px">Fills when you reach the evidence lesson.</div>
+        </div>
+        <div class="sec">
+          <div class="sec-head"><span class="sec-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></span><span class="sec-name">My reset ritual</span><span class="sec-state">Lesson 6</span></div>
+          <div class="entry" style="color:var(--text-mute);font-style:italic;padding-bottom:11px">Fills when you reach the ritual lesson.</div>
+        </div>
+      </div>
+      <div class="j-foot"><span class="saved">Chosen: Answer with one fact</span><button class="btn">Add to reset plan →</button></div>
+    </section>
+
+    <!-- RIGHT: Estrella margin -->
+    <aside class="estrella">
+      <div class="e-head"><div class="e-row"><span class="e-orb"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17.4 14.6 L31 16 L17.4 17.4 L16 31 L14.6 17.4 L1 16 L14.6 14.6 Z"/></svg></span><div><div class="e-who">Estrella notes</div><div class="e-stat">In Nesreen's voice</div></div></div></div>
+      <div class="e-msgs">
+        <div class="e-msg">Good — you named the trigger last lesson. Now hold the critic to a fact, not a feeling. <em>One true sentence beats ten reassurances.</em></div>
+        <div class="e-msg">Try this: what is one fact about your work that the critic can't argue with? That's your answer.</div>
+      </div>
+      <div class="e-input">Answer Estrella…</div>
+    </aside>
+  </div>
+</div>
+</body>
+</html>

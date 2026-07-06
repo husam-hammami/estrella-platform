@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidence Reset — V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FCFAF4; --card:#FFFFFF; --cream:#F6EFE0; --cream-2:#FBF6EA;
+  --ink:#1A1916; --ink-2:#37332B; --dim:#7B7568; --mute:#ABA597;
+  --gold:#C49A3F; --gold-soft:#E6CD86; --gold-deep:#A07A2C; --gold-bg:#FBF3DC;
+  --gold-line:rgba(196,154,63,.28);
+  --ok:#4C9C7A;
+  --line:rgba(20,18,14,.06); --line-2:rgba(20,18,14,.11);
+  --sh-1:0 1px 2px rgba(20,18,14,.04);
+  --sh-2:0 6px 18px rgba(20,18,14,.06), 0 1px 3px rgba(20,18,14,.05);
+  --sh-3:0 18px 44px rgba(20,18,14,.10), 0 4px 10px rgba(20,18,14,.05);
+  --sh-gold:0 14px 36px rgba(196,154,63,.30);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;justify-content:center;
+  background:radial-gradient(120% 80% at 50% -8%, #FFFBF0 0%, var(--bg) 46%)}
+.app{width:100%;max-width:620px;min-height:100vh;display:flex;flex-direction:column;padding:0 clamp(20px,5vw,40px)}
+
+/* top bar */
+.top{display:flex;align-items:center;gap:14px;padding:20px 0 6px}
+.back{display:inline-flex;align-items:center;gap:5px;font-size:15px;font-weight:500;color:var(--dim);background:none;border:none;cursor:pointer;padding:8px 8px 8px 4px;border-radius:12px}
+.back:hover{color:var(--ink)}
+.course{font-size:13.5px;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+.top .sp{flex:1}
+.streak{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--gold-deep);background:var(--gold-bg);border:1px solid var(--gold-line);padding:6px 11px;border-radius:99px}
+.streak svg{width:14px;height:14px}
+
+/* ===== HERO: the Reset Ring (the artifact) ===== */
+.hero{position:relative;display:flex;flex-direction:column;align-items:center;padding:14px 0 6px}
+.hero::before{content:"";position:absolute;width:340px;height:340px;top:-30px;border-radius:50%;
+  background:radial-gradient(circle, rgba(196,154,63,.16) 0%, transparent 62%);filter:blur(6px);transition:opacity .6s;z-index:0}
+.hero.pulse::before{animation:glow 1.1s var(--spring)}
+@keyframes glow{0%{opacity:1;transform:scale(.85)}55%{opacity:1;transform:scale(1.12)}100%{opacity:1;transform:scale(1)}}
+.ring{position:relative;width:248px;height:248px;z-index:1}
+.ring svg{width:100%;height:100%}
+.ring .track{fill:none;stroke:var(--gold-bg);stroke-width:3}
+.ring .node{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;
+  background:var(--card);border:1.5px solid var(--gold-line);display:grid;place-items:center;color:var(--gold);
+  box-shadow:var(--sh-1);transition:all .45s var(--spring)}
+.ring .node svg{width:15px;height:15px}
+.ring .node.active{border-color:var(--gold);box-shadow:0 0 0 0 rgba(196,154,63,.45);animation:beat 1.8s ease-in-out infinite}
+@keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(196,154,63,.40)}50%{box-shadow:0 0 0 7px rgba(196,154,63,0)}}
+.ring .node.lit{background:linear-gradient(145deg,var(--gold-soft),var(--gold));border-color:var(--gold);color:#fff;box-shadow:var(--sh-gold)}
+.ring .node.drop{animation:drop .55s var(--spring)}
+@keyframes drop{0%{transform:scale(.3);opacity:.4}60%{transform:scale(1.22)}100%{transform:scale(1)}}
+.ring-core{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.ring-emblem{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 36% 30%,var(--gold-soft),var(--gold-deep));
+  display:grid;place-items:center;box-shadow:var(--sh-gold);margin-bottom:7px}
+.ring-emblem svg{width:24px;height:24px;color:#fff}
+.ring-count{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.ring-count b{color:var(--gold-deep)}
+.ring-label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.hero-cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--dim);margin-top:14px;text-align:center}
+
+/* ===== lesson ===== */
+.lesson{display:flex;flex-direction:column;padding:18px 0 24px}
+.step{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px}
+.idea{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.75rem,5.5vw,2.25rem);line-height:1.08;letter-spacing:-.01em;color:var(--ink);margin-bottom:9px}
+.say{font-size:16.5px;line-height:1.5;color:var(--dim);margin-bottom:22px;max-width:32ch}
+
+.situation{display:flex;align-items:center;gap:15px;background:linear-gradient(135deg,#fff,var(--cream-2));border:1px solid var(--line-2);
+  border-radius:22px;padding:18px 20px;margin-bottom:24px;box-shadow:var(--sh-2)}
+.sit-ic{width:44px;height:44px;flex:none;border-radius:14px;background:var(--gold-bg);display:grid;place-items:center;color:var(--gold-deep);box-shadow:inset 0 0 0 1px var(--gold-line)}
+.sit-ic svg{width:22px;height:22px}
+.situation p{font-size:16.5px;line-height:1.38;color:var(--ink);font-weight:500}
+
+.ask{font-size:15px;font-weight:600;color:var(--ink-2);margin-bottom:14px}
+.choices{display:flex;flex-direction:column;gap:12px}
+.choice{display:flex;align-items:center;gap:16px;width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1.5px solid var(--line-2);border-radius:20px;padding:17px 19px;
+  font-family:inherit;box-shadow:var(--sh-1);transition:transform .18s var(--spring),border-color .18s,box-shadow .18s,background .25s}
+.choice:hover{border-color:var(--gold-soft);box-shadow:var(--sh-2);transform:translateY(-1px)}
+.choice:active{transform:scale(.985)}
+.c-ic{width:40px;height:40px;flex:none;border-radius:13px;background:var(--cream);display:grid;place-items:center;color:var(--gold-deep);transition:all .25s var(--spring)}
+.c-ic svg{width:21px;height:21px}
+.c-label{flex:1;font-size:17px;font-weight:600;color:var(--ink)}
+.c-pick{width:26px;height:26px;flex:none;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;transition:all .22s var(--spring)}
+.c-pick svg{width:14px;height:14px;color:#fff;opacity:0;transform:scale(.4);transition:all .22s var(--spring)}
+.choice.sel{border-color:var(--gold);background:var(--gold-bg);box-shadow:0 0 0 3px rgba(196,154,63,.16),var(--sh-2)}
+.choice.sel .c-ic{background:linear-gradient(145deg,var(--gold-soft),var(--gold));color:#fff;transform:scale(1.04)}
+.choice.sel .c-pick{background:var(--gold);border-color:var(--gold)}
+.choice.sel .c-pick svg{opacity:1;transform:scale(1)}
+.choice.locked{pointer-events:none;opacity:.5}
+.choice.sel.locked{opacity:1}
+
+.estrella{display:flex;align-items:center;gap:11px;margin-top:22px;padding:13px 16px;background:var(--cream-2);border:1px solid var(--line);border-radius:16px;
+  font-size:14.5px;line-height:1.4;color:var(--dim);transition:background .35s,color .35s}
+.e-dot{width:28px;height:28px;flex:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--gold-soft),var(--gold-deep));display:grid;place-items:center;color:#fff;box-shadow:var(--sh-1)}
+.e-dot svg{width:15px;height:15px}
+.estrella.win{background:#ECF6F0;border-color:rgba(76,156,122,.25);color:#2f6b54}
+.estrella.win .e-dot{background:var(--ok)}
+
+.foot{position:sticky;bottom:0;padding:14px 0 24px;background:linear-gradient(transparent,var(--bg) 30%);margin-top:auto}
+.cta{width:100%;font-family:inherit;font-size:17px;font-weight:700;color:#fff;background:var(--ink);border:none;border-radius:18px;padding:18px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;box-shadow:var(--sh-2);transition:all .2s var(--spring)}
+.cta:hover:not(:disabled){transform:translateY(-1px)}
+.cta:disabled{opacity:.35;cursor:default;box-shadow:none}
+.cta.go{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#3a2c08;box-shadow:var(--sh-gold)}
+
+/* fly token */
+.fly{position:fixed;width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,var(--gold-soft),var(--gold));
+  display:grid;place-items:center;color:#fff;z-index:50;box-shadow:var(--sh-gold);pointer-events:none;transition:all .6s var(--spring)}
+.fly svg{width:21px;height:21px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <button class="back">‹ Back</button>
+    <span class="course">Confidence Reset</span>
+    <span class="sp"></span>
+    <span class="streak"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-1 5-2 6 2 0 3 2 3 4a4 4 0 0 1-8 0c0-3 3-5 3-8 2 1 3 3 4 6z"/></svg> Day 1</span>
+  </header>
+
+  <!-- HERO: the Reset Ring artifact -->
+  <section class="hero" id="hero">
+    <div class="ring" id="ring">
+      <svg viewBox="0 0 248 248"><circle class="track" cx="124" cy="124" r="106"/></svg>
+      <!-- 6 nodes positioned around the ring -->
+      <div class="node active" id="n0" style="left:124px;top:18px"></div>
+      <div class="node" style="left:217px;top:71px"></div>
+      <div class="node" style="left:217px;top:177px"></div>
+      <div class="node" style="left:124px;top:230px"></div>
+      <div class="node" style="left:31px;top:177px"></div>
+      <div class="node" style="left:31px;top:71px"></div>
+      <div class="ring-core">
+        <div class="ring-emblem"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17.4 14.6 L31 16 L17.4 17.4 L16 31 L14.6 17.4 L1 16 L14.6 14.6 Z"/></svg></div>
+        <div class="ring-count"><b id="cN">0</b>/6</div>
+        <div class="ring-label">Reset Ring</div>
+      </div>
+    </div>
+    <div class="hero-cap" id="cap">Name what drops your confidence. Each one lights the ring.</div>
+  </section>
+
+  <main class="lesson">
+    <div class="step">Lesson 1 of 6 · See it</div>
+    <h1 class="idea">Confidence can drop for a reason.</h1>
+    <p class="say">It is not about who you are. It changes with the moment.</p>
+
+    <div class="situation">
+      <span class="sit-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 11l-3 3-1.5-1.5"/></svg></span>
+      <p>You go quiet when someone senior joins the meeting.</p>
+    </div>
+
+    <div class="ask">What just happened?</div>
+    <div class="choices" id="choices">
+      <button class="choice" data-k="judged">
+        <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <span class="c-label">I felt judged</span>
+        <span class="c-pick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+      <button class="choice" data-k="stakes">
+        <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4l8 3 8-3v11l-8 3-8-3"/></svg></span>
+        <span class="c-label">The stakes felt high</span>
+        <span class="c-pick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+      <button class="choice" data-k="compared">
+        <span class="c-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20V10M12 20V4M17 20v-6"/></svg></span>
+        <span class="c-label">I compared myself</span>
+        <span class="c-pick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </button>
+    </div>
+
+    <div class="estrella" id="estrella">
+      <span class="e-dot"><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17.4 14.6 L31 16 L17.4 17.4 L16 31 L14.6 17.4 L1 16 L14.6 14.6 Z"/></svg></span>
+      <span class="e-line" id="eLine">Pick the one that feels most true.</span>
+    </div>
+  </main>
+
+  <div class="foot"><button class="cta" id="cta" disabled>Save</button></div>
+</div>
+
+<script>
+(function(){
+  var picked=null, pickedIcon=null, saved=false;
+  var choices=document.getElementById('choices'), cta=document.getElementById('cta');
+  var eLine=document.getElementById('eLine'), estrella=document.getElementById('estrella');
+  var hero=document.getElementById('hero'), n0=document.getElementById('n0'), cN=document.getElementById('cN'), cap=document.getElementById('cap');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lines={ judged:"Good. Feeling judged is a real, nameable trigger.",
+              stakes:"Good. High stakes shrink the voice. Now you see it.",
+              compared:"Good. Comparison drops confidence the fastest." };
+
+  choices.addEventListener('click', function(e){
+    var b=e.target.closest('.choice'); if(!b||saved) return;
+    picked=b.dataset.k; pickedIcon=b.querySelector('.c-ic');
+    [].forEach.call(choices.querySelectorAll('.choice'), function(x){ x.classList.toggle('sel', x===b); });
+    cta.disabled=false; eLine.textContent='Nice. Save it and watch your ring light up.';
+  });
+
+  function lightRing(){
+    n0.classList.remove('active');
+    n0.innerHTML = pickedIcon.innerHTML;        // the trigger token lives inside the ring
+    n0.classList.add('lit','drop');
+    hero.classList.add('pulse');
+    cN.textContent='1'; cap.textContent='One light on. Five more to a full reset ring.';
+  }
+
+  cta.addEventListener('click', function(){
+    if(!picked) return;
+    if(!saved){
+      saved=true;
+      choices.querySelectorAll('.choice').forEach(function(x){ x.classList.add('locked'); });
+      // fly the chosen icon into the ring node, then light it
+      if(reduce){ lightRing(); }
+      else{
+        var from=pickedIcon.getBoundingClientRect(), to=n0.getBoundingClientRect();
+        var fly=document.createElement('div'); fly.className='fly'; fly.innerHTML=pickedIcon.innerHTML;
+        fly.style.left=from.left+from.width/2-20+'px'; fly.style.top=from.top+from.height/2-20+'px';
+        document.body.appendChild(fly);
+        fly.offsetWidth; // force reflow so the transition actually fires
+        fly.style.left=to.left+to.width/2-20+'px'; fly.style.top=to.top+to.height/2-20+'px'; fly.style.transform='scale(.7)';
+        setTimeout(function(){ fly.remove(); lightRing(); }, 640);
+      }
+      estrella.classList.add('win'); eLine.textContent=lines[picked]||'You got it.';
+      cta.textContent='Next lesson →'; cta.classList.add('go');
+    } else { cta.textContent='(lesson 2 would open here)'; cta.disabled=true; }
+  });
+})();
+</script>
+</body>
+</html>

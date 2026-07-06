@@ -67,6 +67,11 @@ const cases = [
   ['estrella cvreview signed-out', 'POST', '/api/estrella', JSON.stringify({mode:'cvreview'}), 401],
   ['estrella linkedin signed-out', 'POST', '/api/estrella', JSON.stringify({mode:'linkedin', headline:'x'}), 401],
   ['estrella roadmap signed-out', 'POST', '/api/estrella', JSON.stringify({mode:'roadmap', current_role:'x'}), 401],
+  // Services pivot gates
+  ['POST /api/me service-request no-auth → 401', 'POST', '/api/me?action=service-request', JSON.stringify({service:'cv_review'}), 401],
+  ['GET /api/me service-requests no-auth → 401', 'GET', '/api/me?action=service-requests', null, 401],
+  ['GET /api/coach/services no-auth → 401', 'GET', '/api/coach/services', null, 401],
+  ['POST /api/estrella servicedraft no-auth → 401', 'POST', '/api/estrella', JSON.stringify({mode:'servicedraft', request_id:'x'}), 401],
 ];
 
 function call(method, p, body) {

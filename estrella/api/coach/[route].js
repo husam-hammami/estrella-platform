@@ -28,6 +28,7 @@ const ROUTES = {
   member: { handler: coachMember }, // NEW: GET ?sub=… (detail + Spine) · PATCH {coach_notes}
   integrations: { handler: coachIntegrations },
   connect: { handler: coachConnect },
+  services: { handler: coachServices }, // NEW: GET list · GET ?cv=<id> signed CV url · PATCH {id, response?, status?}
 };
 
 module.exports = async (req, res) => {
@@ -541,6 +542,133 @@ function normalizeProgress(value, fallbackTotal) {
 function toInt(value, fallback) {
   const n = Number(value);
   return Number.isFinite(n) ? Math.round(n) : fallback;
+}
+
+// Services pivot desk — Nesreen's queue of member service requests.
+//   GET   /api/coach/services          → all rows, newest first, limit 100
+//   GET   /api/coach/services?cv=<id>  → 60s signed download url for that
+//         request's cv_path in the private `cvs` bucket (mirrors the book-access
+//         signing in api/me.js) → 200 {url} | 404 not_found
+//   PATCH /api/coach/services {id, response?, status?} → status whitelist
+//         in_review|responded; a non-empty response (≤8000, trimmed) sets
+//         response + status='responded' + responded_at. Always bumps updated_at.
+const SERVICE_REQUEST_STATUSES = ['in_review', 'responded'];
+
+async function coachServices(req, res) {
+  const session = L.requireCoach(req, res);
+  if (!session) return;
+  if (!L.sbConfigured()) return L.sendJson(res, 503, { error: 'supabase_unconfigured' });
+  const params = new URL(req.url, 'http://x').searchParams;
+
+  if (req.method === 'GET') {
+    const cvId = params.get('cv');
+    if (cvId) return coachServiceCvUrl(res, cvId);
+    try {
+      const resp = await L.sb('service_requests?select=*&order=created_at.desc&limit=100');
+      if (!resp.ok) {
+        console.error('coach/services list failed', resp.status, await resp.text().catch(() => ''));
+        return L.sendJson(res, 502, { error: 'supabase_error' });
+      }
+      const rows = await resp.json().catch(() => []);
+      return L.sendJson(res, 200, { requests: Array.isArray(rows) ? rows : [] });
+    } catch (e) {
+      console.error('coach/services error', e);
+      return L.sendJson(res, 500, { error: 'server_error' });
+    }
+  }
+
+  if (req.method === 'PATCH') {
+    try {
+      let raw = '';
+      for await (const c of req) raw += c;
+      let body;
+      try { body = JSON.parse(raw || '{}'); } catch (e) { return L.sendJson(res, 400, { error: 'bad_json' }); }
+      const id = typeof body.id === 'string' ? body.id.trim().slice(0, 80) : '';
+      if (!id) return L.sendJson(res, 400, { error: 'bad_request' });
+
+      const response = typeof body.response === 'string' ? body.response.trim().slice(0, 8000) : '';
+      const hasStatus = typeof body.status === 'string' && body.status !== '';
+      if (hasStatus && !SERVICE_REQUEST_STATUSES.includes(body.status)) {
+        return L.sendJson(res, 400, { error: 'bad_request' });
+      }
+      if (!response && !hasStatus) return L.sendJson(res, 400, { error: 'bad_request' });
+
+      const patch = { updated_at: new Date().toISOString() };
+      if (hasStatus) patch.status = body.status;
+      if (response) {
+        patch.response = response;
+        patch.status = 'responded';
+        patch.responded_at = new Date().toISOString();
+      }
+
+      const resp = await L.sb(`service_requests?id=eq.${encodeURIComponent(id)}`, {
+        method: 'PATCH',
+        headers: { Prefer: 'return=representation' },
+        body: JSON.stringify(patch),
+      });
+      if (!resp.ok) {
+        // PostgREST 400 = malformed uuid → the row cannot exist.
+        if (resp.status === 400) return L.sendJson(res, 404, { error: 'not_found' });
+        console.error('coach/services patch failed', resp.status, await resp.text().catch(() => ''));
+        return L.sendJson(res, 502, { error: 'supabase_error' });
+      }
+      const rows = await resp.json().catch(() => []);
+      const request = (Array.isArray(rows) ? rows[0] : rows) || null;
+      if (!request) return L.sendJson(res, 404, { error: 'not_found' });
+      return L.sendJson(res, 200, { request });
+    } catch (e) {
+      console.error('coach/services patch error', e);
+      return L.sendJson(res, 500, { error: 'server_error' });
+    }
+  }
+
+  res.setHeader('Allow', 'GET, PATCH');
+  return L.sendJson(res, 405, { error: 'method_not_allowed' });
+}
+
+// 60s signed download url for one request's CV — same signing flow as
+// handleBookAccess in api/me.js (POST /storage/v1/object/sign + absolutize).
+async function coachServiceCvUrl(res, id) {
+  try {
+    const rowResp = await L.sb(
+      `service_requests?id=eq.${encodeURIComponent(String(id).slice(0, 80))}&select=cv_path&limit=1`
+    );
+    if (!rowResp.ok) {
+      // PostgREST 400 = malformed uuid → the row cannot exist.
+      if (rowResp.status === 400) return L.sendJson(res, 404, { error: 'not_found' });
+      console.error('coach/services cv lookup failed', rowResp.status, await rowResp.text().catch(() => ''));
+      return L.sendJson(res, 502, { error: 'supabase_error' });
+    }
+    const rows = await rowResp.json().catch(() => []);
+    const cvPath = (Array.isArray(rows) && rows[0] && rows[0].cv_path) || null;
+    if (!cvPath) return L.sendJson(res, 404, { error: 'not_found' });
+
+    const base = process.env.SUPABASE_URL.replace(/\/$/, '');
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    // Encode each segment so nothing in the stored path can be reinterpreted by
+    // URL parsing (dot-segments are rejected at insert — belt and braces).
+    const signResp = await fetch(
+      `${base}/storage/v1/object/sign/cvs/${cvPath.split('/').map(encodeURIComponent).join('/')}`,
+      {
+        method: 'POST',
+        headers: { apikey: key, Authorization: `Bearer ${key}`, 'content-type': 'application/json' },
+        body: JSON.stringify({ expiresIn: 60 }),
+      }
+    );
+    if (!signResp.ok) {
+      const text = await signResp.text().catch(() => '');
+      console.error('coach/services cv sign failed', signResp.status, text);
+      if (signResp.status === 404) return L.sendJson(res, 404, { error: 'not_found' });
+      return L.sendJson(res, 502, { error: 'storage_error' });
+    }
+    const signed = await signResp.json();
+    const relative = signed.signedURL || signed.url || '';
+    const url = `${base}/storage/v1${relative.startsWith('/') ? '' : '/'}${relative}`;
+    return L.sendJson(res, 200, { url });
+  } catch (e) {
+    console.error('coach/services cv error', e);
+    return L.sendJson(res, 500, { error: 'server_error' });
+  }
 }
 
 async function coachIntegrations(req, res) {

@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Estrella Academy Asset Course Mockups V1</title>
+  <style>
+    :root {
+      --ink: #11100d;
+      --muted: #6f6a5f;
+      --soft: #f8f5ee;
+      --paper: #fffdf8;
+      --cream: #f3ebdc;
+      --line: #e3d9c6;
+      --gold: #c49b3d;
+      --gold-soft: #ead9ad;
+      --green: #23382f;
+      --clay: #ad5438;
+      --blue: #243642;
+      --plum: #3b2847;
+      --ok: #387b64;
+      --shadow: 0 24px 70px rgba(50, 43, 28, .16);
+      --small-shadow: 0 12px 34px rgba(50, 43, 28, .12);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--soft);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100svh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 16% 8%, rgba(196, 155, 61, .12), transparent 24%),
+        linear-gradient(180deg, #fffdfa 0%, #f6f1e7 100%);
+    }
+
+    .board-header {
+      max-width: 1180px;
+      margin: 34px auto 14px;
+      padding: 0 24px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .board-header h1 {
+      margin: 0;
+      max-width: 680px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      line-height: 1.02;
+      font-weight: 500;
+    }
+
+    .board-header p {
+      margin: 10px 0 0;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .stamp {
+      min-width: 148px;
+      border: 1px solid rgba(196, 155, 61, .48);
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: rgba(255, 253, 248, .7);
+      box-shadow: var(--small-shadow);
+      text-align: center;
+      font-weight: 800;
+      color: #8c6823;
+    }
+
+    .mockups {
+      display: grid;
+      gap: 42px;
+      min-height: 100svh;
+      padding: 28px 24px;
+      align-items: center;
+    }
+
+    body.focus-mode .board-header {
+      display: none;
+    }
+
+    body.focus-mode .mockups {
+      min-height: 100svh;
+      height: 100svh;
+      padding: 20px 24px 76px;
+      align-items: center;
+    }
+
+    body.focus-mode .screen {
+      display: none;
+    }
+
+    body.focus-mode .screen.active-screen {
+      display: block;
+    }
+
+    .mockup-nav {
+      position: fixed;
+      z-index: 20;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      padding: 7px;
+      border: 1px solid rgba(145, 120, 79, .2);
+      border-radius: 999px;
+      background: rgba(255, 253, 248, .86);
+      box-shadow: 0 14px 38px rgba(50, 43, 28, .12);
+      backdrop-filter: blur(16px);
+    }
+
+    .mockup-nav a {
+      text-decoration: none;
+      color: #6c604f;
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .mockup-nav a.active {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .screen {
+      position: relative;
+      overflow: hidden;
+      width: min(1180px, 100%);
+      height: min(872px, calc(100svh - 96px));
+      min-height: 0;
+      margin: 0 auto;
+      border: 1px solid rgba(145, 120, 79, .22);
+      border-radius: 36px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(248, 244, 235, .9)),
+        var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      height: 58px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(153, 132, 96, .18);
+      background: rgba(255, 253, 248, .74);
+      backdrop-filter: blur(18px);
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #5f584d;
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    .back b {
+      color: var(--ink);
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .stage {
+      position: relative;
+      height: calc(100% - 58px);
+      padding: 26px 42px 34px;
+    }
+
+    .folder {
+      position: absolute;
+      inset: 24px 36px 32px;
+      border-radius: 34px;
+      background:
+        linear-gradient(90deg, rgba(255, 253, 248, .95), rgba(255, 253, 248, .72) 56%, rgba(245, 236, 220, .5)),
+        var(--paper);
+      border: 1px solid rgba(118, 98, 64, .2);
+      box-shadow: inset 0 0 0 12px rgba(255, 255, 255, .38);
+    }
+
+    .folder::before {
+      content: "";
+      position: absolute;
+      top: -16px;
+      left: 54px;
+      width: 218px;
+      height: 34px;
+      border-radius: 18px 18px 0 0;
+      background: color-mix(in srgb, var(--accent) 72%, #fff 28%);
+      box-shadow: 0 10px 28px rgba(47, 42, 30, .12);
+    }
+
+    .asset {
+      position: absolute;
+      z-index: 2;
+      right: 58px;
+      top: 54px;
+      width: min(350px, 31vw);
+      height: min(225px, 28vh);
+      border-radius: 30px;
+      overflow: hidden;
+      transform: perspective(900px) rotateY(-8deg) rotateZ(-2deg);
+      box-shadow: 0 24px 64px rgba(38, 29, 14, .22), -18px 22px 48px rgba(196, 155, 61, .12);
+      opacity: .96;
+      border: 1px solid rgba(255, 255, 255, .42);
+    }
+
+    .asset img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .asset::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 253, 248, .12), rgba(255, 253, 248, .28));
+      pointer-events: none;
+    }
+
+    .lesson-card {
+      position: relative;
+      z-index: 3;
+      width: min(620px, calc(100% - 430px));
+      height: 100%;
+      padding: 30px 36px 28px;
+      display: flex;
+      flex-direction: column;
+      border-radius: 32px;
+      background: rgba(255, 253, 248, .94);
+      border: 1px solid rgba(139, 116, 76, .18);
+      box-shadow: 0 28px 80px rgba(44, 38, 27, .14);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: color-mix(in srgb, var(--accent) 75%, #4d3920 25%);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 530px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 3.15vw, 42px);
+      line-height: 1.04;
+      font-weight: 500;
+    }
+
+    .idea {
+      margin: 12px 0 0;
+      max-width: 460px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .situation {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 24px 0 20px;
+      padding: 15px 16px;
+      border-radius: 21px;
+      background: #f4eddf;
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 760;
+    }
+
+    .icon {
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #fffaf0;
+      color: color-mix(in srgb, var(--accent) 82%, #513d1b 18%);
+      font-weight: 900;
+      box-shadow: inset 0 0 0 1px rgba(196, 155, 61, .18);
+    }
+
+    .question {
+      margin: 0 0 12px;
+      font-size: 16px;
+      font-weight: 850;
+    }
+
+    .choices {
+      display: grid;
+      gap: 10px;
+    }
+
+    .choice {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 15px 13px 17px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: #fffefa;
+      font-size: 17px;
+      font-weight: 780;
+      box-shadow: 0 7px 16px rgba(63, 52, 30, .06);
+    }
+
+    .choice.selected {
+      border-color: color-mix(in srgb, var(--accent) 82%, #4b3718 18%);
+      background: color-mix(in srgb, var(--gold-soft) 32%, #fffdf8 68%);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--gold-soft) 46%, transparent 54%);
+    }
+
+    .check {
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid #ddd5c8;
+      color: transparent;
+    }
+
+    .choice.selected .check {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .tiny-win {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0 0;
+      padding: 13px 15px;
+      border-radius: 18px;
+      background: #e8f4ee;
+      color: #22614c;
+      font-weight: 760;
+      font-size: 15px;
+    }
+
+    .tiny-win span {
+      flex: 0 0 28px;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: #3b9677;
+      font-size: 18px;
+    }
+
+    .save-row {
+      margin-top: auto;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .saved-to {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .saved-to b {
+      color: var(--ink);
+      display: block;
+    }
+
+    .button {
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 21px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 850;
+      font-size: 15px;
+      box-shadow: 0 12px 26px rgba(35, 56, 47, .18);
+    }
+
+    .progress-toy {
+      position: absolute;
+      z-index: 4;
+      top: calc(54px + min(225px, 28vh) + 18px);
+      right: 84px;
+      width: min(302px, 27vw);
+      padding: 16px;
+      border-radius: 28px;
+      background: rgba(255, 253, 248, .86);
+      border: 1px solid rgba(160, 128, 66, .24);
+      box-shadow: 0 20px 52px rgba(43, 34, 16, .14);
+      backdrop-filter: blur(18px);
+    }
+
+    .progress-toy h3 {
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .ring {
+      width: 114px;
+      height: 114px;
+      margin: 3px auto 14px;
+      border-radius: 50%;
+      background:
+        conic-gradient(var(--gold) 0 54deg, #eee3c7 54deg 360deg);
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 12px #fffaf0;
+    }
+
+    .ring-inner {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #fffdf8;
+      font-weight: 900;
+      color: #8e6d28;
+      box-shadow: 0 0 0 1px rgba(196, 155, 61, .18);
+    }
+
+    .lights {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .light {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #e3d9c6;
+    }
+
+    .light.on {
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(196, 155, 61, .18);
+    }
+
+    .progress-caption {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .folder-tags {
+      position: absolute;
+      z-index: 5;
+      right: 34px;
+      top: 152px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .tag {
+      width: 45px;
+      height: 104px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      background: var(--accent);
+      box-shadow: 0 9px 20px rgba(38, 29, 14, .16);
+    }
+
+    .toy-map {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .map-cell {
+      min-height: 50px;
+      border-radius: 16px;
+      border: 1px solid rgba(196, 155, 61, .22);
+      background: rgba(255, 253, 248, .7);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 850;
+      color: #796743;
+    }
+
+    .map-cell.on {
+      background: var(--gold);
+      color: #fff;
+      box-shadow: 0 0 0 5px rgba(196, 155, 61, .18);
+    }
+
+    .meter {
+      height: 14px;
+      border-radius: 999px;
+      background: #eadfca;
+      overflow: hidden;
+      margin: 22px 0 16px;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: var(--meter, 35%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, #9b7131, var(--gold), #f0d88d);
+    }
+
+    .speaking {
+      --accent: var(--clay);
+    }
+
+    .confidence {
+      --accent: var(--green);
+    }
+
+    .interview {
+      --accent: var(--blue);
+    }
+
+    .offer {
+      --accent: var(--plum);
+    }
+
+    .speaking .button {
+      background: #823d2a;
+    }
+
+    .interview .button {
+      background: var(--blue);
+    }
+
+    .offer .button {
+      background: var(--plum);
+    }
+
+    .speaking .ring {
+      background: conic-gradient(var(--clay) 0 90deg, #eee3c7 90deg 360deg);
+    }
+
+    .interview .ring {
+      background: conic-gradient(#667d8d 0 72deg, #eee3c7 72deg 360deg);
+    }
+
+    .offer .ring {
+      background: conic-gradient(#8b6ab0 0 60deg, #eee3c7 60deg 360deg);
+    }
+
+    .mobile-strip {
+      position: absolute;
+      right: 84px;
+      bottom: 42px;
+      z-index: 3;
+      width: min(302px, 27vw);
+      min-height: 108px;
+      padding: 16px;
+      border-radius: 28px;
+      background: rgba(255, 253, 248, .86);
+      border: 1px solid rgba(160, 128, 66, .18);
+      box-shadow: 0 16px 42px rgba(43, 34, 16, .12);
+    }
+
+    .mobile-strip h4 {
+      margin: 0 0 9px;
+      font-size: 15px;
+    }
+
+    .mini-path {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .mini-token {
+      height: 34px;
+      border-radius: 13px;
+      background: #f0e5d2;
+      display: grid;
+      place-items: center;
+      color: #88795e;
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .mini-token.on {
+      background: var(--gold);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(196, 155, 61, .14);
+    }
+
+    @media (max-width: 900px) {
+      body.focus-mode .mockups {
+        padding: 8px;
+      }
+
+      .screen {
+        height: calc(100svh - 16px);
+        min-height: 0;
+        border-radius: 24px;
+      }
+
+      .topbar {
+        height: 48px;
+        padding: 0 18px;
+      }
+
+      .stage {
+        height: calc(100% - 48px);
+        padding: 12px;
+      }
+
+      .folder {
+        inset: 10px;
+        border-radius: 24px;
+      }
+
+      .folder::before {
+        left: 34px;
+        width: 168px;
+      }
+
+      .asset {
+        right: -74px;
+        top: 52px;
+        width: 240px;
+        height: 150px;
+        opacity: .22;
+      }
+
+      .lesson-card {
+        width: 100%;
+        height: calc(100% - 88px);
+        min-height: 0;
+        padding: 20px 22px 18px;
+        border-radius: 24px;
+      }
+
+      h2 {
+        font-size: clamp(28px, 9vw, 35px);
+      }
+
+      .idea {
+        font-size: 15px;
+      }
+
+      .situation {
+        margin: 16px 0 12px;
+        padding: 11px 12px;
+        font-size: 14px;
+      }
+
+      .icon {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+      }
+
+      .choices {
+        gap: 7px;
+      }
+
+      .choice {
+        min-height: 45px;
+        font-size: 14px;
+        padding: 9px 12px;
+      }
+
+      .tiny-win {
+        margin-top: 9px;
+        padding: 9px 11px;
+        font-size: 13px;
+      }
+
+      .save-row {
+        padding-top: 10px;
+      }
+
+      .button {
+        padding: 12px 15px;
+        font-size: 13px;
+      }
+
+      .progress-toy {
+        top: auto;
+        left: 18px;
+        right: 18px;
+        bottom: 16px;
+        width: auto;
+        min-height: 64px;
+        padding: 10px 12px;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        column-gap: 12px;
+      }
+
+      .progress-toy h3,
+      .progress-caption {
+        display: none;
+      }
+
+      .ring {
+        width: 58px;
+        height: 58px;
+        margin: 0;
+        box-shadow: inset 0 0 0 7px #fffaf0;
+      }
+
+      .ring-inner {
+        width: 38px;
+        height: 38px;
+        font-size: 12px;
+      }
+
+      .lights {
+        margin: 0;
+        justify-content: start;
+      }
+
+      .mobile-strip,
+      .folder-tags {
+        display: none;
+      }
+    }
+
+    @media (max-height: 820px) and (min-width: 901px) {
+      .mockups {
+        padding: 14px 22px;
+      }
+
+      body.focus-mode .mockups {
+        padding: 14px 22px 66px;
+      }
+
+      .screen {
+        height: calc(100svh - 80px);
+        min-height: 0;
+        border-radius: 30px;
+      }
+
+      .topbar {
+        height: 48px;
+      }
+
+      .stage {
+        height: calc(100% - 48px);
+        padding: 20px 40px 24px;
+      }
+
+      .folder {
+        inset: 18px 34px 22px;
+      }
+
+      .folder::before {
+        top: -12px;
+        height: 28px;
+      }
+
+      .lesson-card {
+        width: min(600px, calc(100% - 406px));
+        padding: 24px 32px 22px;
+        border-radius: 26px;
+      }
+
+      .eyebrow {
+        margin-bottom: 8px;
+        font-size: 12px;
+      }
+
+      h2 {
+        font-size: 35px;
+        line-height: 1.03;
+      }
+
+      .idea {
+        margin-top: 8px;
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .situation {
+        margin: 18px 0 14px;
+        padding: 12px 14px;
+        min-height: 58px;
+        font-size: 15px;
+      }
+
+      .icon {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+      }
+
+      .question {
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .choices {
+        gap: 8px;
+      }
+
+      .choice {
+        min-height: 49px;
+        padding: 10px 13px 10px 15px;
+        font-size: 15px;
+        border-radius: 17px;
+      }
+
+      .check {
+        flex-basis: 27px;
+        width: 27px;
+        height: 27px;
+      }
+
+      .tiny-win {
+        margin-top: 11px;
+        padding: 10px 13px;
+        min-height: 42px;
+        font-size: 14px;
+      }
+
+      .tiny-win span {
+        flex-basis: 26px;
+        width: 26px;
+        height: 26px;
+      }
+
+      .save-row {
+        padding-top: 12px;
+      }
+
+      .button {
+        padding: 12px 18px;
+        font-size: 14px;
+      }
+
+      .asset {
+        right: 62px;
+        top: 40px;
+        width: 330px;
+        height: 190px;
+      }
+
+      .progress-toy {
+        top: 246px;
+        right: 86px;
+        width: 276px;
+        padding: 14px;
+        border-radius: 24px;
+      }
+
+      .progress-toy h3 {
+        font-size: 19px;
+      }
+
+      .ring {
+        width: 104px;
+        height: 104px;
+        margin-bottom: 10px;
+      }
+
+      .ring-inner {
+        width: 66px;
+        height: 66px;
+      }
+
+      .mobile-strip {
+        right: 86px;
+        bottom: 30px;
+        width: 276px;
+        min-height: 86px;
+        padding: 12px 14px;
+        border-radius: 22px;
+      }
+
+      .mobile-strip h4 {
+        margin-bottom: 5px;
+      }
+
+      .mini-path {
+        margin-top: 10px;
+        gap: 6px;
+      }
+
+      .mini-token {
+        height: 29px;
+        border-radius: 11px;
+        font-size: 11px;
+      }
+
+      .folder-tags {
+        right: 36px;
+        top: 116px;
+      }
+    }
+
+    @media (max-height: 720px) and (min-width: 901px) {
+      body.focus-mode .mockups {
+        padding: 10px 22px 58px;
+      }
+
+      .screen {
+        height: calc(100svh - 68px);
+      }
+
+      .mobile-strip {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="board-header">
+    <div>
+      <h1>Asset-backed course loop mockups</h1>
+      <p>Same simple learning loop, but each course keeps its own physical identity. The asset sits behind the lesson like a premium object from the original Academy folder world.</p>
+    </div>
+    <div class="stamp">V2 no-scroll</div>
+  </header>
+
+  <nav class="mockup-nav" aria-label="Mockup course switcher">
+    <a href="#confidence">Confidence</a>
+    <a href="#speaking">Speaking</a>
+    <a href="#interview">Interview</a>
+    <a href="#offer">Offer</a>
+  </nav>
+
+  <main class="mockups">
+    <section class="screen confidence" id="confidence">
+      <div class="topbar">
+        <div class="back">&lt; Course <b>Confidence Reset</b></div>
+        <div class="brand">Estrella Academy</div>
+      </div>
+      <div class="stage">
+        <div class="folder"></div>
+        <div class="asset"><img src="../../Assets/Course_Covers/confidence-cover.png" alt=""></div>
+        <article class="lesson-card">
+          <p class="eyebrow">Lesson 1 of 6</p>
+          <h2>Confidence drops for a reason.</h2>
+          <p class="idea">It changes with the moment, not your worth.</p>
+          <div class="situation">
+            <div class="icon">01</div>
+            <div>You go quiet when someone senior joins the meeting.</div>
+          </div>
+          <p class="question">What changed?</p>
+          <div class="choices">
+            <div class="choice"><span>I felt judged</span><span class="check"></span></div>
+            <div class="choice"><span>The moment felt big</span><span class="check"></span></div>
+            <div class="choice selected"><span>I compared myself</span><span class="check">&#10003;</span></div>
+          </div>
+          <div class="tiny-win"><span>+</span>Good. You named the trigger.</div>
+          <div class="save-row">
+            <div class="saved-to"><b>Your reset plan</b>Trigger saved</div>
+            <button class="button">Save and continue &rarr;</button>
+          </div>
+        </article>
+        <aside class="progress-toy">
+          <h3>Reset ring</h3>
+          <div class="ring"><div class="ring-inner">1/6</div></div>
+          <div class="progress-caption">One light on. Keep going.</div>
+          <div class="lights"><span class="light on"></span><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span></div>
+        </aside>
+        <div class="folder-tags"><div class="tag">Reset</div></div>
+        <aside class="mobile-strip">
+          <h4>What fills up</h4>
+          <div class="saved-to">Six calm lights become the reset plan.</div>
+          <div class="mini-path"><div class="mini-token on">1</div><div class="mini-token">2</div><div class="mini-token">3</div><div class="mini-token">4</div><div class="mini-token">5</div><div class="mini-token">6</div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="screen speaking" id="speaking">
+      <div class="topbar">
+        <div class="back">&lt; Course <b>Public Speaking</b></div>
+        <div class="brand">Estrella Academy</div>
+      </div>
+      <div class="stage">
+        <div class="folder"></div>
+        <div class="asset"><img src="../../Assets/Course_Covers/speaking-cover.png" alt=""></div>
+        <article class="lesson-card">
+          <p class="eyebrow">Lesson 1 of 12</p>
+          <h2>Nerves are body energy.</h2>
+          <p class="idea">Your body is trying to help. Give it one clear job.</p>
+          <div class="situation">
+            <div class="icon">Mic</div>
+            <div>Your voice shakes before the first sentence.</div>
+          </div>
+          <p class="question">What do you do first?</p>
+          <div class="choices">
+            <div class="choice selected"><span>Start with one clear line</span><span class="check">&#10003;</span></div>
+            <div class="choice"><span>Rush through the slides</span><span class="check"></span></div>
+            <div class="choice"><span>Apologize before starting</span><span class="check"></span></div>
+          </div>
+          <div class="tiny-win"><span>+</span>Good. One clear line gives the energy a job.</div>
+          <div class="save-row">
+            <div class="saved-to"><b>Your talk kit</b>Opening line saved</div>
+            <button class="button">Save and continue &rarr;</button>
+          </div>
+        </article>
+        <aside class="progress-toy">
+          <h3>Talk lights</h3>
+          <div class="ring"><div class="ring-inner">1/12</div></div>
+          <div class="progress-caption">First light on.</div>
+          <div class="lights"><span class="light on"></span><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span><span class="light"></span></div>
+        </aside>
+        <div class="folder-tags"><div class="tag">Speak</div></div>
+        <aside class="mobile-strip">
+          <h4>Game feel</h4>
+          <div class="saved-to">Each lesson adds one stage move.</div>
+          <div class="mini-path"><div class="mini-token on">Open</div><div class="mini-token">Cut</div><div class="mini-token">Pause</div><div class="mini-token">Q</div><div class="mini-token">End</div><div class="mini-token">Run</div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="screen interview" id="interview">
+      <div class="topbar">
+        <div class="back">&lt; Course <b>Interview Mastery</b></div>
+        <div class="brand">Estrella Academy</div>
+      </div>
+      <div class="stage">
+        <div class="folder"></div>
+        <div class="asset"><img src="../../Assets/Course_Covers/interview-cover.png" alt=""></div>
+        <article class="lesson-card">
+          <p class="eyebrow">Lesson 1 of 12</p>
+          <h2>Every question hides a worry.</h2>
+          <p class="idea">Answer what they are really checking.</p>
+          <div class="situation">
+            <div class="icon">Q</div>
+            <div>They ask, "Why are you leaving your current job?"</div>
+          </div>
+          <p class="question">What is the calm answer?</p>
+          <div class="choices">
+            <div class="choice"><span>Complain about the old place</span><span class="check"></span></div>
+            <div class="choice selected"><span>Show what you are moving toward</span><span class="check">&#10003;</span></div>
+            <div class="choice"><span>Say you only need more money</span><span class="check"></span></div>
+          </div>
+          <div class="tiny-win"><span>+</span>Yes. You answered the real worry.</div>
+          <div class="save-row">
+            <div class="saved-to"><b>Your answer deck</b>Question decoded</div>
+            <button class="button">Save and continue &rarr;</button>
+          </div>
+        </article>
+        <aside class="progress-toy">
+          <h3>Answer deck</h3>
+          <div class="toy-map">
+            <div class="map-cell on">Why</div>
+            <div class="map-cell">Story</div>
+            <div class="map-cell">Pause</div>
+            <div class="map-cell">Recover</div>
+          </div>
+          <div class="meter" style="--meter: 24%"><span></span></div>
+          <div class="progress-caption">One card ready.</div>
+        </aside>
+        <div class="folder-tags"><div class="tag">Answer</div></div>
+        <aside class="mobile-strip">
+          <h4>Game feel</h4>
+          <div class="saved-to">Cards unlock into a ready interview deck.</div>
+          <div class="mini-path"><div class="mini-token on">Why</div><div class="mini-token">Ask</div><div class="mini-token">Win</div><div class="mini-token">Fail</div><div class="mini-token">Body</div><div class="mini-token">Offer</div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="screen offer" id="offer">
+      <div class="topbar">
+        <div class="back">&lt; Course <b>The Offer Machine</b></div>
+        <div class="brand">Estrella Academy</div>
+      </div>
+      <div class="stage">
+        <div class="folder"></div>
+        <div class="asset"><img src="../../Assets/Offer_machine.png" alt=""></div>
+        <article class="lesson-card">
+          <p class="eyebrow">Lesson 1 of 6</p>
+          <h2>Know your number first.</h2>
+          <p class="idea">A clear number makes the call feel smaller.</p>
+          <div class="situation">
+            <div class="icon">$</div>
+            <div>They ask what salary you expect.</div>
+          </div>
+          <p class="question">What keeps you steady?</p>
+          <div class="choices">
+            <div class="choice"><span>Say any number is fine</span><span class="check"></span></div>
+            <div class="choice selected"><span>Ask for their range first</span><span class="check">&#10003;</span></div>
+            <div class="choice"><span>Give your lowest number</span><span class="check"></span></div>
+          </div>
+          <div class="tiny-win"><span>+</span>Good. You kept space before answering.</div>
+          <div class="save-row">
+            <div class="saved-to"><b>Your offer plan</b>First ask saved</div>
+            <button class="button">Save and continue &rarr;</button>
+          </div>
+        </article>
+        <aside class="progress-toy">
+          <h3>Offer meter</h3>
+          <div class="meter" style="--meter: 38%"><span></span></div>
+          <div class="toy-map">
+            <div class="map-cell on">Range</div>
+            <div class="map-cell">Target</div>
+            <div class="map-cell">Ask</div>
+            <div class="map-cell">Pause</div>
+          </div>
+          <div class="progress-caption">Your first ask is ready.</div>
+        </aside>
+        <div class="folder-tags"><div class="tag">Offer</div></div>
+        <aside class="mobile-strip">
+          <h4>Game feel</h4>
+          <div class="saved-to">Six gold bars stack into a clear ask.</div>
+          <div class="mini-path"><div class="mini-token on">1</div><div class="mini-token">2</div><div class="mini-token">3</div><div class="mini-token">4</div><div class="mini-token">5</div><div class="mini-token">6</div></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <script>
+    (function () {
+      var id = window.location.hash ? window.location.hash.slice(1) : "confidence";
+      var target = document.getElementById(id) || document.getElementById("confidence");
+      if (target) {
+        document.body.classList.add("focus-mode");
+        document.querySelectorAll(".screen").forEach(function (screen) {
+          screen.classList.remove("active-screen");
+        });
+        target.classList.add("active-screen");
+        document.querySelectorAll(".mockup-nav a").forEach(function (link) {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + target.id);
+        });
+      }
+      window.addEventListener("hashchange", function () {
+        window.location.reload();
+      });
+    })();
+  </script>
+</body>
+</html>

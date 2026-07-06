@@ -338,7 +338,7 @@ body[data-night="1"] .brand-logo-img{
 .door-secondary:focus-visible,.topnav-user:focus-visible,.topnav-signout:focus-visible,
 .topnav-links a:focus-visible,.about-coach-link:focus-visible,.book-card:focus-visible,
 .sm-choice:focus-visible,.sm-nuria-toggle:focus-visible,.coach-ai-btn:focus-visible,
-.studio-again:focus-visible,.studio-run:focus-visible,
+.coach-svc-top:focus-visible,.coach-svc-reply:focus-visible,
 .folder:focus-visible,.brand:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .btn-primary:focus-visible{outline-offset:3px;box-shadow:inset 0 0 0 1.5px rgba(250,247,241,0.85),0 4px 14px rgba(20,18,14,0.15)}
 
@@ -1264,126 +1264,117 @@ body[data-night="1"] .brand-logo-img{
   .dash-data-grid,.dash-progress-grid{grid-template-columns:1fr 1fr}
 }
 
-/* ============================== CAREER STUDIO ============================== */
-.studio-container{max-width:1220px;margin:0 auto;padding:calc(var(--nav-h) + 1.75rem) clamp(1.25rem,4vw,4rem) 4rem}
-.studio-head{max-width:680px;margin-bottom:1.75rem}
-.studio-head h1{font-size:clamp(2rem,3.4vw,3rem);font-weight:400;letter-spacing:-0.02em;line-height:1.05;margin:0.4rem 0 0.6rem}
-.studio-sub{color:var(--text-dim);font-size:0.95rem;line-height:1.55}
-.studio-gate{
-  max-width:520px;
+/* ============================== SERVICES (requests to Nesreen — DAY register) ============================== */
+.svc-container{max-width:1220px;margin:0 auto;padding:calc(var(--nav-h) + 1.75rem) clamp(1.25rem,4vw,4rem) 4rem}
+.svc-head{max-width:680px;margin-bottom:1.75rem}
+.svc-head h1{font-size:clamp(2rem,3.4vw,3rem);font-weight:400;letter-spacing:-0.02em;line-height:1.05;margin:0.4rem 0 0.6rem}
+.svc-sub{color:var(--text-dim);font-size:0.95rem;line-height:1.55}
+.svc-note{
+  max-width:520px;margin-bottom:1.5rem;
   border:1px solid var(--line-strong);border-radius:var(--radius-lg);
   background:var(--surface);
-  padding:1.5rem 1.5rem 1.375rem;
+  padding:1.25rem 1.5rem;
 }
-.studio-gate-title{
+.svc-note-title{
   font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--gold);font-weight:600;margin-bottom:0.45rem;
+  color:var(--gold-deep);font-weight:600;margin-bottom:0.45rem;
 }
-.studio-gate p{font-size:0.9rem;color:var(--text-dim);line-height:1.55;margin-bottom:0}
-.studio-gate .btn{margin-top:1rem;min-height:44px}
-.studio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start}
-.studio-card{
+.svc-note p{font-size:0.9rem;color:var(--text-dim);line-height:1.55;margin-bottom:0}
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start}
+.svc-card{
   border:1px solid var(--line);border-radius:var(--radius-lg);
-  background:var(--surface);
+  background:var(--surface);box-shadow:var(--shadow-sm);
   padding:1.25rem;
   display:flex;flex-direction:column;gap:0.9rem;
   min-width:0;
 }
-.studio-card-kicker{
+.svc-card-kicker{
   font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--gold);font-weight:600;
+  color:var(--gold-deep);font-weight:600;
 }
-.studio-card h2{font-size:1.35rem;line-height:1.1;margin-top:0.3rem}
-.studio-card-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
-.studio-form{display:flex;flex-direction:column;gap:0.6rem}
-.studio-field label{
+.svc-card h2{font-size:1.5rem;line-height:1.1;margin-top:0.3rem}
+.svc-card-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
+.svc-card-what{font-size:0.8rem;color:var(--text-mute);line-height:1.5;margin-top:0.4rem}
+.svc-cta{min-height:44px}
+.svc-form{display:flex;flex-direction:column;gap:0.6rem}
+.svc-field label{
   display:block;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;
   color:var(--text-mute);font-weight:600;margin-bottom:0.3rem;
 }
-.studio-field input,.studio-field textarea{
+.svc-field input:not([type=file]),.svc-field textarea{
   width:100%;min-height:44px;
   padding:0.7rem 0.9rem;
   border:1px solid var(--line-strong);border-radius:var(--radius);
-  background:rgba(19,17,9,0.5);color:var(--ink);
+  background:var(--surface-2);color:var(--ink);
   font:inherit;font-size:0.9rem;line-height:1.45;
   outline:none;resize:vertical;
   transition:border-color 0.2s var(--ease);
 }
-.studio-field input::placeholder,.studio-field textarea::placeholder{color:var(--text-mute)}
-.studio-field input:focus-visible,.studio-field textarea:focus-visible{border-color:var(--gold)}
-.studio-field textarea{min-height:5.25rem}
-.studio-run{min-height:44px;margin-top:0.2rem}
-.studio-progress{display:flex;align-items:center;gap:0.6rem}
-.studio-progress .nuria-typing{margin:0}
-.studio-progress-label{font-size:0.85rem;color:var(--text-dim)}
-.studio-status{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
-.studio-status:empty{display:none}
-.studio-nocv{
-  border:1px dashed rgba(201,169,107,0.35);border-radius:var(--radius);
-  background:var(--surface-2);
-  padding:0.9rem 1rem;
+.svc-field input::placeholder,.svc-field textarea::placeholder{color:var(--text-mute)}
+.svc-field input:focus-visible,.svc-field textarea:focus-visible{border-color:var(--gold)}
+.svc-field textarea{min-height:5.25rem}
+.svc-file-row{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
+.svc-file-row input[type=file]{max-width:100%;font-size:0.82rem;color:var(--text)}
+.svc-file-row .btn{min-height:44px}
+.svc-cvline{
+  font-size:0.85rem;color:var(--ink-2);line-height:1.5;
+  padding:0.6rem 0.8rem;border:1px dashed var(--gold-soft);
+  border-radius:var(--radius);background:var(--gold-bg);
 }
-.studio-nocv-title{
-  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--gold);font-weight:600;margin-bottom:0.35rem;
+.svc-send{min-height:44px;margin-top:0.2rem}
+.svc-status{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
+.svc-status:empty{display:none}
+.svc-requests{margin-top:2.5rem;max-width:760px}
+.svc-requests h2{font-size:1.5rem;margin-bottom:1rem}
+.svc-req{
+  border:1px solid var(--line);border-radius:var(--radius-lg);
+  background:var(--surface);
+  padding:1rem 1.125rem;margin-bottom:0.75rem;
 }
-.studio-nocv p{font-size:0.85rem;color:var(--text-dim);line-height:1.5;margin-bottom:0.6rem}
-.studio-nocv-row{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
-.studio-nocv-row input[type=file]{max-width:100%;font-size:0.82rem;color:var(--text)}
-.studio-nocv-row .btn{min-height:44px}
-.studio-report{
-  border:1px solid rgba(201,169,107,0.35);border-radius:var(--radius);
-  background:var(--surface-2);
-  padding:1rem 1.125rem;
-  display:flex;flex-direction:column;gap:0.9rem;
+.svc-req-top{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
+.svc-req-service{font-weight:600;font-size:0.95rem;color:var(--ink)}
+.svc-req-date{font-size:0.78rem;color:var(--text-mute)}
+.svc-chip{
+  margin-left:auto;display:inline-block;
+  font-size:0.6875rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:0.25rem 0.625rem;border-radius:99px;
+  background:var(--gold-bg);color:var(--gold-deep);border:1px solid var(--gold-soft);
 }
-.studio-report-head{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap}
-.studio-report-date{font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-mute);font-weight:600}
-.studio-again{
-  min-height:44px;padding:0.5rem 1.1rem;
-  border:1px solid rgba(201,169,107,0.4);border-radius:999px;
-  background:transparent;color:var(--gold);
-  font:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;
-  transition:border-color 0.2s var(--ease),background 0.2s var(--ease);
-}
-.studio-again:hover{border-color:var(--gold);background:rgba(201,169,107,0.08)}
-.studio-sec-label{
+.svc-chip.replied{background:var(--surface-2);color:var(--success);border-color:rgba(79,163,129,0.4)}
+.svc-response{margin-top:0.8rem;border-top:1px solid var(--line);padding-top:0.8rem}
+.svc-response-lbl{
   font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--gold);font-weight:600;margin-bottom:0.4rem;
+  color:var(--gold-deep);font-weight:600;margin-bottom:0.4rem;
 }
-.studio-text{font-size:0.88rem;color:var(--ink-2);line-height:1.55;white-space:pre-line}
-.studio-list{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:0.35rem}
-.studio-list li{font-size:0.86rem;color:var(--ink-2);line-height:1.5}
-.studio-list li::marker{color:var(--gold)}
-.studio-pairs{display:flex;flex-direction:column;gap:0.6rem}
-.studio-pair{
-  border-left:2px solid rgba(201,169,107,0.45);
-  padding:0.15rem 0 0.15rem 0.7rem;
+.svc-response-text{font-size:0.9rem;color:var(--ink-2);line-height:1.6;white-space:pre-wrap;overflow-wrap:break-word}
+/* Coach desk — service requests queue */
+.coach-svc{border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);margin-bottom:0.75rem;overflow:hidden}
+.coach-svc-top{
+  display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;width:100%;
+  min-height:44px;padding:0.9rem 1.125rem;cursor:pointer;text-align:left;
+  background:transparent;border:none;font:inherit;color:var(--text);
 }
-.studio-pair-kicker{
-  font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--text-mute);font-weight:600;margin-bottom:0.25rem;
+.coach-svc-top:hover{background:var(--surface-2)}
+.coach-svc-service{font-weight:600;font-size:0.95rem;color:var(--ink)}
+.coach-svc-who{font-size:0.85rem;color:var(--text-dim);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.coach-svc-date{font-size:0.78rem;color:var(--text-mute)}
+.coach-svc-body{padding:1rem 1.125rem 1.125rem;border-top:1px solid var(--line)}
+.coach-svc-reply{
+  width:100%;min-height:9rem;padding:0.7rem 0.9rem;
+  border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:var(--surface-2);color:var(--ink);
+  font:inherit;font-size:0.9rem;line-height:1.5;resize:vertical;outline:none;
 }
-.studio-pair-row{display:block;margin-bottom:0.3rem}
-.studio-pair-row:last-child{margin-bottom:0}
-.studio-pair-tag{
-  display:inline-block;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;
-  color:var(--text-mute);font-weight:600;margin-right:0.45rem;
-}
-.studio-pair-better .studio-pair-tag{color:var(--gold)}
-.studio-pair-text{font-size:0.86rem;color:var(--ink-2);line-height:1.5}
-.studio-first-move{
-  border:1px solid rgba(201,169,107,0.4);border-radius:var(--radius);
-  background:rgba(201,169,107,0.08);
-  padding:0.75rem 0.9rem;
-  font-size:0.88rem;color:var(--ink);line-height:1.55;
-}
+.coach-svc-reply:focus-visible{border-color:var(--gold)}
+.coach-svc-actions{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;margin-top:0.75rem}
+.coach-svc-status{font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem}
+.coach-svc-status:empty{display:none}
 @media(max-width:1024px){
-  .studio-grid{grid-template-columns:1fr}
-  .studio-card{max-width:640px}
+  .svc-grid{grid-template-columns:1fr}
+  .svc-card{max-width:640px}
 }
 @media(max-width:640px){
-  .studio-container{padding-left:1.25rem;padding-right:1.25rem}
+  .svc-container{padding-left:1.25rem;padding-right:1.25rem}
 }
 
 /* ============================== LIBRARY ============================== */
@@ -4205,7 +4196,7 @@ body.modal-open .dash-body{overflow:hidden}
   .brand-name{font-size:1.25rem}
   .brand-tag{font-size:0.44rem}
   .topnav-actions{gap:0.375rem;min-width:0}
-  /* Six links (Home/Coaching/Library/Academy/Career Studio/About) on a narrow
+  /* Six links (Home/Coaching/Library/Academy/Services/About) on a narrow
      rail: keep one row, no wrap, horizontal scroll, tighter type. */
   .topnav-links{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:0.25rem}
   .topnav-links a{white-space:nowrap;padding:0.4rem 0.45rem;font-size:0.78rem}
@@ -4251,7 +4242,7 @@ body.modal-open .dash-body{overflow:hidden}
     <a data-view="services">Coaching</a>
     <a data-view="library">Library</a>
     <a data-view="academy">Academy</a>
-    <a data-view="studio">Career Studio</a>
+    <a data-view="studio">Services</a>
     <a data-view="about">About</a>
   </div>
   <div class="topnav-actions topnav-auth-guest" id="topnav-auth-guest">
@@ -4431,6 +4422,20 @@ body.modal-open .dash-body{overflow:hidden}
         <div class="coach-empty" id="coach-empty" hidden>
           <svg width="28" height="28" viewBox="0 0 32 32" fill="var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
           <p>No briefs yet. They appear here the moment a client finishes with Nuria.</p>
+        </div>
+      </section>
+      <section class="coach-admin-section">
+        <div class="coach-section-head">
+          <div>
+            <div class="coach-col-h">Services</div>
+            <h2>Service requests</h2>
+          </div>
+          <span class="coach-section-note">CV, LinkedIn and roadmap reviews — every reply is yours</span>
+        </div>
+        <div class="coach-services" id="coach-services"></div>
+        <div class="coach-empty" id="coach-services-empty" hidden>
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+          <p>No requests yet.</p>
         </div>
       </section>
       <section class="coach-admin-section coach-roster-section">
@@ -4776,7 +4781,7 @@ body.modal-open .dash-body{overflow:hidden}
         </button>
         <button class="dash-link" data-view="studio">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          <span>Career Studio</span>
+          <span>Services</span>
         </button>
       </nav>
         </aside>
@@ -4784,110 +4789,107 @@ body.modal-open .dash-body{overflow:hidden}
     </div>
   </div>
 
-  <!-- ============================== VIEW: CAREER STUDIO ============================== -->
-  <div class="view dash-body" id="view-studio" data-register="night">
-    <div class="studio-container">
-      <header class="studio-head">
+  <!-- ============================== VIEW: SERVICES (requests to Nesreen — keeps internal id 'studio') ============================== -->
+  <div class="view dash-body" id="view-studio">
+    <div class="svc-container">
+      <header class="svc-head">
         <div class="dash-eyebrow" style="display:flex;align-items:center;gap:0.5rem">
           <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
-          Career Studio
+          Services
         </div>
-        <h1>Your next move, read honestly.</h1>
-        <p class="studio-sub">Three working tools. Nuria reads what you actually wrote — your CV, your LinkedIn, your situation — and answers with specifics, not templates.</p>
+        <h1>Services</h1>
+        <p class="svc-sub">Personal reviews from Nesreen — she reads every request herself.</p>
       </header>
 
-      <div class="studio-gate" id="studio-signin" hidden>
-        <div class="studio-gate-title">Sign in to open the studio</div>
-        <p>The studio works on your real CV and profile, so Nuria needs to know who you are first.</p>
-        <button class="btn btn-gold" id="studio-signin-btn" type="button">Sign in with LinkedIn</button>
+      <div class="svc-note" id="svc-offline" hidden>
+        <div class="svc-note-title">Not connected</div>
+        <p>This preview is offline, so requests cannot reach Nesreen from here. On the live site you can send a request and her reply appears on this page.</p>
       </div>
 
-      <div class="studio-gate" id="studio-offline" hidden>
-        <div class="studio-gate-title">Nuria is offline</div>
-        <p>The Career Studio needs Nuria, and she isn't connected right now. Your account and sessions are unaffected — try again soon.</p>
-      </div>
-
-      <div class="studio-grid" id="studio-grid" hidden>
-        <section class="studio-card" id="studio-card-cvreview" aria-labelledby="studio-h-cvreview">
+      <div class="svc-grid" id="svc-grid">
+        <section class="svc-card" id="svc-card-cv_review" aria-labelledby="svc-h-cv">
           <div>
-            <div class="studio-card-kicker">Tool 01</div>
-            <h2 id="studio-h-cvreview">CV review</h2>
-            <p class="studio-card-desc">Nuria reads the CV on your profile line by line — strengths, gaps, ATS risks, and concrete rewrites for the UAE and KSA market.</p>
+            <div class="svc-card-kicker">Service 01</div>
+            <h2 id="svc-h-cv">CV Review</h2>
+            <p class="svc-card-desc">Send your CV. Nesreen reviews it and replies with specific fixes: what to cut, what to reframe, what is missing.</p>
+            <p class="svc-card-what">You send: your CV, plus a short note if you want.</p>
           </div>
-          <form class="studio-form" id="studio-form-cvreview">
-            <button class="btn btn-gold studio-run" id="studio-run-cvreview" type="submit">Review my CV</button>
+          <button class="btn btn-gold svc-cta" id="svc-cta-cv_review" type="button" data-svc="cv_review">Request review</button>
+          <form class="svc-form" id="svc-form-cv_review" hidden>
+            <div class="svc-cvline" id="svc-cv-current" hidden></div>
+            <div class="svc-field">
+              <label for="svc-cv-file" id="svc-cv-upload-lbl">Your CV (PDF or image)</label>
+              <div class="svc-file-row">
+                <input type="file" id="svc-cv-file" accept=".pdf,.png,.jpg,.jpeg" aria-label="Choose your CV file"/>
+                <button type="button" class="btn btn-ghost" id="svc-cv-upload-btn">Upload</button>
+              </div>
+            </div>
+            <div class="svc-field">
+              <label for="svc-cv-note">Note for Nesreen (optional)</label>
+              <textarea id="svc-cv-note" maxlength="2000" rows="3" placeholder="Anything she should know — target role, worries, deadlines"></textarea>
+            </div>
+            <button class="btn btn-gold svc-send" id="svc-send-cv_review" type="submit">Send to Nesreen</button>
           </form>
-          <div class="studio-nocv" id="studio-nocv-cvreview" hidden></div>
-          <div class="studio-progress" id="studio-progress-cvreview" hidden>
-            <div class="nuria-typing" aria-hidden="true"><span></span><span></span><span></span></div>
-            <span class="studio-progress-label" id="studio-progress-label-cvreview">Nuria is reading your CV…</span>
-          </div>
-          <div class="studio-status" id="studio-status-cvreview" role="status" aria-live="polite"></div>
-          <div class="studio-report" id="studio-report-cvreview" hidden></div>
+          <div class="svc-status" id="svc-status-cv_review" role="status" aria-live="polite"></div>
         </section>
 
-        <section class="studio-card" id="studio-card-linkedin" aria-labelledby="studio-h-linkedin">
+        <section class="svc-card" id="svc-card-linkedin_review" aria-labelledby="svc-h-li">
           <div>
-            <div class="studio-card-kicker">Tool 02</div>
-            <h2 id="studio-h-linkedin">LinkedIn review</h2>
-            <p class="studio-card-desc">Nuria cannot open your LinkedIn page, so paste the sections you want reviewed — headline, About, or experience. She tells you how each one reads to a recruiter and rewrites it in your voice.</p>
+            <div class="svc-card-kicker">Service 02</div>
+            <h2 id="svc-h-li">LinkedIn Review</h2>
+            <p class="svc-card-desc">Share your profile link. Nesreen reviews your headline, about, and experience, and tells you what to change.</p>
+            <p class="svc-card-what">You send: your public profile link, plus what to focus on if you want.</p>
           </div>
-          <form class="studio-form" id="studio-form-linkedin">
-            <div class="studio-field">
-              <label for="studio-li-headline">Headline</label>
-              <input id="studio-li-headline" maxlength="300" autocomplete="off" placeholder="Your current LinkedIn headline"/>
+          <button class="btn btn-gold svc-cta" id="svc-cta-linkedin_review" type="button" data-svc="linkedin_review">Request review</button>
+          <form class="svc-form" id="svc-form-linkedin_review" hidden>
+            <div class="svc-field">
+              <label for="svc-li-url">Your LinkedIn profile link</label>
+              <input id="svc-li-url" maxlength="300" autocomplete="off" inputmode="url" placeholder="https://www.linkedin.com/in/your-name"/>
             </div>
-            <div class="studio-field">
-              <label for="studio-li-about">About</label>
-              <textarea id="studio-li-about" maxlength="3000" rows="4" placeholder="Paste your About section"></textarea>
+            <div class="svc-field">
+              <label for="svc-li-focus">What should she focus on? (optional)</label>
+              <textarea id="svc-li-focus" maxlength="2000" rows="3" placeholder="e.g. My headline feels weak, and I am not sure my About section works"></textarea>
             </div>
-            <div class="studio-field">
-              <label for="studio-li-experience">Experience</label>
-              <textarea id="studio-li-experience" maxlength="4000" rows="4" placeholder="Paste one or two experience entries"></textarea>
-            </div>
-            <button class="btn btn-gold studio-run" id="studio-run-linkedin" type="submit">Review my profile</button>
+            <button class="btn btn-gold svc-send" id="svc-send-linkedin_review" type="submit">Send to Nesreen</button>
           </form>
-          <div class="studio-progress" id="studio-progress-linkedin" hidden>
-            <div class="nuria-typing" aria-hidden="true"><span></span><span></span><span></span></div>
-            <span class="studio-progress-label" id="studio-progress-label-linkedin">Nuria is reading your profile…</span>
-          </div>
-          <div class="studio-status" id="studio-status-linkedin" role="status" aria-live="polite"></div>
-          <div class="studio-report" id="studio-report-linkedin" hidden></div>
+          <div class="svc-status" id="svc-status-linkedin_review" role="status" aria-live="polite"></div>
         </section>
 
-        <section class="studio-card" id="studio-card-roadmap" aria-labelledby="studio-h-roadmap">
+        <section class="svc-card" id="svc-card-roadmap" aria-labelledby="svc-h-rm">
           <div>
-            <div class="studio-card-kicker">Tool 03</div>
-            <h2 id="studio-h-roadmap">Career roadmap</h2>
-            <p class="studio-card-desc">Where you are, where you could go, and the first move — 90 days and 12 months, grounded in the GCC market.</p>
+            <div class="svc-card-kicker">Service 03</div>
+            <h2 id="svc-h-rm">Career Roadmap</h2>
+            <p class="svc-card-desc">Tell her where you are and where you want to go. She maps your next role and the steps to get there.</p>
+            <p class="svc-card-what">You send: your current role, your ambition, and anything fixed.</p>
           </div>
-          <form class="studio-form" id="studio-form-roadmap">
-            <div class="studio-field">
-              <label for="studio-rm-role">Current role (required)</label>
-              <input id="studio-rm-role" maxlength="200" autocomplete="off" placeholder="e.g. Senior Accountant"/>
+          <button class="btn btn-gold svc-cta" id="svc-cta-roadmap" type="button" data-svc="roadmap">Request roadmap</button>
+          <form class="svc-form" id="svc-form-roadmap" hidden>
+            <div class="svc-field">
+              <label for="svc-rm-role">Current role (required)</label>
+              <input id="svc-rm-role" maxlength="200" autocomplete="off" placeholder="e.g. Senior Accountant"/>
             </div>
-            <div class="studio-field">
-              <label for="studio-rm-years">Years of experience</label>
-              <input id="studio-rm-years" maxlength="40" autocomplete="off" placeholder="e.g. 8"/>
+            <div class="svc-field">
+              <label for="svc-rm-years">Years of experience</label>
+              <input id="svc-rm-years" maxlength="2" autocomplete="off" inputmode="numeric" placeholder="e.g. 8"/>
             </div>
-            <div class="studio-field">
-              <label for="studio-rm-direction">Where you want to go</label>
-              <textarea id="studio-rm-direction" maxlength="600" rows="3" placeholder="The direction, role, or change you're considering"></textarea>
+            <div class="svc-field">
+              <label for="svc-rm-ambition">Where you want to go (required)</label>
+              <textarea id="svc-rm-ambition" maxlength="2000" rows="3" placeholder="The role, direction, or change you want"></textarea>
             </div>
-            <div class="studio-field">
-              <label for="studio-rm-constraints">Constraints</label>
-              <textarea id="studio-rm-constraints" maxlength="600" rows="3" placeholder="Visa, family, location, salary floor — anything fixed"></textarea>
+            <div class="svc-field">
+              <label for="svc-rm-constraints">Constraints (optional)</label>
+              <textarea id="svc-rm-constraints" maxlength="2000" rows="3" placeholder="Visa, family, location, salary floor — anything fixed"></textarea>
             </div>
-            <button class="btn btn-gold studio-run" id="studio-run-roadmap" type="submit">Build my roadmap</button>
+            <button class="btn btn-gold svc-send" id="svc-send-roadmap" type="submit">Send to Nesreen</button>
           </form>
-          <div class="studio-progress" id="studio-progress-roadmap" hidden>
-            <div class="nuria-typing" aria-hidden="true"><span></span><span></span><span></span></div>
-            <span class="studio-progress-label" id="studio-progress-label-roadmap">Nuria is mapping your next move…</span>
-          </div>
-          <div class="studio-status" id="studio-status-roadmap" role="status" aria-live="polite"></div>
-          <div class="studio-report" id="studio-report-roadmap" hidden></div>
+          <div class="svc-status" id="svc-status-roadmap" role="status" aria-live="polite"></div>
         </section>
       </div>
+
+      <section class="svc-requests" id="svc-requests" hidden aria-labelledby="svc-req-h">
+        <h2 id="svc-req-h">Your requests</h2>
+        <div class="svc-req-list" id="svc-req-list"></div>
+      </section>
     </div>
   </div>
 
@@ -5783,7 +5785,7 @@ function afterViewSwitch(viewId, current){
 }
 
 // Night register: the views where Nuria speaks. The world inverts with them.
-const NIGHT_VIEWS = new Set(['start','dashboard','studio']);
+const NIGHT_VIEWS = new Set(['start','dashboard']);
 function syncRegister(viewId){
   document.body.dataset.night = NIGHT_VIEWS.has(viewId) ? '1' : '0';
 }
@@ -6500,365 +6502,253 @@ renderCvUpload = function(briefId, alreadyHasCv, context){
   });
 };
 
-/* ============================== CAREER STUDIO ==============================
-   Three real tools on /api/estrella: {mode:'cvreview'|'linkedin'|'roadmap'}.
-   Each streams NDJSON (same pump as the companion), collects the single
-   {type:'result'} chunk, and renders a structured report with safe DOM
-   builders (textContent only — model output is never injected as HTML).
-   Saved reports come back from /api/me as user.studioResults. Honest states:
-   503 → Nuria offline card, 401 → sign-in, 404 no_cv → upload prompt. */
-const studio = { busy:false, wired:false };
+/* ============================== SERVICES (member requests to Nesreen) ==============================
+   The old auto-AI Career Studio is gone. Members SUBMIT a request; Nesreen
+   personally reviews and replies from the coach desk. No AI answers members
+   here. POST /api/me?action=service-request creates the row; GET
+   ?action=service-requests lists them with her reply. Honest states:
+   401 sign-in CTA, 409 already pending, 503/file:// unavailable note.
+   All member/coach text renders via textContent — never innerHTML. */
+const svc = { busy:false, wired:false };
 
-const STUDIO_TOOLS = {
-  cvreview: { title:'CV review',       running:'Nuria is reading your CV…' },
-  linkedin: { title:'LinkedIn review', running:'Nuria is reading your profile…' },
-  roadmap:  { title:'Career roadmap',  running:'Nuria is mapping your next move…' }
+const SVC_SERVICES = {
+  cv_review:       { label:'CV Review',       cta:'Request review' },
+  linkedin_review: { label:'LinkedIn Review', cta:'Request review' },
+  roadmap:         { label:'Career Roadmap',  cta:'Request roadmap' }
 };
 
-function studioEls(mode){
-  return {
-    form: document.getElementById('studio-form-' + mode),
-    run: document.getElementById('studio-run-' + mode),
-    progress: document.getElementById('studio-progress-' + mode),
-    progressLabel: document.getElementById('studio-progress-label-' + mode),
-    status: document.getElementById('studio-status-' + mode),
-    report: document.getElementById('studio-report-' + mode),
-    nocv: document.getElementById('studio-nocv-' + mode)
-  };
-}
-
-/* --- Safe DOM builders: every piece of model text lands via textContent --- */
-function stEl(tag, cls, text){
+function svcEl(tag, cls, text){
   const el = document.createElement(tag);
   if(cls) el.className = cls;
   if(text != null) el.textContent = text;
   return el;
 }
-function stPara(text){
-  return (typeof text === 'string' && text.trim()) ? stEl('p','studio-text', text.trim()) : null;
-}
-function stList(items, ordered){
-  if(!Array.isArray(items) || !items.length) return null;
-  const list = stEl(ordered ? 'ol' : 'ul','studio-list');
-  items.forEach(it => { if(typeof it === 'string' && it.trim()) list.appendChild(stEl('li', null, it.trim())); });
-  return list.childElementCount ? list : null;
-}
-function stSection(root, label, node){
-  if(!node) return;
-  const sec = stEl('div','studio-sec');
-  sec.appendChild(stEl('div','studio-sec-label', label));
-  sec.appendChild(node);
-  root.appendChild(sec);
-}
-function stPairRow(tag, text, better){
-  const row = stEl('div','studio-pair-row' + (better ? ' studio-pair-better' : ''));
-  row.appendChild(stEl('span','studio-pair-tag', tag));
-  row.appendChild(stEl('span','studio-pair-text', text));
-  return row;
-}
-function stPairs(items, build){
-  if(!Array.isArray(items) || !items.length) return null;
-  const wrap = stEl('div','studio-pairs');
-  items.forEach(it => {
-    if(!it || typeof it !== 'object') return;
-    const card = stEl('div','studio-pair');
-    build(card, it);
-    if(card.childElementCount) wrap.appendChild(card);
-  });
-  return wrap.childElementCount ? wrap : null;
-}
-function stStr(v){ return typeof v === 'string' ? v.trim() : ''; }
 
-/* --- Per-mode report renderers --- */
-function studioRenderCvReport(root, r){
-  stSection(root, 'Overall read', stPara(r.verdict));
-  stSection(root, 'Strengths', stList(r.strengths));
-  stSection(root, 'Gaps', stList(r.gaps));
-  stSection(root, 'ATS flags', stList(r.ats_flags));
-  stSection(root, 'Rewrites', stPairs(r.rewrites, (card, rw) => {
-    if(stStr(rw.section)) card.appendChild(stEl('div','studio-pair-kicker', stStr(rw.section)));
-    if(stStr(rw.issue)) card.appendChild(stPairRow('Issue', stStr(rw.issue)));
-    if(stStr(rw.better)) card.appendChild(stPairRow('Better', stStr(rw.better), true));
-  }));
-  stSection(root, 'For the GCC market', stList(r.gcc_notes));
-  stSection(root, 'Next actions', stList(r.next_actions, true));
-}
-function studioRenderLinkedinReport(root, r){
-  stSection(root, 'First impression', stPara(r.first_impression));
-  stSection(root, 'Headline options', stList(r.headline_options, true));
-  stSection(root, 'About — rewritten', stPara(r.about_rewrite));
-  stSection(root, 'Experience upgrades', stPairs(r.experience_upgrades, (card, up) => {
-    if(stStr(up.current)) card.appendChild(stPairRow('Now', stStr(up.current)));
-    if(stStr(up.better)) card.appendChild(stPairRow('Better', stStr(up.better), true));
-  }));
-  stSection(root, 'Skills to add', stList(r.skills_to_add));
-  stSection(root, 'Profile checklist', stPairs(r.profile_checklist, (card, it) => {
-    if(stStr(it.item)) card.appendChild(stEl('div','studio-pair-kicker', stStr(it.item)));
-    if(stStr(it.why)) card.appendChild(stEl('div','studio-pair-text', stStr(it.why)));
-  }));
-  stSection(root, 'Seven-day visibility plan', stList(r.visibility_plan, true));
-  stSection(root, 'For the GCC market', stList(r.gcc_notes));
-}
-function studioRenderRoadmapReport(root, r){
-  stSection(root, 'Where you stand', stPara(r.situation_read));
-  stSection(root, 'Candidate roles', stPairs(r.candidate_roles, (card, role) => {
-    if(stStr(role.title)) card.appendChild(stEl('div','studio-pair-kicker', stStr(role.title)));
-    if(stStr(role.fit_why)) card.appendChild(stPairRow('Fit', stStr(role.fit_why)));
-    if(stStr(role.market_note)) card.appendChild(stPairRow('Market', stStr(role.market_note)));
-  }));
-  if(r.best_pick && typeof r.best_pick === 'object' && (stStr(r.best_pick.title) || stStr(r.best_pick.why))){
-    const pick = stEl('div','studio-pair');
-    if(stStr(r.best_pick.title)) pick.appendChild(stEl('div','studio-pair-kicker', stStr(r.best_pick.title)));
-    if(stStr(r.best_pick.why)) pick.appendChild(stEl('div','studio-pair-text', stStr(r.best_pick.why)));
-    stSection(root, 'Best pick', pick);
-  }
-  stSection(root, 'First 90 days', stList(r.plan_90_days, true));
-  stSection(root, 'Twelve months', stList(r.plan_12_months, true));
-  stSection(root, 'Skills to close', stPairs(r.skills_to_close, (card, sk) => {
-    if(stStr(sk.skill)) card.appendChild(stEl('div','studio-pair-kicker', stStr(sk.skill)));
-    if(stStr(sk.how)) card.appendChild(stEl('div','studio-pair-text', stStr(sk.how)));
-  }));
-  if(stStr(r.first_move)) stSection(root, 'This week', stEl('div','studio-first-move', stStr(r.first_move)));
+function svcStatus(service, msg){
+  const el = document.getElementById('svc-status-' + service);
+  if(el) el.textContent = msg || '';
 }
 
-function studioDate(at){
+function svcDate(at){
   const d = new Date(at);
   if(!Number.isFinite(d.getTime())) return '';
   return d.toLocaleDateString('en-GB', { day:'numeric', month:'long' });
 }
 
-function studioRenderReport(mode, result, at){
-  const els = studioEls(mode);
-  if(!els.report || !result || typeof result !== 'object') return;
-  els.report.innerHTML = '';
-  const head = stEl('div','studio-report-head');
-  const when = studioDate(at);
-  if(when) head.appendChild(stEl('div','studio-report-date','Generated ' + when));
-  const again = stEl('button','studio-again','Run again');
-  again.type = 'button';
-  again.addEventListener('click', ()=>{
-    if(mode === 'cvreview'){ studioRun('cvreview', {}); return; }
-    if(els.form){ els.form.hidden = false; els.form.scrollIntoView({behavior:'smooth', block:'center'}); }
-  });
-  head.appendChild(again);
-  els.report.appendChild(head);
-  try{
-    if(mode === 'cvreview') studioRenderCvReport(els.report, result);
-    else if(mode === 'linkedin') studioRenderLinkedinReport(els.report, result);
-    else studioRenderRoadmapReport(els.report, result);
-  }catch(e){
-    els.report.appendChild(stEl('p','studio-text','This report could not be displayed. Run it again.'));
-  }
-  els.report.hidden = false;
-  if(els.form && mode !== 'cvreview') els.form.hidden = true;
-}
-
-/* --- Honest states --- */
-function studioProgress(mode, show){
-  const els = studioEls(mode);
-  if(!els.progress) return;
-  if(show && els.progressLabel) els.progressLabel.textContent = STUDIO_TOOLS[mode].running;
-  els.progress.hidden = !show;
-}
-function studioStatus(mode, msg){
-  const els = studioEls(mode);
-  if(els.status) els.status.textContent = msg || '';
-}
-function studioShowGate(which){
-  const grid = document.getElementById('studio-grid');
-  const signin = document.getElementById('studio-signin');
-  const offline = document.getElementById('studio-offline');
-  if(grid) grid.hidden = which !== 'grid';
-  if(signin) signin.hidden = which !== 'signin';
-  if(offline) offline.hidden = which !== 'offline';
-}
-
-/* 404 no_cv → real upload prompt (profile-mode upload, same flow as the
-   dashboard: signed upload URL → PUT → PATCH /api/me with the new path). */
-function studioNoCvPrompt(){
-  const wrap = studioEls('cvreview').nocv;
-  if(!wrap) return;
-  wrap.hidden = false;
-  wrap.innerHTML = `
-    <div class="studio-nocv-title">No CV on your profile yet</div>
-    <p>Upload your CV and Nuria reads the real document — nothing is invented.</p>
-    <div class="studio-nocv-row">
-      <input type="file" id="studio-cv-file" accept=".pdf,.png,.jpg,.jpeg" aria-label="Choose your CV file"/>
-      <button type="button" class="btn btn-ghost" id="studio-cv-upload-btn">Upload CV</button>
-      <span class="studio-status" id="studio-cv-status" role="status"></span>
-    </div>`;
-  const btn = document.getElementById('studio-cv-upload-btn');
-  const fileInput = document.getElementById('studio-cv-file');
-  const status = document.getElementById('studio-cv-status');
-  btn.addEventListener('click', async ()=>{
-    const file = fileInput.files && fileInput.files[0];
-    if(!file){ if(status) status.textContent = 'Choose a PDF or image first.'; return; }
-    const dot = file.name.lastIndexOf('.');
-    const ext = dot >= 0 ? file.name.slice(dot+1).toLowerCase() : '';
-    if(!['pdf','png','jpg','jpeg'].includes(ext)){ if(status) status.textContent = 'PDF, PNG or JPG only.'; return; }
-    btn.disabled = true;
-    if(status) status.textContent = 'Uploading…';
-    try{
-      const r1 = await fetch('/api/cv-upload-url', {
-        method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
-        body: JSON.stringify({ profile:true, ext })
-      });
-      if(!r1.ok) throw new Error('upload_url_failed');
-      const { path, uploadUrl } = await r1.json();
-      const put = await fetch(uploadUrl, { method:'PUT', body:file });
-      if(!put.ok) throw new Error('put_failed');
-      const patched = await fetch('/api/me', {
-        method:'PATCH', headers:{'content-type':'application/json'}, credentials:'same-origin',
-        body: JSON.stringify({ cvPath:path, cvName:file.name, cvUploadedAt:new Date().toISOString() })
-      });
-      if(patched.ok){
-        const d = await patched.json();
-        if(d && d.user) setLinkedInUser(d.user);
-      }
-      wrap.hidden = true;
-      showToast('CV added to your profile');
-      studioStatus('cvreview', 'CV saved — run the review whenever you like.');
-    }catch(e){
-      if(status) status.textContent = 'Upload failed — you can try again.';
-    }finally{
-      btn.disabled = false;
+/* Signed-out: cards stay visible, CTAs become sign-in prompts.
+   file:// (no backend): honest note, no dead buttons. */
+function svcSyncGate(){
+  const offline = document.getElementById('svc-offline');
+  const signedIn = !!getLinkedInUser();
+  if(offline) offline.hidden = BACKEND_AVAILABLE;
+  Object.keys(SVC_SERVICES).forEach(service => {
+    const cta = document.getElementById('svc-cta-' + service);
+    const form = document.getElementById('svc-form-' + service);
+    if(!cta) return;
+    if(!BACKEND_AVAILABLE){
+      cta.hidden = true;
+      if(form) form.hidden = true;
+      return;
     }
+    cta.textContent = signedIn ? SVC_SERVICES[service].cta : 'Sign in with LinkedIn';
+    if(!signedIn && form){ form.hidden = true; cta.hidden = false; }
   });
 }
 
-/* Keep the session copy of studioResults current so re-entering the studio
-   shows this run without a refetch. */
-function studioRememberResult(mode, result, at){
+function svcOpenForm(service){
+  const form = document.getElementById('svc-form-' + service);
+  const cta = document.getElementById('svc-cta-' + service);
+  if(!form) return;
+  form.hidden = false;
+  if(cta) cta.hidden = true;
+  svcStatus(service, '');
+  if(service === 'cv_review') svcSyncCvLine();
+}
+
+/* CV Review reuses the profile CV: show it when present, allow replacing. */
+function svcSyncCvLine(){
+  const line = document.getElementById('svc-cv-current');
+  const lbl = document.getElementById('svc-cv-upload-lbl');
   const u = getLinkedInUser();
-  if(!u) return;
-  const merged = Object.assign({}, u.studioResults || {});
-  merged[mode] = { result, at };
-  setLinkedInUser(Object.assign({}, u, { studioResults: merged }));
+  const name = u && (u.cvName || u.cv_name);
+  const has = !!(u && (u.cvPath || u.cv_path));
+  if(line){
+    line.hidden = !has;
+    line.textContent = has ? ('Using your CV: ' + (name || 'uploaded file')) : '';
+  }
+  if(lbl) lbl.textContent = has ? 'Upload a new CV (optional)' : 'Your CV (PDF or image) — required';
 }
 
-/* --- The run: POST + NDJSON pump (same pump as companionSend) --- */
-async function studioRun(mode, payload){
-  if(studio.busy) return;
-  const els = studioEls(mode);
-  studio.busy = true;
-  // One tool runs at a time — disable every run button so the others can't
-  // silently no-op while Nuria is working.
-  document.querySelectorAll('#view-studio .studio-run').forEach(b => { b.disabled = true; });
-  if(els.nocv) els.nocv.hidden = true;
-  studioStatus(mode, '');
-  studioProgress(mode, true);
-
-  let result = null;
+/* Same profile-mode upload flow as the dashboard: signed upload URL → PUT →
+   PATCH /api/me with the new path. */
+async function svcUploadCv(){
+  const fileInput = document.getElementById('svc-cv-file');
+  const btn = document.getElementById('svc-cv-upload-btn');
+  const file = fileInput && fileInput.files && fileInput.files[0];
+  if(!file){ svcStatus('cv_review', 'Choose a PDF or image first.'); return; }
+  const dot = file.name.lastIndexOf('.');
+  const ext = dot >= 0 ? file.name.slice(dot+1).toLowerCase() : '';
+  if(!['pdf','png','jpg','jpeg'].includes(ext)){ svcStatus('cv_review', 'PDF, PNG or JPG only.'); return; }
+  if(btn) btn.disabled = true;
+  svcStatus('cv_review', 'Uploading…');
   try{
-    const resp = await fetch('/api/estrella', {
-      method:'POST',
-      headers:{ 'content-type':'application/json' },
-      credentials:'same-origin',
-      body: JSON.stringify(Object.assign({ mode }, payload || {}))
+    const r1 = await fetch('/api/cv-upload-url', {
+      method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ profile:true, ext })
     });
-    if(resp.status === 503){ studioProgress(mode, false); studioShowGate('offline'); return; }
-    if(resp.status === 401){ studioProgress(mode, false); studioShowGate('signin'); return; }
-    if(resp.status === 404 && mode === 'cvreview'){ studioProgress(mode, false); studioNoCvPrompt(); return; }
-    if(!resp.ok || !resp.body) throw new Error('studio_unavailable');
-
-    const reader = resp.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = '';
-    const handleLine = (line) => {
-      const trimmed = line.trim();
-      if(!trimmed) return;
-      let chunk;
-      try{ chunk = JSON.parse(trimmed); }catch(e){ return; }
-      if(chunk.type === 'result' && chunk.result && typeof chunk.result === 'object'){
-        result = chunk.result;
-      }else if(chunk.type === 'error' && !result){
-        throw new Error('studio_stream_error');
-      }
-    };
-    for(;;){
-      const { done, value } = await reader.read();
-      if(done) break;
-      buffer += decoder.decode(value, { stream:true });
-      let nl;
-      while((nl = buffer.indexOf('\n')) >= 0){
-        const line = buffer.slice(0, nl);
-        buffer = buffer.slice(nl + 1);
-        handleLine(line);
-      }
+    if(r1.status === 401){ svcStatus('cv_review', 'Sign in with LinkedIn first.'); return; }
+    if(!r1.ok) throw new Error('upload_url_failed');
+    const { path, uploadUrl } = await r1.json();
+    const put = await fetch(uploadUrl, { method:'PUT', body:file });
+    if(!put.ok) throw new Error('put_failed');
+    const patched = await fetch('/api/me', {
+      method:'PATCH', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ cvPath:path, cvName:file.name, cvUploadedAt:new Date().toISOString() })
+    });
+    if(patched.ok){
+      const d = await patched.json();
+      if(d && d.user) setLinkedInUser(d.user);
     }
-    if(buffer.trim()) handleLine(buffer);
-    if(!result) throw new Error('studio_no_result');
-
-    const at = new Date().toISOString();
-    studioRememberResult(mode, result, at);
-    studioRenderReport(mode, result, at);
+    svcSyncCvLine();
+    svcStatus('cv_review', 'CV saved to your profile.');
+    showToast('CV added to your profile');
   }catch(e){
-    if(!result) studioStatus(mode, "Nuria couldn't finish this one. Try again in a moment.");
+    svcStatus('cv_review', 'Upload failed — you can try again.');
   }finally{
-    studioProgress(mode, false);
-    studio.busy = false;
-    document.querySelectorAll('#view-studio .studio-run').forEach(b => { b.disabled = false; });
+    if(btn) btn.disabled = false;
   }
+}
+
+/* The submit: one request row, Nesreen replies in her own time. */
+async function svcSubmit(service, payload, cvPath){
+  if(svc.busy) return;
+  svc.busy = true;
+  document.querySelectorAll('#view-studio .svc-send').forEach(b => { b.disabled = true; });
+  svcStatus(service, 'Sending…');
+  try{
+    const body = { service, payload };
+    if(cvPath) body.cv_path = cvPath;
+    const resp = await fetch('/api/me?action=service-request', {
+      method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify(body)
+    });
+    if(resp.status === 401){ svcStatus(service, 'Please sign in with LinkedIn first.'); svcSyncGate(); return; }
+    if(resp.status === 503){ svcStatus(service, 'Requests are not available right now — the database is not connected. Nothing was sent.'); return; }
+    if(resp.status === 409){ svcStatus(service, 'You already have a pending request for this — Nesreen will reply to it here.'); return; }
+    if(!resp.ok){ svcStatus(service, 'That did not go through — check the fields and try again.'); return; }
+    svcStatus(service, 'Sent to Nesreen. Her reply will appear here.');
+    const form = document.getElementById('svc-form-' + service);
+    if(form){ form.hidden = true; if(typeof form.reset === 'function') form.reset(); }
+    const cta = document.getElementById('svc-cta-' + service);
+    if(cta) cta.hidden = false;
+    svcLoadRequests();
+  }catch(e){
+    svcStatus(service, 'That did not go through — try again in a moment.');
+  }finally{
+    svc.busy = false;
+    document.querySelectorAll('#view-studio .svc-send').forEach(b => { b.disabled = false; });
+  }
+}
+
+/* 'Your requests' — the honest ledger. 'With Nesreen' until she replies. */
+function svcChip(status){
+  const chip = svcEl('span', 'svc-chip' + (status === 'responded' ? ' replied' : ''));
+  chip.textContent = status === 'responded' ? 'Replied' : 'With Nesreen';
+  return chip;
+}
+
+function svcRequestRow(r){
+  const row = svcEl('article','svc-req');
+  const top = svcEl('div','svc-req-top');
+  const label = SVC_SERVICES[r.service] ? SVC_SERVICES[r.service].label : String(r.service || '');
+  top.appendChild(svcEl('span','svc-req-service', label));
+  const when = svcDate(r.created_at);
+  if(when) top.appendChild(svcEl('span','svc-req-date', when));
+  top.appendChild(svcChip(r.status));
+  row.appendChild(top);
+  if(typeof r.response === 'string' && r.response.trim()){
+    const resp = svcEl('div','svc-response');
+    const respWhen = svcDate(r.responded_at);
+    resp.appendChild(svcEl('div','svc-response-lbl', 'Nesreen' + (respWhen ? ' · ' + respWhen : '')));
+    resp.appendChild(svcEl('div','svc-response-text', r.response.trim()));
+    row.appendChild(resp);
+  }
+  return row;
+}
+
+async function svcLoadRequests(){
+  const sec = document.getElementById('svc-requests');
+  const list = document.getElementById('svc-req-list');
+  if(!sec || !list) return;
+  if(!BACKEND_AVAILABLE || !getLinkedInUser()){ sec.hidden = true; return; }
+  try{
+    const resp = await fetch('/api/me?action=service-requests', { credentials:'same-origin' });
+    if(!resp.ok) return; // 401/503 — the cards already carry the honest state
+    const d = await resp.json();
+    const rows = d && Array.isArray(d.requests) ? d.requests : [];
+    list.innerHTML = '';
+    if(!rows.length){ sec.hidden = true; return; }
+    sec.hidden = false;
+    rows.forEach(r => list.appendChild(svcRequestRow(r)));
+  }catch(e){ /* leave the view as it was */ }
 }
 
 function initStudio(){
-  const grid = document.getElementById('studio-grid');
-  if(!grid) return;
+  svcSyncGate();
+  svcLoadRequests();
+  if(svc.wired) return;
+  svc.wired = true;
 
-  if(!BACKEND_AVAILABLE){ studioShowGate('offline'); return; }
-  const user = getLinkedInUser();
-  if(!user){ studioShowGate('signin'); return; }
-  studioShowGate('grid');
-
-  // Saved reports from /api/me (user.studioResults) — rendered with their
-  // generation date and a Run again action.
-  const saved = user.studioResults;
-  ['cvreview','linkedin','roadmap'].forEach(mode => {
-    const entry = saved && saved[mode];
-    const report = studioEls(mode).report;
-    if(entry && entry.result && report && !report.childElementCount){
-      studioRenderReport(mode, entry.result, entry.at);
-    }
-  });
-
-  if(studio.wired) return;
-  studio.wired = true;
-
-  document.getElementById('studio-form-cvreview')?.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    studioRun('cvreview', {});
-  });
-  document.getElementById('studio-form-linkedin')?.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const headline = document.getElementById('studio-li-headline').value.trim();
-    const about = document.getElementById('studio-li-about').value.trim();
-    const experience = document.getElementById('studio-li-experience').value.trim();
-    if(!headline && !about && !experience){
-      studioStatus('linkedin', 'Paste at least one section of your profile first.');
-      return;
-    }
-    studioRun('linkedin', { headline, about, experience });
-  });
-  document.getElementById('studio-form-roadmap')?.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const current_role = document.getElementById('studio-rm-role').value.trim();
-    if(!current_role){
-      studioStatus('roadmap', 'Your current role is the one required field.');
-      return;
-    }
-    studioRun('roadmap', {
-      current_role,
-      years: document.getElementById('studio-rm-years').value.trim(),
-      direction: document.getElementById('studio-rm-direction').value.trim(),
-      constraints: document.getElementById('studio-rm-constraints').value.trim()
+  Object.keys(SVC_SERVICES).forEach(service => {
+    document.getElementById('svc-cta-' + service)?.addEventListener('click', ()=>{
+      if(!BACKEND_AVAILABLE) return;
+      if(!getLinkedInUser()){ window.location.href = '/api/linkedin/login'; return; }
+      svcOpenForm(service);
     });
+  });
+
+  document.getElementById('svc-cv-upload-btn')?.addEventListener('click', svcUploadCv);
+
+  document.getElementById('svc-form-cv_review')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const u = getLinkedInUser();
+    const cvPath = u && (u.cvPath || u.cv_path);
+    if(!cvPath){ svcStatus('cv_review', 'Upload your CV first — Nesreen reviews the real document.'); return; }
+    const note = document.getElementById('svc-cv-note').value.trim().slice(0, 2000);
+    svcSubmit('cv_review', note ? { note } : {}, cvPath);
+  });
+
+  document.getElementById('svc-form-linkedin_review')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const url = document.getElementById('svc-li-url').value.trim().slice(0, 300);
+    if(!url || !(url.startsWith('https://www.linkedin.com/') || url.startsWith('https://linkedin.com/'))){
+      svcStatus('linkedin_review', 'Paste your LinkedIn profile link — it starts with https://www.linkedin.com/');
+      return;
+    }
+    const focus = document.getElementById('svc-li-focus').value.trim().slice(0, 2000);
+    const payload = { profile_url: url };
+    if(focus) payload.focus = focus;
+    svcSubmit('linkedin_review', payload);
+  });
+
+  document.getElementById('svc-form-roadmap')?.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const current_role = document.getElementById('svc-rm-role').value.trim().slice(0, 200);
+    if(!current_role){ svcStatus('roadmap', 'Your current role is required.'); return; }
+    const ambition = document.getElementById('svc-rm-ambition').value.trim().slice(0, 2000);
+    if(!ambition){ svcStatus('roadmap', 'Tell Nesreen where you want to go — that field is required.'); return; }
+    const payload = { current_role, ambition };
+    const yearsRaw = document.getElementById('svc-rm-years').value.trim();
+    if(yearsRaw){
+      const years = parseInt(yearsRaw, 10);
+      if(Number.isFinite(years)) payload.years = Math.min(40, Math.max(0, years));
+    }
+    const constraints = document.getElementById('svc-rm-constraints').value.trim().slice(0, 2000);
+    if(constraints) payload.constraints = constraints;
+    svcSubmit('roadmap', payload);
   });
 }
 
-// Wired once at load (not inside initStudio) so it works for signed-out visitors.
-document.getElementById('studio-signin-btn')?.addEventListener('click', ()=>{
-  if(BACKEND_AVAILABLE){ window.location.href = '/api/linkedin/login'; }
-});
 
 /* ============================== NURIA COMPANION (dashboard) ==============================
    Real between-sessions chat. Streams from /api/estrella {mode:'companion'} — the server
@@ -7639,6 +7529,246 @@ async function coachAIRun(briefId, mode, article){
   }
 }
 
+// ===== Service requests — Nesreen's Services desk =====
+// GET /api/coach/services lists them; PATCH sends her reply; mode:'servicedraft'
+// streams an AI DRAFT into the textarea for her to edit. The member only ever
+// sees what she sends. All member text lands via textContent.
+let coachServicesCache = {};
+
+function coachSvcLabel(service){
+  return service === 'cv_review' ? 'CV Review'
+    : service === 'linkedin_review' ? 'LinkedIn Review'
+    : service === 'roadmap' ? 'Career Roadmap'
+    : String(service || '');
+}
+
+function coachSvcRow(r){
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if(cls) n.className = cls;
+    if(text != null) n.textContent = text;
+    return n;
+  };
+  const row = el('article','coach-svc');
+  row.dataset.id = r.id;
+
+  const top = el('button','coach-svc-top');
+  top.type = 'button';
+  top.dataset.svcToggle = r.id;
+  top.appendChild(el('span','coach-svc-service', coachSvcLabel(r.service)));
+  const who = (r.user_name || 'Member') + (r.user_email ? ' · ' + r.user_email : '');
+  top.appendChild(el('span','coach-svc-who', who));
+  const when = svcDate(r.created_at);
+  if(when) top.appendChild(el('span','coach-svc-date', when));
+  top.appendChild(el('span','svc-chip' + (r.status === 'responded' ? ' replied' : ''),
+    r.status === 'responded' ? 'Replied' : (r.status === 'in_review' ? 'In review' : 'New')));
+  row.appendChild(top);
+
+  const body = el('div','coach-svc-body');
+  body.hidden = true;
+  const p = (r.payload && typeof r.payload === 'object') ? r.payload : {};
+  const addField = (lbl, val) => {
+    if(val == null || val === '') return;
+    const f = el('div','coach-field');
+    f.appendChild(el('div','coach-field-lbl', lbl));
+    f.appendChild(el('div','coach-field-val', String(val)));
+    body.appendChild(f);
+  };
+  if(r.service === 'cv_review'){
+    addField('Note from the member', p.note);
+  }else if(r.service === 'linkedin_review'){
+    addField('Profile URL', p.profile_url);
+    addField('Focus', p.focus);
+  }else if(r.service === 'roadmap'){
+    addField('Current role', p.current_role);
+    addField('Years of experience', p.years);
+    addField('Ambition', p.ambition);
+    addField('Constraints', p.constraints);
+  }
+  if(r.cv_path){
+    const cvBtn = el('button','coach-ai-btn','Open CV');
+    cvBtn.type = 'button';
+    cvBtn.dataset.svcCv = r.id;
+    cvBtn.style.marginBottom = '1rem';
+    body.appendChild(cvBtn);
+  }
+  const replyField = el('div','coach-field');
+  replyField.appendChild(el('div','coach-field-lbl','Your reply'));
+  const ta = el('textarea','coach-svc-reply');
+  ta.maxLength = 8000;
+  ta.placeholder = 'Write your reply — the member sees exactly this text.';
+  if(typeof r.response === 'string') ta.value = r.response;
+  replyField.appendChild(ta);
+  body.appendChild(replyField);
+
+  const actions = el('div','coach-svc-actions');
+  const draftBtn = el('button','coach-ai-btn','Draft with AI');
+  draftBtn.type = 'button';
+  draftBtn.dataset.svcDraft = r.id;
+  actions.appendChild(draftBtn);
+  const sendBtn = el('button','coach-review-btn','Send reply');
+  sendBtn.type = 'button';
+  sendBtn.dataset.svcSend = r.id;
+  actions.appendChild(sendBtn);
+  body.appendChild(actions);
+
+  const status = el('div','coach-svc-status');
+  status.setAttribute('role','status');
+  body.appendChild(status);
+
+  row.appendChild(body);
+  return row;
+}
+
+function renderCoachServices(){
+  const wrap = document.getElementById('coach-services');
+  const empty = document.getElementById('coach-services-empty');
+  if(!wrap) return;
+  if(!BACKEND_AVAILABLE || isDevAdminPreview()){
+    wrap.innerHTML = '';
+    if(empty) empty.hidden = false;
+    return;
+  }
+  fetch('/api/coach/services', { credentials:'same-origin' })
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      const rows = d && Array.isArray(d.requests) ? d.requests : [];
+      coachServicesCache = {};
+      rows.forEach(r => { if(r && r.id) coachServicesCache[r.id] = r; });
+      wrap.innerHTML = '';
+      if(!rows.length){ if(empty) empty.hidden = false; return; }
+      if(empty) empty.hidden = true;
+      rows.forEach(r => wrap.appendChild(coachSvcRow(r)));
+    })
+    .catch(()=>{
+      wrap.innerHTML = '';
+      if(empty) empty.hidden = false;
+    });
+}
+
+// Streams mode:'servicedraft' into the reply textarea — a DRAFT Nesreen edits.
+async function coachSvcDraft(id, article){
+  if(!article || article.dataset.svcBusy === '1') return;
+  const ta = article.querySelector('.coach-svc-reply');
+  const status = article.querySelector('.coach-svc-status');
+  const btns = article.querySelectorAll('[data-svc-draft],[data-svc-send]');
+  if(!ta) return;
+  article.dataset.svcBusy = '1';
+  btns.forEach(b => { b.disabled = true; });
+  if(status) status.textContent = 'Nuria is drafting…';
+  let text = '';
+  try{
+    const resp = await fetch('/api/estrella', {
+      method:'POST', headers:{'content-type':'application/json'}, credentials:'same-origin',
+      body: JSON.stringify({ mode:'servicedraft', request_id: id })
+    });
+    if(resp.status === 503){
+      if(status) status.textContent = 'Nuria is not connected — write the reply yourself for now.';
+      return;
+    }
+    if(!resp.ok || !resp.body) throw new Error('draft_failed');
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '';
+    const handleLine = (line)=>{
+      const t = line.trim();
+      if(!t) return;
+      let chunk; try{ chunk = JSON.parse(t); }catch(e){ return; }
+      if(chunk.type === 'text' && typeof chunk.text === 'string'){
+        text += chunk.text;
+        ta.value = text;
+      }else if(chunk.type === 'error' && !text){
+        throw new Error('draft_stream_error');
+      }
+    };
+    for(;;){
+      const { done, value } = await reader.read();
+      if(done) break;
+      buffer += decoder.decode(value, { stream:true });
+      let nl;
+      while((nl = buffer.indexOf('\n')) >= 0){ handleLine(buffer.slice(0,nl)); buffer = buffer.slice(nl+1); }
+    }
+    if(buffer.trim()) handleLine(buffer);
+    if(status) status.textContent = text ? 'Draft ready — edit it before you send.' : 'Nuria returned nothing — try again.';
+  }catch(e){
+    if(!text && status) status.textContent = 'Could not draft right now — try again in a moment.';
+  }finally{
+    delete article.dataset.svcBusy;
+    btns.forEach(b => { b.disabled = false; });
+  }
+}
+
+function coachSvcSend(id, article){
+  if(!article || article.dataset.svcBusy === '1') return;
+  const ta = article.querySelector('.coach-svc-reply');
+  const status = article.querySelector('.coach-svc-status');
+  const btns = article.querySelectorAll('[data-svc-draft],[data-svc-send]');
+  const response = ta ? ta.value.trim() : '';
+  if(!response){ if(status) status.textContent = 'Write the reply first.'; return; }
+  article.dataset.svcBusy = '1';
+  btns.forEach(b => { b.disabled = true; });
+  if(status) status.textContent = 'Sending…';
+  fetch('/api/coach/services', {
+    method:'PATCH', headers:{'content-type':'application/json'}, credentials:'same-origin',
+    body: JSON.stringify({ id, response })
+  })
+    .then(r => { if(!r.ok) throw new Error('send_failed'); return r.json(); })
+    .then(d => {
+      if(d && d.request && d.request.id) coachServicesCache[d.request.id] = d.request;
+      const chip = article.querySelector('.svc-chip');
+      if(chip){ chip.textContent = 'Replied'; chip.classList.add('replied'); }
+      if(status) status.textContent = 'Reply sent — the member sees it under Services.';
+      showToast('Reply sent');
+    })
+    .catch(()=>{ if(status) status.textContent = 'Could not send — try again.'; })
+    .finally(()=>{
+      delete article.dataset.svcBusy;
+      btns.forEach(b => { b.disabled = false; });
+    });
+}
+
+document.getElementById('coach-services')?.addEventListener('click', (e)=>{
+  const toggle = e.target.closest('[data-svc-toggle]');
+  if(toggle){
+    const body = toggle.parentElement && toggle.parentElement.querySelector('.coach-svc-body');
+    if(body) body.hidden = !body.hidden;
+    return;
+  }
+  const cvBtn = e.target.closest('[data-svc-cv]');
+  if(cvBtn){
+    // Open the tab synchronously inside the click gesture so popup blockers
+    // allow it, then point it at the signed URL once the fetch resolves.
+    // (No 'noopener' feature here — that makes window.open return null by
+    // spec; sever the opener manually instead.)
+    const win = window.open('about:blank', '_blank');
+    if(win) win.opener = null;
+    const status = (cvBtn.closest('.coach-svc') || document).querySelector('.coach-svc-status');
+    const fail = () => { if(win) win.close(); showToast('CV unavailable'); };
+    fetch('/api/coach/services?cv=' + encodeURIComponent(cvBtn.dataset.svcCv), { credentials:'same-origin' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if(!(d && d.url)){ fail(); return; }
+        if(win){ win.location = d.url; return; }
+        // Even the in-gesture open was blocked — fall back to a visible link.
+        if(status){
+          status.textContent = '';
+          const a = document.createElement('a');
+          a.href = d.url; a.target = '_blank'; a.rel = 'noopener';
+          a.textContent = 'Pop-up blocked — click to open the CV';
+          status.appendChild(a);
+        }else{
+          showToast('Pop-up blocked — allow pop-ups to open the CV');
+        }
+      })
+      .catch(fail);
+    return;
+  }
+  const draftBtn = e.target.closest('[data-svc-draft]');
+  if(draftBtn){ coachSvcDraft(draftBtn.dataset.svcDraft, draftBtn.closest('.coach-svc')); return; }
+  const sendBtn = e.target.closest('[data-svc-send]');
+  if(sendBtn){ coachSvcSend(sendBtn.dataset.svcSend, sendBtn.closest('.coach-svc')); }
+});
+
 let coachBriefFilter = 'new';
 let coachBriefsList = [];
 function coachApplyBriefFilter(list){
@@ -7730,6 +7860,7 @@ function coachMapServerBrief(b){
 
 // Dispatcher: real coach desk when online, localStorage demo offline.
 function renderCoachBriefs(){
+  renderCoachServices(); // Services queue — remote when online, honest empty state otherwise
   if(isDevAdminPreview()){
     coachRenderTools(coachLocalTools());
     renderCoachUsersLocal();

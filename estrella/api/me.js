@@ -20,6 +20,17 @@ module.exports = async (req, res) => {
     return handleBookAccess(req, res, params);
   }
 
+  // Services pivot — member-submitted requests that Nesreen personally reviews
+  // and replies to from the coach desk. No AI replies to members.
+  //   POST ?action=service-request  {service, payload, cv_path?} → 200 {request}
+  //   GET  ?action=service-requests → 200 {requests:[...]} newest first
+  if (params.get('action') === 'service-request') {
+    return handleServiceRequest(req, res);
+  }
+  if (params.get('action') === 'service-requests') {
+    return handleServiceRequestList(req, res);
+  }
+
   const cookies = L.parseCookies(req);
   const user = L.readSession(cookies[L.COOKIE]);
   res.setHeader('Content-Type', 'application/json');
@@ -171,6 +182,132 @@ async function handleBookAccess(req, res, params) {
     return L.sendJson(res, 200, { url });
   } catch (e) {
     console.error('book-access error', e);
+    return L.sendJson(res, 500, { error: 'server_error' });
+  }
+}
+
+// The three human-reviewed services a member can request. Nesreen reads every
+// request herself and replies from the coach desk.
+const SERVICE_IDS = ['cv_review', 'linkedin_review', 'roadmap'];
+
+// POST /api/me?action=service-request — validate + clamp per service, refuse a
+// second submission while one is still pending (status='submitted'), insert the
+// row with the session's identity copied in. 401 | 503 | 400 | 409 | 200.
+async function handleServiceRequest(req, res) {
+  const s = L.requireUser(req, res);
+  if (!s) return;
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return L.sendJson(res, 405, { error: 'method_not_allowed' });
+  }
+  if (!L.sbConfigured()) return L.sendJson(res, 503, { error: 'supabase_unconfigured' });
+
+  let body;
+  try { body = await readJson(req); } catch (e) { return L.sendJson(res, 400, { error: 'bad_request' }); }
+  const service = cleanString(body.service, 40);
+  if (!SERVICE_IDS.includes(service)) return L.sendJson(res, 400, { error: 'bad_request' });
+
+  const rawPayload = (body.payload && typeof body.payload === 'object' && !Array.isArray(body.payload))
+    ? body.payload : {};
+  const payload = {};
+  let cvPath = null;
+
+  if (service === 'cv_review') {
+    // cv_path REQUIRED and only a path under THIS user's storage prefix with no
+    // empty or dot segments (traversal guard — mirrors api/cv-parse.js).
+    cvPath = cleanString(body.cv_path, 300);
+    const segs = cvPath.split('/');
+    const safe = cvPath
+      && segs.length >= 2
+      && segs[0] === s.sub
+      && !segs.some((seg) => seg === '' || seg === '.' || seg === '..');
+    if (!safe) return L.sendJson(res, 400, { error: 'bad_request' });
+    const note = cleanString(rawPayload.note, 2000);
+    if (note) payload.note = note;
+  } else if (service === 'linkedin_review') {
+    const profileUrl = cleanString(rawPayload.profile_url, 300);
+    const okUrl = profileUrl.startsWith('https://www.linkedin.com/')
+      || profileUrl.startsWith('https://linkedin.com/');
+    if (!profileUrl || !okUrl) return L.sendJson(res, 400, { error: 'bad_request' });
+    payload.profile_url = profileUrl;
+    const focus = cleanString(rawPayload.focus, 2000);
+    if (focus) payload.focus = focus;
+  } else { // roadmap
+    const currentRole = cleanString(rawPayload.current_role, 200);
+    const ambition = cleanString(rawPayload.ambition, 2000);
+    if (!currentRole || !ambition) return L.sendJson(res, 400, { error: 'bad_request' });
+    payload.current_role = currentRole;
+    payload.ambition = ambition;
+    const years = cleanString(
+      typeof rawPayload.years === 'number' ? String(rawPayload.years) : rawPayload.years, 40
+    );
+    if (years) payload.years = years;
+    const constraints = cleanString(rawPayload.constraints, 2000);
+    if (constraints) payload.constraints = constraints;
+  }
+
+  try {
+    // One pending request per (user, service): 409 while a 'submitted' row exists.
+    const pending = await L.sb(
+      `service_requests?user_sub=eq.${encodeURIComponent(s.sub)}`
+      + `&service=eq.${encodeURIComponent(service)}&status=eq.submitted&select=id&limit=1`
+    );
+    if (!pending.ok) {
+      console.error('service-request pending check failed', pending.status, await pending.text().catch(() => ''));
+      return L.sendJson(res, 502, { error: 'supabase_error' });
+    }
+    const pRows = await pending.json().catch(() => []);
+    if (Array.isArray(pRows) && pRows.length) return L.sendJson(res, 409, { error: 'already_pending' });
+
+    const insert = await L.sb('service_requests', {
+      method: 'POST',
+      headers: { Prefer: 'return=representation' },
+      body: JSON.stringify({
+        user_sub: s.sub,
+        user_name: cleanString(s.name, 160) || null,
+        user_email: cleanString(s.email, 160) || null,
+        service,
+        payload,
+        cv_path: cvPath,
+      }),
+    });
+    if (!insert.ok) {
+      console.error('service-request insert failed', insert.status, await insert.text().catch(() => ''));
+      return L.sendJson(res, 502, { error: 'supabase_error' });
+    }
+    const rows = await insert.json().catch(() => []);
+    const request = (Array.isArray(rows) ? rows[0] : rows) || null;
+    return L.sendJson(res, 200, { request });
+  } catch (e) {
+    console.error('service-request error', e);
+    return L.sendJson(res, 500, { error: 'server_error' });
+  }
+}
+
+// GET /api/me?action=service-requests — this member's own requests, newest
+// first, including Nesreen's reply when present. 401 | 503 | 200.
+async function handleServiceRequestList(req, res) {
+  const s = L.requireUser(req, res);
+  if (!s) return;
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return L.sendJson(res, 405, { error: 'method_not_allowed' });
+  }
+  if (!L.sbConfigured()) return L.sendJson(res, 503, { error: 'supabase_unconfigured' });
+  try {
+    const resp = await L.sb(
+      `service_requests?user_sub=eq.${encodeURIComponent(s.sub)}`
+      + '&select=id,service,status,payload,cv_path,response,responded_at,created_at'
+      + '&order=created_at.desc'
+    );
+    if (!resp.ok) {
+      console.error('service-requests list failed', resp.status, await resp.text().catch(() => ''));
+      return L.sendJson(res, 502, { error: 'supabase_error' });
+    }
+    const rows = await resp.json().catch(() => []);
+    return L.sendJson(res, 200, { requests: Array.isArray(rows) ? rows : [] });
+  } catch (e) {
+    console.error('service-requests error', e);
     return L.sendJson(res, 500, { error: 'server_error' });
   }
 }

@@ -216,6 +216,30 @@ create unique index if not exists coach_integrations_coach_provider_key
   on public.coach_integrations (coach_sub, provider);
 
 -- ----------------------------------------------------------------------------
+-- service_requests — the Services pivot. A member SUBMITS a request (CV review,
+-- LinkedIn review, career roadmap); Nesreen personally reviews and replies from
+-- the coach desk. status: 'submitted' -> optional 'in_review' -> 'responded'.
+-- No AI replies to members — `response` is Nesreen's own text (AI may only
+-- draft FOR her inside the desk). payload is the clamped, per-service input.
+-- ----------------------------------------------------------------------------
+create table if not exists public.service_requests (
+  id           uuid primary key default gen_random_uuid(),
+  user_sub     text not null,
+  user_name    text,
+  user_email   text,
+  service      text not null,              -- 'cv_review' | 'linkedin_review' | 'roadmap'
+  payload      jsonb,                      -- clamped per-service fields (note/profile_url/...)
+  cv_path      text,                       -- object path in the private `cvs` bucket (cv_review)
+  status       text not null default 'submitted',   -- submitted | in_review | responded
+  response     text,                       -- Nesreen's reply (human-written)
+  responded_at timestamptz,
+  created_at   timestamptz not null default now(),
+  updated_at   timestamptz not null default now()
+);
+create index if not exists idx_service_requests_user   on public.service_requests (user_sub, created_at desc);
+create index if not exists idx_service_requests_status on public.service_requests (status, created_at desc);
+
+-- ----------------------------------------------------------------------------
 -- Row Level Security — on everywhere. The service_role key (server-only)
 -- bypasses RLS; the anon key gets no policies, so the browser can read nothing.
 -- ----------------------------------------------------------------------------
@@ -226,6 +250,7 @@ alter table public.entitlements       enable row level security;
 alter table public.book_entitlements  enable row level security;
 alter table public.webhook_events     enable row level security;
 alter table public.coach_integrations enable row level security;
+alter table public.service_requests   enable row level security;
 
 -- ----------------------------------------------------------------------------
 -- Storage buckets (created via SQL so this script is self-contained).
