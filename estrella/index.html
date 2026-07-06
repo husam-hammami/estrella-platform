@@ -1300,79 +1300,195 @@ body[data-night="1"] .brand-logo-img{
   .dash-data-grid,.dash-progress-grid{grid-template-columns:1fr 1fr}
 }
 
-/* ============================== SERVICES (requests to Nesreen — DAY register, the service schedule) ============================== */
-.svc-container{max-width:1100px;margin:0 auto;padding:calc(var(--nav-h) + 1.75rem) clamp(1.25rem,4vw,4rem) 4rem}
-.svc-head{margin-bottom:1rem}
-.svc-head h1{font-size:clamp(2rem,3.4vw,3rem);font-weight:400;letter-spacing:-0.02em;line-height:1.05;margin:0.4rem 0 0.6rem}
-.svc-sub{color:var(--text-dim);font-size:0.95rem;line-height:1.55;max-width:62ch}
-.svc-note{
-  max-width:520px;margin:1.5rem 0;
-  border:1px solid var(--line-strong);border-left:2px solid var(--gold-soft);
-  border-radius:var(--radius);
+/* ============================== SERVICES (requests to Nesreen — DAY register, two-column, no page scroll) ============================== */
+/* No-scroll desktop: kill the .dash-body scroll, lock to viewport. The modal
+   lives inside #view-studio (position:absolute inset:0) so opening it never
+   grows the page. Only the right panel may scroll internally as a last resort. */
+#view-studio.dash-body{padding:0;overflow:hidden}
+.svc-shell{
+  box-sizing:border-box;height:100dvh;
+  padding-top:var(--nav-h);
+  display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);
+  position:relative;
+}
+/* ---------- LEFT PANEL: warm paper brand rail (fixed, does not scroll) ---------- */
+.svc-left{
+  background:var(--bg);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;
+  padding:clamp(1.75rem,3.2vh,2.75rem) clamp(1.5rem,3vw,3rem) 0;
+  min-width:0;overflow:hidden;
+}
+.svc-eyebrow{
+  font-size:0.68rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:600;
+}
+.svc-title{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,3.4vw,3.15rem);font-weight:600;
+  letter-spacing:-0.015em;line-height:1.06;
+  color:var(--ink);margin:1.1rem 0 0;max-width:14ch;
+}
+.svc-title .gold{color:var(--gold-deep)}
+.svc-hair{width:56px;height:1px;background:var(--gold);margin:1.35rem 0;border:0}
+.svc-lede{
+  font-size:0.98rem;line-height:1.6;color:var(--text);max-width:34ch;margin:0;
+}
+.svc-included{
+  display:flex;align-items:center;gap:0.6rem;margin-top:1.75rem;
+  font-size:0.92rem;line-height:1.4;
+}
+.svc-included svg{flex:none;color:var(--gold-deep)}
+.svc-included .ink{color:var(--ink);font-weight:500}
+.svc-included .gold{color:var(--gold-deep)}
+/* Brand image band pinned to the bottom of the rail */
+.svc-brand-band{
+  margin:auto -clamp(1.5rem,3vw,3rem) 0;position:relative;
+  min-height:0;flex:1 1 auto;display:flex;align-items:flex-end;overflow:hidden;
+}
+.svc-brand-band img{
+  width:100%;height:100%;object-fit:cover;object-position:center 28%;
+  display:block;filter:saturate(0.96);
+}
+.svc-brand-band::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(242,235,220,0.35) 0%,rgba(242,235,220,0) 32%);
+  pointer-events:none;
+}
+/* ---------- RIGHT PANEL: the functional column ---------- */
+.svc-right{
   background:var(--surface);
-  padding:1rem 1.25rem;
+  min-width:0;overflow-y:auto;overflow-x:hidden;
+  padding:clamp(1.5rem,3vh,2.5rem) clamp(1.5rem,3vw,3rem) clamp(1.25rem,2.5vh,2rem);
+  display:flex;flex-direction:column;gap:clamp(1.1rem,2.4vh,1.75rem);
+}
+/* HOW IT WORKS strip */
+.svc-flow{display:flex;flex-direction:column;gap:0.7rem}
+.svc-flow-kicker{
+  font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:600;
+}
+.svc-flow-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:start;gap:0}
+.svc-step{display:flex;flex-direction:column;gap:0.4rem;min-width:0;padding:0 0.25rem}
+.svc-step-top{display:flex;align-items:center;gap:0.5rem}
+.svc-step-top svg{flex:none;color:var(--gold-deep)}
+.svc-step-num{font-size:0.7rem;font-weight:600;color:var(--gold-deep);font-variant-numeric:tabular-nums;letter-spacing:0.06em}
+.svc-step-label{font-size:0.86rem;font-weight:600;color:var(--ink);line-height:1.25}
+.svc-step-body{font-size:0.78rem;line-height:1.45;color:var(--text-dim)}
+.svc-connector{align-self:center;width:100%;min-width:24px;height:1px;background:var(--gold-soft);margin-top:0.9rem}
+/* YOUR REVIEWS — three service rows */
+.svc-reviews-kicker{
+  font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--text-mute);font-weight:600;margin-bottom:-0.4rem;
+}
+.svc-rows{display:flex;flex-direction:column;flex:1;justify-content:space-between;min-height:0}
+.svc-row{
+  display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;
+  align-items:center;gap:0.85rem 1rem;
+  padding:clamp(1.4rem,3.4vh,2.5rem) 0;border-top:1px solid var(--line);
+}
+.svc-row:last-child{border-bottom:1px solid var(--line)}
+.svc-row-idx{font-size:0.72rem;font-weight:600;color:var(--gold-deep);font-variant-numeric:tabular-nums;padding-top:0.15rem}
+.svc-row-icon{color:var(--gold-deep);padding-top:0.05rem}
+.svc-row-icon svg{display:block}
+.svc-row-main{min-width:0;display:flex;flex-direction:column;gap:0.3rem}
+.svc-row-head{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
+.svc-row-name{font-family:var(--font-display);font-size:1.2rem;font-weight:600;line-height:1.15;color:var(--ink)}
+.svc-row-desc{font-size:0.82rem;line-height:1.45;color:var(--text-dim);margin:0}
+.svc-row-state{font-size:0.8rem;line-height:1.5;color:var(--text);margin:0.15rem 0 0}
+.svc-row-state .muted{color:var(--text-dim)}
+.svc-row-snippet{
+  font-size:0.82rem;line-height:1.55;color:var(--text);margin:0.35rem 0 0;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  border-left:2px solid var(--gold-soft);padding-left:0.75rem;
+}
+.svc-row-action{align-self:center;display:flex;justify-content:flex-end;padding-top:0.15rem}
+.svc-row-action .btn{min-height:40px;white-space:nowrap}
+/* Status badge */
+.svc-badge{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-size:0.64rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.22rem 0.6rem;border-radius:99px;white-space:nowrap;
+  background:var(--surface-2);color:var(--text-mute);border:1px solid var(--line-strong);
+}
+.svc-badge::before{content:"";width:0.42rem;height:0.42rem;border-radius:50%;flex:none;background:currentColor}
+.svc-badge.is-open{color:var(--text-dim)}
+.svc-badge.is-review{background:var(--gold-bg);color:var(--gold-deep);border-color:var(--gold-soft)}
+.svc-badge.is-delivered{background:rgba(79,163,129,0.1);color:var(--success);border-color:rgba(79,163,129,0.35)}
+/* Closing trust line */
+.svc-trust{
+  display:flex;align-items:flex-start;gap:0.55rem;margin-top:auto;padding-top:0.5rem;
+  font-size:0.8rem;line-height:1.5;color:var(--text-dim);
+}
+.svc-trust svg{flex:none;color:var(--gold-deep);margin-top:0.1rem}
+/* Offline note */
+.svc-note{
+  border:1px solid var(--line-strong);border-left:2px solid var(--gold-soft);
+  border-radius:var(--radius);background:var(--surface-2);padding:0.85rem 1.1rem;
 }
 .svc-note-title{
-  font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--gold-deep);font-weight:600;margin-bottom:0.45rem;
+  font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:600;margin-bottom:0.35rem;
 }
-.svc-note p{font-size:0.9rem;color:var(--text-dim);line-height:1.55;margin-bottom:0}
-/* The schedule — three full-width numbered entries */
-.svcx-schedule{display:flex;flex-direction:column;gap:0;margin-top:1.5rem}
-.svcx-schedule .svc-card{
-  background:transparent;border:0;border-radius:0;box-shadow:none;
-  border-top:1px solid var(--gold-soft);
-  padding:2.5rem 0;
-  cursor:default;overflow:visible;transition:none;
-  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
-  column-gap:clamp(2rem,4vw,4rem);align-items:start;
-  min-width:0;
+.svc-note p{font-size:0.85rem;color:var(--text-dim);line-height:1.5;margin:0}
+/* ---------- IN-VIEW MODAL (position:absolute within #view-studio) ---------- */
+.svc-modal{
+  position:absolute;inset:0;z-index:60;display:none;
+  align-items:center;justify-content:center;padding:clamp(1rem,3vw,2.5rem);
+  background:rgba(20,18,14,0.52);
 }
-.svcx-schedule .svc-card:hover{box-shadow:none;transform:none;border-color:var(--gold-soft)}
-.svcx-schedule .svc-card:last-of-type{border-bottom:1px solid var(--gold-soft)}
-.svcx-desc{min-width:0}
-.svcx-kicker{display:flex;align-items:center;gap:0.6rem}
-.svcx-kicker > svg{flex:none}
-.svc-card-kicker{
-  font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--gold-deep);font-weight:600;font-variant-numeric:tabular-nums;
+.svc-modal.open{display:flex}
+@media (prefers-reduced-motion: no-preference){
+  .svc-modal.open{animation:svcModalIn .18s var(--ease)}
+  .svc-modal.open .svc-modal-panel{animation:svcPanelIn .24s var(--ease-out)}
 }
-.svcx-schedule .svc-card h2{font-size:1.75rem;font-weight:500;line-height:1.15;margin:0.75rem 0}
-.svc-card-desc{font-size:0.925rem;color:var(--text-dim);line-height:1.6;max-width:52ch}
-.svcx-schedule .svc-card-what{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.25rem}
-.svcx-spec{min-width:0}
-.svcx-spec-lbl{
-  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+@keyframes svcModalIn{from{opacity:0}to{opacity:1}}
+@keyframes svcPanelIn{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+.svc-modal-panel{
+  position:relative;width:min(600px,100%);max-height:calc(100% - 2rem);
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line-strong);
+  border-radius:var(--radius-lg);box-shadow:var(--shadow-xl);
+}
+.svc-modal-close{
+  position:absolute;top:0.7rem;right:0.7rem;z-index:2;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+  background:var(--surface);color:var(--text-dim);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.svc-modal-close:hover{color:var(--ink);border-color:var(--line-strong)}
+.svc-modal-head{padding:1.4rem 1.5rem 1rem;border-bottom:1px solid var(--line)}
+.svc-modal-kicker{
+  font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;
   color:var(--gold-deep);font-weight:600;
-  display:block;padding-bottom:0.5rem;border-bottom:1px solid var(--gold-soft);
 }
-.svcx-spec ul{list-style:none;margin:0;padding:0}
-.svcx-spec li{font-size:0.875rem;line-height:1.5;color:var(--text);padding:0.5rem 0;border-bottom:1px solid var(--line)}
-.svcx-meta{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-mute);margin-top:1.25rem}
-.svcx-action{
-  border-left:1px solid var(--line);
-  padding-left:clamp(1.5rem,3vw,2.5rem);
-  display:flex;flex-direction:column;gap:1rem;
-  align-self:stretch;min-width:0;
-  /* Collapsed state: the CTA sits centered beside the divider instead of
-     floating at the top of a dead column. */
-  justify-content:center;
+.svc-modal-title{
+  font-family:var(--font-display);font-size:1.5rem;font-weight:600;
+  line-height:1.15;color:var(--ink);margin:0.4rem 0 0;
 }
-/* Form open: the column fills with fields — back to a top-aligned working column. */
-.svcx-action:has(.svc-form:not([hidden])){justify-content:flex-start}
-.svc-cta{min-height:44px;align-self:flex-start}
-.svc-form{display:flex;flex-direction:column;gap:0.6rem}
+.svc-modal-sub{font-size:0.82rem;color:var(--text-dim);line-height:1.5;margin:0.35rem 0 0}
+.svc-modal-body{padding:1.25rem 1.5rem 1.5rem;overflow-y:auto;min-height:0}
+/* Review reading + submitted-details shared text */
+.svc-review-meta{
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:600;margin-bottom:0.6rem;
+}
+.svc-review-text{font-size:0.94rem;color:var(--text);line-height:1.75;white-space:pre-wrap;overflow-wrap:break-word}
+.svc-detail-row{padding:0.75rem 0;border-top:1px solid var(--line)}
+.svc-detail-row:first-child{border-top:0;padding-top:0}
+.svc-detail-lbl{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-mute);font-weight:600;margin-bottom:0.3rem}
+.svc-detail-val{font-size:0.9rem;color:var(--text);line-height:1.55;white-space:pre-wrap;overflow-wrap:break-word}
+/* Form inside modal */
+.svc-form{display:flex;flex-direction:column;gap:0.85rem}
 .svc-field label{
   display:block;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--text-mute);font-weight:600;margin-bottom:0.3rem;
+  color:var(--text-mute);font-weight:600;margin-bottom:0.35rem;
 }
 .svc-field input:not([type=file]),.svc-field textarea{
-  width:100%;min-height:44px;
-  padding:0.7rem 0.9rem;
+  width:100%;min-height:44px;padding:0.7rem 0.9rem;
   border:1px solid var(--line-strong);border-radius:var(--radius);
   background:var(--surface-2);color:var(--ink);
-  font:inherit;font-size:0.9rem;line-height:1.45;
-  outline:none;resize:vertical;
+  font:inherit;font-size:0.9rem;line-height:1.45;outline:none;resize:vertical;
   transition:border-color 0.2s var(--ease);
 }
 .svc-field input::placeholder,.svc-field textarea::placeholder{color:var(--text-mute)}
@@ -1389,40 +1505,7 @@ body[data-night="1"] .brand-logo-img{
 .svc-send{min-height:44px;margin-top:0.2rem;align-self:flex-start}
 .svc-status{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
 .svc-status:empty{display:none}
-.svc-status:not(:empty){padding-top:0.75rem;border-top:1px solid var(--gold-soft);font-size:0.875rem;color:var(--text)}
-/* Your requests — the ledger proper (styles the exact svcRequestRow tree) */
-.svc-requests{margin-top:3.5rem;max-width:none}
-.svc-requests h2{font-size:1.75rem;font-weight:500;line-height:1.15;margin-bottom:1rem}
-.svc-req-empty{
-  font-size:0.9rem;color:var(--text-dim);line-height:1.55;margin:0;
-  padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-}
-.svc-req{
-  background:transparent;border:0;border-radius:0;box-shadow:none;
-  padding:1rem 0;margin-bottom:0;
-  border-top:1px solid var(--line);
-}
-.svc-req:last-child{border-bottom:1px solid var(--line)}
-.svc-req-top{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
-.svc-req-service{font-weight:600;font-size:0.95rem;color:var(--ink-2)}
-.svc-req-date{font-size:0.8rem;color:var(--text-dim);font-variant-numeric:tabular-nums}
-.svc-chip{
-  margin-left:auto;display:inline-flex;align-items:center;gap:0.4rem;
-  font-size:0.6875rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
-  padding:0.25rem 0.625rem;border-radius:99px;
-  background:var(--gold-bg);color:var(--gold-deep);border:1px solid var(--gold-soft);
-}
-.svc-chip::before{
-  content:"";width:0.5rem;height:0.5rem;flex:none;background:currentColor;
-  clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);
-}
-.svc-chip.replied{background:var(--surface-2);color:var(--success);border-color:rgba(79,163,129,0.4)}
-.svc-response{margin-top:0.875rem;border-top:1px solid var(--gold-soft);padding-top:0.875rem}
-.svc-response-lbl{
-  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--gold-deep);font-weight:600;margin-bottom:0.5rem;
-}
-.svc-response-text{font-size:0.925rem;color:var(--text);line-height:1.7;white-space:pre-wrap;overflow-wrap:break-word;max-width:68ch}
+.svc-status:not(:empty){margin-top:0.4rem;padding-top:0.7rem;border-top:1px solid var(--gold-soft);color:var(--text)}
 /* Coach desk — service requests queue */
 .coach-svc{border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);margin-bottom:0.75rem;overflow:hidden}
 .coach-svc-top{
@@ -1445,13 +1528,30 @@ body[data-night="1"] .brand-logo-img{
 .coach-svc-actions{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;margin-top:0.75rem}
 .coach-svc-status{font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem}
 .coach-svc-status:empty{display:none}
-@media(max-width:1024px){
-  .svcx-schedule .svc-card{grid-template-columns:1fr}
-  .svcx-action{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:1.5rem;margin-top:1.5rem}
+/* Tablet: give the flow steps a touch more breathing room */
+@media(max-width:1080px){
+  .svc-flow-steps{gap:0}
+  .svc-step-body{font-size:0.74rem}
 }
-@media(max-width:640px){
-  .svc-container{padding-left:1.25rem;padding-right:1.25rem}
-  .svcx-schedule .svc-card-what{grid-template-columns:1fr;gap:1rem}
+/* Mobile: stack — left rail becomes a compact header, right panel below.
+   Restore page scroll (acceptable on mobile per the spec). */
+@media(max-width:860px){
+  #view-studio.dash-body{overflow-y:auto;overflow-x:hidden}
+  .svc-shell{grid-template-columns:1fr;height:auto;min-height:100dvh}
+  .svc-left{
+    border-right:0;border-bottom:1px solid var(--line);
+    padding:clamp(1.25rem,4vw,2rem) clamp(1.25rem,5vw,2rem) 0;
+  }
+  .svc-title{font-size:clamp(1.85rem,7vw,2.4rem);max-width:none}
+  .svc-lede{max-width:none}
+  .svc-brand-band{margin-left:calc(-1 * clamp(1.25rem,5vw,2rem));margin-right:calc(-1 * clamp(1.25rem,5vw,2rem));min-height:180px;flex:none;margin-top:1.5rem}
+  .svc-right{overflow:visible}
+  .svc-flow-steps{grid-template-columns:1fr;gap:0.9rem}
+  .svc-connector{display:none}
+  .svc-row{grid-template-columns:auto minmax(0,1fr);gap:0.6rem 0.85rem}
+  .svc-row-icon{display:none}
+  .svc-row-action{grid-column:1 / -1;justify-content:flex-start;padding-top:0.35rem}
+  .svc-modal{position:fixed}
 }
 
 /* ============================== LIBRARY ============================== */
@@ -4953,146 +5053,212 @@ body.modal-open .dash-body{overflow:hidden}
 
   <!-- ============================== VIEW: SERVICES (requests to Nesreen — keeps internal id 'studio') ============================== -->
   <div class="view dash-body" id="view-studio">
-    <div class="svc-container">
-      <header class="svc-head">
-        <div class="dash-eyebrow" style="display:flex;align-items:center;gap:0.5rem">
-          <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
-          Services
+    <div class="svc-shell">
+
+      <!-- ===================== LEFT PANEL: brand rail ===================== -->
+      <aside class="svc-left">
+        <div class="svc-eyebrow">Services</div>
+        <h1 class="svc-title">Your career. Reviewed by <span class="gold">your coach.</span></h1>
+        <hr class="svc-hair"/>
+        <p class="svc-lede">Three professional reviews, prepared individually by your coach and delivered as written reviews.</p>
+        <div class="svc-included">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/><path d="M12 8C12 8 11 3 8.5 3A2.5 2.5 0 0 0 8.5 8H12z"/><path d="M12 8s1-5 3.5-5A2.5 2.5 0 0 1 15.5 8H12z"/></svg>
+          <span><span class="ink">Included with membership</span> <span class="gold">No extra fee.</span></span>
         </div>
-        <h1>Career services</h1>
-        <p class="svc-sub">Three professional reviews, prepared individually by your coach. Included with your membership — there is no extra fee.</p>
-        <section class="ldg-sec">
-          <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">How it works</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
-          <div class="ldg-steps">
-            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 01</span><span class="ldg-step-title">Choose a service</span><span class="ldg-step-body">Pick one of the three services below.</span></div>
-            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 02</span><span class="ldg-step-title">Submit your inputs</span><span class="ldg-step-body">Send the items listed under You provide.</span></div>
-            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 03</span><span class="ldg-step-title">Under review</span><span class="ldg-step-body">Your request shows Under review while your coach prepares it.</span></div>
-            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 04</span><span class="ldg-step-title">Completed</span><span class="ldg-step-body">The finished review appears under Your requests, on this page, marked Completed.</span></div>
-          </div>
-        </section>
-      </header>
+        <div class="svc-brand-band">
+          <img src="nesreen-home-wide-v2.jpg" alt="" aria-hidden="true"/>
+        </div>
+      </aside>
 
-      <div class="svc-note" id="svc-offline" hidden>
-        <div class="svc-note-title">Not connected</div>
-        <p>This preview is offline. On the live site you can submit a request and the completed review appears on this page.</p>
-      </div>
+      <!-- ===================== RIGHT PANEL: functional column ===================== -->
+      <div class="svc-right">
 
-      <div class="svc-grid svcx-schedule" id="svc-grid">
-        <section class="svc-card" id="svc-card-cv_review" aria-labelledby="svc-h-cv">
-          <div class="svcx-desc">
-            <div class="svcx-kicker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="9" y1="13" x2="17" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg>
-              <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
-              <span class="svc-card-kicker">Service 01</span>
-            </div>
-            <h2 id="svc-h-cv">CV Review</h2>
-            <p class="svc-card-desc">Your coach reads your CV the way a hiring manager does, then writes you a clear review — what works, what holds you back, and what to change before you apply.</p>
-            <div class="svc-card-what">
-              <div class="svcx-spec"><span class="svcx-spec-lbl">You provide</span><ul><li>Your CV as a PDF or image</li><li>What you want the review to focus on (optional)</li></ul></div>
-              <div class="svcx-spec"><span class="svcx-spec-lbl">You receive</span><ul><li>A written CV review from your coach</li><li>Delivered under Your requests, on this page</li></ul></div>
-            </div>
-            <p class="svcx-meta">Included with membership · Prepared individually</p>
-          </div>
-          <div class="svcx-action">
-          <button class="btn btn-gold svc-cta" id="svc-cta-cv_review" type="button" data-svc="cv_review">Request review</button>
-          <form class="svc-form" id="svc-form-cv_review" hidden>
-            <div class="svc-cvline" id="svc-cv-current" hidden></div>
-            <div class="svc-field">
-              <label for="svc-cv-file" id="svc-cv-upload-lbl">Your CV (PDF or image)</label>
-              <div class="svc-file-row">
-                <input type="file" id="svc-cv-file" accept=".pdf,.png,.jpg,.jpeg" aria-label="Choose your CV file"/>
-                <button type="button" class="btn btn-ghost" id="svc-cv-upload-btn">Upload</button>
+        <div class="svc-note" id="svc-offline" hidden>
+          <div class="svc-note-title">Not connected</div>
+          <p>This preview is offline. On the live site you can request a review and your written review appears on this page.</p>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <section class="svc-flow" aria-label="How it works">
+          <div class="svc-flow-kicker">How it works</div>
+          <div class="svc-flow-steps">
+            <div class="svc-step">
+              <div class="svc-step-top">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                <span class="svc-step-num">01</span>
               </div>
+              <span class="svc-step-label">Open</span>
+              <span class="svc-step-body">We've received your request.</span>
             </div>
-            <div class="svc-field">
-              <label for="svc-cv-note">Additional context (optional)</label>
-              <textarea id="svc-cv-note" maxlength="2000" rows="3" placeholder="Target role, industry, timeline"></textarea>
+            <div class="svc-connector" aria-hidden="true"></div>
+            <div class="svc-step">
+              <div class="svc-step-top">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
+                <span class="svc-step-num">02</span>
+              </div>
+              <span class="svc-step-label">Under review</span>
+              <span class="svc-step-body">Your coach is preparing your written review.</span>
             </div>
-            <button class="btn btn-gold svc-send" id="svc-send-cv_review" type="submit">Submit request</button>
-          </form>
-          <div class="svc-status" id="svc-status-cv_review" role="status" aria-live="polite"></div>
+            <div class="svc-connector" aria-hidden="true"></div>
+            <div class="svc-step">
+              <div class="svc-step-top">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+                <span class="svc-step-num">03</span>
+              </div>
+              <span class="svc-step-label">Delivered</span>
+              <span class="svc-step-body">Your written review is ready to read on this page.</span>
+            </div>
           </div>
         </section>
 
-        <section class="svc-card" id="svc-card-linkedin_review" aria-labelledby="svc-h-li">
-          <div class="svcx-desc">
-            <div class="svcx-kicker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
-              <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
-              <span class="svc-card-kicker">Service 02</span>
-            </div>
-            <h2 id="svc-h-li">LinkedIn Review</h2>
-            <p class="svc-card-desc">Your coach reviews your public profile as recruiters see it and writes specific recommendations for how you present yourself.</p>
-            <div class="svc-card-what">
-              <div class="svcx-spec"><span class="svcx-spec-lbl">You provide</span><ul><li>Your public LinkedIn profile URL</li><li>What you want the review to focus on (optional)</li></ul></div>
-              <div class="svcx-spec"><span class="svcx-spec-lbl">You receive</span><ul><li>A written review of your LinkedIn presence</li><li>Delivered under Your requests, on this page</li></ul></div>
-            </div>
-            <p class="svcx-meta">Included with membership · Prepared individually</p>
-          </div>
-          <div class="svcx-action">
-          <button class="btn btn-gold svc-cta" id="svc-cta-linkedin_review" type="button" data-svc="linkedin_review">Request review</button>
-          <form class="svc-form" id="svc-form-linkedin_review" hidden>
-            <div class="svc-field">
-              <label for="svc-li-url">Your LinkedIn profile link</label>
-              <input id="svc-li-url" maxlength="300" autocomplete="off" inputmode="url" placeholder="https://www.linkedin.com/in/your-name"/>
-            </div>
-            <div class="svc-field">
-              <label for="svc-li-focus">Areas to focus on (optional)</label>
-              <textarea id="svc-li-focus" maxlength="2000" rows="3" placeholder="e.g. Headline and About section"></textarea>
-            </div>
-            <button class="btn btn-gold svc-send" id="svc-send-linkedin_review" type="submit">Submit request</button>
-          </form>
-          <div class="svc-status" id="svc-status-linkedin_review" role="status" aria-live="polite"></div>
-          </div>
-        </section>
+        <!-- YOUR REVIEWS -->
+        <div class="svc-reviews-kicker">Your reviews</div>
+        <div class="svc-rows" id="svc-grid">
 
-        <section class="svc-card" id="svc-card-roadmap" aria-labelledby="svc-h-rm">
-          <div class="svcx-desc">
-            <div class="svcx-kicker">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8 18c5 0 5-12 10-12"/></svg>
-              <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
-              <span class="svc-card-kicker">Service 03</span>
+          <section class="svc-row" id="svc-card-cv_review" aria-labelledby="svc-h-cv">
+            <span class="svc-row-idx">01</span>
+            <span class="svc-row-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="9" y1="13" x2="17" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg></span>
+            <div class="svc-row-main">
+              <div class="svc-row-head">
+                <span class="svc-row-name" id="svc-h-cv">CV Review</span>
+                <span class="svc-badge is-open" id="svc-badge-cv_review">Open</span>
+              </div>
+              <p class="svc-row-desc" id="svc-desc-cv_review">Your coach reads your CV the way a hiring manager does and writes a clear review.</p>
+              <p class="svc-row-state" id="svc-state-cv_review"></p>
+              <p class="svc-row-snippet" id="svc-snippet-cv_review" hidden></p>
             </div>
-            <h2 id="svc-h-rm">Career Roadmap</h2>
-            <p class="svc-card-desc">Tell your coach where you want to be. You receive a written plan for moving toward that role from where you are now.</p>
-            <div class="svc-card-what">
-              <div class="svcx-spec"><span class="svcx-spec-lbl">You provide</span><ul><li>The role you are aiming for</li><li>Your years of experience</li><li>Your ambition, in your own words</li><li>Constraints your coach should know (optional)</li></ul></div>
-              <div class="svcx-spec"><span class="svcx-spec-lbl">You receive</span><ul><li>A written roadmap toward your target role</li><li>Delivered under Your requests, on this page</li></ul></div>
+            <div class="svc-row-action">
+              <button class="btn btn-gold svc-cta" id="svc-cta-cv_review" type="button" data-svc="cv_review">Request review</button>
             </div>
-            <p class="svcx-meta">Included with membership · Prepared individually</p>
-          </div>
-          <div class="svcx-action">
-          <button class="btn btn-gold svc-cta" id="svc-cta-roadmap" type="button" data-svc="roadmap">Request roadmap</button>
-          <form class="svc-form" id="svc-form-roadmap" hidden>
-            <div class="svc-field">
-              <label for="svc-rm-role">Current role (required)</label>
-              <input id="svc-rm-role" maxlength="200" autocomplete="off" placeholder="e.g. Senior Accountant"/>
+          </section>
+
+          <section class="svc-row" id="svc-card-linkedin_review" aria-labelledby="svc-h-li">
+            <span class="svc-row-idx">02</span>
+            <span class="svc-row-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10.5" x2="8" y2="17"/><line x1="8" y1="7.5" x2="8" y2="7.5"/><path d="M12 17v-3.5a2 2 0 0 1 4 0V17"/><line x1="12" y1="10.5" x2="12" y2="17"/></svg></span>
+            <div class="svc-row-main">
+              <div class="svc-row-head">
+                <span class="svc-row-name" id="svc-h-li">LinkedIn Review</span>
+                <span class="svc-badge is-open" id="svc-badge-linkedin_review">Open</span>
+              </div>
+              <p class="svc-row-desc" id="svc-desc-linkedin_review">Your coach reviews your public profile as recruiters see it and recommends specific changes.</p>
+              <p class="svc-row-state" id="svc-state-linkedin_review"></p>
+              <p class="svc-row-snippet" id="svc-snippet-linkedin_review" hidden></p>
             </div>
-            <div class="svc-field">
-              <label for="svc-rm-years">Years of experience</label>
-              <input id="svc-rm-years" maxlength="2" autocomplete="off" inputmode="numeric" placeholder="e.g. 8"/>
+            <div class="svc-row-action">
+              <button class="btn btn-gold svc-cta" id="svc-cta-linkedin_review" type="button" data-svc="linkedin_review">Request review</button>
             </div>
-            <div class="svc-field">
-              <label for="svc-rm-ambition">Career goal (required)</label>
-              <textarea id="svc-rm-ambition" maxlength="2000" rows="3" placeholder="The role, direction, or change you want"></textarea>
+          </section>
+
+          <section class="svc-row" id="svc-card-roadmap" aria-labelledby="svc-h-rm">
+            <span class="svc-row-idx">03</span>
+            <span class="svc-row-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8 18c5 0 5-12 10-12"/></svg></span>
+            <div class="svc-row-main">
+              <div class="svc-row-head">
+                <span class="svc-row-name" id="svc-h-rm">Career Roadmap</span>
+                <span class="svc-badge is-open" id="svc-badge-roadmap">Open</span>
+              </div>
+              <p class="svc-row-desc" id="svc-desc-roadmap">Tell your coach where you want to be and receive a written plan for getting there.</p>
+              <p class="svc-row-state" id="svc-state-roadmap"></p>
+              <p class="svc-row-snippet" id="svc-snippet-roadmap" hidden></p>
             </div>
-            <div class="svc-field">
-              <label for="svc-rm-constraints">Constraints (optional)</label>
-              <textarea id="svc-rm-constraints" maxlength="2000" rows="3" placeholder="Visa, location, salary requirements"></textarea>
+            <div class="svc-row-action">
+              <button class="btn btn-gold svc-cta" id="svc-cta-roadmap" type="button" data-svc="roadmap">Request roadmap</button>
             </div>
-            <button class="btn btn-gold svc-send" id="svc-send-roadmap" type="submit">Submit request</button>
-          </form>
-          <div class="svc-status" id="svc-status-roadmap" role="status" aria-live="polite"></div>
-          </div>
+          </section>
+
+        </div>
+
+        <!-- closing trust line -->
+        <p class="svc-trust">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+          <span>All reviews are written by certified career coaches. Everything you share is kept confidential.</span>
+        </p>
+
+        <!-- The ledger lives inside the modal now, but keep its ids present so the
+             requests fetch still has render targets. Kept off-screen; the delivered
+             review text and submitted details are surfaced through the modal + rows. -->
+        <section class="svc-requests" id="svc-requests" hidden aria-hidden="true">
+          <p class="svc-req-empty" id="svc-req-empty" hidden></p>
+          <div class="svc-req-list" id="svc-req-list" hidden></div>
         </section>
       </div>
 
-      <section class="svc-requests" id="svc-requests" hidden aria-labelledby="svc-req-h">
-        <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">The ledger · Your requests</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
-        <h2 id="svc-req-h">Your requests</h2>
-        <p class="svc-req-empty" id="svc-req-empty">No requests yet. When you submit one above, it appears here — Under review until your coach completes it.</p>
-        <div class="svc-req-list" id="svc-req-list"></div>
-      </section>
+      <!-- ===================== IN-VIEW MODAL ===================== -->
+      <div class="svc-modal" id="svc-modal" role="dialog" aria-modal="true" aria-labelledby="svc-modal-title" onclick="if(event.target===this)svcCloseModal()">
+        <div class="svc-modal-panel">
+          <button type="button" class="svc-modal-close" id="svc-modal-close" aria-label="Close" onclick="svcCloseModal()">&times;</button>
+          <div class="svc-modal-head">
+            <div class="svc-modal-kicker" id="svc-modal-kicker"></div>
+            <h2 class="svc-modal-title" id="svc-modal-title"></h2>
+            <p class="svc-modal-sub" id="svc-modal-sub" hidden></p>
+          </div>
+          <div class="svc-modal-body" id="svc-modal-body">
+
+            <!-- (a) Delivered review text -->
+            <div id="svc-modal-review" hidden>
+              <div class="svc-review-meta" id="svc-review-meta"></div>
+              <div class="svc-review-text" id="svc-review-text"></div>
+            </div>
+
+            <!-- (b) Submitted-inputs details (Under review) -->
+            <div id="svc-modal-details" hidden></div>
+
+            <!-- (c) Per-service submission forms -->
+            <form class="svc-form" id="svc-form-cv_review" hidden>
+              <div class="svc-cvline" id="svc-cv-current" hidden></div>
+              <div class="svc-field">
+                <label for="svc-cv-file" id="svc-cv-upload-lbl">Your CV (PDF or image)</label>
+                <div class="svc-file-row">
+                  <input type="file" id="svc-cv-file" accept=".pdf,.png,.jpg,.jpeg" aria-label="Choose your CV file"/>
+                  <button type="button" class="btn btn-ghost" id="svc-cv-upload-btn">Upload</button>
+                </div>
+              </div>
+              <div class="svc-field">
+                <label for="svc-cv-note">Additional context (optional)</label>
+                <textarea id="svc-cv-note" maxlength="2000" rows="3" placeholder="Target role, industry, timeline"></textarea>
+              </div>
+              <button class="btn btn-gold svc-send" id="svc-send-cv_review" type="submit">Submit request</button>
+              <div class="svc-status" id="svc-status-cv_review" role="status" aria-live="polite"></div>
+            </form>
+
+            <form class="svc-form" id="svc-form-linkedin_review" hidden>
+              <div class="svc-field">
+                <label for="svc-li-url">Your LinkedIn profile link</label>
+                <input id="svc-li-url" maxlength="300" autocomplete="off" inputmode="url" placeholder="https://www.linkedin.com/in/your-name"/>
+              </div>
+              <div class="svc-field">
+                <label for="svc-li-focus">Areas to focus on (optional)</label>
+                <textarea id="svc-li-focus" maxlength="2000" rows="3" placeholder="e.g. Headline and About section"></textarea>
+              </div>
+              <button class="btn btn-gold svc-send" id="svc-send-linkedin_review" type="submit">Submit request</button>
+              <div class="svc-status" id="svc-status-linkedin_review" role="status" aria-live="polite"></div>
+            </form>
+
+            <form class="svc-form" id="svc-form-roadmap" hidden>
+              <div class="svc-field">
+                <label for="svc-rm-role">Current role (required)</label>
+                <input id="svc-rm-role" maxlength="200" autocomplete="off" placeholder="e.g. Senior Accountant"/>
+              </div>
+              <div class="svc-field">
+                <label for="svc-rm-years">Years of experience</label>
+                <input id="svc-rm-years" maxlength="2" autocomplete="off" inputmode="numeric" placeholder="e.g. 8"/>
+              </div>
+              <div class="svc-field">
+                <label for="svc-rm-ambition">Career goal (required)</label>
+                <textarea id="svc-rm-ambition" maxlength="2000" rows="3" placeholder="The role, direction, or change you want"></textarea>
+              </div>
+              <div class="svc-field">
+                <label for="svc-rm-constraints">Constraints (optional)</label>
+                <textarea id="svc-rm-constraints" maxlength="2000" rows="3" placeholder="Visa, location, salary requirements"></textarea>
+              </div>
+              <button class="btn btn-gold svc-send" id="svc-send-roadmap" type="submit">Submit request</button>
+              <div class="svc-status" id="svc-status-roadmap" role="status" aria-live="polite"></div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -6712,12 +6878,19 @@ renderCvUpload = function(briefId, alreadyHasCv, context){
    ?action=service-requests lists them with her reply. Honest states:
    401 sign-in CTA, 409 already pending, 503/file:// unavailable note.
    All member/coach text renders via textContent — never innerHTML. */
-const svc = { busy:false, wired:false };
+const svc = { busy:false, wired:false, state:{} };
 
 const SVC_SERVICES = {
-  cv_review:       { label:'CV Review',       cta:'Request review' },
-  linkedin_review: { label:'LinkedIn Review', cta:'Request review' },
-  roadmap:         { label:'Career Roadmap',  cta:'Request roadmap' }
+  cv_review:       { label:'CV Review',       cta:'Request review',  pitch:'Your coach reads your CV the way a hiring manager does, then writes a clear review — what works, what holds you back, and what to change before you apply.' },
+  linkedin_review: { label:'LinkedIn Review', cta:'Request review',  pitch:'Your coach reviews your public profile as recruiters see it and writes specific recommendations for how you present yourself.' },
+  roadmap:         { label:'Career Roadmap',  cta:'Request roadmap', pitch:'Tell your coach where you want to be. You receive a written plan for moving toward that role from where you are now.' }
+};
+
+/* Field order + labels used to render the submitted-inputs "details" view in the modal. */
+const SVC_FIELD_LABELS = {
+  note:'Additional context', focus:'Areas to focus on',
+  profile_url:'LinkedIn profile', current_role:'Current role',
+  years:'Years of experience', ambition:'Career goal', constraints:'Constraints'
 };
 
 function svcEl(tag, cls, text){
@@ -6738,34 +6911,124 @@ function svcDate(at){
   return d.toLocaleDateString('en-GB', { day:'numeric', month:'long' });
 }
 
-/* Signed-out: cards stay visible, CTAs become sign-in prompts.
-   file:// (no backend): honest note, no dead buttons. */
+/* Paint one service row into its Open state — the default when there is no
+   matching request (signed-out, offline, or simply not requested yet). */
+function svcSetRowOpen(service){
+  svc.state[service] = null;
+  const badge = document.getElementById('svc-badge-' + service);
+  const state = document.getElementById('svc-state-' + service);
+  const snippet = document.getElementById('svc-snippet-' + service);
+  const desc = document.getElementById('svc-desc-' + service);
+  if(badge){ badge.className = 'svc-badge is-open'; badge.textContent = 'Open'; }
+  if(state){ state.textContent = 'Not requested yet'; }
+  if(desc){ desc.textContent = SVC_SERVICES[service].pitch; desc.hidden = false; }
+  if(snippet){ snippet.hidden = true; snippet.textContent = ''; }
+}
+
+/* Signed-out: rows stay Open, CTAs become sign-in prompts.
+   file:// (no backend): honest note, disabled CTAs — no dead buttons. */
 function svcSyncGate(){
   const offline = document.getElementById('svc-offline');
   const signedIn = !!getLinkedInUser();
   if(offline) offline.hidden = BACKEND_AVAILABLE;
   Object.keys(SVC_SERVICES).forEach(service => {
     const cta = document.getElementById('svc-cta-' + service);
-    const form = document.getElementById('svc-form-' + service);
     if(!cta) return;
+    if(!signedIn || !BACKEND_AVAILABLE) svcSetRowOpen(service);
     if(!BACKEND_AVAILABLE){
-      cta.hidden = true;
-      if(form) form.hidden = true;
+      cta.textContent = SVC_SERVICES[service].cta;
+      cta.disabled = true; cta.hidden = false;
       return;
     }
-    cta.textContent = signedIn ? SVC_SERVICES[service].cta : 'Sign in with LinkedIn';
-    if(!signedIn && form){ form.hidden = true; cta.hidden = false; }
+    cta.disabled = false;
+    if(!signedIn){ cta.textContent = 'Sign in with LinkedIn'; cta.hidden = false; }
   });
 }
 
+/* ---------- Modal control (in-view overlay, never grows the page) ---------- */
+function svcModalReset(){
+  ['svc-modal-review','svc-modal-details','svc-form-cv_review','svc-form-linkedin_review','svc-form-roadmap']
+    .forEach(id => { const el = document.getElementById(id); if(el) el.hidden = true; });
+  const sub = document.getElementById('svc-modal-sub');
+  if(sub){ sub.hidden = true; sub.textContent = ''; }
+}
+function svcOpenModal(service, kicker, title){
+  const modal = document.getElementById('svc-modal');
+  if(!modal) return;
+  svcModalReset();
+  const k = document.getElementById('svc-modal-kicker');
+  const t = document.getElementById('svc-modal-title');
+  if(k) k.textContent = kicker || '';
+  if(t) t.textContent = title || '';
+  modal.classList.add('open');
+  const close = document.getElementById('svc-modal-close');
+  if(close) close.focus();
+}
+function svcCloseModal(){
+  const modal = document.getElementById('svc-modal');
+  if(modal) modal.classList.remove('open');
+}
+
+/* Open state → the submission FORM in the modal. */
 function svcOpenForm(service){
   const form = document.getElementById('svc-form-' + service);
-  const cta = document.getElementById('svc-cta-' + service);
   if(!form) return;
+  svcOpenModal(service, 'Request review', SVC_SERVICES[service].label);
   form.hidden = false;
-  if(cta) cta.hidden = true;
   svcStatus(service, '');
   if(service === 'cv_review') svcSyncCvLine();
+}
+
+/* Delivered state → the full written review text in the modal. */
+function svcOpenReview(service){
+  const r = svc.state[service];
+  if(!r || typeof r.response !== 'string' || !r.response.trim()) return;
+  svcOpenModal(service, 'Delivered review', SVC_SERVICES[service].label);
+  const wrap = document.getElementById('svc-modal-review');
+  const meta = document.getElementById('svc-review-meta');
+  const text = document.getElementById('svc-review-text');
+  const when = svcDate(r.responded_at);
+  if(meta) meta.textContent = 'Written by your coach' + (when ? ' · ' + when : '');
+  if(text) text.textContent = r.response.trim();
+  if(wrap) wrap.hidden = false;
+}
+
+/* Under review → the submitted inputs the member sent, read-only, in the modal. */
+function svcOpenDetails(service){
+  const r = svc.state[service];
+  if(!r) return;
+  svcOpenModal(service, 'Under review', SVC_SERVICES[service].label);
+  const sub = document.getElementById('svc-modal-sub');
+  const when = svcDate(r.created_at);
+  if(sub){ sub.textContent = 'Your coach is reviewing your submission and will deliver your written review here.' + (when ? ' Requested on ' + when + '.' : ''); sub.hidden = false; }
+  const box = document.getElementById('svc-modal-details');
+  if(!box) return;
+  box.textContent = '';
+  const p = (r && r.payload && typeof r.payload === 'object') ? r.payload : {};
+  const rows = [];
+  if(r.cv_path) rows.push(['Document','Your CV (on file with your coach)']);
+  Object.keys(SVC_FIELD_LABELS).forEach(key => {
+    const v = p[key];
+    if(v != null && String(v).trim() !== '') rows.push([SVC_FIELD_LABELS[key], String(v)]);
+  });
+  if(!rows.length) rows.push(['Submitted','Your request is with your coach.']);
+  rows.forEach(([lbl, val]) => {
+    const wrap = svcEl('div','svc-detail-row');
+    wrap.appendChild(svcEl('div','svc-detail-lbl', lbl));
+    wrap.appendChild(svcEl('div','svc-detail-val', val));
+    box.appendChild(wrap);
+  });
+  box.hidden = false;
+}
+
+/* Route a row's action button by its current state. */
+function svcRowAction(service){
+  if(!BACKEND_AVAILABLE) return;
+  if(!getLinkedInUser()){ window.location.href = '/api/linkedin/login'; return; }
+  const r = svc.state[service];
+  if(r && r.status === 'responded' && typeof r.response === 'string' && r.response.trim()){ svcOpenReview(service); return; }
+  if(r){ svcOpenDetails(service); return; }
+  svcOpenForm(service);
 }
 
 /* CV Review reuses the profile CV: show it when present, allow replacing. */
@@ -6839,11 +7102,11 @@ async function svcSubmit(service, payload, cvPath){
     if(resp.status === 503){ svcStatus(service, 'Requests are not available right now — the database is not connected. Nothing was sent.'); return; }
     if(resp.status === 409){ svcStatus(service, 'You already have a pending request for this service.'); return; }
     if(!resp.ok){ svcStatus(service, 'That did not go through — check the fields and try again.'); return; }
-    svcStatus(service, 'Request submitted. The completed review will appear on this page.');
     const form = document.getElementById('svc-form-' + service);
     if(form){ form.hidden = true; if(typeof form.reset === 'function') form.reset(); }
-    const cta = document.getElementById('svc-cta-' + service);
-    if(cta) cta.hidden = false;
+    svcStatus(service, '');
+    svcCloseModal();
+    showToast('Request submitted — your written review will appear here');
     svcLoadRequests();
   }catch(e){
     svcStatus(service, 'That did not go through — try again in a moment.');
@@ -6853,51 +7116,59 @@ async function svcSubmit(service, payload, cvPath){
   }
 }
 
-/* 'Your requests' — the honest ledger. 'Under review' until completed. */
-function svcChip(status){
-  const chip = svcEl('span', 'svc-chip' + (status === 'responded' ? ' replied' : ''));
-  chip.textContent = status === 'responded' ? 'Completed' : 'Under review';
-  return chip;
-}
-
-function svcRequestRow(r){
-  const row = svcEl('article','svc-req');
-  const top = svcEl('div','svc-req-top');
-  const label = SVC_SERVICES[r.service] ? SVC_SERVICES[r.service].label : String(r.service || '');
-  top.appendChild(svcEl('span','svc-req-service', label));
-  const when = svcDate(r.created_at);
-  if(when) top.appendChild(svcEl('span','svc-req-date', when));
-  top.appendChild(svcChip(r.status));
-  row.appendChild(top);
-  if(typeof r.response === 'string' && r.response.trim()){
-    const resp = svcEl('div','svc-response');
-    const respWhen = svcDate(r.responded_at);
-    resp.appendChild(svcEl('div','svc-response-lbl', 'Review' + (respWhen ? ' · ' + respWhen : '')));
-    resp.appendChild(svcEl('div','svc-response-text', r.response.trim()));
-    row.appendChild(resp);
+/* Paint a service row from its most recent request: badge + honest state line +
+   delivered snippet + CTA label. Stashes the row in svc.state so the action
+   button can open the right modal (form / details / review). */
+function svcPaintRow(service, r){
+  svc.state[service] = r;
+  const badge = document.getElementById('svc-badge-' + service);
+  const state = document.getElementById('svc-state-' + service);
+  const snippet = document.getElementById('svc-snippet-' + service);
+  const desc = document.getElementById('svc-desc-' + service);
+  const cta = document.getElementById('svc-cta-' + service);
+  const delivered = r.status === 'responded' && typeof r.response === 'string' && !!r.response.trim();
+  if(delivered){
+    if(badge){ badge.className = 'svc-badge is-delivered'; badge.textContent = 'Delivered'; }
+    const when = svcDate(r.responded_at);
+    if(state){ state.textContent = 'Delivered' + (when ? ' on ' + when : ''); }
+    if(desc){ desc.hidden = true; }
+    if(snippet){ snippet.hidden = false; snippet.textContent = r.response.trim(); }
+    if(cta){ cta.textContent = 'Read review'; cta.hidden = false; }
+  }else{
+    if(badge){ badge.className = 'svc-badge is-review'; badge.textContent = 'Under review'; }
+    const when = svcDate(r.created_at);
+    if(state){ state.textContent = 'Your coach is reviewing your submission and will deliver your written review here.' + (when ? ' Requested on ' + when + '.' : ''); }
+    if(desc){ desc.hidden = true; }
+    if(snippet){ snippet.hidden = true; snippet.textContent = ''; }
+    if(cta){ cta.textContent = 'View details'; cta.hidden = false; }
   }
-  return row;
 }
 
 async function svcLoadRequests(){
   const sec = document.getElementById('svc-requests');
-  const list = document.getElementById('svc-req-list');
-  if(!sec || !list) return;
-  if(!BACKEND_AVAILABLE || !getLinkedInUser()){ sec.hidden = true; return; }
+  if(sec) sec.hidden = true; // legacy ledger container stays hidden; rows drive the UI
+  if(!BACKEND_AVAILABLE || !getLinkedInUser()){
+    Object.keys(SVC_SERVICES).forEach(svcSetRowOpen);
+    return;
+  }
   try{
     const resp = await fetch('/api/me?action=service-requests', { credentials:'same-origin' });
-    if(!resp.ok) return; // 401/503 — the cards already carry the honest state
+    if(!resp.ok) return; // 401/503 — the rows already carry the honest Open state
     const d = await resp.json();
     const rows = d && Array.isArray(d.requests) ? d.requests : [];
-    list.innerHTML = '';
-    /* Always show the ledger for signed-in members — the cards above promise
-       'Delivered under Your requests, on this page', so the destination must
-       exist. Zero rows gets the honest empty state, not a missing section. */
-    const empty = document.getElementById('svc-req-empty');
-    if(empty) empty.hidden = rows.length > 0;
-    sec.hidden = false;
-    rows.forEach(r => list.appendChild(svcRequestRow(r)));
-  }catch(e){ /* leave the view as it was */ }
+    /* Keep the newest request per service (rows arrive newest-first from the API,
+       but sort defensively by created_at). */
+    const latest = {};
+    rows.forEach(r => {
+      const s = r && r.service;
+      if(!SVC_SERVICES[s]) return;
+      if(!latest[s] || new Date(r.created_at) > new Date(latest[s].created_at)) latest[s] = r;
+    });
+    Object.keys(SVC_SERVICES).forEach(service => {
+      if(latest[service]) svcPaintRow(service, latest[service]);
+      else svcSetRowOpen(service);
+    });
+  }catch(e){ /* leave the rows as they were */ }
 }
 
 function initStudio(){
@@ -6907,11 +7178,11 @@ function initStudio(){
   svc.wired = true;
 
   Object.keys(SVC_SERVICES).forEach(service => {
-    document.getElementById('svc-cta-' + service)?.addEventListener('click', ()=>{
-      if(!BACKEND_AVAILABLE) return;
-      if(!getLinkedInUser()){ window.location.href = '/api/linkedin/login'; return; }
-      svcOpenForm(service);
-    });
+    document.getElementById('svc-cta-' + service)?.addEventListener('click', ()=> svcRowAction(service));
+  });
+
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && document.getElementById('svc-modal')?.classList.contains('open')) svcCloseModal();
   });
 
   document.getElementById('svc-cv-upload-btn')?.addEventListener('click', svcUploadCv);
