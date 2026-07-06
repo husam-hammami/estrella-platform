@@ -849,6 +849,42 @@ body[data-night="1"] .brand-logo-img{
   font-size:0.65rem;letter-spacing:0.25em;color:var(--text-mute);
   text-transform:uppercase;font-weight:500;margin-bottom:1.25rem;
 }
+
+/* ============================== LEDGER LANGUAGE (shared: coaching prospectus + services schedule) ============================== */
+.ldg-rule{border:0;height:1px;background:var(--gold-soft);opacity:0.7;margin:0}
+.ldg-sec{padding:3rem 0 0}
+.ldg-sec-head{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem}
+.ldg-sec-head svg{width:12px;height:12px;color:var(--gold-deep);flex:none}
+.ldg-sec-kicker{font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;font-weight:500;color:var(--gold-deep);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ldg-sec-line{flex:1;height:1px;background:var(--gold-soft);opacity:0.7}
+.ldg-h2{font-family:var(--font-display);font-weight:500;font-size:clamp(1.6rem,2.4vw,2.1rem);line-height:1.12;color:var(--ink);margin:0 0 1rem}
+.ldg-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;position:relative;padding-top:1rem}
+.ldg-steps::before{content:"";position:absolute;top:calc(1rem + 5px);left:0;right:0;height:1px;background:var(--gold-soft)}
+.ldg-step{display:flex;flex-direction:column;gap:0.5rem;position:relative}
+.ldg-step > svg{width:11px;height:11px;color:var(--gold);background:var(--bg);position:relative;z-index:1}
+.ldg-step-num{font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-deep);font-variant-numeric:tabular-nums}
+.ldg-step-title{font-size:0.95rem;font-weight:600;color:var(--ink-2)}
+.ldg-step-body{font-size:0.875rem;line-height:1.55;color:var(--text-dim)}
+@media (max-width:900px){
+  .ldg-steps{grid-template-columns:1fr;gap:1.25rem;padding-top:0;padding-left:1.5rem}
+  .ldg-steps::before{top:5px;bottom:5px;left:5px;right:auto;width:1px;height:auto}
+  .ldg-step > svg{position:absolute;left:-1.5rem;top:2px}
+}
+.ldg-items{display:flex;flex-direction:column}
+.ldg-item{display:grid;grid-template-columns:3ch minmax(0,1fr) auto;gap:1rem;align-items:baseline;padding:0.875rem 0;border-top:1px solid var(--line)}
+.ldg-item:last-child{border-bottom:1px solid var(--line)}
+.ldg-item-num{font-size:0.8rem;color:var(--gold-deep);font-variant-numeric:tabular-nums}
+.ldg-item-name{font-size:0.95rem;font-weight:500;color:var(--ink-2)}
+.ldg-item-name small{display:block;font-size:0.85rem;font-weight:400;color:var(--text-dim);margin-top:0.125rem}
+.ldg-item-right{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-deep);white-space:nowrap}
+.ldg-item-total{display:flex;justify-content:space-between;align-items:baseline;padding:1rem 0 0;border-top:1px solid var(--gold-soft)}
+.ldg-item-total > span{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-deep)}
+.ldg-item-total strong{font-family:var(--font-display);font-weight:500;font-size:1.75rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+@media (max-width:480px){
+  .ldg-item{grid-template-columns:3ch minmax(0,1fr)}
+  .ldg-item-right{grid-column:2;justify-self:start}
+}
+
 /* Stripe handoff — one honest door to payment */
 .stripe-handoff{
   display:flex;gap:0.875rem;align-items:flex-start;
@@ -1264,38 +1300,67 @@ body[data-night="1"] .brand-logo-img{
   .dash-data-grid,.dash-progress-grid{grid-template-columns:1fr 1fr}
 }
 
-/* ============================== SERVICES (requests to Nesreen — DAY register) ============================== */
-.svc-container{max-width:1220px;margin:0 auto;padding:calc(var(--nav-h) + 1.75rem) clamp(1.25rem,4vw,4rem) 4rem}
-.svc-head{max-width:680px;margin-bottom:1.75rem}
+/* ============================== SERVICES (requests to Nesreen — DAY register, the service schedule) ============================== */
+.svc-container{max-width:1100px;margin:0 auto;padding:calc(var(--nav-h) + 1.75rem) clamp(1.25rem,4vw,4rem) 4rem}
+.svc-head{margin-bottom:1rem}
 .svc-head h1{font-size:clamp(2rem,3.4vw,3rem);font-weight:400;letter-spacing:-0.02em;line-height:1.05;margin:0.4rem 0 0.6rem}
-.svc-sub{color:var(--text-dim);font-size:0.95rem;line-height:1.55}
+.svc-sub{color:var(--text-dim);font-size:0.95rem;line-height:1.55;max-width:62ch}
 .svc-note{
-  max-width:520px;margin-bottom:1.5rem;
-  border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+  max-width:520px;margin:1.5rem 0;
+  border:1px solid var(--line-strong);border-left:2px solid var(--gold-soft);
+  border-radius:var(--radius);
   background:var(--surface);
-  padding:1.25rem 1.5rem;
+  padding:1rem 1.25rem;
 }
 .svc-note-title{
   font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
   color:var(--gold-deep);font-weight:600;margin-bottom:0.45rem;
 }
 .svc-note p{font-size:0.9rem;color:var(--text-dim);line-height:1.55;margin-bottom:0}
-.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start}
-.svc-card{
-  border:1px solid var(--line);border-radius:var(--radius-lg);
-  background:var(--surface);box-shadow:var(--shadow-sm);
-  padding:1.25rem;
-  display:flex;flex-direction:column;gap:0.9rem;
+/* The schedule — three full-width numbered entries */
+.svcx-schedule{display:flex;flex-direction:column;gap:0;margin-top:1.5rem}
+.svcx-schedule .svc-card{
+  background:transparent;border:0;border-radius:0;box-shadow:none;
+  border-top:1px solid var(--gold-soft);
+  padding:2.5rem 0;
+  cursor:default;overflow:visible;transition:none;
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  column-gap:clamp(2rem,4vw,4rem);align-items:start;
   min-width:0;
 }
+.svcx-schedule .svc-card:hover{box-shadow:none;transform:none;border-color:var(--gold-soft)}
+.svcx-schedule .svc-card:last-of-type{border-bottom:1px solid var(--gold-soft)}
+.svcx-desc{min-width:0}
+.svcx-kicker{display:flex;align-items:center;gap:0.6rem}
+.svcx-kicker > svg{flex:none}
 .svc-card-kicker{
   font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--gold-deep);font-weight:600;
+  color:var(--gold-deep);font-weight:600;font-variant-numeric:tabular-nums;
 }
-.svc-card h2{font-size:1.5rem;line-height:1.1;margin-top:0.3rem}
-.svc-card-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
-.svc-card-what{font-size:0.8rem;color:var(--text-mute);line-height:1.5;margin-top:0.4rem}
-.svc-cta{min-height:44px}
+.svcx-schedule .svc-card h2{font-size:1.75rem;font-weight:500;line-height:1.15;margin:0.75rem 0}
+.svc-card-desc{font-size:0.925rem;color:var(--text-dim);line-height:1.6;max-width:52ch}
+.svcx-schedule .svc-card-what{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.25rem}
+.svcx-spec{min-width:0}
+.svcx-spec-lbl{
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:600;
+  display:block;padding-bottom:0.5rem;border-bottom:1px solid var(--gold-soft);
+}
+.svcx-spec ul{list-style:none;margin:0;padding:0}
+.svcx-spec li{font-size:0.875rem;line-height:1.5;color:var(--text);padding:0.5rem 0;border-bottom:1px solid var(--line)}
+.svcx-meta{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-mute);margin-top:1.25rem}
+.svcx-action{
+  border-left:1px solid var(--line);
+  padding-left:clamp(1.5rem,3vw,2.5rem);
+  display:flex;flex-direction:column;gap:1rem;
+  align-self:stretch;min-width:0;
+  /* Collapsed state: the CTA sits centered beside the divider instead of
+     floating at the top of a dead column. */
+  justify-content:center;
+}
+/* Form open: the column fills with fields — back to a top-aligned working column. */
+.svcx-action:has(.svc-form:not([hidden])){justify-content:flex-start}
+.svc-cta{min-height:44px;align-self:flex-start}
 .svc-form{display:flex;flex-direction:column;gap:0.6rem}
 .svc-field label{
   display:block;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;
@@ -1321,32 +1386,43 @@ body[data-night="1"] .brand-logo-img{
   padding:0.6rem 0.8rem;border:1px dashed var(--gold-soft);
   border-radius:var(--radius);background:var(--gold-bg);
 }
-.svc-send{min-height:44px;margin-top:0.2rem}
+.svc-send{min-height:44px;margin-top:0.2rem;align-self:flex-start}
 .svc-status{font-size:0.85rem;color:var(--text-dim);line-height:1.5}
 .svc-status:empty{display:none}
-.svc-requests{margin-top:2.5rem;max-width:760px}
-.svc-requests h2{font-size:1.5rem;margin-bottom:1rem}
-.svc-req{
-  border:1px solid var(--line);border-radius:var(--radius-lg);
-  background:var(--surface);
-  padding:1rem 1.125rem;margin-bottom:0.75rem;
+.svc-status:not(:empty){padding-top:0.75rem;border-top:1px solid var(--gold-soft);font-size:0.875rem;color:var(--text)}
+/* Your requests — the ledger proper (styles the exact svcRequestRow tree) */
+.svc-requests{margin-top:3.5rem;max-width:none}
+.svc-requests h2{font-size:1.75rem;font-weight:500;line-height:1.15;margin-bottom:1rem}
+.svc-req-empty{
+  font-size:0.9rem;color:var(--text-dim);line-height:1.55;margin:0;
+  padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
 }
-.svc-req-top{display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap}
-.svc-req-service{font-weight:600;font-size:0.95rem;color:var(--ink)}
-.svc-req-date{font-size:0.78rem;color:var(--text-mute)}
+.svc-req{
+  background:transparent;border:0;border-radius:0;box-shadow:none;
+  padding:1rem 0;margin-bottom:0;
+  border-top:1px solid var(--line);
+}
+.svc-req:last-child{border-bottom:1px solid var(--line)}
+.svc-req-top{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.svc-req-service{font-weight:600;font-size:0.95rem;color:var(--ink-2)}
+.svc-req-date{font-size:0.8rem;color:var(--text-dim);font-variant-numeric:tabular-nums}
 .svc-chip{
-  margin-left:auto;display:inline-block;
+  margin-left:auto;display:inline-flex;align-items:center;gap:0.4rem;
   font-size:0.6875rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
   padding:0.25rem 0.625rem;border-radius:99px;
   background:var(--gold-bg);color:var(--gold-deep);border:1px solid var(--gold-soft);
 }
-.svc-chip.replied{background:var(--surface-2);color:var(--success);border-color:rgba(79,163,129,0.4)}
-.svc-response{margin-top:0.8rem;border-top:1px solid var(--line);padding-top:0.8rem}
-.svc-response-lbl{
-  font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--gold-deep);font-weight:600;margin-bottom:0.4rem;
+.svc-chip::before{
+  content:"";width:0.5rem;height:0.5rem;flex:none;background:currentColor;
+  clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);
 }
-.svc-response-text{font-size:0.9rem;color:var(--ink-2);line-height:1.6;white-space:pre-wrap;overflow-wrap:break-word}
+.svc-chip.replied{background:var(--surface-2);color:var(--success);border-color:rgba(79,163,129,0.4)}
+.svc-response{margin-top:0.875rem;border-top:1px solid var(--gold-soft);padding-top:0.875rem}
+.svc-response-lbl{
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:600;margin-bottom:0.5rem;
+}
+.svc-response-text{font-size:0.925rem;color:var(--text);line-height:1.7;white-space:pre-wrap;overflow-wrap:break-word;max-width:68ch}
 /* Coach desk — service requests queue */
 .coach-svc{border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--surface);margin-bottom:0.75rem;overflow:hidden}
 .coach-svc-top{
@@ -1370,11 +1446,12 @@ body[data-night="1"] .brand-logo-img{
 .coach-svc-status{font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem}
 .coach-svc-status:empty{display:none}
 @media(max-width:1024px){
-  .svc-grid{grid-template-columns:1fr}
-  .svc-card{max-width:640px}
+  .svcx-schedule .svc-card{grid-template-columns:1fr}
+  .svcx-action{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:1.5rem;margin-top:1.5rem}
 }
 @media(max-width:640px){
   .svc-container{padding-left:1.25rem;padding-right:1.25rem}
+  .svcx-schedule .svc-card-what{grid-template-columns:1fr;gap:1rem}
 }
 
 /* ============================== LIBRARY ============================== */
@@ -3597,140 +3674,96 @@ body.modal-open .dash-body{overflow:hidden}
   .coach-brief-tabs{width:100%;gap:1rem}
 }
 
-/* ============================== COACHING — THE DOORWAY ============================== */
-#view-services{
-  overflow:hidden;
-}
-.coaching-door{
-  height:100dvh;max-height:100dvh;box-sizing:border-box;
+/* ============================== COACHING — THE PROSPECTUS ============================== */
+.prospectus{max-width:1040px;margin:0 auto;padding:calc(var(--nav-h) + 2.5rem) clamp(1.25rem,5vw,4rem) 5rem}
+.pros-mast{
   display:grid;
-  grid-template-columns:minmax(230px,300px) minmax(420px,660px);
-  align-items:center;
-  justify-content:center;
-  column-gap:clamp(2.75rem,6vw,7rem);
-  padding:calc(var(--nav-h) + 1.35rem) clamp(2rem,6vw,6rem) 2rem;
+  grid-template-columns:minmax(0,1.55fr) minmax(220px,300px);
+  column-gap:clamp(2.5rem,5vw,5rem);
+  align-items:start;
 }
-.door-portrait{
-  position:relative;margin:0;overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-self:end;
-  width:min(100%,300px);
-  height:min(52vh,485px);
-  max-height:calc(100dvh - var(--nav-h) - 3.5rem);
-  aspect-ratio:0.62;
-  padding:8px;
-  background:rgba(255,252,246,0.68);
-  border:1px solid rgba(151,121,63,0.12);
-  border-radius:10px;
-  box-shadow:0 14px 34px rgba(55,43,28,0.07);
+.pros-mast-copy{min-width:0}
+.pros-eyebrow{display:flex;align-items:center;gap:0.625rem;margin-bottom:1.5rem}
+.pros-eyebrow svg{width:14px;height:14px;color:var(--gold-deep);flex-shrink:0}
+.pros-eyebrow-line{flex:0 1 120px;height:1px;background:var(--gold-soft)}
+.pros-h1{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(2.6rem,4.6vw,4.25rem);line-height:1.02;letter-spacing:0;
+  color:var(--ink);margin:0;
 }
-.door-portrait::before{
-  content:"";position:absolute;inset:-22px;z-index:0;
-  background:url("nesreen-coaching-v2.png") center 54%/cover no-repeat;
-  filter:blur(18px) saturate(0.72) contrast(0.92) brightness(1.06);
-  display:none;
-  opacity:0;
-  transform:scale(1.04);
-  pointer-events:none;
+.pros-h1 em{font-style:italic;color:var(--gold-deep);font-weight:500}
+.pros-stand{font-size:1.05rem;line-height:1.65;color:var(--text);max-width:58ch;margin:1.25rem 0 2rem}
+.pros-facts{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;
+  padding:1.25rem 0;margin-bottom:2rem;
+  border-top:1px solid var(--gold-soft);border-bottom:1px solid var(--gold-soft);
 }
-.door-portrait img{
-  position:relative;z-index:1;
-  flex:1 1 auto;
-  width:100%;height:auto;min-height:0;
-  object-fit:cover;
-  object-position:50% 54%;
-  display:block;
-  border-radius:8px 8px 5px 5px;
-  filter:saturate(0.56) contrast(0.86) brightness(1.09);
-  opacity:0.78;
+.pros-fact-lbl{
+  display:block;font-size:0.66rem;letter-spacing:0.24em;text-transform:uppercase;
+  font-weight:500;color:var(--gold-deep);margin-bottom:0.375rem;
 }
-.door-portrait::after{
-  content:"";position:absolute;
-  inset:8px 8px 4.65rem 8px;
-  z-index:2;
-  display:block;
-  border-radius:8px 8px 5px 5px;
-  background:
-    linear-gradient(90deg, transparent 0%, transparent 66%, rgba(255,252,246,0.66) 100%),
-    linear-gradient(180deg, transparent 0%, transparent 70%, rgba(255,252,246,0.46) 100%);
-  pointer-events:none;
-}
-.door-portrait-card{
-  position:relative;left:auto;bottom:auto;z-index:3;
-  padding:0.72rem 0.15rem 0.1rem;border-radius:0;
-  background:transparent;border:0;
-  box-shadow:none;
-}
-.door-portrait-card span{
-  display:block;font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;
-  color:rgba(151,121,63,0.72);font-weight:700;margin-bottom:0.18rem;
-}
-.door-portrait-card strong{
-  display:block;font-family:'Bodoni Moda',serif;font-size:1.22rem;line-height:1;
-  color:rgba(20,18,14,0.78);font-weight:500;
-}
-.door-panel{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:0;
-  max-width:640px;
-}
-.door-panel .hero-eyebrow{margin-bottom:1.25rem}
-.door-h1{
-  font-size:clamp(2.55rem,4.15vw,4.25rem);line-height:0.98;letter-spacing:0;
-  color:var(--ink);margin:0 0 1.25rem;
-}
-.door-h1 em{font-style:italic;color:var(--gold-deep);font-weight:500}
-.door-sub{
-  font-size:1.05rem;line-height:1.55;color:var(--text);max-width:46ch;margin:0 0 2rem;
-}
-.door-price{
-  display:flex;align-items:baseline;gap:0.85rem;flex-wrap:wrap;
-  padding-bottom:2rem;margin-bottom:2rem;border-bottom:1px solid var(--line);
-}
-.door-price strong{
-  font-family:'Bodoni Moda',serif;font-size:2.6rem;font-weight:500;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;
-}
-.door-price span{font-size:0.85rem;color:var(--text-dim)}
-.door-cta{align-self:flex-start}
+.pros-fact-val{font-size:0.95rem;font-weight:500;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.pros-fee-value{font-family:var(--font-display);font-weight:500;font-size:1.75rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.pros-cta-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.pros-cta-note{flex-basis:100%;font-size:0.78rem;color:var(--text-dim);margin:0;order:2}
+.pros-cta-row .door-cta{order:1}
+.pros-cta-row .door-secondary{order:3}
 .door-secondary{
-  align-self:flex-start;margin-top:0.5rem;
-  border:0;background:transparent;color:var(--text-mute);
+  border:0;background:transparent;color:var(--text-dim);
   font:inherit;font-size:0.84rem;cursor:pointer;padding:0;
   min-height:44px;display:inline-flex;align-items:center;
   transition:color 0.2s var(--ease);
+  text-underline-offset:3px;
 }
-.door-secondary:hover{color:var(--gold-deep)}
+.door-secondary:hover{color:var(--gold-deep);text-decoration:underline}
+.door-portrait{
+  margin:0;
+  padding:8px;
+  background:var(--surface);
+  border:1px solid var(--gold-soft);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+}
+.door-portrait img{
+  width:100%;height:auto;
+  aspect-ratio:0.62;
+  object-fit:cover;object-position:50% 54%;
+  filter:saturate(0.56) contrast(0.86) brightness(1.09);
+  border-radius:calc(var(--radius) - 4px);
+  display:block;
+}
+.door-portrait-card{padding:0.75rem 0.25rem 0.25rem}
+.door-portrait-card span{
+  display:block;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold-deep);font-weight:600;margin-bottom:0.25rem;
+}
+.door-portrait-card strong{
+  display:block;font-family:var(--font-ui);font-size:0.85rem;font-weight:600;color:var(--ink-2);
+}
+.pros-body{max-width:62ch;font-size:0.975rem;line-height:1.7;color:var(--text)}
+.pros-note{font-size:0.875rem;color:var(--text-dim);margin-top:1rem;font-variant-numeric:tabular-nums}
+.pros-colophon{
+  text-align:center;padding:3.5rem 0 0;
+  display:flex;flex-direction:column;align-items:center;gap:1.25rem;
+}
+.pros-colophon .hero-divider{margin:0;justify-content:center;width:100%}
+.pros-colophon-line{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.6rem,2.4vw,2rem);line-height:1.15;color:var(--ink);margin:0;
+}
 @media (max-width:860px){
-  .coaching-door{
-    grid-template-columns:1fr;grid-template-rows:auto auto;
-    height:auto;min-height:100dvh;max-height:none;
-    justify-items:center;
-    gap:1.5rem;
-    padding:calc(var(--nav-h) + 1rem) 1.25rem 2rem;
+  .pros-mast{grid-template-columns:1fr}
+  .pros-mast .door-portrait{width:min(60vw,280px);margin:2rem auto 0}
+  .pros-h1{font-size:clamp(2.6rem,9vw,3.2rem)}
+}
+@media (max-width:480px){
+  .pros-facts{grid-template-columns:1fr;gap:0;padding:0.25rem 0}
+  .pros-fact{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:0.625rem 0;border-top:1px solid var(--line);
   }
-  #view-services{overflow-y:auto}
-  .door-portrait{
-    width:min(70vw,280px);
-    height:auto;
-    max-height:none;
-    min-height:390px;
-    justify-self:center;
-    order:2;
-  }
-  .door-portrait::before{display:none}
-  .door-portrait img{object-fit:cover;object-position:50% 48%;filter:saturate(0.56) contrast(0.86) brightness(1.09);opacity:0.78}
-  .door-portrait::after{
-    display:block;
-    inset:8px 8px 4.5rem 8px;
-    background:
-      linear-gradient(90deg, transparent 0%, transparent 66%, rgba(255,252,246,0.66) 100%),
-      linear-gradient(180deg, transparent 0%, transparent 70%, rgba(255,252,246,0.46) 100%);
-  }
-  .door-panel{padding:0;max-width:560px;order:1}
-  .door-h1{font-size:clamp(2.2rem,9vw,3rem)}
-  .door-sub{font-size:0.95rem;margin-bottom:1.5rem}
-  .door-price{padding-bottom:1.5rem;margin-bottom:1.5rem}
+  .pros-fact:first-child{border-top:0}
+  .pros-fact-lbl{margin-bottom:0}
 }
 
 /* ============================== VIEW: START (Nuria diagnostic) ============================== */
@@ -4490,26 +4523,81 @@ body.modal-open .dash-body{overflow:hidden}
 
   <!-- ============================== VIEW: SERVICES (COACHING) ============================== -->
   <div class="view" id="view-services">
-    <div class="coaching-door">
-      <figure class="door-portrait">
-        <img src="nesreen-coaching-v2.png" alt="Nesreen Abdelhakim" onerror="this.src='nesreen-coaching.jpg'"/>
-        <figcaption class="door-portrait-card">
-          <span>Your certified coach</span>
-          <strong>Founder · Career coach</strong>
-        </figcaption>
-      </figure>
+    <div class="prospectus">
 
-      <div class="door-panel">
-        <div class="hero-eyebrow">Private career coaching</div>
-        <h1 class="door-h1">One hour.<em> A clear next step.</em></h1>
-        <p class="door-sub">A short intake conversation prepares a professional brief before your session — so the hour starts where it matters.</p>
-        <div class="door-price">
-          <strong>AED 500</strong>
-          <span>60 minutes · 1-on-1 video · Brief included</span>
+      <div class="pros-mast">
+        <div class="pros-mast-copy">
+          <div class="pros-eyebrow">
+            <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
+            <span class="pros-eyebrow-line" aria-hidden="true"></span>
+            <span class="ldg-sec-kicker">Private career coaching</span>
+          </div>
+          <h1 class="pros-h1">One hour.<em> A clear next step.</em></h1>
+          <p class="pros-stand">A private 60-minute video session with a certified career coach. You bring one career question. You leave with a brief and a plan you can act on this month.</p>
+          <div class="pros-facts">
+            <div class="pros-fact"><span class="pros-fact-lbl">Fee</span><span class="pros-fact-val pros-fee-value">AED 500</span></div>
+            <div class="pros-fact"><span class="pros-fact-lbl">Duration</span><span class="pros-fact-val">60 minutes</span></div>
+            <div class="pros-fact"><span class="pros-fact-lbl">Format</span><span class="pros-fact-val">1-on-1 video</span></div>
+          </div>
+          <div class="pros-cta-row">
+            <button class="btn btn-primary btn-lg door-cta" type="button" data-view="start">Book your session</button>
+            <p class="pros-cta-note">Starts with the screening conversation — step 1.</p>
+            <button class="door-secondary" type="button" id="practice-book-direct">I already know — pick a time</button>
+          </div>
         </div>
-        <button class="btn btn-primary btn-lg door-cta" type="button" data-view="start">Book your session →</button>
-        <button class="door-secondary" type="button" id="practice-book-direct">I already know — just pick a time</button>
+        <figure class="door-portrait">
+          <img src="nesreen-coaching-v2.png" alt="Nesreen Abdelhakim" onerror="this.src='nesreen-coaching.jpg'"/>
+          <figcaption class="door-portrait-card">
+            <span>Your certified coach</span>
+            <strong>Founder · Career coach</strong>
+          </figcaption>
+        </figure>
       </div>
+
+      <section class="ldg-sec">
+        <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">Section 01 · What this is</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
+        <h2 class="ldg-h2">A working session on your career</h2>
+        <p class="pros-body">You meet your coach on a private video call for one hour. The session centres on one question you choose — a move you are weighing, an interview ahead, a stalled search, or a step up inside your company. Your coach reads your screening brief before the call, so the hour starts with your situation, not with introductions.</p>
+      </section>
+
+      <section class="ldg-sec">
+        <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">Section 02 · What is included</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
+        <div class="ldg-items">
+          <div class="ldg-item"><span class="ldg-item-num">01</span><span class="ldg-item-name">Screening conversation<small>A short guided intake before you pay. Your answers become the brief your coach prepares from.</small></span><span class="ldg-item-right">Included</span></div>
+          <div class="ldg-item"><span class="ldg-item-num">02</span><span class="ldg-item-name">Private session<small>60 minutes, one-on-one, on video.</small></span><span class="ldg-item-right">Included</span></div>
+          <div class="ldg-item"><span class="ldg-item-num">03</span><span class="ldg-item-name">Session brief<small>The prepared brief is included with your booking.</small></span><span class="ldg-item-right">Included</span></div>
+        </div>
+        <div class="ldg-item-total"><span>Total</span><strong>AED 500</strong></div>
+      </section>
+
+      <section class="ldg-sec">
+        <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">Section 03 · How it works</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
+        <div class="ldg-steps">
+          <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 01</span><span class="ldg-step-title">Screening conversation</span><span class="ldg-step-body">Answer a few guided questions about where you are and what you want from the hour.</span></div>
+          <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 02</span><span class="ldg-step-title">Secure payment</span><span class="ldg-step-body">Pay AED 500 by card at checkout.</span></div>
+          <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 03</span><span class="ldg-step-title">Pick your time</span><span class="ldg-step-body">Choose a session slot that suits your week.</span></div>
+          <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 04</span><span class="ldg-step-title">The session</span><span class="ldg-step-body">Meet your coach on a private video call for 60 minutes.</span></div>
+        </div>
+      </section>
+
+      <section class="ldg-sec">
+        <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">Section 04 · Credentials</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
+        <div class="ldg-items">
+          <div class="ldg-item"><span class="ldg-item-num">01</span><span class="ldg-item-name">PHRI — Professional in Human Resources, International</span><span class="ldg-item-right">HRCI</span></div>
+          <div class="ldg-item"><span class="ldg-item-num">02</span><span class="ldg-item-name">Certified Career Coach</span><span class="ldg-item-right">ICF</span></div>
+          <div class="ldg-item"><span class="ldg-item-num">03</span><span class="ldg-item-name">HR Management Professional</span><span class="ldg-item-right">CMI</span></div>
+          <div class="ldg-item"><span class="ldg-item-num">04</span><span class="ldg-item-name">Strategic Management, SCQF Level 11</span><span class="ldg-item-right">SCQF</span></div>
+          <div class="ldg-item"><span class="ldg-item-num">05</span><span class="ldg-item-name">CPT — Certified Professional Trainer</span></div>
+        </div>
+        <p class="pros-note">More than 300,000 professionals follow your coach's career guidance on LinkedIn.</p>
+      </section>
+
+      <div class="pros-colophon">
+        <div class="hero-divider" aria-hidden="true"><span class="hero-divider-line"></span><svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg><span class="hero-divider-line"></span></div>
+        <p class="pros-colophon-line">Ready when you are.</p>
+        <button class="btn btn-primary btn-lg" type="button" data-view="start">Book your session — AED 500</button>
+      </div>
+
     </div>
   </div>
 
@@ -4797,8 +4885,17 @@ body.modal-open .dash-body{overflow:hidden}
           <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
           Services
         </div>
-        <h1>Services</h1>
-        <p class="svc-sub">Professional career reviews, prepared individually by your coach.</p>
+        <h1>Career services</h1>
+        <p class="svc-sub">Three professional reviews, prepared individually by your coach. Included with your membership — there is no extra fee.</p>
+        <section class="ldg-sec">
+          <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">How it works</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
+          <div class="ldg-steps">
+            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 01</span><span class="ldg-step-title">Choose a service</span><span class="ldg-step-body">Pick one of the three services below.</span></div>
+            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 02</span><span class="ldg-step-title">Submit your inputs</span><span class="ldg-step-body">Send the items listed under You provide.</span></div>
+            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 03</span><span class="ldg-step-title">Under review</span><span class="ldg-step-body">Your request shows Under review while your coach prepares it.</span></div>
+            <div class="ldg-step"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-step-num">Step 04</span><span class="ldg-step-title">Completed</span><span class="ldg-step-body">The finished review appears under Your requests, on this page, marked Completed.</span></div>
+          </div>
+        </section>
       </header>
 
       <div class="svc-note" id="svc-offline" hidden>
@@ -4806,14 +4903,23 @@ body.modal-open .dash-body{overflow:hidden}
         <p>This preview is offline. On the live site you can submit a request and the completed review appears on this page.</p>
       </div>
 
-      <div class="svc-grid" id="svc-grid">
+      <div class="svc-grid svcx-schedule" id="svc-grid">
         <section class="svc-card" id="svc-card-cv_review" aria-labelledby="svc-h-cv">
-          <div>
-            <div class="svc-card-kicker">Service 01</div>
+          <div class="svcx-desc">
+            <div class="svcx-kicker">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="9" y1="13" x2="17" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg>
+              <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+              <span class="svc-card-kicker">Service 01</span>
+            </div>
             <h2 id="svc-h-cv">CV Review</h2>
-            <p class="svc-card-desc">A professional review of your CV: what to cut, what to reframe, and what is missing.</p>
-            <p class="svc-card-what">Required: your CV. Optional: a short note.</p>
+            <p class="svc-card-desc">Your coach reads your CV the way a hiring manager does, then writes you a clear review — what works, what holds you back, and what to change before you apply.</p>
+            <div class="svc-card-what">
+              <div class="svcx-spec"><span class="svcx-spec-lbl">You provide</span><ul><li>Your CV as a PDF or image</li><li>What you want the review to focus on (optional)</li></ul></div>
+              <div class="svcx-spec"><span class="svcx-spec-lbl">You receive</span><ul><li>A written CV review from your coach</li><li>Delivered under Your requests, on this page</li></ul></div>
+            </div>
+            <p class="svcx-meta">Included with membership · Prepared individually</p>
           </div>
+          <div class="svcx-action">
           <button class="btn btn-gold svc-cta" id="svc-cta-cv_review" type="button" data-svc="cv_review">Request review</button>
           <form class="svc-form" id="svc-form-cv_review" hidden>
             <div class="svc-cvline" id="svc-cv-current" hidden></div>
@@ -4831,15 +4937,25 @@ body.modal-open .dash-body{overflow:hidden}
             <button class="btn btn-gold svc-send" id="svc-send-cv_review" type="submit">Submit request</button>
           </form>
           <div class="svc-status" id="svc-status-cv_review" role="status" aria-live="polite"></div>
+          </div>
         </section>
 
         <section class="svc-card" id="svc-card-linkedin_review" aria-labelledby="svc-h-li">
-          <div>
-            <div class="svc-card-kicker">Service 02</div>
+          <div class="svcx-desc">
+            <div class="svcx-kicker">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+              <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+              <span class="svc-card-kicker">Service 02</span>
+            </div>
             <h2 id="svc-h-li">LinkedIn Review</h2>
-            <p class="svc-card-desc">A professional review of your LinkedIn profile: headline, about section, and experience.</p>
-            <p class="svc-card-what">Required: your public profile link. Optional: areas to focus on.</p>
+            <p class="svc-card-desc">Your coach reviews your public profile as recruiters see it and writes specific recommendations for how you present yourself.</p>
+            <div class="svc-card-what">
+              <div class="svcx-spec"><span class="svcx-spec-lbl">You provide</span><ul><li>Your public LinkedIn profile URL</li><li>What you want the review to focus on (optional)</li></ul></div>
+              <div class="svcx-spec"><span class="svcx-spec-lbl">You receive</span><ul><li>A written review of your LinkedIn presence</li><li>Delivered under Your requests, on this page</li></ul></div>
+            </div>
+            <p class="svcx-meta">Included with membership · Prepared individually</p>
           </div>
+          <div class="svcx-action">
           <button class="btn btn-gold svc-cta" id="svc-cta-linkedin_review" type="button" data-svc="linkedin_review">Request review</button>
           <form class="svc-form" id="svc-form-linkedin_review" hidden>
             <div class="svc-field">
@@ -4853,15 +4969,25 @@ body.modal-open .dash-body{overflow:hidden}
             <button class="btn btn-gold svc-send" id="svc-send-linkedin_review" type="submit">Submit request</button>
           </form>
           <div class="svc-status" id="svc-status-linkedin_review" role="status" aria-live="polite"></div>
+          </div>
         </section>
 
         <section class="svc-card" id="svc-card-roadmap" aria-labelledby="svc-h-rm">
-          <div>
-            <div class="svc-card-kicker">Service 03</div>
+          <div class="svcx-desc">
+            <div class="svcx-kicker">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8 18c5 0 5-12 10-12"/></svg>
+              <svg width="10" height="10" viewBox="0 0 32 32" fill="currentColor" style="color:var(--gold)" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
+              <span class="svc-card-kicker">Service 03</span>
+            </div>
             <h2 id="svc-h-rm">Career Roadmap</h2>
-            <p class="svc-card-desc">A clear plan for your next role: where to aim and the concrete steps to get there.</p>
-            <p class="svc-card-what">Required: your current role and your goal. Optional: constraints.</p>
+            <p class="svc-card-desc">Tell your coach where you want to be. You receive a written plan for moving toward that role from where you are now.</p>
+            <div class="svc-card-what">
+              <div class="svcx-spec"><span class="svcx-spec-lbl">You provide</span><ul><li>The role you are aiming for</li><li>Your years of experience</li><li>Your ambition, in your own words</li><li>Constraints your coach should know (optional)</li></ul></div>
+              <div class="svcx-spec"><span class="svcx-spec-lbl">You receive</span><ul><li>A written roadmap toward your target role</li><li>Delivered under Your requests, on this page</li></ul></div>
+            </div>
+            <p class="svcx-meta">Included with membership · Prepared individually</p>
           </div>
+          <div class="svcx-action">
           <button class="btn btn-gold svc-cta" id="svc-cta-roadmap" type="button" data-svc="roadmap">Request roadmap</button>
           <form class="svc-form" id="svc-form-roadmap" hidden>
             <div class="svc-field">
@@ -4883,11 +5009,14 @@ body.modal-open .dash-body{overflow:hidden}
             <button class="btn btn-gold svc-send" id="svc-send-roadmap" type="submit">Submit request</button>
           </form>
           <div class="svc-status" id="svc-status-roadmap" role="status" aria-live="polite"></div>
+          </div>
         </section>
       </div>
 
       <section class="svc-requests" id="svc-requests" hidden aria-labelledby="svc-req-h">
+        <div class="ldg-sec-head"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg><span class="ldg-sec-kicker">The ledger · Your requests</span><span class="ldg-sec-line" aria-hidden="true"></span></div>
         <h2 id="svc-req-h">Your requests</h2>
+        <p class="svc-req-empty" id="svc-req-empty">No requests yet. When you submit one above, it appears here — Under review until your coach completes it.</p>
         <div class="svc-req-list" id="svc-req-list"></div>
       </section>
     </div>
@@ -6687,7 +6816,11 @@ async function svcLoadRequests(){
     const d = await resp.json();
     const rows = d && Array.isArray(d.requests) ? d.requests : [];
     list.innerHTML = '';
-    if(!rows.length){ sec.hidden = true; return; }
+    /* Always show the ledger for signed-in members — the cards above promise
+       'Delivered under Your requests, on this page', so the destination must
+       exist. Zero rows gets the honest empty state, not a missing section. */
+    const empty = document.getElementById('svc-req-empty');
+    if(empty) empty.hidden = rows.length > 0;
     sec.hidden = false;
     rows.forEach(r => list.appendChild(svcRequestRow(r)));
   }catch(e){ /* leave the view as it was */ }
