@@ -3236,7 +3236,7 @@ body.modal-open .dash-body{overflow:hidden}
   border-radius:999px 999px 14px 14px;overflow:hidden;
   box-shadow:0 34px 70px -36px rgba(20,18,14,0.45);
 }
-.about-arch img{width:100%;height:100%;object-fit:cover;object-position:74% 18%;display:block}
+.about-arch img{width:100%;height:100%;object-fit:cover;object-position:48% 12%;display:block}
 /* offset hairline ring; the apex star rides the ring's top center */
 .about-arch-ring{
   position:absolute;left:52%;top:47%;transform:translate(-50%,-50%);
@@ -3346,10 +3346,13 @@ body.modal-open .dash-body{overflow:hidden}
   font-size:clamp(0.98rem,1.15vw,1.15rem);color:var(--ink);line-height:1.05;
 }
 .cert-desc{font-size:0.62rem;line-height:1.35;color:var(--text-dim);overflow-wrap:break-word}
-.cert-issuer{
-  margin-top:auto;padding-top:0.3rem;
-  font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;
-  font-weight:600;color:var(--gold-deep);
+.cert-logo{
+  margin-top:auto;padding-top:0.4rem;height:calc(30px + 0.4rem);
+  display:flex;align-items:center;justify-content:center;width:100%;
+}
+.cert-logo img{
+  max-height:30px;max-width:82%;object-fit:contain;display:block;
+  mix-blend-mode:multiply; /* melts the crop's paper background into the card */
 }
 
 /* Foot — CTA + links anchored at the bottom. */
@@ -4570,7 +4573,7 @@ body.modal-open .dash-body{overflow:hidden}
           <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
         </span>
         <div class="about-arch">
-          <img src="portrait_face_enhanced_v1.png" alt="Nesreen — founder and career coach"/>
+          <img src="nesreen-graduation.jpg" alt="Nesreen — MBA graduate, Plymouth Marjon University"/>
         </div>
         <figure class="about-quote">
           <div class="about-quote-mark" aria-hidden="true">&ldquo;</div>
@@ -4614,32 +4617,32 @@ body.modal-open .dash-body{overflow:hidden}
               <div class="cert-card">
                 <span class="cert-acro">MBA</span>
                 <span class="cert-desc">in HR and Artificial Intelligence</span>
-                <span class="cert-issuer">Plymouth Marjon University</span>
+                <span class="cert-logo"><img src="Assets/certs/marjon.png" alt="Plymouth Marjon University"/></span>
               </div>
               <div class="cert-card">
                 <span class="cert-acro">PHRI</span>
                 <span class="cert-desc">Professional in Human Resources, International</span>
-                <span class="cert-issuer">HRCI</span>
+                <span class="cert-logo"><img src="Assets/certs/hrci.png" alt="HRCI"/></span>
               </div>
               <div class="cert-card">
                 <span class="cert-acro">ICF</span>
                 <span class="cert-desc">Certified Career Coach</span>
-                <span class="cert-issuer">International Coaching Federation</span>
+                <span class="cert-logo"><img src="Assets/certs/icf.png" alt="International Coaching Federation"/></span>
               </div>
               <div class="cert-card">
                 <span class="cert-acro">CMI</span>
                 <span class="cert-desc">HR Management Professional</span>
-                <span class="cert-issuer">Chartered Management Institute</span>
+                <span class="cert-logo"><img src="Assets/certs/cmi.png" alt="Chartered Management Institute"/></span>
               </div>
               <div class="cert-card">
                 <span class="cert-acro">SCQF 11</span>
                 <span class="cert-desc">Strategic Management, Level 11</span>
-                <span class="cert-issuer">Scottish Credit &amp; Qualifications Framework</span>
+                <span class="cert-logo"><img src="Assets/certs/scqf.png" alt="Scottish Credit and Qualifications Framework"/></span>
               </div>
               <div class="cert-card">
                 <span class="cert-acro">CPT</span>
                 <span class="cert-desc">Certified Professional Trainer</span>
-                <span class="cert-issuer">Professional Certification</span>
+                <span class="cert-logo"><img src="Assets/certs/cpt.png" alt="Certified Professional Trainer seal"/></span>
               </div>
             </div>
           </div>
