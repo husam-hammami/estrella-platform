@@ -1308,7 +1308,7 @@ body[data-night="1"] .brand-logo-img{
 .svc-shell{
   box-sizing:border-box;height:100dvh;
   padding-top:var(--nav-h);
-  display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);
+  display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.95fr);
   position:relative;
 }
 /* ---------- LEFT PANEL: warm paper brand rail (fixed, does not scroll) ---------- */
@@ -1357,7 +1357,7 @@ body[data-night="1"] .brand-logo-img{
 }
 /* ---------- RIGHT PANEL: the functional column ---------- */
 .svc-right{
-  background:var(--surface);
+  background:var(--bg);
   min-width:0;overflow-y:auto;overflow-x:hidden;
   padding:clamp(1.5rem,3vh,2.5rem) clamp(1.5rem,3vw,3rem) clamp(1.25rem,2.5vh,2rem);
   display:flex;flex-direction:column;gap:clamp(1.1rem,2.4vh,1.75rem);
@@ -1369,9 +1369,14 @@ body[data-night="1"] .brand-logo-img{
   color:var(--text-mute);font-weight:600;
 }
 .svc-flow-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:start;gap:0}
-.svc-step{display:flex;flex-direction:column;gap:0.4rem;min-width:0;padding:0 0.25rem}
-.svc-step-top{display:flex;align-items:center;gap:0.5rem}
-.svc-step-top svg{flex:none;color:var(--gold-deep)}
+.svc-step{display:flex;flex-direction:column;gap:0.5rem;min-width:0;padding:0 0.25rem}
+.svc-step-top{display:flex;align-items:center;gap:0.6rem}
+.svc-step-badge{
+  width:38px;height:38px;border-radius:50%;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bg);color:var(--gold-deep);border:1px solid var(--gold-soft);
+}
+.svc-step-badge svg{width:17px;height:17px}
 .svc-step-num{font-size:0.7rem;font-weight:600;color:var(--gold-deep);font-variant-numeric:tabular-nums;letter-spacing:0.06em}
 .svc-step-label{font-size:0.86rem;font-weight:600;color:var(--ink);line-height:1.25}
 .svc-step-body{font-size:0.78rem;line-height:1.45;color:var(--text-dim)}
@@ -1381,29 +1386,41 @@ body[data-night="1"] .brand-logo-img{
   font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;
   color:var(--text-mute);font-weight:600;margin-bottom:-0.4rem;
 }
-.svc-rows{display:flex;flex-direction:column;flex:1;justify-content:space-between;min-height:0}
+.svc-rows{display:flex;flex-direction:column;min-height:0;gap:clamp(0.85rem,1.7vh,1.2rem)}
+/* Each service is one persistent review card: icon tile · identity · status · review · action. */
 .svc-row{
-  display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;
-  align-items:center;gap:0.85rem 1rem;
-  padding:clamp(1.4rem,3.4vh,2.5rem) 0;border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:auto minmax(140px,1fr) minmax(104px,auto) minmax(0,1.45fr) auto;
+  grid-template-areas:"tile ident status mid action";
+  align-items:center;gap:0.45rem 1.4rem;
+  background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--radius-lg);
+  padding:clamp(1.05rem,2.2vh,1.5rem) clamp(1.15rem,1.8vw,1.65rem);
+  box-shadow:0 1px 2px rgba(20,18,14,0.03),0 14px 30px -24px rgba(20,18,14,0.28);
 }
-.svc-row:last-child{border-bottom:1px solid var(--line)}
-.svc-row-idx{font-size:0.72rem;font-weight:600;color:var(--gold-deep);font-variant-numeric:tabular-nums;padding-top:0.15rem}
-.svc-row-icon{color:var(--gold-deep);padding-top:0.05rem}
-.svc-row-icon svg{display:block}
-.svc-row-main{min-width:0;display:flex;flex-direction:column;gap:0.3rem}
-.svc-row-head{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap}
-.svc-row-name{font-family:var(--font-display);font-size:1.2rem;font-weight:600;line-height:1.15;color:var(--ink)}
-.svc-row-desc{font-size:0.82rem;line-height:1.45;color:var(--text-dim);margin:0}
-.svc-row-state{font-size:0.8rem;line-height:1.5;color:var(--text);margin:0.15rem 0 0}
-.svc-row-state .muted{color:var(--text-dim)}
-.svc-row-snippet{
-  font-size:0.82rem;line-height:1.55;color:var(--text);margin:0.35rem 0 0;
+.svc-row[data-state=delivered]{border-color:var(--gold-soft)}
+.svc-tile{
+  grid-area:tile;flex:none;
+  width:clamp(54px,4.4vw,70px);aspect-ratio:1;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gold-bg);color:var(--gold-deep);border:1px solid var(--gold-soft);
+}
+.svc-tile svg{width:26px;height:26px;display:block}
+.svc-row[data-state=delivered] .svc-tile{background:var(--ink);color:var(--gold-soft);border-color:var(--ink)}
+.svc-ident{grid-area:ident;min-width:0;display:flex;flex-direction:column;gap:0.28rem}
+.svc-row-idx{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;color:var(--gold-deep);font-variant-numeric:tabular-nums}
+.svc-row-name{font-family:var(--font-display);font-size:clamp(1.15rem,1.5vw,1.42rem);font-weight:600;line-height:1.1;color:var(--ink)}
+.svc-row-desc{font-size:0.8rem;line-height:1.4;color:var(--text-dim);margin:0.1rem 0 0}
+.svc-statuscol{grid-area:status;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:0.45rem}
+.svc-row-state{font-size:0.76rem;line-height:1.4;color:var(--text-dim);margin:0}
+.svc-mid{
+  grid-area:mid;min-width:0;margin:0;
+  font-size:0.83rem;line-height:1.5;color:var(--text);
   display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-  border-left:2px solid var(--gold-soft);padding-left:0.75rem;
 }
-.svc-row-action{align-self:center;display:flex;justify-content:flex-end;padding-top:0.15rem}
-.svc-row-action .btn{min-height:40px;white-space:nowrap}
+.svc-mid:empty{display:none}
+.svc-mid.is-quote{border-left:2px solid var(--gold-soft);padding-left:0.85rem}
+.svc-row-action{grid-area:action;display:flex;justify-content:flex-end;align-items:center}
+.svc-row-action .btn{min-height:42px;white-space:nowrap}
 /* Status badge */
 .svc-badge{
   display:inline-flex;align-items:center;gap:0.4rem;
@@ -1417,7 +1434,7 @@ body[data-night="1"] .brand-logo-img{
 .svc-badge.is-delivered{background:rgba(79,163,129,0.1);color:var(--success);border-color:rgba(79,163,129,0.35)}
 /* Closing trust line */
 .svc-trust{
-  display:flex;align-items:flex-start;gap:0.55rem;margin-top:auto;padding-top:0.5rem;
+  display:flex;align-items:flex-start;gap:0.55rem;padding-top:0.25rem;
   font-size:0.8rem;line-height:1.5;color:var(--text-dim);
 }
 .svc-trust svg{flex:none;color:var(--gold-deep);margin-top:0.1rem}
@@ -1528,6 +1545,18 @@ body[data-night="1"] .brand-logo-img{
 .coach-svc-actions{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;margin-top:0.75rem}
 .coach-svc-status{font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem}
 .coach-svc-status:empty{display:none}
+/* Narrower desktop: the review + status columns drop under the identity so the
+   card stays legible instead of crushing five tracks into a tight panel. */
+@media(max-width:1240px){
+  .svc-row{
+    grid-template-columns:auto minmax(0,1fr) auto;
+    grid-template-areas:"tile ident action" "tile status status" "tile mid mid";
+    align-items:start;row-gap:0.6rem;column-gap:1.1rem;
+  }
+  .svc-tile{align-self:start}
+  .svc-row-action{align-self:start}
+  .svc-statuscol{flex-direction:row;align-items:center;gap:0.6rem;flex-wrap:wrap}
+}
 /* Tablet: give the flow steps a touch more breathing room */
 @media(max-width:1080px){
   .svc-flow-steps{gap:0}
@@ -1548,9 +1577,13 @@ body[data-night="1"] .brand-logo-img{
   .svc-right{overflow:visible}
   .svc-flow-steps{grid-template-columns:1fr;gap:0.9rem}
   .svc-connector{display:none}
-  .svc-row{grid-template-columns:auto minmax(0,1fr);gap:0.6rem 0.85rem}
-  .svc-row-icon{display:none}
-  .svc-row-action{grid-column:1 / -1;justify-content:flex-start;padding-top:0.35rem}
+  .svc-row{
+    grid-template-columns:auto minmax(0,1fr);
+    grid-template-areas:"tile ident" "mid mid" "status status" "action action";
+    gap:0.5rem 0.85rem;align-items:start;
+  }
+  .svc-row-action{justify-content:flex-start;padding-top:0.15rem}
+  .svc-statuscol{flex-direction:row;align-items:center;gap:0.6rem;flex-wrap:wrap}
   .svc-modal{position:fixed}
 }
 
@@ -5053,7 +5086,7 @@ body.modal-open .dash-body{overflow:hidden}
           <span><span class="ink">Included with membership</span> <span class="gold">No extra fee.</span></span>
         </div>
         <div class="svc-brand-band">
-          <img src="nesreen-home-wide-v2.jpg" alt="" aria-hidden="true"/>
+          <img src="services-still.jpg" alt="" aria-hidden="true" onerror="this.onerror=null;this.src='nesreen-home-wide-v2.jpg'"/>
         </div>
       </aside>
 
@@ -5071,7 +5104,7 @@ body.modal-open .dash-body{overflow:hidden}
           <div class="svc-flow-steps">
             <div class="svc-step">
               <div class="svc-step-top">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                <span class="svc-step-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="12" y1="12" x2="12" y2="18"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
                 <span class="svc-step-num">01</span>
               </div>
               <span class="svc-step-label">Open</span>
@@ -5080,7 +5113,7 @@ body.modal-open .dash-body{overflow:hidden}
             <div class="svc-connector" aria-hidden="true"></div>
             <div class="svc-step">
               <div class="svc-step-top">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
+                <span class="svc-step-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></span>
                 <span class="svc-step-num">02</span>
               </div>
               <span class="svc-step-label">Under review</span>
@@ -5089,7 +5122,7 @@ body.modal-open .dash-body{overflow:hidden}
             <div class="svc-connector" aria-hidden="true"></div>
             <div class="svc-step">
               <div class="svc-step-top">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>
+                <span class="svc-step-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></span>
                 <span class="svc-step-num">03</span>
               </div>
               <span class="svc-step-label">Delivered</span>
@@ -5102,52 +5135,52 @@ body.modal-open .dash-body{overflow:hidden}
         <div class="svc-reviews-kicker">Your reviews</div>
         <div class="svc-rows" id="svc-grid">
 
-          <section class="svc-row" id="svc-card-cv_review" aria-labelledby="svc-h-cv">
-            <span class="svc-row-idx">01</span>
-            <span class="svc-row-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="9" y1="13" x2="17" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg></span>
-            <div class="svc-row-main">
-              <div class="svc-row-head">
-                <span class="svc-row-name" id="svc-h-cv">CV Review</span>
-                <span class="svc-badge is-open" id="svc-badge-cv_review">Open</span>
-              </div>
-              <p class="svc-row-desc" id="svc-desc-cv_review">Your coach reads your CV the way a hiring manager does and writes a clear review.</p>
-              <p class="svc-row-state" id="svc-state-cv_review"></p>
-              <p class="svc-row-snippet" id="svc-snippet-cv_review" hidden></p>
+          <section class="svc-row" id="svc-card-cv_review" data-state="open" aria-labelledby="svc-h-cv">
+            <span class="svc-tile"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/><line x1="9" y1="13" x2="17" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></svg></span>
+            <div class="svc-ident">
+              <span class="svc-row-idx">01</span>
+              <span class="svc-row-name" id="svc-h-cv">CV Review</span>
+              <p class="svc-row-desc">What works, what holds you back, and what to change before you apply.</p>
             </div>
+            <div class="svc-statuscol">
+              <span class="svc-badge is-open" id="svc-badge-cv_review">Open</span>
+              <span class="svc-row-state" id="svc-state-cv_review">Not requested yet</span>
+            </div>
+            <p class="svc-mid" id="svc-snippet-cv_review"></p>
             <div class="svc-row-action">
               <button class="btn btn-gold svc-cta" id="svc-cta-cv_review" type="button" data-svc="cv_review">Request review</button>
             </div>
           </section>
 
-          <section class="svc-row" id="svc-card-linkedin_review" aria-labelledby="svc-h-li">
-            <span class="svc-row-idx">02</span>
-            <span class="svc-row-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10.5" x2="8" y2="17"/><line x1="8" y1="7.5" x2="8" y2="7.5"/><path d="M12 17v-3.5a2 2 0 0 1 4 0V17"/><line x1="12" y1="10.5" x2="12" y2="17"/></svg></span>
-            <div class="svc-row-main">
-              <div class="svc-row-head">
-                <span class="svc-row-name" id="svc-h-li">LinkedIn Review</span>
-                <span class="svc-badge is-open" id="svc-badge-linkedin_review">Open</span>
-              </div>
-              <p class="svc-row-desc" id="svc-desc-linkedin_review">Your coach reviews your public profile as recruiters see it and recommends specific changes.</p>
-              <p class="svc-row-state" id="svc-state-linkedin_review"></p>
-              <p class="svc-row-snippet" id="svc-snippet-linkedin_review" hidden></p>
+          <section class="svc-row" id="svc-card-linkedin_review" data-state="open" aria-labelledby="svc-h-li">
+            <span class="svc-tile"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="10.5" x2="8" y2="17"/><line x1="8" y1="7.5" x2="8" y2="7.5"/><path d="M12 17v-3.5a2 2 0 0 1 4 0V17"/><line x1="12" y1="10.5" x2="12" y2="17"/></svg></span>
+            <div class="svc-ident">
+              <span class="svc-row-idx">02</span>
+              <span class="svc-row-name" id="svc-h-li">LinkedIn Review</span>
+              <p class="svc-row-desc">Your headline, About, and experience, reviewed line by line.</p>
             </div>
+            <div class="svc-statuscol">
+              <span class="svc-badge is-open" id="svc-badge-linkedin_review">Open</span>
+              <span class="svc-row-state" id="svc-state-linkedin_review">Not requested yet</span>
+            </div>
+            <p class="svc-mid" id="svc-snippet-linkedin_review"></p>
             <div class="svc-row-action">
               <button class="btn btn-gold svc-cta" id="svc-cta-linkedin_review" type="button" data-svc="linkedin_review">Request review</button>
             </div>
           </section>
 
-          <section class="svc-row" id="svc-card-roadmap" aria-labelledby="svc-h-rm">
-            <span class="svc-row-idx">03</span>
-            <span class="svc-row-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8 18c5 0 5-12 10-12"/></svg></span>
-            <div class="svc-row-main">
-              <div class="svc-row-head">
-                <span class="svc-row-name" id="svc-h-rm">Career Roadmap</span>
-                <span class="svc-badge is-open" id="svc-badge-roadmap">Open</span>
-              </div>
-              <p class="svc-row-desc" id="svc-desc-roadmap">Tell your coach where you want to be and receive a written plan for getting there.</p>
-              <p class="svc-row-state" id="svc-state-roadmap"></p>
-              <p class="svc-row-snippet" id="svc-snippet-roadmap" hidden></p>
+          <section class="svc-row" id="svc-card-roadmap" data-state="open" aria-labelledby="svc-h-rm">
+            <span class="svc-tile"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8 18c5 0 5-12 10-12"/></svg></span>
+            <div class="svc-ident">
+              <span class="svc-row-idx">03</span>
+              <span class="svc-row-name" id="svc-h-rm">Career Roadmap</span>
+              <p class="svc-row-desc">Where to aim next, and the concrete steps to get there.</p>
             </div>
+            <div class="svc-statuscol">
+              <span class="svc-badge is-open" id="svc-badge-roadmap">Open</span>
+              <span class="svc-row-state" id="svc-state-roadmap">Not requested yet</span>
+            </div>
+            <p class="svc-mid" id="svc-snippet-roadmap"></p>
             <div class="svc-row-action">
               <button class="btn btn-gold svc-cta" id="svc-cta-roadmap" type="button" data-svc="roadmap">Request roadmap</button>
             </div>
@@ -6905,12 +6938,14 @@ function svcSetRowOpen(service){
   svc.state[service] = null;
   const badge = document.getElementById('svc-badge-' + service);
   const state = document.getElementById('svc-state-' + service);
-  const snippet = document.getElementById('svc-snippet-' + service);
-  const desc = document.getElementById('svc-desc-' + service);
+  const mid = document.getElementById('svc-snippet-' + service);
+  const card = document.getElementById('svc-card-' + service);
+  const cta = document.getElementById('svc-cta-' + service);
+  if(card) card.dataset.state = 'open';
   if(badge){ badge.className = 'svc-badge is-open'; badge.textContent = 'Open'; }
   if(state){ state.textContent = 'Not requested yet'; }
-  if(desc){ desc.textContent = SVC_SERVICES[service].pitch; desc.hidden = false; }
-  if(snippet){ snippet.hidden = true; snippet.textContent = ''; }
+  if(mid){ mid.className = 'svc-mid'; mid.textContent = SVC_SERVICES[service].pitch; }
+  if(cta){ cta.className = 'btn btn-gold svc-cta'; cta.textContent = SVC_SERVICES[service].cta; }
 }
 
 /* Signed-out: rows stay Open, CTAs become sign-in prompts.
@@ -7111,24 +7146,24 @@ function svcPaintRow(service, r){
   svc.state[service] = r;
   const badge = document.getElementById('svc-badge-' + service);
   const state = document.getElementById('svc-state-' + service);
-  const snippet = document.getElementById('svc-snippet-' + service);
-  const desc = document.getElementById('svc-desc-' + service);
+  const mid = document.getElementById('svc-snippet-' + service);
+  const card = document.getElementById('svc-card-' + service);
   const cta = document.getElementById('svc-cta-' + service);
   const delivered = r.status === 'responded' && typeof r.response === 'string' && !!r.response.trim();
   if(delivered){
+    if(card) card.dataset.state = 'delivered';
     if(badge){ badge.className = 'svc-badge is-delivered'; badge.textContent = 'Delivered'; }
     const when = svcDate(r.responded_at);
-    if(state){ state.textContent = 'Delivered' + (when ? ' on ' + when : ''); }
-    if(desc){ desc.hidden = true; }
-    if(snippet){ snippet.hidden = false; snippet.textContent = r.response.trim(); }
-    if(cta){ cta.textContent = 'Read review'; cta.hidden = false; }
+    if(state){ state.textContent = when ? 'Delivered ' + when : 'Delivered'; }
+    if(mid){ mid.className = 'svc-mid is-quote'; mid.textContent = r.response.trim(); }
+    if(cta){ cta.className = 'btn btn-ghost svc-cta'; cta.textContent = 'Read review'; }
   }else{
+    if(card) card.dataset.state = 'review';
     if(badge){ badge.className = 'svc-badge is-review'; badge.textContent = 'Under review'; }
     const when = svcDate(r.created_at);
-    if(state){ state.textContent = 'Your coach is reviewing your submission and will deliver your written review here.' + (when ? ' Requested on ' + when + '.' : ''); }
-    if(desc){ desc.hidden = true; }
-    if(snippet){ snippet.hidden = true; snippet.textContent = ''; }
-    if(cta){ cta.textContent = 'View details'; cta.hidden = false; }
+    if(state){ state.textContent = when ? 'Requested ' + when : 'Requested'; }
+    if(mid){ mid.className = 'svc-mid'; mid.textContent = 'Your coach is reviewing your submission and will deliver your written review here.'; }
+    if(cta){ cta.className = 'btn btn-ghost svc-cta'; cta.textContent = 'View details'; }
   }
 }
 
