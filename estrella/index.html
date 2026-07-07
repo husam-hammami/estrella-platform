@@ -3798,8 +3798,8 @@ body.modal-open .dash-body{overflow:hidden}
   box-sizing:border-box;height:100%;
   max-width:1560px;margin:0 auto;
   padding:calc(var(--nav-h) + clamp(0.35rem,0.9vh,0.8rem)) clamp(1.25rem,3.5vw,3rem) clamp(0.6rem,1.2vh,1rem);
-  display:grid;grid-template-rows:auto auto auto;align-content:space-between;
-  gap:clamp(0.55rem,1.3vh,1.15rem);
+  display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  gap:clamp(0.7rem,1.7vh,1.4rem);
 }
 /* ---- HERO ---- */
 .cch-hero{
@@ -3863,7 +3863,7 @@ body.modal-open .dash-body{overflow:hidden}
 .cch-focus-note{margin-top:0.5rem;font-size:0.74rem;color:var(--text-dim);display:flex;align-items:center;gap:0.45rem}
 .cch-focus-note svg{width:14px;height:14px;color:var(--gold-deep);flex:none}
 /* included list */
-.cch-incl{display:flex;flex-direction:column;gap:clamp(0.3rem,0.7vh,0.5rem)}
+.cch-incl{display:flex;flex-direction:column;flex:1;justify-content:space-between;gap:clamp(0.3rem,0.7vh,0.5rem);min-height:0}
 .cch-incl-row{display:flex;align-items:flex-start;gap:0.6rem}
 .cch-incl-ic{width:30px;height:30px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);display:flex;align-items:center;justify-content:center}
 .cch-incl-ic svg{width:15px;height:15px}
@@ -3871,7 +3871,7 @@ body.modal-open .dash-body{overflow:hidden}
 .cch-incl-row strong{display:block;font-size:0.82rem;font-weight:600;color:var(--ink);line-height:1.2}
 .cch-incl-row span{display:block;font-size:0.72rem;color:var(--text-dim);line-height:1.25;margin-top:0.05rem}
 .cch-time{
-  margin-top:auto;background:var(--surface-2);border:1px solid var(--line-strong);border-radius:14px;
+  margin-top:clamp(0.5rem,1.2vh,0.9rem);background:var(--surface-2);border:1px solid var(--line-strong);border-radius:14px;
   padding:clamp(0.4rem,0.85vh,0.62rem);text-align:center;
   display:flex;flex-direction:column;align-items:center;gap:0.18rem;
 }
@@ -3881,9 +3881,9 @@ body.modal-open .dash-body{overflow:hidden}
 .cch-time p{font-size:0.71rem;color:var(--text-dim);margin:0;line-height:1.3}
 .cch-time .btn{margin-top:0.1rem;width:100%;min-height:38px}
 /* how it works + coach */
-.cch-steps{position:relative;display:flex;flex-direction:column;gap:clamp(0.4rem,1vh,0.85rem);flex:1;justify-content:space-between;padding:0.25rem 0}
-.cch-steps::before{content:"";position:absolute;left:13px;top:18px;bottom:18px;width:1px;background:var(--gold-soft);z-index:0}
-.cch-step{position:relative;z-index:1;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0.7rem;align-items:start}
+.cch-steps{position:relative;display:flex;flex-direction:column;flex:1;min-height:0}
+.cch-steps::before{content:"";position:absolute;left:13px;top:12.5%;bottom:12.5%;width:1px;background:var(--gold-soft);z-index:0}
+.cch-step{position:relative;z-index:1;flex:1;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0.7rem;align-items:center;align-content:center}
 .cch-step-n{width:26px;height:26px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);font-size:0.74rem;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center}
 .cch-step div{min-width:0}
 .cch-step strong{display:block;font-size:0.84rem;font-weight:600;color:var(--ink);line-height:1.2}
