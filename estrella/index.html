@@ -3815,7 +3815,16 @@ body.modal-open .dash-body{overflow:hidden}
 }
 .cch-h1 em{display:block;font-style:italic;color:var(--gold-deep)}
 .cch-sub{font-family:var(--font-display);font-size:clamp(1.15rem,1.6vw,1.55rem);color:var(--ink-2);font-weight:400;margin:0}
-.cch-focus{font-size:clamp(0.9rem,1.05vw,1.02rem);line-height:1.6;color:var(--text-dim);margin:0;max-width:48ch}
+.cch-aims{display:flex;flex-direction:column;gap:0.55rem}
+.cch-aims-lead{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.cch-aims-list{display:flex;flex-wrap:wrap;gap:0.5rem}
+.cch-aim{
+  font:inherit;font-size:0.82rem;color:var(--ink-2);cursor:pointer;
+  border:1px solid var(--gold-soft);border-radius:99px;
+  padding:0.4rem 0.9rem;background:var(--surface);white-space:nowrap;
+  transition:border-color .2s var(--ease),background-color .2s var(--ease),color .2s var(--ease);
+}
+.cch-aim:hover{border-color:var(--gold);background:var(--gold-bg);color:var(--gold-deep)}
 .cch-offer{font-size:clamp(0.92rem,1.1vw,1.05rem);line-height:1.5;color:var(--ink);margin:0}
 .cch-offer b{color:var(--gold-deep);font-weight:600}
 .cch-cta-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:0.35rem}
@@ -3828,7 +3837,7 @@ body.modal-open .dash-body{overflow:hidden}
   border-radius:18px;overflow:hidden;border:1px solid var(--gold-soft);
   box-shadow:0 34px 66px -44px rgba(20,18,14,0.42);
 }
-.cch-portrait img{width:100%;height:100%;object-fit:cover;object-position:72% 15%;display:block}
+.cch-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;display:block}
 .cch-portrait-cap{
   margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--gold-soft);align-self:stretch;
   font-size:0.7rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--text-dim);text-align:center;
@@ -4724,7 +4733,17 @@ body.modal-open .dash-body{overflow:hidden}
           <div class="cch-eyebrow">Private career coaching</div>
           <h1 class="cch-h1">One hour.<em>Real clarity.</em></h1>
           <p class="cch-sub">What's next, with confidence.</p>
-          <p class="cch-focus">Bring one thing — a direction, an interview, a promotion, a pivot, your personal brand, or a hard call at work.</p>
+          <div class="cch-aims">
+            <span class="cch-aims-lead">Bring one aim</span>
+            <div class="cch-aims-list">
+              <button class="cch-aim" type="button" data-view="start">Career direction</button>
+              <button class="cch-aim" type="button" data-view="start">Interview prep</button>
+              <button class="cch-aim" type="button" data-view="start">A promotion</button>
+              <button class="cch-aim" type="button" data-view="start">A career pivot</button>
+              <button class="cch-aim" type="button" data-view="start">Personal brand</button>
+              <button class="cch-aim" type="button" data-view="start">A hard call at work</button>
+            </div>
+          </div>
           <p class="cch-offer">One private 60-minute 1:1 video session · <b>AED 500</b>.</p>
           <div class="cch-cta-row">
             <button class="btn btn-primary btn-lg" type="button" data-view="start">Start your screening →</button>
@@ -4732,7 +4751,7 @@ body.modal-open .dash-body{overflow:hidden}
           <p class="cch-trust">Private · confidential · tailored to you.</p>
         </div>
         <div class="cch-portrait">
-          <figure><img src="portrait_face_enhanced_v1.png" alt="Nesreen Abdelhakim — certified career coach" onerror="this.src='nesreen-coaching.jpg'"/></figure>
+          <figure><img src="nesreen-hero.jpg" alt="Nesreen Abdelhakim — certified career coach" onerror="this.src='nesreen-coaching.jpg'"/></figure>
           <div class="cch-portrait-cap">Nesreen Abdelhakim · Certified career coach</div>
         </div>
       </div>
