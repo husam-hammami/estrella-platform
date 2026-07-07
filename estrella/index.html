@@ -477,19 +477,17 @@ body[data-night="1"] .brand-logo-img{
   display:block;
   transform:none;
   opacity:1;
-  /* lift the warm-tan studio background toward the cream paper so the fade merges */
-  filter:saturate(0.82) brightness(1.05) contrast(0.95);
+  /* barely there — keep the real photo crisp */
+  filter:saturate(0.97) brightness(1.02);
 }
 .hero-visual::before{
   content:"";position:absolute;
   inset:0;
   background:
-    /* fade her left side into the paper */
-    linear-gradient(90deg, #F2EBDC 0%, #F2EBDC 38%, rgba(242,235,220,0.9) 48%, rgba(242,235,220,0.35) 58%, rgba(242,235,220,0.05) 70%, transparent 84%),
-    /* feather top + bottom edges into the paper */
-    linear-gradient(180deg, #F2EBDC 0%, rgba(242,235,220,0.2) 12%, transparent 30%, transparent 74%, rgba(242,235,220,0.35) 90%, #F2EBDC 100%),
-    /* soft-close the far right edge */
-    linear-gradient(270deg, rgba(242,235,220,0.4) 0%, transparent 10%);
+    /* only soften her left edge into the text column — keep the rest crisp */
+    linear-gradient(90deg, #F2EBDC 0%, #F2EBDC 40%, rgba(242,235,220,0.72) 49%, rgba(242,235,220,0.12) 57%, transparent 64%),
+    /* whisper of a feather on the very top + bottom edges */
+    linear-gradient(180deg, rgba(242,235,220,0.4) 0%, transparent 9%, transparent 91%, rgba(242,235,220,0.28) 100%);
   pointer-events:none;z-index:2;
 }
 .hero-portrait::after{
