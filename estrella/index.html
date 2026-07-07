@@ -78,7 +78,7 @@
 }
 
 /* ============ NIGHT REGISTER — where Nuria speaks, the world inverts ============
-   Nuria is the light in the dark; Nesreen meets you in daylight.
+   Nuria is the light in the dark; Nesrin meets you in daylight.
    Scoped token flip: any component built on the day tokens re-renders on night
    ground automatically. Applied per-view via data-register, echoed on <body>
    (data-night) so the fixed nav inverts with the view beneath it. */
@@ -202,7 +202,7 @@ body[data-night="1"]{background:#131109}
 /* The real Nuria emblem. Full gold-and-ink on daylight surfaces; a clean warm
    silhouette on the night register, where the ink artwork would otherwise vanish. */
 .brand-logo-img{
-  height:clamp(3.15rem, 4.4vw, 3.65rem);
+  height:clamp(3.9rem, 5.2vw, 4.7rem);
   width:auto;display:block;flex-shrink:0;
   transition:transform 0.32s var(--ease), filter 0.32s var(--ease);
   filter:drop-shadow(0 4px 10px rgba(20,18,14,0.10));
@@ -477,17 +477,19 @@ body[data-night="1"] .brand-logo-img{
   display:block;
   transform:none;
   opacity:1;
-  /* barely there — keep the real photo crisp */
-  filter:saturate(0.97) brightness(1.02);
+  /* nudge the warm studio wall toward the cream paper so the backdrop merges */
+  filter:saturate(0.93) brightness(1.02);
 }
 .hero-visual::before{
   content:"";position:absolute;
   inset:0;
   background:
-    /* only soften her left edge into the text column — keep the rest crisp */
-    linear-gradient(90deg, #F2EBDC 0%, #F2EBDC 40%, rgba(242,235,220,0.72) 49%, rgba(242,235,220,0.12) 57%, transparent 64%),
-    /* whisper of a feather on the very top + bottom edges */
-    linear-gradient(180deg, rgba(242,235,220,0.4) 0%, transparent 9%, transparent 91%, rgba(242,235,220,0.28) 100%);
+    /* left: dissolve her hair into the headline column */
+    linear-gradient(90deg, #F2EBDC 0%, #F2EBDC 39%, rgba(242,235,220,0.78) 48%, rgba(242,235,220,0.18) 58%, transparent 68%),
+    /* top + bottom: melt the studio wall into the paper */
+    linear-gradient(180deg, #F2EBDC 0%, rgba(242,235,220,0.7) 10%, rgba(242,235,220,0.15) 24%, transparent 34%, transparent 74%, rgba(242,235,220,0.5) 90%, #F2EBDC 100%),
+    /* right edge: close the far side into the paper */
+    linear-gradient(270deg, #F2EBDC 0%, rgba(242,235,220,0.45) 5%, transparent 15%);
   pointer-events:none;z-index:2;
 }
 .hero-portrait::after{
@@ -1268,7 +1270,7 @@ body[data-night="1"] .brand-logo-img{
   .dash-data-grid,.dash-progress-grid{grid-template-columns:1fr 1fr}
 }
 
-/* ============================== SERVICES (requests to Nesreen — DAY register, two-column, no page scroll) ============================== */
+/* ============================== SERVICES (requests to Nesrin — DAY register, two-column, no page scroll) ============================== */
 /* No-scroll desktop: kill the .dash-body scroll, lock to viewport. The modal
    lives inside #view-studio (position:absolute inset:0) so opening it never
    grows the page. Only the right panel may scroll internally as a last resort. */
@@ -4516,7 +4518,7 @@ body.modal-open .dash-body{overflow:hidden}
 
       <div class="hero-visual">
         <div class="hero-portrait">
-          <img src="nesreen-home-hero-wide.jpg" alt="Nesreen — Founder of Nuria" onerror="this.style.display='none';this.parentElement.nextElementSibling.style.display='flex'"/>
+          <img src="nesreen-home-hero-wide.jpg" alt="Nesrin — Founder of Nuria" onerror="this.style.display='none';this.parentElement.nextElementSibling.style.display='flex'"/>
         </div>
         <div class="hero-placeholder">
           <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 0.5 L17 14.5 L31 15.5 L31.8 16 L31 16.5 L17 17.5 L16 31.5 L15 30 L14 17.5 L0 16.5 L-0.8 16 L0 15.5 L14 14.5 L15 1 Z"/></svg>
@@ -4537,17 +4539,17 @@ body.modal-open .dash-body{overflow:hidden}
           <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor"><path d="M16 1 L17 14 L30 15 L31 16 L30 17 L17 18 L16 31 L15 30.5 L14 18 L1 17 L0 16 L1 15 L14 14 L15 1.5 Z"/></svg>
         </span>
         <div class="about-arch">
-          <img src="nesreen-graduation.jpg" alt="Nesreen — MBA graduate, Plymouth Marjon University"/>
+          <img src="nesreen-graduation.jpg" alt="Nesrin — MBA graduate, Plymouth Marjon University"/>
         </div>
         <figure class="about-quote">
           <div class="about-quote-mark" aria-hidden="true">&ldquo;</div>
           <blockquote>Empowering professionals to make <em>confident</em> decisions and create careers they love.</blockquote>
-          <figcaption>Nesreen</figcaption>
+          <figcaption>Nesrin</figcaption>
         </figure>
       </div>
       <div class="about-content">
         <div class="about-head">
-          <div class="hero-eyebrow about-eyebrow">About Nesreen</div>
+          <div class="hero-eyebrow about-eyebrow">About Nesrin</div>
           <h1 class="about-h1">She listens.<br/> <em>Then she tells the truth.</em></h1>
         </div>
 
@@ -4624,7 +4626,7 @@ body.modal-open .dash-body{overflow:hidden}
     </div>
   </div>
 
-  <!-- ============================== VIEW: COACH (Nesreen's review queue) ============================== -->
+  <!-- ============================== VIEW: COACH (Nesrin's review queue) ============================== -->
   <div class="view" id="view-coach">
     <div class="coach-console">
       <header class="coach-head">
@@ -4755,8 +4757,8 @@ body.modal-open .dash-body{overflow:hidden}
           <p class="cch-trust">Private · confidential · tailored to you.</p>
         </div>
         <div class="cch-portrait">
-          <figure><img src="nesreen-coaching-hero.jpg" alt="Nesreen Abdelhakim — certified career coach" onerror="this.src='nesreen-coaching.jpg'"/></figure>
-          <div class="cch-portrait-cap">Nesreen Abdelhakim · Certified career coach</div>
+          <figure><img src="nesreen-coaching-hero.jpg" alt="Nesrin Abdelhakim — certified career coach" onerror="this.src='nesreen-coaching.jpg'"/></figure>
+          <div class="cch-portrait-cap">Nesrin Abdelhakim · Certified career coach</div>
         </div>
       </div>
 
@@ -4994,7 +4996,7 @@ body.modal-open .dash-body{overflow:hidden}
               <div class="dash-profile-line" id="dash-profile-line">Your profile and learning progress live here.</div>
             </div>
           </div>
-          <button type="button" class="dash-admin-btn" id="dash-admin-btn" data-view="coach">Open Nesreen's desk →</button>
+          <button type="button" class="dash-admin-btn" id="dash-admin-btn" data-view="coach">Open Nesrin's desk →</button>
           <div class="dash-data-grid" id="dash-profile-data" hidden>
             <div class="dash-data-card"><div class="dash-data-label">Name</div><div class="dash-data-value" id="dash-data-name">-</div></div>
             <div class="dash-data-card"><div class="dash-data-label">Email</div><div class="dash-data-value" id="dash-data-email">-</div></div>
@@ -5036,7 +5038,7 @@ body.modal-open .dash-body{overflow:hidden}
             <div class="session-info-lbl">Your next session</div>
             <div class="coach-row">
               <div class="coach-avatar">
-                <img src="nesreen-hero.jpg" alt="Nesreen" onerror="this.style.display='none';this.parentElement.innerHTML='N'"/>
+                <img src="nesreen-hero.jpg" alt="Nesrin" onerror="this.style.display='none';this.parentElement.innerHTML='N'"/>
               </div>
               <div>
                 <div class="coach-name">With your coach</div>
@@ -5087,7 +5089,7 @@ body.modal-open .dash-body{overflow:hidden}
     </div>
   </div>
 
-  <!-- ============================== VIEW: SERVICES (requests to Nesreen — keeps internal id 'studio') ============================== -->
+  <!-- ============================== VIEW: SERVICES (requests to Nesrin — keeps internal id 'studio') ============================== -->
   <div class="view dash-body" id="view-studio">
     <div class="svc-shell">
 
@@ -5842,7 +5844,7 @@ const services = [
   {id:'quiz', name:'Not sure?', tagline:'Take the 60-second clarity quiz.', forWhom:'Nuria will recommend your path', price:0, duration:0, color:'var(--lavender-bg)', accent:'#5B4B8A', isQuiz:true},
   // Prescribed default offered after the Nuria diagnostic — not shown in the (legacy) services grid
   {id:'program', name:'3-Month Coaching Program', tagline:'Six sessions for a real inflection point.', forWhom:'Recommended after your conversation with Nuria', price:6000, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
-  // CANONICAL — the one coaching product. A single private session with Nesreen, AED 500.
+  // CANONICAL — the one coaching product. A single private session with Nesrin, AED 500.
   {id:'session', name:'Private Coaching Session', tagline:'One focused hour with your coach.', forWhom:'Anyone ready to move on a real decision', price:500, duration:60, color:'var(--gold-bg)', accent:'var(--gold-deep)'},
 ];
 // The single offering everything routes to.
@@ -6325,7 +6327,7 @@ function goToCheckout(){
   switchView('checkout');
 }
 
-// After payment, the client schedules their paid session on Nesreen's real
+// After payment, the client schedules their paid session on Nesrin's real
 // Calendly (inline widget overlay). utm_content carries the brief id so the
 // Calendly webhook can confirm exactly this booking.
 let calendlyListenerBound = false;
@@ -6429,7 +6431,7 @@ function simulatePay(){
 }
 
 // Real payment kickoff. Creates the brief and opens a Stripe Checkout Session
-// (destination charge on Nesreen's connected account); scheduling happens after
+// (destination charge on Nesrin's connected account); scheduling happens after
 // on Calendly. Handles the documented error shapes.
 async function realCheckout(){
   const btns = document.querySelectorAll('#view-checkout button');
@@ -6913,8 +6915,8 @@ renderCvUpload = function(briefId, alreadyHasCv, context){
   });
 };
 
-/* ============================== SERVICES (member requests to Nesreen) ==============================
-   The old auto-AI Career Studio is gone. Members SUBMIT a request; Nesreen
+/* ============================== SERVICES (member requests to Nesrin) ==============================
+   The old auto-AI Career Studio is gone. Members SUBMIT a request; Nesrin
    personally reviews and replies from the coach desk. No AI answers members
    here. POST /api/me?action=service-request creates the row; GET
    ?action=service-requests lists them with her reply. Honest states:
@@ -7129,7 +7131,7 @@ async function svcUploadCv(){
   }
 }
 
-/* The submit: one request row, Nesreen replies in her own time. */
+/* The submit: one request row, Nesrin replies in her own time. */
 async function svcSubmit(service, payload, cvPath){
   if(svc.busy) return;
   svc.busy = true;
@@ -7703,8 +7705,8 @@ function coachRosterFetch(opts){
   });
   fetch('/api/coach/users?' + qs.toString(), { credentials:'same-origin' })
     .then(async r => {
-      if(r.status === 403){ coachRenderRemoteMessage('This desk is for Nesreen. Sign in with her LinkedIn account to see members, progress, and payments.'); return null; }
-      if(r.status === 401){ coachRenderRemoteMessage('Sign in with Nesreen’s LinkedIn account to open the admin desk.'); return null; }
+      if(r.status === 403){ coachRenderRemoteMessage('This desk is for Nesrin. Sign in with her LinkedIn account to see members, progress, and payments.'); return null; }
+      if(r.status === 401){ coachRenderRemoteMessage('Sign in with Nesrin’s LinkedIn account to open the admin desk.'); return null; }
       if(!r.ok) throw new Error('coach_users_failed');
       return r.json();
     })
@@ -8051,7 +8053,7 @@ async function coachAIRun(briefId, mode, article){
   }
 }
 
-// ===== Service requests — Nesreen's Services desk =====
+// ===== Service requests — Nesrin's Services desk =====
 // GET /api/coach/services lists them; PATCH sends her reply; mode:'servicedraft'
 // streams an AI DRAFT into the textarea for her to edit. The member only ever
 // sees what she sends. All member text lands via textContent.
@@ -8168,7 +8170,7 @@ function renderCoachServices(){
     });
 }
 
-// Streams mode:'servicedraft' into the reply textarea — a DRAFT Nesreen edits.
+// Streams mode:'servicedraft' into the reply textarea — a DRAFT Nesrin edits.
 async function coachSvcDraft(id, article){
   if(!article || article.dataset.svcBusy === '1') return;
   const ta = article.querySelector('.coach-svc-reply');
@@ -8415,11 +8417,11 @@ function renderCoachBriefsRemote(){
   fetch('/api/coach/briefs', { credentials:'same-origin' })
     .then(async r => {
       if(r.status === 403){
-        coachRenderRemoteMessage('This desk is for Nesreen. Sign in with her LinkedIn account to see client briefs.');
+        coachRenderRemoteMessage('This desk is for Nesrin. Sign in with her LinkedIn account to see client briefs.');
         return null;
       }
       if(r.status === 401){
-        coachRenderRemoteMessage('Sign in with Nesreen LinkedIn account to open the admin desk.');
+        coachRenderRemoteMessage('Sign in with Nesrin LinkedIn account to open the admin desk.');
         return null;
       }
       if(!r.ok) throw new Error('coach_briefs_failed');
@@ -8877,8 +8879,8 @@ function openMemberFile(sub, rowEl){
 
   fetch('/api/coach/member?sub=' + encodeURIComponent(sub), { credentials:'same-origin' })
     .then(async r => {
-      if(r.status === 403){ coachFileMessage(ov, 'This desk is for Nesreen.'); return null; }
-      if(r.status === 401){ coachFileMessage(ov, 'Sign in with Nesreen’s LinkedIn account.'); return null; }
+      if(r.status === 403){ coachFileMessage(ov, 'This desk is for Nesrin.'); return null; }
+      if(r.status === 401){ coachFileMessage(ov, 'Sign in with Nesrin’s LinkedIn account.'); return null; }
       if(r.status === 404){ coachFileMessage(ov, 'No file for this member yet.'); return null; }
       if(!r.ok) throw new Error('member_failed');
       return r.json();
@@ -9164,7 +9166,7 @@ function startAdvance(){
 }
 
 // Honest fallback: a written intake, not an AI impostor. No typing theater, no
-// synthetic "thinking" — three questions whose answers reach Nesreen verbatim.
+// synthetic "thinking" — three questions whose answers reach Nesrin verbatim.
 let startIntakeNoted = false;
 function startAdvanceScripted(userText, input){
   if(startTurn >= startScript.length){
@@ -9306,7 +9308,7 @@ document.getElementById('start-input')?.addEventListener('keypress', (e)=>{
 })();
 
 document.getElementById('start-pick-time')?.addEventListener('click', ()=>{
-  // One path: the single private session with Nesreen (AED 500). Pay first,
+  // One path: the single private session with Nesrin (AED 500). Pay first,
   // then schedule on Calendly.
   state.selectedService = COACHING_SESSION || services[0];
   goToCheckout();
@@ -9320,7 +9322,7 @@ document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
 });
 
 /* ============================== LIBRARY — PROMOTE TO HERO ============================== */
-// Real books by Nesreen. Free in-app sample (cover + chapters + a genuine
+// Real books by Nesrin. Free in-app sample (cover + chapters + a genuine
 // excerpt), full digital edition sold at a low price and delivered — after a
 // real Stripe purchase — via a signed URL from a private Supabase bucket.
 const BOOK_PRICE_AED = 29;
@@ -9372,7 +9374,7 @@ function markLibraryOpened(id){
 
 function libCoverInner(b){
   return `<img class="bc-img" src="${b.img}" alt="${escapeAttr(b.title)}" onload="this.parentElement.classList.add('has-img')" onerror="this.style.display='none'"/>
-    <div class="book-title">${escapeAttr(b.title)}</div><div class="book-author">— Nesreen</div>`;
+    <div class="book-title">${escapeAttr(b.title)}</div><div class="book-author">— Nesrin</div>`;
 }
 
 // Primary CTA differs by ownership: buy, or read your copy.
@@ -9489,7 +9491,7 @@ function openBookPreview(id){
         <div class="bp-head-text">
           <div class="featured-tag">${escapeAttr(b.tag)} · Free sample</div>
           <h2>${escapeAttr(b.title)}</h2>
-          <div class="bp-author">by Nesreen</div>
+          <div class="bp-author">by Nesrin</div>
           <p class="bp-desc">${escapeAttr(b.desc)}</p>
         </div>
       </div>
@@ -9608,7 +9610,7 @@ renderLibrary();
    Content from window.ESTRELLA_ACADEMY (academy-content.js).
    ================================================================== */
 const NESREEN = {
-  name: 'Nesreen',
+  name: 'Nesrin',
   role: 'Founder & Lead Coach, Nuria',
   img: 'nesreen-hero.jpg'
 };
