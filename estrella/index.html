@@ -3792,140 +3792,82 @@ body.modal-open .dash-body{overflow:hidden}
   .coach-brief-tabs{width:100%;gap:1rem}
 }
 
-/* ============================== COACHING — no-scroll session page ============================== */
+/* ============================== COACHING — simple editorial page ============================== */
 #view-services{overflow:hidden}
 .cch-shell{
   box-sizing:border-box;height:100%;
-  max-width:1560px;margin:0 auto;
-  padding:calc(var(--nav-h) + clamp(0.35rem,0.9vh,0.8rem)) clamp(1.25rem,3.5vw,3rem) clamp(0.6rem,1.2vh,1rem);
-  display:grid;grid-template-rows:auto minmax(0,1fr) auto;
-  gap:clamp(0.7rem,1.7vh,1.4rem);
+  max-width:1240px;margin:0 auto;
+  padding:calc(var(--nav-h) + clamp(0.4rem,1vh,1rem)) clamp(1.5rem,4vw,3.5rem) clamp(0.8rem,1.6vh,1.3rem);
+  display:flex;flex-direction:column;gap:clamp(0.9rem,2.2vh,1.8rem);
 }
-/* ---- HERO ---- */
+/* ---- HERO: editorial split (this is the page) ---- */
 .cch-hero{
-  display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,0.94fr);
-  gap:clamp(1.5rem,3.5vw,3.5rem);align-items:center;
+  flex:1 1 auto;min-height:0;
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,0.92fr);
+  gap:clamp(1.8rem,4vw,4.5rem);align-items:center;
 }
-.cch-hero-copy{min-width:0;display:flex;flex-direction:column}
-.cch-eyebrow{font-size:0.66rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.cch-hero-copy{min-width:0;display:flex;flex-direction:column;gap:clamp(0.55rem,1.5vh,1.1rem)}
+.cch-eyebrow{font-size:0.68rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
 .cch-h1{
   font-family:var(--font-display);font-weight:500;
-  font-size:clamp(1.85rem,2.6vw,2.65rem);line-height:1.0;letter-spacing:-0.01em;
-  color:var(--ink);margin:0.3rem 0 0;
+  font-size:clamp(2.5rem,4.4vw,4rem);line-height:0.98;letter-spacing:-0.015em;
+  color:var(--ink);margin:0;
 }
 .cch-h1 em{display:block;font-style:italic;color:var(--gold-deep)}
-.cch-sub{font-family:var(--font-display);font-size:clamp(0.95rem,1.2vw,1.2rem);color:var(--ink-2);font-weight:400;margin:0.3rem 0 0}
-.cch-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(0.6rem,1.4vw,1.4rem);margin:clamp(0.5rem,1.1vh,0.85rem) 0 0}
-.cch-strip-item{display:flex;align-items:flex-start;gap:0.55rem;min-width:0}
-.cch-strip-icon{width:30px;height:30px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);display:flex;align-items:center;justify-content:center}
-.cch-strip-icon svg{width:16px;height:16px}
-/* one consistent icon system across the page: same circle, same glyph size, same stroke */
-.cch-strip-icon svg,.cch-incl-ic svg,.cch-tile svg,.cch-credbar-lead svg{stroke-width:1.7}
-.cch-strip-txt strong{display:block;font-size:0.78rem;font-weight:600;color:var(--ink);line-height:1.2}
-.cch-strip-txt span{display:block;font-size:0.7rem;color:var(--text-dim);line-height:1.35;margin-top:0.12rem}
-.cch-cta{display:flex;align-items:center;gap:0.9rem;flex-wrap:wrap;margin-top:clamp(0.55rem,1.2vh,0.9rem)}
-.cch-cta .btn{min-height:44px}
-.cch-how{display:inline-flex;align-items:center;gap:0.55rem;border:1px solid var(--line-strong);background:var(--surface);border-radius:99px;padding:0.45rem 1.1rem 0.45rem 0.5rem;font:inherit;font-size:0.86rem;font-weight:500;color:var(--ink-2);cursor:pointer;transition:border-color 0.2s var(--ease)}
-.cch-how:hover{border-color:var(--gold-soft)}
-.cch-how .play{width:30px;height:30px;border-radius:50%;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);display:flex;align-items:center;justify-content:center;flex:none}
-.cch-how .play svg{width:12px;height:12px;margin-left:1px}
-.cch-trust{display:flex;align-items:center;gap:0.5rem;margin-top:clamp(0.45rem,1vh,0.75rem);font-size:0.78rem;color:var(--text-dim)}
-.cch-trust svg{width:14px;height:14px;color:var(--gold-deep);flex:none}
-.cch-photo{
-  position:relative;height:clamp(190px,26vh,262px);
-  border-radius:22px;overflow:hidden;border:1px solid var(--gold-soft);
-  box-shadow:0 30px 60px -40px rgba(20,18,14,0.4);
+.cch-sub{font-family:var(--font-display);font-size:clamp(1.15rem,1.6vw,1.55rem);color:var(--ink-2);font-weight:400;margin:0}
+.cch-focus{font-size:clamp(0.9rem,1.05vw,1.02rem);line-height:1.6;color:var(--text-dim);margin:0;max-width:48ch}
+.cch-offer{font-size:clamp(0.92rem,1.1vw,1.05rem);line-height:1.5;color:var(--ink);margin:0}
+.cch-offer b{color:var(--gold-deep);font-weight:600}
+.cch-cta-row{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:0.35rem}
+.cch-cta-row .btn{min-height:50px}
+.cch-trust{font-size:0.8rem;color:var(--text-dim);margin:0.1rem 0 0}
+/* portrait — height-bounded editorial frame */
+.cch-portrait{justify-self:center;align-self:center;display:flex;flex-direction:column;align-items:center;max-width:100%;min-width:0}
+.cch-portrait figure{
+  margin:0;height:min(50vh,430px);aspect-ratio:4/5;max-width:100%;
+  border-radius:18px;overflow:hidden;border:1px solid var(--gold-soft);
+  box-shadow:0 34px 66px -44px rgba(20,18,14,0.42);
 }
-.cch-photo img{width:100%;height:100%;object-fit:cover;object-position:80% 18%;display:block;filter:saturate(1)}
-/* ---- DECK ---- */
-.cch-deck{display:grid;grid-template-columns:1.28fr 1.12fr 1fr;gap:clamp(0.8rem,1.3vw,1.3rem);min-height:0}
-.cch-card{
-  background:var(--surface);border:1px solid var(--line-strong);border-radius:18px;
-  padding:clamp(0.65rem,1.2vh,0.95rem) clamp(0.85rem,1.2vw,1.2rem);
-  display:flex;flex-direction:column;min-height:0;min-width:0;overflow:hidden;
+.cch-portrait img{width:100%;height:100%;object-fit:cover;object-position:72% 15%;display:block}
+.cch-portrait-cap{
+  margin-top:0.75rem;padding-top:0.7rem;border-top:1px solid var(--gold-soft);align-self:stretch;
+  font-size:0.7rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--text-dim);text-align:center;
 }
-.cch-card-h{font-family:var(--font-display);font-weight:500;font-size:clamp(0.98rem,1.2vw,1.22rem);color:var(--ink);margin:0 0 clamp(0.35rem,0.8vh,0.6rem)}
-/* focus tiles */
-.cch-focus{display:grid;grid-template-columns:1fr 1fr;gap:0.45rem;flex:1;min-height:0}
-.cch-tile{
-  position:relative;border:1px solid var(--line);border-radius:12px;background:var(--surface-2);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.35rem;
-  text-align:center;padding:0.4rem 0.35rem;min-height:0;
+/* ---- FLOW: one box-free 3-step line (merges how-it-works + included) ---- */
+.cch-flow{
+  flex:0 0 auto;border-top:1px solid var(--line);padding-top:clamp(1rem,2.4vh,1.7rem);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.5rem,3.5vw,3.5rem);
 }
-.cch-tile svg{width:20px;height:20px;color:var(--ink-2)}
-.cch-tile span{font-size:0.74rem;font-weight:500;color:var(--ink-2);line-height:1.15}
-.cch-tile.sel{border-color:var(--gold);background:var(--gold-bg)}
-.cch-tile.sel svg,.cch-tile.sel span{color:var(--gold-deep)}
-.cch-tile.sel::after{
-  content:"";position:absolute;top:7px;right:7px;width:15px;height:15px;border-radius:50%;
-  background:var(--gold-deep);
-  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/10px no-repeat, linear-gradient(#000,#000);
-  mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/10px no-repeat;
-}
-.cch-focus-note{margin-top:0.5rem;font-size:0.74rem;color:var(--text-dim);display:flex;align-items:center;gap:0.45rem}
-.cch-focus-note svg{width:14px;height:14px;color:var(--gold-deep);flex:none}
-/* included list */
-.cch-incl{display:flex;flex-direction:column;flex:1;justify-content:space-between;gap:clamp(0.3rem,0.7vh,0.5rem);min-height:0}
-.cch-incl-row{display:flex;align-items:flex-start;gap:0.6rem}
-.cch-incl-ic{width:30px;height:30px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);display:flex;align-items:center;justify-content:center}
-.cch-incl-ic svg{width:16px;height:16px}
-.cch-incl-row div{min-width:0}
-.cch-incl-row strong{display:block;font-size:0.82rem;font-weight:600;color:var(--ink);line-height:1.2}
-.cch-incl-row span{display:block;font-size:0.72rem;color:var(--text-dim);line-height:1.25;margin-top:0.05rem}
-.cch-time{
-  margin-top:clamp(0.5rem,1.2vh,0.9rem);background:var(--surface-2);border:1px solid var(--line-strong);border-radius:14px;
-  padding:clamp(0.4rem,0.85vh,0.62rem);text-align:center;
-  display:flex;flex-direction:column;align-items:center;gap:0.18rem;
-}
-.cch-time-star{width:24px;height:24px;border-radius:50%;background:var(--surface);border:1px solid var(--gold-soft);color:var(--gold);display:flex;align-items:center;justify-content:center}
-.cch-time-star svg{width:12px;height:12px}
-.cch-time h4{font-family:var(--font-display);font-weight:500;font-size:0.95rem;color:var(--ink);margin:0}
-.cch-time p{font-size:0.71rem;color:var(--text-dim);margin:0;line-height:1.3}
-.cch-time .btn{margin-top:0.1rem;width:100%;min-height:38px}
-/* how it works + coach */
-.cch-steps{position:relative;display:flex;flex-direction:column;flex:1;min-height:0}
-.cch-steps::before{content:"";position:absolute;left:15px;top:12.5%;bottom:12.5%;width:1px;background:var(--gold-soft);z-index:0}
-.cch-step{position:relative;z-index:1;flex:1;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0.7rem;align-items:center;align-content:center}
-.cch-step-n{width:30px;height:30px;border-radius:50%;flex:none;background:var(--gold-bg);border:1px solid var(--gold-soft);color:var(--gold-deep);font-size:0.8rem;font-weight:700;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center}
-.cch-step div{min-width:0}
-.cch-step strong{display:block;font-size:0.84rem;font-weight:600;color:var(--ink);line-height:1.2}
-.cch-step span{display:block;font-size:0.74rem;color:var(--text-dim);line-height:1.3;margin-top:0.1rem}
-/* ---- CREDENTIAL FOOTER — one slim line (replaces the marketing stat strip) ---- */
+.cch-flow-step{display:flex;flex-direction:column;gap:0.3rem;min-width:0}
+.cch-flow-num{font-family:var(--font-display);font-weight:500;font-size:1.7rem;line-height:1;color:var(--gold-deep)}
+.cch-flow-label{font-family:var(--font-display);font-weight:500;font-size:clamp(1.05rem,1.35vw,1.28rem);line-height:1.15;color:var(--ink)}
+.cch-flow-sub{font-size:0.83rem;line-height:1.5;color:var(--text-dim);margin:0;max-width:34ch}
+/* ---- CREDENTIAL BAR: one slim hairline row ---- */
 .cch-credbar{
-  display:flex;align-items:center;gap:clamp(0.75rem,1.6vw,1.6rem);flex-wrap:wrap;
-  background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;
-  padding:clamp(0.65rem,1.4vh,0.95rem) clamp(1.1rem,1.8vw,1.75rem);
+  flex:0 0 auto;display:flex;align-items:center;gap:clamp(0.75rem,1.6vw,1.6rem);flex-wrap:wrap;
+  border-top:1px solid var(--line);padding-top:clamp(0.7rem,1.5vh,1.05rem);
 }
-.cch-credbar-lead{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;color:var(--gold-deep);white-space:nowrap}
-.cch-credbar-lead svg{width:17px;height:17px;flex:none}
+.cch-credbar-lead{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--gold-deep);white-space:nowrap}
 .cch-credbar-list{font-size:0.84rem;color:var(--ink-2);font-weight:500;min-width:0}
 .cch-credbar-li{margin-left:auto;font-size:0.78rem;color:var(--text-dim);white-space:nowrap;display:inline-flex;align-items:center;gap:0.45rem}
-.cch-credbar-li svg{width:14px;height:14px;color:var(--gold-deep);flex:none}
-@media (prefers-reduced-motion: no-preference){
-  .cch-card.flash{animation:cchFlash 1.1s var(--ease)}
-}
-@keyframes cchFlash{0%,100%{box-shadow:0 0 0 0 rgba(184,152,92,0)}30%{box-shadow:0 0 0 3px var(--gold-soft)}}
-/* responsive: below ~1080 the deck stacks and the page scrolls (acceptable off the no-scroll target) */
-@media(max-width:1080px){
+.cch-credbar-li svg{width:15px;height:15px;color:var(--ink-2);flex:none}
+/* responsive: stack under 900px (page may scroll — acceptable on mobile/narrow) */
+@media(max-width:900px){
   #view-services{overflow-y:auto;overflow-x:hidden}
   .cch-shell{height:auto;min-height:100%}
   .cch-hero{grid-template-columns:1fr;gap:1.5rem}
-  .cch-photo{order:-1;height:clamp(220px,38vh,320px)}
-  .cch-deck{grid-template-columns:1fr}
+  .cch-portrait{order:-1}
+  .cch-portrait figure{height:auto;width:min(100%,300px);aspect-ratio:4/5}
+  .cch-flow{grid-template-columns:1fr;gap:1.1rem}
   .cch-credbar-li{margin-left:0}
 }
 @media(max-width:560px){
-  .cch-h1{font-size:clamp(2.2rem,10vw,3rem)}
-  .cch-strip{grid-template-columns:1fr}
-  .cch-focus{grid-template-columns:1fr}
+  .cch-h1{font-size:clamp(2.3rem,10vw,3.2rem)}
 }
-/* Wide but short (browser zoom, small laptops): unlock scroll so the dense deck
-   never clips — the no-scroll target holds at ~900px+ tall viewports. */
-@media(min-width:1081px) and (max-height:700px){
+/* very short viewports (browser zoom / small laptops): allow scroll rather than clip */
+@media(min-width:901px) and (max-height:600px){
   #view-services{overflow-y:auto;overflow-x:hidden}
   .cch-shell{height:auto;min-height:100%}
-  .cch-card{overflow:visible}
-  .cch-photo{height:clamp(190px,30vh,280px)}
 }
 
 /* ============================== VIEW: START (Nuria diagnostic) ============================== */
@@ -4782,123 +4724,44 @@ body.modal-open .dash-body{overflow:hidden}
           <div class="cch-eyebrow">Private career coaching</div>
           <h1 class="cch-h1">One hour.<em>Real clarity.</em></h1>
           <p class="cch-sub">What's next, with confidence.</p>
-          <div class="cch-strip">
-            <div class="cch-strip-item">
-              <span class="cch-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg></span>
-              <span class="cch-strip-txt"><strong>Your question</strong><span>Bring one career challenge.</span></span>
-            </div>
-            <div class="cch-strip-item">
-              <span class="cch-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
-              <span class="cch-strip-txt"><strong>Our format</strong><span>60-minute private video session.</span></span>
-            </div>
-            <div class="cch-strip-item">
-              <span class="cch-strip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.4 4.5 3.5 7.6 8 8-4.5.4-7.6 3.5-8 8-.4-4.5-3.5-7.6-8-8 4.5-.4 7.6-3.5 8-8Z"/></svg></span>
-              <span class="cch-strip-txt"><strong>Your outcome</strong><span>A clear plan for your next step.</span></span>
-            </div>
-          </div>
-          <div class="cch-cta">
+          <p class="cch-focus">Bring one thing — a direction, an interview, a promotion, a pivot, your personal brand, or a hard call at work.</p>
+          <p class="cch-offer">One private 60-minute 1:1 video session · <b>AED 500</b>.</p>
+          <div class="cch-cta-row">
             <button class="btn btn-primary btn-lg" type="button" data-view="start">Start your screening →</button>
-            <button class="cch-how" type="button" onclick="cchFlashSteps()"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>How it works</button>
           </div>
-          <p class="cch-trust">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-            Private · Confidential · Tailored to you
-          </p>
+          <p class="cch-trust">Private · confidential · tailored to you.</p>
         </div>
-        <figure class="cch-photo">
-          <img src="portrait_face_enhanced_v1.png" alt="Nesreen Abdelhakim — certified career coach" onerror="this.src='nesreen-coaching.jpg'"/>
-        </figure>
+        <div class="cch-portrait">
+          <figure><img src="portrait_face_enhanced_v1.png" alt="Nesreen Abdelhakim — certified career coach" onerror="this.src='nesreen-coaching.jpg'"/></figure>
+          <div class="cch-portrait-cap">Nesreen Abdelhakim · Certified career coach</div>
+        </div>
       </div>
 
-      <!-- DECK -->
-      <div class="cch-deck">
-
-        <!-- What we can focus on -->
-        <section class="cch-card">
-          <h2 class="cch-card-h">What we can focus on</h2>
-          <div class="cch-focus">
-            <div class="cch-tile sel">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>
-              <span>Career direction</span>
-            </div>
-            <div class="cch-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8M8 13h5"/><path d="M4 5h16v11H8l-4 3z"/></svg>
-              <span>Interview preparation</span>
-            </div>
-            <div class="cch-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h5v-5H3zM9.5 20h5V11h-5zM16 20h5V6h-5z"/></svg>
-              <span>Promotions strategy</span>
-            </div>
-            <div class="cch-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M6 8.5v2a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3v-2M12 13.5v2"/></svg>
-              <span>Career pivot</span>
-            </div>
-            <div class="cch-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
-              <span>Personal brand</span>
-            </div>
-            <div class="cch-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-9 4 5 2-3 6 7z"/><path d="M17 6l1 1.5L19.5 8 18 9l-1 1.5L16 9l-1.5-1L16 7z"/></svg>
-              <span>Work challenges</span>
-            </div>
-          </div>
-          <p class="cch-focus-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
-            Have something else in mind? Let's talk.
-          </p>
-        </section>
-
-        <!-- Included in your session -->
-        <section class="cch-card">
-          <h2 class="cch-card-h">Included in your session</h2>
-          <div class="cch-incl">
-            <div class="cch-incl-row">
-              <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
-              <div><strong>60-minute private video call</strong><span>One to one with your coach.</span></div>
-            </div>
-            <div class="cch-incl-row">
-              <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h7M9 17h5"/></svg></span>
-              <div><strong>Session brief</strong><span>Clear, written next steps.</span></div>
-            </div>
-            <div class="cch-incl-row">
-              <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span>
-              <div><strong>Follow-up summary</strong><span>Within 24 hours.</span></div>
-            </div>
-            <div class="cch-incl-row">
-              <span class="cch-incl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span>
-              <div><strong>100% private</strong><span>Confidential, always.</span></div>
-            </div>
-          </div>
-          <div class="cch-time">
-            <span class="cch-time-star"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.4 4.5 3.5 7.6 8 8-4.5.4-7.6 3.5-8 8-.4-4.5-3.5-7.6-8-8 4.5-.4 7.6-3.5 8-8Z"/></svg></span>
-            <h4>This is your time.</h4>
-            <p>One focused hour can change everything.</p>
-            <button class="btn btn-primary" type="button" data-view="start">Book your session →</button>
-          </div>
-        </section>
-
-        <!-- How it works + Your coach -->
-        <section class="cch-card" id="cch-howcard">
-          <h2 class="cch-card-h">How it works</h2>
-          <div class="cch-steps">
-            <div class="cch-step"><span class="cch-step-n">1</span><div><strong>Share your focus</strong><span>A few short questions before the call.</span></div></div>
-            <div class="cch-step"><span class="cch-step-n">2</span><div><strong>Secure your booking</strong><span>Fast, secure payment.</span></div></div>
-            <div class="cch-step"><span class="cch-step-n">3</span><div><strong>Pick your time</strong><span>A slot that suits your week.</span></div></div>
-            <div class="cch-step"><span class="cch-step-n">4</span><div><strong>Meet your coach</strong><span>60 minutes, one to one.</span></div></div>
-          </div>
-        </section>
-
+      <!-- FLOW: one step-line (how it works · what's included) -->
+      <div class="cch-flow">
+        <div class="cch-flow-step">
+          <span class="cch-flow-num">1</span>
+          <span class="cch-flow-label">Share your focus</span>
+          <p class="cch-flow-sub">A few short questions build a brief your coach reads before you meet.</p>
+        </div>
+        <div class="cch-flow-step">
+          <span class="cch-flow-num">2</span>
+          <span class="cch-flow-label">Meet your coach</span>
+          <p class="cch-flow-sub">60 focused minutes, private, one to one.</p>
+        </div>
+        <div class="cch-flow-step">
+          <span class="cch-flow-num">3</span>
+          <span class="cch-flow-label">Leave with a plan</span>
+          <p class="cch-flow-sub">Written next steps, plus a summary within 24 hours.</p>
+        </div>
       </div>
 
-      <!-- CREDENTIAL FOOTER -->
+      <!-- CREDENTIAL BAR -->
       <div class="cch-credbar">
-        <span class="cch-credbar-lead">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5L7 21l5-2.5L17 21l-1.5-8.5"/></svg>
-          Certified
-        </span>
+        <span class="cch-credbar-lead">Certified</span>
         <span class="cch-credbar-list">PHRI · ICF · CMI · SCQF Level 11 · CPT</span>
         <span class="cch-credbar-li">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 9.94v-8.37H5.5v8.37z"/></svg>
           300,000+ follow her on LinkedIn
         </span>
       </div>
@@ -9432,16 +9295,6 @@ document.getElementById('practice-book-direct')?.addEventListener('click', ()=>{
   state.selectedService = COACHING_SESSION || services[0];
   goToCheckout();
 });
-
-// Coaching hero "How it works" — everything is on one screen, so pulse the steps card.
-function cchFlashSteps(){
-  const card = document.getElementById('cch-howcard');
-  if(!card) return;
-  card.classList.remove('flash');
-  void card.offsetWidth; // restart the animation
-  card.classList.add('flash');
-  setTimeout(()=>card.classList.remove('flash'), 1200);
-}
 
 /* ============================== LIBRARY — PROMOTE TO HERO ============================== */
 // Real books by Nesreen. Free in-app sample (cover + chapters + a genuine
